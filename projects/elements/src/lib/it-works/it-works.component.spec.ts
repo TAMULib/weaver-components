@@ -1,7 +1,7 @@
 import { TestBed, async } from '@angular/core/testing';
 import { ItWorksComponent } from './it-works.component';
 
-describe('AppComponent', () => {
+describe('ItWorksComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
@@ -10,22 +10,17 @@ describe('AppComponent', () => {
     }).compileComponents();
   }));
 
-  // it('should create the app', () => {
-  //   const fixture = TestBed.createComponent(AppComponent);
-  //   const app = fixture.debugElement.componentInstance;
-  //   expect(app).toBeTruthy();
-  // });
+  it('should create the ItWorksComponent', () => {
+    const fixture = TestBed.createComponent(ItWorksComponent);
+    const app = fixture.debugElement.componentInstance;
+    expect(app).toBeTruthy();
+  });
 
-  // it(`should have as title 'weaver-components'`, () => {
-  //   const fixture = TestBed.createComponent(AppComponent);
-  //   const app = fixture.debugElement.componentInstance;
-  //   expect(app.title).toEqual('weaver-components');
-  // });
+  it(`should have as title 'it-works-component'`, () => {
+    const fixture = TestBed.createComponent(ItWorksComponent);
+    const app = fixture.debugElement.componentInstance;
+    console.log(app.title);
+    expect(app.title).toEqual('it-works-component');
+  });
 
-  // it('should render title', () => {
-  //   const fixture = TestBed.createComponent(AppComponent);
-  //   fixture.detectChanges();
-  //   const compiled = fixture.debugElement.nativeElement;
-  //   expect(compiled.querySelector('.content span').textContent).toContain('weaver-components app is running!');
-  // });
 });

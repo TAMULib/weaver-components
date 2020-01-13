@@ -6,6 +6,6 @@ export class AppPage {
   }
 
   getTitleText() {
-    return element(by.css('app-root .content span')).getText() as Promise<string>;
+    return element(by.css('wvr-it-works .container .jumbotron h1')).getText() as Promise<string>;
   }
 }
