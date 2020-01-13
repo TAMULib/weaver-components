@@ -1,16 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, Injector } from '@angular/core';
 
-import { AppComponent } from './app.component';
+import { createCustomElement } from '@angular/elements';
+import { ItWorksModule } from './it-works/it-works.module';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule
-  ],
+  imports: [ BrowserModule, ItWorksModule ],
+  exports: [  ],
   providers: [],
-  bootstrap: [AppComponent]
+  declarations: [  ],
+  bootstrap: [  ],
+  entryComponents: [  ]
 })
-export class AppModule { }
+export class AppModule {
+  ngDoBootstrap() {}
+}
