@@ -19,7 +19,6 @@ describe('ItWorksComponent', () => {
   it(`should have as title 'it-works-component'`, () => {
     const fixture = TestBed.createComponent(ItWorksComponent);
     const app = fixture.debugElement.componentInstance;
-    console.log(app.title);
     expect(app.title).toEqual('it-works-component');
   });
 

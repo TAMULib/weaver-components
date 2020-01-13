@@ -3,12 +3,14 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "test": "ng test",
+    "start": "static-server",
+    "build": "ng build --prod --output-hashing none",
+    "prebuild" : "ng build elements",
+    "postbuild" : "node bld/build-elements.js",
+    "test": "ng test elements --watch=false",
+    "test:watch": "ng test elements",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "build:elements": "ng build elements && ng build --extract-css=false --prod --output-hashing none && node bld/build-elements.js"
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
