@@ -128,6 +128,41 @@
           }
         }
       }
+    },
+    "elements": {
+      "projectType": "library",
+      "root": "projects/elements",
+      "sourceRoot": "projects/elements/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/elements/tsconfig.lib.json",
+            "project": "projects/elements/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/elements/src/test.ts",
+            "tsConfig": "projects/elements/tsconfig.spec.json",
+            "karmaConfig": "projects/elements/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/elements/tsconfig.lib.json",
+              "projects/elements/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "weaver-components"

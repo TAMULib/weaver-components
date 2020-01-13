@@ -9,15 +9,6 @@ const concat = require('concat');
     'dist/weaver-components/main-es2015.js'
   ];
 
-  await fs.ensureDir('bld-tmp');
-  await concat(files, 'bld-tmp/weaver-components.js');
-  await fs.remove("dist");
-  await fs.ensureDir('dist');
-  
-  await fs.copyFile(
-    'bld-tmp/weaver-components.js',
-    'dist/weaver-components.js'
-  );
-  await fs.remove("bld-tmp");
+  await concat(files, 'dist/weaver-components.js');
 
 })();

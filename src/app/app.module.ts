@@ -2,11 +2,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, Injector } from '@angular/core';
 
 import { createCustomElement } from '@angular/elements';
-import { ItWorksModule } from './it-works/it-works.module';
+import { ItWorksModule } from 'elements';
 
 @NgModule({
   imports: [ BrowserModule, ItWorksModule ],
-  exports: [  ],
+  exports: [ ],
   providers: [],
   declarations: [  ],
   bootstrap: [  ],
