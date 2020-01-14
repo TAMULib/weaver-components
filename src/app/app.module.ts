@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, Injector } from '@angular/core';
 
-import { ItWorksModule } from 'elements';
+import { ItWorksModule } from 'wvr-elements';
 
 @NgModule({
   imports: [ BrowserModule, ItWorksModule ],

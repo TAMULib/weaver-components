@@ -20,13 +20,13 @@
       "dom"
     ],
     "paths": {
-      "elements": [
-        "projects/elements/src/public-api",
-        "dist/elements"
+      "wvr-elements": [
+        "lib/wvr-elements/src/public-api",
+        "dist/wvr-elements"
       ],
-      "elements/*": [
-        "projects/elements/src/public-api/*",
-        "dist/elements/*",
+      "wvr-elements/*": [
+        "lib/wvr-elements/src/public-api/*",
+        "dist/wvr-elements/*",
       ]
     }
   },
