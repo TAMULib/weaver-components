@@ -1,16 +1,21 @@
 {
   "name": "weaver-components",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
-    "ng": "ng",
-    "start": "static-server",
     "build": "ng build --prod --output-hashing none",
-    "prebuild" : "ng build elements",
-    "postbuild" : "node bld/build-elements.js",
-    "test": "ng test elements --watch=false",
-    "test:watch": "ng test elements",
+    "build:clean": "npm run clean && npm run build",
+    "build:elements": "ng build elements",
+    "build:wvr-components": "node bld/build-wvr-components.js",
+    "clean": "rm -rf dist",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "ng": "ng",
+    "prebuild" : "npm run build:elements",
+    "postbuild" : "npm run build:wvr-components",
+    "start": "ng serve",
+    "test": "npm run test:unit && npm run test:e2e",
+    "test:e2e": "ng e2e",
+    "test:unit": "npm run test:watch -- --watch=false",
+    "test:watch": "ng test elements"
   },
   "private": true,
   "dependencies": {

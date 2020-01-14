@@ -4,13 +4,15 @@ import { browser, logging } from 'protractor';
 describe('workspace-project App', () => {
   let page: AppPage;
 
+  browser.waitForAngularEnabled(false);
+
   beforeEach(() => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  it('should display it works component', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('Weaver Components Work!!!');
+    expect(page.getItWorksText()).toEqual('Weaver Components Work!!!');
   });
 
   afterEach(async () => {

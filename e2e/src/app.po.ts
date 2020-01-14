@@ -5,7 +5,8 @@ export class AppPage {
     return browser.get(browser.baseUrl) as Promise<any>;
   }
 
-  getTitleText() {
-    return element(by.css('wvr-it-works .container .jumbotron h1')).getText() as Promise<string>;
+  getItWorksText() {
+    return element(by.css('wvr-it-works')).getText() as Promise<string>;
   }
+  
 }
