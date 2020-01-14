@@ -12,7 +12,6 @@
     "module": "esnext",
     "moduleResolution": "node",
     "importHelpers": true,
-    "target": "es2015",
     "typeRoots": [
       "node_modules/@types"
     ],
@@ -22,10 +21,12 @@
     ],
     "paths": {
       "elements": [
+        "projects/elements/src/public-api",
         "dist/elements"
       ],
       "elements/*": [
-        "dist/elements/*"
+        "projects/elements/src/public-api/*",
+        "dist/elements/*",
       ]
     }
   },
