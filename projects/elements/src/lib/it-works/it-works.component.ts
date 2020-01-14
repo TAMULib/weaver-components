@@ -1,7 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
-  selector: 'it-works',
+  selector: 'it-works-element',
   templateUrl: './it-works.component.html',
   styleUrls: ['./it-works.component.scss'],
   encapsulation: ViewEncapsulation.Native

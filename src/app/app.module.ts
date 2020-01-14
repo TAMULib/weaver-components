@@ -6,7 +6,7 @@ import { ItWorksModule } from 'elements';
 @NgModule({
   imports: [ BrowserModule, ItWorksModule ],
   exports: [ ],
-  providers: [],
+  providers: [ ],
   declarations: [  ],
   bootstrap: [  ],
   entryComponents: [  ]
