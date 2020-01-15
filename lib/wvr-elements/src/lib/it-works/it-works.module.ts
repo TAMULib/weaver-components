@@ -13,8 +13,14 @@ import { ItWorksComponent } from './it-works.component';
   entryComponents: [ ItWorksComponent ]
 })
 export class ItWorksModule {
+
+  private static readonly TAG_NAME = 'wvr-it-works';
+
   constructor(injector: Injector) {
-    const ItWorksElement = createCustomElement(ItWorksComponent, {injector});
-    customElements.define('wvr-it-works', ItWorksElement);
+    if(!customElements.get(ItWorksModule.TAG_NAME)) {
+      const ItWorksElement = createCustomElement(ItWorksComponent, {injector});
+      customElements.define(ItWorksModule.TAG_NAME, ItWorksElement);
+    }
   }
+
 }
