@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'it-works-element',
@@ -8,4 +8,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 })
 export class ItWorksComponent {
   title = 'it-works-component';
+
+  @Input() text = 'Weaver Components Work';
+
 }
