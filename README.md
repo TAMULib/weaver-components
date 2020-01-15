@@ -13,10 +13,12 @@ Run `ng generate component component-name` to generate a new component. You can 
 ## Build
 
 Run `npm run build` to build the project. The build artifacts will be stored in the `dist/` directory.
+You can also use `npm run build:clean|wvr-elements|wvr-components`.
 
 ## Running unit tests
 
 Run `npm test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+You can also use `npm run test:unit|watch`.
 
 ## Running end-to-end tests
 
