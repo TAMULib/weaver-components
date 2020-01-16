@@ -1,10 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, Injector } from '@angular/core';
+import { NgModule } from '@angular/core';
 
-import { ItWorksModule } from 'wvr-elements';
+import { ItWorksModule, WvrHeaderModule } from 'wvr-elements';
 
 @NgModule({
-  imports: [ BrowserModule, ItWorksModule ],
+  imports: [ 
+    BrowserModule, 
+    ItWorksModule,
+    WvrHeaderModule
+  ],
   exports: [ ],
   providers: [ ],
   declarations: [  ],
