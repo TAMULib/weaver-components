@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { ItWorksModule, WvrHeaderModule } from 'wvr-elements';
 
@@ -7,6 +8,7 @@ import { ItWorksModule, WvrHeaderModule } from 'wvr-elements';
   imports: [ 
     BrowserModule, 
     ItWorksModule,
+    NgbModule,
     WvrHeaderModule
   ],
   exports: [ ],

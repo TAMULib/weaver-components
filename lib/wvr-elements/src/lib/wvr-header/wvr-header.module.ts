@@ -1,12 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, Injector } from '@angular/core';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { createCustomElement } from '@angular/elements';
 import { WvrHeaderComponent } from './wvr-header.component';
 
-
 @NgModule({
-  imports: [ BrowserModule ],
+  imports: [ BrowserModule, NgbModule ],
   exports: [ WvrHeaderComponent ],
   providers: [],
   declarations: [ WvrHeaderComponent ],
