@@ -7,23 +7,37 @@
     <wvr-header
       logo-src="https://yt3.ggpht.com/-e2gGcJKR-rM/AAAAAAAAAAI/AAAAAAAAAAA/WXCERh8f31k/s68-c-k-no-mo-rj-c0xffffff/photo.jpg"
       logo-text=" | A&M Libraries"
-      header-title="University"
+      header-title="TL Components"
     >
-      
-      <!-- <wvr-header-top-navigation>
-        <wvr-header-top-link>About</wvr-header-top-link>
-        <wvr-header-top-link>Hours</wvr-header-top-link>
-        <wvr-header-top-link>Contact</wvr-header-top-link>
-      </wvr-header-top-navigation> -->
+      <wvr-link slot="browNavLinks" href="#about-us">About</wvr-link>
+      <wvr-link slot="browNavLinks" href="#hours">Hours</wvr-link>
+      <wvr-link slot="browNavLinks" href="#contact">Contact</wvr-link>
 
-      <wvr-header-top-link>About</wvr-header-top-link>
-      <wvr-header-top-link>About</wvr-header-top-link>
-      <wvr-header-top-link>About</wvr-header-top-link>
-      <wvr-header-top-link>About</wvr-header-top-link>
+      <wvr-link slot="bottomNavLinks" href="#link1">Link 1</wvr-link>
+      <wvr-link slot="bottomNavLinks" href="#link2">Link 2</wvr-link>
+      <wvr-link slot="bottomNavLinks" href="#link3">Link 3</wvr-link>
 
     </wvr-header>
 
     <!-- <wvr-header></wvr-header> -->
     <!-- <wvr-it-works></wvr-it-works> -->
+
+    <script>
+
+      setTimeout(function() {
+        var para = document.createElement("wvr-link");
+        var node = document.createTextNode("im new");
+        para.appendChild(node);
+        para.setAttribute("slot", "browNavLinks");
+        para.setAttribute("href", "#WilliamIsWrong");
+
+        var element = document.querySelector("wvr-header");
+        element.appendChild(para);
+        console.log("done");
+      }, 5000)
+
+    </script>
+
+
   </body>
 </html>

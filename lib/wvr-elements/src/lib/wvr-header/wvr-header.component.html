@@ -1,11 +1,16 @@
 <header class="wvr-components wvr-header">
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container logo">
+    <div class="container logo d-flex">
       <a class="navbar-brand" href="#">
         <img alt="Weaver 'W' Logo" class="logo-img d-inline-block align-top" [src]='logoSrc' />
         <span class="text-white-50">{{logoText}}</span>
       </a>
+      <ul class="navbar-nav p-2">
+        <li class="nav-item" *ngFor="let elem of browNavLinks">
+          <a class="nav-link" href="{{elem.getAttribute('href')}}" [innerHtml]="safe(elem.innerHTML)"></a>
+        </li>
+      </ul>
     </div>
   </nav>
 
@@ -19,9 +24,15 @@
 
   <nav class="navbar navbar-expand-lg bg-light">
     <div class="container logo">
-      <span class="navbar-brand mb-0 h1">Lower Nav</span>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item" *ngFor="let elem of bottomNavLinks">
+          <a class="nav-link" href="{{elem.getAttribute('href')}}" [innerHtml]="safe(elem.innerHTML)"></a>
+        </li>
+      </ul>
     </div>
   </nav>
 
-  
 </header>
+
+<slot [hidden]='true' (slotchange)="slotChange($event)" name="browNavLinks"></slot>
+<slot [hidden]='true' (slotchange)="slotChange($event)" name="bottomNavLinks"></slot>

@@ -10,7 +10,7 @@ import { WvrHeaderComponent } from './wvr-header.component';
   exports: [ WvrHeaderComponent ],
   providers: [],
   declarations: [ WvrHeaderComponent ],
-  bootstrap: [  ],
+  bootstrap: [],
   entryComponents: [ WvrHeaderComponent ]
 })
 export class WvrHeaderModule {
@@ -19,8 +19,8 @@ export class WvrHeaderModule {
 
   constructor(injector: Injector) {
     if(!customElements.get(WvrHeaderModule.TAG_NAME)) {
-      const ItWorksElement = createCustomElement(WvrHeaderComponent, {injector});
-      customElements.define(WvrHeaderModule.TAG_NAME, ItWorksElement);
+      const WvrHeaderElement = createCustomElement(WvrHeaderComponent, {injector});
+      customElements.define(WvrHeaderModule.TAG_NAME, WvrHeaderElement);
     }
   }
 
