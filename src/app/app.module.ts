@@ -1,22 +1,22 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { ItWorksModule, WvrHeaderModule } from 'wvr-elements';
 
 @NgModule({
-  imports: [ 
-    BrowserModule, 
+  imports: [
+    BrowserModule,
     ItWorksModule,
     NgbModule,
-    WvrHeaderModule
+    WvrHeaderModule,
   ],
-  exports: [ ],
-  providers: [ ],
-  declarations: [  ],
-  bootstrap: [  ],
-  entryComponents: [  ]
+  exports: [],
+  providers: [],
+  declarations: [],
+  bootstrap: [],
+  entryComponents: []
 })
 export class AppModule {
-  ngDoBootstrap() {}
+  ngDoBootstrap() { }
 }
