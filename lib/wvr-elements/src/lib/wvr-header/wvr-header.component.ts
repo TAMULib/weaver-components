@@ -17,9 +17,6 @@ export class WvrHeaderComponent extends WvrBaseComponent {
 
   constructor(injector: Injector) {
     super(injector);
-    console.log(this.logoText);
-    console.log(this.headerTitle);
-    console.log(this.logoSrc);
   }
 
 }

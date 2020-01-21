@@ -1,4 +1,4 @@
-<ul class="nav justify-content-end">
+<ul [ngClass]="{'nav': true, 'justify-content-left': false}">
   <ng-container>
     <a *ngFor="let elem of NavListItems" class="nav-link" href="{{elem.getAttribute('href')}}">{{elem.innerHTML}}</a>
   </ng-container>
