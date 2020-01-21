@@ -3,5 +3,9 @@
   "dest": "../../dist/wvr-elements",
   "lib": {
     "entryFile": "src/public-api.ts"
-  }
+  },
+  "whitelistedNonPeerDependencies": [
+    "tslib",
+    "@ng-bootstrap/ng-bootstrap"
+  ]
 }
