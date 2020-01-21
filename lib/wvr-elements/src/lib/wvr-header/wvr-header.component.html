@@ -6,11 +6,7 @@
         <img alt="Weaver 'W' Logo" class="logo-img d-inline-block align-top" [src]='logoSrc' />
         <span class="text-white-50">{{logoText}}</span>
       </a>
-      <ul class="navbar-nav p-2">
-        <li class="nav-item" *ngFor="let elem of browNavLinks">
-          <a class="nav-link" href="{{elem.getAttribute('href')}}" [innerHtml]="safe(elem.innerHTML)"></a>
-        </li>
-      </ul>
+      <slot (slotchange)="slotChange($event)" name="brow-navigation"></slot>
     </div>
   </nav>
 
@@ -34,5 +30,4 @@
 
 </header>
 
-<slot [hidden]='true' (slotchange)="slotChange($event)" name="browNavLinks"></slot>
 <slot [hidden]='true' (slotchange)="slotChange($event)" name="bottomNavLinks"></slot>

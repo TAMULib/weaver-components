@@ -1,16 +1,15 @@
 import { WvrBaseComponent } from '../../wvr-base-component';
-import "reflect-metadata";
 
 export function QuerySlotChildren(...types: string[]) {
-    return function (target: any, key: string, ) {
-
-        let currentTarget = target.constructor;
-        //let parentTarget = Object.getPrototypeOf(target.prototype).constructor;
-        //let parentAnnotations = Reflect.getOwnMetadata('annotations', parentTarget);
-
-        //Reflect.defineMetadata('annotations', [Object.create(parentAnnotations[0])], currentTarget);
-        let currentAnnotations = Reflect.getOwnMetadata('annotations', currentTarget);
-        console.log(Reflect.getPrototypeOf(target));
-        //types.forEach(t => target[key].push(t.toUpperCase()));
+    return function <T extends WvrBaseComponent>(target: T, key: string, ) {
+        if (!target.slotValidation) {
+            target.slotValidation = new Map<string, string[]>()
+        }
+        types.forEach(t => {
+            if (!target.slotValidation.get(key)) {
+                target.slotValidation.set(key, []);
+            }
+            target.slotValidation.get(key).push(t.toUpperCase())
+        });
     }
 }

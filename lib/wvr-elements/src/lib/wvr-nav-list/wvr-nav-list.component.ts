@@ -1,5 +1,6 @@
 import { Component, ViewEncapsulation, ElementRef, ViewChild, Injector } from '@angular/core';
 import { WvrBaseComponent } from '../shared/wvr-base-component';
+import { QuerySlotChildren } from '../shared/decorators/QuerySlotChildren/QuerySlotChildren';
 
 @Component({
   selector: 'wvr-nav-list-element',
@@ -7,18 +8,13 @@ import { WvrBaseComponent } from '../shared/wvr-base-component';
   styleUrls: ['./wvr-nav-list.component.scss'],
   encapsulation: ViewEncapsulation.ShadowDom
 })
-export class WvrNavListComponent {
+export class WvrNavListComponent extends WvrBaseComponent {
+
+  @QuerySlotChildren("wvr-nav-li", "li")
+  wvrNavListItems: HTMLElement[];
 
   constructor(injector: Injector) {
-    //super(injector);
+    super(injector);
   }
 
-  // 
-  // slotChange($event) {
-  //   const target: HTMLSlotElement = $event.target;
-  //   target.assignedElements().forEach((e) => {
-  //     let el = e.shadowRoot.querySelector('li');
-  //     (this.navlist.nativeElement as HTMLElement).appendChild(el);
-  //   });
-  // }
 }

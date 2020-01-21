@@ -16,7 +16,6 @@ import { WvrNavListComponent } from './wvr-nav-list.component';
 export class WvrNavListModule {
 
   private static readonly TAG_NAME = 'wvr-nav-list';
-  private static readonly LI_TAG_NAME = 'wvr-nav-li';
 
   constructor(injector: Injector) {
     if (!customElements.get(WvrNavListModule.TAG_NAME)) {

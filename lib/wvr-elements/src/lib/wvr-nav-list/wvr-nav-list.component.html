@@ -1,3 +1,6 @@
-<ul #navlist class="navbar-nav mr-auto">
+<ul class="navbar-nav mr-auto">
+    <li class="nav-item" *ngFor="let elem of wvrNavListItems"></li>
 </ul>
-<slot [hidden]="true" (slotchange)="slotChange($event)"></slot>
+<slot (slotchange)="slotChange($event)">
+    <li class=nav-item>wvr-nav-list</li>
+</slot>
