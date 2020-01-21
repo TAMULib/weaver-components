@@ -1,6 +1,7 @@
-<ul class="navbar-nav mr-auto">
-    <li class="nav-item" *ngFor="let elem of wvrNavListItems"></li>
+<ul class="nav justify-content-end">
+  <ng-container>
+    <a *ngFor="let elem of NavListItems" class="nav-link" href="{{elem.getAttribute('href')}}">{{elem.innerHTML}}</a>
+  </ng-container>
 </ul>
-<slot (slotchange)="slotChange($event)">
-    <li class=nav-item>wvr-nav-list</li>
-</slot>
+
+<slot [hidden]="true" (slotchange)="slotChange($event)"></slot>

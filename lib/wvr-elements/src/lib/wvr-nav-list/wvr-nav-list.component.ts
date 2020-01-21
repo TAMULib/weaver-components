@@ -1,6 +1,6 @@
-import { Component, ViewEncapsulation, ElementRef, ViewChild, Injector } from '@angular/core';
+import { Component, ViewEncapsulation, Injector } from '@angular/core';
 import { WvrBaseComponent } from '../shared/wvr-base-component';
-import { QuerySlotChildren } from '../shared/decorators/QuerySlotChildren/QuerySlotChildren';
+import { SlotChildren } from '../shared/decorators/SlotChildren/SlotChildren';
 
 @Component({
   selector: 'wvr-nav-list-element',
@@ -10,8 +10,8 @@ import { QuerySlotChildren } from '../shared/decorators/QuerySlotChildren/QueryS
 })
 export class WvrNavListComponent extends WvrBaseComponent {
 
-  @QuerySlotChildren("wvr-nav-li", "li")
-  wvrNavListItems: HTMLElement[];
+  @SlotChildren("nav-li")
+  NavListItems: HTMLElement[] = [];
 
   constructor(injector: Injector) {
     super(injector);

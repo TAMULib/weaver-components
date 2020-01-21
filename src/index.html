@@ -10,43 +10,22 @@
     logo-src="https://yt3.ggpht.com/-e2gGcJKR-rM/AAAAAAAAAAI/AAAAAAAAAAA/WXCERh8f31k/s68-c-k-no-mo-rj-c0xffffff/photo.jpg"
     logo-text=" | A&M Libraries" header-title="TL Components">
 
-    <wvr-link slot="bottomNavLinks" href="#link1">Link 1</wvr-link>
-    <wvr-link slot="bottomNavLinks" href="#link2">Link 2</wvr-link>
-    <wvr-link slot="bottomNavLinks" href="#link3">Link 3</wvr-link>
-
     <wvr-nav-list slot="brow-navigation">
-      <wvr-nav-li href="#about-us">About</wvr-nav-li>
-      <wvr-nav-li href="#hours">Hours</wvr-nav-li>
-      <wvr-nav-li href="#contact">Contact</wvr-nav-li>
+      <nav-li href="#about-us">About</nav-li>
+      <nav-li href="#hours">Hours</nav-li>
+      <nav-li href="#contact">Contact</nav-li>
+    </wvr-nav-list>
+
+    <wvr-nav-list slot="chin-navigation">
+      <nav-li href="#link1">Link 1</nav-li>
+      <nav-li href="#link2">Link 2</nav-li>
+      <nav-li href="#link3">Link 3</nav-li>
     </wvr-nav-list>
 
   </wvr-header>
 
-  <wvr-nav-list slot="brow-navigation">
-    <wvr-nav-li href="#about-us">About</wvr-nav-li>
-    <wvr-nav-li href="#hours">Hours</wvr-nav-li>
-    <wvr-nav-li href="#contact">Contact</wvr-nav-li>
-  </wvr-nav-list>
-
   <!-- <wvr-header></wvr-header> -->
   <!-- <wvr-it-works></wvr-it-works> -->
-
-  <script>
-
-    setTimeout(function () {
-      var para = document.createElement("wvr-link");
-      var node = document.createTextNode("im new");
-      para.appendChild(node);
-      para.setAttribute("slot", "browNavLinks");
-      para.setAttribute("href", "#WilliamIsWrong");
-
-      var element = document.querySelector("wvr-header");
-      element.appendChild(para);
-      console.log("done");
-    }, 5000)
-
-  </script>
-
 
 </body>
 
