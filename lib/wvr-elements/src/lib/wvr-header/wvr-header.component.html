@@ -6,7 +6,7 @@
         <img alt="Weaver 'W' Logo" class="logo-img d-inline-block align-top" [src]='logoSrc' />
         <span class="text-white-50">{{logoText}}</span>
       </a>
-      <slot name="brow-navigation"></slot>
+      <ng-content select="wvr-nav-list[role=brow]"></ng-content>
     </div>
   </nav>
 
@@ -20,7 +20,7 @@
 
   <nav class="navbar navbar-expand-lg bg-light">
     <div class="container">
-      <slot name="chin-navigation"></slot>
+      <ng-content select="wvr-nav-list[role=chin]"></ng-content>
     </div>
   </nav>
 

@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WvrHeaderComponent } from './wvr-header.component';
+import { WvrNavItemComponent } from './wvr-nav-item.component';
 
-describe('WvrHeaderComponent', () => {
-  let component: WvrHeaderComponent;
-  let fixture: ComponentFixture<WvrHeaderComponent>;
+describe('WvrNavItemComponent', () => {
+  let component: WvrNavItemComponent;
+  let fixture: ComponentFixture<WvrNavItemComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [WvrHeaderComponent]
+      declarations: [WvrNavItemComponent]
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(WvrHeaderComponent);
+    fixture = TestBed.createComponent(WvrNavItemComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

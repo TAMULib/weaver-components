@@ -5,28 +5,48 @@
   <title>Weaver Comonents</title>
 </head>
 
-<body>
-  <wvr-header
-    logo-src="https://yt3.ggpht.com/-e2gGcJKR-rM/AAAAAAAAAAI/AAAAAAAAAAA/WXCERh8f31k/s68-c-k-no-mo-rj-c0xffffff/photo.jpg"
-    logo-text=" | A&M Libraries" header-title="TL Components">
+<body id="main">
+  <wvr-header logo-src="https://yt3.ggpht.com/-e2gGcJKR-rM/AAAAAAAAAAI/AAAAAAAAAAA/WXCERh8f31k/s68-c-k-no-mo-rj-c0xffffff/photo.jpg" logo-text=" | A&M Libraries" header-title="TL Components">
 
-    <wvr-nav-list slot="brow-navigation">
-      <nav-li href="#about-us">About</nav-li>
-      <nav-li href="#hours">Hours</nav-li>
-      <nav-li href="#contact">Contact</nav-li>
+    <wvr-nav-list role="brow">
+      <wvr-nav-item><a class="nav-link" href="#about">About</a></wvr-nav-item>
+      <wvr-nav-item><a class="nav-link" href="#hours">Hours</a></wvr-nav-item>
+      <wvr-nav-item><a class="nav-link" href="#contact">Contact</a></wvr-nav-item>
     </wvr-nav-list>
 
-    <wvr-nav-list slot="chin-navigation">
-      <nav-li href="#link1">Link 1</nav-li>
-      <nav-li href="#link2">Link 2</nav-li>
-      <nav-li href="#link3">Link 3</nav-li>
+    <wvr-nav-list role="chin">
+      <wvr-nav-item><a class="nav-link" href="#link1">Link 1</a></wvr-nav-item>
+      <wvr-nav-item><a class="nav-link" href="#link2">Link 2</a></wvr-nav-item>
+      <wvr-nav-item><a class="nav-link" href="#link3">Link 3</a></wvr-nav-item>
     </wvr-nav-list>
 
   </wvr-header>
 
-  <!-- <wvr-header></wvr-header> -->
-  <!-- <wvr-it-works></wvr-it-works> -->
+  <br />
+  <br />
+
+  <wvr-it-works></wvr-it-works>
 
 </body>
+
+<script>
+
+  setTimeout(function () {
+    var node = document.createTextNode("Yay!! Angular!");
+
+    var aElem = document.createElement("a");
+    aElem.setAttribute("href", "#WilliamIsRight");
+    aElem.classList.add("nav-link");
+    aElem.appendChild(node);
+
+    var wvrNavItem = document.createElement("wvr-nav-item");
+    wvrNavItem.appendChild(aElem);
+
+    var element = document.querySelector("wvr-nav-list[role=chin] ul");
+    element.appendChild(wvrNavItem);
+    console.log("done");
+  }, 5000)
+
+</script>
 
 </html>

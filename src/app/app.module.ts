@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { ItWorksModule, WvrHeaderModule, WvrNavListModule } from 'wvr-elements';
+import { ItWorksModule, WvrHeaderModule, WvrNavListModule, WvrNavItemModule } from 'wvr-elements';
 
 @NgModule({
   imports: [
@@ -10,7 +10,8 @@ import { ItWorksModule, WvrHeaderModule, WvrNavListModule } from 'wvr-elements';
     ItWorksModule,
     NgbModule,
     WvrHeaderModule,
-    WvrNavListModule
+    WvrNavListModule,
+    WvrNavItemModule
   ],
   exports: [],
   providers: [],

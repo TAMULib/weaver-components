@@ -1,20 +1,19 @@
-import { Component, ViewEncapsulation, Injector } from '@angular/core';
-import { WvrBaseComponent } from '../shared/wvr-base-component';
-import { SlotChildren } from '../shared/decorators/SlotChildren/SlotChildren';
+import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 
 @Component({
+  // tslint:disable-next-line: component-selector
   selector: 'wvr-nav-list-element',
   templateUrl: './wvr-nav-list.component.html',
   styleUrls: ['./wvr-nav-list.component.scss'],
-  encapsulation: ViewEncapsulation.ShadowDom
+  encapsulation: ViewEncapsulation.None
 })
-export class WvrNavListComponent extends WvrBaseComponent {
+export class WvrNavListComponent implements OnInit {
 
-  @SlotChildren("nav-li")
-  NavListItems: HTMLElement[] = [];
+  constructor() {
 
-  constructor(injector: Injector) {
-    super(injector);
+  }
+
+  ngOnInit() {
   }
 
 }

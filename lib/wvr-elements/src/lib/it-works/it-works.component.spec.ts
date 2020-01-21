@@ -1,25 +1,28 @@
-import { TestBed, async } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+
 import { ItWorksComponent } from './it-works.component';
 
 describe('ItWorksComponent', () => {
+  let component: ItWorksComponent;
+  let fixture: ComponentFixture<ItWorksComponent>;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        ItWorksComponent
-      ],
+      declarations: [ItWorksComponent]
     }).compileComponents();
   }));
 
-  it('should create the ItWorksComponent', () => {
-    const fixture = TestBed.createComponent(ItWorksComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
+  beforeEach(() => {
+    fixture = TestBed.createComponent(ItWorksComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
   });
 
   it(`should have as title 'it-works-component'`, () => {
-    const fixture = TestBed.createComponent(ItWorksComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('it-works-component');
+    expect(component.title).toEqual('it-works-component');
   });
-
 });

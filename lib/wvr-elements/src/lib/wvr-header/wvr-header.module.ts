@@ -1,25 +1,25 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, Injector } from '@angular/core';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { createCustomElement } from '@angular/elements';
 import { WvrHeaderComponent } from './wvr-header.component';
 
 @NgModule({
-  imports: [ BrowserModule, NgbModule ],
-  exports: [ WvrHeaderComponent ],
+  imports: [BrowserModule, NgbModule],
+  exports: [WvrHeaderComponent],
   providers: [],
-  declarations: [ WvrHeaderComponent ],
+  declarations: [WvrHeaderComponent],
   bootstrap: [],
-  entryComponents: [ WvrHeaderComponent ]
+  entryComponents: [WvrHeaderComponent]
 })
 export class WvrHeaderModule {
 
   private static readonly TAG_NAME = 'wvr-header';
 
   constructor(injector: Injector) {
-    if(!customElements.get(WvrHeaderModule.TAG_NAME)) {
-      const WvrHeaderElement = createCustomElement(WvrHeaderComponent, {injector});
+    if (!customElements.get(WvrHeaderModule.TAG_NAME)) {
+      const WvrHeaderElement = createCustomElement(WvrHeaderComponent, { injector });
       customElements.define(WvrHeaderModule.TAG_NAME, WvrHeaderElement);
     }
   }
