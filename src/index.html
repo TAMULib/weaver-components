@@ -6,20 +6,23 @@
 </head>
 
 <body id="main">
-  <wvr-header logo-src="https://yt3.ggpht.com/-e2gGcJKR-rM/AAAAAAAAAAI/AAAAAAAAAAA/WXCERh8f31k/s68-c-k-no-mo-rj-c0xffffff/photo.jpg" logo-text=" | A&M Libraries" header-title="TL Components">
 
+  <wvr-header logo-src="https://yt3.ggpht.com/-e2gGcJKR-rM/AAAAAAAAAAI/AAAAAAAAAAA/WXCERh8f31k/s68-c-k-no-mo-rj-c0xffffff/photo.jpg" logo-text=" | A&M Libraries" header-title="TL Components">
+    <h2>This won't render!!!</h2>
     <wvr-nav-list role="brow">
-      <wvr-nav-item><a class="nav-link" href="#about">About</a></wvr-nav-item>
-      <wvr-nav-item><a class="nav-link" href="#hours">Hours</a></wvr-nav-item>
+      <li><a class="nav-link" href="#test">Test</a></li>
+      <div><a class="nav-link" href="#test">Test</a></div>
+      <wvr-nav-item><a class="nav-link" href="#about">About</a><span>Hello, World</span></wvr-nav-item>
+      <wvr-nav-item><a class="nav-link" href="#hours">Hours</a>Don't Render This</wvr-nav-item>
       <wvr-nav-item><a class="nav-link" href="#contact">Contact</a></wvr-nav-item>
     </wvr-nav-list>
-
+    This works!
     <wvr-nav-list role="chin">
       <wvr-nav-item><a class="nav-link" href="#link1">Link 1</a></wvr-nav-item>
       <wvr-nav-item><a class="nav-link" href="#link2">Link 2</a></wvr-nav-item>
       <wvr-nav-item><a class="nav-link" href="#link3">Link 3</a></wvr-nav-item>
     </wvr-nav-list>
-
+    <h3>Cool</h3>
   </wvr-header>
 
   <br />
@@ -44,8 +47,7 @@
 
     var element = document.querySelector("wvr-nav-list[role=chin] ul");
     element.appendChild(wvrNavItem);
-    console.log("done");
-  }, 5000)
+  }, 5000);
 
 </script>
 

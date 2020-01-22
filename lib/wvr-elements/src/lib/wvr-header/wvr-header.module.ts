@@ -18,9 +18,11 @@ export class WvrHeaderModule {
   private static readonly TAG_NAME = 'wvr-header';
 
   constructor(injector: Injector) {
-    if (!customElements.get(WvrHeaderModule.TAG_NAME)) {
+    try {
       const WvrHeaderElement = createCustomElement(WvrHeaderComponent, { injector });
       customElements.define(WvrHeaderModule.TAG_NAME, WvrHeaderElement);
+    } catch (e) {
+      console.warn(e);
     }
   }
 

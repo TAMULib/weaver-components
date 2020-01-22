@@ -18,9 +18,11 @@ export class WvrNavItemModule {
   private static readonly TAG_NAME = 'wvr-nav-item';
 
   constructor(injector: Injector) {
-    if (!customElements.get(WvrNavItemModule.TAG_NAME)) {
+    try {
       const WvrNavItemElement = createCustomElement(WvrNavItemComponent, { injector });
       customElements.define(WvrNavItemModule.TAG_NAME, WvrNavItemElement);
+    } catch (e) {
+      console.warn(e);
     }
   }
 

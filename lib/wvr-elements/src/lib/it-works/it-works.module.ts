@@ -17,9 +17,11 @@ export class ItWorksModule {
   private static readonly TAG_NAME = 'wvr-it-works';
 
   constructor(injector: Injector) {
-    if (!customElements.get(ItWorksModule.TAG_NAME)) {
+    try {
       const ItWorksElement = createCustomElement(ItWorksComponent, { injector });
       customElements.define(ItWorksModule.TAG_NAME, ItWorksElement);
+    } catch (e) {
+      console.warn(e);
     }
   }
 
