@@ -20,11 +20,11 @@
   ],
   "license": "MIT",
   "peerDependencies": {
-    "@angular/common": "^8.2.14",
-    "@angular/core": "^8.2.14",
-    "bootstrap": "^4.4.1"
+    "@angular/common": "8.2.14",
+    "@angular/core": "8.2.14",
+    "bootstrap": "4.4.1"
   },
   "dependencies": {
-    "@ng-bootstrap/ng-bootstrap": "^5.1.5"
+    "@ng-bootstrap/ng-bootstrap": "5.1.5"
   }
 }
