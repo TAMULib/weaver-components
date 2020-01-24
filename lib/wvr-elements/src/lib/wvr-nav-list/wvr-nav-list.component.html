@@ -1,7 +1,4 @@
-<ul [ngClass]="{'nav': true, 'justify-content-left': false}">
-  <ng-container>
-    <a *ngFor="let elem of NavListItems" class="nav-link" href="{{elem.getAttribute('href')}}">{{elem.innerHTML}}</a>
-  </ng-container>
+<ul class="navbar-nav flex-row">
+  <!-- <a *ngFor="let elem of NavListItems" class="nav-link" href="{{elem.getAttribute('href')}}">{{elem.innerHTML}}</a> -->
+  <slot></slot>
 </ul>
-
-<slot [hidden]="true" (slotchange)="slotChange($event)"></slot>

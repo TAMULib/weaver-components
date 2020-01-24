@@ -17,12 +17,15 @@ export class WvrNavListComponent extends WvrBaseComponent {
   @SlotChildren("nav-li")
   NavListItems: HTMLElement[] = [];
 
-  @Input() alignment: alignments = alignments.LEFT;
+  @Input() alignment: "LEFT" | "RIGHT" | "CENTER" = "LEFT";
 
   alignments = alignments;
 
   constructor(injector: Injector) {
     super(injector);
+  }
+
+  ngOnInit() {
     console.log(this.alignment);
   }
 

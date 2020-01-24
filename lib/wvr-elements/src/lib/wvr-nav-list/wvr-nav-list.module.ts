@@ -4,24 +4,32 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { createCustomElement } from '@angular/elements';
 import { WvrNavListComponent } from './wvr-nav-list.component';
+import { WvrNavLiComponent } from './wvr-nav-li/wvr-nav-li.component';
 
 @NgModule({
   imports: [BrowserModule, NgbModule],
-  exports: [WvrNavListComponent],
+  exports: [WvrNavListComponent, WvrNavLiComponent],
   providers: [],
-  declarations: [WvrNavListComponent],
+  declarations: [WvrNavListComponent, WvrNavLiComponent],
   bootstrap: [],
-  entryComponents: [WvrNavListComponent]
+  entryComponents: [WvrNavListComponent, WvrNavLiComponent]
 })
 export class WvrNavListModule {
 
-  private static readonly TAG_NAME = 'wvr-nav-list';
+  private static readonly LIST_TAG_NAME = 'wvr-nav-list';
+  private static readonly LI_TAG_NAME = 'wvr-nav-li';
 
   constructor(injector: Injector) {
-    if (!customElements.get(WvrNavListModule.TAG_NAME)) {
+
+    try {
       const WvrNavListElement = createCustomElement(WvrNavListComponent, { injector });
-      customElements.define(WvrNavListModule.TAG_NAME, WvrNavListElement);
+      customElements.define(WvrNavListModule.LIST_TAG_NAME, WvrNavListElement);
+      const WvrNavLiElement = createCustomElement(WvrNavLiComponent, { injector });
+      customElements.define(WvrNavListModule.LI_TAG_NAME, WvrNavLiElement);
+    } catch (e) {
+      console.warn(e);
     }
+
   }
 
 }
