@@ -22,7 +22,6 @@ export class WvrNavListComponent extends WvrBaseComponent {
   }
 
   ngOnInit() {
-    console.log(this.aligned);
   }
 
 }
