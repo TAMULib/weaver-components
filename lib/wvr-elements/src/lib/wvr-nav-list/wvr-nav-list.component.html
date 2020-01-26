@@ -1,4 +1,10 @@
-<ul class="navbar-nav flex-row">
-  <!-- <a *ngFor="let elem of NavListItems" class="nav-link" href="{{elem.getAttribute('href')}}">{{elem.innerHTML}}</a> -->
-  <slot></slot>
-</ul>
+<div *ngIf="canRender" class="flex-fill">
+  <ul class="navbar-nav" [ngClass]="{
+    'flex-row': !vertical, 
+    'justify-content-end': aligned===Alignment.RIGHT,
+    'justify-content-center': aligned===Alignment.CENTER
+  }">
+    <!-- <a *ngFor="let elem of NavListItems" class="nav-link" href="{{elem.getAttribute('href')}}">{{elem.innerHTML}}</a> -->
+    <slot></slot>
+  </ul>
+</div>

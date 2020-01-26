@@ -19,4 +19,8 @@ export class WvrHeaderComponent extends WvrBaseComponent {
     super(injector);
   }
 
+  ngOnInit() {
+
+  }
+
 }

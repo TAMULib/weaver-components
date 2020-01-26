@@ -1,10 +1,7 @@
-import { Component, ViewEncapsulation, Injector, Input } from '@angular/core';
+import { Component, ViewEncapsulation, Injector, Input, ElementRef } from '@angular/core';
 import { WvrBaseComponent } from '../shared/wvr-base-component';
 import { SlotChildren } from '../shared/decorators/SlotChildren/SlotChildren';
-
-enum alignments {
-  LEFT = 0, CENTER = 1, RIGHT = 2, VERTICAL = 3
-}
+import { Alignment } from './alignment.enum';
 
 @Component({
   selector: 'wvr-nav-list-element',
@@ -14,19 +11,20 @@ enum alignments {
 })
 export class WvrNavListComponent extends WvrBaseComponent {
 
-  @SlotChildren("nav-li")
-  NavListItems: HTMLElement[] = [];
+  @Input() aligned: Alignment = Alignment.LEFT;
 
-  @Input() alignment: "LEFT" | "RIGHT" | "CENTER" = "LEFT";
+  Alignment = Alignment;
 
-  alignments = alignments;
+  canRender = true;
+
+  @Input() vertical = false;
 
   constructor(injector: Injector) {
     super(injector);
   }
 
   ngOnInit() {
-    console.log(this.alignment);
+    console.log(this.aligned);
   }
 
 }
