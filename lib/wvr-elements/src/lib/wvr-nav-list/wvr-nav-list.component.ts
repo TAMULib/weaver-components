@@ -15,8 +15,6 @@ export class WvrNavListComponent extends WvrBaseComponent {
 
   Alignment = Alignment;
 
-  canRender = true;
-
   @Input() vertical = false;
 
   constructor(injector: Injector) {

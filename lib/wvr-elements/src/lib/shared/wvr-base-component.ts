@@ -3,11 +3,13 @@ import { Component, Injector, ViewEncapsulation, ElementRef } from '@angular/cor
 
 export abstract class WvrBaseComponent {
 
+  protected elem: ElementRef;
   protected domSanitizer: DomSanitizer;
   public slotValidation: Map<string, string[]>;
 
 
   constructor(injector: Injector) {
+    this.elem = injector.get(ElementRef);
     this.domSanitizer = injector.get(DomSanitizer);
   }
 

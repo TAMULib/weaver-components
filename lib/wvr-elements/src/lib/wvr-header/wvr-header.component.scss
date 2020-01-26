@@ -1,6 +1,24 @@
 @import "~bootstrap/scss/bootstrap";
 
+:host {
+  --brow-bg: #343a40;
+  --title-bg: #6c757d;
+  --lower-bg: #f8f9fa;
+}
+
 .logo-img {
   width: 30px;
   height: 30px;
+}
+
+.brow-bg {
+  background-color: var(--brow-bg);
+}
+
+.title-bg {
+  background-color: var(--title-bg);
+}
+
+.lower-bg {
+  background-color: var(--lower-bg);
 }
