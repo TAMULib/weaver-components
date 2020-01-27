@@ -1,9 +1,15 @@
 @import "~bootstrap/scss/bootstrap";
 
 :host {
-  --brow-bg: #343a40;
-  --title-bg: #6c757d;
-  --lower-bg: #f8f9fa;
+  --brow-nav-bg: var(--dark);
+  --brow-nav-height: auto;
+  --brow-nav-padding: 0px;
+  --title-row-bg: var(--secondary);
+  --title-row-height: auto;
+  --title-row-padding: 0px;
+  --lower-nav-bg: var(--light);
+  --lower-nav-height: auto;
+  --lower-nav-padding: 0px;
 }
 
 .logo-img {
@@ -11,14 +17,20 @@
   height: 30px;
 }
 
-.brow-bg {
-  background-color: var(--brow-bg);
+.brow-nav {
+  height: var(--brow-nav-height);
+  padding: var(--brow-nav-padding);
+  background-color: var(--brow-nav-bg);
 }
 
-.title-bg {
-  background-color: var(--title-bg);
+.title-row {
+  height: var(--title-row-height);
+  padding: var(--title-row-padding);
+  background-color: var(--title-row-bg);
 }
 
-.lower-bg {
-  background-color: var(--lower-bg);
+.lower-nav {
+  height: var(--lower-nav-height);
+  padding: var(--lower-nav-padding);
+  background-color: var(--lower-nav-bg);
 }
