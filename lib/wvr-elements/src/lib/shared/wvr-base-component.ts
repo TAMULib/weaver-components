@@ -292,10 +292,6 @@ export abstract class WvrBaseComponent {
     this.elem = injector.get(ElementRef);
     this.domSanitizer = injector.get(DomSanitizer);
     let _this = this;
-    setTimeout(function () {
-      console.log(_this.primary);
-    }, 5000);
-
   }
 
   safe(html: string): SafeHtml {

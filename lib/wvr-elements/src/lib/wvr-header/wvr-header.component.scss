@@ -3,13 +3,18 @@
 
 
 :host {
-  --top-nav-bg: var(--wvr-dark);
+  --top-nav-bg: var(--wvr-secondary);
   --top-nav-height: var(--wvr-navbar-height);
   --top-nav-padding: var(--wvr-navbar-padding);
   --title-row-bg: var(--wvr-primary);
-  --bottom-nav-bg: var(--wvr-light);
+  --title-row-height: var(--wvr-navbar-height);
+  --bottom-nav-bg: var(--wvr-gray);
   --bottom-nav-height: var(--wvr-navbar-height);
   --bottom-nav-padding: var(--wvr-navbar-padding);
+}
+
+.wvr-header {
+  font-family: var(--wvr-font-family-sans-serif);
 }
 
 .logo-img {
@@ -25,6 +30,7 @@
 
 .title-row {
   background-color: var(--title-row-bg);
+  height: var(--title-row-height);
 }
 
 .bottom-nav {
