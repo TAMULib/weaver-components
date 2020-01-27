@@ -1,15 +1,15 @@
 @import "~bootstrap/scss/bootstrap";
+@import "../shared/styles/host-styles.scss";
+
 
 :host {
-  --brow-nav-bg: var(--dark);
-  --brow-nav-height: auto;
-  --brow-nav-padding: 0px;
-  --title-row-bg: var(--secondary);
-  --title-row-height: auto;
-  --title-row-padding: 0px;
-  --lower-nav-bg: var(--light);
-  --lower-nav-height: auto;
-  --lower-nav-padding: 0px;
+  --top-nav-bg: var(--wvr-dark);
+  --top-nav-height: var(--wvr-navbar-height);
+  --top-nav-padding: var(--wvr-navbar-padding);
+  --title-row-bg: var(--wvr-primary);
+  --bottom-nav-bg: var(--wvr-light);
+  --bottom-nav-height: var(--wvr-navbar-height);
+  --bottom-nav-padding: var(--wvr-navbar-padding);
 }
 
 .logo-img {
@@ -17,20 +17,18 @@
   height: 30px;
 }
 
-.brow-nav {
-  height: var(--brow-nav-height);
-  padding: var(--brow-nav-padding);
-  background-color: var(--brow-nav-bg);
+.top-nav {
+  background-color: var(--top-nav-bg);
+  height: var(--top-nav-height);
+  padding: var(--top-nav-padding);
 }
 
 .title-row {
-  height: var(--title-row-height);
-  padding: var(--title-row-padding);
   background-color: var(--title-row-bg);
 }
 
-.lower-nav {
-  height: var(--lower-nav-height);
-  padding: var(--lower-nav-padding);
-  background-color: var(--lower-nav-bg);
+.bottom-nav {
+  background-color: var(--bottom-nav-bg);
+  height: var(--bottom-nav-height);
+  padding: var(--bottom-nav-padding);
 }

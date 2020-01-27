@@ -1,13 +1,13 @@
 <header class="wvr-components wvr-header">
 
-  <nav class="navbar brow-nav navbar-expand-lg navbar-dark">
+  <nav class="navbar top-nav navbar-expand-lg">
     <div class="container">
       <a class="navbar-brand" [href]="logoHref">
         <img alt="Logo" class="logo-img d-inline-block align-top" [src]='logoSrc' />
         <span class="text-white-50">{{logoText}}</span>
       </a>
       <div class="flex-fill">
-        <slot name="brow-navigation"></slot>
+        <slot name="top-navigation"></slot>
       </div>
     </div>
   </nav>
@@ -20,10 +20,10 @@
     </div>
   </div>
 
-  <nav class="navbar lower-nav navbar-expand-lg">
+  <nav class="navbar bottom-nav navbar-expand-lg">
     <div class="container">
       <div class="flex-fill">
-        <slot name="lower-navigation"></slot>
+        <slot name="bottom-navigation"></slot>
       </div>
     </div>
   </nav>

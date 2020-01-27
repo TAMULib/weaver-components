@@ -1,5 +1,2 @@
 @import "~bootstrap/scss/bootstrap";
-
-:host {
-    --color: var(--light);
-}
+@import "../shared/styles/host-styles.scss";
