@@ -1,30 +1,26 @@
 <header class="wvr-components wvr-header">
 
   <nav class="navbar top-nav navbar-expand-lg">
-    <div class="container align-self-stretch">
+    <div class="container">
       <a class="navbar-brand" [href]="logoHref">
         <img alt="Logo" class="logo-img d-inline-block align-top" [src]='logoSrc' />
         <span class="text-white-50 align-center">{{logoText}}</span>
       </a>
-      <div class="flex-fill align-self-stretch align-content-stretch align-items-stretch">
+      <div class="flex-fill align-self-stretch">
         <slot name="top-navigation"></slot>
       </div>
     </div>
   </nav>
 
-  <div class="row title-row m-0 d-flex align-items-center">
+  <div class="row title-row m-0">
     <div class="container">
-      <h1 class="text-white">
-        <span class="text-white">{{headerTitle}}</span>
-      </h1>
+      <span class="h1 text-white">{{headerTitle}}</span>
     </div>
   </div>
 
   <nav class="navbar bottom-nav navbar-expand-lg">
-    <div class="container align-self-stretch">
-      <div class="flex-fill align-self-stretch">
-        <slot name="bottom-navigation"></slot>
-      </div>
+    <div class="container">
+      <slot name="bottom-navigation"></slot>
     </div>
   </nav>
 

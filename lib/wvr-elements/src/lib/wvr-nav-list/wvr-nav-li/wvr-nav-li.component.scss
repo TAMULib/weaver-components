@@ -1,2 +1,10 @@
 @import "~bootstrap/scss/bootstrap";
 @import "../../shared/styles/host-styles.scss";
+
+:host {
+  --wvr-nav-li-height: 100%;
+}
+
+.nav-item {
+  height: var(--wvr-nav-li-height);
+}

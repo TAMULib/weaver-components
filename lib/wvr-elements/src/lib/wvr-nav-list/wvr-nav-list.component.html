@@ -1,10 +1,8 @@
-<div class="flex-fill align-self-stretch">
-  <ul class="navbar-nav" [ngClass]="{
-    'flex-row': !vertical, 
-    'justify-content-end': aligned===Alignment.RIGHT,
-    'justify-content-center': aligned===Alignment.CENTER
-  }">
-    <!-- <a *ngFor="let elem of NavListItems" class="nav-link" href="{{elem.getAttribute('href')}}">{{elem.innerHTML}}</a> -->
-    <slot></slot>
-  </ul>
-</div>
+<ul class="navbar-nav" [ngClass]="{
+  'flex-row': !vertical, 
+  'justify-content-end': aligned===Alignment.RIGHT,
+  'justify-content-center': aligned===Alignment.CENTER,
+  'dark': theme==='DARK'
+}">
+  <slot (slotchange)="liAdded($event)"></slot>
+</ul>

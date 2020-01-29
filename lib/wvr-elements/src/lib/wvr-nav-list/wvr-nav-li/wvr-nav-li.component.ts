@@ -15,4 +15,8 @@ export class WvrNavLiComponent extends WvrBaseComponent {
     super(injector);
   }
 
+  ngAfterViewInit() {
+    console.log(this.theme);
+  }
+
 }
