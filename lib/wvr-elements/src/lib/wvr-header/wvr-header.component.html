@@ -1,10 +1,11 @@
 <header class="wvr-components wvr-header">
 
   <nav class="navbar top-nav navbar-expand-lg">
+
     <div class="container">
-      <a class="navbar-brand" [href]="logoHref">
+      <a class="navbar-brand d-flex" [href]="logoHref">
         <img alt="Logo" class="logo-img d-inline-block align-top" [src]='logoSrc' />
-        <span class="text-white-50 align-center">{{logoText}}</span>
+        <span class="text-white align-self-center d-inline-block pl-1">{{logoText}}</span>
       </a>
       <div class="flex-fill align-self-stretch">
         <slot name="top-navigation"></slot>
@@ -13,14 +14,16 @@
   </nav>
 
   <div class="row title-row m-0">
-    <div class="container">
+    <div class="container d-flex align-items-center">
       <span class="h1 text-white">{{headerTitle}}</span>
     </div>
   </div>
 
   <nav class="navbar bottom-nav navbar-expand-lg">
     <div class="container">
-      <slot name="bottom-navigation"></slot>
+      <div class="flex-fill align-self-stretch">
+        <slot name="bottom-navigation"></slot>
+      </div>
     </div>
   </nav>
 

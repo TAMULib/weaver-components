@@ -1,7 +1,6 @@
 @import "~bootstrap/scss/bootstrap";
 @import "../shared/styles/host-styles.scss";
 
-
 :host {
   --top-nav-bg: var(--wvr-secondary);
   --top-nav-height: var(--wvr-navbar-height);
@@ -22,7 +21,7 @@
 }
 
 .logo-img {
-  width: 30px;
+  width: 49px;
   height: 30px;
 }
 

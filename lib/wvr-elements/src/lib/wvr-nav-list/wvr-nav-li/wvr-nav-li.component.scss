@@ -3,8 +3,29 @@
 
 :host {
   --wvr-nav-li-height: 100%;
+  --wvr-nav-link-bg-hover: var(--wvr-primary);
+  --wvr-nav-link-color-hover: var(--wvr-dark);
+  --wvr-nav-li-width: 140px;
+  --wvr-nav-link-font-color: var(--wvr-blue);
+  --wvr-nav-link-font-size: inherit;
+  --wvr-nav-link-font-weight: inherit;
 }
 
-.nav-item {
+a.nav-link,
+li.nav-item {
   height: var(--wvr-nav-li-height);
+  min-width: var(--wvr-nav-li-width);
+}
+
+a.nav-link {
+    color: var(--wvr-nav-link-font-color);
+    font-size: var(--wvr-nav-link-font-size);
+    font-weight: var(--wvr-nav-link-font-weight);
+}
+
+li.nav-item:hover {
+    background: var(--wvr-nav-link-bg-hover);
+    a.nav-link {
+        color: var(--wvr-nav-link-color-hover);
+    }
 }
