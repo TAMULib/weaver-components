@@ -1,0 +1,43 @@
+@import "~bootstrap/scss/bootstrap";
+@import "../shared/styles/host-styles.scss";
+
+:host {
+  --top-nav-bg: var(--wvr-secondary);
+  --top-nav-height: var(--wvr-navbar-height);
+  --top-nav-padding: var(--wvr-navbar-padding);
+  --title-row-bg: var(--wvr-primary);
+  --title-row-height: var(--wvr-navbar-height);
+  --bottom-nav-bg: var(--wvr-gray);
+  --bottom-nav-height: var(--wvr-navbar-height);
+  --bottom-nav-padding: var(--wvr-navbar-padding);
+}
+
+.wvr-header {
+  font-family: var(--wvr-font-family-sans-serif);
+}
+
+.container {
+  height: 100%;
+}
+
+.logo-img {
+  width: 49px;
+  height: 30px;
+}
+
+.top-nav {
+  background-color: var(--top-nav-bg);
+  height: var(--top-nav-height);
+  padding: var(--top-nav-padding);
+}
+
+.title-row {
+  background-color: var(--title-row-bg);
+  height: var(--title-row-height);
+}
+
+.bottom-nav {
+  background-color: var(--bottom-nav-bg);
+  height: var(--bottom-nav-height);
+  padding: var(--bottom-nav-padding);
+}

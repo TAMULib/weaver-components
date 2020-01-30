@@ -1,0 +1,30 @@
+{
+  "name": "wvr-elements",
+  "version": "0.0.3",
+  "description": "Collection of angular components for Weaver's Custom Web Component UI",
+  "author": "Texas A&M University Libraries",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TAMULib/weaver-components"
+  },
+  "bugs": {
+    "url": "https://github.com/TAMULib/weaver-components/issues"
+  },
+  "homepage": "https://github.com/TAMULib/weaver-components",
+  "keywords": [
+    "weaver",
+    "a&m",
+    "library",
+    "angular",
+    "web components"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "@angular/common": "^8.2.14",
+    "@angular/core": "^8.2.14",
+    "bootstrap": "^4.4.1"
+  },
+  "dependencies": {
+    "@ng-bootstrap/ng-bootstrap": "^5.1.5"
+  }
+}
