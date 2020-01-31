@@ -5,7 +5,7 @@ import { WvrBaseComponent } from '../../shared/wvr-base-component';
   selector: 'wvr-nav-li-element',
   templateUrl: './wvr-nav-li.component.html',
   styleUrls: ['./wvr-nav-li.component.scss'],
-  encapsulation: ViewEncapsulation.Emulated
+  encapsulation: ViewEncapsulation.ShadowDom
 })
 export class WvrNavLiComponent extends WvrBaseComponent {
 

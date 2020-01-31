@@ -1,16 +1,12 @@
-import { Component, ViewEncapsulation, Injector, Input, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, ViewEncapsulation, Injector, Input } from '@angular/core';
 import { WvrBaseComponent } from '../shared/wvr-base-component';
-import { SlotChildren } from '../shared/decorators/SlotChildren/SlotChildren';
 import { Alignment } from './alignment.enum';
-import { Observable } from 'rxjs';
-
-import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'wvr-nav-list-element',
   templateUrl: './wvr-nav-list.component.html',
   styleUrls: ['./wvr-nav-list.component.scss'],
-  encapsulation: ViewEncapsulation.Emulated
+  encapsulation: ViewEncapsulation.ShadowDom
 })
 export class WvrNavListComponent extends WvrBaseComponent {
 
