@@ -5,8 +5,7 @@ import { Alignment } from './alignment.enum';
 @Component({
   selector: 'wvr-nav-list-element',
   templateUrl: './wvr-nav-list.component.html',
-  styleUrls: ['./wvr-nav-list.component.scss'],
-  encapsulation: ViewEncapsulation.ShadowDom
+  styleUrls: ['./wvr-nav-list.component.scss']
 })
 export class WvrNavListComponent extends WvrBaseComponent {
 

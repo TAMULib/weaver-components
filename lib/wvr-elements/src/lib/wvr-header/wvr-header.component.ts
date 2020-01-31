@@ -1,12 +1,11 @@
-import { Component, Input, ViewEncapsulation, Injector, AfterViewInit } from '@angular/core';
+import { Component, Input, ViewEncapsulation, Injector } from '@angular/core';
 import { SafeUrl } from '@angular/platform-browser';
 import { WvrBaseComponent } from '../shared/wvr-base-component';
 
 @Component({
   selector: 'wvr-header-element',
   templateUrl: './wvr-header.component.html',
-  styleUrls: ['./wvr-header.component.scss'],
-  encapsulation: ViewEncapsulation.ShadowDom
+  styleUrls: ['./wvr-header.component.scss']
 })
 export class WvrHeaderComponent extends WvrBaseComponent {
 

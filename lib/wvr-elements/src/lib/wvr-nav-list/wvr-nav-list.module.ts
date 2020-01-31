@@ -1,13 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, Injector } from '@angular/core';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
 import { createCustomElement } from '@angular/elements';
+
 import { WvrNavListComponent } from './wvr-nav-list.component';
 import { WvrNavLiComponent } from './wvr-nav-li/wvr-nav-li.component';
 
 @NgModule({
-  imports: [BrowserModule, NgbModule],
+  imports: [BrowserModule],
   exports: [WvrNavListComponent, WvrNavLiComponent],
   providers: [],
   declarations: [WvrNavListComponent, WvrNavLiComponent],

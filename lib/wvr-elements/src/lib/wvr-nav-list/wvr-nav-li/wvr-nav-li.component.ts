@@ -4,8 +4,7 @@ import { WvrBaseComponent } from '../../shared/wvr-base-component';
 @Component({
   selector: 'wvr-nav-li-element',
   templateUrl: './wvr-nav-li.component.html',
-  styleUrls: ['./wvr-nav-li.component.scss'],
-  encapsulation: ViewEncapsulation.ShadowDom
+  styleUrls: ['./wvr-nav-li.component.scss']
 })
 export class WvrNavLiComponent extends WvrBaseComponent {
 
@@ -13,10 +12,6 @@ export class WvrNavLiComponent extends WvrBaseComponent {
 
   constructor(injector: Injector) {
     super(injector);
-  }
-
-  ngAfterViewInit() {
-    console.log(this.theme);
   }
 
 }

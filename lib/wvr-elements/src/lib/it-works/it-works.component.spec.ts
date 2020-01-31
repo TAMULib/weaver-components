@@ -9,17 +9,4 @@ describe('ItWorksComponent', () => {
       ],
     }).compileComponents();
   }));
-
-  it('should create the ItWorksComponent', () => {
-    const fixture = TestBed.createComponent(ItWorksComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
-  });
-
-  it(`should have as title 'it-works-component'`, () => {
-    const fixture = TestBed.createComponent(ItWorksComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('it-works-component');
-  });
-
 });
