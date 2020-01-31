@@ -6,7 +6,7 @@ import { WvrBaseComponent } from '../shared/wvr-base-component';
   selector: 'wvr-header-element',
   templateUrl: './wvr-header.component.html',
   styleUrls: ['./wvr-header.component.scss'],
-  encapsulation: ViewEncapsulation.ShadowDom
+  encapsulation: ViewEncapsulation.Emulated
 })
 export class WvrHeaderComponent extends WvrBaseComponent {
 

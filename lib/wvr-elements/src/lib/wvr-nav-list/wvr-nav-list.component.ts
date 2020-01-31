@@ -10,7 +10,7 @@ import { filter } from 'rxjs/operators';
   selector: 'wvr-nav-list-element',
   templateUrl: './wvr-nav-list.component.html',
   styleUrls: ['./wvr-nav-list.component.scss'],
-  encapsulation: ViewEncapsulation.ShadowDom
+  encapsulation: ViewEncapsulation.Emulated
 })
 export class WvrNavListComponent extends WvrBaseComponent {
 

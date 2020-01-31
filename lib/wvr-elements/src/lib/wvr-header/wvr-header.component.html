@@ -7,7 +7,8 @@
         <span class="text-white align-self-center d-inline-block pl-1">{{logoText}}</span>
       </a>
       <div class="flex-fill align-self-stretch">
-        <slot name="top-navigation"></slot>
+        <ng-content select="[top-navigation]"></ng-content>
+        <!-- <slot name="top-navigation"></slot> -->
       </div>
     </div>
   </nav>
@@ -21,7 +22,8 @@
   <nav class="bottom-nav navbar navbar-expand-lg">
     <div class="container">
       <div class="flex-fill align-self-stretch">
-        <slot name="bottom-navigation"></slot>
+        <!-- <slot name="bottom-navigation"></slot> -->
+        <ng-content select="[bottom-navigation]"></ng-content>
       </div>
     </div>
   </nav>

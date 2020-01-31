@@ -1,11 +1,11 @@
 import { TestBed, async } from '@angular/core/testing';
-import { WvrNavListComponent } from './wvr-nav-list.component';
+import { WvrNavLiComponent } from './wvr-nav-li.component';
 
 describe('WvrNavListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        WvrNavListComponent
+        WvrNavLiComponent
       ],
     }).compileComponents();
   }));

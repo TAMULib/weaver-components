@@ -4,5 +4,6 @@
   'justify-content-center': aligned===Alignment.CENTER,
   'dark': theme==='DARK'
 }">
-  <slot (slotchange)="liAdded($event)"></slot>
+  <!-- <slot></slot> -->
+  <ng-content></ng-content>
 </ul>
