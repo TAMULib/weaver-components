@@ -1,7 +1,8 @@
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { Injector, ElementRef, Input, OnChanges } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Injector, ElementRef, Input, Directive } from '@angular/core';
 
+@Directive()
+// tslint:disable-next-line: directive-class-suffix
 export abstract class WvrBaseComponent {
 
   private readonly BLUE_COLOR: string = '--wvr-blue';
@@ -35,9 +36,6 @@ export abstract class WvrBaseComponent {
 
   protected elem: ElementRef;
   protected domSanitizer: DomSanitizer;
-  public slotValidation: Map<string, string[]>;
-
-  protected elemBS: BehaviorSubject<HTMLElement[]> = new BehaviorSubject<HTMLElement[]>([]);
 
   @Input()
   set blue(v: string) {
@@ -291,31 +289,15 @@ export abstract class WvrBaseComponent {
     return this.elem.nativeElement.style.getPropertyValue(this.FONT_FAMILY_MONOSPACE);
   }
 
-  @Input() theme: "LIGHT" | "DARK" = "LIGHT";
+  @Input() theme: 'LIGHT' | 'DARK' = 'LIGHT';
 
   constructor(injector: Injector) {
     this.elem = injector.get(ElementRef);
     this.domSanitizer = injector.get(DomSanitizer);
-    let _this = this;
   }
 
   safe(html: string): SafeHtml {
     return this.domSanitizer.bypassSecurityTrustHtml(html);
-  }
-
-  slotChange($event) {
-    const assigned: HTMLElement[] = $event.target.assignedElements();
-    const elems: HTMLElement[] = [];
-    assigned.forEach(elem => {
-      this.slotValidation.forEach((validation, key) => {
-        if (validation.find(v => v === (<HTMLElement>elem).tagName)) {
-          elems.push(elem);
-        }
-      });
-    });
-    if (elems.length) {
-      this.elemBS.next(elems);
-    }
   }
 
 }

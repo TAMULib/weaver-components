@@ -1,14 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { ItWorksModule, WvrHeaderModule, WvrNavListModule } from 'wvr-elements';
+import { WvrLibModule } from 'wvr-elements';
 
 @NgModule({
   imports: [
     BrowserModule,
-    ItWorksModule,
-    WvrHeaderModule,
-    WvrNavListModule
+    WvrLibModule
   ],
   exports: [],
   providers: [],
