@@ -1,4 +1,4 @@
-import { Component, Injector, Input, AfterViewInit } from '@angular/core';
+import { Component, Injector, Input } from '@angular/core';
 import { WvrBaseComponent } from '../shared/wvr-base-component';
 import { Alignment } from './alignment.enum';
 
@@ -8,7 +8,7 @@ import { Alignment } from './alignment.enum';
   templateUrl: './wvr-nav-list.component.html',
   styleUrls: ['./wvr-nav-list.component.scss']
 })
-export class WvrNavListComponent extends WvrBaseComponent implements AfterViewInit {
+export class WvrNavListComponent extends WvrBaseComponent {
 
   Alignment = Alignment;
 
@@ -20,10 +20,6 @@ export class WvrNavListComponent extends WvrBaseComponent implements AfterViewIn
 
   constructor(injector: Injector) {
     super(injector);
-  }
-
-  ngAfterViewInit(): void {
-    console.log(this.aligned);
   }
 
 }

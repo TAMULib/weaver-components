@@ -1,8 +1,8 @@
 <ul class="navbar-nav" [ngClass]="{
-  'flex-row': !vertical, 
-  'justify-content-end': aligned===Alignment.RIGHT,
-  'justify-content-center': aligned===Alignment.CENTER,
-  'dark': theme==='DARK'
+  'flex-row': !vertical,
+  'justify-content-end': aligned === Alignment.RIGHT,
+  'justify-content-center': aligned === Alignment.CENTER,
+  'dark': theme === 'DARK'
 }">
-  <ng-content></ng-content>
+  <ng-content select="wvr-nav-li,wvr-nav-li-element,[wvr-nav-items]"></ng-content>
 </ul>
