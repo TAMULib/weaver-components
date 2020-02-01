@@ -8,8 +8,9 @@ import { Component, Input } from '@angular/core';
 })
 export class ItWorksComponent {
 
-  title = 'it-works-component';
+  public title = 'it-works-component';
 
-  @Input() text = 'Weaver Components Work';
+  @Input()
+  public text = 'Weaver Components Work';
 
 }

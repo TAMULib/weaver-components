@@ -1,7 +1,6 @@
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { Injector, ElementRef, Input, Directive } from '@angular/core';
+import { Injector, ElementRef, Input } from '@angular/core';
 
-@Directive()
 // tslint:disable-next-line: directive-class-suffix
 export abstract class WvrBaseComponent {
 
@@ -35,7 +34,20 @@ export abstract class WvrBaseComponent {
   private readonly FONT_FAMILY_MONOSPACE: string = '--wvr-font-family-monospace';
 
   protected elem: ElementRef;
+
   protected domSanitizer: DomSanitizer;
+
+  @Input()
+  public theme: 'LIGHT' | 'DARK' = 'LIGHT';
+
+  constructor(injector: Injector) {
+    this.elem = injector.get(ElementRef);
+    this.domSanitizer = injector.get(DomSanitizer);
+  }
+
+  safe(html: string): SafeHtml {
+    return this.domSanitizer.bypassSecurityTrustHtml(html);
+  }
 
   @Input()
   set blue(v: string) {
@@ -287,17 +299,6 @@ export abstract class WvrBaseComponent {
 
   get fontFamilyMonospace(): string {
     return this.elem.nativeElement.style.getPropertyValue(this.FONT_FAMILY_MONOSPACE);
-  }
-
-  @Input() theme: 'LIGHT' | 'DARK' = 'LIGHT';
-
-  constructor(injector: Injector) {
-    this.elem = injector.get(ElementRef);
-    this.domSanitizer = injector.get(DomSanitizer);
-  }
-
-  safe(html: string): SafeHtml {
-    return this.domSanitizer.bypassSecurityTrustHtml(html);
   }
 
 }
