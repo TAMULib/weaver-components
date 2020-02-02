@@ -4,7 +4,7 @@
     "outDir": "../../out-tsc/lib"
   },
   "angularCompilerOptions": {
-    "ivyCompiler": false
+    "enableIvy": false
   },
   "exclude": [
     "src/test.ts",
