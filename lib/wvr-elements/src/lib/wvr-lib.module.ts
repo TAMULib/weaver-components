@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, Injector } from '@angular/core';
+import { NgModule, Injector, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
 
 import { WvrNavListComponent } from './wvr-nav-list/wvr-nav-list.component';
@@ -35,7 +35,8 @@ const components = [
   bootstrap: [],
   entryComponents: [
     ...components
-  ]
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class WvrLibModule {
 
