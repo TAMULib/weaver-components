@@ -1,25 +1,28 @@
-import { TestBed, async } from '@angular/core/testing';
-import { WvrNavListComponent } from './wvr-nav-list.component';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-describe('WvrNavListComponent', () => {
+import { WvrNavLiComponent } from './wvr-nav-li.component';
+
+describe('WvrNavLiComponent', () => {
+  let component: WvrNavLiComponent;
+  let fixture: ComponentFixture<WvrNavLiComponent>;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        WvrNavListComponent
-      ],
+      declarations: [WvrNavLiComponent]
     }).compileComponents();
   }));
 
-  // it('should create the ItWorksComponent', () => {
-  //   const fixture = TestBed.createComponent(ItWorksComponent);
-  //   const app = fixture.debugElement.componentInstance;
-  //   expect(app).toBeTruthy();
-  // });
+  beforeEach(() => {
+    fixture = TestBed.createComponent(WvrNavLiComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
-  // it(`should have as title 'it-works-component'`, () => {
-  //   const fixture = TestBed.createComponent(ItWorksComponent);
-  //   const app = fixture.debugElement.componentInstance;
-  //   expect(app.title).toEqual('it-works-component');
-  // });
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
 
+  it(`should have as href '#'`, () => {
+    expect(component.href).toEqual('#');
+  });
 });

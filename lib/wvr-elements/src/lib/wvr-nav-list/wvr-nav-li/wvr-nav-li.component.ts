@@ -1,22 +1,15 @@
-import { Component, ViewEncapsulation, Injector, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { WvrBaseComponent } from '../../shared/wvr-base-component';
 
 @Component({
+  // tslint:disable-next-line: component-selector
   selector: 'wvr-nav-li-element',
   templateUrl: './wvr-nav-li.component.html',
-  styleUrls: ['./wvr-nav-li.component.scss'],
-  encapsulation: ViewEncapsulation.ShadowDom
+  styleUrls: ['./wvr-nav-li.component.scss']
 })
 export class WvrNavLiComponent extends WvrBaseComponent {
 
-  @Input() href = "#";
-
-  constructor(injector: Injector) {
-    super(injector);
-  }
-
-  ngAfterViewInit() {
-    console.log(this.theme);
-  }
+  @Input()
+  public href = '#';
 
 }

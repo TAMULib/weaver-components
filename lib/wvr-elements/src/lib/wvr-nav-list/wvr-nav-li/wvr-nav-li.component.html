@@ -1,6 +1,5 @@
 <li class="nav-item">
-  <a class="nav-link d-flex align-items-center justify-content-center" [href]="href"
-    [ngClass]="{'dark': theme==='DARK'}">
-    <slot></slot>
+  <a class="nav-link d-flex align-items-center justify-content-center" [href]="href" [ngClass]="{'dark': theme==='DARK'}">
+    <ng-content></ng-content>
   </a>
 </li>
