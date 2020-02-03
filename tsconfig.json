@@ -2,7 +2,7 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
-    "outDir": "lib",
+    "outDir": "projects",
     "sourceMap": true,
     "declaration": true,
     "downlevelIteration": true,
@@ -21,11 +21,11 @@
     ],
     "paths": {
       "wvr-elements": [
-        "lib/wvr-elements/src/public-api",
+        "projects/wvr-elements/src/public-api",
         "dist/wvr-elements"
       ],
       "wvr-elements/*": [
-        "lib/wvr-elements/src/public-api/*",
+        "projects/wvr-elements/src/public-api/*",
         "dist/wvr-elements/*",
       ]
     }
