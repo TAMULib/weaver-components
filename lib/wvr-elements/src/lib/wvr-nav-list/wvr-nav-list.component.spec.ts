@@ -1,7 +1,7 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { WvrNavListComponent } from './wvr-nav-list.component';
 import { Alignment } from './alignment.enum';
+import { WvrNavListComponent } from './wvr-nav-list.component';
 
 describe('WvrNavListComponent', () => {
   let component: WvrNavListComponent;
@@ -9,7 +9,8 @@ describe('WvrNavListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [WvrNavListComponent]
+      declarations: [WvrNavListComponent],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
   }));
 

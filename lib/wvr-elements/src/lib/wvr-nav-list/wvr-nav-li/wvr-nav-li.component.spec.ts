@@ -1,5 +1,5 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { WvrNavLiComponent } from './wvr-nav-li.component';
 
 describe('WvrNavLiComponent', () => {
@@ -8,7 +8,8 @@ describe('WvrNavLiComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [WvrNavLiComponent]
+      declarations: [WvrNavLiComponent],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
   }));
 
