@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Collection of angular components for Weaver's Custom Web Component UI",
   "author": "Texas A&M University Libraries",
+  "private": false,
   "repository": {
     "type": "git",
     "url": "https://github.com/TAMULib/weaver-components"
