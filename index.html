@@ -4,25 +4,45 @@
 <head>
   <title>Weaver Comonents</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="src/favicon.ico">
-  <style></style>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <style>
+    [wvr-hide-content] {
+      display: none;
+    }
+  </style>
 </head>
 
 <body>
+
   <wvr-header>
     <wvr-nav-list top-navigation aligned="RIGHT">
-      <wvr-nav-li href="#about-us">About</wvr-nav-li>
-      <wvr-nav-li href="#hours">Hours</wvr-nav-li>
-      <wvr-nav-li href="#contact">Contact</wvr-nav-li>
+      <wvr-nav-li href="#about-us">
+        <wvr-text value="About"></wvr-text>
+      </wvr-nav-li>
+      <wvr-nav-li href="#hours">
+        <wvr-text value="Hours"></wvr-text>
+      </wvr-nav-li>
+      <wvr-nav-li href="#contact">
+        <wvr-text value="Contact"></wvr-text>
+      </wvr-nav-li>
     </wvr-nav-list>
     <wvr-nav-list bottom-navigation>
-      <wvr-nav-li href="#1">Link 1</wvr-nav-li>
-      <wvr-nav-li href="#2">Link 2</wvr-nav-li>
-      <wvr-nav-li href="#3">Link 3</wvr-nav-li>
+      <wvr-nav-li href="#1">
+        <wvr-text value="Link 1"></wvr-text>
+      </wvr-nav-li>
+      <wvr-nav-li href="#2">
+        <wvr-text value="Link 2"></wvr-text>
+      </wvr-nav-li>
+      <wvr-nav-li href="#3">
+        <wvr-text value="Link 3"></wvr-text>
+      </wvr-nav-li>
     </wvr-nav-list>
   </wvr-header>
+
   <br />
+
   <wvr-it-works></wvr-it-works>
+
   <script defer src="dist/weaver-components.js"></script>
 </body>
 
