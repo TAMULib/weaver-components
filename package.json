@@ -18,8 +18,11 @@
     "start:docker": "docker run  -p 80:80 --name weaver-components-1  weaver-components",
     "test": "npm run test:unit && npm run test:e2e",
     "test:e2e": "ng e2e",
-    "test:unit": "npm run test:watch -- --watch=false",
-    "test:watch": "ng test"
+    "test:unit": "ng test --no-watch",
+    "test:watch": "ng test",
+    "test:coverage": "ng test --no-watch --code-coverage",
+    "test:report": "cat ./coverage/wvr-elements/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "test:ci": "npm run build && npm run test:coverage"
   },
   "dependencies": {
     "@angular/animations": "^8.2.14",
@@ -52,6 +55,7 @@
     "@types/node": "^13.7.0",
     "codelyzer": "^5.2.1",
     "concat": "^1.0.3",
+    "coveralls": "^3.0.9",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.4.1",
