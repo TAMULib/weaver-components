@@ -3,14 +3,17 @@ language: node_js
 node_js:
   - "10"
 
-addons:
-  chrome: beta
-
 services:
   - xvfb
 
 install:
   - npm install
 script:
-  - npm run build
-  
+  - npm run test:ci
+after_success:
+  - npm run test:report
+
+notifications:
+  webhooks:
+    urls:
+      - https://coveralls.io/webhook
