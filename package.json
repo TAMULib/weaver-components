@@ -1,6 +1,8 @@
 {
   "name": "weaver-components",
   "version": "0.0.1",
+  "private": false,
+  "license": "MIT",
   "scripts": {
     "build": "ng build --prod --output-hashing none",
     "build:clean": "npm run clean && npm run build",
@@ -19,7 +21,6 @@
     "test:unit": "npm run test:watch -- --watch=false",
     "test:watch": "ng test"
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "^8.2.14",
     "@angular/common": "^8.2.14",
@@ -56,7 +57,7 @@
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage-istanbul-reporter": "~2.1.1",
     "karma-jasmine": "~3.1.0",
-    "karma-jasmine-html-reporter": "^1.5.1",
+    "karma-jasmine-html-reporter": "^1.5.2",
     "ng-packagr": "^5.7.1",
     "protractor": "~5.4.3",
     "ts-node": "~8.6.2",

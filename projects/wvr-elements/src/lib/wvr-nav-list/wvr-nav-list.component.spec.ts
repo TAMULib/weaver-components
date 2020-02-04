@@ -9,8 +9,7 @@ describe('WvrNavListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [WvrNavListComponent],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA]
+      declarations: [WvrNavListComponent]
     }).compileComponents();
   }));
 

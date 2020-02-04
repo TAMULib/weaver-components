@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Injector, Input } from '@angular/core';
 import { WvrBaseComponent } from '../../shared/wvr-base-component';
 
 @Component({
@@ -11,5 +11,9 @@ export class WvrNavLiComponent extends WvrBaseComponent {
 
   @Input()
   public href = '#';
+
+  constructor(injector: Injector) {
+    super(injector);
+  }
 
 }

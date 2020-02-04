@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Injector, Input } from '@angular/core';
 import { WvrBaseComponent } from '../shared/wvr-base-component';
 import { Alignment } from './alignment.enum';
 
@@ -15,5 +15,9 @@ export class WvrNavListComponent extends WvrBaseComponent {
 
   @Input()
   public vertical = false;
+
+  constructor(injector: Injector) {
+    super(injector);
+  }
 
 }

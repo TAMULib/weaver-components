@@ -1,16 +1,15 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, Injector, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { createCustomElement } from '@angular/elements';
-
-import { WvrNavListComponent } from './wvr-nav-list/wvr-nav-list.component';
-import { WvrNavLiComponent } from './wvr-nav-list/wvr-nav-li/wvr-nav-li.component';
-import { WvrHeaderComponent } from './wvr-header/wvr-header.component';
-import { ItWorksComponent } from './it-works/it-works.component';
 import { DOCUMENT } from '@angular/common';
+import { CUSTOM_ELEMENTS_SCHEMA, Injector, NgModule } from '@angular/core';
+import { createCustomElement } from '@angular/elements';
+import { BrowserModule } from '@angular/platform-browser';
+import { WvrHeaderComponent } from './wvr-header/wvr-header.component';
+import { WvrItWorksComponent } from './wvr-it-works/wvr-it-works.component';
+import { WvrNavLiComponent } from './wvr-nav-list/wvr-nav-li/wvr-nav-li.component';
+import { WvrNavListComponent } from './wvr-nav-list/wvr-nav-list.component';
 import { WvrTextComponent } from './wvr-text/wvr-text.component';
 
 const elements = [
-  { component: ItWorksComponent, selector: 'wvr-it-works' },
+  { component: WvrItWorksComponent, selector: 'wvr-it-works' },
   { component: WvrHeaderComponent, selector: 'wvr-header' },
   { component: WvrNavListComponent, selector: 'wvr-nav-list' },
   { component: WvrNavLiComponent, selector: 'wvr-nav-li' },
@@ -18,7 +17,7 @@ const elements = [
 ];
 
 const components = [
-  ItWorksComponent,
+  WvrItWorksComponent,
   WvrHeaderComponent,
   WvrNavListComponent,
   WvrNavLiComponent,
@@ -34,8 +33,7 @@ const components = [
   ],
   providers: [],
   declarations: [
-    ...components,
-    WvrTextComponent
+    ...components
   ],
   bootstrap: [],
   entryComponents: [
@@ -54,10 +52,9 @@ export class WvrLibModule {
       }
     });
     const doc = injector.get(DOCUMENT);
-    doc.querySelectorAll("[wvr-hide-content]").forEach(elem => {
-      elem.removeAttribute("wvr-hide-content");
+    doc.querySelectorAll('[wvr-hide-content]').forEach(elem => {
+      elem.removeAttribute('wvr-hide-content');
     });
-    // (doc.styleSheets[0] as any).insertRule("[wvr-hide-content] { display: default; }");
   }
 
 }

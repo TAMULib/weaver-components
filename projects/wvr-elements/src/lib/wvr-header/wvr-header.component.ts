@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Injector, Input } from '@angular/core';
 import { SafeUrl } from '@angular/platform-browser';
 import { WvrBaseComponent } from '../shared/wvr-base-component';
 
@@ -21,5 +21,9 @@ export class WvrHeaderComponent extends WvrBaseComponent {
 
   @Input()
   public logoHref = '#test';
+
+  constructor(injector: Injector) {
+    super(injector);
+  }
 
 }

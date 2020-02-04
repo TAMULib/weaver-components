@@ -1,20 +1,18 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { ItWorksComponent } from './it-works.component';
+import { WvrItWorksComponent } from './wvr-it-works.component';
 
-describe('ItWorksComponent', () => {
-  let component: ItWorksComponent;
-  let fixture: ComponentFixture<ItWorksComponent>;
+describe('WvrItWorksComponent', () => {
+  let component: WvrItWorksComponent;
+  let fixture: ComponentFixture<WvrItWorksComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ItWorksComponent],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA]
+      declarations: [WvrItWorksComponent]
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ItWorksComponent);
+    fixture = TestBed.createComponent(WvrItWorksComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
