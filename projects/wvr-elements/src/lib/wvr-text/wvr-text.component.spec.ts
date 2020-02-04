@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { WvrTextComponent } from './wvr-text.component';
 
 describe('WvrTextComponent', () => {
@@ -8,9 +7,8 @@ describe('WvrTextComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ WvrTextComponent ]
-    })
-    .compileComponents();
+      declarations: [WvrTextComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

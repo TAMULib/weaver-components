@@ -1,5 +1,5 @@
+import { ElementRef, Injector, Input } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { Injector, ElementRef, Input } from '@angular/core';
 
 // tslint:disable-next-line: directive-class-suffix
 export abstract class WvrBaseComponent {
