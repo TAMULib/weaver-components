@@ -21,7 +21,4 @@ describe('WvrNavLiComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it(`should have as href '#'`, () => {
-    expect(component.href).toEqual('#');
-  });
 });
