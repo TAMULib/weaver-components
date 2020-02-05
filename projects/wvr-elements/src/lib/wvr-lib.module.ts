@@ -56,5 +56,4 @@ export class WvrLibModule {
       elem.removeAttribute('wvr-hide-content');
     });
   }
-
 }

@@ -42,6 +42,7 @@ export abstract class WvrBaseComponent {
 
   constructor(injector: Injector) {
     this.elem = injector.get(ElementRef);
+    // tslint:disable-next-line:deprecation
     this.domSanitizer = injector.get(DomSanitizer);
   }
 
