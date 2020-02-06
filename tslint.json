@@ -29,14 +29,22 @@
         ]
       }
     ],
-    "no-empty": false,
-    "no-floating-promises": false,
-    "no-implicit-dependencies": false,
-    "no-import-side-effect": false,
-    "no-object-literal-type-assertion": false,
-    "no-void-expression": [
+    "no-empty": [
       true,
-      "ignore-arrow-function-shorthand"
+      "allow-empty-catch",
+      "allow-empty-functions"
+    ],
+    "no-floating-promises": true,
+    "no-implicit-dependencies": [
+      false,
+      "dev"
+    ],
+    "no-import-side-effect": false,
+    "no-object-literal-type-assertion": [
+      true,
+      {
+        "allow-arguments": true
+      }
     ],
     "ordered-imports": [
       true,
@@ -46,14 +54,7 @@
         "grouped-imports": false
       }
     ],
-    "typedef": [
-      false,
-      "call-signature",
-      "member-variable-declaration",
-      "parameter",
-      "property-declaration"
-    ],
-    "promise-function-async": false,
+    "promise-function-async": true,
     "unnecessary-constructor": [
       false,
       {
