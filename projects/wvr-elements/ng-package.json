@@ -5,7 +5,9 @@
     "entryFile": "src/public-api.ts"
   },
   "whitelistedNonPeerDependencies": [
-    "tslib",
-    "@ng-bootstrap/ng-bootstrap"
+    "@angular/elements",
+    "@angular/platform-browser",
+    "@ng-bootstrap/ng-bootstrap",
+    "tslib"
   ]
 }
