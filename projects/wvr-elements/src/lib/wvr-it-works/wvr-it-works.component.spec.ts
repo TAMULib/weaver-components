@@ -8,7 +8,9 @@ describe('WvrItWorksComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [WvrItWorksComponent]
-    }).compileComponents();
+    })
+      .compileComponents()
+      .catch(err => { console.error(err); });
   }));
 
   beforeEach(() => {
@@ -18,14 +20,18 @@ describe('WvrItWorksComponent', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(component)
+      .toBeTruthy();
+
   });
 
-  it(`should have as title 'it-works-component'`, () => {
-    expect(component.title).toEqual('it-works-component');
+  it("should have as title 'it-works-component'", () => {
+    expect(component.title)
+      .toEqual('it-works-component');
   });
 
-  it(`should have as text 'Weaver Components Work'`, () => {
-    expect(component.text).toEqual('Weaver Components Work');
+  it("should have as text 'Weaver Components Work'", () => {
+    expect(component.text)
+      .toEqual('Weaver Components Work');
   });
 });

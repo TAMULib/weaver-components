@@ -8,7 +8,9 @@ describe('WvrTextComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [WvrTextComponent]
-    }).compileComponents();
+    })
+      .compileComponents()
+      .catch(err => { console.error(err); });
   }));
 
   beforeEach(() => {
@@ -18,6 +20,7 @@ describe('WvrTextComponent', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(component)
+      .toBeTruthy();
   });
 });
