@@ -9,8 +9,7 @@ import { WvrBaseComponent } from '../../shared/wvr-base-component';
 })
 export class WvrNavLiComponent extends WvrBaseComponent {
 
-  @Input()
-  public href;
+  @Input() href: String;
 
   constructor(injector: Injector) {
     super(injector);

@@ -44,7 +44,7 @@ const components = [
 export class WvrLibModule {
 
   constructor(injector: Injector) {
-    elements.forEach((element) => {
+    elements.forEach(element => {
       try {
         customElements.define(element.selector, createCustomElement(element.component, { injector }));
       } catch (e) {
@@ -52,8 +52,9 @@ export class WvrLibModule {
       }
     });
     const doc = injector.get(DOCUMENT);
-    doc.querySelectorAll('[wvr-hide-content]').forEach(elem => {
-      elem.removeAttribute('wvr-hide-content');
-    });
+    doc.querySelectorAll('[wvr-hide-content]')
+      .forEach(elem => {
+        elem.removeAttribute('wvr-hide-content');
+      });
   }
 }

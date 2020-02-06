@@ -37,8 +37,7 @@ export abstract class WvrBaseComponent {
 
   protected domSanitizer: DomSanitizer;
 
-  @Input()
-  public theme: 'LIGHT' | 'DARK' = 'LIGHT';
+  @Input() theme: 'LIGHT' | 'DARK' = 'LIGHT';
 
   constructor(injector: Injector) {
     this.elem = injector.get(ElementRef);
@@ -50,8 +49,7 @@ export abstract class WvrBaseComponent {
     return this.domSanitizer.bypassSecurityTrustHtml(html);
   }
 
-  @Input()
-  set blue(v: string) {
+  @Input() set blue(v: string) {
     this.elem.nativeElement.style.setProperty(this.BLUE_COLOR, v);
   }
 
@@ -59,8 +57,7 @@ export abstract class WvrBaseComponent {
     return this.elem.nativeElement.style.getPropertyValue(this.BLUE_COLOR);
   }
 
-  @Input()
-  set indigo(v: string) {
+  @Input() set indigo(v: string) {
     this.elem.nativeElement.style.setProperty(this.INDIGO_COLOR, v);
   }
 
@@ -68,8 +65,7 @@ export abstract class WvrBaseComponent {
     return this.elem.nativeElement.style.getPropertyValue(this.INDIGO_COLOR);
   }
 
-  @Input()
-  set purple(v: string) {
+  @Input() set purple(v: string) {
     this.elem.nativeElement.style.setProperty(this.PURPLE_COLOR, v);
   }
 
@@ -77,8 +73,7 @@ export abstract class WvrBaseComponent {
     return this.elem.nativeElement.style.getPropertyValue(this.PURPLE_COLOR);
   }
 
-  @Input()
-  set pink(v: string) {
+  @Input() set pink(v: string) {
     this.elem.nativeElement.style.setProperty(this.PINK_COLOR, v);
   }
 
@@ -86,8 +81,7 @@ export abstract class WvrBaseComponent {
     return this.elem.nativeElement.style.getPropertyValue(this.PINK_COLOR);
   }
 
-  @Input()
-  set red(v: string) {
+  @Input() set red(v: string) {
     this.elem.nativeElement.style.setProperty(this.RED_COLOR, v);
   }
 
@@ -95,8 +89,7 @@ export abstract class WvrBaseComponent {
     return this.elem.nativeElement.style.getPropertyValue(this.RED_COLOR);
   }
 
-  @Input()
-  set orange(v: string) {
+  @Input() set orange(v: string) {
     this.elem.nativeElement.style.setProperty(this.ORANGE_COLOR, v);
   }
 
@@ -104,8 +97,7 @@ export abstract class WvrBaseComponent {
     return this.elem.nativeElement.style.getPropertyValue(this.ORANGE_COLOR);
   }
 
-  @Input()
-  set yellow(v: string) {
+  @Input() set yellow(v: string) {
     this.elem.nativeElement.style.setProperty(this.YELLOW_COLOR, v);
   }
 
@@ -113,8 +105,7 @@ export abstract class WvrBaseComponent {
     return this.elem.nativeElement.style.getPropertyValue(this.YELLOW_COLOR);
   }
 
-  @Input()
-  set green(v: string) {
+  @Input() set green(v: string) {
     this.elem.nativeElement.style.setProperty(this.GREEN_COLOR, v);
   }
 
@@ -122,8 +113,7 @@ export abstract class WvrBaseComponent {
     return this.elem.nativeElement.style.getPropertyValue(this.GREEN_COLOR);
   }
 
-  @Input()
-  set teal(v: string) {
+  @Input() set teal(v: string) {
     this.elem.nativeElement.style.setProperty(this.TEAL_COLOR, v);
   }
 
@@ -131,8 +121,7 @@ export abstract class WvrBaseComponent {
     return this.elem.nativeElement.style.getPropertyValue(this.TEAL_COLOR);
   }
 
-  @Input()
-  set cyan(v: string) {
+  @Input() set cyan(v: string) {
     this.elem.nativeElement.style.setProperty(this.CYAN_COLOR, v);
   }
 
@@ -140,8 +129,7 @@ export abstract class WvrBaseComponent {
     return this.elem.nativeElement.style.getPropertyValue(this.CYAN_COLOR);
   }
 
-  @Input()
-  set white(v: string) {
+  @Input() set white(v: string) {
     this.elem.nativeElement.style.setProperty(this.WHITE_COLOR, v);
   }
 
@@ -149,8 +137,7 @@ export abstract class WvrBaseComponent {
     return this.elem.nativeElement.style.getPropertyValue(this.WHITE_COLOR);
   }
 
-  @Input()
-  set gray(v: string) {
+  @Input() set gray(v: string) {
     this.elem.nativeElement.style.setProperty(this.GRAY_COLOR, v);
   }
 
@@ -158,8 +145,7 @@ export abstract class WvrBaseComponent {
     return this.elem.nativeElement.style.getPropertyValue(this.GRAY_COLOR);
   }
 
-  @Input()
-  set grayDark(v: string) {
+  @Input() set grayDark(v: string) {
     this.elem.nativeElement.style.setProperty(this.GRAY_DARK_COLOR, v);
   }
 
@@ -167,8 +153,7 @@ export abstract class WvrBaseComponent {
     return this.elem.nativeElement.style.getPropertyValue(this.GRAY_DARK_COLOR);
   }
 
-  @Input()
-  set primary(v: string) {
+  @Input() set primary(v: string) {
     this.elem.nativeElement.style.setProperty(this.PRIMARY_COLOR, v);
   }
 
@@ -176,8 +161,7 @@ export abstract class WvrBaseComponent {
     return this.elem.nativeElement.style.getPropertyValue(this.PRIMARY_COLOR);
   }
 
-  @Input()
-  set secondary(v: string) {
+  @Input() set secondary(v: string) {
     this.elem.nativeElement.style.setProperty(this.SECONDARY_COLOR, v);
   }
 
@@ -185,8 +169,7 @@ export abstract class WvrBaseComponent {
     return this.elem.nativeElement.style.getPropertyValue(this.SECONDARY_COLOR);
   }
 
-  @Input()
-  set success(v: string) {
+  @Input() set success(v: string) {
     this.elem.nativeElement.style.setProperty(this.SUCCESS_COLOR, v);
   }
 
@@ -194,8 +177,7 @@ export abstract class WvrBaseComponent {
     return this.elem.nativeElement.style.getPropertyValue(this.SUCCESS_COLOR);
   }
 
-  @Input()
-  set info(v: string) {
+  @Input() set info(v: string) {
     this.elem.nativeElement.style.setProperty(this.INFO_COLOR, v);
   }
 
@@ -203,8 +185,7 @@ export abstract class WvrBaseComponent {
     return this.elem.nativeElement.style.getPropertyValue(this.INFO_COLOR);
   }
 
-  @Input()
-  set warning(v: string) {
+  @Input() set warning(v: string) {
     this.elem.nativeElement.style.setProperty(this.WARNING_COLOR, v);
   }
 
@@ -212,8 +193,7 @@ export abstract class WvrBaseComponent {
     return this.elem.nativeElement.style.getPropertyValue(this.WARNING_COLOR);
   }
 
-  @Input()
-  set danger(v: string) {
+  @Input() set danger(v: string) {
     this.elem.nativeElement.style.setProperty(this.DANGER_COLOR, v);
   }
 
@@ -221,8 +201,7 @@ export abstract class WvrBaseComponent {
     return this.elem.nativeElement.style.getPropertyValue(this.DANGER_COLOR);
   }
 
-  @Input()
-  set light(v: string) {
+  @Input() set light(v: string) {
     this.elem.nativeElement.style.setProperty(this.LIGHT_COLOR, v);
   }
 
@@ -230,8 +209,7 @@ export abstract class WvrBaseComponent {
     return this.elem.nativeElement.style.getPropertyValue(this.LIGHT_COLOR);
   }
 
-  @Input()
-  set dark(v: string) {
+  @Input() set dark(v: string) {
     this.elem.nativeElement.style.setProperty(this.DARK_COLOR, v);
   }
 
@@ -239,8 +217,7 @@ export abstract class WvrBaseComponent {
     return this.elem.nativeElement.style.getPropertyValue(this.DARK_COLOR);
   }
 
-  @Input()
-  set breakpointXs(v: string) {
+  @Input() set breakpointXs(v: string) {
     this.elem.nativeElement.style.setProperty(this.BREAKPOINT_XS, v);
   }
 
@@ -248,8 +225,7 @@ export abstract class WvrBaseComponent {
     return this.elem.nativeElement.style.getPropertyValue(this.BREAKPOINT_XS);
   }
 
-  @Input()
-  set breakpointSm(v: string) {
+  @Input() set breakpointSm(v: string) {
     this.elem.nativeElement.style.setProperty(this.BREAKPOINT_SM, v);
   }
 
@@ -257,8 +233,7 @@ export abstract class WvrBaseComponent {
     return this.elem.nativeElement.style.getPropertyValue(this.BREAKPOINT_SM);
   }
 
-  @Input()
-  set breakpointMd(v: string) {
+  @Input() set breakpointMd(v: string) {
     this.elem.nativeElement.style.setProperty(this.BREAKPOINT_MD, v);
   }
 
@@ -266,8 +241,7 @@ export abstract class WvrBaseComponent {
     return this.elem.nativeElement.style.getPropertyValue(this.BREAKPOINT_MD);
   }
 
-  @Input()
-  set breakpointLg(v: string) {
+  @Input() set breakpointLg(v: string) {
     this.elem.nativeElement.style.setProperty(this.BREAKPOINT_LG, v);
   }
 
@@ -275,8 +249,7 @@ export abstract class WvrBaseComponent {
     return this.elem.nativeElement.style.getPropertyValue(this.BREAKPOINT_LG);
   }
 
-  @Input()
-  set breakpointXl(v: string) {
+  @Input() set breakpointXl(v: string) {
     this.elem.nativeElement.style.setProperty(this.BREAKPOINT_XL, v);
   }
 
@@ -284,8 +257,7 @@ export abstract class WvrBaseComponent {
     return this.elem.nativeElement.style.getPropertyValue(this.BREAKPOINT_XL);
   }
 
-  @Input()
-  set fontFamilySansSerif(v: string) {
+  @Input() set fontFamilySansSerif(v: string) {
     this.elem.nativeElement.style.setProperty(this.FONT_FAMILY_SANS_SERIF, v);
   }
 
@@ -293,8 +265,7 @@ export abstract class WvrBaseComponent {
     return this.elem.nativeElement.style.getPropertyValue(this.FONT_FAMILY_SANS_SERIF);
   }
 
-  @Input()
-  set fontFamilyMonospace(v: string) {
+  @Input() set fontFamilyMonospace(v: string) {
     this.elem.nativeElement.style.setProperty(this.FONT_FAMILY_MONOSPACE, v);
   }
 

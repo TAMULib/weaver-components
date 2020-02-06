@@ -6,6 +6,7 @@ export class AppPage {
   }
 
   getItWorksText() {
-    return element(by.css('wvr-it-works')).getText() as Promise<string>;
+    return element(by.css('wvr-it-works'))
+      .getText() as Promise<string>;
   }
 }
