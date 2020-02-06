@@ -15,5 +15,5 @@ import { WvrLibModule } from 'wvr-elements';
   entryComponents: []
 })
 export class AppModule {
-  ngDoBootstrap() { }
+  ngDoBootstrap(): void { }
 }
