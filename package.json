@@ -40,7 +40,6 @@
     "classlist.js": "^1.1.20150312",
     "document-register-element": "^1.14.3",
     "ie11-custom-properties": "^3.0.6",
-    "protractor": "^5.4.3",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "web-animations-js": "^2.3.2",

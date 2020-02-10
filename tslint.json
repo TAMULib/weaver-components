@@ -30,6 +30,10 @@
       }
     ],
     "no-floating-promises": true,
+    "no-implicit-dependencies": [
+      true,
+      "dev"
+    ],
     "no-import-side-effect": true,
     "no-object-literal-type-assertion": [
       true,
