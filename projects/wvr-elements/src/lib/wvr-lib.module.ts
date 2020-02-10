@@ -48,7 +48,7 @@ export class WvrLibModule {
       try {
         customElements.define(element.selector, createCustomElement(element.component, { injector }));
       } catch (e) {
-        console.warn(e);
+        // console.warn(e);
       }
     });
     const doc = injector.get(DOCUMENT);
