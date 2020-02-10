@@ -1,18 +1,19 @@
-import { Component, Injector, Input } from '@angular/core';
-import { WvrBaseComponent } from '../../shared/wvr-base-component';
+import { Component, Input } from '@angular/core';
+import { wvrThemeHostBindings, wvrThemeInputs } from '../../shared/wvr-styles';
 
 @Component({
-  // tslint:disable-next-line: component-selector
   selector: 'wvr-nav-li-element',
   templateUrl: './wvr-nav-li.component.html',
-  styleUrls: ['./wvr-nav-li.component.scss']
-})
-export class WvrNavLiComponent extends WvrBaseComponent {
-
-  @Input() href: String;
-
-  constructor(injector: Injector) {
-    super(injector);
+  styleUrls: ['./wvr-nav-li.component.scss'],
+  inputs: [
+    ...wvrThemeInputs
+  ],
+  host: {
+    ...wvrThemeHostBindings
   }
+})
+export class WvrNavLiComponent {
+
+  @Input() href: string;
 
 }

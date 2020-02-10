@@ -35,12 +35,6 @@
       "dev"
     ],
     "no-import-side-effect": true,
-    "no-object-literal-type-assertion": [
-      true,
-      {
-        "allow-arguments": true
-      }
-    ],
     "ordered-imports": [
       true,
       {
