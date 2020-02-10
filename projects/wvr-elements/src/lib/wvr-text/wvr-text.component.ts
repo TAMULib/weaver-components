@@ -8,8 +8,7 @@ import { WvrBaseComponent } from '../shared/wvr-base-component';
 })
 export class WvrTextComponent extends WvrBaseComponent {
 
-  @Input()
-  public value: string;
+  @Input() value: string;
 
   constructor(injector: Injector) {
     super(injector);

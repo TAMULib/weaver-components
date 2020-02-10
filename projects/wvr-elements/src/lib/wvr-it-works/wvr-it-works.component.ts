@@ -9,10 +9,9 @@ import { WvrBaseComponent } from '../shared/wvr-base-component';
 })
 export class WvrItWorksComponent extends WvrBaseComponent {
 
-  public title = 'it-works-component';
+  title: String = 'it-works-component';
 
-  @Input()
-  public text = 'Weaver Components Work';
+  @Input() text: String = 'Weaver Components Work';
 
   constructor(injector: Injector) {
     super(injector);

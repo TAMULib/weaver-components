@@ -21,10 +21,14 @@
   ],
   "license": "MIT",
   "dependencies": {
+    "@angular/elements": "^8.2.14",
+    "@angular/platform-browser": "^8.2.14",
+    "@angular/platform-browser-dynamic": "^8.2.14",
     "tslib": "^1.10.0"
   },
   "peerDependencies": {
     "@angular/common": "^8.2.14",
-    "@angular/core": "^8.2.14"
+    "@angular/core": "^8.2.14",
+    "zone.js": "~0.10.2"
   }
 }

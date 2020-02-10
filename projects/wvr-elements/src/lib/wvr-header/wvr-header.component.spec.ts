@@ -8,7 +8,9 @@ describe('WvrHeaderComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [WvrHeaderComponent]
-    }).compileComponents();
+    })
+      .compileComponents()
+      .catch(err => { console.error(err); });
   }));
 
   beforeEach(() => {
@@ -18,22 +20,28 @@ describe('WvrHeaderComponent', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(component)
+      .toBeTruthy();
   });
 
-  it(`should have as logoText 'Weaver Components'`, () => {
-    expect(component.logoText).toEqual('Weaver Components');
+  it("should have as logoText 'Weaver Components'", () => {
+    expect(component.logoText)
+      .toEqual('Weaver Components');
   });
 
-  it(`should have as headerTitle 'Weaver Header Component'`, () => {
-    expect(component.headerTitle).toEqual('Weaver Header Component');
+  it("should have as headerTitle 'Weaver Header Component'", () => {
+    expect(component.headerTitle)
+      .toEqual('Weaver Header Component');
   });
 
-  it(`should have logoSrc defined`, () => {
-    expect(component.logoSrc).toBeDefined();
+  it('should have logoSrc defined', () => {
+    expect(component.logoSrc)
+      .toBeDefined();
   });
 
-  it(`should have as logoHref '#test'`, () => {
-    expect(component.logoHref).toEqual('#test');
+  it("should have as logoHref '#test'", () => {
+    expect(component.logoHref)
+      .toEqual('#test');
+
   });
 });

@@ -10,7 +10,9 @@ describe('WvrNavListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [WvrNavListComponent]
-    }).compileComponents();
+    })
+      .compileComponents()
+      .catch(err => { console.error(err); });
   }));
 
   beforeEach(() => {
@@ -20,14 +22,17 @@ describe('WvrNavListComponent', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(component)
+      .toBeTruthy();
   });
 
-  it(`should have as aligned 'LEFT'`, () => {
-    expect(component.aligned).toEqual(Alignment.LEFT);
+  it("should have as aligned 'LEFT'", () => {
+    expect(component.aligned)
+      .toEqual(Alignment.LEFT);
   });
 
-  it(`should have as vertical false`, () => {
-    expect(component.vertical).toEqual(false);
+  it("should have as 'vertical false'", () => {
+    expect(component.vertical)
+      .toEqual(false);
   });
 });

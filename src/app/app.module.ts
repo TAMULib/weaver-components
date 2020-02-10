@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { WvrLibModule } from 'wvr-elements';
+import { WvrLibModule } from '@wvr/elements';
 
 @NgModule({
   imports: [
@@ -15,5 +15,7 @@ import { WvrLibModule } from 'wvr-elements';
   entryComponents: []
 })
 export class AppModule {
-  ngDoBootstrap() { }
+  ngDoBootstrap(): void {
+    // OVERRIDE
+  }
 }

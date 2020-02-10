@@ -8,7 +8,9 @@ describe('WvrNavLiComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [WvrNavLiComponent]
-    }).compileComponents();
+    })
+      .compileComponents()
+      .catch(err => { console.error(err); });
   }));
 
   beforeEach(() => {
@@ -18,7 +20,9 @@ describe('WvrNavLiComponent', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(component)
+      .toBeTruthy();
+
   });
 
 });

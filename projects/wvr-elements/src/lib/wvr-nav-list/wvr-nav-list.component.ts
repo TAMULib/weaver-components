@@ -10,11 +10,9 @@ import { Alignment } from './alignment.enum';
 })
 export class WvrNavListComponent extends WvrBaseComponent {
 
-  @Input()
-  public aligned: Alignment = Alignment.LEFT;
+  @Input() aligned: Alignment = Alignment.LEFT;
 
-  @Input()
-  public vertical = false;
+  @Input() vertical: Boolean = false;
 
   constructor(injector: Injector) {
     super(injector);
