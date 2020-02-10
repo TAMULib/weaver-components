@@ -22,7 +22,6 @@ describe('WvrNavLiComponent', () => {
   it('should create', () => {
     expect(component)
       .toBeTruthy();
-
   });
 
 });

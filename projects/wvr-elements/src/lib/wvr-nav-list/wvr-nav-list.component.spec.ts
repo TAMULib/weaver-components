@@ -1,6 +1,5 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Alignment } from './alignment.enum';
+import { Alignment } from '../shared/alignment.enum';
 import { WvrNavListComponent } from './wvr-nav-list.component';
 
 describe('WvrNavListComponent', () => {

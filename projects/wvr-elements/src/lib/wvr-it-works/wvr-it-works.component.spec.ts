@@ -22,7 +22,6 @@ describe('WvrItWorksComponent', () => {
   it('should create', () => {
     expect(component)
       .toBeTruthy();
-
   });
 
   it("should have as title 'it-works-component'", () => {

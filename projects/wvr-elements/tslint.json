@@ -12,6 +12,10 @@
       "element",
       "wvr",
       "kebab-case"
-    ]
+    ],
+    "no-floating-promises": false,
+    "no-implicit-dependencies": false,
+    "no-inputs-metadata-property": false,
+    "no-host-metadata-property": false
   }
 }

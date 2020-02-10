@@ -31,6 +31,6 @@
     }
   },
   "angularCompilerOptions": {
-    "ivyCompiler": false
+    "ivyCompiler": true
   }
 }

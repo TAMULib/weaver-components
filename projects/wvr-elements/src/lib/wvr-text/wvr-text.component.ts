@@ -1,17 +1,19 @@
-import { Component, Injector, Input } from '@angular/core';
-import { WvrBaseComponent } from '../shared/wvr-base-component';
+import { Component, Input } from '@angular/core';
+import { wvrThemeHostBindings, wvrThemeInputs } from '../shared/wvr-styles';
 
 @Component({
   selector: 'wvr-text-element',
   templateUrl: './wvr-text.component.html',
-  styleUrls: ['./wvr-text.component.scss']
+  styleUrls: ['./wvr-text.component.scss'],
+  inputs: [
+    ...wvrThemeInputs
+  ],
+  host: {
+    ...wvrThemeHostBindings
+  }
 })
-export class WvrTextComponent extends WvrBaseComponent {
+export class WvrTextComponent {
 
   @Input() value: string;
-
-  constructor(injector: Injector) {
-    super(injector);
-  }
 
 }
