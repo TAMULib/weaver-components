@@ -55,6 +55,8 @@
     "@angular/language-service": "^9.0.0",
     "@babel/core": "^7.8.4",
     "@pickra/copy-code-block": "^1.2.0",
+    "@storybook/addon-docs": "next",
+    "@storybook/addon-knobs": "next",
     "@storybook/addon-storysource": "next",
     "@storybook/html": "next",
     "@types/jasmine": "~3.5.3",

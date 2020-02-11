@@ -29,22 +29,22 @@ const options = {
   }
 };
 
-const wrapper = (template) => {
+const wrapper = (templateFn) => {
   var iFrameHead = document.getElementsByTagName('head')[0];
   var wvrScript = document.createElement('script');
   wvrScript.type = 'text/javascript';
   wvrScript.src = 'weaver-components.js';
   iFrameHead.appendChild(wvrScript);
   hljs.registerLanguage('xml', require('highlight.js/lib/languages/xml'));
-  const wrappedStory = () => template;
+  const wrappedStory = templateFn;
   wrappedStory.story = {
     parameters: {
       storySource: {
-        source: template
+        source: templateFn()
       }
     }
   };
   return wrappedStory;
-}
+};
 
 export default wrapper;
