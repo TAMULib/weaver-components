@@ -8,12 +8,19 @@ export default {
   decorators: [withKnobs]
 };
 
-export const defaultHeader = wrapper(() => `
-<wvr-header>
-</wvr-header>
-`);
+export const defaultHeader = wrapper({
+  componentSubtitle: 'Displays a header at the top of the document'
+}, () => {
 
-export const customizedHeader = wrapper(() => {
+  const template = `
+    <wvr-header>
+    </wvr-header>
+  `;
+
+  return template;
+});
+
+export const customizedHeader = wrapper({}, () => {
   const logoSrc = text('Logo Source', 'weaver-components/assets/weaver-w.svg', 'General');
   const logoText = text('Logo Text', 'Logo Text', 'General');
   const logoHref = text('Logo HREF', '#relative-url', 'General');
@@ -47,7 +54,7 @@ export const customizedHeader = wrapper(() => {
   return template;
 });
 
-export const headerWithLinks = wrapper(() => `
+export const headerWithLinks = wrapper({}, () => `
 <wvr-header>
   <wvr-nav-list top-navigation aligned="RIGHT">
     <wvr-nav-li href="#about-us">

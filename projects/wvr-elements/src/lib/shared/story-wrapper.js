@@ -29,20 +29,21 @@ const options = {
   }
 };
 
-const wrapper = (templateFn) => {
-  var iFrameHead = document.getElementsByTagName('head')[0];
-  var wvrScript = document.createElement('script');
+const wrapper = (params, templateFn) => {
+  const iFrameHead = document.getElementsByTagName('head')[0];
+  const wvrScript = document.createElement('script');
   wvrScript.type = 'text/javascript';
   wvrScript.src = 'weaver-components.js';
   iFrameHead.appendChild(wvrScript);
   hljs.registerLanguage('xml', require('highlight.js/lib/languages/xml'));
-  const wrappedStory = templateFn;
-  wrappedStory.story = {
-    parameters: {
-      storySource: {
-        source: templateFn()
-      }
+  const wrappedStory = () => templateFn();
+  const parameters = Object.assign({
+    storySource: {
+      source: templateFn ? templateFn() : ''
     }
+  }, params);
+  wrappedStory.story = {
+    parameters
   };
   return wrappedStory;
 };
