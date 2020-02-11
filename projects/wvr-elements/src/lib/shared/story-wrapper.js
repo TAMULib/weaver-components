@@ -36,7 +36,15 @@ const wrapper = (template) => {
   wvrScript.src = 'weaver-components.js';
   iFrameHead.appendChild(wvrScript);
   hljs.registerLanguage('xml', require('highlight.js/lib/languages/xml'));
-  return () => `${template} ${copyCodeBlock(template, options)}`;
+  const wrappedStory = () => template;
+  wrappedStory.story = {
+    parameters: {
+      storySource: {
+        source: template
+      }
+    }
+  };
+  return wrappedStory;
 }
 
 export default wrapper;
