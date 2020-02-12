@@ -17,6 +17,6 @@ export class WvrNavListComponent {
 
   @Input() aligned = Alignment.LEFT;
 
-  @Input() vertical = false;
+  @Input() vertical: 'true' | 'false' = 'false';
 
 }
