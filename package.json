@@ -13,6 +13,7 @@
     "ng": "ng",
     "prebuild": "npm run build:wvr-elements",
     "postbuild": "npm run build:wvr-components",
+    "postinstall": "node scripts/correct-compodocs.js",
     "start": "ng serve --port 4200",
     "start:static": "static-server -p 9080",
     "start:docker": "docker run  -p 80:80 --name weaver-components-1  weaver-components",
@@ -25,9 +26,12 @@
     "test:ci": "npm run build && npm run test:coverage",
     "storybook": "start-storybook -p 6006 -s ./dist",
     "build-storybook": "build-storybook",
-    "build:docs": "npm run build:docs-usage && npm run build:docs-development",
+    "docs:clean": "rm -rf docs",
+    "docs:serve": "static-server docs -p 9081",
+    "build:docs": "npm run build:docs-setup && npm run build:docs-usage && npm run build:docs-development",
+    "build:docs-setup": "node scripts/build-wvr-components-docs.js",
     "build:docs-usage": "build-storybook -o docs/usage",
-    "build:docs-development": "compodoc -p ./tsconfig.app.json -s ./dist -d docs/development -n 'My Weaver Header Components documentation'"
+    "build:docs-development": "compodoc -d docs/development -n 'My Weaver Header Components documentation' -p ./projects/wvr-elements/tsconfig.lib.json"
   },
   "dependencies": {
     "@angular/animations": "^9.0.0",
