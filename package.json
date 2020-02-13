@@ -24,7 +24,10 @@
     "test:report": "cat ./coverage/wvr-elements/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "test:ci": "npm run build && npm run test:coverage",
     "storybook": "start-storybook -p 6006 -s ./dist",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "build:docs": "npm run build:docs-usage && npm run build:docs-development",
+    "build:docs-usage": "build-storybook -o docs/usage",
+    "build:docs-development": "compodoc -p ./tsconfig.app.json -s ./dist -d docs/development -n 'My Weaver Header Components documentation'"
   },
   "dependencies": {
     "@angular/animations": "^9.0.0",
@@ -50,10 +53,11 @@
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.900.1",
     "@angular-devkit/build-ng-packagr": "~0.900.1",
-    "@angular/cli": "^9.0.1",
+    "@angular/cli": "^9.0.0",
     "@angular/compiler-cli": "^9.0.0",
     "@angular/language-service": "^9.0.0",
     "@babel/core": "^7.8.4",
+    "@compodoc/compodoc": "^1.1.11",
     "@pickra/copy-code-block": "^1.2.0",
     "@storybook/addon-docs": "next",
     "@storybook/addon-knobs": "next",
