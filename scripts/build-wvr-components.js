@@ -15,8 +15,10 @@ const dirName = `${majorVersion}x`;
     'dist/weaver-components/main-es5.js'
   ];
 
-  fs.ensureDir(`dist/bundle/${dirName}`);
+  const dirPath = `dist/bundle/${dirName}`;
 
-  await concat(files, `dist/bundle/${dirName}/weaver-components.js`);
+  fs.ensureDir(dirPath);
+
+  await concat(files, `${dirPath}/weaver-components.js`);
 
 })();
