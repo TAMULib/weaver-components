@@ -4,6 +4,7 @@ const concat = require('concat');
 const package = require('../package.json');
 const majorVersion = package.version.split('.')[0];
 const dirName = `${majorVersion}x`;
+const dirPath = `dist/bundle/${dirName}`;
 
 (async function build() {
   const files = [
@@ -14,8 +15,6 @@ const dirName = `${majorVersion}x`;
     // 'dist/weaver-components/vendor-es5.js',
     'dist/weaver-components/main-es5.js'
   ];
-
-  const dirPath = `dist/bundle/${dirName}`;
 
   fs.ensureDir(dirPath);
 
