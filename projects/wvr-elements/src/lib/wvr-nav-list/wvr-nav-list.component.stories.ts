@@ -30,11 +30,12 @@ export const customNavList = wrapper({
   componentSubtitle: 'Displays a bootstrap nav-list with customizations'
 }, () => {
 
+
   const options = Object.values(Alignment);
   const aligned = select('Set Alignment', options, options[0]);
-
+  const isVertical = boolean('Set Vertical', false);
   return `
-<wvr-nav-list aligned="${aligned}">
+<wvr-nav-list aligned="${aligned}" vertical="${isVertical}">
   <wvr-nav-li>
     <wvr-text value="Action"></wvr-text>
   </wvr-nav-li>

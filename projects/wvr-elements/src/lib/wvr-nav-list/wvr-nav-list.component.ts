@@ -1,22 +1,20 @@
 import { Component, Input } from '@angular/core';
 import { Alignment } from '../shared/alignment.enum';
-import { wvrThemeHostBindings, wvrThemeInputs } from '../shared/wvr-styles';
-
+/**
+ * The WvrNavList Component presents a navigation list.
+ * Elements within this list must be wvr-nav-li elements and can be either links of action elements.
+ */
 @Component({
   selector: 'wvr-nav-list-element',
   templateUrl: './wvr-nav-list.component.html',
-  styleUrls: ['./wvr-nav-list.component.scss'],
-  inputs: [
-    ...wvrThemeInputs
-  ],
-  host: {
-    ...wvrThemeHostBindings
-  }
+  styleUrls: ['./wvr-nav-list.component.scss']
 })
 export class WvrNavListComponent {
 
+  /** The aligned property describing the positioning of the list elements. */
   @Input() aligned = Alignment.LEFT;
 
-  @Input() vertical = false;
+  /** Toggles the display of the list horizontally or vertically. */
+  @Input() vertical: 'true' | 'false' = 'false';
 
 }
