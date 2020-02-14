@@ -1,3 +1,4 @@
+/** Component inputs for theming */
 export const wvrThemeInputs: Array<string> = [
   'theme',
   'blue',
@@ -30,6 +31,7 @@ export const wvrThemeInputs: Array<string> = [
   'fontFamilyMonospace'
 ];
 
+/** Host style bindings to css variables */
 export const wvrThemeHostBindings: any = {
   '[style.--wvr-blue]': 'blue',
   '[style.--wvr-indigo]': 'indigo',
