@@ -8,6 +8,7 @@ import { WvrNavLiComponent } from './wvr-nav-list/wvr-nav-li/wvr-nav-li.componen
 import { WvrNavListComponent } from './wvr-nav-list/wvr-nav-list.component';
 import { WvrTextComponent } from './wvr-text/wvr-text.component';
 
+/** This property contains a list of components and the selector tags. */
 const elements = [
   { component: WvrItWorksComponent, selector: 'wvr-it-works' },
   { component: WvrHeaderComponent, selector: 'wvr-header' },
@@ -16,6 +17,7 @@ const elements = [
   { component: WvrTextComponent, selector: 'wvr-text' }
 ];
 
+/** This property contains a list of components class. */
 const components = [
   WvrItWorksComponent,
   WvrHeaderComponent,
@@ -24,6 +26,7 @@ const components = [
   WvrTextComponent
 ];
 
+/** This decorator helps organize the weaver component project and provides various features as defined in the properties below. */
 @NgModule({
   imports: [
     BrowserModule
@@ -41,6 +44,7 @@ const components = [
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
+/** This is an NgModule genereated with the NgModule decorator. */
 export class WvrLibModule {
 
   constructor(injector: Injector) {
