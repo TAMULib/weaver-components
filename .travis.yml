@@ -12,8 +12,20 @@ script:
   - npm run test:ci
 after_success:
   - npm run test:report
+  - npm run build:docs
+  - ls | grep -v docs | xargs rm -rf
+  - mv docs/* .
+  - rm -rf docs
 
 notifications:
   webhooks:
     urls:
       - https://coveralls.io/webhook
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  keep_history: true
+  on:
+    branch: master
