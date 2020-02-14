@@ -8,6 +8,7 @@ import { WvrNavLiComponent } from './wvr-nav-list/wvr-nav-li/wvr-nav-li.componen
 import { WvrNavListComponent } from './wvr-nav-list/wvr-nav-list.component';
 import { WvrTextComponent } from './wvr-text/wvr-text.component';
 
+/** This property contains a list of components and the selector tags. */
 const elements = [
   { component: WvrItWorksComponent, selector: 'wvr-it-works' },
   { component: WvrHeaderComponent, selector: 'wvr-header' },
@@ -16,6 +17,7 @@ const elements = [
   { component: WvrTextComponent, selector: 'wvr-text' }
 ];
 
+/** This property contains a list of components classes. */
 const components = [
   WvrItWorksComponent,
   WvrHeaderComponent,
@@ -24,6 +26,7 @@ const components = [
   WvrTextComponent
 ];
 
+/** The main module for the Weaver Elements library. */
 @NgModule({
   imports: [
     BrowserModule
@@ -48,7 +51,7 @@ export class WvrLibModule {
       try {
         customElements.define(element.selector, createCustomElement(element.component, { injector }));
       } catch (e) {
-        console.warn(e);
+        // console.warn(e);
       }
     });
     const doc = injector.get(DOCUMENT);

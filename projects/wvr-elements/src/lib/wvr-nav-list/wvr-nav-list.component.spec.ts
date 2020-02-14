@@ -32,6 +32,6 @@ describe('WvrNavListComponent', () => {
 
   it("should have as 'vertical false'", () => {
     expect(component.vertical)
-      .toEqual(false);
+      .toEqual('false');
   });
 });

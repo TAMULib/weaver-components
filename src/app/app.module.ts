@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { WvrLibModule } from '@wvr/elements';
+import { WvrLibModule } from '../../projects/wvr-elements/src/public-api';
 
 @NgModule({
   imports: [
