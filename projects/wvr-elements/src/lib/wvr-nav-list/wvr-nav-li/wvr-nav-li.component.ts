@@ -1,6 +1,6 @@
 import { Component, HostBinding, Input } from '@angular/core';
 /**
- * The WvrNavLi Component contains the href property of the list.
+ * The WvrNavLi Component is the list element to be used with the wvr-nav-list element.
  */
 @Component({
   selector: 'wvr-nav-li-element',
@@ -9,16 +9,16 @@ import { Component, HostBinding, Input } from '@angular/core';
 })
 export class WvrNavLiComponent {
 
-  /** This property contains the href value of the list element. */
+  /** A resolvable URI to to which this li will link, when provided. If no link is provided, the list element will not display as a link. */
   @Input() href: string;
 
-  /** This field has hostbinding property bound to weaver --wvr-blue styling variable  - equivalent of css color of blue shade */
+  /** Allows for the override of the --wvr-blue css variable. */
   @HostBinding('style.--wvr-blue') @Input() blue;
 
-  /** This field has hostbinding property bound to weaver --wvr-prinary styling variable  - equivalent of css color of primary shade */
+  /** Allows for the override of the --wvr-primary css variable. */
   @HostBinding('style.--wvr-primary') @Input() primary;
 
-  /** This field has hostbinding property bound to weaver --wvr-dark styling variable  - equivalent of css color of {gray-900} shade */
+  /** Allows for the override of the --wvr-dark css variable. */
   @HostBinding('style.--wvr-dark') @Input() dark;
 
 }

@@ -1,6 +1,6 @@
 import { Component, HostBinding, Input } from '@angular/core';
 /**
- * This is the it-works component. This contains a text property.
+ * Provides a simple component to prove the basic functionality of the Weaver Components.
  */
 @Component({
   selector: 'wvr-it-works-element',
@@ -9,13 +9,13 @@ import { Component, HostBinding, Input } from '@angular/core';
 })
 export class WvrItWorksComponent {
 
-  /** The text value to be displayed in the title property. */
+  /** The text value to be displayed in the title. */
   title = 'it-works-component';
 
   /** The text value to be displayed in the title. */
   @Input() text = 'Weaver Components Work';
 
-  /** This field has hostbinding property bound to weaver --wvr-prinary styling variable  - equivalent of css color of primary shade */
+  /** Allows for the override of the --wvr-primary css variable. */
   @HostBinding('style.--wvr-primary') @Input() primary;
 
 }

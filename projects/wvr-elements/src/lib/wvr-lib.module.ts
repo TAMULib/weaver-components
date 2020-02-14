@@ -17,7 +17,7 @@ const elements = [
   { component: WvrTextComponent, selector: 'wvr-text' }
 ];
 
-/** This property contains a list of components class. */
+/** This property contains a list of components classes. */
 const components = [
   WvrItWorksComponent,
   WvrHeaderComponent,
@@ -26,7 +26,7 @@ const components = [
   WvrTextComponent
 ];
 
-/** This decorator helps organize the weaver component project and provides various features as defined in the properties below. */
+/** The main module for the Weaver Elements library. */
 @NgModule({
   imports: [
     BrowserModule
@@ -44,7 +44,6 @@ const components = [
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-/** This is an NgModule genereated with the NgModule decorator. */
 export class WvrLibModule {
 
   constructor(injector: Injector) {

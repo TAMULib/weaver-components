@@ -1,7 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { Alignment } from '../shared/alignment.enum';
 /**
- * The WvrNavList Component contains the aligned and vertical properties that describe the positioning of the ul list.
+ * The WvrNavList Component presents a navigation list.
+ * Elements within this list must be wvr-nav-li elements and can be either links of action elements.
  */
 @Component({
   selector: 'wvr-nav-list-element',
@@ -13,7 +14,7 @@ export class WvrNavListComponent {
   /** The aligned property describing the positioning of the list elements. */
   @Input() aligned = Alignment.LEFT;
 
-  /** This boolean vertical property describing if the list can be displayed horizontally or vertically. */
+  /** Toggles the display of the list horizontally or vertically. */
   @Input() vertical: 'true' | 'false' = 'false';
 
 }
