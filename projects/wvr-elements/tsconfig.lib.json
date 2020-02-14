@@ -8,6 +8,8 @@
   },
   "exclude": [
     "src/test.ts",
+    "src/lib/wvr-lib.module.ts",
+    "**/*.stories.ts",
     "**/*.spec.ts"
   ]
 }

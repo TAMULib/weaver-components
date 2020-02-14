@@ -2,7 +2,7 @@
 @import "../../shared/styles/host-styles.scss";
 
 :host {
-  --wvr-nav-li-curosr: pointer;
+  --wvr-nav-li-cursor: pointer;
   --wvr-nav-li-height: 100%;
   --wvr-nav-li-width: 140px;
   --wvr-nav-link-bg-hover: var(--wvr-primary);
@@ -16,7 +16,7 @@ a.nav-link,
 li.nav-item {
   height: var(--wvr-nav-li-height);
   min-width: var(--wvr-nav-li-width);
-  cursor: var(--wvr-nav-li-curosr);
+  cursor: var(--wvr-nav-li-cursor);
 }
 
 a.nav-link {
