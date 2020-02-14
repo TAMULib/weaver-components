@@ -1,5 +1,9 @@
-// const fs = require('fs-extra');
+const fs = require('fs-extra');
 const concat = require('concat');
+
+const package = require('../package.json');
+const majorVersion = package.version.split('.')[0];
+const dirName = `${majorVersion}x`;
 
 (async function build() {
   const files = [
@@ -11,8 +15,8 @@ const concat = require('concat');
     'dist/weaver-components/main-es5.js'
   ];
 
-  await concat(files, 'dist/weaver-components.js');
+  fs.ensureDir(`dist/bundle/${dirName}`);
 
-  // await fs.remove("dist/weaver-components");
+  await concat(files, `dist/bundle/${dirName}/weaver-components.js`);
 
 })();
