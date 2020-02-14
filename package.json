@@ -31,7 +31,8 @@
     "build:docs": "npm run build:docs-setup && npm run build:docs-usage && npm run build:docs-development",
     "build:docs-setup": "node scripts/build-wvr-components-docs.js",
     "build:docs-usage": "build-storybook -s dist -o docs/usage",
-    "build:docs-development": "compodoc -d docs/development -n 'Weaver Component Documentation' -p ./projects/wvr-elements/tsconfig.docs.json"
+    "build:docs-development": "compodoc -d docs/development -n 'Weaver Component Documentation' -p ./projects/wvr-elements/tsconfig.docs.json",
+    "build:docs-production": "npm run build:docs && ls -a | grep -v docs | xargs rm -rf && mv docs/* . && rm -rf docs"
   },
   "dependencies": {
     "@angular/animations": "^9.0.0",
