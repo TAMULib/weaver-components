@@ -73,8 +73,6 @@
     "codelyzer": "^5.2.1",
     "concat": "^1.0.3",
     "coveralls": "^3.0.9",
-    "highlight.js": "^9.18.1",
-    "hljs": "^6.2.3",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.4.1",
