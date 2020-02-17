@@ -19,10 +19,6 @@ module.exports = {
     const tsconfig = path.resolve(__dirname, './tsconfig.json');
 
     // Make whatever fine-grained changes you need
-    // config.module.rules.push({
-    //   test: /\.ts$/,
-    //   loader: 'ts-loader',
-    // })
 
     config.module.rules.push({
       test: /\.ts$/,

@@ -1,5 +1,5 @@
 // tslint:disable-next-line:no-default-import
-import wrapper from '../shared/story-wrapper';
+import wrapper from '../../../../../scripts/story-wrapper';
 import { array, color, object, text, withKnobs } from '@storybook/addon-knobs';
 
 // tslint:disable-next-line:no-default-export
@@ -13,15 +13,15 @@ export const defaultHeader = wrapper({
 }, () => {
 
   const template = `
-    <wvr-header>
-    </wvr-header>
+<wvr-header>
+</wvr-header>
   `;
 
   return template;
 });
 
 export const customizedHeader = wrapper({}, () => {
-  const logoSrc = text('Logo Source', 'weaver-components/assets/weaver-w.svg', 'General');
+  const logoSrc = text('Logo Source', 'assets/weaver-w.svg', 'General');
   const logoText = text('Logo Text', 'Logo Text', 'General');
   const logoHref = text('Logo HREF', '#relative-url', 'General');
   const title = text('Header Title', 'Page Title', 'General');

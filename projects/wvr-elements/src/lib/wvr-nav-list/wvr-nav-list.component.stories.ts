@@ -1,6 +1,6 @@
 // tslint:disable-next-line:no-default-import
-import wrapper from '../shared/story-wrapper';
-import { boolean, select, withKnobs } from '@storybook/addon-knobs'
+import wrapper from '../../../../../scripts/story-wrapper';
+import { boolean, select, withKnobs } from '@storybook/addon-knobs';
 
 import { Alignment } from '../shared/alignment.enum';
 
@@ -30,10 +30,10 @@ export const customNavList = wrapper({
   componentSubtitle: 'Displays a bootstrap nav-list with customizations'
 }, () => {
 
-
   const options = Object.values(Alignment);
   const aligned = select('Set Alignment', options, options[0]);
   const isVertical = boolean('Set Vertical', false);
+
   return `
 <wvr-nav-list aligned="${aligned}" vertical="${isVertical}">
   <wvr-nav-li>
