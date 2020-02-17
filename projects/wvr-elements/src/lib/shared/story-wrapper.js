@@ -1,9 +1,12 @@
 const wrapper = (params, templateFn) => {
   const iFrameHead = document.getElementsByTagName('head')[0];
-  const wvrScript = document.createElement('script');
-  wvrScript.type = 'text/javascript';
-  wvrScript.src = 'weaver-components.js';
-  iFrameHead.appendChild(wvrScript);
+  const scripts = iFrameHead.querySelectorAll('script[src="weaver-components.js"]');
+  if (scripts.length === 0) {
+    const wvrScript = document.createElement('script');
+    wvrScript.setAttribute('defer', 'defer');
+    wvrScript.setAttribute('src', 'weaver-components.js');
+    iFrameHead.appendChild(wvrScript);
+  }
   const wrappedStory = () => templateFn();
   const parameters = Object.assign({
     storySource: {
