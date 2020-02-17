@@ -1,5 +1,4 @@
 const fs = require('fs-extra');
-const concat = require('concat');
 
 (async function build() {
   fs.ensureDir("docs");

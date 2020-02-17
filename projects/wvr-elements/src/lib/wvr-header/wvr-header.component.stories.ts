@@ -1,5 +1,5 @@
 // tslint:disable-next-line:no-default-import
-import wrapper from '../shared/story-wrapper';
+import wrapper from '../../../../../scripts/story-wrapper';
 import { array, color, object, text, withKnobs } from '@storybook/addon-knobs';
 
 // tslint:disable-next-line:no-default-export
@@ -13,8 +13,8 @@ export const defaultHeader = wrapper({
 }, () => {
 
   const template = `
-    <wvr-header>
-    </wvr-header>
+<wvr-header>
+</wvr-header>
   `;
 
   return template;

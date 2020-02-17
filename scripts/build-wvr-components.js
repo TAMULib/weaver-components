@@ -19,5 +19,6 @@ const dirPath = `dist/bundle/${dirName}`;
   fs.ensureDir(dirPath);
 
   await concat(files, `${dirPath}/weaver-components.js`);
+  fs.copy(`${dirPath}/weaver-components.js`, "dist/docs/usage/weaver-components.js");
 
 })();

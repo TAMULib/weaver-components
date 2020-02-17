@@ -1,5 +1,5 @@
 // tslint:disable-next-line:no-default-import
-import wrapper from '../shared/story-wrapper';
+import wrapper from '../../../../../scripts/story-wrapper';
 import { text, withKnobs } from '@storybook/addon-knobs';
 
 // tslint:disable-next-line:no-default-export
