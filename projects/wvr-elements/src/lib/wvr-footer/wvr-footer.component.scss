@@ -1,0 +1,20 @@
+@import "~bootstrap/scss/bootstrap";
+@import "../shared/styles/host-styles.scss";
+
+:host {
+  --footer-bg: var(--wvr-gray);
+  --footer-height: var(--wvr-navbar-height);
+  --footer-padding: var(--wvr-navbar-padding);
+}
+
+.wvr-footer {
+  font-family: var(--wvr-font-family-sans-serif);
+  background-color: var(--footer-bg);
+  height: var(--footer-height);
+  padding: var(--padding);
+}
+
+.container {
+  height: 100%;
+}
+

@@ -7,11 +7,13 @@ import { WvrItWorksComponent } from './wvr-it-works/wvr-it-works.component';
 import { WvrNavLiComponent } from './wvr-nav-list/wvr-nav-li/wvr-nav-li.component';
 import { WvrNavListComponent } from './wvr-nav-list/wvr-nav-list.component';
 import { WvrTextComponent } from './wvr-text/wvr-text.component';
+import { WvrFooterComponent } from './wvr-footer/wvr-footer.component';
 
 /** This property contains a list of components and the selector tags. */
 const elements = [
-  { component: WvrItWorksComponent, selector: 'wvr-it-works' },
+  { component: WvrFooterComponent, selector: 'wvr-footer' },
   { component: WvrHeaderComponent, selector: 'wvr-header' },
+  { component: WvrItWorksComponent, selector: 'wvr-it-works' },
   { component: WvrNavListComponent, selector: 'wvr-nav-list' },
   { component: WvrNavLiComponent, selector: 'wvr-nav-li' },
   { component: WvrTextComponent, selector: 'wvr-text' }
@@ -19,8 +21,9 @@ const elements = [
 
 /** This property contains a list of components classes. */
 const components = [
-  WvrItWorksComponent,
+  WvrFooterComponent,
   WvrHeaderComponent,
+  WvrItWorksComponent,
   WvrNavListComponent,
   WvrNavLiComponent,
   WvrTextComponent
