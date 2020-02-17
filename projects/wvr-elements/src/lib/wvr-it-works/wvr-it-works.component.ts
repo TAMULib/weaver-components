@@ -1,4 +1,5 @@
 import { Component, HostBinding, Input } from '@angular/core';
+
 /**
  * Provides a simple component to prove the basic functionality of the Weaver Components.
  */
