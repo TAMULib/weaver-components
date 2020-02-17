@@ -21,7 +21,7 @@ export const defaultHeader = wrapper({
 });
 
 export const customizedHeader = wrapper({}, () => {
-  const logoSrc = text('Logo Source', 'weaver-components/assets/weaver-w.svg', 'General');
+  const logoSrc = text('Logo Source', 'assets/weaver-w.svg', 'General');
   const logoText = text('Logo Text', 'Logo Text', 'General');
   const logoHref = text('Logo HREF', '#relative-url', 'General');
   const title = text('Header Title', 'Page Title', 'General');
