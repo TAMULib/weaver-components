@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { wvrThemeHostBindings, wvrThemeInputs } from '../shared/wvr-styles';
 
 /**
  * The Weaver Text Component allows for a node based textual entry. This will support i18n in the future.
@@ -7,13 +6,7 @@ import { wvrThemeHostBindings, wvrThemeInputs } from '../shared/wvr-styles';
 @Component({
   selector: 'wvr-text-element',
   templateUrl: './wvr-text.component.html',
-  styleUrls: ['./wvr-text.component.scss'],
-  inputs: [
-    ...wvrThemeInputs
-  ],
-  host: {
-    ...wvrThemeHostBindings
-  }
+  styleUrls: ['./wvr-text.component.scss']
 })
 export class WvrTextComponent {
 

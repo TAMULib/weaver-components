@@ -13,7 +13,6 @@
     "ng": "ng",
     "prebuild": "npm run build:wvr-elements",
     "postbuild": "npm run build:wvr-components",
-    "postinstall": "node scripts/correct-compodocs.js",
     "start": "ng serve --port 4200",
     "start:static": "static-server -p 9080",
     "test": "npm run test:unit && npm run test:e2e",

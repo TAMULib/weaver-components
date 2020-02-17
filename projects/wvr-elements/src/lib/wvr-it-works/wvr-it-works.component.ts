@@ -1,16 +1,9 @@
 import { Component, Input } from '@angular/core';
-import { wvrThemeHostBindings, wvrThemeInputs } from '../shared/wvr-styles';
 
 @Component({
   selector: 'wvr-it-works-element',
   templateUrl: './wvr-it-works.component.html',
-  styleUrls: ['./wvr-it-works.component.scss'],
-  inputs: [
-    ...wvrThemeInputs
-  ],
-  host: {
-    ...wvrThemeHostBindings
-  }
+  styleUrls: ['./wvr-it-works.component.scss']
 })
 export class WvrItWorksComponent {
 

@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { wvrThemeHostBindings, wvrThemeInputs } from '../shared/wvr-styles';
 
 /**
  * This is the main header component. This component contains elements like logo text, header title, logo image and the link to it.
@@ -8,13 +7,7 @@ import { wvrThemeHostBindings, wvrThemeInputs } from '../shared/wvr-styles';
 @Component({
   selector: 'wvr-header-element',
   templateUrl: './wvr-header.component.html',
-  styleUrls: ['./wvr-header.component.scss'],
-  inputs: [
-    ...wvrThemeInputs
-  ],
-  host: {
-    ...wvrThemeHostBindings
-  }
+  styleUrls: ['./wvr-header.component.scss']
 })
 export class WvrHeaderComponent {
   /** The text value to be displayed in the logo text. */
