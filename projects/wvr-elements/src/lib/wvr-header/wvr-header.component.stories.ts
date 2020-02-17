@@ -1,6 +1,6 @@
 // tslint:disable-next-line:no-default-import
-import wrapper from '../../../../../scripts/story-wrapper';
-import { array, color, object, text, withKnobs } from '@storybook/addon-knobs';
+import { array, color, text, withKnobs } from '@storybook/addon-knobs';
+import wrapper from '../shared/story-wrapper';
 
 // tslint:disable-next-line:no-default-export
 export default {
@@ -11,11 +11,10 @@ export default {
 export const defaultHeader = wrapper({
   componentSubtitle: 'Displays a header at the top of the document'
 }, () => {
-
   const template = `
 <wvr-header>
 </wvr-header>
-  `;
+`;
 
   return template;
 });
@@ -49,7 +48,7 @@ export const customizedHeader = wrapper({}, () => {
   )}
   </wvr-nav-list>
 </wvr-header>
-  `;
+`;
 
   return template;
 });

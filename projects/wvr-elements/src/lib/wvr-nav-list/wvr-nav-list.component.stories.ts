@@ -1,8 +1,7 @@
 // tslint:disable-next-line:no-default-import
-import wrapper from '../../../../../scripts/story-wrapper';
 import { boolean, select, withKnobs } from '@storybook/addon-knobs';
-
 import { Alignment } from '../shared/alignment.enum';
+import wrapper from '../shared/story-wrapper';
 
 // tslint:disable-next-line:no-default-export
 export default {
@@ -29,7 +28,6 @@ export const defaultNavList = wrapper({
 export const customNavList = wrapper({
   componentSubtitle: 'Displays a bootstrap nav-list with customizations'
 }, () => {
-
   const options = Object.values(Alignment);
   const aligned = select('Set Alignment', options, options[0]);
   const isVertical = boolean('Set Vertical', false);
@@ -47,5 +45,4 @@ export const customNavList = wrapper({
   </wvr-nav-li>
 </wvr-nav-list>
 `;
-
 });

@@ -1,6 +1,6 @@
 // tslint:disable-next-line:no-default-import
-import wrapper from '../../../../../scripts/story-wrapper';
 import { text, withKnobs } from '@storybook/addon-knobs';
+import wrapper from '../shared/story-wrapper';
 
 // tslint:disable-next-line:no-default-export
 export default {
@@ -14,6 +14,6 @@ export const defaultNavList = wrapper({
   const textValue = text('Text Value', 'Hello World!');
 
   return `
-    <wvr-text value="${textValue}"></wvr-text>
-    `;
+<wvr-text value="${textValue}"></wvr-text>
+`;
 });
