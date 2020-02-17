@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, HostBinding, Input } from '@angular/core';
 
 @Component({
   selector: 'wvr-nav-li-element',
@@ -8,5 +8,11 @@ import { Component, Input } from '@angular/core';
 export class WvrNavLiComponent {
 
   @Input() href: string;
+
+  @HostBinding('style.--wvr-blue') @Input() blue;
+
+  @HostBinding('style.--wvr-primary') @Input() primary;
+
+  @HostBinding('style.--wvr-dark') @Input() dark;
 
 }
