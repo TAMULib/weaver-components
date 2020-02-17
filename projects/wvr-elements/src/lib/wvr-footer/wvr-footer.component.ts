@@ -10,30 +10,31 @@ export class WvrFooterComponent implements OnInit {
   /** Allows for the override of the --wvr-gray css variable. */
   @HostBinding('style.--wvr-gray') @Input() gray;
 
+  isSticky = false;
+
   constructor(private readonly elementRef: ElementRef) {
 
   }
 
   positionSelf(): void {
-    const parentElement: HTMLElement = this.elementRef.nativeElement.offsetParent;
-    const wvrFooter: HTMLElement = parentElement.querySelector('footer.wvr-footer');
+    const bodyElem: HTMLElement = document.querySelector('body');
+    const wvrFooter: HTMLElement = bodyElem.querySelector('footer.wvr-footer');
     const selfHeight = wvrFooter.offsetHeight;
-    const viewPortSize = window.innerHeight; //document.body.offsetHeight;
+    const viewPortSize = window.innerHeight;
 
-    if (parentElement.offsetHeight <= viewPortSize) {
+    if (wvrFooter.offsetTop <= viewPortSize) {
       console.log('CONTENT IS SMALLER');
       // position = vieportSize - self Height
-      const footerPosition = viewPortSize - selfHeight;
-      //wvrFooter.style.position = 'absolute';
-      //wvrFooter.style.top = `${footerPosition}px`;
-
+      // const footerPosition = viewPortSize - selfHeight;
+      this.isSticky = true;
     } else {
       console.log('CONTENT IS LARGER');
+      this.isSticky = false;
     }
 
     console.log(wvrFooter);
-    console.log("parentElement", parentElement);
-    console.log('parentElement.offsetHeight', parentElement.offsetHeight);
+    console.log("bodyElem", bodyElem);
+    console.log('bodyElem.offsetHeight', bodyElem.offsetHeight);
     console.log("selfHeight", selfHeight);
     console.log('this.elementRef', this.elementRef);
     console.log('window.innerHeight', window.innerHeight);
@@ -44,6 +45,12 @@ export class WvrFooterComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const htmlElem: HTMLElement = document.querySelector('html');
+    const bodyElem: HTMLElement = document.querySelector('body');
+
+    htmlElem.style.height = '100%';
+    bodyElem.style.height = '100%';
+
     this.positionSelf();
   }
 }
