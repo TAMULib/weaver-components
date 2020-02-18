@@ -8,8 +8,8 @@ import { ResizeSensor } from 'css-element-queries';
 })
 export class WvrFooterComponent implements OnInit {
 
-  /** Allows for the override of the --wvr-gray css variable. */
-  @HostBinding('style.--wvr-gray') @Input() gray;
+  /** Allows for the override of the background color. */
+  @HostBinding('style.--wvr-gray') @Input() background;
 
   @Input() isSticky = false;
 
