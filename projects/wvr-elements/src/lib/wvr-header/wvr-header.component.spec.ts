@@ -42,6 +42,6 @@ describe('WvrHeaderComponent', () => {
   it("should have as logoHref '#test'", () => {
     expect(component.logoHref)
       .toEqual('#test');
-
   });
+
 });

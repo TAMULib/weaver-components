@@ -7,6 +7,7 @@
   --wvr-nav-li-width: 140px;
   --wvr-nav-link-bg-hover: var(--wvr-primary);
   --wvr-nav-link-color-hover: var(--wvr-dark);
+  --wvr-nav-link-text-decoration-hover: none;
   --wvr-nav-link-font-color: var(--wvr-blue);
   --wvr-nav-link-font-size: inherit;
   --wvr-nav-link-font-weight: inherit;
@@ -27,7 +28,9 @@ a.nav-link {
 
 li.nav-item:hover {
   background: var(--wvr-nav-link-bg-hover);
+  text-decoration: var(--wvr-nav-link-text-decoration-hover);
   a.nav-link {
     color: var(--wvr-nav-link-color-hover);
+    text-decoration: var(--wvr-nav-link-text-decoration-hover);
   }
 }
