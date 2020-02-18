@@ -1,6 +1,9 @@
 import { ChangeDetectorRef, Component, ElementRef, HostBinding, HostListener, Input, OnInit } from '@angular/core';
 import { ResizeSensor } from 'css-element-queries';
 
+/**
+ * A fullwidth footer component which attaches to the bottom of the document body.
+ */
 @Component({
   selector: 'wvr-footer-element',
   templateUrl: './wvr-footer.component.html',

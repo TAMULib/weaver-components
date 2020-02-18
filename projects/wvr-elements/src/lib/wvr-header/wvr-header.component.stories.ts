@@ -1,5 +1,6 @@
 // tslint:disable-next-line:no-default-import
 import { array, color, text, withKnobs } from '@storybook/addon-knobs';
+// tslint:disable-next-line:no-default-import
 import wrapper from '../shared/story-wrapper';
 
 // tslint:disable-next-line:no-default-export
@@ -34,18 +35,18 @@ export const customizedHeader = wrapper({}, () => {
   const template = `
 <wvr-header logo-src="${logoSrc}" logo-text="${logoText}" logo-href="${logoHref}" header-title="${title}" primary="${primary}" secondary="${secondary}" gray="${gray}">
   <wvr-nav-list top-navigation aligned="RIGHT">
-  ${topLinks.map(l =>
-    `<wvr-nav-li href="#${l}">
+  ${topLinks.map(l => `
+    <wvr-nav-li href="#${l}">
       <wvr-text value="${l}"></wvr-text>
-    </wvr-nav-li>`
-  )}
+    </wvr-nav-li>
+    `)}
   </wvr-nav-list>
   <wvr-nav-list bottom-navigation>
-  ${bottomLinks.map(l =>
-    `<wvr-nav-li href="#${l}">
+  ${bottomLinks.map(l => `
+    <wvr-nav-li href="#${l}">
       <wvr-text value="${l}"></wvr-text>
-    </wvr-nav-li>`
-  )}
+    </wvr-nav-li>
+  `)}
   </wvr-nav-list>
 </wvr-header>
 `;
