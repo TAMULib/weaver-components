@@ -11,15 +11,29 @@ import { ResizeSensor } from 'css-element-queries';
 })
 export class WvrFooterComponent implements OnInit {
 
+  /** An internal reference to the body element. */
   private parentElement: HTMLElement;
+
+  /** An internal reference to the footer element. */
   private footerElement: HTMLElement;
+
+  /** Used internally to toggle fixed behavior. */
   isSticky = false;
 
   /** Allows for the override of the background color. */
   @HostBinding('style.--wvr-gray') @Input() background;
 
+  /**
+   * The weaver footer component constructor
+   * @param elementRef: ElementRef - a reference to the footer element, used internally for styling.
+   * @param ref: ChangeDetectorRef - utilized internally to force change detection.
+   */
   constructor(private readonly elementRef: ElementRef, private ref: ChangeDetectorRef) { }
 
+  /**
+   * Resizes the width of the footer to match its parents width,
+   * and calculates height to determine 'stickiness'
+   */
   @HostListener('window:resize', ['$event']) positionSelf(): void {
     this.footerElement.style.width = `${this.parentElement.clientWidth}px`;
     const newIsSticky = this.parentElement.clientHeight <= (window.innerHeight - this.footerElement.clientHeight);
@@ -29,6 +43,11 @@ export class WvrFooterComponent implements OnInit {
     }
   }
 
+  /**
+   * Sets aside a reference to the document body as 'parentElement'
+   * and registers a new ResizeSensor for the parentElement, with
+   * a call to positionSelf as the callback method.
+   */
   ngOnInit(): void {
     // this.parentElement = (this.elementRef.nativeElement as HTMLElement).parentElement;
     this.parentElement = document.querySelector('body');

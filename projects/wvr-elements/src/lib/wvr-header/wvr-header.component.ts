@@ -2,7 +2,7 @@ import { Component, HostBinding, Input } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 /**
- * @component Intended to appear at the top of document and provides for branding, links and page title.
+ * Intended to appear at the top of document and provides for branding, links and page title.
  */
 @Component({
   selector: 'wvr-header-element',
