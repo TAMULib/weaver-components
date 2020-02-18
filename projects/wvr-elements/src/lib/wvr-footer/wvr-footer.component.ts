@@ -22,7 +22,7 @@ export class WvrFooterComponent implements OnInit {
     const parentElem: HTMLElement = (this.elementRef.nativeElement as HTMLElement).parentElement;
     const footerElem: HTMLElement = (this.elementRef.nativeElement as HTMLElement).querySelector('footer.wvr-footer');
     footerElem.style.width = `${parentElem.clientWidth}px`;
-    const newIsSticky = parentElem.clientHeight <= window.innerHeight;
+    const newIsSticky = parentElem.clientHeight <= (window.innerHeight - footerElem.clientHeight);
     if (this.isSticky !== newIsSticky) {
       this.isSticky = newIsSticky;
       this.ref.detectChanges();
