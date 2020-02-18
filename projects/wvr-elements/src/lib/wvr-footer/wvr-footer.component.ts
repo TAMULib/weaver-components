@@ -10,7 +10,7 @@ export class WvrFooterComponent implements OnInit {
 
   private parentElement: HTMLElement;
   private footerElement: HTMLElement;
-  private isSticky = false;
+  isSticky = false;
 
   /** Allows for the override of the background color. */
   @HostBinding('style.--wvr-gray') @Input() background;
@@ -26,8 +26,11 @@ export class WvrFooterComponent implements OnInit {
     }
   }
 
+
+
   ngOnInit(): void {
-    this.parentElement = (this.elementRef.nativeElement as HTMLElement).parentElement;
+    // this.parentElement = (this.elementRef.nativeElement as HTMLElement).parentElement;
+    this.parentElement = document.querySelector('body');
     this.footerElement = (this.elementRef.nativeElement as HTMLElement).querySelector('footer.wvr-footer');
     const rs = new ResizeSensor(this.parentElement, () => {
       this.positionSelf();
