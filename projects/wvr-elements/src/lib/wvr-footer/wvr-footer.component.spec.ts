@@ -8,9 +8,9 @@ describe('WvrFooterComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ WvrFooterComponent ]
+      declarations: [WvrFooterComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -20,6 +20,13 @@ describe('WvrFooterComponent', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(component)
+      .toBeTruthy();
   });
+
+  it("should have as isSticky 'false'", () => {
+    expect(component.isSticky)
+      .toBeFalse();
+  });
+
 });

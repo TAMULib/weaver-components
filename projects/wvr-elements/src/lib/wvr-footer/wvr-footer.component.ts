@@ -26,8 +26,6 @@ export class WvrFooterComponent implements OnInit {
     }
   }
 
-
-
   ngOnInit(): void {
     // this.parentElement = (this.elementRef.nativeElement as HTMLElement).parentElement;
     this.parentElement = document.querySelector('body');
