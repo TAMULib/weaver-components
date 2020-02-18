@@ -8,21 +8,18 @@ import { ResizeSensor } from 'css-element-queries';
 })
 export class WvrFooterComponent implements OnInit {
 
+  private parentElement: HTMLElement;
+  private footerElement: HTMLElement;
+  private isSticky = false;
+
   /** Allows for the override of the background color. */
   @HostBinding('style.--wvr-gray') @Input() background;
 
-  @Input() isSticky = false;
-
-  private rs: ResizeSensor;
-
-  constructor(private readonly elementRef: ElementRef, private ref: ChangeDetectorRef) {
-  }
+  constructor(private readonly elementRef: ElementRef, private ref: ChangeDetectorRef) { }
 
   @HostListener('window:resize', ['$event']) positionSelf(): void {
-    const parentElem: HTMLElement = (this.elementRef.nativeElement as HTMLElement).parentElement;
-    const footerElem: HTMLElement = (this.elementRef.nativeElement as HTMLElement).querySelector('footer.wvr-footer');
-    footerElem.style.width = `${parentElem.clientWidth}px`;
-    const newIsSticky = parentElem.clientHeight <= (window.innerHeight - footerElem.clientHeight);
+    this.footerElement.style.width = `${this.parentElement.clientWidth}px`;
+    const newIsSticky = this.parentElement.clientHeight <= (window.innerHeight - this.footerElement.clientHeight);
     if (this.isSticky !== newIsSticky) {
       this.isSticky = newIsSticky;
       this.ref.detectChanges();
@@ -30,8 +27,9 @@ export class WvrFooterComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const parentElem: HTMLElement = (this.elementRef.nativeElement as HTMLElement).parentElement;
-    this.rs = new ResizeSensor(parentElem, () => {
+    this.parentElement = (this.elementRef.nativeElement as HTMLElement).parentElement;
+    this.footerElement = (this.elementRef.nativeElement as HTMLElement).querySelector('footer.wvr-footer');
+    const rs = new ResizeSensor(this.parentElement, () => {
       this.positionSelf();
     });
   }
