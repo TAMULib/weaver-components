@@ -1,6 +1,10 @@
+[![Build Status](https://travis-ci.org/TAMULib/weaver-components.svg?branch=master)](https://travis-ci.org/TAMULib/weaver-components) [![Coverage Status](https://coveralls.io/repos/github/TAMULib/weaver-components/badge.svg?branch=master)](https://coveralls.io/github/TAMULib/weaver-components?branch=master) [![Compodoc Coverage](https://tamulib.github.io/weaver-components/development/images/coverage-badge-documentation.svg)](https://tamulib.github.io/weaver-components/development/coverage.html)
+
 # WeaverComponents
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.21.
+
+[Documentation](https://tamulib.github.io/weaver-components/).
 
 ## Development server
 

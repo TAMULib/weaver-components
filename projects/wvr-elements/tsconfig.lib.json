@@ -1,0 +1,15 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../out-tsc/projects"
+  },
+  "angularCompilerOptions": {
+    "enableIvy": false
+  },
+  "exclude": [
+    "src/test.ts",
+    "src/lib/wvr-lib.module.ts",
+    "**/*.stories.ts",
+    "**/*.spec.ts"
+  ]
+}

@@ -1,8 +1,0 @@
-<ul class="navbar-nav" [ngClass]="{
-  'flex-row': !vertical, 
-  'justify-content-end': aligned===Alignment.RIGHT,
-  'justify-content-center': aligned===Alignment.CENTER,
-  'dark': theme==='DARK'
-}">
-  <slot (slotchange)="liAdded($event)"></slot>
-</ul>

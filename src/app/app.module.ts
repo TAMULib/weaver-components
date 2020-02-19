@@ -1,16 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { ItWorksModule, WvrHeaderModule, WvrNavListModule } from 'wvr-elements';
+import { WvrLibModule } from '../../projects/wvr-elements/src/public-api';
 
 @NgModule({
   imports: [
     BrowserModule,
-    ItWorksModule,
-    NgbModule,
-    WvrHeaderModule,
-    WvrNavListModule
+    WvrLibModule
   ],
   exports: [],
   providers: [],
@@ -19,5 +15,7 @@ import { ItWorksModule, WvrHeaderModule, WvrNavListModule } from 'wvr-elements';
   entryComponents: []
 })
 export class AppModule {
-  ngDoBootstrap() { }
+  ngDoBootstrap(): void {
+    // OVERRIDE
+  }
 }
