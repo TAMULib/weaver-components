@@ -36,7 +36,8 @@ export class WvrFooterComponent implements OnInit {
    */
   @HostListener('window:resize', ['$event']) positionSelf(): void {
     this.footerElement.style.width = `${this.parentElement.clientWidth}px`;
-    const newIsSticky = this.parentElement.clientHeight <= (window.innerHeight - this.footerElement.clientHeight);
+    const contentHeight = (this.isSticky) ? (window.innerHeight - this.footerElement.clientHeight) : window.innerHeight;
+    const newIsSticky = this.parentElement.clientHeight <= (contentHeight);
     if (this.isSticky !== newIsSticky) {
       this.isSticky = newIsSticky;
       this.ref.detectChanges();
