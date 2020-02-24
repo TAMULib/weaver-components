@@ -23,21 +23,44 @@ export class WvrHeaderComponent {
   /** A resolvable URL to a location linkable from the logo. */
   @Input() logoHref = '#test';
 
-  /** Allows for the override of the --wvr-gray css variable. */
-  @HostBinding('style.--wvr-gray') @Input() gray;
+  /** Allows for the override of the --top-nav-background css variable. Default:  --wvr-secondary */
+  @HostBinding('style.--top-nav-background') @Input() topNavBackground;
 
-  /** Allows for the override of the --wvr-primary css variable. */
-  @HostBinding('style.--wvr-primary') @Input() primary;
+  /** Allows for the override of the --top-nav-background css variable. Default:  --wvr-navbar-height */
+  @HostBinding('style.--top-nav-height') @Input() topNavHeight;
 
-  /** Allows for the override of the --wvr-secondary css variable. */
-  @HostBinding('style.--wvr-secondary') @Input() secondary;
+  /** Allows for the override of the --top-nav-padding css variable. Default:  --wvr-navbar-padding */
+  @HostBinding('style.--top-nav-padding') @Input() topNavPadding;
+
+  /** Allows for the override of the --logo-img-width css variable. Default:  30px */
+  @HostBinding('style.--logo-img-width') @Input() logoImgWidth;
+
+  /** Allows for the override of the --logo-img-width css variable. Default:  30px */
+  @HostBinding('style.--logo-img-height') @Input() logoImgHeight;
+
+  /** Allows for the override of the --logo-img-margin css variable. Default:  0 0 0 0 */
+  @HostBinding('style.--logo-img-margin') @Input() logoImgMargin;
+
+  /** Allows for the override of the --title-row-bg css variable. Default:  --wvr-primary */
+  @HostBinding('style.--title-row-bg') @Input() titleRowBg;
+
+  /** Allows for the override of the --title-row-height css variable. Default:  --wvr-navbar-height */
+  @HostBinding('style.--title-row-height') @Input() titleRowHeight;
+
+  /** Allows for the override of the --bottom-nav-background css variable. Default:  --wvr-grey */
+  @HostBinding('style.--bottom-nav-background') @Input() bottomNavBackground;
+
+  /** Allows for the override of the --bottom-nav-height css variable. Default:  --wvr-navbar-height */
+  @HostBinding('style.--bottom-nav-height') @Input() bottomNavHeight;
+
+  /** Allows for the override of the --bottom-nav-padding css variable. Default:  --wvr-navbar-padding */
+  @HostBinding('style.--bottom-nav-padding') @Input() bottomNavPadding;
 
   /**
    * The weaver header component constructor
    * @param domSanitizer: DomSanitizer - this parameter is injected to the weaver component instance.
    */
   constructor(private readonly domSanitizer: DomSanitizer) {
-
   }
 
 }
