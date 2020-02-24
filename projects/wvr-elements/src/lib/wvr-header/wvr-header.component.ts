@@ -41,8 +41,8 @@ export class WvrHeaderComponent {
   /** Allows for the override of the --logo-img-margin css variable. Default:  0 0 0 0 */
   @HostBinding('style.--logo-img-margin') @Input() logoImgMargin;
 
-  /** Allows for the override of the --title-row-bg css variable. Default:  --wvr-primary */
-  @HostBinding('style.--title-row-bg') @Input() titleRowBg;
+  /** Allows for the override of the --title-row-background css variable. Default:  --wvr-primary */
+  @HostBinding('style.--title-row-background') @Input() titleRowBackground;
 
   /** Allows for the override of the --title-row-height css variable. Default:  --wvr-navbar-height */
   @HostBinding('style.--title-row-height') @Input() titleRowHeight;

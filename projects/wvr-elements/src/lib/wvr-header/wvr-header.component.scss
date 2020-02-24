@@ -8,7 +8,7 @@
   --logo-img-width: 30px;
   --logo-img-height: 30px;
   --logo-img-margin: 0 0 0 0;
-  --title-row-bg: var(--wvr-primary);
+  --title-row-background: var(--wvr-primary);
   --title-row-height: var(--wvr-navbar-height);
   --top-nav-background: var(--wvr-secondary);
   --top-nav-height: var(--wvr-navbar-height);
@@ -37,7 +37,7 @@
 }
 
 .title-row {
-  background: var(--title-row-bg);
+  background: var(--title-row-background);
   height: var(--title-row-height);
 }
 
