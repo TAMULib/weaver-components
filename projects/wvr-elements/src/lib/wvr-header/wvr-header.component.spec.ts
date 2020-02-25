@@ -39,9 +39,9 @@ describe('WvrHeaderComponent', () => {
       .toBeDefined();
   });
 
-  it("should have as logoHref '#test'", () => {
+  it("should have as logoHref '#logo'", () => {
     expect(component.logoHref)
-      .toEqual('#test');
+      .toEqual('#logo');
   });
 
 });
