@@ -1,5 +1,9 @@
 import { DOCUMENT } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA, Injector, NgModule } from '@angular/core';
+
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { LayoutModule } from '@angular/cdk/layout';
+
 import { createCustomElement } from '@angular/elements';
 import { BrowserModule } from '@angular/platform-browser';
 import { WvrHeaderComponent } from './wvr-header/wvr-header.component';
@@ -32,7 +36,9 @@ const components = [
 /** The main module for the Weaver Elements library. */
 @NgModule({
   imports: [
-    BrowserModule
+    BrowserModule,
+    NgbModule,
+    LayoutModule
   ],
   exports: [
     ...components

@@ -6,8 +6,20 @@
         <img alt="Logo" class="logo-img d-inline-block align-top" [src]='logoSrc' />
         <span class="text-white align-self-center d-inline-block pl-1">{{logoText}}</span>
       </a>
-      <div class="flex-fill align-self-stretch">
-        <ng-content select="wvr-nav-list[top-navigation],wvr-nav-list-element[top-navigation]"></ng-content>
+
+      <div *ngIf="isMobile" class="flex-fill align-self-stretch">
+        Mobile
+        <ng-container *ngTemplateOutlet="contentTpl"></ng-container>
+      </div>
+
+      <div *ngIf="isTablet" class="flex-fill align-self-stretch">
+        Tablet
+        <ng-container *ngTemplateOutlet="contentTpl"></ng-container>
+      </div>
+
+      <div *ngIf="isDesktop" class="flex-fill align-self-stretch">
+        Desktop
+        <ng-container *ngTemplateOutlet="contentTpl"></ng-container>
       </div>
     </div>
   </nav>
@@ -25,5 +37,8 @@
       </div>
     </div>
   </nav>
-
 </header>
+
+<ng-template #contentTpl>
+  <ng-content select="wvr-nav-list[top-navigation],wvr-nav-list-element[top-navigation]"></ng-content>
+</ng-template>

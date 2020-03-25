@@ -1,5 +1,6 @@
-import { Component, HostBinding, Input } from '@angular/core';
+import { Component, HostBinding, Input, OnInit } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 
 /**
  * Intended to appear at the top of document and provides for branding, links and page title.
@@ -9,7 +10,11 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
   templateUrl: './wvr-header.component.html',
   styleUrls: ['./wvr-header.component.scss']
 })
-export class WvrHeaderComponent {
+export class WvrHeaderComponent implements OnInit {
+
+  isMobile = false;
+  isTablet = false;
+  isDesktop = false;
 
   /** The text value to be displayed beside the logo. */
   @Input() logoText = 'Weaver Components';
@@ -60,7 +65,18 @@ export class WvrHeaderComponent {
    * The weaver header component constructor
    * @param domSanitizer: DomSanitizer - this parameter is injected to the weaver component instance.
    */
-  constructor(private readonly domSanitizer: DomSanitizer) {
+  constructor(private readonly domSanitizer: DomSanitizer, private breakpointObserver: BreakpointObserver) {
+  }
+
+  ngOnInit(): void {
+    this.breakpointObserver
+      .observe([Breakpoints.Web, Breakpoints.Tablet, Breakpoints.Handset])
+      .subscribe((state: BreakpointState) => {
+        this.isMobile = this.breakpointObserver.isMatched(Breakpoints.Handset);
+        this.isTablet = this.breakpointObserver.isMatched(Breakpoints.Tablet);
+        this.isDesktop = this.breakpointObserver.isMatched(Breakpoints.Web);
+        console.log(this.isMobile, this.isTablet, this.isDesktop);
+      });
   }
 
 }
