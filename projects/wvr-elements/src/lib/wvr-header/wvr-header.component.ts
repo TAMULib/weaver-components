@@ -1,4 +1,4 @@
-import { Component, HostBinding, Input, OnInit } from '@angular/core';
+import { Component, HostBinding, Input, OnInit, ChangeDetectorRef } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 
@@ -65,7 +65,12 @@ export class WvrHeaderComponent implements OnInit {
    * The weaver header component constructor
    * @param domSanitizer: DomSanitizer - this parameter is injected to the weaver component instance.
    */
-  constructor(private readonly domSanitizer: DomSanitizer, private breakpointObserver: BreakpointObserver) {
+  constructor(
+    private readonly domSanitizer: DomSanitizer,
+    private readonly breakpointObserver: BreakpointObserver,
+    private readonly cdRef: ChangeDetectorRef
+  ) {
+
   }
 
   ngOnInit(): void {
@@ -76,6 +81,7 @@ export class WvrHeaderComponent implements OnInit {
         this.isTablet = this.breakpointObserver.isMatched(Breakpoints.Tablet);
         this.isDesktop = this.breakpointObserver.isMatched(Breakpoints.Web);
         console.log(this.isMobile, this.isTablet, this.isDesktop);
+        this.cdRef.detectChanges();
       });
   }
 
