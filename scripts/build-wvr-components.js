@@ -4,7 +4,9 @@ const concat = require('concat');
 const package = require('../package.json');
 const majorVersion = package.version.split('.')[0];
 const dirName = `${majorVersion}x`;
-const dirPath = `dist/bundle/${dirName}`;
+const basePath = 'dist/bundle';
+const dirPath = `${basePath}/${dirName}`;
+const latestPath = `${basePath}/latest`;
 
 (async function build() {
   const files = [
@@ -19,7 +21,8 @@ const dirPath = `dist/bundle/${dirName}`;
   fs.ensureDir(dirPath);
 
   await concat(files, `${dirPath}/weaver-components.js`);
+
+  fs.copy(`${dirPath}/weaver-components.js`, `${latestPath}/weaver-components.js`);
   fs.copy(`${dirPath}/weaver-components.js`, "dist/docs/usage/weaver-components.js");
   fs.copy('dist/weaver-components/assets', "dist/docs/usage/assets");
-
 })();
