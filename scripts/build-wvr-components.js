@@ -24,6 +24,5 @@ const latestPath = `${basePath}latest`;
   await concat(files, `${dirPath}/weaver-components.js`);
   await concat(files, `${latestPath}/weaver-components.js`);
   fs.copy(`${dirPath}/weaver-components.js`, "dist/docs/usage/weaver-components.js");
-  fs.copy(`${latestPath}/weaver-components.js`, "dist/docs/usage/weaver-components.js");
   fs.copy('dist/weaver-components/assets', "dist/docs/usage/assets");
 })();
