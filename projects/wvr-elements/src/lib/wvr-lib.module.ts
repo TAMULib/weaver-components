@@ -6,12 +6,14 @@ import { LayoutModule } from '@angular/cdk/layout';
 
 import { createCustomElement } from '@angular/elements';
 import { BrowserModule } from '@angular/platform-browser';
+
 import { WvrHeaderComponent } from './wvr-header/wvr-header.component';
 import { WvrItWorksComponent } from './wvr-it-works/wvr-it-works.component';
 import { WvrNavLiComponent } from './wvr-nav-list/wvr-nav-li/wvr-nav-li.component';
 import { WvrNavListComponent } from './wvr-nav-list/wvr-nav-list.component';
 import { WvrTextComponent } from './wvr-text/wvr-text.component';
 import { WvrFooterComponent } from './wvr-footer/wvr-footer.component';
+import { ViewModeService } from './view-mode.service';
 
 /** This property contains a list of components and the selector tags. */
 const elements = [
@@ -43,7 +45,7 @@ const components = [
   exports: [
     ...components
   ],
-  providers: [],
+  providers: [ ViewModeService ],
   declarations: [
     ...components
   ],

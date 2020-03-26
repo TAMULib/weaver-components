@@ -1,6 +1,9 @@
-import { Component, HostBinding, Input, OnInit, ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectorRef, Component, HostBinding, Input, OnInit } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
+import { ViewMode } from '../shared/view-mode.enum';
+import { ViewModeService } from '../view-mode.service';
+import { Observable } from 'rxjs';
 
 /**
  * Intended to appear at the top of document and provides for branding, links and page title.
@@ -11,10 +14,6 @@ import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/l
   styleUrls: ['./wvr-header.component.scss']
 })
 export class WvrHeaderComponent implements OnInit {
-
-  isMobile = false;
-  isTablet = false;
-  isDesktop = false;
 
   /** The text value to be displayed beside the logo. */
   @Input() logoText = 'Weaver Components';
@@ -61,6 +60,10 @@ export class WvrHeaderComponent implements OnInit {
   /** Allows for the override of the --bottom-nav-padding css variable. Default:  --wvr-navbar-padding */
   @HostBinding('style.--bottom-nav-padding') @Input() bottomNavPadding;
 
+  viewMode: Observable<ViewMode>;
+
+  ViewMode = ViewMode;
+
   /**
    * The weaver header component constructor
    * @param domSanitizer: DomSanitizer - this parameter is injected to the weaver component instance.
@@ -68,21 +71,14 @@ export class WvrHeaderComponent implements OnInit {
   constructor(
     private readonly domSanitizer: DomSanitizer,
     private readonly breakpointObserver: BreakpointObserver,
-    private readonly cdRef: ChangeDetectorRef
+    private readonly cdRef: ChangeDetectorRef,
+    private readonly vms: ViewModeService
   ) {
 
   }
 
   ngOnInit(): void {
-    this.breakpointObserver
-      .observe([Breakpoints.Web, Breakpoints.Tablet, Breakpoints.Handset])
-      .subscribe((state: BreakpointState) => {
-        this.isMobile = this.breakpointObserver.isMatched(Breakpoints.Handset);
-        this.isTablet = this.breakpointObserver.isMatched(Breakpoints.Tablet);
-        this.isDesktop = this.breakpointObserver.isMatched(Breakpoints.Web);
-        console.log(this.isMobile, this.isTablet, this.isDesktop);
-        this.cdRef.detectChanges();
-      });
+    this.viewMode = this.vms.getViewMode(this.cdRef);
   }
 
 }
