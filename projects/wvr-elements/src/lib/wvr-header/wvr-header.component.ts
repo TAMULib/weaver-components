@@ -1,9 +1,8 @@
 import { ChangeDetectorRef, Component, HostBinding, Input, OnInit } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
-import { ViewMode } from '../shared/view-mode.enum';
-import { ViewModeService } from '../view-mode.service';
 import { Observable } from 'rxjs';
+import { ViewMode } from '../shared/view-mode';
+import { ViewModeService } from '../view-mode.service';
 
 /**
  * Intended to appear at the top of document and provides for branding, links and page title.
@@ -62,15 +61,12 @@ export class WvrHeaderComponent implements OnInit {
 
   viewMode: Observable<ViewMode>;
 
-  ViewMode = ViewMode;
-
   /**
    * The weaver header component constructor
    * @param domSanitizer: DomSanitizer - this parameter is injected to the weaver component instance.
    */
   constructor(
     private readonly domSanitizer: DomSanitizer,
-    private readonly breakpointObserver: BreakpointObserver,
     private readonly cdRef: ChangeDetectorRef,
     private readonly vms: ViewModeService
   ) {

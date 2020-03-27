@@ -6,17 +6,17 @@
         <img alt="Logo" class="logo-img d-inline-block align-top" [src]='logoSrc' />
         <span class="text-white align-self-center d-inline-block pl-1">{{logoText}}</span>
       </a>
-      <div *ngIf="viewMode===ViewMode.MOBILE" class="flex-fill align-self-stretch">
+      <div *ngIf="viewMode.isMobile()" class="flex-fill align-self-stretch">
         Mobile
         <ng-container *ngTemplateOutlet="contentTpl"></ng-container>
       </div>
 
-      <div *ngIf="viewMode===ViewMode.TABLET" class="flex-fill align-self-stretch">
+      <div *ngIf="viewMode.isTablet()" class="flex-fill align-self-stretch">
         Tablet
         <ng-container *ngTemplateOutlet="contentTpl"></ng-container>
       </div>
 
-      <div *ngIf="viewMode===ViewMode.DESKTOP" class="flex-fill align-self-stretch">
+      <div *ngIf="viewMode.isDesktop()" class="flex-fill align-self-stretch">
         Desktop
         <ng-container *ngTemplateOutlet="contentTpl"></ng-container>
       </div>

@@ -1,8 +1,8 @@
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { ChangeDetectorRef, Injectable } from '@angular/core';
-import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 import { Observable, Subscription } from 'rxjs';
 import { delay, map } from 'rxjs/operators';
-import { ViewMode } from './shared/view-mode.enum';
+import { ViewMode } from './shared/view-mode';
 
 @Injectable({
   providedIn: 'root'
@@ -43,14 +43,14 @@ export class ViewModeService {
 
   currentViewMode(bpo: BreakpointObserver): ViewMode {
     if (bpo.isMatched(Breakpoints.Handset)) {
-      return ViewMode.MOBILE;
+      return ViewMode.mobile();
     }
 
     if (bpo.isMatched(Breakpoints.Tablet)) {
-      return ViewMode.TABLET;
+      return ViewMode.tablet();
     }
 
-    return ViewMode.DESKTOP;
+    return ViewMode.desktop();
   }
 
 }
