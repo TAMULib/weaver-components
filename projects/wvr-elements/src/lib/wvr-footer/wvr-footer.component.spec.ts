@@ -29,4 +29,10 @@ describe('WvrFooterComponent', () => {
       .toBeFalse();
   });
 
+  it('should positionSelf when window is resized', () => {
+    const spyOnResize = spyOn(component, 'positionSelf');
+    window.dispatchEvent(new Event('resize'));
+    expect(spyOnResize).toHaveBeenCalled();
+  });
+
 });
