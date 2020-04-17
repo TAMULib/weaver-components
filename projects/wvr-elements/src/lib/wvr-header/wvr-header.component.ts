@@ -1,5 +1,5 @@
 import { Component, HostBinding, Input } from '@angular/core';
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
 
 /**
  * Intended to appear at the top of document and provides for branding, links and page title.
