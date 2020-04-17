@@ -33,6 +33,13 @@ describe('WvrFooterComponent', () => {
     const spyOnResize = spyOn(component, 'positionSelf');
     window.dispatchEvent(new Event('resize'));
     expect(spyOnResize).toHaveBeenCalled();
+
+    const isSticky = false;
+    const newIsSticky = 420 <= (window.innerHeight - 65);
+    expect((isSticky !== newIsSticky)).toBeTruthy();
+
+    const anotherNewIsSticky = 350 <= (window.innerHeight - 65);
+    expect((isSticky !== anotherNewIsSticky)).toBeTruthy();
   });
 
 });
