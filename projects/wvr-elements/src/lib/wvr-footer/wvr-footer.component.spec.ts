@@ -35,4 +35,11 @@ describe('WvrFooterComponent', () => {
     expect(spyOnResize).toHaveBeenCalled();
   });
 
+  it('should have isSticky feature to true', () => {
+    expect(component.isSticky).toBeFalse();
+    window.resizeBy(300, 300);
+    window.dispatchEvent(new Event('resize'));
+    expect(component.isSticky).toBeTruthy();
+  });
+
 });
