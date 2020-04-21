@@ -9,7 +9,7 @@ const latestPath = `${basePath}/latest`;
 const server = new StaticServer({
   rootPath: 'dist/bundle/latest',
   port: 8080,
-  name: 'tl-component-static-server',
+  name: 'wvr-component-static-server',
   followSymlink: true,
 });
 
