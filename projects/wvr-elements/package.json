@@ -1,6 +1,6 @@
 {
   "name": "@wvr/elements",
-  "version": "0.0.4-rc",
+  "version": "0.0.4",
   "description": "Collection of angular components for Weaver's Custom Web Component UI",
   "author": "Texas A&M University Libraries",
   "private": false,
