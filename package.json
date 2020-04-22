@@ -1,5 +1,9 @@
 {
   "name": "weaver-components",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TAMULib/weaver-components.git"
+  },
   "version": "0.0.4",
   "private": false,
   "license": "MIT",
