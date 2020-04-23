@@ -26,7 +26,7 @@ export class WvrHeaderComponent {
   /** Allows for the override of the --top-nav-background css variable. Default:  --wvr-secondary */
   @HostBinding('style.--top-nav-background') @Input() topNavBackground;
 
-  /** Allows for the override of the --top-nav-background css variable. Default:  --wvr-navbar-height */
+  /** Allows for the override of the --top-nav-height css variable. Default:  --wvr-navbar-height */
   @HostBinding('style.--top-nav-height') @Input() topNavHeight;
 
   /** Allows for the override of the --top-nav-padding css variable. Default:  --wvr-navbar-padding */
