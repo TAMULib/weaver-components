@@ -20,8 +20,14 @@ export class WvrFooterComponent implements OnInit {
   /** Used internally to toggle fixed behavior. */
   isSticky = false;
 
-  /** Allows for the override of the background color. */
-  @HostBinding('style.--wvr-gray') @Input() background;
+  /** Allows for the override of the --footer-background css variable. */
+  @HostBinding('style.--footer-background') @Input() background;
+
+  /** Allows for the override of the --footer-height css variable. */
+  @HostBinding('style.--footer-height') @Input() height;
+
+  /** Allows for the override of the --footer-padding css variable. */
+  @HostBinding('style.--footer-padding') @Input() padding;
 
   /**
    * The weaver footer component constructor

@@ -1,6 +1,10 @@
 {
   "name": "weaver-components",
-  "version": "0.0.2",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TAMULib/weaver-components.git"
+  },
+  "version": "0.0.4",
   "private": false,
   "license": "MIT",
   "scripts": {
@@ -14,7 +18,7 @@
     "prebuild": "npm run build:wvr-elements",
     "postbuild": "npm run build:wvr-components",
     "start": "ng serve --port 4200",
-    "start:static": "static-server -p 9080",
+    "start:static": "node scripts/serve-static.js",
     "test": "npm run test:unit && npm run test:e2e",
     "test:e2e": "ng e2e",
     "test:unit": "ng test --no-watch",
@@ -83,6 +87,7 @@
     "ng-packagr": "^9.0.0",
     "protractor": "^5.4.3",
     "rimraf": "^3.0.2",
+    "static-server": "^2.2.1",
     "ts-loader": "^6.2.1",
     "ts-node": "~8.6.2",
     "tsickle": "^0.38.0",

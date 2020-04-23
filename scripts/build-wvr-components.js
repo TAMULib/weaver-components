@@ -1,10 +1,13 @@
 const fs = require('fs-extra');
 const concat = require('concat');
-
 const package = require('../package.json');
+
 const majorVersion = package.version.split('.')[0];
+const assetPath = 'dist/weaver-components';
+const basePath = 'dist/bundle';
 const dirName = `${majorVersion}x`;
-const dirPath = `dist/bundle/${dirName}`;
+const dirPath = `${basePath}/${dirName}`;
+const latestPath = `${basePath}/latest`;
 
 (async function build() {
   const files = [
@@ -19,7 +22,13 @@ const dirPath = `dist/bundle/${dirName}`;
   fs.ensureDir(dirPath);
 
   await concat(files, `${dirPath}/weaver-components.js`);
+
+  fs.copy(`${dirPath}/weaver-components.js`, `${latestPath}/weaver-components.js`);
   fs.copy(`${dirPath}/weaver-components.js`, "dist/docs/usage/weaver-components.js");
   fs.copy('dist/weaver-components/assets', "dist/docs/usage/assets");
 
+  // to ensure static assets present in latest and <latest>x folders
+  fs.ensureDir(assetPath);
+  fs.copy(`${assetPath}/assets`, `${dirPath}/assets`);
+  fs.copy(`${assetPath}/assets`, `${latestPath}/assets`);
 })();

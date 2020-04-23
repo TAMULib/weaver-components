@@ -1,0 +1,50 @@
+@import "~bootstrap/scss/bootstrap";
+@import "../shared/styles/host-styles.scss";
+
+:host {
+
+  //font rules
+  --wvr-text-font-size: default;
+  --wvr-text-font-family: default;
+  --wvr-text-font-style: default;
+  --wvr-text-font-variant: default;
+  --wvr-text-font-weight: default;
+  --wvr-text-font-stretch: default;
+  --wvr-text-line-height: default;
+
+  //text rules
+  --wvr-text-color: default;
+  --wvr-text-direction:default;
+  --wvr-text-letter-spacing:default;
+  --wvr-text-text-align: default;
+  --wvr-text-text-decoration:default;
+  --wvr-text-text-transform:default;
+  --wvr-text-text-indent:default;
+  --wvr-text-text-shadow: default;
+  --wvr-text-word-spacing:default;
+
+}
+
+wvr-text-node {
+
+  //font rules
+  font-family: var(--wvr-text-font-family);
+  font-size: var(--wvr-text-font-size);
+  font-stretch: var(--wvr-text-font-stretch);
+  font-style: var(--wvr-text-font-style);
+  font-variant: var(--wvr-text-font-variant);
+  font-weight: var(--wvr-text-font-weight);
+  line-height: var(--wvr-text-line-height);
+
+  //text rules
+  color: var(--wvr-text-color);
+  direction: var(--wvr-text-direction);
+  letter-spacing: var(--wvr-text-letter-spacing);
+  text-align: var(--wvr-text-text-align);
+  text-decoration:var(--wvr-text-text-decoration);
+  text-indent: var(--wvr-text-text-indent);
+  text-shadow: var(--wvr-text-text-shadow);
+  text-transform: var(--wvr-text-text-transform);
+  word-spacing: var(--wvr-text-word-spacing);
+
+}
