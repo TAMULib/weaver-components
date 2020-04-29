@@ -19,7 +19,7 @@
   </div>
 
   <nav class="bottom-nav navbar navbar-expand-lg"
-    [hidden]="!(displayBottomNav === true || ( displayBottomNav === undefined &&  bottomNavHasChildren()))">
+    [hidden]="!(displayBottomNav === 'true' || ( displayBottomNav === undefined &&  bottomNavHasChildren()))">
     <div class="container">
       <div class="flex-fill align-self-stretch">
         <ng-content select="wvr-nav-list[bottom-navigation],wvr-nav-list-element[bottom-navigation]"></ng-content>
