@@ -4,7 +4,7 @@ module.exports = {
   stories: ['../**/*.stories.[tj]s'],
   addons: ['@storybook/addon-storysource', '@storybook/addon-knobs',
     {
-      name: '@storybook/addon-docs',
+      name: '@storybook/addon-docs/angular',
       options: {
         configureJSX: false
       }
