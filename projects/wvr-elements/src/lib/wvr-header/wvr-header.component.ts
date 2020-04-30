@@ -56,6 +56,7 @@ export class WvrHeaderComponent {
   /** Allows for the override of the --bottom-nav-padding css variable. Default:  --wvr-navbar-padding */
   @HostBinding('style.--bottom-nav-padding') @Input() bottomNavPadding;
 
+  /** Used to toggle display of bottom navbar section. */
   @Input() displayBottomNav: 'true' | 'false';
 
   /**
@@ -65,6 +66,7 @@ export class WvrHeaderComponent {
   constructor(private readonly domSanitizer: DomSanitizer, private readonly elementRef: ElementRef) {
   }
 
+  /** Determines if the bottom nav list has children in order to display bottom nav section. */
   bottomNavHasChildren(): boolean {
     const bottomNavListElement = (this.elementRef.nativeElement as HTMLElement).querySelector('.bottom-nav wvr-nav-li, .bottom-nav wvr-nav-li-element');
 
