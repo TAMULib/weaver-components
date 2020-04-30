@@ -62,6 +62,7 @@ export class WvrHeaderComponent {
   /**
    * The weaver header component constructor
    * @param domSanitizer: DomSanitizer - this parameter is injected to the weaver component instance.
+   * @param elementRef: ElementRef  - a reference to the bottom nav list element.
    */
   constructor(private readonly domSanitizer: DomSanitizer, private readonly elementRef: ElementRef) {
   }
