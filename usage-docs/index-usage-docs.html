@@ -8,8 +8,12 @@
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <style>
+    html {
+      height: 100%;
+    }
     body {
       font-size: .875rem;
+      height: 100%;
     }
 
     .feather {
@@ -103,15 +107,12 @@
     .border-bottom { border-bottom: 1px solid #e5e5e5; }
 
     main {
-      margin: 0;
-      padding: 0;
+      min-height: 100%;
     }
 
     #editor {
-      position: fixed;
       height:400px;
       width: 100%;
-      bottom: 0;
     }
   </style>
 </head>
@@ -121,8 +122,8 @@
     <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
     <a class="navbar-brand col-sm-10 col-md-10 mr-0" href="#">Weaver Components</a>
   </nav>
-  <div class="container-fluid">
-    <div class="row">
+  <div class="container-fluid" style="height: 100%;">
+    <div class="row" style="height: 100%;">
       <nav class="col-md-2 d-none d-md-block bg-light sidebar">
         <div class="sidebar-sticky">
           <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
@@ -133,25 +134,25 @@
           </h6>
           <ul class="nav flex-column">
             <li class="nav-item">
-              <a class="nav-link" href="#WvrHeader" data-template="wvr-header-template.html">
+              <a class="nav-link component-link" href="#WvrHeader" data-template="wvr-header-template.html">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
                 WvrHeader
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#WvrFooter" data-template="wvr-footer-template.html">
+              <a class="nav-link component-link" href="#WvrFooter" data-template="wvr-footer-template.html">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
                 WvrFooter
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#WvrNavList" data-template="wvr-nav-list-template.html">
+              <a class="nav-link component-link" href="#WvrNavList" data-template="wvr-nav-list-template.html">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
                 WvrNavList
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#WvrText" data-template="wvr-text-template.html">
+              <a class="nav-link component-link" href="#WvrText" data-template="wvr-text-template.html">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
                 WvrText
               </a>
@@ -159,18 +160,53 @@
           </ul>
         </div>
       </nav>
-      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-        <div id="preview"></div>
-        <div id="editor"></div>
+      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4" style="height: 100%;">
+        <div class="d-flex flex-column bd-highlight mb-3" style="height: 90%;">
+          <div id="preview" style="width:100%;"></div>
+          <div class="mt-auto" style="height: 400px;">
+            <ul class="nav nav-tabs" id="tabs" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" id="notes-tab" data-toggle="tab" href="#notes" role="tab" aria-controls="notes" aria-selected="true">Notes</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="html-tab" data-toggle="tab" href="#html" role="tab" aria-controls="html" aria-selected="false">HTML</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="css-tab" data-toggle="tab" href="#css" role="tab" aria-controls="css" aria-selected="false">CSS</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="source-tab" data-toggle="tab" href="#source" role="tab" aria-controls="source" aria-selected="false">Source</a>
+              </li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane active" id="notes" role="tabpanel" aria-labelledby="notes-tab">
+                Notes about component
+              </div>
+              <div class="tab-pane" id="html" role="tabpanel" aria-labelledby="html-tab">
+                <div id="editor" ></div>
+              </div>
+              <div class="tab-pane" id="css" role="tabpanel" aria-labelledby="css-tab">
+                CSS editor/viewer
+              </div>
+              <div class="tab-pane" id="source" role="tabpanel" aria-labelledby="source-tab">
+                Source Viewer
+              </div>
+            </div>
+          </div>
+        </div>
       </main>
+     
     </div>
   </div>
   <script defer src="weaver-components.js"></script>
   <script src="//ajaxorg.github.io/ace-builds/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <script>
     let editorElem = document.querySelector('#editor');
     let previewElem = document.querySelector('#preview');
-    let editor = ace.edit("editor");;
+    let editor = ace.edit("editor");
 
     let loadPreview = (html) => {
       previewElem.innerHTML = '';
@@ -194,7 +230,7 @@
     }
 
     let setupNavLinks = ()=>{
-      let navLinks = document.querySelectorAll('.nav-link');
+      let navLinks = document.querySelectorAll('.component-link');
       navLinks.forEach(elem=>{
         elem.addEventListener('click', function(e) {
           navLinks.forEach(navLink=>navLink.classList.remove('active'));
@@ -226,6 +262,12 @@
     setupEditor();
     setupNavLinks();
     loadInitialContent();
+
+    $('#tabs a').on('click', function (e) {
+      e.preventDefault();
+      $(this).tab('show');
+      console.log('show');
+    });
 
   </script>
 </body>
