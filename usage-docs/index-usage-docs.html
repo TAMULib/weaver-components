@@ -1,0 +1,233 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Weaver Components Usage Documentation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="https://labs.library.tamu.edu/wvr-components/latest/assets/favicon.ico">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <style>
+    body {
+      font-size: .875rem;
+    }
+
+    .feather {
+      width: 16px;
+      height: 16px;
+      vertical-align: text-bottom;
+    }
+
+    /*
+    * Sidebar
+    */
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 100; /* Behind the navbar */
+      padding: 0;
+      box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+    }
+
+    .sidebar-sticky {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 48px; /* Height of navbar */
+      height: calc(100vh - 48px);
+      padding-top: .5rem;
+      overflow-x: hidden;
+      overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    }
+
+    .sidebar .nav-link {
+      font-weight: 500;
+      color: #333;
+    }
+
+    .sidebar .nav-link .feather {
+      margin-right: 4px;
+      color: #999;
+    }
+
+    .sidebar .nav-link.active {
+      color: #007bff;
+    }
+
+    .sidebar .nav-link:hover .feather,
+    .sidebar .nav-link.active .feather {
+      color: inherit;
+    }
+
+    .sidebar-heading {
+      font-size: .75rem;
+      text-transform: uppercase;
+    }
+
+    /*
+    * Navbar
+    */
+
+    .navbar-brand {
+      padding-top: .75rem;
+      padding-bottom: .75rem;
+      font-size: 1rem;
+      background-color: rgba(0, 0, 0, .25);
+      box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);
+    }
+
+    .navbar .form-control {
+      padding: .75rem 1rem;
+      border-width: 0;
+      border-radius: 0;
+    }
+
+    .form-control-dark {
+      color: #fff;
+      background-color: rgba(255, 255, 255, .1);
+      border-color: rgba(255, 255, 255, .1);
+    }
+
+    .form-control-dark:focus {
+      border-color: transparent;
+      box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
+    }
+
+    /*
+    * Utilities
+    */
+
+    .border-top { border-top: 1px solid #e5e5e5; }
+    .border-bottom { border-bottom: 1px solid #e5e5e5; }
+
+    main {
+      margin: 0;
+      padding: 0;
+    }
+
+    #editor {
+      position: fixed;
+      height:400px;
+      width: 100%;
+      bottom: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+    <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+    <a class="navbar-brand col-sm-10 col-md-10 mr-0" href="#">Weaver Components</a>
+  </nav>
+  <div class="container-fluid">
+    <div class="row">
+      <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+        <div class="sidebar-sticky">
+          <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>Components</span>
+            <a class="d-flex align-items-center text-muted">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+            </a>
+          </h6>
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link" href="#WvrHeader" data-template="wvr-header-template.html">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                WvrHeader
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#WvrFooter" data-template="wvr-footer-template.html">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                WvrFooter
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#WvrNavList" data-template="wvr-nav-list-template.html">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                WvrNavList
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#WvrText" data-template="wvr-text-template.html">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                WvrText
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+        <div id="preview"></div>
+        <div id="editor"></div>
+      </main>
+    </div>
+  </div>
+  <script defer src="weaver-components.js"></script>
+  <script src="//ajaxorg.github.io/ace-builds/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+  <script>
+    let editorElem = document.querySelector('#editor');
+    let previewElem = document.querySelector('#preview');
+    let editor = ace.edit("editor");;
+
+    let loadPreview = (html) => {
+      previewElem.innerHTML = '';
+      previewElem.innerHTML = html;
+    };
+
+    let setupEditor = () => {
+      let editorElem = document.querySelector('#editor');
+      let previewElem = document.querySelector('#preview');
+      let editor = ace.edit("editor");
+      editor.getSession().setUseWorker(false);
+      editor.setTheme("ace/theme/monokai");
+      editor.getSession().setMode("ace/mode/html");
+      let debounce;
+      editor.getSession().on('change', function() {
+        if(debounce) clearTimeout(debounce);
+        debounce = setTimeout(function() {
+          loadPreview(editor.getSession().getValue());
+        }, 500);
+      });
+    }
+
+    let setupNavLinks = ()=>{
+      let navLinks = document.querySelectorAll('.nav-link');
+      navLinks.forEach(elem=>{
+        elem.addEventListener('click', function(e) {
+          navLinks.forEach(navLink=>navLink.classList.remove('active'));
+          elem.classList.add('active');
+          let componentLink = e.target;
+          let componentLocation = componentLink.getAttribute('data-template');
+          let xhr = new XMLHttpRequest();
+          xhr.onload = function() {
+            editor.setValue(this.responseXML.querySelector('body').innerHTML);
+          }
+          // Get the HTML
+          xhr.open( 'GET', componentLocation );
+          xhr.responseType = 'document';
+          xhr.send();
+        });
+      });
+    }
+
+    let loadInitialContent = () => {
+      let currentUrl = document.URL;
+      let urlParts   = currentUrl.split('#');
+      let anchor = (urlParts.length > 1) ? urlParts[1] : null;
+      if(anchor) {
+        let activeElem = document.querySelector(`a[href='#${anchor}']`);
+        activeElem.click();
+      }
+    }
+
+    setupEditor();
+    setupNavLinks();
+    loadInitialContent();
+
+  </script>
+</body>
+
+</html>
