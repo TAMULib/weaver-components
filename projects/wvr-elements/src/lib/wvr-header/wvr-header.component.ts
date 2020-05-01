@@ -1,4 +1,4 @@
-import { Component, HostBinding, Input } from '@angular/core';
+import { Component, ElementRef, HostBinding, Input } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
 /**
@@ -56,11 +56,22 @@ export class WvrHeaderComponent {
   /** Allows for the override of the --bottom-nav-padding css variable. Default:  --wvr-navbar-padding */
   @HostBinding('style.--bottom-nav-padding') @Input() bottomNavPadding;
 
+  /** Used to toggle display of bottom navbar section. */
+  @Input() displayBottomNav: 'true' | 'false';
+
   /**
    * The weaver header component constructor
    * @param domSanitizer: DomSanitizer - this parameter is injected to the weaver component instance.
+   * @param elementRef: ElementRef  - a reference to the bottom nav list element.
    */
-  constructor(private readonly domSanitizer: DomSanitizer) {
+  constructor(private readonly domSanitizer: DomSanitizer, private readonly elementRef: ElementRef) {
+  }
+
+  /** Determines if the bottom nav list has children in order to display bottom nav section. */
+  bottomNavHasChildren(): boolean {
+    const bottomNavListElement = (this.elementRef.nativeElement as HTMLElement).querySelector('.bottom-nav wvr-nav-li, .bottom-nav wvr-nav-li-element');
+
+    return !!bottomNavListElement;
   }
 
 }
