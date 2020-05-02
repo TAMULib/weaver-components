@@ -336,44 +336,40 @@
       }
     }
 
+    let setupClipboard = () => {
+      $('#tabs a').on('click', function (e) {
+        e.preventDefault();
+        $(this).tab('show');
+      });
+      $('button').tooltip({
+        trigger: 'click',
+        placement: 'bottom'
+      });
+      function setTooltip(message) {
+        $('button').tooltip('hide')
+          .attr('data-original-title', message)
+          .tooltip('show');
+      }
+      function hideTooltip() {
+        setTimeout(function() {
+          $('button').tooltip('hide');
+        }, 1000);
+      }
+      var clipboard = new ClipboardJS('#copy-btn');
+      clipboard.on('success', function(e) {
+        setTooltip('Copied!');
+        hideTooltip();
+      });
+      clipboard.on('error', function(e) {
+        setTooltip('Failed!');
+        hideTooltip();
+      });
+    }
+
     setupEditor();
     setupComponentLinks();
-    setTimeout(loadInitialContent, 1000);
-
-    $('#tabs a').on('click', function (e) {
-      e.preventDefault();
-      $(this).tab('show');
-    });
-
-    $('button').tooltip({
-      trigger: 'click',
-      placement: 'bottom'
-    });
-
-    function setTooltip(message) {
-      $('button').tooltip('hide')
-        .attr('data-original-title', message)
-        .tooltip('show');
-    }
-
-    function hideTooltip() {
-      setTimeout(function() {
-        $('button').tooltip('hide');
-      }, 1000);
-    }
-
-    // Clipboard
-    var clipboard = new ClipboardJS('#copy-btn');
-
-    clipboard.on('success', function(e) {
-      setTooltip('Copied!');
-      hideTooltip();
-    });
-
-    clipboard.on('error', function(e) {
-      setTooltip('Failed!');
-      hideTooltip();
-    });
+    setupClipboard();
+    setTimeout(loadInitialContent, 500);
 
   </script>
 </body>
