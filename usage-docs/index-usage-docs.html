@@ -115,20 +115,26 @@
       width: 100%;
     }
 
-    main.loading #preview,
-    main .text-center {
-      display: none;
+    main #preview {
+      filter: blur(0rem);
+      transition: .25s filter ease-in-out;
     }
 
-    main #preview
-    main.loading .text-center {
-      display: block;
+    main.loading #preview {
+      filter: blur(.25rem);
+      transition: .25s filter ease-in-out;
     }
 
     .copy-btn {
       position: fixed;
       bottom: 25px;
       right: 26px;
+    }
+
+    #active-component-name {
+      position: fixed;
+      right: 25px;
+      color: #007bff;
     }
   </style>
 </head>
@@ -154,14 +160,14 @@
       </nav>
       <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4" style="height: 100%;">
         <div class="d-flex flex-column bd-highlight mb-3" style="height: 90%;">
-          <span id="active-component-name" class="h3 text-muted"></span>
-          <div class="text-center">
+          <!-- <div class="text-center">
             <div class="spinner-border" role="status">
               <span class="sr-only">Loading...</span>
             </div>
-          </div>
+          </div> -->
           <div id="preview" style="width:100%;"></div>
           <div class="mt-auto" style="height: 400px;">
+            <span id="active-component-name" class="h3 float-right"></span>
             <ul class="nav nav-tabs" id="tabs" role="tablist">
               <li class="nav-item">
                 <a class="nav-link active" id="desciption-tab" data-toggle="tab" href="#desciption" role="tab" aria-controls="desciption" aria-selected="true">Description</a>
@@ -206,7 +212,7 @@
 
   <template id="component-collection-template">
     <li class="nav-item">
-      <a class="nav-link" href="">
+      <a class="nav-link component-collection-link" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExamples">
         <svg class="bi bi-folder-plus" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" d="M9.828 4H2.19a1 1 0 00-.996 1.09l.637 7a1 1 0 00.995.91H9v1H2.826a2 2 0 01-1.991-1.819l-.637-7a1.99 1.99 0 01.342-1.31L.5 3a2 2 0 012-2h3.672a2 2 0 011.414.586l.828.828A2 2 0 009.828 3h3.982a2 2 0 011.992 2.181L15.546 8H14.54l.265-2.91A1 1 0 0013.81 4H9.828zm-2.95-1.707L7.587 3H2.19c-.24 0-.47.042-.684.12L1.5 2.98a1 1 0 011-.98h3.672a1 1 0 01.707.293z" clip-rule="evenodd"/>
           <path fill-rule="evenodd" d="M13.5 10a.5.5 0 01.5.5v2a.5.5 0 01-.5.5h-2a.5.5 0 010-1H13v-1.5a.5.5 0 01.5-.5z" clip-rule="evenodd"/>
@@ -214,7 +220,7 @@
         </svg>
         <span class="component-collection-name font-weight-bold"></span>
       </a>
-      <ul class="nav component-links">
+      <ul class="nav component-links collapse">
       </ul>
     </li>
   </template>
@@ -230,19 +236,21 @@
     </li>
   </template>
 
-  <script src="weaver-components.js"></script>
   <script src="//ajaxorg.github.io/ace-builds/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  <script src="https://cdn.statically.io/gh/zenorocha/clipboard.js/v2.0.4/dist/clipboard.min.js"></script>
+  <script src="//code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="//cdn.statically.io/gh/zenorocha/clipboard.js/v2.0.4/dist/clipboard.min.js"></script>
+
+  <!-- Component Library -->
+  <script src="weaver-components.js"></script>
 
   <script>
     let componentManifest = {
-      WvrHeader:  "wvr-header-examples.html",
-      WvrFooter:  "wvr-footer-examples.html",
-      WvrNavList: "wvr-nav-list-examples.html",
-      WvrText: "wvr-text-examples.html"
+      WvrHeader:  "wvr-header.component.ud-examples.html",
+      WvrFooter:  "wvr-footer.component.ud-examples.html",
+      WvrNavList: "wvr-nav-list.component.ud-examples.html",
+      WvrText: "wvr-text.component.ud-examples.html"
     };
     let editorElem = document.querySelector('#editor');
     let previewElem = document.querySelector('#preview');
@@ -272,16 +280,16 @@
       let debounce;
       editor.getSession().on('change', function() {
         if(debounce) clearTimeout(debounce);
-        //document.querySelector("main").classList.add('loading');
+        document.querySelector("main").classList.add('loading');
         debounce = setTimeout(function() {
           if(activeExample.querySelector('snippet').innerHTML !== editor.getSession().getValue()) {
             activeExample.querySelector('snippet').innerHTML = editor.getSession().getValue();
             before = editor.selection.toJSON();
             loadExample(activeExample);
             editor.selection.fromJSON(before);
-            //document.querySelector("main").classList.remove('loading');
           }
-        }, 3000);
+          document.querySelector("main").classList.remove('loading');
+        }, 500);
       });
     }
 
@@ -295,6 +303,8 @@
         xhr.onload = function() {
           let componentCollectionClone = componentCollectionTemplate.content.cloneNode(true);
           componentCollectionClone.querySelector('.component-collection-name').innerText = componentName;
+          componentCollectionClone.querySelector('.component-collection-link').setAttribute('href', `#${componentName}`);
+          componentCollectionClone.querySelector('.component-links').setAttribute('id', componentName);
           let examples = [];
           this.responseXML.querySelectorAll('example').forEach(example=>{
             examples.push(example);
@@ -331,16 +341,19 @@
       let urlParts   = currentUrl.split('#');
       let anchor = (urlParts.length > 1) ? urlParts[1] : null;
       if(anchor) {
-        let activeElem = document.querySelector(`a.nav-link[href='#${anchor}']`);
-        activeElem.click();
+        let activeComponentLink = document.querySelector(`a.nav-link[href='#${anchor}']`);
+        activeComponentLink.closest('.component-links').classList.remove('collapse');
+        activeComponentLink.click();
       }
     }
 
+    $('#tabs a').on('click', function (e) {
+      e.preventDefault();
+      $(this).tab('show');
+      loadExample(activeExample);
+    });
+
     let setupClipboard = () => {
-      $('#tabs a').on('click', function (e) {
-        e.preventDefault();
-        $(this).tab('show');
-      });
       $('button').tooltip({
         trigger: 'click',
         placement: 'bottom'
