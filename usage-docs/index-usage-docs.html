@@ -134,8 +134,29 @@
     #active-component-name {
       position: fixed;
       right: 25px;
-      color: #007bff;
+      font-size: 1.5em;
     }
+
+    .bi-folder-plus,
+    .closed .bi-folder-minus {
+      display: none;
+    }
+
+    .bi-folder-minus,
+    .closed .bi-folder-plus {
+      display: inline-block;
+    }
+
+    .feather-minus-circle,
+    .open .feather-plus-circle  {
+      display: none;
+    }
+
+    .feather-plus-circle,
+    .open .feather-minus-circle {
+      display: inline-block;
+    }
+
   </style>
 </head>
 
@@ -150,8 +171,9 @@
         <div class="sidebar-sticky">
           <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
             <span>Components</span>
-            <a class="d-flex align-items-center text-muted">
+            <a class="d-flex align-items-center text-muted expand-collapse-all" href="">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="8" y1="12" x2="16" y2="12"></line></svg>
             </a>
           </h6>
           <ul id="component-collections" class="nav flex-column">
@@ -160,14 +182,9 @@
       </nav>
       <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4" style="height: 100%;">
         <div class="d-flex flex-column bd-highlight mb-3" style="height: 90%;">
-          <!-- <div class="text-center">
-            <div class="spinner-border" role="status">
-              <span class="sr-only">Loading...</span>
-            </div>
-          </div> -->
           <div id="preview" style="width:100%;"></div>
           <div class="mt-auto" style="height: 400px;">
-            <span id="active-component-name" class="h3 float-right"></span>
+            <span id="active-component-name" class="h3 float-right badge badge-secondary"></span>
             <ul class="nav nav-tabs" id="tabs" role="tablist">
               <li class="nav-item">
                 <a class="nav-link active" id="desciption-tab" data-toggle="tab" href="#desciption" role="tab" aria-controls="desciption" aria-selected="true">Description</a>
@@ -211,12 +228,16 @@
   </div>
 
   <template id="component-collection-template">
-    <li class="nav-item">
+    <li class="nav-item closed">
       <a class="nav-link component-collection-link" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExamples">
         <svg class="bi bi-folder-plus" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" d="M9.828 4H2.19a1 1 0 00-.996 1.09l.637 7a1 1 0 00.995.91H9v1H2.826a2 2 0 01-1.991-1.819l-.637-7a1.99 1.99 0 01.342-1.31L.5 3a2 2 0 012-2h3.672a2 2 0 011.414.586l.828.828A2 2 0 009.828 3h3.982a2 2 0 011.992 2.181L15.546 8H14.54l.265-2.91A1 1 0 0013.81 4H9.828zm-2.95-1.707L7.587 3H2.19c-.24 0-.47.042-.684.12L1.5 2.98a1 1 0 011-.98h3.672a1 1 0 01.707.293z" clip-rule="evenodd"/>
           <path fill-rule="evenodd" d="M13.5 10a.5.5 0 01.5.5v2a.5.5 0 01-.5.5h-2a.5.5 0 010-1H13v-1.5a.5.5 0 01.5-.5z" clip-rule="evenodd"/>
           <path fill-rule="evenodd" d="M13 12.5a.5.5 0 01.5-.5h2a.5.5 0 010 1H14v1.5a.5.5 0 01-1 0v-2z" clip-rule="evenodd"/>
+        </svg>
+        <svg class="bi bi-folder-minus" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M9.828 4H2.19a1 1 0 00-.996 1.09l.637 7a1 1 0 00.995.91H9v1H2.826a2 2 0 01-1.991-1.819l-.637-7a1.99 1.99 0 01.342-1.31L.5 3a2 2 0 012-2h3.672a2 2 0 011.414.586l.828.828A2 2 0 009.828 3h3.982a2 2 0 011.992 2.181L15.546 8H14.54l.265-2.91A1 1 0 0013.81 4H9.828zm-2.95-1.707L7.587 3H2.19c-.24 0-.47.042-.684.12L1.5 2.98a1 1 0 011-.98h3.672a1 1 0 01.707.293z" clip-rule="evenodd"/>
+          <path fill-rule="evenodd" d="M11 11.5a.5.5 0 01.5-.5h4a.5.5 0 010 1h-4a.5.5 0 01-.5-.5z" clip-rule="evenodd"/>
         </svg>
         <span class="component-collection-name font-weight-bold"></span>
       </a>
@@ -319,7 +340,6 @@
               resolve();
             }
           }
-          // Get the HTML
           xhr.open( 'GET', componentUri );
           xhr.responseType = 'document';
           xhr.send();
@@ -332,14 +352,20 @@
       componentsToRender.forEach(component=> {
         let componentCollectionClone = componentCollectionTemplate.content.cloneNode(true);
         let componentLinksElem = componentCollectionClone.querySelector('ul.component-links');
-
+        let componentCollectionLink = componentCollectionClone.querySelector('.component-collection-link')
         componentCollectionClone.querySelector('.component-collection-name').innerText = component.name;
-        componentCollectionClone.querySelector('.component-collection-link').setAttribute('href', `#${component.name}`);
+        componentCollectionLink.setAttribute('href', `#${component.name}`);
+        $(document).on('show.bs.collapse hide.bs.collapse', componentCollectionLink, function (e) {
+            let ccl = e.target.closest('.nav-item');
+            e.type === 'hide' ?
+            ccl.classList.add('closed') :
+            ccl.classList.remove('closed');
+        });
         componentCollectionClone.querySelector('.component-links').setAttribute('id', component.name);
         component.examples.forEach(example=>{
           let componentLinkTemplateClone = componentLinkTemplate.content.cloneNode(true);
           componentLinkTemplateClone.querySelector('a.nav-link').setAttribute('href', `#${example.getAttribute('name').replace(/\s/g,'')}`);
-          componentLinkTemplateClone.querySelector('.component-link-name').innerText = example.getAttribute('name');            
+          componentLinkTemplateClone.querySelector('.component-link-name').innerText = example.getAttribute('name');
           componentLinkTemplateClone.querySelector('a.nav-link').addEventListener('click', function(e) {
             document.querySelectorAll('a.component-link').forEach(navLink=>navLink.classList.remove('active'));
             e.target.closest('a.component-link').classList.add('active');
@@ -362,15 +388,27 @@
       let anchor = (urlParts.length > 1) ? urlParts[1] : null;
       if(anchor) {
         let activeComponentLink = document.querySelector(`a.nav-link[href='#${anchor}']`);
-        activeComponentLink.closest('.component-links').classList.remove('collapse');
+        $(activeComponentLink.closest('.component-links')).collapse();
         activeComponentLink.click();
       }
     }
 
+    $('.expand-collapse-all').on('click', e=>{
+      e.preventDefault();
+
+      e.currentTarget.classList.contains('open') ?
+      $('.component-links').collapse('hide') :
+      $('.component-links').collapse('show')
+      
+      e.currentTarget.classList.contains('open') ?
+      e.currentTarget.classList.remove('open') :
+      e.currentTarget.classList.add('open')
+      
+    });
+
     $('#tabs a').on('click', function (e) {
       e.preventDefault();
       $(this).tab('show');
-      loadExample(activeExample);
     });
 
     let setupClipboard = () => {
@@ -408,6 +446,11 @@
         });
         return match;
       }));
+      if($('.component-links').length !== components.length) {
+        $('.expand-collapse-all').collapse();
+      } else {
+        loadInitialContent();
+      }
     }
 
     $('.search').on("keyup", $.debounce(500, e=>{
