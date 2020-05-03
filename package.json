@@ -7,6 +7,9 @@
   "version": "0.0.4",
   "private": false,
   "license": "MIT",
+  "bin": {
+    "wvr-ud": "./scripts/build-wvr-ud.js"
+  },
   "scripts": {
     "build": "ng build --prod --output-hashing none",
     "build:clean": "npm run clean && npm run build",
@@ -31,7 +34,7 @@
     "docs:serve": "static-server docs -p 9081",
     "build:docs": "npm run build:docs-setup && npm run build:docs-usage && npm run build:docs-development",
     "build:docs-setup": "node scripts/build-wvr-components-docs.js",
-    "build:docs-usage": "build-storybook -s dist/docs/usage -o docs/usage",
+    "build:docs-usage": "node scripts/build-wvr-ud.js",
     "build:docs-development": "compodoc -d docs/development -p ./projects/wvr-elements/tsconfig.docs.json",
     "build:docs-production": "npm run build:docs && ls -A | grep -v docs | xargs rimraf && mv docs/* . && rimraf docs"
   },
@@ -51,6 +54,7 @@
     "classlist.js": "^1.1.20150312",
     "css-element-queries": "^1.2.3",
     "document-register-element": "^1.14.3",
+    "glob": "^7.1.6",
     "ie11-custom-properties": "^3.0.6",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
