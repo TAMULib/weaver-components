@@ -1,0 +1,13 @@
+{
+  "projectName": "Weaver Components Usage Documentation",
+  "includes": [
+    "projects/wvr-elements/src/lib/**/*"
+  ],
+  "excludes": [
+    "projects/wvr-elements/src/lib/wvr-it-works"
+  ],
+  "output": "docs/usage",
+  "additionalScript": [
+    "dist/bundle/latest/weaver-components.js"
+  ]
+}

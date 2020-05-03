@@ -1,0 +1,469 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Weaver Components Usage Documentation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="https://labs.library.tamu.edu/wvr-components/latest/assets/favicon.ico">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <style>
+    html {
+      height: 100%;
+    }
+    body {
+      font-size: .875rem;
+      height: 100%;
+    }
+
+    .bi {
+      width: 16px;
+      height: 16px;
+      vertical-align: text-bottom;
+    }
+
+    /*
+    * Sidebar
+    */
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 100; /* Behind the navbar */
+      padding: 0;
+      box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+    }
+
+    .sidebar-sticky {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 48px; /* Height of navbar */
+      height: calc(100vh - 48px);
+      padding-top: .5rem;
+      overflow-x: hidden;
+      overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    }
+
+    .sidebar .nav-link {
+      font-weight: 500;
+      color: #333;
+    }
+
+    .sidebar .nav-link .bi {
+      margin-right: 4px;
+      color: #999;
+    }
+
+    .sidebar .nav-link.active {
+      color: #007bff;
+    }
+
+    .sidebar .nav-link:hover .bi,
+    .sidebar .nav-link.active .bi {
+      color: inherit;
+    }
+
+    .sidebar-heading {
+      font-size: .75rem;
+      text-transform: uppercase;
+    }
+
+    /*
+    * Navbar
+    */
+
+    .navbar-brand {
+      padding-top: .75rem;
+      padding-bottom: .75rem;
+      font-size: 1rem;
+      background-color: rgba(0, 0, 0, .25);
+      box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);
+    }
+
+    .navbar .form-control {
+      padding: .75rem 1rem;
+      border-width: 0;
+      border-radius: 0;
+    }
+
+    .form-control-dark {
+      color: #fff;
+      background-color: rgba(255, 255, 255, .1);
+      border-color: rgba(255, 255, 255, .1);
+    }
+
+    .form-control-dark:focus {
+      border-color: transparent;
+      box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
+    }
+
+    /*
+    * Utilities
+    */
+
+    .border-top { border-top: 1px solid #e5e5e5; }
+    .border-bottom { border-bottom: 1px solid #e5e5e5; }
+
+    main {
+      min-height: 100%;
+    }
+
+    #editor {
+      height:400px;
+      width: 100%;
+    }
+
+    main #preview {
+      filter: blur(0rem);
+      transition: .25s filter ease-in-out;
+    }
+
+    main.loading #preview {
+      filter: blur(.25rem);
+      transition: .25s filter ease-in-out;
+    }
+
+    .copy-btn {
+      position: fixed;
+      bottom: 25px;
+      right: 26px;
+    }
+
+    #active-component-name {
+      position: fixed;
+      right: 25px;
+      font-size: 1.5em;
+    }
+
+    .bi-folder-plus,
+    .closed .bi-folder-minus {
+      display: none;
+    }
+
+    .bi-folder-minus,
+    .closed .bi-folder-plus {
+      display: inline-block;
+    }
+
+    .feather-minus-circle,
+    .open .feather-plus-circle  {
+      display: none;
+    }
+
+    .feather-plus-circle,
+    .open .feather-minus-circle {
+      display: inline-block;
+    }
+
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+    <input class="form-control form-control-dark w-100 search" type="text" placeholder="Search" aria-label="Search">
+    <a class="navbar-brand col-sm-10 col-md-10 mr-0" href="#">Weaver Components</a>
+  </nav>
+  <div class="container-fluid" style="height: 100%;">
+    <div class="row" style="height: 100%;">
+      <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+        <div class="sidebar-sticky">
+          <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>Components</span>
+            <a class="d-flex align-items-center text-muted expand-collapse-all" href="">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+            </a>
+          </h6>
+          <ul id="component-collections" class="nav flex-column">
+          </ul>
+        </div>
+      </nav>
+      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4" style="height: 100%;">
+        <div class="d-flex flex-column bd-highlight mb-3" style="height: 90%;">
+          <div id="preview" style="width:100%;"></div>
+          <div class="mt-auto" style="height: 400px;">
+            <span id="active-component-name" class="h3 float-right badge badge-secondary"></span>
+            <ul class="nav nav-tabs" id="tabs" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" id="desciption-tab" data-toggle="tab" href="#desciption" role="tab" aria-controls="desciption" aria-selected="true">Description</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="snippet-tab" data-toggle="tab" href="#snippet" role="tab" aria-controls="snippet" aria-selected="false">Snippet</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="css-tab" data-toggle="tab" href="#css" role="tab" aria-controls="css" aria-selected="false">CSS</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="source-tab" data-toggle="tab" href="#source" role="tab" aria-controls="source" aria-selected="false">Source</a>
+              </li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane p-3 active" id="desciption" role="tabpanel" aria-labelledby="desciption-tab">
+                <div id="desciption"></div>
+              </div>
+              <div class="tab-pane" id="snippet" role="tabpanel" aria-labelledby="snippet-tab">
+                <div id="editor" ></div>
+                <button id="copy-btn" class="btn btn-light copy-btn" data-clipboard-text="">
+                  Copy Snippet
+                </button>
+              </div>
+              <div class="tab-pane" id="css" role="tabpanel" aria-labelledby="css-tab">
+                <div id="css-viewer" >
+                  CSS editor/viewer
+                </div>
+              </div>
+              <div class="tab-pane" id="source" role="tabpanel" aria-labelledby="source-tab">
+                <div id="source-viewer" >
+                  Source Viewer
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+     
+    </div>
+  </div>
+
+  <template id="component-collection-template">
+    <li class="nav-item closed">
+      <a class="nav-link component-collection-link" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExamples">
+        <svg class="bi bi-folder-plus" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M9.828 4H2.19a1 1 0 00-.996 1.09l.637 7a1 1 0 00.995.91H9v1H2.826a2 2 0 01-1.991-1.819l-.637-7a1.99 1.99 0 01.342-1.31L.5 3a2 2 0 012-2h3.672a2 2 0 011.414.586l.828.828A2 2 0 009.828 3h3.982a2 2 0 011.992 2.181L15.546 8H14.54l.265-2.91A1 1 0 0013.81 4H9.828zm-2.95-1.707L7.587 3H2.19c-.24 0-.47.042-.684.12L1.5 2.98a1 1 0 011-.98h3.672a1 1 0 01.707.293z" clip-rule="evenodd"/>
+          <path fill-rule="evenodd" d="M13.5 10a.5.5 0 01.5.5v2a.5.5 0 01-.5.5h-2a.5.5 0 010-1H13v-1.5a.5.5 0 01.5-.5z" clip-rule="evenodd"/>
+          <path fill-rule="evenodd" d="M13 12.5a.5.5 0 01.5-.5h2a.5.5 0 010 1H14v1.5a.5.5 0 01-1 0v-2z" clip-rule="evenodd"/>
+        </svg>
+        <svg class="bi bi-folder-minus" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M9.828 4H2.19a1 1 0 00-.996 1.09l.637 7a1 1 0 00.995.91H9v1H2.826a2 2 0 01-1.991-1.819l-.637-7a1.99 1.99 0 01.342-1.31L.5 3a2 2 0 012-2h3.672a2 2 0 011.414.586l.828.828A2 2 0 009.828 3h3.982a2 2 0 011.992 2.181L15.546 8H14.54l.265-2.91A1 1 0 0013.81 4H9.828zm-2.95-1.707L7.587 3H2.19c-.24 0-.47.042-.684.12L1.5 2.98a1 1 0 011-.98h3.672a1 1 0 01.707.293z" clip-rule="evenodd"/>
+          <path fill-rule="evenodd" d="M11 11.5a.5.5 0 01.5-.5h4a.5.5 0 010 1h-4a.5.5 0 01-.5-.5z" clip-rule="evenodd"/>
+        </svg>
+        <span class="component-collection-name font-weight-bold"></span>
+      </a>
+      <ul class="nav component-links collapse">
+      </ul>
+    </li>
+  </template>
+
+  <template id="component-link-template">
+    <li class="nav-item">
+      <a class="nav-link ml-3 component-link">
+        <svg class="bi bi-puzzle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M3.112 3.645A1.5 1.5 0 014.605 2H7a.5.5 0 01.5.5v.382c0 .696-.497 1.182-.872 1.469a.459.459 0 00-.115.118.113.113 0 00-.012.025L6.5 4.5v.003l.003.01c.004.01.014.028.036.053a.86.86 0 00.27.194C7.09 4.9 7.51 5 8 5c.492 0 .912-.1 1.19-.24a.86.86 0 00.271-.194.213.213 0 00.036-.054l.003-.01v-.008a.112.112 0 00-.012-.025.459.459 0 00-.115-.118c-.375-.287-.872-.773-.872-1.469V2.5A.5.5 0 019 2h2.395a1.5 1.5 0 011.493 1.645L12.645 6.5h.237c.195 0 .42-.147.675-.48.21-.274.528-.52.943-.52.568 0 .947.447 1.154.862C15.877 6.807 16 7.387 16 8s-.123 1.193-.346 1.638c-.207.415-.586.862-1.154.862-.415 0-.733-.246-.943-.52-.255-.333-.48-.48-.675-.48h-.237l.243 2.855A1.5 1.5 0 0111.395 14H9a.5.5 0 01-.5-.5v-.382c0-.696.497-1.182.872-1.469a.459.459 0 00.115-.118.113.113 0 00.012-.025L9.5 11.5v-.003l-.003-.01a.214.214 0 00-.036-.053.859.859 0 00-.27-.194C8.91 11.1 8.49 11 8 11c-.491 0-.912.1-1.19.24a.859.859 0 00-.271.194.214.214 0 00-.036.054l-.003.01v.002l.001.006a.113.113 0 00.012.025c.016.027.05.068.115.118.375.287.872.773.872 1.469v.382a.5.5 0 01-.5.5H4.605a1.5 1.5 0 01-1.493-1.645L3.356 9.5h-.238c-.195 0-.42.147-.675.48-.21.274-.528.52-.943.52-.568 0-.947-.447-1.154-.862C.123 9.193 0 8.613 0 8s.123-1.193.346-1.638C.553 5.947.932 5.5 1.5 5.5c.415 0 .733.246.943.52.255.333.48.48.675.48h.238l-.244-2.855z" clip-rule="evenodd"/>
+        </svg>
+        <span class="component-link-name"></span>
+      </a>
+    </li>
+  </template>
+
+  <script src="//ajaxorg.github.io/ace-builds/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+  <script src="//code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="//cdn.statically.io/gh/zenorocha/clipboard.js/v2.0.4/dist/clipboard.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-throttle-debounce/1.1/jquery.ba-throttle-debounce.min.js" integrity="sha256-+nuEu243+6BveXk5N+Vbr268G+4FHjUOEcfKaBqfPbc=" crossorigin="anonymous"></script>
+
+  <!-- Component Library -->
+  <script src="usage/additional-scripts.js"></script>
+  <script type="application/json" id="expamples-manifest">
+    {{manifest}}
+  </script>
+  <script>
+    let componentManifest = JSON.parse($('#expamples-manifest').html());
+    let editorElem = document.querySelector('#editor');
+    let previewElem = document.querySelector('#preview');
+    let desciptionElem = document.querySelector('#desciption');
+    let activeExampleNameElem = document.querySelector('#active-component-name');
+    let componentCollectionsList = document.querySelector('#component-collections');
+    let componentCollectionTemplate = document.querySelector('#component-collection-template');
+    let componentLinkTemplate = document.querySelector('#component-link-template');
+    let editor = ace.edit("editor");
+    let components = [];
+    let activeExample;
+    let loadingPromise;
+
+    let loadExample = (example) => {
+      let snippet = example.querySelector('snippet').innerHTML;
+      let desciption = example.querySelector('desciption').innerHTML;
+      let copyBtn = document.querySelector('#copy-btn').setAttribute('data-clipboard-text', snippet);
+      activeExampleNameElem.innerText = example.getAttribute('name');
+      previewElem.innerHTML = snippet;
+      desciptionElem.innerHTML = desciption;
+      editor.getSession().setValue(snippet);
+    };
+
+    let setupEditor = () => {
+      let editorElem = document.querySelector('#editor');
+      let previewElem = document.querySelector('#preview');
+      let editor = ace.edit("editor");
+      editor.getSession().setUseWorker(false);
+      editor.setTheme("ace/theme/monokai");
+      editor.getSession().setMode("ace/mode/html");
+      let debounce;
+      editor.getSession().on('change', function() {
+        if(debounce) clearTimeout(debounce);
+        document.querySelector("main").classList.add('loading');
+        debounce = setTimeout(function() {
+          if(activeExample.querySelector('snippet').innerHTML !== editor.getSession().getValue()) {
+            activeExample.querySelector('snippet').innerHTML = editor.getSession().getValue();
+            before = editor.selection.toJSON();
+            loadExample(activeExample);
+            editor.selection.fromJSON(before);
+          }
+          document.querySelector("main").classList.remove('loading');
+        }, 500);
+      });
+    }
+
+    let setupComponentLinks = ()=>{
+      loadingPromise = new Promise((resolve, reject) => {
+        let componentManifestKeys = Object.keys(componentManifest);
+        interationCount = 0;
+        componentManifestKeys.forEach(componentName=>{
+          let componentUri = componentManifest[componentName];
+          let xhr = new XMLHttpRequest();
+          xhr.onload = function() {
+            let examples = [];
+            this.responseXML.querySelectorAll('example').forEach(example=>{
+              examples.push(example);
+            });
+            components.push({
+              name: componentName,
+              examples: examples
+            });
+            interationCount++;
+            if(interationCount===componentManifestKeys.length) {
+              resolve();
+            }
+          }
+          xhr.open( 'GET', componentUri );
+          xhr.responseType = 'document';
+          xhr.send();
+        });
+      });
+    }
+
+    let renderComponentLinks = componentsToRender => {
+      componentsToRender.sort();
+      componentsToRender.forEach(component=> {
+        let componentCollectionClone = componentCollectionTemplate.content.cloneNode(true);
+        let componentLinksElem = componentCollectionClone.querySelector('ul.component-links');
+        let componentCollectionLink = componentCollectionClone.querySelector('.component-collection-link')
+        componentCollectionClone.querySelector('.component-collection-name').innerText = component.name;
+        componentCollectionLink.setAttribute('href', `#${component.name}`);
+        $(document).on('show.bs.collapse hide.bs.collapse', componentCollectionLink, function (e) {
+            let ccl = e.target.closest('.nav-item');
+            e.type === 'hide' ?
+            ccl.classList.add('closed') :
+            ccl.classList.remove('closed');
+        });
+        componentCollectionClone.querySelector('.component-links').setAttribute('id', component.name);
+        component.examples.forEach(example=>{
+          let componentLinkTemplateClone = componentLinkTemplate.content.cloneNode(true);
+          componentLinkTemplateClone.querySelector('a.nav-link').setAttribute('href', `#${example.getAttribute('name').replace(/\s/g,'')}`);
+          componentLinkTemplateClone.querySelector('.component-link-name').innerText = example.getAttribute('name');
+          componentLinkTemplateClone.querySelector('a.nav-link').addEventListener('click', function(e) {
+            document.querySelectorAll('a.component-link').forEach(navLink=>navLink.classList.remove('active'));
+            e.target.closest('a.component-link').classList.add('active');
+            component.examples.forEach(example=>{
+              if(example.getAttribute('name').trim()===e.target.innerText.trim()) {
+                loadExample(example);
+                activeExample=example;
+              }
+            });
+          });
+          componentLinksElem.appendChild(componentLinkTemplateClone);
+          componentCollectionsList.appendChild(componentCollectionClone);
+        });
+      });
+    }
+
+    let loadInitialContent = () => {
+      let currentUrl = document.URL;
+      let urlParts   = currentUrl.split('#');
+      let anchor = (urlParts.length > 1) ? urlParts[1] : null;
+      if(anchor) {
+        let activeComponentLink = document.querySelector(`a.nav-link[href='#${anchor}']`);
+        $(activeComponentLink.closest('.component-links')).collapse();
+        activeComponentLink.click();
+      }
+    }
+
+    $('.expand-collapse-all').on('click', e=>{
+      e.preventDefault();
+
+      e.currentTarget.classList.contains('open') ?
+      $('.component-links').collapse('hide') :
+      $('.component-links').collapse('show')
+      
+      e.currentTarget.classList.contains('open') ?
+      e.currentTarget.classList.remove('open') :
+      e.currentTarget.classList.add('open')
+      
+    });
+
+    $('#tabs a').on('click', function (e) {
+      e.preventDefault();
+      $(this).tab('show');
+    });
+
+    let setupClipboard = () => {
+      $('button').tooltip({
+        trigger: 'click',
+        placement: 'bottom'
+      });
+      function setTooltip(message) {
+        $('button').tooltip('hide')
+          .attr('data-original-title', message)
+          .tooltip('show');
+      }
+      function hideTooltip() {
+        setTimeout(function() {
+          $('button').tooltip('hide');
+        }, 1000);
+      }
+      var clipboard = new ClipboardJS('#copy-btn');
+      clipboard.on('success', function(e) {
+        setTooltip('Copied!');
+        hideTooltip();
+      });
+      clipboard.on('error', function(e) {
+        setTooltip('Failed!');
+        hideTooltip();
+      });
+    }
+
+    let search = searchQuery => {
+      renderComponentLinks(components.filter(c=>{
+        match = false;
+        c.examples.forEach(e=>{
+          if(!match)
+           match = e.getAttribute('name').toLowerCase().includes(searchQuery.toLowerCase());
+        });
+        return match;
+      }));
+      if($('.component-links').length !== components.length) {
+        $('.expand-collapse-all').collapse();
+      } else {
+        loadInitialContent();
+      }
+    }
+
+    $('.search').on("keyup", $.debounce(500, e=>{
+      componentCollectionsList.innerHTML = '';
+      search(e.target.value);
+    }));
+
+    setupEditor();
+    setupComponentLinks();
+    setupClipboard();
+    loadingPromise.then(()=>{
+      renderComponentLinks(components);
+      loadInitialContent();
+    });
+
+  </script>
+</body>
+
+</html>
