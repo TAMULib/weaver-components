@@ -1,12 +1,13 @@
 {
   "projectName": "Weaver Components Usage Documentation",
+  "output": "docs/usage",
+  "basePath": "usage/",
   "includes": [
     "projects/wvr-elements/src/lib/**/*"
   ],
   "excludes": [
     "projects/wvr-elements/src/lib/wvr-it-works"
   ],
-  "output": "docs/usage",
   "additionalScript": [
     "dist/bundle/latest/weaver-components.js"
   ],
