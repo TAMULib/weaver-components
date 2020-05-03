@@ -9,5 +9,8 @@
   "output": "docs/usage",
   "additionalScript": [
     "dist/bundle/latest/weaver-components.js"
+  ],
+  "additionalAssets": [
+    "src/assets/**/*"
   ]
 }

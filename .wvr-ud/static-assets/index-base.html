@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>Weaver Components Usage Documentation</title>
+  <title>{{projectName}}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="https://labs.library.tamu.edu/wvr-components/latest/assets/favicon.ico">
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
@@ -163,7 +163,7 @@
 <body>
   <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
     <input class="form-control form-control-dark w-100 search" type="text" placeholder="Search" aria-label="Search">
-    <a class="navbar-brand col-sm-10 col-md-10 mr-0" href="#">Weaver Components</a>
+    <a class="navbar-brand col-sm-10 col-md-10 mr-0" href="#">{{projectName}}</a>
   </nav>
   <div class="container-fluid" style="height: 100%;">
     <div class="row" style="height: 100%;">
@@ -385,7 +385,7 @@
       let anchor = (urlParts.length > 1) ? urlParts[1] : null;
       if(anchor) {
         let activeComponentLink = document.querySelector(`a.nav-link[href='#${anchor}']`);
-        $(activeComponentLink.closest('.component-links')).collapse();
+        $(activeComponentLink.closest('.component-links')).collapse('show');
         activeComponentLink.click();
       }
     }
@@ -444,8 +444,9 @@
         return match;
       }));
       if($('.component-links').length !== components.length) {
-        $('.expand-collapse-all').collapse();
+        $('.component-links').collapse('show');
       } else {
+        $('.component-links').collapse('hide');
         loadInitialContent();
       }
     }
