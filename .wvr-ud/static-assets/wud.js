@@ -93,13 +93,13 @@ let setupComponentLinks = ()=>{
 let loadExample = (example) => {
   let snippet = example.querySelector('snippet').rawHTML;
   let desciption = example.querySelector('desciption').innerHTML;
-  let somponentScss = example.querySelector('component-scss').innerHTML;
+  let componentScss = example.querySelector('component-scss').innerHTML;
   let componentSource = example.querySelector('component-source').innerHTML;
   document.querySelector('#copy-btn').setAttribute('data-clipboard-text', snippet);
   activeExampleNameElem.innerText = example.getAttribute('name');
   previewElem.innerHTML = snippet;
   desciptionElem.innerHTML = desciption;
-  scssEditor.getSession().setValue(somponentScss);
+  scssEditor.getSession().setValue(componentScss);
   sourceEditor.getSession().setValue(componentSource);
   editor.getSession().setValue(snippet);
 };
