@@ -2,13 +2,16 @@
 
 const process = require('process');
 const fs = require('fs-extra');
+const jsdom = require("jsdom");
+const { JSDOM } = jsdom;
 const glob = require("glob");
 const concat = require('concat');
-require('console-stamp')(console, { 
-  format: ':date(HH:MM:ss.l)' 
-} );
+const packageJson = require(`${process.cwd()}/package.json`);
 const chalk = require('chalk');
 const log = console.log;
+require('console-stamp')(log, { 
+  format: ':date(HH:MM:ss.l)' 
+} );
 
 const startTime = new Date();
 
@@ -23,7 +26,7 @@ if (fs.existsSync(`${process.cwd()}/${CONFIG.output}`)) {
   log(`    ${chalk.yellow('Clean Build...')}`);
 }
 
-log(`    ${chalk.green('Building Usage Documentation for:')} ${chalk.blue(CONFIG.projectName)}`);
+log(`    ${chalk.green('Building Usage Documentation for:')} ${chalk.blue(`${packageJson.name} ${packageJson.version}`)}`);
 
 // Get Example Locations
 log(`    ${chalk.green('Identifying Examples')}:`);
@@ -46,10 +49,25 @@ const exampleManifest = {};
 const exaplestDest = `${CONFIG.output}/examples`;
 fs.ensureDirSync(exaplestDest);
 examples.forEach(e=>{
+  const componentPath = e.replace(EXAMPLE_PATTER,'ts');
+  const stylesPath = e.replace(EXAMPLE_PATTER,'scss');
   const pathParts = e.split('/');
   const exampleName = pathParts[pathParts.length-1];
   const componentName = pathParts[pathParts.length-2];
-  fs.copySync(e, `${exaplestDest}/${exampleName}`);
+  let exampleContent = fs.readFileSync(e, 'utf8');
+  let componentSource = fs.readFileSync(componentPath, 'utf8');
+  let {document} = (new JSDOM(exampleContent)).window;
+  let componentSourceElement = document.createElement('component-source');
+  componentSourceElement.innerHTML = componentSource;
+  let stylesSource = fs.readFileSync(stylesPath, 'utf8');
+  let componentScssElement = document.createElement('component-scss');
+  componentScssElement.innerHTML = stylesSource;
+  document.querySelectorAll('example').forEach(ex=>{
+    console.log(ex);
+    ex.appendChild(componentSourceElement.cloneNode(true));
+    ex.appendChild(componentScssElement.cloneNode(true));
+  });
+  fs.writeFileSync(`${exaplestDest}/${exampleName}`, document.body.innerHTML);
   exampleManifest[componentName] = `usage/examples/${exampleName}`;
 });
 
@@ -100,14 +118,12 @@ staticAssets.forEach(sa=>{
 
 log(`    ${chalk.cyanBright('Total content')}: ${chalk.blue(staticAssets.length)}`);
 
-// fs.copyFile(`${WVR_UD_DIR}/static-assets/wud.js`, `${CONFIG.output}/wud.js`)
-
 // Prepare Index
 log(`    ${chalk.green('Parsing Index Template:')}`);
 log(`    ${chalk.cyan('- Parsing:     index-base.html')}`);
-var content = fs.readFileSync(`${WVR_UD_DIR}/static-assets/index-base.html`, 'utf8');
+let content = fs.readFileSync(`${WVR_UD_DIR}/static-assets/index-base.html`, 'utf8');
 content = content.replace('{{EXAMPLE_MANIFEST}}', JSON.stringify(exampleManifest));
-content = content.replace(/{{PROJECT_NAME}}/g, CONFIG.projectName);
+content = content.replace(/{{PROJECT_NAME}}/g, `${packageJson.name} ${packageJson.version}`);
 content = content.replace(/{{BASE_PATH}}/g, CONFIG.basePath);
 fs.ensureDirSync(CONFIG.output);
 fs.writeFileSync(`${CONFIG.output}/index.html`, content);

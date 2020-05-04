@@ -6,23 +6,25 @@ let activeExampleNameElem = document.querySelector('#active-component-name');
 let componentCollectionsList = document.querySelector('#component-collections');
 let componentCollectionTemplate = document.querySelector('#component-collection-template');
 let componentLinkTemplate = document.querySelector('#component-link-template');
-let editor = ace.edit("editor");
+let editor;
+let scssEditor;
+let sourceEditor;
 let components = [];
 let activeExample;
 let setupPromise;
 
 let setupEditor = () => {
-  let editor = ace.edit("editor");
+  editor = ace.edit("editor");
   editor.getSession().setUseWorker(false);
   editor.setTheme("ace/theme/monokai");
   editor.getSession().setMode("ace/mode/html");
   let debounce;
-  editor.getSession().on('change', function() {
+  editor.getSession().on('change', function(e) {
     if(debounce) clearTimeout(debounce);
     document.querySelector("main").classList.add('loading');
     debounce = setTimeout(function() {
-      if(activeExample.querySelector('snippet').innerHTML !== editor.getSession().getValue()) {
-        activeExample.querySelector('snippet').innerHTML = editor.getSession().getValue();
+      if(activeExample.querySelector('snippet').rawHTML !== editor.getSession().getValue()) {
+        activeExample.querySelector('snippet').rawHTML = editor.getSession().getValue();
         before = editor.selection.toJSON();
         loadExample(activeExample);
         editor.selection.fromJSON(before);
@@ -30,6 +32,24 @@ let setupEditor = () => {
       document.querySelector("main").classList.remove('loading');
     }, 500);
   });
+  scssEditor = ace.edit("scss-editor");
+  scssEditor.setOptions({
+    readOnly: true,
+    highlightActiveLine: false,
+    highlightGutterLine: false,
+    theme: 'ace/theme/monokai',
+    mode: 'ace/mode/scss'
+  });
+  scssEditor.renderer.$cursorLayer.element.style.opacity=0;
+  sourceEditor = ace.edit("source-editor");
+  sourceEditor.setOptions({
+    readOnly: true,
+    highlightActiveLine: false,
+    highlightGutterLine: false,
+    theme: 'ace/theme/monokai',
+    mode: 'ace/mode/typescript'
+  });
+  sourceEditor.renderer.$cursorLayer.element.style.opacity=0;
 }
 
 let setupComponentLinks = ()=>{
@@ -64,7 +84,6 @@ let setupComponentLinks = ()=>{
     e.currentTarget.classList.contains('open') ?
     $('.component-links').collapse('hide') :
     $('.component-links').collapse('show')
-    
     e.currentTarget.classList.contains('open') ?
     e.currentTarget.classList.remove('open') :
     e.currentTarget.classList.add('open')
@@ -72,12 +91,16 @@ let setupComponentLinks = ()=>{
 }
 
 let loadExample = (example) => {
-  let snippet = example.querySelector('snippet').innerHTML;
+  let snippet = example.querySelector('snippet').rawHTML;
   let desciption = example.querySelector('desciption').innerHTML;
+  let somponentScss = example.querySelector('component-scss').innerHTML;
+  let componentSource = example.querySelector('component-source').innerHTML;
   document.querySelector('#copy-btn').setAttribute('data-clipboard-text', snippet);
   activeExampleNameElem.innerText = example.getAttribute('name');
   previewElem.innerHTML = snippet;
   desciptionElem.innerHTML = desciption;
+  scssEditor.getSession().setValue(somponentScss);
+  sourceEditor.getSession().setValue(componentSource);
   editor.getSession().setValue(snippet);
 };
 
@@ -105,8 +128,9 @@ let renderComponentLinks = componentsToRender => {
         e.target.closest('a.component-link').classList.add('active');
         component.examples.forEach(example=>{
           if(example.getAttribute('name').trim()===e.target.innerText.trim()) {
-            loadExample(example);
             activeExample=example;
+            activeExample.querySelector('snippet').rawHTML = activeExample.querySelector('snippet').innerHTML;
+            loadExample(example);
           }
         });
       });
@@ -159,6 +183,7 @@ const setupTabs = () => {
   $('#tabs a').on('click', function (e) {
     e.preventDefault();
     $(this).tab('show');
+    loadExample(activeExample, true);
   });
 }
 
@@ -192,6 +217,7 @@ setupComponentLinks();
 setupClipboard();
 setupTabs();
 setUpSearch();
+
 setupPromise.then(()=>{
   renderComponentLinks(components);
   loadInitialContent();

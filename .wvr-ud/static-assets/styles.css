@@ -4,6 +4,7 @@ html {
 body {
   font-size: .875rem;
   height: 100%;
+  overflow: hidden;
 }
 
 .bi {
@@ -100,12 +101,15 @@ main {
   min-height: 100%;
 }
 
-#editor {
+#editor,
+#scss-editor,
+#source-editor {
   height:400px;
   width: 100%;
 }
 
 main #preview {
+  overflow-y: auto;
   filter: blur(0rem);
   transition: .25s filter ease-in-out;
 }

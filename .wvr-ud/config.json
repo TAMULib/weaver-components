@@ -1,5 +1,4 @@
 {
-  "projectName": "Weaver Components Usage Documentation",
   "output": "docs/usage",
   "basePath": "usage/",
   "includes": [

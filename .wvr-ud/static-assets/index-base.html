@@ -43,7 +43,7 @@
                 <a class="nav-link" id="snippet-tab" data-toggle="tab" href="#snippet" role="tab" aria-controls="snippet" aria-selected="false">Snippet</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" id="css-tab" data-toggle="tab" href="#css" role="tab" aria-controls="css" aria-selected="false">CSS</a>
+                <a class="nav-link" id="scss-tab" data-toggle="tab" href="#scss" role="tab" aria-controls="scss" aria-selected="false">SCSS</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" id="source-tab" data-toggle="tab" href="#source" role="tab" aria-controls="source" aria-selected="false">Source</a>
@@ -59,15 +59,11 @@
                   Copy Snippet
                 </button>
               </div>
-              <div class="tab-pane" id="css" role="tabpanel" aria-labelledby="css-tab">
-                <div id="css-viewer" >
-                  CSS editor/viewer
-                </div>
+              <div class="tab-pane" id="scss" role="tabpanel" aria-labelledby="scss-tab">
+                <div id="scss-editor"></div>
               </div>
               <div class="tab-pane" id="source" role="tabpanel" aria-labelledby="source-tab">
-                <div id="source-viewer" >
-                  Source Viewer
-                </div>
+                <div id="source-editor"></div>
               </div>
             </div>
           </div>
@@ -77,6 +73,7 @@
     </div>
   </div>
 
+  <!-- Templates -->
   <template id="component-collection-template">
     <li class="nav-item closed">
       <a class="nav-link component-collection-link" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExamples">
@@ -107,19 +104,21 @@
     </li>
   </template>
 
+  <!-- Vendor Scripts -->
   <script src="//ajaxorg.github.io/ace-builds/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
   <script src="//code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <script src="//cdn.statically.io/gh/zenorocha/clipboard.js/v2.0.4/dist/clipboard.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-throttle-debounce/1.1/jquery.ba-throttle-debounce.min.js" integrity="sha256-+nuEu243+6BveXk5N+Vbr268G+4FHjUOEcfKaBqfPbc=" crossorigin="anonymous"></script>
-
-  <!-- Component Library -->
-  <script src="{{BASE_PATH}}additional-scripts.js"></script>
+  
+  <!-- WUD Scripts -->
   <script type="application/json" id="expamples-manifest">
     {{EXAMPLE_MANIFEST}}
   </script>
   <script src="{{BASE_PATH}}wud.js"></script>
+  <script src="{{BASE_PATH}}additional-scripts.js"></script>
+  
 </body>
 
 </html>
