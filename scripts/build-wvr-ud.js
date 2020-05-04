@@ -8,10 +8,10 @@ const glob = require("glob");
 const concat = require('concat');
 const packageJson = require(`${process.cwd()}/package.json`);
 const chalk = require('chalk');
-const log = console.log;
-require('console-stamp')(log, { 
-  format: ':date(HH:MM:ss.l)' 
+require('console-stamp')(console, { 
+  format: ':date(HH:MM:ss)' 
 } );
+const log = console.log;
 
 const startTime = new Date();
 
@@ -63,8 +63,7 @@ examples.forEach(e=>{
   let componentScssElement = document.createElement('component-scss');
   componentScssElement.innerHTML = stylesSource;
   document.querySelectorAll('example').forEach(ex=>{
-    console.log(ex);
-    ex.appendChild(componentSourceElement.cloneNode(true));
+    ex.appendChild(componentSourceElement.cloneNode());
     ex.appendChild(componentScssElement.cloneNode(true));
   });
   fs.writeFileSync(`${exaplestDest}/${exampleName}`, document.body.innerHTML);
