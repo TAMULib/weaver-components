@@ -1,0 +1,16 @@
+{
+  "output": "docs/usage",
+  "basePath": "usage/",
+  "includes": [
+    "projects/wvr-elements/src/lib/**/*"
+  ],
+  "excludes": [
+    "projects/wvr-elements/src/lib/wvr-it-works"
+  ],
+  "additionalScript": [
+    "dist/bundle/latest/weaver-components.js"
+  ],
+  "additionalAssets": [
+    "src/assets/**/*"
+  ]
+}

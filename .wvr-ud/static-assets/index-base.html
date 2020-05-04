@@ -1,0 +1,124 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>{{PROJECT_NAME}}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="https://labs.library.tamu.edu/wvr-components/latest/assets/favicon.ico">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="{{BASE_PATH}}styles.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+    <input class="form-control form-control-dark w-100 search" type="text" placeholder="Search" aria-label="Search">
+    <a class="navbar-brand col-sm-10 col-md-10 mr-0" href="#">{{PROJECT_NAME}}</a>
+  </nav>
+  <div class="container-fluid" style="height: 100%;">
+    <div class="row" style="height: 100%;">
+      <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+        <div class="sidebar-sticky">
+          <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>Components</span>
+            <a class="d-flex align-items-center text-muted expand-collapse-all" href="">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+            </a>
+          </h6>
+          <ul id="component-collections" class="nav flex-column">
+          </ul>
+        </div>
+      </nav>
+      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4" style="height: 100%;">
+        <div class="d-flex flex-column bd-highlight mb-3" style="height: 90%;">
+          <div id="preview" style="width:100%;"></div>
+          <div class="mt-auto" style="height: 400px;">
+            <span id="active-component-name" class="h3 float-right badge badge-secondary"></span>
+            <ul class="nav nav-tabs" id="tabs" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" id="desciption-tab" data-toggle="tab" href="#desciption" role="tab" aria-controls="desciption" aria-selected="true">Description</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="snippet-tab" data-toggle="tab" href="#snippet" role="tab" aria-controls="snippet" aria-selected="false">Snippet</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="scss-tab" data-toggle="tab" href="#scss" role="tab" aria-controls="scss" aria-selected="false">SCSS</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="source-tab" data-toggle="tab" href="#source" role="tab" aria-controls="source" aria-selected="false">Source</a>
+              </li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane p-3 active" id="desciption" role="tabpanel" aria-labelledby="desciption-tab">
+                <div id="desciption"></div>
+              </div>
+              <div class="tab-pane" id="snippet" role="tabpanel" aria-labelledby="snippet-tab">
+                <div id="editor" ></div>
+                <button id="copy-btn" class="btn btn-light copy-btn" data-clipboard-text="">
+                  Copy Snippet
+                </button>
+              </div>
+              <div class="tab-pane" id="scss" role="tabpanel" aria-labelledby="scss-tab">
+                <div id="scss-editor"></div>
+              </div>
+              <div class="tab-pane" id="source" role="tabpanel" aria-labelledby="source-tab">
+                <div id="source-editor"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+     
+    </div>
+  </div>
+
+  <!-- Templates -->
+  <template id="component-collection-template">
+    <li class="nav-item closed">
+      <a class="nav-link component-collection-link" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExamples">
+        <svg class="bi bi-folder-plus" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M9.828 4H2.19a1 1 0 00-.996 1.09l.637 7a1 1 0 00.995.91H9v1H2.826a2 2 0 01-1.991-1.819l-.637-7a1.99 1.99 0 01.342-1.31L.5 3a2 2 0 012-2h3.672a2 2 0 011.414.586l.828.828A2 2 0 009.828 3h3.982a2 2 0 011.992 2.181L15.546 8H14.54l.265-2.91A1 1 0 0013.81 4H9.828zm-2.95-1.707L7.587 3H2.19c-.24 0-.47.042-.684.12L1.5 2.98a1 1 0 011-.98h3.672a1 1 0 01.707.293z" clip-rule="evenodd"/>
+          <path fill-rule="evenodd" d="M13.5 10a.5.5 0 01.5.5v2a.5.5 0 01-.5.5h-2a.5.5 0 010-1H13v-1.5a.5.5 0 01.5-.5z" clip-rule="evenodd"/>
+          <path fill-rule="evenodd" d="M13 12.5a.5.5 0 01.5-.5h2a.5.5 0 010 1H14v1.5a.5.5 0 01-1 0v-2z" clip-rule="evenodd"/>
+        </svg>
+        <svg class="bi bi-folder-minus" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M9.828 4H2.19a1 1 0 00-.996 1.09l.637 7a1 1 0 00.995.91H9v1H2.826a2 2 0 01-1.991-1.819l-.637-7a1.99 1.99 0 01.342-1.31L.5 3a2 2 0 012-2h3.672a2 2 0 011.414.586l.828.828A2 2 0 009.828 3h3.982a2 2 0 011.992 2.181L15.546 8H14.54l.265-2.91A1 1 0 0013.81 4H9.828zm-2.95-1.707L7.587 3H2.19c-.24 0-.47.042-.684.12L1.5 2.98a1 1 0 011-.98h3.672a1 1 0 01.707.293z" clip-rule="evenodd"/>
+          <path fill-rule="evenodd" d="M11 11.5a.5.5 0 01.5-.5h4a.5.5 0 010 1h-4a.5.5 0 01-.5-.5z" clip-rule="evenodd"/>
+        </svg>
+        <span class="component-collection-name font-weight-bold"></span>
+      </a>
+      <ul class="nav component-links collapse">
+      </ul>
+    </li>
+  </template>
+
+  <template id="component-link-template">
+    <li class="nav-item">
+      <a class="nav-link ml-3 component-link">
+        <svg class="bi bi-puzzle-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M3.112 3.645A1.5 1.5 0 014.605 2H7a.5.5 0 01.5.5v.382c0 .696-.497 1.182-.872 1.469a.459.459 0 00-.115.118.113.113 0 00-.012.025L6.5 4.5v.003l.003.01c.004.01.014.028.036.053a.86.86 0 00.27.194C7.09 4.9 7.51 5 8 5c.492 0 .912-.1 1.19-.24a.86.86 0 00.271-.194.213.213 0 00.036-.054l.003-.01v-.008a.112.112 0 00-.012-.025.459.459 0 00-.115-.118c-.375-.287-.872-.773-.872-1.469V2.5A.5.5 0 019 2h2.395a1.5 1.5 0 011.493 1.645L12.645 6.5h.237c.195 0 .42-.147.675-.48.21-.274.528-.52.943-.52.568 0 .947.447 1.154.862C15.877 6.807 16 7.387 16 8s-.123 1.193-.346 1.638c-.207.415-.586.862-1.154.862-.415 0-.733-.246-.943-.52-.255-.333-.48-.48-.675-.48h-.237l.243 2.855A1.5 1.5 0 0111.395 14H9a.5.5 0 01-.5-.5v-.382c0-.696.497-1.182.872-1.469a.459.459 0 00.115-.118.113.113 0 00.012-.025L9.5 11.5v-.003l-.003-.01a.214.214 0 00-.036-.053.859.859 0 00-.27-.194C8.91 11.1 8.49 11 8 11c-.491 0-.912.1-1.19.24a.859.859 0 00-.271.194.214.214 0 00-.036.054l-.003.01v.002l.001.006a.113.113 0 00.012.025c.016.027.05.068.115.118.375.287.872.773.872 1.469v.382a.5.5 0 01-.5.5H4.605a1.5 1.5 0 01-1.493-1.645L3.356 9.5h-.238c-.195 0-.42.147-.675.48-.21.274-.528.52-.943.52-.568 0-.947-.447-1.154-.862C.123 9.193 0 8.613 0 8s.123-1.193.346-1.638C.553 5.947.932 5.5 1.5 5.5c.415 0 .733.246.943.52.255.333.48.48.675.48h.238l-.244-2.855z" clip-rule="evenodd"/>
+        </svg>
+        <span class="component-link-name"></span>
+      </a>
+    </li>
+  </template>
+
+  <!-- Vendor Scripts -->
+  <script src="//ajaxorg.github.io/ace-builds/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+  <script src="//code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="//cdn.statically.io/gh/zenorocha/clipboard.js/v2.0.4/dist/clipboard.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-throttle-debounce/1.1/jquery.ba-throttle-debounce.min.js" integrity="sha256-+nuEu243+6BveXk5N+Vbr268G+4FHjUOEcfKaBqfPbc=" crossorigin="anonymous"></script>
+  
+  <!-- WUD Scripts -->
+  <script type="application/json" id="expamples-manifest">
+    {{EXAMPLE_MANIFEST}}
+  </script>
+  <script src="{{BASE_PATH}}wud.js"></script>
+  <script src="{{BASE_PATH}}additional-scripts.js"></script>
+  
+</body>
+
+</html>
