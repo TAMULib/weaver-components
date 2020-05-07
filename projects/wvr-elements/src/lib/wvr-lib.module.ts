@@ -8,9 +8,13 @@ import { WvrNavLiComponent } from './wvr-nav-list/wvr-nav-li/wvr-nav-li.componen
 import { WvrNavListComponent } from './wvr-nav-list/wvr-nav-list.component';
 import { WvrTextComponent } from './wvr-text/wvr-text.component';
 import { WvrFooterComponent } from './wvr-footer/wvr-footer.component';
+import { WvrDropdownComponent } from './wvr-dropdown/wvr-dropdown.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ElementZoneStrategyFactory } from 'elements-zone-strategy';
 
 /** This property contains a list of components and the selector tags. */
 const elements = [
+  { component: WvrDropdownComponent, selector: 'wvr-dropdown' },
   { component: WvrFooterComponent, selector: 'wvr-footer' },
   { component: WvrHeaderComponent, selector: 'wvr-header' },
   { component: WvrItWorksComponent, selector: 'wvr-it-works' },
@@ -21,6 +25,7 @@ const elements = [
 
 /** This property contains a list of components classes. */
 const components = [
+  WvrDropdownComponent,
   WvrFooterComponent,
   WvrHeaderComponent,
   WvrItWorksComponent,
@@ -32,7 +37,8 @@ const components = [
 /** The main module for the Weaver Elements library. */
 @NgModule({
   imports: [
-    BrowserModule
+    BrowserModule,
+    NgbModule
   ],
   exports: [
     ...components
@@ -52,7 +58,8 @@ export class WvrLibModule {
   constructor(injector: Injector) {
     elements.forEach(element => {
       try {
-        customElements.define(element.selector, createCustomElement(element.component, { injector }));
+        const strategyFactory = new ElementZoneStrategyFactory(element.component, injector);
+        customElements.define(element.selector, createCustomElement(element.component, { injector, strategyFactory }));
       } catch (e) {
         // console.warn(e);
       }
