@@ -1,1 +1,17 @@
 @import "../shared/styles/host-styles.scss";
+
+:host {
+
+  --wvr-dropdown-menu-width: 400px;
+
+  wvr-dropdown {
+    width: auto;
+    height: auto;
+  }
+  
+}
+
+.wvr-dropdown {
+  width: min-content;
+  font-family: var(--wvr-font-family-sans-serif);
+}
