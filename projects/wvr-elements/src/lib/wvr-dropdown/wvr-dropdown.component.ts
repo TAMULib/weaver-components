@@ -1,7 +1,6 @@
-import { ChangeDetectorRef, Component, HostListener, Input, ViewChild } from '@angular/core';
-import { NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
+import { ChangeDetectorRef, Component, ElementRef, HostListener, Input, ViewChild } from '@angular/core';
+import { NgbDropdown, NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
 import { WvrAbstractBaseComponent } from '../shared/wvr-abstract-base.component';
-// import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'wvr-wvr-dropdown-element',
@@ -16,28 +15,60 @@ export class WvrDropdownComponent extends WvrAbstractBaseComponent {
 
   @Input() toggleOn: 'click' | 'mouseover' = 'click';
 
-  @HostListener('mouseenter', ['$event']) @HostListener('mouseleave', ['$event']) hoverOpen($event): void {
-    if (this.toggleOn === 'mouseover') {
-      this.dropdown.toggle();
-    } else {
-      $event.stopPropagation();
-    }
-  }
+  @Input() animationTime = 250;
 
-  @HostListener('click', ['$event']) clickOpen($event: Event): void {
-    if (this.toggleOn === 'mouseover') {
-      $event.stopPropagation();
-    } else {
-      this.dropdown.toggle();
-    }
-  }
+  open = false;
 
-  constructor(private cdRef: ChangeDetectorRef) {
+  constructor(private cdRef: ChangeDetectorRef, private config: NgbDropdownConfig, private eRef: ElementRef) {
     super();
+    config.autoClose = false;
   }
 
   detectChanges(): void {
     this.cdRef.detectChanges();
+  }
+
+  isOpen(): boolean {
+    return this.dropdown ? this.dropdown.isOpen() : false;
+  }
+
+  @HostListener('mouseenter', ['$event']) hoverOpen($event: Event): void {
+    if (this.toggleOn === 'mouseover') {
+     this.openDropdown();
+    }
+  }
+
+  @HostListener('mouseleave', ['$event']) hoverClose($event: Event): void{
+    if (this.toggleOn === 'mouseover') {
+      this.closeDropdown();
+    }
+  }
+
+  @HostListener('document:click', ['$event']) clickout($event): void {
+    if (!this.eRef.nativeElement.contains(event.target)) {
+      this.closeDropdown();
+    }
+  }
+
+  clickOpen($event: Event): void {
+    $event.stopImmediatePropagation();
+    if (this.toggleOn === 'click') {
+      this.isOpen() ? this.closeDropdown() : this.openDropdown();
+    }
+  }
+
+  private openDropdown(): void {
+    this.open = true;
+    this.cdRef.detectChanges();
+    this.dropdown.open();
+  }
+
+  private closeDropdown(): void {
+    this.open = false;
+    this.cdRef.detectChanges();
+    setTimeout(() => {
+      this.dropdown.close();
+    }, this.animationTime);
   }
 
 }

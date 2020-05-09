@@ -2,16 +2,51 @@
 
 :host {
 
+  --wvr-dropdown-menu-display: flex;
+  --wvr-dropdown-menu-flex-direction: column;
+  --wvr-dropdown-menu-padding: 25px;
   --wvr-dropdown-menu-width: 400px;
+  --wvr-dropdown-menu-margin-top: -1px;
 
-  wvr-dropdown {
-    width: auto;
-    height: auto;
-  }
-  
+  --wvr-dropdown-menu-item-margin: 0 0 10px 0;
 }
 
 .wvr-dropdown {
+  position: relative;
   width: min-content;
-  font-family: var(--wvr-font-family-sans-serif);
+
+  .open {
+    animation: openDD 0.25s ease-in;
+  }
+
+  [ngbDropdownMenu] {
+    margin-top: var(--wvr-dropdown-menu-margin-top);
+  }
+  
+  @keyframes openDD {
+    0% {  visibility:hidden; opacity: 0; }
+    100% { visibility:visible; opacity: 1; }
+  }
+  
+  .closed {
+    animation: closeDD 0.25s ease-out;
+    visibility:hidden;
+  }
+  
+  @keyframes closeDD {
+    0% { opacity: 1; visibility: visible; }
+    100% {  opacity: 0; visibility:hidden; }
+  }
+  ::ng-deep {
+    @import "~bootstrap/scss/bootstrap";
+    wvr-dropdown-menu {
+      display: var(--wvr-dropdown-menu-display);
+      width: var(--wvr-dropdown-menu-width);
+      flex-direction: var(--wvr-dropdown-menu-flex-direction);
+      padding: var(--wvr-dropdown-menu-padding);
+      :not(:last-child) {
+        margin: var(--wvr-dropdown-menu-item-margin);
+      }
+    }
+  }
 }
