@@ -16,7 +16,7 @@
   <wvr-header>
     <wvr-nav-list top-navigation aligned="RIGHT">
       <wvr-nav-li>
-        <wvr-dropdown toggle-on="mouseover" btn-type="plain">
+        <wvr-dropdown toggle-on="mouseover" btn-type="plain" menu-width="400px">
           <wvr-dropdown-btn>
             <wvr-text value="Hours"></wvr-text>
           </wvr-dropdown-btn>
@@ -27,8 +27,15 @@
           </wvr-dropdown-menu>
         </wvr-dropdown>
       </wvr-nav-li>
-      <wvr-nav-li href="#0">
-        <wvr-text value="Link"></wvr-text>
+      <wvr-nav-li>
+        <wvr-dropdown toggle-on="mouseover" btn-type="plain" menu-x-offset="-140px" menu-width="400px">
+          <wvr-dropdown-btn>
+            <wvr-text value="Link"></wvr-text>
+          </wvr-dropdown-btn>
+          <wvr-dropdown-menu>
+            test
+          </wvr-dropdown-menu>
+        </wvr-dropdown>
       </wvr-nav-li>
       <wvr-nav-li>
         <wvr-text value="Action 2"></wvr-text>
@@ -54,9 +61,17 @@
       <wvr-text value="Dropdown"></wvr-text>
     </wvr-dropdown-btn>
     <wvr-dropdown-menu>
-      <wvr-text ddmenu value="While most of our buildings are closed to the public access, we still have robust virtual services." font-weight="bold"></wvr-text>
-      <wvr-text ddmenu value="The OAL Lab in BLCC is open 8am - 7pm. BLCC is offering only virtual services."></wvr-text>
-      <a ddmenu class="btn btn-info" href="https://tamu.libguides.com/c.php?g=1016445"><wvr-text value="View all Virtual Services"></wvr-text></a>
+      <wvr-nav-list vertical="true" aligned="left">
+        <wvr-nav-li>
+          <wvr-text value="Action 1"></wvr-text>
+        </wvr-nav-li>
+        <wvr-nav-li href="#0">
+          <wvr-text value="Link"></wvr-text>
+        </wvr-nav-li>
+        <wvr-nav-li>
+          <wvr-text value="Action 2"></wvr-text>
+        </wvr-nav-li>
+      </wvr-nav-list>
     </wvr-dropdown-menu>
   </wvr-dropdown>
 

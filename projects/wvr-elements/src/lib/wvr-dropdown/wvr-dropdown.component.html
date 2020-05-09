@@ -1,4 +1,4 @@
-<div class="wvr-components wvr-dropdown d-flex align-items-center">
+<div class="wvr-components wvr-dropdown d-inline-flex align-items-center">
   <div ngbDropdown display="dynamic" placement="bottom-right" class="d-inline-block" (openChange)="detectChanges()">
     <div (click)="clickOpen($event)" [ngClass]="{
       'btn-primary': btnType === 'primary', 
@@ -15,7 +15,7 @@
     }" ngDropdownAnchor>
       <ng-content select="wvr-dropdown-btn"></ng-content>
     </div>
-    <div ngbDropdownMenu class="text-center" [ngClass]="{open: open,closed: !open}">
+    <div ngbDropdownMenu [ngClass]="{open: open,closed: !open}">
       <ng-content select="wvr-dropdown-menu"></ng-content>
     </div>
   </div>

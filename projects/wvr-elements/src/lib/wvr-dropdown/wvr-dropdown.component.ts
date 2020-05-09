@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, ElementRef, HostListener, Input, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, HostBinding, HostListener, Input, ViewChild } from '@angular/core';
 import { NgbDropdown, NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
 import { WvrAbstractBaseComponent } from '../shared/wvr-abstract-base.component';
 
@@ -11,11 +11,27 @@ export class WvrDropdownComponent extends WvrAbstractBaseComponent {
 
   @ViewChild(NgbDropdown) private dropdown: NgbDropdown;
 
-  @Input() btnType: 'primary' | 'seconday' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark' | 'link' | 'plain' = 'plain';
+  @Input() btnType: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark' | 'link' | 'plain' = 'plain';
 
   @Input() toggleOn: 'click' | 'mouseover' = 'click';
 
-  @Input() animationTime = 250;
+  @HostBinding('style.--wvr-dropdown-menu-animation-speed') private _animationSpeedSeconds = '.25s';
+  private _animationSpeedMili = 250;
+
+  @Input() set menuAnimationSpeed(speed: number) {
+    this._animationSpeedMili = speed;
+    this._animationSpeedSeconds = `${speed / 1000}s`;
+  }
+
+  @HostBinding('style.--wvr-dropdown-menu-item-margin') @Input() menuItemMargin = '0 0 10px 0';
+
+  @HostBinding('style.--wvr-dropdown-menu-padding') @Input() menuItemPadding = '25px';
+
+  @HostBinding('style.--wvr-dropdown-menu-width') @Input() menuWidth = '200px';
+
+  @HostBinding('style.--wvr-dropdown-menu-x-offset') @Input() menuXOffset = '0px';
+
+  @HostBinding('style.--wvr-dropdown-menu-y-offset') @Input() menuYOffset = '-1px';
 
   open = false;
 
@@ -38,7 +54,7 @@ export class WvrDropdownComponent extends WvrAbstractBaseComponent {
     }
   }
 
-  @HostListener('mouseleave', ['$event']) hoverClose($event: Event): void{
+  @HostListener('mouseleave', ['$event']) hoverClose($event: Event): void {
     if (this.toggleOn === 'mouseover') {
       this.closeDropdown();
     }
@@ -51,7 +67,6 @@ export class WvrDropdownComponent extends WvrAbstractBaseComponent {
   }
 
   clickOpen($event: Event): void {
-    $event.stopImmediatePropagation();
     if (this.toggleOn === 'click') {
       this.isOpen() ? this.closeDropdown() : this.openDropdown();
     }
@@ -68,7 +83,7 @@ export class WvrDropdownComponent extends WvrAbstractBaseComponent {
     this.cdRef.detectChanges();
     setTimeout(() => {
       this.dropdown.close();
-    }, this.animationTime);
+    }, this._animationSpeedMili);
   }
 
 }
