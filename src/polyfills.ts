@@ -1,6 +1,7 @@
 /***************************************************************************************************
  * Load `$localize` onto the global scope - used if i18n tags appear in Angular templates.
  */
+// tslint:disable-next-line:no-import-side-effect
 import '@angular/localize/init';
 /**
  * This file includes polyfills needed by Angular and is loaded before the app.
@@ -65,6 +66,5 @@ import 'zone.js/dist/zone';  // Included with Angular CLI.
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
-
 import 'ie11-custom-properties';
 /* tslint:enable: no-import-side-effect */
