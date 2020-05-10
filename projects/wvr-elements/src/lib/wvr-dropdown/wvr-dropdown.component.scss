@@ -2,22 +2,27 @@
 
 :host {
 
+  
   --wvr-dropdown-menu-animation-speed: 0.25s;
+  --wvr-dropdown-menu-background: var(--wvr-white);
+  --wvr-dropdown-menu-border: 1px solid var(--wvr-gray-dark);
+  --wvr-dropdown-menu-border-radius: 6px;
   --wvr-dropdown-menu-display: flex;
   --wvr-dropdown-menu-flex-direction: column;
-  --wvr-dropdown-menu-item-margin: 0 0 10px 0;
   --wvr-dropdown-menu-padding: 25px;
   --wvr-dropdown-menu-width: 200px;
   --wvr-dropdown-menu-x-offset: 0px;
   --wvr-dropdown-menu-y-offset: -1px;
+  --wvr-dropdown-menu-item-margin: 0 0 10px 0;
+  
 }
 
 .wvr-dropdown {
 
-  position: relative;
-  font-family: var(--wvr-font-family-sans-serif);
-  width: min-content;
   cursor: pointer;
+  font-family: var(--wvr-font-family-sans-serif);
+  position: relative;
+  width: min-content;
 
   [ngDropdownAnchor] {
     position: relative;
@@ -25,14 +30,19 @@
   }
 
   [ngbDropdownMenu] {
-    position: absolute;
-    z-index: 1000;
+    background: var(--wvr-dropdown-menu-background);
+    border: var(--wvr-dropdown-menu-border);
+    border-radius: var(--wvr-dropdown-menu-border-radius);
+    left: var(--wvr-dropdown-menu-x-offset);
     margin-top: var(--wvr-dropdown-menu-y-offset);
-    left: var(--wvr-dropdown-menu-x-offset)
+    padding: var(--wvr-dropdown-menu-padding);
+    position: absolute;
+    width: var(--wvr-dropdown-menu-width);
+    z-index: 1000;
   }
 
   .open {
-    animation: openDD var(--wvr-dropdown-menu-animation-speed) ease-in;
+    animation: openDD var(--wvr-dropdown-menu-animation-speed) ease-in-out;
   }
   
   @keyframes openDD {
@@ -41,7 +51,7 @@
   }
   
   .closed {
-    animation: closeDD var(--wvr-dropdown-menu-animation-speed) ease-out;
+    animation: closeDD var(--wvr-dropdown-menu-animation-speed) ease-in-out;
     visibility:hidden;
   }
   
@@ -54,11 +64,12 @@
     @import "~bootstrap/scss/bootstrap";
     wvr-dropdown-menu {
       display: var(--wvr-dropdown-menu-display);
-      width: var(--wvr-dropdown-menu-width);
       flex-direction: var(--wvr-dropdown-menu-flex-direction);
-      padding: var(--wvr-dropdown-menu-padding);
-      :not(:last-child) {
-        margin: var(--wvr-dropdown-menu-item-margin);
+      height: auto;
+      width: auto;
+      [wvr-dropdown-menu-item],
+      wvr-dropdown-menu-item {
+        margin: var(--wvr-dropdown-menu-item-margin) !important;
       }
     }
   }

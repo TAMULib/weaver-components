@@ -16,24 +16,59 @@
   <wvr-header>
     <wvr-nav-list top-navigation aligned="RIGHT">
       <wvr-nav-li>
-        <wvr-dropdown toggle-on="mouseover" btn-type="plain" menu-width="400px">
+        <wvr-dropdown 
+          toggle-on="click" 
+          btn-type="plain" 
+          menu-width="400px"
+          menu-padding="0"
+          menu-item-margin="0">
           <wvr-dropdown-btn>
-            <wvr-text value="Hours"></wvr-text>
+            <wvr-text value="Dropdown 1"></wvr-text>
           </wvr-dropdown-btn>
           <wvr-dropdown-menu>
-            <wvr-text ddmenu value="While most of our buildings are closed to the public access, we still have robust virtual services." font-weight="bold"></wvr-text>
-            <wvr-text ddmenu value="The OAL Lab in BLCC is open 8am - 7pm. BLCC is offering only virtual services."></wvr-text>
-            <a ddmenu class="btn btn-info align-self-center" href="https://tamu.libguides.com/c.php?g=1016445"><wvr-text value="View all Virtual Services"></wvr-text></a>
+            <div class="list-group">
+              <button type="button" class="list-group-item list-group-item-action active">
+                <wvr-text value="Option One"></wvr-text>
+              </button>
+              <button type="button" class="list-group-item list-group-item-action"><wvr-text value="Option Two"></wvr-text></button>
+              <button type="button" class="list-group-item list-group-item-action"><wvr-text value="Option Three"></wvr-text></button>
+              <button type="button" class="list-group-item list-group-item-action"><wvr-text value="Option Four"></wvr-text></button>
+              <button type="button" class="list-group-item list-group-item-action" disabled><wvr-text value="Option Five" text-decoration="line-through"></wvr-text></button>
+            </div>
           </wvr-dropdown-menu>
         </wvr-dropdown>
       </wvr-nav-li>
       <wvr-nav-li>
-        <wvr-dropdown toggle-on="mouseover" btn-type="plain" menu-x-offset="-140px" menu-width="400px">
+        <wvr-dropdown 
+          toggle-on="mouseover" 
+          btn-type="plain" 
+          menu-animation-speed="350"
+          menu-width="400px"
+          menu-x-offset="-140px"
+          menu-padding="45px 10px 0px 10px"
+          menu-item-margin="5px 0 0 0">
           <wvr-dropdown-btn>
-            <wvr-text value="Link"></wvr-text>
+            <wvr-text value="Dropdown 2"></wvr-text>
           </wvr-dropdown-btn>
           <wvr-dropdown-menu>
-            test
+            <ul class="list-unstyled">
+              <li wvr-dropdown-menu-item>
+                <a href=""><wvr-text value="Link One" text-decoration="underline"></a>
+                <p><wvr-text value="Description for link one"></wvr-text></p>
+              </li>
+              <li wvr-dropdown-menu-item>
+                <a href=""><wvr-text value="Link Two" text-decoration="underline"></a>
+                <p><wvr-text value="Description for link Two"></wvr-text></p>
+              </li>
+              <li wvr-dropdown-menu-item>
+                <a href=""><wvr-text value="Link Three" text-decoration="underline"></a>
+                <p><wvr-text value="Description for link Three"></wvr-text></p>
+              </li>
+              <li wvr-dropdown-menu-item>
+                <a href=""><wvr-text value="Link Four" text-decoration="underline"></a>
+                <p><wvr-text value="Description for link Four"></wvr-text></p>
+              </li>
+            </ul>
           </wvr-dropdown-menu>
         </wvr-dropdown>
       </wvr-nav-li>
@@ -55,26 +90,6 @@
   </wvr-header>
   <br />
   <wvr-it-works></wvr-it-works>
-
-  <wvr-dropdown toggle-on="click" btn-type="plain">
-    <wvr-dropdown-btn>
-      <wvr-text value="Dropdown"></wvr-text>
-    </wvr-dropdown-btn>
-    <wvr-dropdown-menu>
-      <wvr-nav-list vertical="true" aligned="left">
-        <wvr-nav-li>
-          <wvr-text value="Action 1"></wvr-text>
-        </wvr-nav-li>
-        <wvr-nav-li href="#0">
-          <wvr-text value="Link"></wvr-text>
-        </wvr-nav-li>
-        <wvr-nav-li>
-          <wvr-text value="Action 2"></wvr-text>
-        </wvr-nav-li>
-      </wvr-nav-list>
-    </wvr-dropdown-menu>
-  </wvr-dropdown>
-
 
   <wvr-footer>
     <wvr-nav-list aligned="CENTER">
