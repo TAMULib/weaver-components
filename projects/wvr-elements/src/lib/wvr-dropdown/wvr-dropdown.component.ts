@@ -31,44 +31,44 @@ export class WvrDropdownComponent extends WvrAbstractBaseComponent {
   }
 
   /** Binds the input from `menuBackground` to the css variable `--wvr-dropdown-menu-background` */
-  @HostBinding('style.--wvr-dropdown-menu-background') @Input() menuBackground = 'var(--wvr-white)';
+  @HostBinding('style.--wvr-dropdown-menu-background') @Input() menuBackground;
 
   /** Binds the input from `menu-border` to the css variable `--wvr-dropdown-menu-border` */
-  @HostBinding('style.--wvr-dropdown-menu-border') @Input() menuBorder = '1px solid var(--wvr-gray-dark)';
+  @HostBinding('style.--wvr-dropdown-menu-border') @Input() menuBorder;
 
   /** Binds the input from `menu-border-radius` to the css variable `--wvr-dropdown-menu-border-radius` */
-  @HostBinding('style.--wvr-dropdown-menu-border-radius') @Input() menuBorderRadius = '6px';
+  @HostBinding('style.--wvr-dropdown-menu-border-radius') @Input() menuBorderRadius;
 
   /** Binds the input from `menu-border-display` to the css variable `--wvr-dropdown-menu-display` */
-  @HostBinding('style.--wvr-dropdown-menu-display') @Input() menuBorderDisplay = 'flex';
+  @HostBinding('style.--wvr-dropdown-menu-display') @Input() menuBorderDisplay;
 
   /** Binds the input from `menu-border-flexDirection` to the css variable `--wvr-dropdown-menu-flex-direction` */
-  @HostBinding('style.--wvr-dropdown-menu-flex-direction') @Input() menuFlexDirection = 'column';
+  @HostBinding('style.--wvr-dropdown-menu-flex-direction') @Input() menuFlexDirection;
 
   /** Binds the input from `menu-padding` to the css variable `--wvr-dropdown-menu-padding` */
-  @HostBinding('style.--wvr-dropdown-menu-padding') @Input() menuPadding = '25px';
+  @HostBinding('style.--wvr-dropdown-menu-padding') @Input() menuPadding;
 
   /** Binds the input from `menu-width` to the css variable `--wvr-dropdown-menu-width` */
-  @HostBinding('style.--wvr-dropdown-menu-width') @Input() menuWidth = '200px';
+  @HostBinding('style.--wvr-dropdown-menu-width') @Input() menuWidth;
 
   /**
    * Binds the input from `menu-x-offset` to the css variable `--wvr-dropdown-x-offset`.
    * This css variable is applied by `left` css rule to the menu.
    */
-  @HostBinding('style.--wvr-dropdown-menu-x-offset') @Input() menuXOffset = '0px';
+  @HostBinding('style.--wvr-dropdown-menu-x-offset') @Input() menuXOffset;
 
   /**
    * Binds the input from `menu-y-offset` to the css variable `--wvr-dropdown-y-offset`.
    * This css variable is applied by `margin-top` css rule to the menu.
    */
-  @HostBinding('style.--wvr-dropdown-menu-y-offset') @Input() menuYOffset = '-1px';
+  @HostBinding('style.--wvr-dropdown-menu-y-offset') @Input() menuYOffset;
 
   /**
    * Binds the input from `item-margin` to the css variable `--wvr-dropdown-item-margin`.
    * This css variable is applied by both the `[wvr-dropdown-menu-item]` and the `wvr-dropdown-menu-item`
    * css rules to each item passed to the the dropdown menu.
    */
-  @HostBinding('style.--wvr-dropdown-menu-item-margin') @Input() menuItemMargin = '0 0 10px 0';
+  @HostBinding('style.--wvr-dropdown-menu-item-margin') @Input() menuItemMargin;
 
   /**
    * A public access reference to the open/closed state of the dropdown menu. Used for
@@ -79,11 +79,6 @@ export class WvrDropdownComponent extends WvrAbstractBaseComponent {
   constructor(private cdRef: ChangeDetectorRef, private config: NgbDropdownConfig, private eRef: ElementRef) {
     super();
     config.autoClose = false;
-  }
-
-  /** A utility method for manually detecting state changes */
-  detectChanges(): void {
-    this.cdRef.detectChanges();
   }
 
   /** An access method to expose the `isOpen` utility method from `NgbDropdown` */
