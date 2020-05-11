@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="en">
 
 <head>
   <title>Weaver Comonents</title>
@@ -16,72 +16,85 @@
   <wvr-header>
     <wvr-nav-list top-navigation aligned="RIGHT">
       <wvr-nav-li>
-        <wvr-dropdown 
-          toggle-on="click" 
-          btn-type="plain" 
-          menu-width="400px"
-          menu-padding="0"
-          menu-item-margin="0">
+        <wvr-dropdown toggle-on="click" btn-type="plain" menu-width="400px" menu-padding="0" menu-item-margin="0">
           <wvr-dropdown-btn>
-            <wvr-text value="Dropdown 1"></wvr-text>
+            <wvr-text value="Dropdown 1" text-color="white"></wvr-text>
           </wvr-dropdown-btn>
           <wvr-dropdown-menu>
             <div class="list-group">
               <button type="button" class="list-group-item list-group-item-action active">
                 <wvr-text value="Option One"></wvr-text>
               </button>
-              <button type="button" class="list-group-item list-group-item-action"><wvr-text value="Option Two"></wvr-text></button>
-              <button type="button" class="list-group-item list-group-item-action"><wvr-text value="Option Three"></wvr-text></button>
-              <button type="button" class="list-group-item list-group-item-action"><wvr-text value="Option Four"></wvr-text></button>
-              <button type="button" class="list-group-item list-group-item-action" disabled><wvr-text value="Option Five" text-decoration="line-through"></wvr-text></button>
+              <button type="button" class="list-group-item list-group-item-action">
+                <wvr-text value="Option Two"></wvr-text>
+              </button>
+              <button type="button" class="list-group-item list-group-item-action">
+                <wvr-text value="Option Three"></wvr-text>
+              </button>
+              <button type="button" class="list-group-item list-group-item-action">
+                <wvr-text value="Option Four"></wvr-text>
+              </button>
+              <button type="button" class="list-group-item list-group-item-action" disabled>
+                <wvr-text value="Option Five" text-decoration="line-through"></wvr-text>
+              </button>
             </div>
           </wvr-dropdown-menu>
         </wvr-dropdown>
       </wvr-nav-li>
       <wvr-nav-li>
-        <wvr-dropdown 
-          toggle-on="mouseover" 
-          btn-type="plain" 
-          menu-animation-speed="350"
-          menu-width="400px"
-          menu-x-offset="-140px"
-          menu-padding="45px 10px 0px 10px"
-          menu-item-margin="5px 0 0 0">
+        <wvr-dropdown toggle-on="mouseover" btn-type="plain" menu-animation-speed="350" menu-width="400px"
+          menu-x-offset="-140px" menu-padding="45px 10px 0px 10px" menu-item-margin="5px 0 0 0">
           <wvr-dropdown-btn>
-            <wvr-text value="Dropdown 2"></wvr-text>
+            <wvr-text value="Dropdown 2" text-color="white"></wvr-text>
           </wvr-dropdown-btn>
           <wvr-dropdown-menu>
             <ul class="list-unstyled">
               <li wvr-dropdown-menu-item>
-                <a href=""><wvr-text value="Link One" text-decoration="underline"></a>
-                <p><wvr-text value="Description for link one"></wvr-text></p>
+                <a href="#linkOne" id="linkOne">
+                  <wvr-text value="Link One" text-decoration="underline">
+                </a>
+                <p>
+                  <wvr-text value="Description for link one"></wvr-text>
+                </p>
               </li>
               <li wvr-dropdown-menu-item>
-                <a href=""><wvr-text value="Link Two" text-decoration="underline"></a>
-                <p><wvr-text value="Description for link Two"></wvr-text></p>
+                <a href="#linkTwo" id="linkTwo">
+                  <wvr-text value="Link Two" text-decoration="underline">
+                </a>
+                <p>
+                  <wvr-text value="Description for link Two"></wvr-text>
+                </p>
               </li>
               <li wvr-dropdown-menu-item>
-                <a href=""><wvr-text value="Link Three" text-decoration="underline"></a>
-                <p><wvr-text value="Description for link Three"></wvr-text></p>
+                <a href="#linkThree" id="linkThree">
+                  <wvr-text value="Link Three" text-decoration="underline">
+                </a>
+                <p>
+                  <wvr-text value="Description for link Three"></wvr-text>
+                </p>
               </li>
               <li wvr-dropdown-menu-item>
-                <a href=""><wvr-text value="Link Four" text-decoration="underline"></a>
-                <p><wvr-text value="Description for link Four"></wvr-text></p>
+                <a href="#linkFour" id="linkFour">
+                  <wvr-text value="Link Four" text-decoration="underline">
+                </a>
+                <p>
+                  <wvr-text value="Description for link Four"></wvr-text>
+                </p>
               </li>
             </ul>
           </wvr-dropdown-menu>
         </wvr-dropdown>
       </wvr-nav-li>
       <wvr-nav-li>
-        <wvr-text value="Action 2"></wvr-text>
+        <wvr-text value="Action 2" text-color="white"></wvr-text>
       </wvr-nav-li>
     </wvr-nav-list>
     <wvr-nav-list bottom-navigation>
-      <wvr-nav-li href="#1">
-        <wvr-text value="Link 1"></wvr-text>
+      <wvr-nav-li href="#1" id="1">
+        <wvr-text value="Example 1" text-color="black"></wvr-text>
       </wvr-nav-li>
-      <wvr-nav-li href="#2">
-        <wvr-text value="Link 2"></wvr-text>
+      <wvr-nav-li href="#2" id="2">
+        <wvr-text value="Example 2" text-color="black"></wvr-text>
       </wvr-nav-li>
       <wvr-nav-li>
         <wvr-text value="Action 3"></wvr-text>
@@ -96,8 +109,8 @@
       <wvr-nav-li>
         <wvr-text value="Action 1"></wvr-text>
       </wvr-nav-li>
-      <wvr-nav-li href="#0">
-        <wvr-text value="Link"></wvr-text>
+      <wvr-nav-li href="#3" id="3">
+        <wvr-text value="Example" text-color="black"></wvr-text>
       </wvr-nav-li>
       <wvr-nav-li>
         <wvr-text value="Action 2"></wvr-text>
