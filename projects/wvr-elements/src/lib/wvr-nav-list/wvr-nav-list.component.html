@@ -1,3 +1,5 @@
-<ul class="navbar-nav" [ngClass]="{ 'flex-row': vertical==='false', 'justify-content-end': aligned === 'RIGHT', 'justify-content-center': aligned === 'CENTER' }">
+<ul class="navbar-nav"
+  [ngClass]="{ 'flex-row': vertical==='false', 'justify-content-end': aligned === 'RIGHT', 'justify-content-center': aligned === 'CENTER' }"
+  role="list">
   <ng-content select="wvr-nav-li,wvr-nav-li-element,[wvr-nav-items]"></ng-content>
 </ul>
