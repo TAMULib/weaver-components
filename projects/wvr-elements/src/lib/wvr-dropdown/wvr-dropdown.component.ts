@@ -19,7 +19,7 @@ export class WvrDropdownComponent extends WvrAbstractBaseComponent {
   @Input() toggleOn: 'click' | 'mouseover' = 'click';
 
   /** Binds the value of the animationspeed in seconds to the css variable `--wvr-dropdown-menu-animation-speed` */
-  @HostBinding('style.--wvr-dropdown-menu-animation-speed') private _animationSpeedSeconds = '.25s';
+  @HostBinding('style.--wvr-dropdown-menu-animation-speed') private _animationSpeedSeconds;
 
   /** A private reference to the animation speen in miliseconds for internal use */
   private _animationSpeedMili = 250;
