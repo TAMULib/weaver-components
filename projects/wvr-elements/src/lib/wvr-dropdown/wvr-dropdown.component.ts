@@ -81,6 +81,11 @@ export class WvrDropdownComponent extends WvrAbstractBaseComponent {
     config.autoClose = false;
   }
 
+  /** A utility method for manually detecting state changes */
+  detectChanges(): void {
+    this.cdRef.detectChanges();
+  }
+
   /** An access method to expose the `isOpen` utility method from `NgbDropdown` */
   isOpen(): boolean {
     return this.dropdown ? this.dropdown.isOpen() : false;
