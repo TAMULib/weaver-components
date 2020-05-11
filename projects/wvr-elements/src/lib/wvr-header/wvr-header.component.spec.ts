@@ -24,12 +24,12 @@ describe('WvrHeaderComponent', () => {
       .toBeTruthy();
   });
 
-  it("should have as logoText 'Weaver Components'", () => {
+  it('should have as logoText "Weaver Components"', () => {
     expect(component.logoText)
       .toEqual('Weaver Components');
   });
 
-  it("should have as headerTitle 'Weaver Header Component'", () => {
+  it('should have as headerTitle "Weaver Header Component"', () => {
     expect(component.headerTitle)
       .toEqual('Weaver Header Component');
   });
@@ -39,30 +39,33 @@ describe('WvrHeaderComponent', () => {
       .toBeDefined();
   });
 
-  it("should have as logoHref '#logo'", () => {
+  it('should have as logoHref "#logo"', () => {
     expect(component.logoHref)
       .toEqual('#logo');
   });
 
-  it("should have displayBottomNav as undefined ", () => {
-    expect(component.displayBottomNav).toEqual(undefined);
+  it('should have displayBottomNav as undefined', () => {
+    expect(component.displayBottomNav)
+      .toEqual(undefined);
   });
 
-  it(" should have bottom navigation toggle display", () => {
+  it('should have bottom navigation toggle display', () => {
     const bottomNavElement = fixture.nativeElement.querySelector('.bottom-nav') as HTMLElement;
 
-    bottomNavElement.appendChild
     component.displayBottomNav = 'true';
     fixture.detectChanges();
-    expect(bottomNavElement.hasAttribute('hidden')).toEqual(false);
+    expect(bottomNavElement.hasAttribute('hidden'))
+      .toEqual(false);
 
     component.displayBottomNav = 'false';
     fixture.detectChanges();
-    expect(bottomNavElement.hasAttribute('hidden')).toEqual(true);
+    expect(bottomNavElement.hasAttribute('hidden'))
+      .toEqual(true);
 
     component.displayBottomNav = undefined;
     fixture.detectChanges();
-    expect(bottomNavElement.hasAttribute('hidden')).toEqual(true);
+    expect(bottomNavElement.hasAttribute('hidden'))
+      .toEqual(true);
 
     // creating mock childres
     const wvrNavList = document.createElement('wvr-nav-list');
@@ -72,13 +75,15 @@ describe('WvrHeaderComponent', () => {
     wvrNavList.appendChild(wvrNavLi);
     bottomNavElement.appendChild(wvrNavList);
     fixture.detectChanges();
-    expect(bottomNavElement.hasAttribute('hidden')).toEqual(false);
+    expect(bottomNavElement.hasAttribute('hidden'))
+      .toEqual(false);
 
     // removing/replacing the children
     const wvrNavLiElement = document.createElement('wvr-nav-li-element');
     wvrNavList.replaceChild(wvrNavLiElement, wvrNavLi);
     fixture.detectChanges();
-    expect(bottomNavElement.hasAttribute('hidden')).toEqual(false);
+    expect(bottomNavElement.hasAttribute('hidden'))
+      .toEqual(false);
 
   });
 

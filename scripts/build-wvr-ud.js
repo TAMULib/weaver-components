@@ -63,7 +63,7 @@ examples.forEach(e=>{
   let componentScssElement = document.createElement('component-scss');
   componentScssElement.innerHTML = stylesSource;
   document.querySelectorAll('example').forEach(ex=>{
-    ex.appendChild(componentSourceElement.cloneNode());
+    ex.appendChild(componentSourceElement.cloneNode(true));
     ex.appendChild(componentScssElement.cloneNode(true));
   });
   fs.writeFileSync(`${exaplestDest}/${exampleName}`, document.body.innerHTML);

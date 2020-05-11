@@ -1,0 +1,140 @@
+<example name="Weaver Dropdown Default">
+  <desciption>
+    The default <code>wvr-dropdown</code> component with no customizations.
+  </desciption>
+  <snippet>
+    <wvr-dropdown>
+      <wvr-dropdown-btn>
+        <wvr-text value="Dropdown"></wvr-text>
+      </wvr-dropdown-btn>
+      <wvr-dropdown-menu>
+        <wvr-text value="Dropdown Menu Content"></wvr-text>
+      </wvr-dropdown-menu>
+    </wvr-dropdown>
+  </snippet>
+</example>
+
+<example name="Weaver Dropdown Custom">
+  <desciption>
+    The <code>wvr-dropdown</code> component with customizations.
+  </desciption>
+  <snippet>
+    <wvr-dropdown 
+      btn-type="plain"
+      toggle-on="click"
+      menu-animation-speed="250"
+      menu-background="var(--wvr-white)"
+      menu-border="1px solid var(--wvr-gray-dark)"
+      menu-border-radius="6x"
+      menu-display="flex"
+      menu-flex-direction="column"
+      menu-padding="25px"
+      menu-width="200px"
+      menu-x-offset="0px"
+      menu-y-offset="-1px"
+      menu-item-margin="0 0 10px 0">
+      <wvr-dropdown-btn>
+        <wvr-text value="Dropdown"></wvr-text>
+      </wvr-dropdown-btn>
+      <wvr-dropdown-menu>
+        <h1><wvr-text value="HTML Content"></wvr-text></h1>
+      </wvr-dropdown-menu>
+    </wvr-dropdown>
+  </snippet>
+</example>
+
+<example name="Weaver Dropdown Button Styles">
+  <desciption>
+    The <code>wvr-dropdown</code> component with customizations.
+  </desciption>
+  <snippet>
+    
+    <style>
+      wvr-dropdown {
+        box-sizing: border-box;
+        margin: 0 5px;
+      }
+    </style>
+
+    <wvr-dropdown btn-type="primary" menu-y-offset="1px">
+      <wvr-dropdown-btn>
+        <wvr-text value="Primary"></wvr-text>
+      </wvr-dropdown-btn>
+      <wvr-dropdown-menu>
+        <h1><wvr-text value="HTML Content"></wvr-text></h1>
+      </wvr-dropdown-menu>
+    </wvr-dropdown>
+
+    <wvr-dropdown btn-type="secondary" menu-y-offset="1px">
+      <wvr-dropdown-btn>
+        <wvr-text value="Secondary"></wvr-text>
+      </wvr-dropdown-btn>
+      <wvr-dropdown-menu>
+        <h1><wvr-text value="HTML Content"></wvr-text></h1>
+      </wvr-dropdown-menu>
+    </wvr-dropdown>
+
+    <wvr-dropdown btn-type="success" menu-y-offset="1px">
+      <wvr-dropdown-btn>
+        <wvr-text value="Success"></wvr-text>
+      </wvr-dropdown-btn>
+      <wvr-dropdown-menu>
+        <h1><wvr-text value="HTML Content"></wvr-text></h1>
+      </wvr-dropdown-menu>
+    </wvr-dropdown>
+
+    <wvr-dropdown btn-type="info" menu-y-offset="1px">
+      <wvr-dropdown-btn>
+        <wvr-text value="Info"></wvr-text>
+      </wvr-dropdown-btn>
+      <wvr-dropdown-menu>
+        <h1><wvr-text value="HTML Content"></wvr-text></h1>
+      </wvr-dropdown-menu>
+    </wvr-dropdown>
+
+    <wvr-dropdown btn-type="warning" menu-y-offset="1px">
+      <wvr-dropdown-btn>
+        <wvr-text value="Warning"></wvr-text>
+      </wvr-dropdown-btn>
+      <wvr-dropdown-menu>
+        <h1><wvr-text value="HTML Content"></wvr-text></h1>
+      </wvr-dropdown-menu>
+    </wvr-dropdown>
+
+    <wvr-dropdown btn-type="danger" menu-y-offset="1px">
+      <wvr-dropdown-btn>
+        <wvr-text value="Danger"></wvr-text>
+      </wvr-dropdown-btn>
+      <wvr-dropdown-menu>
+        <h1><wvr-text value="HTML Content"></wvr-text></h1>
+      </wvr-dropdown-menu>
+    </wvr-dropdown>
+
+    <wvr-dropdown btn-type="light" menu-y-offset="1px">
+      <wvr-dropdown-btn>
+        <wvr-text value="Light"></wvr-text>
+      </wvr-dropdown-btn>
+      <wvr-dropdown-menu>
+        <h1><wvr-text value="HTML Content"></wvr-text></h1>
+      </wvr-dropdown-menu>
+    </wvr-dropdown>
+
+    <wvr-dropdown btn-type="dark" menu-y-offset="1px">
+      <wvr-dropdown-btn>
+        <wvr-text value="Dark"></wvr-text>
+      </wvr-dropdown-btn>
+      <wvr-dropdown-menu>
+        <h1><wvr-text value="HTML Content"></wvr-text></h1>
+      </wvr-dropdown-menu>
+    </wvr-dropdown>
+
+    <wvr-dropdown btn-type="link" menu-y-offset="1px">
+      <wvr-dropdown-btn>
+        <wvr-text value="Link"></wvr-text>
+      </wvr-dropdown-btn>
+      <wvr-dropdown-menu>
+        <h1><wvr-text value="HTML Content"></wvr-text></h1>
+      </wvr-dropdown-menu>
+    </wvr-dropdown>
+  </snippet>
+</example>

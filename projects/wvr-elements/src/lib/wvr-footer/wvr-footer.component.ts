@@ -14,7 +14,7 @@ export class WvrFooterComponent implements OnInit {
   /** An internal reference to the body element. */
   private parentElement: HTMLElement;
 
-  @Input() parentElementName = "body";
+  @Input() parentElementName = 'body';
 
   /** An internal reference to the footer element. */
   private footerElement: HTMLElement;

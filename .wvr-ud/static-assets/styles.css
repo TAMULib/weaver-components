@@ -109,7 +109,6 @@ main {
 }
 
 main #preview {
-  overflow-y: auto;
   filter: blur(0rem);
   transition: .25s filter ease-in-out;
 }
