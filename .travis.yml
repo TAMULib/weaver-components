@@ -1,16 +1,25 @@
 language: node_js
 
+addons:
+  chrome: stable
+
 node_js:
   - "10"
 
 services:
   - xvfb
 
+before_install:
+  - npm install -g @lhci/cli@0.3.x # install LHCI
+
 install:
   - npm install
 script:
+  - npm run build
+  - npm run test
   - npm run test:ci
 after_success:
+  - lhci autorun --upload.target=temporary-public-storage
   - npm run test:report
   - npm run build:docs-production
 
@@ -26,16 +35,3 @@ deploy:
   keep_history: true
   on:
     branch: sprint5-staging
-
-
-# dist: xenial (the default) or newer required
-language: node_js # Node 10 LTS or later required
-addons:
-  chrome: stable # make Chrome available
-before_install:
-  - npm install -g @lhci/cli@0.3.x # install LHCI
-script:
-  - npm run build # build your site
-  - npm test # run your normal tests
-after_success:
-  - lhci autorun --upload.target=temporary-public-storage # run lighthouse CI against your static site
