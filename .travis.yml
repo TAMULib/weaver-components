@@ -25,4 +25,17 @@ deploy:
   github_token: $GITHUB_TOKEN
   keep_history: true
   on:
-    branch: master
+    branch: sprint5-staging
+
+
+# dist: xenial (the default) or newer required
+language: node_js # Node 10 LTS or later required
+addons:
+  chrome: stable # make Chrome available
+before_install:
+  - npm install -g @lhci/cli@0.3.x # install LHCI
+script:
+  - npm run build # build your site
+  - npm test # run your normal tests
+after_success:
+  - lhci autorun --upload.target=temporary-public-storage # run lighthouse CI against your static site
