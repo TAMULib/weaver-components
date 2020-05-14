@@ -106,5 +106,13 @@
     "tslint": "~6.0.0",
     "tslint-angular": "^3.0.2",
     "typescript": "3.6.4"
+  },
+  "lighthouse": {
+    "requiredScores": {
+      "performance": 95,
+      "accessibility": 90,
+      "best-practices": 80,
+      "seo": 90
+    }
   }
 }

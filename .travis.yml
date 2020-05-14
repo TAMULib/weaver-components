@@ -30,7 +30,6 @@ notifications:
       - https://coveralls.io/webhook
 
 deploy:
-  token: $LHCI_GITHUB_APP_TOKEN
   provider: pages
   skip_cleanup: true
   github_token: $GITHUB_TOKEN
