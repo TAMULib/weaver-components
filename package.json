@@ -29,6 +29,7 @@
     "test:coverage": "ng test --no-watch --code-coverage",
     "test:report": "cat ./coverage/wvr-elements/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "test:ci": "npm run build && npm run test:coverage",
+    "test:lighthouse": "lhci autorun --upload.target=temporary-public-storage",
     "storybook": "start-storybook -p 6006 -s ./dist",
     "docs:clean": "rimraf docs",
     "docs:serve": "static-server docs -p 9081",
@@ -104,6 +105,6 @@
     "tsickle": "^0.38.0",
     "tslint": "~6.0.0",
     "tslint-angular": "^3.0.2",
-    "typescript": "^3.7.5"
+    "typescript": "3.6.4"
   }
 }
