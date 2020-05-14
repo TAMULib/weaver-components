@@ -1,6 +1,7 @@
 @import "~bootstrap/scss/bootstrap";
 
 :host {
+    --wvr-black: #{$black};  
     --wvr-blue: #{$blue};
     --wvr-indigo: #{$indigo};
     --wvr-purple: #{$purple};

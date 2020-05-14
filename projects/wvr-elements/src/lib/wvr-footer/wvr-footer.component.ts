@@ -14,6 +14,8 @@ export class WvrFooterComponent implements OnInit {
   /** An internal reference to the body element. */
   private parentElement: HTMLElement;
 
+  @Input() parentElementName = 'body';
+
   /** An internal reference to the footer element. */
   private footerElement: HTMLElement;
 
@@ -56,7 +58,7 @@ export class WvrFooterComponent implements OnInit {
    */
   ngOnInit(): void {
     // this.parentElement = (this.elementRef.nativeElement as HTMLElement).parentElement;
-    this.parentElement = document.querySelector('body');
+    this.parentElement = document.querySelector(this.parentElementName);
     this.footerElement = (this.elementRef.nativeElement as HTMLElement).querySelector('footer.wvr-footer');
     const rs = new ResizeSensor(this.parentElement, () => {
       this.positionSelf();
