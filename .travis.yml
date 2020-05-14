@@ -1,7 +1,7 @@
 language: node_js
 
-# addons:
-#   chrome: stable
+addons:
+  chrome: stable
 
 node_js:
   - "10"
@@ -9,14 +9,14 @@ node_js:
 services:
   - xvfb
 
-# before_install:
-#   - npm install -g @lhci/cli@0.3.x # install LHCI
+before_install:
+  - npm install -g @lhci/cli@0.3.x # install LHCI
 
 install:
   - npm install
 
 script:
-  # - lhci autorun
+  - lhci autorun --upload.target=temporary-public-storage || echo "LHCI failed";
   - npm run test:ci
 
 after_success:
