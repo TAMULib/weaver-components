@@ -1,5 +1,5 @@
 {
-  "output": "docs/usage",
+  "output": "static/docs/usage",
   "basePath": "usage/",
   "includes": [
     "projects/wvr-elements/src/lib/**/*"
