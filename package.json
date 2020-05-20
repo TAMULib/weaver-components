@@ -15,6 +15,8 @@
     "build:clean": "npm run clean && npm run build",
     "build:wvr-elements": "ng build wvr-elements",
     "build:wvr-components": "node scripts/build-wvr-components.js",
+    "build:wvr-components-static": "node scripts/build-wvr-components-static.js",
+    "build:lighthouse": "node scripts/build-lighthouse.js",
     "clean": "rimraf dist",
     "lint": "ng lint",
     "ng": "ng",
@@ -29,7 +31,6 @@
     "test:coverage": "ng test --no-watch --code-coverage",
     "test:report": "cat ./coverage/wvr-elements/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "test:ci": "npm run build && npm run test:coverage",
-    "test:lighthouse": "lhci autorun --upload.target=temporary-public-storage",
     "storybook": "start-storybook -p 6006 -s ./dist",
     "docs:clean": "rimraf docs",
     "docs:serve": "static-server docs -p 9081",
@@ -37,7 +38,14 @@
     "build:docs-setup": "node scripts/build-wvr-components-docs.js",
     "build:docs-usage": "node scripts/build-wvr-ud.js",
     "build:docs-development": "compodoc -d docs/development -p ./projects/wvr-elements/tsconfig.docs.json",
-    "build:docs-production": "npm run build:docs && ls -A | grep -v docs | xargs rimraf && mv docs/* . && rimraf docs"
+    "build:docs-production": "npm run build:docs && ls -A | grep -v docs | xargs rimraf && mv docs/* . && rimraf docs",
+    "static:clean": "rimraf static",
+    "static:serve": "static-server static -p 9085",
+    "build:static": "npm run build:static-setup && npm run build:static-docs && npm run build:static-report",
+    "build:static-setup": "npm run build && node scripts/build-wvr-components-static.js",
+    "build:static-docs": "npm run build:docs-setup && npm run build:docs-usage && compodoc -d static/docs/development -p ./projects/wvr-elements/tsconfig.docs.json",
+    "build:static-report": "npm run build:report-lighthouse && npm run test:coverage",
+    "build:report-lighthouse": "node scripts/build-wvr-components-lighthouse.js"
   },
   "dependencies": {
     "@angular/animations": "^9.0.1",
@@ -106,13 +114,5 @@
     "tslint": "~6.0.0",
     "tslint-angular": "^3.0.2",
     "typescript": "3.6.4"
-  },
-  "lighthouse": {
-    "requiredScores": {
-      "performance": 95,
-      "accessibility": 90,
-      "best-practices": 80,
-      "seo": 90
-    }
   }
 }

@@ -24,8 +24,8 @@ const latestPath = `${basePath}/latest`;
   await concat(files, `${dirPath}/weaver-components.js`);
 
   fs.copy(`${dirPath}/weaver-components.js`, `${latestPath}/weaver-components.js`);
-  fs.copy(`${dirPath}/weaver-components.js`, "dist/docs/usage/weaver-components.js");
-  fs.copy('dist/weaver-components/assets', "dist/docs/usage/assets");
+  fs.copy(`${dirPath}/weaver-components.js`, "dist/static/docs/usage/weaver-components.js");
+  fs.copy('dist/weaver-components/assets', "dist/static/docs/usage/assets");
 
   // to ensure static assets present in latest and <latest>x folders
   fs.ensureDir(assetPath);
