@@ -9,20 +9,16 @@ node_js:
 services:
   - xvfb
 
-before_install:
-  - npm install -g @lhci/cli@0.3.x # install LHCI
-
 install:
   - npm install
 
 script:
   - npm run build
-  - lhci autorun --upload.target=temporary-public-storage || echo "LHCI failed";
   - npm run test:ci
 
 after_success:
   - npm run test:report
-  - npm run build:docs-production
+  - npm run build:static-production
 
 notifications:
   webhooks:
