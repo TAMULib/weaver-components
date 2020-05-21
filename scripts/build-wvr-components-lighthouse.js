@@ -4,8 +4,9 @@ const chromeLauncher = require('chrome-launcher');
 const lighthouse = require('lighthouse');
 const spawn = require('child_process').spawn;
 
-const basePath = 'static/report';
+const basePath = 'static/reports';
 const lighthousePath = `${basePath}/audit`;
+const lighthouseAssetsPath = `${lighthousePath}/assets`;
 
 const url = "http://localhost:8080";
 const opts = {
@@ -53,10 +54,11 @@ const createScoreList = results => {
 }
 
 const createReport = results => {
-  fs.writeFileSync(`./${lighthousePath}/report.html`, results.report );
+  fs.writeFileSync(`./${lighthousePath}/index.html`, results.report );
 }
 
 const createBadges = resultList => {
+  fs.ensureDirSync(lighthouseAssetsPath);
   resultList.forEach(r => {
     const badgeColor = (r.score >= 0 && r.score <= 49) ? 'red' :
       (r.score >= 50 && r.score <= 89) ? 'important' :
@@ -67,7 +69,7 @@ const createBadges = resultList => {
         data += chunk;
       });
       resp.on('end', () => {
-        fs.writeFileSync(`./${lighthousePath}/${r.id}.svg`, data );
+        fs.writeFileSync(`./${lighthouseAssetsPath}/${r.id}.svg`, data );
       });
     }).on("error", (err) => {
       console.log("Error: " + err.message);

@@ -16,7 +16,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 [Documentation](https://tamulib.github.io/weaver-components/docs).
 
-[Report](https://tamulib.github.io/weaver-components/report).
+[Reports](https://tamulib.github.io/weaver-components/reports).
 
 ## Development server
 
