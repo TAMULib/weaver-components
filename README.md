@@ -2,13 +2,12 @@
 [![Coverage Status](https://coveralls.io/repos/github/TAMULib/weaver-components/badge.svg?branch=master)](https://coveralls.io/github/TAMULib/weaver-components?branch=master) [![Compodoc Coverage](https://tamulib.github.io/weaver-components/development/images/coverage-badge-documentation.svg)](https://tamulib.github.io/weaver-components/development/coverage.html)
 
 # Lighthouse Badges
-<p>
-<img src="/reports/audit/assets/accessibility.svg" alt="Accessibility" style="max-width:100%;">
-<img src="/reports/audit/assets/best-practices.svg" alt="Best Practices" style="max-width:100%;">
-<img src="/reports/audit/assets/performance.svg" alt="Performance" style="max-width:100%;">
-<img src="/reports/audit/assets/pwa.svg" alt="PWA" style="max-width:100%;">
-<img src="/reports/audit/assets/seo.svg" alt="SEO" style="max-width:100%;">
-</p>
+
+[![Performance](https://tamulib.github.io/weaver-components/reports/audit/assets/performance.svg)](https://tamulib.github.io/weaver-components/reports/audit/#performance)
+[![Accessibility](https://tamulib.github.io/weaver-components/reports/audit/assets/accessibility.svg)](https://tamulib.github.io/weaver-components/reports/audit/#accessibility)
+[![Best Practices](https://tamulib.github.io/weaver-components/reports/audit/assets/best-practices.svg)](https://tamulib.github.io/weaver-components/reports/audit/#best-practices)
+[![SEO](https://tamulib.github.io/weaver-components/reports/audit/assets/seo.svg)](https://tamulib.github.io/weaver-components/reports/audit/#seo)
+[![Progressive Web App](https://tamulib.github.io/weaver-components/reports/audit/assets/pwa.svg)](https://tamulib.github.io/weaver-components/reports/audit/#pwa)
 
 # WeaverComponents
 
