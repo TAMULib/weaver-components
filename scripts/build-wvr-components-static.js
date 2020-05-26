@@ -9,4 +9,5 @@ const reportPath = 'static/reports';
   fs.copy("index-docs.html", `${docPath}/index.html`);
   fs.copy("index-reports.html", `${reportPath}/index.html`);
   fs.copy("src/assets", `${docPath}/assets`);
+
 })();
