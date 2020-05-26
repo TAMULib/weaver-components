@@ -2,11 +2,11 @@
 [![Coverage Status](https://coveralls.io/repos/github/TAMULib/weaver-components/badge.svg?branch=master)](https://coveralls.io/github/TAMULib/weaver-components?branch=master) [![Compodoc Coverage](https://tamulib.github.io/weaver-components/development/images/coverage-badge-documentation.svg)](https://tamulib.github.io/weaver-components/development/coverage.html)
 [![Lighthouse Report](dist/bundle/latest/assets/lighthouse.svg)](https://tamulib.github.io/weaver-components/lighthouse)
 <p>
-<img src="static/assets/accessibility.svg" alt="Accessibility" style="max-width:100%;">
-<img src="static/assets/practices.svg" alt="Best Practices" style="max-width:100%;">
-<img src="static/assets/performance.svg" alt="Performance" style="max-width:100%;">
-<img src="static/assets/pwa.svg" alt="PWA" style="max-width:100%;">
-<img src="static/assets/seo.svg" alt="SEO" style="max-width:100%;">
+<img src="dist/bundle/latest/assets/accessibility.svg" alt="Accessibility" style="max-width:100%;">
+<img src="dist/bundle/latest/assets/practices.svg" alt="Best Practices" style="max-width:100%;">
+<img src="dist/bundle/latest/assets/performance.svg" alt="Performance" style="max-width:100%;">
+<img src="dist/bundle/latest/assets/pwa.svg" alt="PWA" style="max-width:100%;">
+<img src="dist/bundle/latest/assets/seo.svg" alt="SEO" style="max-width:100%;">
 </p>
 
 
