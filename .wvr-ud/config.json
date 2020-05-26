@@ -1,6 +1,6 @@
 {
   "output": "static/docs/usage",
-  "basePath": "/weaver-components/docs/usage/",
+  "basePath": "/weaver-components/docs",
   "includes": [
     "projects/wvr-elements/src/lib/**/*"
   ],
