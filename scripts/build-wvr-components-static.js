@@ -1,6 +1,6 @@
 const fs = require('fs-extra');
-const docPath = 'static/docs';
-const reportPath = 'static/reports';
+const docPath = 'static/weaver-components/docs';
+const reportPath = 'static/weaver-components/reports';
 
 (async function build() {
   fs.ensureDir(`${docPath}/`);
