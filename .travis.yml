@@ -31,4 +31,4 @@ deploy:
   github_token: $GITHUB_TOKEN
   keep_history: true
   on:
-    branch: sprint6-staging
+    branch: master
