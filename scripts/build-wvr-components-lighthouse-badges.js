@@ -2,7 +2,7 @@ const https = require('https');
 const fs = require('fs-extra');
 const glob = require("glob");
 
-const basePath = 'static/reports';
+const basePath = 'static/weaver-components/reports';
 const lighthousePath = `${basePath}/audit`;
 const lighthouseAssetsPath = `${lighthousePath}/assets`;
 const lighthouseCiPath = './.lighthouseci';
