@@ -67,7 +67,7 @@ examples.forEach(e=>{
     ex.appendChild(componentScssElement.cloneNode(true));
   });
   fs.writeFileSync(`${exaplestDest}/${exampleName}`, document.body.innerHTML);
-  exampleManifest[componentName] = `usage/examples/${exampleName}`;
+  exampleManifest[componentName] = `${CONFIG.basePath}examples/${exampleName}`;
 });
 
 log(`    ${chalk.cyanBright('Total Example Docs')}: ${chalk.blue(Object.keys(exampleManifest).length)}`);
