@@ -3,19 +3,19 @@
 
 # Lighthouse Badges
 
-[![Performance](https://tamulib.github.io/weaver-components/weaver-components/reports/audit/assets/performance.svg)](https://tamulib.github.io/weaver-components/weaver-components/reports/audit/#performance)
-[![Accessibility](https://tamulib.github.io/weaver-components/weaver-components/reports/audit/assets/accessibility.svg)](https://tamulib.github.io/weaver-components/weaver-components/reports/audit/#accessibility)
-[![Best Practices](https://tamulib.github.io/weaver-components/weaver-components/reports/audit/assets/best-practices.svg)](https://tamulib.github.io/weaver-components/weaver-components/reports/audit/#best-practices)
-[![SEO](https://tamulib.github.io/weaver-components/weaver-components/reports/audit/assets/seo.svg)](https://tamulib.github.io/weaver-components/weaver-components/reports/audit/#seo)
-[![Progressive Web App](https://tamulib.github.io/weaver-components/weaver-components/reports/audit/assets/pwa.svg)](https://tamulib.github.io/weaver-components/weaver-components/reports/audit/#pwa)
+[![Performance](https://tamulib.github.io/weaver-components/reports/audit/assets/performance.svg)](https://tamulib.github.io/weaver-components/weaver-components/reports/audit/#performance)
+[![Accessibility](https://tamulib.github.io/weaver-components/reports/audit/assets/accessibility.svg)](https://tamulib.github.io/weaver-components/weaver-components/reports/audit/#accessibility)
+[![Best Practices](https://tamulib.github.io/weaver-components/reports/audit/assets/best-practices.svg)](https://tamulib.github.io/weaver-components/weaver-components/reports/audit/#best-practices)
+[![SEO](https://tamulib.github.io/weaver-components/reports/audit/assets/seo.svg)](https://tamulib.github.io/weaver-components/weaver-components/reports/audit/#seo)
+[![Progressive Web App](https://tamulib.github.io/weaver-components/reports/audit/assets/pwa.svg)](https://tamulib.github.io/weaver-components/weaver-components/reports/audit/#pwa)
 
 # WeaverComponents
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.21.
 
-[Documentation](https://tamulib.github.io/weaver-components/weaver-components/docs).
+[Documentation](https://tamulib.github.io/weaver-components/docs).
 
-[Reports](https://tamulib.github.io/weaver-components/weaver-components/reports).
+[Reports](https://tamulib.github.io/weaver-components/reports).
 
 ## Development server
 
