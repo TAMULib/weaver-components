@@ -21,6 +21,10 @@
 
 .container {
   height: 100%;
+  a:hover {
+    text-decoration: none;
+    cursor: pointer;
+  }
 }
 
 .top-nav {

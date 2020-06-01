@@ -14,7 +14,8 @@
 
   <div class="title-row row m-0">
     <div class="container d-flex align-items-center">
-      <span class="h1 text-white">{{headerTitle}}</span>
+      <a *ngIf="headerTitleUrl" [href]="headerTitleUrl"><span class="h1 text-white">{{headerTitle}}</span></a>
+      <span *ngIf="!headerTitleUrl" class="h1 text-white">{{headerTitle}}</span>
     </div>
   </div>
 
