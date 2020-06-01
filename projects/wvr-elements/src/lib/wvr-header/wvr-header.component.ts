@@ -18,7 +18,7 @@ export class WvrHeaderComponent {
   @Input() headerTitle = 'Weaver Header Component';
 
   /** A URL link clickable from the page title to landing page. */
-  @Input() headerTitleUrl = '';
+  @Input() headerTitleUrl: string;
 
   /** A resolvable URI to an image to be displayed as the logo. */
   @Input() logoSrc = 'assets/weaver-w.svg';
