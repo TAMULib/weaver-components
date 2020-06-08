@@ -21,6 +21,6 @@ export abstract class WvrAbstractBaseComponent {
       .pipe(map(this.checkScreenSize));
   }
 
-  private checkScreenSize = () =>  document.body.offsetWidth < 1024;
+  private checkScreenSize = () =>  document.body.offsetWidth < 991;
 
 }

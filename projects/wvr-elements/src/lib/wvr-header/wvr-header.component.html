@@ -6,26 +6,18 @@
         <img alt="Logo" class="logo-img d-inline-block align-top" [src]='logoSrc' />
         <span class="text-white align-self-center d-inline-block pl-1">{{logoText}}</span>
       </a>
-      <div *ngIf="!isMobileLayout" class="flex-fill align-self-stretch">
+      <div>
         <ng-container *ngTemplateOutlet="topNavContent"></ng-container>
       </div>
     </div>
   </nav>
-
+  
   <div class="title-row row m-0">
     <div class="container d-flex align-items-center">
       <a *ngIf="headerTitleUrl" [href]="headerTitleUrl"><span class="h1 text-white">{{headerTitle}}</span></a>
       <span *ngIf="!headerTitleUrl" class="h1 text-white">{{headerTitle}}</span>
     </div>
   </div>
-
-  <nav *ngIf="isMobileLayout" class="top-nav navbar navbar-expand-lg mobile-layout">
-    <div class="container">
-      <div class="flex-fill align-self-stretch">
-        <ng-container *ngTemplateOutlet="topNavContent"></ng-container>
-      </div>
-    </div>
-  </nav>
 
   <nav *ngIf="!isMobileLayout" class="bottom-nav navbar navbar-expand-lg"
     [hidden]="isBottomNavHidden">
@@ -40,7 +32,7 @@
 
 <nav *ngIf="isMobileLayout" class="bottom-nav-mobile navbar navbar-expand-lg">
   <div class="container">
-    <div class="flex-fill align-self-stretch">
+    <div class="flex-fill align-self-stretch mobile-menu">
       <ng-container *ngTemplateOutlet="bottomNavContent"></ng-container>
     </div>
   </div>
