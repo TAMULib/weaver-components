@@ -60,8 +60,18 @@ export class WvrHeaderComponent extends WvrAbstractBaseComponent implements OnIn
   /** Allows for the override of the --bottom-nav-padding css variable. Default:  --wvr-navbar-padding */
   @HostBinding('style.--bottom-nav-padding') @Input() bottomNavPadding;
 
+  private _displayBottomNav: 'true' | 'false';
+
   /** Used to toggle display of bottom navbar section. */
-  @Input() displayBottomNav: 'true' | 'false';
+  @Input() set displayBottomNav(value: 'true' | 'false') {
+    this._displayBottomNav = value;
+    this.checkBottomNavHasChildren();
+    this.ref.detectChanges();
+  }
+
+  get displayBottomNav(): 'true' | 'false' {
+    return this._displayBottomNav;
+  }
 
   isBottomNavHidden = false;
 
