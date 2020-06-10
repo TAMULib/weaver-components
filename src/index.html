@@ -6,6 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
     [wvr-hide-content] {
       display: none;
     }
@@ -14,7 +19,7 @@
 
 <body>
   <wvr-header>
-    <wvr-nav-list top-navigation aligned="RIGHT">
+    <wvr-nav-list top-navigation>
       <wvr-nav-li>
         <wvr-dropdown toggle-on="click" btn-type="plain" menu-width="400px" menu-padding="0" menu-item-margin="0" wvr-hide-content>
           <wvr-dropdown-btn>
@@ -86,7 +91,13 @@
         </wvr-dropdown>
       </wvr-nav-li>
       <wvr-nav-li>
-        <wvr-text value="Action 2" text-color="white"></wvr-text>
+        <wvr-text value="Action 1"></wvr-text>
+      </wvr-nav-li>
+      <wvr-nav-li>
+        <wvr-text value="Action 2"></wvr-text>
+      </wvr-nav-li>
+      <wvr-nav-li>
+        <wvr-text value="Action 3"></wvr-text>
       </wvr-nav-li>
     </wvr-nav-list>
     <wvr-nav-list bottom-navigation>
