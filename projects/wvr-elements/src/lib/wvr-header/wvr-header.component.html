@@ -6,25 +6,41 @@
         <img alt="Logo" class="logo-img d-inline-block align-top" [src]='logoSrc' />
         <span class="text-white align-self-center d-inline-block pl-1">{{logoText}}</span>
       </a>
-      <div class="flex-fill align-self-stretch">
-        <ng-content select="wvr-nav-list[top-navigation],wvr-nav-list-element[top-navigation]"></ng-content>
+      <div>
+        <ng-container *ngTemplateOutlet="topNavContent"></ng-container>
       </div>
     </div>
   </nav>
-
+  
   <div class="title-row row m-0">
     <div class="container d-flex align-items-center">
-      <span class="h1 text-white">{{headerTitle}}</span>
+      <a *ngIf="headerTitleUrl" [href]="headerTitleUrl"><span class="h1 text-white">{{headerTitle}}</span></a>
+      <span *ngIf="!headerTitleUrl" class="h1 text-white">{{headerTitle}}</span>
     </div>
   </div>
 
-  <nav class="bottom-nav navbar navbar-expand-lg"
-    [hidden]="!(displayBottomNav === 'true' || ( displayBottomNav === undefined &&  bottomNavHasChildren()))">
+  <nav *ngIf="!isMobileLayout" class="bottom-nav navbar navbar-expand-lg"
+    [hidden]="isBottomNavHidden">
     <div class="container">
       <div class="flex-fill align-self-stretch">
-        <ng-content select="wvr-nav-list[bottom-navigation],wvr-nav-list-element[bottom-navigation]"></ng-content>
+        <ng-container *ngTemplateOutlet="bottomNavContent"></ng-container>
       </div>
     </div>
   </nav>
 
 </header>
+
+<nav *ngIf="isMobileLayout" class="bottom-nav-mobile navbar navbar-expand-lg">
+  <div class="container">
+    <div class="flex-fill align-self-stretch mobile-menu">
+      <ng-container *ngTemplateOutlet="bottomNavContent"></ng-container>
+    </div>
+  </div>
+</nav>
+
+<ng-template #topNavContent >
+  <ng-content select="wvr-nav-list[top-navigation],wvr-nav-list-element[top-navigation]"></ng-content>
+</ng-template>
+<ng-template #bottomNavContent >
+  <ng-content select="wvr-nav-list[bottom-navigation],wvr-nav-list-element[bottom-navigation]"></ng-content>
+</ng-template>

@@ -1,5 +1,8 @@
 language: node_js
 
+addons:
+  chrome: stable
+
 node_js:
   - "10"
 
@@ -8,11 +11,14 @@ services:
 
 install:
   - npm install
+
 script:
+  - npm run build
   - npm run test:ci
+
 after_success:
-  - npm run test:report
-  - npm run build:docs-production
+- cat ./static/weaver-components/reports/coverage/wvr-elements/lcov.info | ./node_modules/coveralls/bin/coveralls.js,
+- npm run build:static-production
 
 notifications:
   webhooks:

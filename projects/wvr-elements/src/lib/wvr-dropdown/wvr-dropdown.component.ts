@@ -3,7 +3,7 @@ import { NgbDropdown, NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
 import { WvrAbstractBaseComponent } from '../shared/wvr-abstract-base.component';
 
 @Component({
-  selector: 'wvr-wvr-dropdown-element',
+  selector: 'wvr-dropdown-element',
   templateUrl: './wvr-dropdown.component.html',
   styleUrls: ['./wvr-dropdown.component.scss']
 })

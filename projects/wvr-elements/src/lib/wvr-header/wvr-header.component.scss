@@ -21,6 +21,10 @@
 
 .container {
   height: 100%;
+  a:hover {
+    text-decoration: none;
+    cursor: pointer;
+  }
 }
 
 .top-nav {
@@ -45,4 +49,8 @@
   background: var(--bottom-nav-background);
   height: var(--bottom-nav-height);
   padding: var(--bottom-nav-padding);
+}
+
+.mobile-menu-button:hover {
+  cursor: pointer;
 }

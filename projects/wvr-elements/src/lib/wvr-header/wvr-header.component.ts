@@ -1,5 +1,6 @@
-import { Component, ElementRef, HostBinding, Input } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostBinding, Input, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { WvrAbstractBaseComponent } from '../shared/wvr-abstract-base.component';
 
 /**
  * Intended to appear at the top of document and provides for branding, links and page title.
@@ -9,13 +10,16 @@ import { DomSanitizer } from '@angular/platform-browser';
   templateUrl: './wvr-header.component.html',
   styleUrls: ['./wvr-header.component.scss']
 })
-export class WvrHeaderComponent {
+export class WvrHeaderComponent extends WvrAbstractBaseComponent implements OnInit, AfterViewInit {
 
   /** The text value to be displayed beside the logo. */
   @Input() logoText = 'Weaver Components';
 
   /** The header title value to be displayed as a page title. */
   @Input() headerTitle = 'Weaver Header Component';
+
+  /** A URL link clickable from the page title to landing page. */
+  @Input() headerTitleUrl: string;
 
   /** A resolvable URI to an image to be displayed as the logo. */
   @Input() logoSrc = 'assets/weaver-w.svg';
@@ -56,22 +60,46 @@ export class WvrHeaderComponent {
   /** Allows for the override of the --bottom-nav-padding css variable. Default:  --wvr-navbar-padding */
   @HostBinding('style.--bottom-nav-padding') @Input() bottomNavPadding;
 
+  private _displayBottomNav: 'true' | 'false';
+
   /** Used to toggle display of bottom navbar section. */
-  @Input() displayBottomNav: 'true' | 'false';
+  @Input() set displayBottomNav(value: 'true' | 'false') {
+    this._displayBottomNav = value;
+    this.checkBottomNavHasChildren();
+    this.ref.detectChanges();
+  }
+
+  get displayBottomNav(): 'true' | 'false' {
+    return this._displayBottomNav;
+  }
+
+  isBottomNavHidden = false;
 
   /**
    * The weaver header component constructor
    * @param domSanitizer: DomSanitizer - this parameter is injected to the weaver component instance.
    * @param elementRef: ElementRef  - a reference to the bottom nav list element.
    */
-  constructor(private readonly domSanitizer: DomSanitizer, private readonly elementRef: ElementRef) {
+  constructor(private readonly domSanitizer: DomSanitizer, private readonly elementRef: ElementRef, private ref: ChangeDetectorRef) {
+    super();
+  }
+
+  ngOnInit(): void {
+    this.screenSizeChanged$.subscribe(o => {
+      this.isMobileLayout = o;
+      this.ref.detectChanges();
+    });
+  }
+
+  ngAfterViewInit(): void {
+    this.checkBottomNavHasChildren();
+    this.ref.detectChanges();
   }
 
   /** Determines if the bottom nav list has children in order to display bottom nav section. */
-  bottomNavHasChildren(): boolean {
+  private checkBottomNavHasChildren(): void {
     const bottomNavListElement = (this.elementRef.nativeElement as HTMLElement).querySelector('.bottom-nav wvr-nav-li, .bottom-nav wvr-nav-li-element');
-
-    return !!bottomNavListElement;
+    this.isBottomNavHidden = !(this.displayBottomNav === 'true' || (this.displayBottomNav === undefined && !!bottomNavListElement));
   }
 
 }

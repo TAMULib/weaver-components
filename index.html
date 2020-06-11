@@ -1,11 +1,15 @@
 <!doctype html>
-<html>
+<html lang="en">
 
 <head>
   <title>Weaver Comonents</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
   <style>
+    body {
+        display: inline-block;
+        min-width: 100%;
+    }
     [wvr-hide-content] {
       display: none;
     }
@@ -17,24 +21,24 @@
   <wvr-header>
     <wvr-nav-list top-navigation aligned="RIGHT">
       <wvr-nav-li href="#about-us">
-        <wvr-text value="About"></wvr-text>
+        <wvr-text value="About" text-color="white"></wvr-text>
       </wvr-nav-li>
       <wvr-nav-li href="#hours">
-        <wvr-text value="Hours"></wvr-text>
+        <wvr-text value="Hours" text-color="white"></wvr-text>
       </wvr-nav-li>
       <wvr-nav-li href="#contact">
-        <wvr-text value="Contact"></wvr-text>
+        <wvr-text value="Contact" text-color="white"></wvr-text>
       </wvr-nav-li>
     </wvr-nav-list>
     <wvr-nav-list bottom-navigation>
       <wvr-nav-li href="#1">
-        <wvr-text value="Link 1"></wvr-text>
+        <wvr-text value="Link 1" text-color="black"></wvr-text>
       </wvr-nav-li>
       <wvr-nav-li href="#2">
-        <wvr-text value="Link 2"></wvr-text>
+        <wvr-text value="Link 2" text-color="black"></wvr-text>
       </wvr-nav-li>
       <wvr-nav-li href="#3">
-        <wvr-text value="Link 3"></wvr-text>
+        <wvr-text value="Link 3" text-color="black"></wvr-text>
       </wvr-nav-li>
     </wvr-nav-list>
   </wvr-header>
@@ -42,6 +46,15 @@
   <br />
 
   <wvr-it-works></wvr-it-works>
+
+  <wvr-dropdown>
+    <wvr-dropdown-btn>
+      <wvr-text value="Dropdown"></wvr-text>
+    </wvr-dropdown-btn>
+    <wvr-dropdown-menu>
+      <h1>Content</h1>
+    </wvr-dropdown-menu>
+  </wvr-dropdown>
 
   <wvr-footer>
     <wvr-nav-list aligned="CENTER">

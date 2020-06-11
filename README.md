@@ -1,10 +1,21 @@
-[![Build Status](https://travis-ci.org/TAMULib/weaver-components.svg?branch=master)](https://travis-ci.org/TAMULib/weaver-components) [![Coverage Status](https://coveralls.io/repos/github/TAMULib/weaver-components/badge.svg?branch=master)](https://coveralls.io/github/TAMULib/weaver-components?branch=master) [![Compodoc Coverage](https://tamulib.github.io/weaver-components/development/images/coverage-badge-documentation.svg)](https://tamulib.github.io/weaver-components/development/coverage.html)
+[![Build Status](https://travis-ci.org/TAMULib/weaver-components.svg?branch=master)](https://travis-ci.org/TAMULib/weaver-components) 
+[![Coverage Status](https://coveralls.io/repos/github/TAMULib/weaver-components/badge.svg?branch=master)](https://coveralls.io/github/TAMULib/weaver-components?branch=master) [![Compodoc Coverage](https://tamulib.github.io/weaver-components/docs/development/images/coverage-badge-documentation.svg)](https://tamulib.github.io/weaver-components/docs/development/coverage.html)
+
+# Lighthouse Badges
+
+[![Performance](https://tamulib.github.io/weaver-components/reports/audit/assets/performance.svg)](https://tamulib.github.io/weaver-components/reports/audit/#performance)
+[![Accessibility](https://tamulib.github.io/weaver-components/reports/audit/assets/accessibility.svg)](https://tamulib.github.io/weaver-components/reports/audit/#accessibility)
+[![Best Practices](https://tamulib.github.io/weaver-components/reports/audit/assets/best-practices.svg)](https://tamulib.github.io/weaver-components/reports/audit/#best-practices)
+[![SEO](https://tamulib.github.io/weaver-components/reports/audit/assets/seo.svg)](https://tamulib.github.io/weaver-components/reports/audit/#seo)
+[![Progressive Web App](https://tamulib.github.io/weaver-components/reports/audit/assets/pwa.svg)](https://tamulib.github.io/weaver-components/reports/audit/#pwa)
 
 # WeaverComponents
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.21.
 
-[Documentation](https://tamulib.github.io/weaver-components/).
+[Documentation](https://tamulib.github.io/weaver-components/docs).
+
+[Reports](https://tamulib.github.io/weaver-components/reports).
 
 ## Development server
 
