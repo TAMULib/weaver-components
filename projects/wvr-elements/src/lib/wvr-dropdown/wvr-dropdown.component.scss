@@ -2,7 +2,7 @@
 
 :host {
 
-  
+
   --wvr-dropdown-menu-animation-speed: 0.25s;
   --wvr-dropdown-menu-background: var(--wvr-white);
   --wvr-dropdown-menu-border: 1px solid var(--wvr-gray-dark);
@@ -10,11 +10,11 @@
   --wvr-dropdown-menu-display: flex;
   --wvr-dropdown-menu-flex-direction: column;
   --wvr-dropdown-menu-padding: 25px;
-  --wvr-dropdown-menu-width: 200px;
+  --wvr-dropdown-menu-width: fit-content;
   --wvr-dropdown-menu-x-offset: 0px;
   --wvr-dropdown-menu-y-offset: -1px;
   --wvr-dropdown-menu-item-margin: 0 0 10px 0;
-  
+
 }
 
 .wvr-dropdown {
@@ -22,7 +22,7 @@
   cursor: pointer;
   font-family: var(--wvr-font-family-sans-serif);
   position: relative;
-  width: min-content;
+  width: fit-content;
 
   [ngDropdownAnchor] {
     position: relative;
@@ -43,18 +43,20 @@
 
   .open {
     animation: openDD var(--wvr-dropdown-menu-animation-speed) ease-in-out;
+    z-index: 1200;
+    background: var(--wvr-white);
   }
-  
+
   @keyframes openDD {
     0% {  visibility:hidden; opacity: 0; }
     100% { visibility:visible; opacity: 1; }
   }
-  
+
   .closed {
     animation: closeDD var(--wvr-dropdown-menu-animation-speed) ease-in-out;
     visibility:hidden;
   }
-  
+
   @keyframes closeDD {
     0% { opacity: 1; visibility: visible; }
     100% {  opacity: 0; visibility:hidden; }
