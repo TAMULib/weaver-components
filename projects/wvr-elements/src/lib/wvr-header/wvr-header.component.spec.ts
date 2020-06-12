@@ -65,25 +65,23 @@ describe('WvrHeaderComponent', () => {
     expect(bottomNavElement.hasAttribute('hidden'))
       .toEqual(true);
 
-    // TODO: Restore funcitonality for dynamic changes
-
     // creating mock childres
-    // const wvrNavList = document.createElement('wvr-nav-list');
-    // const wvrNavLi = document.createElement('wvr-nav-li');
+    const wvrNavList = document.createElement('wvr-nav-list');
+    const wvrNavLi = document.createElement('wvr-nav-li');
 
     // adding children to assert hidden attribute does not exist
-    // wvrNavList.appendChild(wvrNavLi);
-    // bottomNavElement.appendChild(wvrNavList);
-    // fixture.detectChanges();
-    // expect(bottomNavElement.hasAttribute('hidden'))
-    //   .toEqual(false);
+    wvrNavList.appendChild(wvrNavLi);
+    bottomNavElement.appendChild(wvrNavList);
+    fixture.detectChanges();
+    expect(bottomNavElement.hasAttribute('hidden'))
+      .toEqual(false);
 
     // removing/replacing the children
-    // const wvrNavLiElement = document.createElement('wvr-nav-li-element');
-    // wvrNavList.replaceChild(wvrNavLiElement, wvrNavLi);
-    // fixture.detectChanges();
-    // expect(bottomNavElement.hasAttribute('hidden'))
-    //   .toEqual(false);
+    const wvrNavLiElement = document.createElement('wvr-nav-li-element');
+    wvrNavList.replaceChild(wvrNavLiElement, wvrNavLi);
+    fixture.detectChanges();
+    expect(bottomNavElement.hasAttribute('hidden'))
+      .toEqual(false);
 
   });
 

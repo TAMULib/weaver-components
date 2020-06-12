@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostBinding, Input, OnInit } from '@angular/core';
+import { AfterContentChecked, ChangeDetectorRef, Component, ElementRef, HostBinding, Input, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { WvrAbstractBaseComponent } from '../shared/wvr-abstract-base.component';
 
@@ -10,7 +10,7 @@ import { WvrAbstractBaseComponent } from '../shared/wvr-abstract-base.component'
   templateUrl: './wvr-header.component.html',
   styleUrls: ['./wvr-header.component.scss']
 })
-export class WvrHeaderComponent extends WvrAbstractBaseComponent implements OnInit, AfterViewInit {
+export class WvrHeaderComponent extends WvrAbstractBaseComponent implements OnInit, AfterContentChecked {
 
   /** The text value to be displayed beside the logo. */
   @Input() logoText = 'Weaver Components';
@@ -85,13 +85,15 @@ export class WvrHeaderComponent extends WvrAbstractBaseComponent implements OnIn
   }
 
   ngOnInit(): void {
-    this.screenSizeChanged$.subscribe(o => {
-      this.isMobileLayout = o;
+    this.screenSizeChanged$.subscribe(iml => {
+      this.isMobileLayout = iml;
       this.ref.detectChanges();
     });
+    this.checkBottomNavHasChildren();
+    this.ref.detectChanges();
   }
 
-  ngAfterViewInit(): void {
+  ngAfterContentChecked(): void {
     this.checkBottomNavHasChildren();
     this.ref.detectChanges();
   }
