@@ -22,7 +22,7 @@
   cursor: pointer;
   font-family: var(--wvr-font-family-sans-serif);
   position: relative;
-  width: fit-content;
+  width: var(--wvr-dropdown-menu-width);
 
   [ngDropdownAnchor] {
     position: relative;
@@ -44,7 +44,7 @@
   .open {
     animation: openDD var(--wvr-dropdown-menu-animation-speed) ease-in-out;
     z-index: 1200;
-    background: var(--wvr-white);
+    background: var(--wvr-dropdown-menu-background);
   }
 
   @keyframes openDD {
