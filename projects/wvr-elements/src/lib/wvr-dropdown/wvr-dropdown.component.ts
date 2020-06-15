@@ -76,6 +76,11 @@ export class WvrDropdownComponent extends WvrAbstractBaseComponent {
    */
   open = false;
 
+  /**
+   * Indicates that the dropdown is in the process of closing.
+   */
+  private closing = false;
+
   constructor(private cdRef: ChangeDetectorRef, private config: NgbDropdownConfig, private eRef: ElementRef) {
     super();
     config.autoClose = false;
@@ -96,7 +101,7 @@ export class WvrDropdownComponent extends WvrAbstractBaseComponent {
    * Opens the dropdown if `toggleOn` is set to `mouseover`.
    */
   @HostListener('mouseenter', ['$event']) hoverOpen($event: Event): void {
-    if (this.toggleOn === 'mouseover') {
+    if (this.toggleOn === 'mouseover' && !this.closing) {
      this.openDropdown();
     }
   }
@@ -141,10 +146,12 @@ export class WvrDropdownComponent extends WvrAbstractBaseComponent {
 
   /** A methos for handeling the closing of the dropdown, and updating state. */
   private closeDropdown(): void {
+    this.closing = true;
     this.open = false;
     this.cdRef.detectChanges();
     setTimeout(() => {
       this.dropdown.close();
+      this.closing = false;
     }, this._animationSpeedMili);
   }
 
