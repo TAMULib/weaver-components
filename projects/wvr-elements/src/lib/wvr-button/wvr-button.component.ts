@@ -127,7 +127,7 @@ export class WvrButtonComponent extends WvrAbstractBaseComponent {
   @HostBinding('style.--wvr-btn-outline-dark-hover-border')
   @HostBinding('style.--wvr-btn-link-border')
   @HostBinding('style.--wvr-btn-link-hover-border')
-  @Input() border;
+  @Input() borderColor;
 
   /** Allows for the override of color */
   // tslint:disable-next-line: prefer-inline-decorator
