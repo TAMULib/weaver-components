@@ -21,9 +21,6 @@ export class WvrButtonComponent extends WvrAbstractBaseComponent {
   /** Allows for the button component to be an anchor tag component if hrefUrl property present. */
   @Input() href: string;
 
-  /** Used internally to set the disabled state of the button component. */
-  // @Input() isDisabled = true;
-
   /** Allows for the override of background */
   // tslint:disable-next-line: prefer-inline-decorator
   @HostBinding('style.--wvr-btn-primary-background')
@@ -210,14 +207,5 @@ export class WvrButtonComponent extends WvrAbstractBaseComponent {
   @HostBinding('style.--wvr-btn-outline-dark-hover-color')
   @HostBinding('style.--wvr-btn-link-hover-color')
   @Input() colorHover;
-
-  /**
-   * The weaver footer component constructor
-   * @param elementRef: ElementRef - a reference to the button element.
-   * @param cdRef: ChangeDetectorRef - utilized for change detection.
-   */
-  // constructor(private readonly cdRef: ChangeDetectorRef, private readonly elementRef: ElementRef) {
-  //   super();
-  // }
 
 }
