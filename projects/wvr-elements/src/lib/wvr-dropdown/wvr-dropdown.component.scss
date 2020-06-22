@@ -38,12 +38,11 @@
     padding: var(--wvr-dropdown-menu-padding);
     position: absolute;
     width: var(--wvr-dropdown-menu-width);
-    z-index: 1000;
+    z-index: 1200;
   }
 
   .open {
     animation: openDD var(--wvr-dropdown-menu-animation-speed) ease-in-out;
-    z-index: 1200;
     background: var(--wvr-dropdown-menu-background);
   }
 
