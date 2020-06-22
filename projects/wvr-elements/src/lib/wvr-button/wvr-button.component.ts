@@ -1,4 +1,4 @@
-import { Component, HostBinding, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, HostBinding, Input } from '@angular/core';
 import { WvrAbstractBaseComponent } from '../shared/wvr-abstract-base.component';
 
 @Component({
@@ -10,7 +10,7 @@ export class WvrButtonComponent extends WvrAbstractBaseComponent {
 
   /** Used to define the class type for button component.  */
   @Input() btnClass: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark' | 'link' |
-  'outline-primary' | 'outline-secondary' | 'outline-success' | 'outline-danger' | 'outline-warning' | 'outline-info' | 'outline-light' | 'outline-dark' | 'outline-link';
+  'outline-primary' | 'outline-secondary' | 'outline-success' | 'outline-danger' | 'outline-warning' | 'outline-info' | 'outline-light' | 'outline-dark' | 'outline-link' = 'primary';
 
   /** Used to define the size for button component.  */
   @Input() btnSize: 'large' | 'small' | 'block' = 'large';
@@ -22,7 +22,7 @@ export class WvrButtonComponent extends WvrAbstractBaseComponent {
   @Input() href: string;
 
   /** Used internally to set the disabled state of the button component. */
-  @Input() isDisabled = true;
+  // @Input() isDisabled = true;
 
   /** Allows for the override of background */
   // tslint:disable-next-line: prefer-inline-decorator
@@ -76,7 +76,7 @@ export class WvrButtonComponent extends WvrAbstractBaseComponent {
   @HostBinding('style.--wvr-btn-outline-dark-hover-background')
   @HostBinding('style.--wvr-btn-link-background')
   @HostBinding('style.--wvr-btn-link-hover-background')
-  @Input() background;
+  @Input() background = 'var(--wvr-btn-primary-background)';
 
   /** Allows for the override of border */
   // tslint:disable-next-line: prefer-inline-decorator
@@ -130,7 +130,7 @@ export class WvrButtonComponent extends WvrAbstractBaseComponent {
   @HostBinding('style.--wvr-btn-outline-dark-hover-border')
   @HostBinding('style.--wvr-btn-link-border')
   @HostBinding('style.--wvr-btn-link-hover-border')
-  @Input() borderColor;
+  @Input() borderColor = 'var(--wvr-btn-primary-border)';
 
   /** Allows for the override of color */
   // tslint:disable-next-line: prefer-inline-decorator
@@ -184,5 +184,15 @@ export class WvrButtonComponent extends WvrAbstractBaseComponent {
   @HostBinding('style.--wvr-btn-outline-dark-hover-color')
   @HostBinding('style.--wvr-btn-link-color')
   @HostBinding('style.--wvr-btn-link-hover-color')
-  @Input() color;
+  @Input() color = 'var(--wvr-btn-primary-color)';
+
+  /**
+   * The weaver footer component constructor
+   * @param elementRef: ElementRef - a reference to the button element.
+   * @param cdRef: ChangeDetectorRef - utilized for change detection.
+   */
+  constructor(private readonly cdRef: ChangeDetectorRef, private readonly elementRef: ElementRef) {
+    super();
+  }
+
 }
