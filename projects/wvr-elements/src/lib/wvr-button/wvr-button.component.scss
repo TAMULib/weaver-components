@@ -4,6 +4,7 @@
   --wvr-btn-border-radius: 5px;
   --wvr-btn-outline-background: transparent;
   --wvr-btn-cursor-pointer: pointer;
+  --wvr-btn-font-family-sans-serif: var(--wvr-font-family-sans-serif);
   --wvr-btn-font-size: 1rem;
   --wvr-btn-line-height: 1.5;
   --wvr-btn-padding: 0.375rem .75rem;
@@ -285,13 +286,12 @@
   .btn {
     border-radius: var(--wvr-btn-border-radius);
     cursor: var(--wvr-btn-cursor-pointer);
-    font-family: var(--wvr-font-family-sans-serif);
+    font-family: var(--wvr-btn-font-family-sans-serif);
     font-size: var(--wvr-btn-font-size);
     line-height: var(--wvr-btn-line-height);
     padding: var(--wvr-btn-padding);
     text-align: var(--wvr-btn-text-align);
     vertical-align: var(--wvr-btn-vertical-align);
-
   }
 
   // btn-primary
