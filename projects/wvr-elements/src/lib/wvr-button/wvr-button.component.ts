@@ -208,4 +208,91 @@ export class WvrButtonComponent extends WvrAbstractBaseComponent {
   @HostBinding('style.--wvr-btn-link-hover-color')
   @Input() colorHover;
 
+  /** Allows for the override of button text-decoration property */
+  // tslint:disable-next-line: prefer-inline-decorator
+  @HostBinding('style.--wvr-btn-primary-text-decoration')
+  @HostBinding('style.--wvr-btn-outline-primary-text-decoration')
+  @HostBinding('style.--wvr-btn-secondary-text-decoration')
+  @HostBinding('style.--wvr-btn-outline-secondary-text-decoration')
+  @HostBinding('style.--wvr-btn-success-text-decoration')
+  @HostBinding('style.--wvr-btn-outline-success-text-decoration')
+  @HostBinding('style.--wvr-btn-danger-text-decoration')
+  @HostBinding('style.--wvr-btn-outline-danger-text-decoration')
+  @HostBinding('style.--wvr-btn-warning-text-decoration')
+  @HostBinding('style.--wvr-btn-outline-warning-text-decoration')
+  @HostBinding('style.--wvr-btn-info-text-decoration')
+  @HostBinding('style.--wvr-btn-outline-info-text-decoration')
+  @HostBinding('style.--wvr-btn-light-text-decoration')
+  @HostBinding('style.--wvr-btn-outline-light-text-decoration')
+  @HostBinding('style.--wvr-btn-dark-text-decoration')
+  @HostBinding('style.--wvr-btn-outline-dark-text-decoration')
+  @HostBinding('style.--wvr-btn-link-text-decoration')
+  @Input() textDecoration;
+
+  /** Allows for the override of button active text-decoration property */
+  // tslint:disable-next-line: prefer-inline-decorator
+  @HostBinding('style.--wvr-btn-primary-active-text-decoration')
+  @HostBinding('style.--wvr-btn-outline-primary-active-text-decoration')
+  @HostBinding('style.--wvr-btn-secondary-active-text-decoration')
+  @HostBinding('style.--wvr-btn-outline-secondary-active-text-decoration')
+  @HostBinding('style.--wvr-btn-success-active-text-decoration')
+  @HostBinding('style.--wvr-btn-outline-success-active-text-decoration')
+  @HostBinding('style.--wvr-btn-danger-active-text-decoration')
+  @HostBinding('style.--wvr-btn-outline-danger-active-text-decoration')
+  @HostBinding('style.--wvr-btn-warning-active-text-decoration')
+  @HostBinding('style.--wvr-btn-outline-warning-active-text-decoration')
+  @HostBinding('style.--wvr-btn-info-active-text-decoration')
+  @HostBinding('style.--wvr-btn-outline-info-active-text-decoration')
+  @HostBinding('style.--wvr-btn-light-active-text-decoration')
+  @HostBinding('style.--wvr-btn-outline-light-active-text-decoration')
+  @HostBinding('style.--wvr-btn-dark-active-text-decoration')
+  @HostBinding('style.--wvr-btn-outline-dark-active-text-decoration')
+  @HostBinding('style.--wvr-btn-link-active-text-decoration')
+  @Input() textDecorationActive;
+
+  /** Allows for the override of button hover text-decoration property */
+  // tslint:disable-next-line: prefer-inline-decorator
+  @HostBinding('style.--wvr-btn-primary-hover-text-decoration')
+  @HostBinding('style.--wvr-btn-outline-primary-hover-text-decoration')
+  @HostBinding('style.--wvr-btn-secondary-hover-text-decoration')
+  @HostBinding('style.--wvr-btn-outline-secondary-hover-text-decoration')
+  @HostBinding('style.--wvr-btn-success-hover-text-decoration')
+  @HostBinding('style.--wvr-btn-outline-success-hover-text-decoration')
+  @HostBinding('style.--wvr-btn-danger-hover-text-decoration')
+  @HostBinding('style.--wvr-btn-outline-danger-hover-text-decoration')
+  @HostBinding('style.--wvr-btn-warning-hover-text-decoration')
+  @HostBinding('style.--wvr-btn-outline-warning-hover-text-decoration')
+  @HostBinding('style.--wvr-btn-info-hover-text-decoration')
+  @HostBinding('style.--wvr-btn-outline-info-hover-text-decoration')
+  @HostBinding('style.--wvr-btn-light-hover-text-decoration')
+  @HostBinding('style.--wvr-btn-outline-light-hover-text-decoration')
+  @HostBinding('style.--wvr-btn-dark-hover-text-decoration')
+  @HostBinding('style.--wvr-btn-outline-dark-hover-text-decoration')
+  @HostBinding('style.--wvr-btn-link-hover-text-decoration')
+  @Input() textDecorationHover;
+
+  /** Allows for the override of button border radius */
+  @HostBinding('style.--wvr-btn-border-radius') @Input() borderRadius;
+
+  /** Allows for the override of button cursor property */
+  @HostBinding('style.--wvr-btn-cursor-pointer') @Input() cursor;
+
+  /** Allows for the override of button font family property */
+  @HostBinding('style.--wvr-btn-font-family-sans-serif') @Input() fontFamily;
+
+  /** Allows for the override of button font size property */
+  @HostBinding('style.--wvr-btn-font-size') @Input() fontSize;
+
+  /** Allows for the override of button hover line height property */
+  @HostBinding('style.--wvr-btn-line-height') @Input() lineHeight;
+
+  /** Allows for the override of button padding property */
+  @HostBinding('style.--wvr-btn-padding') @Input() padding;
+
+  /** Allows for the override of button text align property */
+  @HostBinding('style.--wvr-btn-text-align') @Input() textAlign;
+
+  /** Allows for the override of button vertical align property */
+  @HostBinding('style.--wvr-btn-vertical-align') @Input() verticalAlign;
+
 }

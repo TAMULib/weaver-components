@@ -1,20 +1,8 @@
 <div #WvrDropdown class="wvr-components wvr-dropdown d-inline-flex align-items-center">
   <div ngbDropdown display="dynamic" placement="bottom-right" class="d-inline-block" (openChange)="detectChanges()">
-    <div (click)="clickOpen($event)" [ngClass]="{
-      'btn-primary': btnType === 'primary',
-      'btn-secondary': btnType === 'secondary',
-      'btn-success': btnType === 'success',
-      'btn-danger': btnType === 'danger',
-      'btn-warning': btnType === 'warning',
-      'btn-info': btnType === 'info',
-      'btn-light': btnType === 'light',
-      'btn-dark': btnType === 'dark',
-      'btn-link': btnType === 'link',
-      'plain flex-fill': btnType === 'plain',
-      'btn': btnType !== 'plain'
-    }" ngDropdownAnchor>
-      <ng-content select="wvr-button"></ng-content>
-    </div>
+    <wvr-button-element (click)="clickOpen($event)" [btnClass]="btnType" ngDropdownAnchor>
+      <ng-content select="wvr-dropdown-btn" ngProjectAs="wvr-btn-content"></ng-content>
+    </wvr-button-element>
     <div ngbDropdownMenu [ngClass]="{open: open,closed: !open}">
       <ng-content select="wvr-dropdown-menu"></ng-content>
     </div>

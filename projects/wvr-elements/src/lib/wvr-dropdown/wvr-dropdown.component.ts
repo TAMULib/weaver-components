@@ -70,6 +70,9 @@ export class WvrDropdownComponent extends WvrAbstractBaseComponent {
    */
   @HostBinding('style.--wvr-dropdown-menu-item-margin') @Input() menuItemMargin;
 
+  /** Allows override of btn class for dropdown element.  */
+  @Input() btnText = '';
+
   /**
    * A public access reference to the open/closed state of the dropdown menu. Used for
    * animations;
