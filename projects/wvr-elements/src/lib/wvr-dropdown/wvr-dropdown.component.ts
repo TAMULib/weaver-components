@@ -70,9 +70,45 @@ export class WvrDropdownComponent extends WvrAbstractBaseComponent {
    */
   @HostBinding('style.--wvr-dropdown-menu-item-margin') @Input() menuItemMargin;
 
-  /** Allows override of btn class for dropdown element.  */
-  @Input() btnText = '';
+  private _btnTextDecoration: string ;
 
+  @Input() set btnTextDecoration(value: string) {
+    this._btnTextDecoration = value;
+  }
+
+  get btnTextDecoration(): string {
+    return this._btnTextDecoration ? this._btnTextDecoration : `var(--wvr-btn-${this.btnType}-text-decoration-default)`;
+  }
+
+  private _btnTextDecorationActive: string ;
+
+  @Input() set btnTextDecorationActive(value: string) {
+    this._btnTextDecorationActive = value;
+  }
+
+  get btnTextDecorationActive(): string {
+    return this._btnTextDecorationActive ? this._btnTextDecorationActive : `var(--wvr-btn-${this.btnType}-active-text-decoration-default)`;
+  }
+
+  private _btnTextDecorationHover: string ;
+
+  @Input() set btnTextDecorationHover(value: string) {
+    this._btnTextDecorationHover = value;
+  }
+
+  get btnTextDecorationHover(): string {
+    return this._btnTextDecorationHover ? this._btnTextDecorationHover : `var(--wvr-btn-${this.btnType}-hover-text-decoration-default)`;
+  }
+
+  private _btnFocus: string ;
+
+  @Input() set btnFocus(value: string) {
+    this._btnFocus = value;
+  }
+
+  get btnFocus(): string {
+    return this._btnFocus ? this._btnFocus : `var(--wvr-btn-${this.btnType}-focus-box-shadow-default)`;
+  }
   /**
    * A public access reference to the open/closed state of the dropdown menu. Used for
    * animations;
