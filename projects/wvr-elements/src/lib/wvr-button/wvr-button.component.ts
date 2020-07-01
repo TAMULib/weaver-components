@@ -146,6 +146,48 @@ export class WvrButtonComponent extends WvrAbstractBaseComponent {
   @HostBinding('style.--wvr-btn-link-hover-border')
   @Input() borderHover;
 
+  /** Allows for the override of button border in focus state */
+  // tslint:disable-next-line: prefer-inline-decorator
+  @HostBinding('style.--wvr-btn-primary-focus-border')
+  @HostBinding('style.--wvr-btn-outline-primary-focus-border')
+  @HostBinding('style.--wvr-btn-secondary-focus-border')
+  @HostBinding('style.--wvr-btn-outline-secondary-focus-border')
+  @HostBinding('style.--wvr-btn-success-focus-border')
+  @HostBinding('style.--wvr-btn-outline-success-focus-border')
+  @HostBinding('style.--wvr-btn-danger-focus-border')
+  @HostBinding('style.--wvr-btn-outline-danger-focus-border')
+  @HostBinding('style.--wvr-btn-warning-focus-border')
+  @HostBinding('style.--wvr-btn-outline-warning-focus-border')
+  @HostBinding('style.--wvr-btn-info-focus-border')
+  @HostBinding('style.--wvr-btn-outline-info-focus-border')
+  @HostBinding('style.--wvr-btn-light-focus-border')
+  @HostBinding('style.--wvr-btn-outline-light-focus-border')
+  @HostBinding('style.--wvr-btn-dark-focus-border')
+  @HostBinding('style.--wvr-btn-outline-dark-focus-border')
+  @HostBinding('style.--wvr-btn-link-focus-border')
+  @Input() borderFocus;
+
+  /** Allows for override of box-shadow propery when the button is in focus state */
+  // tslint:disable-next-line: prefer-inline-decorator
+  @HostBinding('style.--wvr-btn-primary-focus-box-shadow')
+  @HostBinding('style.--wvr-btn-outline-primary-focus-box-shadow')
+  @HostBinding('style.--wvr-btn-secondary-focus-box-shadow')
+  @HostBinding('style.--wvr-btn-outline-secondary-focus-box-shadow')
+  @HostBinding('style.--wvr-btn-success-focus-box-shadow')
+  @HostBinding('style.--wvr-btn-outline-success-focus-box-shadow')
+  @HostBinding('style.--wvr-btn-danger-focus-box-shadow')
+  @HostBinding('style.--wvr-btn-outline-danger-focus-box-shadow')
+  @HostBinding('style.--wvr-btn-warning-focus-box-shadow')
+  @HostBinding('style.--wvr-btn-outline-warning-focus-box-shadow')
+  @HostBinding('style.--wvr-btn-info-focus-box-shadow')
+  @HostBinding('style.--wvr-btn-outline-info-focus-box-shadow')
+  @HostBinding('style.--wvr-btn-light-focus-box-shadow')
+  @HostBinding('style.--wvr-btn-outline-light-focus-box-shadow')
+  @HostBinding('style.--wvr-btn-dark-focus-box-shadow')
+  @HostBinding('style.--wvr-btn-outline-dark-focus-box-shadow')
+  @HostBinding('style.--wvr-btn-link-focus-box-shadow')
+  @Input() boxShadowFocus;
+
   /** Allows for the override of color */
   // tslint:disable-next-line: prefer-inline-decorator
   @HostBinding('style.--wvr-btn-primary-color')
@@ -270,6 +312,27 @@ export class WvrButtonComponent extends WvrAbstractBaseComponent {
   @HostBinding('style.--wvr-btn-outline-dark-hover-text-decoration')
   @HostBinding('style.--wvr-btn-link-hover-text-decoration')
   @Input() textDecorationHover;
+
+  /** Allows for the override of button focus text-decoration property */
+  // tslint:disable-next-line: prefer-inline-decorator
+  @HostBinding('style.--wvr-btn-primary-focus-text-decoration')
+  @HostBinding('style.--wvr-btn-outline-primary-focus-text-decoration')
+  @HostBinding('style.--wvr-btn-secondary-focus-text-decoration')
+  @HostBinding('style.--wvr-btn-outline-secondary-focus-text-decoration')
+  @HostBinding('style.--wvr-btn-success-focus-text-decoration')
+  @HostBinding('style.--wvr-btn-outline-success-focus-text-decoration')
+  @HostBinding('style.--wvr-btn-danger-focus-text-decoration')
+  @HostBinding('style.--wvr-btn-outline-danger-focus-text-decoration')
+  @HostBinding('style.--wvr-btn-warning-focus-text-decoration')
+  @HostBinding('style.--wvr-btn-outline-warning-focus-text-decoration')
+  @HostBinding('style.--wvr-btn-info-focus-text-decoration')
+  @HostBinding('style.--wvr-btn-outline-info-focus-text-decoration')
+  @HostBinding('style.--wvr-btn-light-focus-text-decoration')
+  @HostBinding('style.--wvr-btn-outline-light-focus-text-decoration')
+  @HostBinding('style.--wvr-btn-dark-focus-text-decoration')
+  @HostBinding('style.--wvr-btn-outline-dark-focus-text-decoration')
+  @HostBinding('style.--wvr-btn-link-focus-text-decoration')
+  @Input() textDecorationFocus;
 
   /** Allows for the override of button border radius */
   @HostBinding('style.--wvr-btn-border-radius') @Input() borderRadius;
