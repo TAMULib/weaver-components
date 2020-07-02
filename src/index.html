@@ -21,11 +21,19 @@
   <wvr-header>
     <wvr-nav-list top-navigation>
       <wvr-nav-li>
-        <wvr-dropdown btn-type="secondary" toggle-on="click" menu-width="400px" menu-padding="0" menu-item-margin="0" wvr-hide-content btn-type="plain">
-          <wvr-button >
-            <!-- btn-class="link" -->
+        <wvr-dropdown
+          btn-type="link"
+          btn-text-decoration="none"
+          btn-text-decoration-active="none"
+          btn-text-decoration-hover="none"
+          toggle-on="click"
+          menu-width="400px"
+          menu-padding="0"
+          menu-item-margin="0"
+          wvr-hide-content>
+          <wvr-dropdown-btn>
             <wvr-text value="Dropdown 1" text-color="white"></wvr-text>
-          </wvr-button>
+          </wvr-dropdown-btn>
           <wvr-dropdown-menu>
             <div class="list-group">
               <button type="button" class="list-group-item list-group-item-action active">
@@ -48,11 +56,22 @@
         </wvr-dropdown>
       </wvr-nav-li>
       <wvr-nav-li>
-        <wvr-dropdown toggle-on="mouseover" menu-animation-speed="350" menu-width="400px"
-          menu-x-offset="-140px" menu-padding="45px 10px 0px 10px" menu-item-margin="5px 0 0 0" wvr-hide-content>
-          <wvr-button btn-class="link">
+        <wvr-dropdown
+          btn-type="link"
+          btn-text-decoration="none"
+          btn-text-decoration-active="none"
+          btn-text-decoration-hover="none"
+          btn-box-shadow-focus="none"
+          toggle-on="mouseover"
+          menu-animation-speed="350"
+          menu-width="400px"
+          menu-x-offset="-140px"
+          menu-padding="45px 10px 0px 10px"
+          menu-item-margin="5px 0 0 0"
+          wvr-hide-content>
+          <wvr-dropdown-btn>
             <wvr-text value="Dropdown 2" text-color="white"></wvr-text>
-          </wvr-button>
+          </wvr-dropdown-btn>
           <wvr-dropdown-menu>
             <ul class="list-unstyled">
               <li wvr-dropdown-menu-item>
@@ -93,12 +112,6 @@
       </wvr-nav-li>
       <wvr-nav-li>
         <wvr-text value="Action 1"></wvr-text>
-      </wvr-nav-li>
-      <wvr-nav-li>
-        <wvr-text value="Action 2"></wvr-text>
-      </wvr-nav-li>
-      <wvr-nav-li>
-        <wvr-text value="Action 3"></wvr-text>
       </wvr-nav-li>
     </wvr-nav-list>
     <wvr-nav-list bottom-navigation>
@@ -271,8 +284,8 @@
       </wvr-dropdown-menu>
     </wvr-dropdown>
   </div>
+  <hr /><br />
 
-  <br /><hr /><br />
   <div class="container" style="text-align: center;">
 
     <wvr-button btn-class="primary" btn-size="large">
