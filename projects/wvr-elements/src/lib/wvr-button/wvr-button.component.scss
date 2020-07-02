@@ -1,15 +1,23 @@
 @import "../shared/styles/host-styles.scss";
 
 :host {
-  --wvr-btn-border-radius: 5px;
+  --wvr-btn-border-radius: var(--wvr-btn-border-radius-default);
+  --wvr-btn-border-radius-default: 5px;
   --wvr-btn-outline-background: transparent;
-  --wvr-btn-cursor-pointer: pointer;
-  --wvr-btn-font-family-sans-serif: var(--wvr-font-family-sans-serif);
-  --wvr-btn-font-size: 1rem;
-  --wvr-btn-line-height: 1.5;
-  --wvr-btn-padding: 0.375rem .75rem;
-  --wvr-btn-text-align: center;
-  --wvr-btn-vertical-align: middle;
+  --wvr-btn-cursor-pointer: var(--wvr-btn-cursor-pointer-default);
+  --wvr-btn-cursor-pointer-default: pointer;
+  --wvr-btn-font-family-sans-serif: var(--wvr-btn-font-family-sans-serif-default);
+  --wvr-btn-font-family-sans-serif-default: var(--wvr-font-family-sans-serif);
+  --wvr-btn-font-size: var(--wvr-btn-font-size-default);
+  --wvr-btn-font-size-default: 1rem;
+  --wvr-btn-line-height: var(--wvr-btn-line-height-default);
+  --wvr-btn-line-height-default: 1.5;
+  --wvr-btn-padding: var(--wvr-btn-padding-default);
+  --wvr-btn-padding-default: 0.375rem .75rem;
+  --wvr-btn-text-align: var(--wvr-btn-text-align-default);
+  --wvr-btn-text-align-default: center;
+  --wvr-btn-vertical-align: var(--wvr-btn-vertical-align-default);
+  --wvr-btn-vertical-align-default: middle;
 
   // primary
   --wvr-btn-primary-active-background: var(--wvr-btn-primary-active-background-default);
@@ -30,8 +38,12 @@
   --wvr-btn-primary-text-decoration: var(--wvr-btn-primary-text-decoration-default);
   --wvr-btn-primary-text-decoration-default: none;
 
+  --wvr-btn-primary-focus-border: var(--wvr-btn-primary-focus-border-default);
+  --wvr-btn-primary-focus-border-default: none;
   --wvr-btn-primary-focus-box-shadow: var(--wvr-btn-primary-focus-box-shadow-default);
   --wvr-btn-primary-focus-box-shadow-default: 0 0 0 0.2rem rgba(0,123,255,.5);
+  --wvr-btn-primary-focus-text-decoration: var(--wvr-btn-primary-focus-text-decoration-default);
+  --wvr-btn-primary-focus-text-decoration-default: none;
 
   --wvr-btn-primary-hover-background: var(--wvr-btn-primary-hover-background-default);
   --wvr-btn-primary-hover-background-default: #0069d9;
@@ -61,8 +73,12 @@
   --wvr-btn-outline-primary-text-decoration: var(--wvr-btn-outline-primary-text-decoration-default);
   --wvr-btn-outline-primary-text-decoration-default: none;
 
+  --wvr-btn-outline-primary-focus-border: var(--wvr-btn-outline-primary-focus-border-default);
+  --wvr-btn-outline-primary-focus-border-default: none;
   --wvr-btn-outline-primary-focus-box-shadow: var(--wvr-btn-outline-primary-focus-box-shadow-default);
   --wvr-btn-outline-primary-focus-box-shadow-default: 0 0 0 0.2rem rgba(0,123,255,.5);
+  --wvr-btn-outline-primary-focus-text-decoration: var(--wvr-btn-outline-primary-focus-text-decoration-default);
+  --wvr-btn-outline-primary-focus-text-decoration-default: none;
 
   --wvr-btn-outline-primary-hover-background: var(--wvr-btn-outline-primary-hover-background-default);
   --wvr-btn-outline-primary-hover-background-default: var(--wvr-primary);
@@ -92,8 +108,12 @@
   --wvr-btn-secondary-text-decoration: var(--wvr-btn-secondary-text-decoration-default);
   --wvr-btn-secondary-text-decoration-default: none;
 
+  --wvr-btn-secondary-focus-border: var(--wvr-btn-secondary-focus-border-default);
+  --wvr-btn-secondary-focus-border-default: none;
   --wvr-btn-secondary-focus-box-shadow: var(--wvr-btn-secondary-focus-box-shadow-default);
   --wvr-btn-secondary-focus-box-shadow-default: 0 0 0 0.2rem rgba(108,117,125,.5);
+  --wvr-btn-secondary-focus-text-decoration: var(--wvr-btn-secondary-focus-text-decoration-default);
+  --wvr-btn-secondary-focus-text-decoration-default: none;
 
   --wvr-btn-secondary-hover-background: var(--wvr-btn-secondary-hover-background-default);
   --wvr-btn-secondary-hover-background-default: #5a6268;
@@ -123,8 +143,12 @@
   --wvr-btn-outline-secondary-text-decoration: var(--wvr-btn-outline-secondary-text-decoration-default);
   --wvr-btn-outline-secondary-text-decoration-default: none;
 
+  --wvr-btn-outline-secondary-focus-border: var(--wvr-btn-outline-secondary-focus-border-default);
+  --wvr-btn-outline-secondary-focus-border-default: none;
   --wvr-btn-outline-secondary-focus-box-shadow: var(--wvr-btn-outline-secondary-focus-box-shadow-default);
   --wvr-btn-outline-secondary-focus-box-shadow-default: 0 0 0 0.2rem rgba(108,117,125,.5);
+  --wvr-btn-outline-secondary-focus-text-decoration: var(--wvr-btn-outline-secondary-focus-text-decoration-default);
+  --wvr-btn-outline-secondary-focus-text-decoration-default: none;
 
   --wvr-btn-outline-secondary-hover-background: var(--wvr-btn-outline-secondary-hover-background-default);
   --wvr-btn-outline-secondary-hover-background-default: var(--wvr-secondary);
@@ -154,8 +178,12 @@
   --wvr-btn-success-text-decoration: var(--wvr-btn-success-text-decoration-default);
   --wvr-btn-success-text-decoration-default: none;
 
+  --wvr-btn-success-focus-border: var(--wvr-btn-success-focus-border-default);
+  --wvr-btn-success-focus-border-default: none;
   --wvr-btn-success-focus-box-shadow: var(--wvr-btn-success-focus-box-shadow-default);
   --wvr-btn-success-focus-box-shadow-default: 0 0 0 0.2rem rgba(40,167,69,.5);
+  --wvr-btn-success-focus-text-decoration: var(--wvr-btn-success-focus-text-decoration-default);
+  --wvr-btn-success-focus-text-decoration-default: none;
 
   --wvr-btn-success-hover-background: var(--wvr-btn-success-hover-background-default);
   --wvr-btn-success-hover-background-default: #218838;
@@ -185,8 +213,12 @@
   --wvr-btn-outline-success-text-decoration: var(--wvr-btn-outline-success-text-decoration-default);
   --wvr-btn-outline-success-text-decoration-default: none;
 
+  --wvr-btn-outline-success-focus-border: var(--wvr-btn-outline-success-focus-border-default);
+  --wvr-btn-outline-success-focus-border-default: none;
   --wvr-btn-outline-success-focus-box-shadow: var(--wvr-btn-outline-success-focus-box-shadow-default);
   --wvr-btn-outline-success-focus-box-shadow-default: 0 0 0 0.2rem rgba(40,167,69,.5);
+  --wvr-btn-outline-success-focus-text-decoration: var(--wvr-btn-outline-success-focus-text-decoration-default);
+  --wvr-btn-outline-success-focus-text-decoration-default: none;
 
   --wvr-btn-outline-success-hover-background: var(--wvr-btn-outline-success-hover-background-default);
   --wvr-btn-outline-success-hover-background-default: var(--wvr-success);
@@ -207,8 +239,12 @@
   --wvr-btn-info-active-text-decoration: var(--wvr-btn-info-active-text-decoration-default);
   --wvr-btn-info-active-text-decoration-default: none;
 
+  --wvr-btn-info-focus-border: var(--wvr-btn-info-focus-border-default);
+  --wvr-btn-info-focus-border-default: none;
   --wvr-btn-info-focus-box-shadow: var(--wvr-btn-info-focus-box-shadow-default);
   --wvr-btn-info-focus-box-shadow-default: 0 0 0 0.2rem rgba(23,162,184,.5);
+  --wvr-btn-info-focus-text-decoration: var(--wvr-btn-info-focus-text-decoration-default);
+  --wvr-btn-info-focus-text-decoration-default: none;
 
   --wvr-btn-info-background: var(--wvr-btn-info-background-default);
   --wvr-btn-info-background-default: var(--wvr-info);
@@ -247,8 +283,12 @@
   --wvr-btn-outline-info-text-decoration: var(--wvr-btn-outline-info-text-decoration-default);
   --wvr-btn-outline-info-text-decoration-default: none;
 
+  --wvr-btn-outline-info-focus-border: var(--wvr-btn-outline-info-focus-border-default);
+  --wvr-btn-outline-info-focus-border-default: none;
   --wvr-btn-outline-info-focus-box-shadow: var(--wvr-btn-outline-info-focus-box-shadow-default);
   --wvr-btn-outline-info-focus-box-shadow-default: 0 0 0 0.2rem rgba(23,162,184,.5);
+  --wvr-btn-outline-info-focus-text-decoration: var(--wvr-btn-outline-info-focus-text-decoration-default);
+  --wvr-btn-outline-info-focus-text-decoration-default: none;
 
   --wvr-btn-outline-info-hover-background: var(--wvr-btn-outline-info-hover-background-default);
   --wvr-btn-outline-info-hover-background-default: var(--wvr-info);
@@ -278,8 +318,12 @@
   --wvr-btn-warning-text-decoration: var(--wvr-btn-warning-text-decoration-default);
   --wvr-btn-warning-text-decoration-default: none;
 
+  --wvr-btn-warning-focus-border: var(--wvr-btn-warning-focus-border-default);
+  --wvr-btn-warning-focus-border-default: none;
   --wvr-btn-warning-focus-box-shadow: var(--wvr-btn-warning-focus-box-shadow-default);
   --wvr-btn-warning-focus-box-shadow-default: 0 0 0 0.2rem rgba(255,193,7,.5);
+  --wvr-btn-warning-focus-text-decoration: var(--wvr-btn-warning-focus-text-decoration-default);
+  --wvr-btn-warning-focus-text-decoration-default: none;
 
   --wvr-btn-warning-hover-background: var(--wvr-btn-warning-hover-background-default);
   --wvr-btn-warning-hover-background-default: #e0a800;
@@ -309,8 +353,12 @@
   --wvr-btn-outline-warning-text-decoration: var(--wvr-btn-outline-warning-text-decoration-default);
   --wvr-btn-outline-warning-text-decoration-default: none;
 
+  --wvr-btn-outline-warning-focus-border: var(--wvr-btn-outline-warning-focus-border-default);
+  --wvr-btn-outline-warning-focus-border-default: none;
   --wvr-btn-outline-warning-focus-box-shadow: var(--wvr-btn-outline-warning-focus-box-shadow-default);
   --wvr-btn-outline-warning-focus-box-shadow-default: 0 0 0 0.2rem rgba(255,193,7,.5);
+  --wvr-btn-outline-warning-focus-text-decoration: var(--wvr-btn-outline-warning-focus-text-decoration-default);
+  --wvr-btn-outline-warning-focus-text-decoration-default: none;
 
   --wvr-btn-outline-warning-hover-background: var(--wvr-btn-outline-warning-hover-background-default);
   --wvr-btn-outline-warning-hover-background-default: var(--wvr-warning);
@@ -340,8 +388,12 @@
   --wvr-btn-danger-text-decoration: var(--wvr-btn-danger-text-decoration-default);
   --wvr-btn-danger-text-decoration-default: none;
 
+  --wvr-btn-danger-focus-border: var(--wvr-btn-danger-focus-border-default);
+  --wvr-btn-danger-focus-border-default: none;
   --wvr-btn-danger-focus-box-shadow: var(--wvr-btn-danger-focus-box-shadow-default);
   --wvr-btn-danger-focus-box-shadow-default: 0 0 0 0.2rem rgba(220,53,69,.5);
+  --wvr-btn-danger-focus-text-decoration: var(--wvr-btn-danger-focus-text-decoration-default);
+  --wvr-btn-danger-focus-text-decoration-default: none;
 
   --wvr-btn-danger-hover-background: var(--wvr-btn-danger-hover-background-default);
   --wvr-btn-danger-hover-background-default: #c82333;
@@ -371,8 +423,12 @@
   --wvr-btn--outline-danger-text-decoration: var(--wvr-btn--outline-danger-text-decoration-default);
   --wvr-btn--outline-danger-text-decoration-default: none;
 
+  --wvr-btn-outline-danger-focus-border: var(--wvr-btn-outline-danger-focus-border-default);
+  --wvr-btn-outline-danger-focus-border-default: none;
   --wvr-btn-outline-danger-focus-box-shadow: var(--wvr-btn-outline-danger-focus-box-shadow-default);
   --wvr-btn-outline-danger-focus-box-shadow-default: 0 0 0 0.2rem rgba(220,53,69,.5);
+  --wvr-btn-outline-danger-focus-text-decoration: var(--wvr-btn-outline-danger-focus-text-decoration-default);
+  --wvr-btn-outline-danger-focus-text-decoration-default: none;
 
   --wvr-btn-outline-danger-hover-background: var(--wvr-btn-outline-danger-hover-background-default);
   --wvr-btn-outline-danger-hover-background-default: var(--wvr-danger);
@@ -402,8 +458,12 @@
   --wvr-btn-light-text-decoration: var(--wvr-btn-light-text-decoration-default);
   --wvr-btn-light-text-decoration-default: none;
 
+  --wvr-btn-light-focus-border: var(--wvr-btn-light-focus-border-default);
+  --wvr-btn-light-focus-border-default: none;
   --wvr-btn-light-focus-box-shadow: var(--wvr-btn-light-focus-box-shadow-default);
   --wvr-btn-light-focus-box-shadow-default: 0 0 0 0.2rem rgba(248,249,250,.5);
+  --wvr-btn-light-focus-text-decoration: var(--wvr-btn-light-focus-text-decoration-default);
+  --wvr-btn-light-focus-text-decoration-default: none;
 
   --wvr-btn-light-hover-background: var(--wvr-btn-light-hover-background-default);
   --wvr-btn-light-hover-background-default: #e2e6ea;
@@ -433,8 +493,12 @@
   --wvr-btn-outline-light-text-decoration: var(--wvr-btn-outline-light-text-decoration-default);
   --wvr-btn-outline-light-text-decoration-default: none;
 
+  --wvr-btn-outline-light-focus-border: var(--wvr-btn-outline-light-focus-border-default);
+  --wvr-btn-outline-light-focus-border-default: none;
   --wvr-btn-outline-light-focus-box-shadow: var(--wvr-btn-outline-light-focus-box-shadow-default);
   --wvr-btn-outline-light-focus-box-shadow-default: 0 0 0 0.2rem rgba(248,249,250,.5);
+  --wvr-btn-outline-light-focus-text-decoration: var(--wvr-btn-outline-light-focus-text-decoration-default);
+  --wvr-btn-outline-light-focus-text-decoration-default: none;
 
   --wvr-btn-outline-light-hover-background: var(--wvr-btn-outline-light-hover-background-default);
   --wvr-btn-outline-light-hover-background-default: var(--wvr-light);
@@ -464,8 +528,12 @@
   --wvr-btn-dark-text-decoration: var(--wvr-btn-dark-text-decoration-default);
   --wvr-btn-dark-text-decoration-default: none;
 
+  --wvr-btn-dark-focus-border: var(--wvr-btn-dark-focus-border-default);
+  --wvr-btn-dark-focus-border-default: none;
   --wvr-btn-dark-focus-box-shadow: var(--wvr-btn-dark-focus-box-shadow-default);
   --wvr-btn-dark-focus-box-shadow-default: 0 0 0 0.2rem rgba(52,58,64,.5);
+  --wvr-btn-dark-focus-text-decoration: var(--wvr-btn-dark-focus-text-decoration-default);
+  --wvr-btn-dark-focus-text-decoration-default: none;
 
   --wvr-btn-dark-hover-background: var(--wvr-btn-dark-hover-background-default);
   --wvr-btn-dark-hover-background-default: #23272b;
@@ -495,8 +563,12 @@
   --wvr-btn-outline-dark-text-decoration: var(--wvr-btn-outline-dark-text-decoration-default);
   --wvr-btn-outline-dark-text-decoration-default: none;
 
+  --wvr-btn-outline-dark-focus-border: var(--wvr-btn-outline-dark-focus-border-default);
+  --wvr-btn-outline-dark-focus-border-default: none;
   --wvr-btn-outline-dark-focus-box-shadow: var(--wvr-btn-outline-dark-focus-box-shadow-default);
   --wvr-btn-outline-dark-focus-box-shadow-default: 0 0 0 0.2rem rgba(52,58,64,.5);
+  --wvr-btn-outline-dark-focus-text-decoration: var(--wvr-btn-outline-dark-focus-text-decoration-default);
+  --wvr-btn-outline-dark-focus-text-decoration-default: none;
 
   --wvr-btn-outline-dark-hover-background: var(--wvr-btn-outline-dark-hover-background-default);
   --wvr-btn-outline-dark-hover-background-default: var(--wvr-dark);
@@ -526,8 +598,12 @@
   --wvr-btn-link-text-decoration: var(--wvr-btn-link-text-decoration-default);
   --wvr-btn-link-text-decoration-default: underline;
 
+  --wvr-btn-link-focus-border: var(--wvr-btn-link-focus-border-default);
+  --wvr-btn-link-focus-border-default: none;
   --wvr-btn-link-focus-box-shadow: var(--wvr-btn-link-focus-box-shadow-default);
-  --wvr-btn-link-focus-box-shadow-default: 0 0 0 0.2rem rgba(0,123,255,.25);
+  --wvr-btn-link-focus-box-shadow-default: none; // 0 0 0 0.2rem rgba(0,123,255,.25);
+  --wvr-btn-link-focus-text-decoration: var(--wvr-btn-link-focus-text-decoration-default);
+  --wvr-btn-link-focus-text-decoration-default: none;
 
   --wvr-btn-link-hover-background: var(--wvr-btn-link-hover-background-default);
   --wvr-btn-link-hover-background-default: var(--wvr-btn-outline-background);
@@ -550,7 +626,8 @@
   }
 
   .btn:focus {
-    outline: var(--wvr-btn-focus-outline);
+    outline: 0; //var(--wvr-btn-focus-outline);
+    text-decoration: none;
   }
 
   // btn-primary
@@ -572,7 +649,9 @@
 
   .btn.btn-primary.focus,
   .btn.btn-primary:focus {
+    border: var(--wvr-btn-primary-focus-border);
     box-shadow: var(--wvr-btn-primary-focus-box-shadow);
+    text-decoration: var(--wvr-btn-primary-focus-text-decoration);
   }
 
   .btn.btn-primary:hover {
@@ -601,7 +680,9 @@
 
   .btn.btn-outline-primary.focus,
   .btn.btn-outline-primary:focus {
+    border: var(--wvr-btn-outline-primary-focus-border);
     box-shadow: var(--wvr-btn-outline-primary-focus-box-shadow);
+    text-decoration: var(--wvr-btn-outline-primary-focus-text-decoration);
   }
 
   .btn.btn-outline-primary:hover {
@@ -630,7 +711,9 @@
 
   .btn.btn-secondary.focus,
   .btn.btn-secondary:focus {
+    border: var(--wvr-btn-secondary-focus-border);
     box-shadow: var(--wvr-btn-secondary-focus-box-shadow);
+    text-decoration: var(--wvr-btn-secondary-focus-text-decoration);
   }
 
   .btn.btn-secondary:hover {
@@ -659,7 +742,9 @@
 
   .btn.btn-outline-secondary.focus,
   .btn.btn-outline-secondary:focus {
+    border: var(--wvr-btn-outline-secondary-focus-border);
     box-shadow: var(--wvr-btn-outline-secondary-focus-box-shadow);
+    text-decoration: var(--wvr-btn-outline-secondary-focus-text-decoration);
   }
 
   .btn.btn-outline-secondary:hover {
@@ -688,7 +773,9 @@
 
   .btn.btn-success.focus,
   .btn.btn-success:focus {
+    border: var(--wvr-btn-success-focus-border);
     box-shadow: var(--wvr-btn-success-focus-box-shadow);
+    text-decoration: var(--wvr-btn-success-focus-text-decoration);
   }
 
   .btn.btn-success:hover {
@@ -717,7 +804,9 @@
 
   .btn.btn-outline-success.focus,
   .btn.btn-outline-success:focus {
+    border: var(--wvr-btn-outline-success-focus-border);
     box-shadow: var(--wvr-btn-outline-success-focus-box-shadow);
+    text-decoration: var(--wvr-btn-outline-success-focus-text-decoration);
   }
 
   .btn.btn-outline-success:hover {
@@ -746,7 +835,9 @@
 
   .btn.btn-info.focus,
   .btn.btn-info:focus {
+    border: var(--wvr-btn-info-focus-border);
     box-shadow: var(--wvr-btn-info-focus-box-shadow);
+    text-decoration: var(--wvr-btn-info-focus-text-decoration);
   }
 
   .btn.btn-info:hover {
@@ -775,7 +866,9 @@
 
   .btn.btn-outline-info.focus,
   .btn.btn-outline-info:focus {
+    border: var(--wvr-btn-outline-info-focus-border);
     box-shadow: var(--wvr-btn-outline-info-focus-box-shadow);
+    text-decoration: var(--wvr-btn-outline-info-focus-text-decoration);
   }
 
   .btn.btn-outline-info:hover {
@@ -804,7 +897,9 @@
 
   .btn.btn-warning.focus,
   .btn.btn-warning:focus {
+    border: var(--wvr-btn-warning-focus-border);
     box-shadow: var(--wvr-btn-warning-focus-box-shadow);
+    text-decoration: var(--wvr-btn-warning-focus-text-decoration);
   }
 
   .btn.btn-warning:hover {
@@ -833,7 +928,9 @@
 
   .btn.btn-outline-warning.focus,
   .btn.btn-outline-warning:focus {
+    border: var(--wvr-btn-outline-warning-focus-border);
     box-shadow: var(--wvr-btn-outline-warning-focus-box-shadow);
+    text-decoration: var(--wvr-btn-outline-warning-focus-text-decoration);
   }
 
   .btn-outline-warning:hover {
@@ -862,7 +959,9 @@
 
   .btn.btn-danger.focus,
   .btn.btn-danger:focus {
+    border: var(--wvr-btn-danger-focus-border);
     box-shadow: var(--wvr-btn-danger-focus-box-shadow);
+    text-decoration: var(--wvr-btn-danger-focus-text-decoration);
   }
 
   .btn.btn-danger:hover {
@@ -891,7 +990,9 @@
 
   .btn.btn-outline-danger.focus,
   .btn.btn-outline-danger:focus {
+    border: var(--wvr-btn-outline-danger-focus-border);
     box-shadow: var(--wvr-btn-outline-danger-focus-box-shadow);
+    text-decoration: var(--wvr-btn-outline-danger-focus-text-decoration);
   }
 
   .btn.btn-outline-danger:hover {
@@ -920,7 +1021,9 @@
 
   .btn.btn-light.focus,
   .btn.btn-light:focus {
+    border: var(--wvr-btn-light-focus-border);
     box-shadow: var(--wvr-btn-light-focus-box-shadow);
+    text-decoration: var(--wvr-btn-light-focus-text-decoration);
   }
 
   .btn-light:hover {
@@ -949,7 +1052,9 @@
 
   .btn.btn-outline-light.focus,
   .btn.btn-outline-light:focus {
+    border: var(--wvr-btn-outline-light-focus-border);
     box-shadow: var(--wvr-btn-outline-light-focus-box-shadow);
+    text-decoration: var(--wvr-btn-outline-light-focus-text-decoration);
   }
 
   .btn-outline-light:hover {
@@ -978,7 +1083,9 @@
 
   .btn.btn-dark.focus,
   .btn.btn-dark:focus {
+    border: var(--wvr-btn-dark-focus-border);
     box-shadow: var(--wvr-btn-dark-focus-box-shadow);
+    text-decoration: var(--wvr-btn-dark-focus-text-decoration);
   }
 
   .btn.btn-dark:hover {
@@ -1007,7 +1114,9 @@
 
   .btn.btn-outline-dark.focus,
   .btn.btn-outline-dark:focus {
+    border: var(--wvr-btn-outline-dark-focus-border);
     box-shadow: var(--wvr-btn-outline-dark-focus-box-shadow);
+    text-decoration: var(--wvr-btn-outline-dark-focus-text-decoration);
   }
 
   .btn.btn-outline-dark:hover {
@@ -1027,7 +1136,9 @@
 
   .btn.btn-link.focus,
   .btn.btn-link:focus {
+    border: var(--wvr-btn-link-focus-border);
     box-shadow: var(--wvr-btn-link-focus-box-shadow);
+    text-decoration: var(--wvr-btn-link-focus-text-decoration);
   }
 
   .btn.btn-link:hover {
