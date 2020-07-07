@@ -43,7 +43,7 @@ export class WvrDropdownComponent extends WvrAbstractBaseComponent {
   }
 
   get btnBackgroundActive(): string {
-    return this._btnBackgroundActive ? this._btnBackgroundActive: `var(--wvr-btn-${this.btnType}-active-background-default)`;
+    return this._btnBackgroundActive ? this._btnBackgroundActive : `var(--wvr-btn-${this.btnType}-active-background-default)`;
   }
 
   /** Allows for override of button background value in hover state. */
@@ -156,7 +156,7 @@ export class WvrDropdownComponent extends WvrAbstractBaseComponent {
     return this._btnBoxShadowFocus ? this._btnBoxShadowFocus : `var(--wvr-btn-${this.btnType}-focus-box-shadow-default)`;
   }
 
-  /** Allows for override the button color in hover state. */
+  /** Allows for override the button cursor. */
   private _btnCursor: string;
 
   @Input() set btnCursor(value: string) {
@@ -164,7 +164,7 @@ export class WvrDropdownComponent extends WvrAbstractBaseComponent {
   }
 
   get btnCursor(): string {
-    return this._btnCursor ? this._btnCursor : 'var(--wvr-btn-cursor-pointer-default)';
+    return this._btnCursor ? this._btnCursor : 'var(--wvr-btn-cursor-default)';
   }
 
   /** Allows for override the button font family. */
@@ -237,7 +237,7 @@ export class WvrDropdownComponent extends WvrAbstractBaseComponent {
   btnHref = '';
 
   /** Allows for override of button size.  */
-  btnSize = 'large';
+  btnSize = '';
 
   /** Allows for the visual customization of the dropdown menu activation button.  */
   @Input() btnType: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark' | 'link' | 'plain' = 'plain';
@@ -380,7 +380,7 @@ export class WvrDropdownComponent extends WvrAbstractBaseComponent {
    * And the click occured off of the wvr-dropdown component.
    */
   @HostListener('document:click', ['$event']) clickout($event): void {
-    if (!this.eRef.nativeElement.contains(event.target)) {
+    if (!this.eRef.nativeElement.contains($event.target)) {
       this.closeDropdown();
     }
   }
@@ -392,6 +392,7 @@ export class WvrDropdownComponent extends WvrAbstractBaseComponent {
   clickOpen($event: Event): void {
     if (this.toggleOn === 'click') {
       this.isOpen() ? this.closeDropdown() : this.openDropdown();
+      $event.stopPropagation();
     }
   }
 

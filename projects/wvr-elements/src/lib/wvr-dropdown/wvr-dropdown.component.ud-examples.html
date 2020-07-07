@@ -19,7 +19,7 @@
     The <code>wvr-dropdown</code> component with customizations.
   </desciption>
   <snippet>
-    <wvr-dropdown 
+    <wvr-dropdown
       btn-type="plain"
       toggle-on="click"
       menu-animation-speed="250"
@@ -40,6 +40,44 @@
         <h1><wvr-text value="HTML Content"></wvr-text></h1>
       </wvr-dropdown-menu>
     </wvr-dropdown>
+    <wvr-dropdown
+      btn-background="tomato"
+      btn-background-active="yellow"
+      btn-background-hover="red"
+      btn-border-color="1px solid black"
+      btn-border-active="1px solid teal"
+      btn-border-hover="1px solid green"
+      btn-border-focus="1px solid blue"
+      btn-border-radius="6px"
+      btn-box-shadow-focus="var(--wvr-btn-primary-focus-box-shadow)"
+      btn-type="link"
+      btn-size="large"
+      btn-color="var(--wvr-btn-primary-color)"
+      btn-color-active="var(--wvr-black)"
+      btn-color-hover="teal"
+      btn-cursor="help"
+      btn-font-family="cursive"
+      btn-href=""
+      btn-line-height="1.2"
+      btn-padding="1.5rem 1.5rem"
+      btn-text-align="left"
+      btn-text-decoration="none"
+      btn-text-decorationActive="none"
+      btn-text-decorationFocus="none"
+      btn-text-decorationHover="none"
+      btn-vertical-align="var(--wvr-btn-vertical-align)">
+      <wvr-dropdown-btn>
+        <wvr-text value="Customized Drop Down Having Button"></wvr-text>
+      </wvr-dropdown-btn>
+      <wvr-dropdown-menu>
+        <ul class="list-unstyled">
+          <li wvr-dropdown-menu-item>
+            <a href="#linkOne" id="linkOne"><wvr-text value="Link One" text-decoration="underline"></a>
+            <p><wvr-text value="Description for link one"></wvr-text></p>
+          </li>
+        </ul>
+      </wvr-dropdown-menu>
+    </wvr-dropdown>
   </snippet>
 </example>
 
@@ -48,7 +86,7 @@
     The <code>wvr-dropdown</code> component with customizations.
   </desciption>
   <snippet>
-    
+
     <style>
       wvr-dropdown {
         box-sizing: border-box;

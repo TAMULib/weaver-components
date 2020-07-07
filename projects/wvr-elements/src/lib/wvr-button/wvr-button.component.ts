@@ -13,7 +13,7 @@ export class WvrButtonComponent extends WvrAbstractBaseComponent {
   'outline-primary' | 'outline-secondary' | 'outline-success' | 'outline-danger' | 'outline-warning' | 'outline-info' | 'outline-light' | 'outline-dark' | 'outline-link' = 'primary';
 
   /** Used to define the size for button component.  */
-  @Input() btnSize: 'large' | 'small' | 'block' = 'large';
+  @Input() btnSize: 'large' | 'small' | 'block';
 
   /** Used to define the type of a button.  */
   @Input() wvrBtnType: 'button' | 'checkbox' | 'radio' | 'reset' | 'submit' = 'button';
@@ -60,6 +60,7 @@ export class WvrButtonComponent extends WvrAbstractBaseComponent {
   @HostBinding('style.--wvr-btn-outline-light-active-background')
   @HostBinding('style.--wvr-btn-dark-active-background')
   @HostBinding('style.--wvr-btn-outline-dark-active-background')
+  @HostBinding('style.--wvr-btn-link-active-background')
   @Input() backgroundActive;
 
   /** Allows for the override of hover background */
@@ -123,6 +124,7 @@ export class WvrButtonComponent extends WvrAbstractBaseComponent {
   @HostBinding('style.--wvr-btn-outline-light-active-border')
   @HostBinding('style.--wvr-btn-dark-active-border')
   @HostBinding('style.--wvr-btn-outline-dark-active-border')
+  @HostBinding('style.--wvr-btn-link-active-border')
   @Input() borderActive;
 
   /** Allows for the override of hover border */
@@ -338,7 +340,7 @@ export class WvrButtonComponent extends WvrAbstractBaseComponent {
   @HostBinding('style.--wvr-btn-border-radius') @Input() borderRadius;
 
   /** Allows for the override of button cursor property */
-  @HostBinding('style.--wvr-btn-cursor-pointer') @Input() cursor;
+  @HostBinding('style.--wvr-btn-cursor') @Input() cursor;
 
   /** Allows for the override of button font family property */
   @HostBinding('style.--wvr-btn-font-family-sans-serif') @Input() fontFamily;
