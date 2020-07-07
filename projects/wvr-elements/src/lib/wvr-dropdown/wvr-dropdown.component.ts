@@ -392,7 +392,6 @@ export class WvrDropdownComponent extends WvrAbstractBaseComponent {
   clickOpen($event: Event): void {
     if (this.toggleOn === 'click') {
       this.isOpen() ? this.closeDropdown() : this.openDropdown();
-      $event.stopPropagation();
     }
   }
 
