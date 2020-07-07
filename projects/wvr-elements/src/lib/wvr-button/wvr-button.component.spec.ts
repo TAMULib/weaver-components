@@ -28,11 +28,6 @@ describe('WvrButtonComponent', () => {
       .toEqual('primary');
   });
 
-  it("should have as btnSize 'large'", () => {
-    expect(component.btnSize)
-      .toEqual('large');
-  });
-
   it("should have as btnType as 'button'", () => {
     expect(component.wvrBtnType)
       .toEqual('button');
