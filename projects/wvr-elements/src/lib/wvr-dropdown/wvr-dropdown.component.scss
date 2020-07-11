@@ -19,7 +19,11 @@
   position: relative;
   width: var(--wvr-dropdown-menu-width);
 
-  [ngDropdownAnchor] {
+  .dropdown-toggle::after {
+    display:none;
+  }
+
+  wvr-button-element {
     position: relative;
     z-index: 1001;
   }

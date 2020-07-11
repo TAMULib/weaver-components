@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, ElementRef, HostBinding, HostListener, Input, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostBinding, HostListener, Input, ViewChild } from '@angular/core';
 import { NgbDropdown, NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
 import { WvrAbstractBaseComponent } from '../shared/wvr-abstract-base.component';
 
@@ -328,6 +328,8 @@ export class WvrDropdownComponent extends WvrAbstractBaseComponent {
     return this._btnTextDecorationHover ? this._btnTextDecorationHover : `var(--wvr-btn-${this.btnType}-hover-text-decoration-default)`;
   }
 
+  @Input() placement = 'top-right';
+
   /**
    * A public access reference to the open/closed state of the dropdown menu. Used for
    * animations;
@@ -397,9 +399,13 @@ export class WvrDropdownComponent extends WvrAbstractBaseComponent {
 
   /** A methos for handeling the opening of the dropdown, and updating state. */
   private openDropdown(): void {
-    this.open = true;
-    this.cdRef.detectChanges();
-    this.dropdown.open();
+    document.querySelector('body')
+      .click();
+    setTimeout(() => {
+      this.open = true;
+      this.cdRef.detectChanges();
+      this.dropdown.open();
+    }, this._animationSpeedMili);
   }
 
   /** A methos for handeling the closing of the dropdown, and updating state. */
