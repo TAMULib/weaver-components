@@ -84,7 +84,6 @@ export class WvrButtonComponent extends WvrAbstractBaseComponent {
   @HostBinding('style.--wvr-btn-link-hover-background')
   @Input() backgroundHover;
 
-
   /** Allows for the override of border */
   // tslint:disable-next-line: prefer-inline-decorator
   @HostBinding('style.--wvr-btn-primary-border')

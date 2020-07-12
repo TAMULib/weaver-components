@@ -419,4 +419,5 @@ export class WvrDropdownComponent extends WvrAbstractBaseComponent {
     }, this._animationSpeedMili);
   }
 
+// tslint:disable-next-line:max-file-line-count
 }

@@ -32,8 +32,8 @@
     background: var(--wvr-dropdown-menu-background);
     border: var(--wvr-dropdown-menu-border);
     border-radius: var(--wvr-dropdown-menu-border-radius);
-    left: var(--wvr-dropdown-menu-x-offset);
-    margin-top: var(--wvr-dropdown-menu-y-offset);
+    left: var(--wvr-dropdown-menu-x-offset) !important;
+    top: var(--wvr-dropdown-menu-y-offset) !important;
     padding: var(--wvr-dropdown-menu-padding);
     position: absolute;
     width: var(--wvr-dropdown-menu-width);
