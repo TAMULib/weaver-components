@@ -273,7 +273,7 @@ export class WvrDropdownComponent extends WvrAbstractBaseComponent {
    * Binds the input from `menu-y-offset` to the css variable `--wvr-dropdown-y-offset`.
    * This css variable is applied by `margin-top` css rule to the menu.
    */
-  @HostBinding('style.--wvr-dropdown-menu-y-offset') @Input() menuYOffset;
+  @HostBinding('style.--wvr-dropdown-menu-y-offset') @Input() menuYOffset = '34px';
 
   /**
    * Binds the input from `item-margin` to the css variable `--wvr-dropdown-item-margin`.
