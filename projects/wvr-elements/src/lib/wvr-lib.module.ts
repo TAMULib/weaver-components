@@ -12,6 +12,8 @@ import { WvrFooterComponent } from './wvr-footer/wvr-footer.component';
 import { WvrDropdownComponent } from './wvr-dropdown/wvr-dropdown.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ElementZoneStrategyFactory } from 'elements-zone-strategy';
+import { WvrIconComponent } from './wvr-icon/wvr-icon.component';
+import { IconService } from './wvr-icon/icon.service';
 
 /** This property contains a list of components and the selector tags. */
 const elements = [
@@ -19,6 +21,7 @@ const elements = [
   { component: WvrDropdownComponent, selector: 'wvr-dropdown' },
   { component: WvrFooterComponent, selector: 'wvr-footer' },
   { component: WvrHeaderComponent, selector: 'wvr-header' },
+  { component: WvrIconComponent, selector: 'wvr-icon' },
   { component: WvrItWorksComponent, selector: 'wvr-it-works' },
   { component: WvrNavListComponent, selector: 'wvr-nav-list' },
   { component: WvrNavLiComponent, selector: 'wvr-nav-li' },
@@ -31,6 +34,7 @@ const components = [
   WvrDropdownComponent,
   WvrFooterComponent,
   WvrHeaderComponent,
+  WvrIconComponent,
   WvrItWorksComponent,
   WvrNavListComponent,
   WvrNavLiComponent,
@@ -46,7 +50,9 @@ const components = [
   exports: [
     ...components
   ],
-  providers: [],
+  providers: [
+    IconService
+  ],
   declarations: [
     ...components
   ],
