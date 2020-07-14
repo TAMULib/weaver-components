@@ -13,3 +13,5 @@ export * from './lib/wvr-lib.module';
 export * from './lib/wvr-nav-list/wvr-nav-li/wvr-nav-li.component';
 export * from './lib/wvr-nav-list/wvr-nav-list.component';
 export * from './lib/wvr-text/wvr-text.component';
+export * from './lib/wvr-icon/wvr-icon.component';
+export * from './lib/wvr-icon/icon.service';

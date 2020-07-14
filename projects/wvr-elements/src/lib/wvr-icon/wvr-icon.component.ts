@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, Input } from '@angular/core';
 import { IconService } from './icon.service';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
@@ -7,16 +7,21 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
   templateUrl: './wvr-icon.component.html',
   styleUrls: ['./wvr-icon.component.scss']
 })
-export class WvrIconComponent implements OnInit {
+export class WvrIconComponent implements AfterViewInit {
 
-  @Input() name: string;
+  @Input() private set: string;
+  @Input() private name: string;
 
-  private iconSvg: SafeHtml;
+  iconSvg: SafeHtml;
 
-  constructor(private iconService: IconService, private sanitizer: DomSanitizer) { }
+  constructor(private iconService: IconService, private sanitizer: DomSanitizer, private cdRef: ChangeDetectorRef) { }
 
-  ngOnInit(): void {
-    this.iconSvg = this.sanitizer.bypassSecurityTrustHtml(this.iconService.getIcon(this.name));
+  ngAfterViewInit(): void {
+    this.iconService.getIcon(this.set, this.name)
+      .subscribe(svg => {
+        this.iconSvg = this.sanitizer.bypassSecurityTrustHtml(svg);
+        this.cdRef.detectChanges();
+      });
   }
 
 }
