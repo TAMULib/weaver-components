@@ -1,5 +1,6 @@
 import { DOCUMENT } from '@angular/common';
-import { CUSTOM_ELEMENTS_SCHEMA, Injector, NgModule } from '@angular/core';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { APP_INITIALIZER, CUSTOM_ELEMENTS_SCHEMA, Injector, NgModule } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
 import { BrowserModule } from '@angular/platform-browser';
 import { WvrButtonComponent } from './wvr-button/wvr-button.component';
@@ -12,6 +13,9 @@ import { WvrFooterComponent } from './wvr-footer/wvr-footer.component';
 import { WvrDropdownComponent } from './wvr-dropdown/wvr-dropdown.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ElementZoneStrategyFactory } from 'elements-zone-strategy';
+import { WvrIconComponent } from './wvr-icon/wvr-icon.component';
+import { IconService } from './wvr-icon/icon.service';
+import { ConfigService } from './shared/config.service';
 
 /** This property contains a list of components and the selector tags. */
 const elements = [
@@ -19,6 +23,7 @@ const elements = [
   { component: WvrDropdownComponent, selector: 'wvr-dropdown' },
   { component: WvrFooterComponent, selector: 'wvr-footer' },
   { component: WvrHeaderComponent, selector: 'wvr-header' },
+  { component: WvrIconComponent, selector: 'wvr-icon' },
   { component: WvrItWorksComponent, selector: 'wvr-it-works' },
   { component: WvrNavListComponent, selector: 'wvr-nav-list' },
   { component: WvrNavLiComponent, selector: 'wvr-nav-li' },
@@ -31,22 +36,33 @@ const components = [
   WvrDropdownComponent,
   WvrFooterComponent,
   WvrHeaderComponent,
+  WvrIconComponent,
   WvrItWorksComponent,
   WvrNavListComponent,
   WvrNavLiComponent,
   WvrTextComponent
 ];
 
+const initializeConfig = (configService: ConfigService) => {
+  const loadConfigPromise = configService.load();
+
+  return loadConfigPromise;
+};
+
 /** The main module for the Weaver Elements library. */
 @NgModule({
   imports: [
     BrowserModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule
   ],
   exports: [
     ...components
   ],
-  providers: [],
+  providers: [
+    IconService,
+    ConfigService
+  ],
   declarations: [
     ...components
   ],
@@ -57,16 +73,18 @@ const components = [
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class WvrLibModule {
-
   constructor(injector: Injector) {
-    elements.forEach(element => {
-      try {
-        const strategyFactory = new ElementZoneStrategyFactory(element.component, injector);
-        customElements.define(element.selector, createCustomElement(element.component, { injector, strategyFactory }));
-      } catch (e) {
-        // console.warn(e);
-      }
-    });
+    initializeConfig(injector.get(ConfigService))
+      .then(() => {
+        elements.forEach(element => {
+          try {
+            const strategyFactory = new ElementZoneStrategyFactory(element.component, injector);
+            customElements.define(element.selector, createCustomElement(element.component, { injector, strategyFactory }));
+          } catch (e) {
+            // console.warn(e);
+          }
+        });
+      });
     const doc = injector.get(DOCUMENT);
     doc.querySelectorAll('[wvr-hide-content]')
       .forEach(elem => {
