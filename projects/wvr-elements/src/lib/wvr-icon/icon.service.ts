@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { IconSet } from './icon-set';
-import { bootstrapIcons } from './bootstrap.icons';
 import { Icon } from './icon';
 import { Observable, of } from 'rxjs';
 import { share } from 'rxjs/operators';
+import { ConfigService } from '../shared/config.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,10 @@ export class IconService {
 
   iconRegister: Map<string, IconSet> = new Map<string, IconSet>();
 
-  constructor(private http: HttpClient) {
+  private ASSET_PATH = 'http://localhost:4200/assets';
+
+  constructor(private http: HttpClient, config: ConfigService) {
+    console.log(config.baseUrl);
   }
 
   registerIcons(icons: IconSet): void {
@@ -35,7 +38,7 @@ export class IconService {
 
   private fetchIcon(set: IconSet, name: string): Observable<string> {
 
-    return this.http.get(`assets/icons/${set.name}/${name}.svg`, { responseType: 'text' })
+    return this.http.get(`${this.ASSET_PATH}/icons/${set.name}/${name}.svg`, { responseType: 'text' })
       .pipe(share());
   }
 

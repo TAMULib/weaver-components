@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, Input } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, HostBinding, Input } from '@angular/core';
 import { IconService } from './icon.service';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
@@ -10,7 +10,12 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 export class WvrIconComponent implements AfterViewInit {
 
   @Input() private set: string;
+
   @Input() private name: string;
+
+  @HostBinding('style.--wvr-icon-color') @Input() private color: string;
+
+  @HostBinding('style.--wvr-icon-size') @Input() private size = '24px';
 
   iconSvg: SafeHtml;
 

@@ -1,6 +1,6 @@
 import { DOCUMENT } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
-import { CUSTOM_ELEMENTS_SCHEMA, Injector, NgModule } from '@angular/core';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { APP_INITIALIZER, CUSTOM_ELEMENTS_SCHEMA, Injector, NgModule } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
 import { BrowserModule } from '@angular/platform-browser';
 import { WvrButtonComponent } from './wvr-button/wvr-button.component';
@@ -15,6 +15,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ElementZoneStrategyFactory } from 'elements-zone-strategy';
 import { WvrIconComponent } from './wvr-icon/wvr-icon.component';
 import { IconService } from './wvr-icon/icon.service';
+import { ConfigService } from './shared/config.service';
+import { catchError, map } from 'rxjs/operators';
+import { Observable, ObservableInput, of } from 'rxjs';
 
 /** This property contains a list of components and the selector tags. */
 const elements = [
@@ -42,6 +45,66 @@ const components = [
   WvrTextComponent
 ];
 
+// tslint:disable-next-line:only-arrow-functions
+// function load(http: HttpClient, config: ConfigService): (() => Promise<boolean>) {
+//   console.log("foooo");
+
+//   return (): Promise<boolean> =>
+//     new Promise<boolean>((resolve: (a: boolean) => void): void => {
+//       setTimeout(() => {
+//         console.log("done");
+//         resolve(true);
+//       }, 10000);
+//     });
+// }
+
+const initializeConfig = (configService: ConfigService) => () => {
+  const loadConfigPromise = configService.load();
+
+  loadConfigPromise.then(() => {
+      console.log('loaded');
+  });
+
+  return loadConfigPromise;
+};
+
+// function load(http: HttpClient, config: ConfigService): (() => Promise<boolean>) {
+//   return (): Promise<boolean> =>
+//     new Promise<boolean>((resolve: (a: boolean) => void): void => {
+//       http.get('./config.json')
+//       .pipe(
+//         map((x: ConfigService) => {
+//           config.baseUrl = x.baseUrl;
+//           resolve(true);
+//         }),
+//         catchError((x: { status: number }, caught: Observable<void>): ObservableInput<{}> => {
+//           if (x.status !== 404) {
+//             resolve(false);
+//           }
+//           config.baseUrl = 'http://localhost:8080/api';
+//           resolve(true);
+
+//           return of({});
+//         })
+//       )
+//       .subscribe();
+//     });
+// }
+
+// tslint:disable-next-line:only-arrow-functions
+function initApp() {
+  // tslint:disable-next-line:arrow-return-shorthand
+  return () => {
+    // tslint:disable-next-line:arrow-parens
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        console.log('In initApp');
+        resolve();
+      }, 3000);
+    });
+  };
+}
+
 /** The main module for the Weaver Elements library. */
 @NgModule({
   imports: [
@@ -53,7 +116,16 @@ const components = [
     ...components
   ],
   providers: [
-    IconService
+    IconService,
+    ConfigService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initApp,
+      multi: true,
+      deps: [
+        ConfigService
+      ]
+    }
   ],
   declarations: [
     ...components

@@ -2,6 +2,7 @@
 
 const process = require('process');
 const fs = require('fs-extra');
+const path = require('path');
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 const glob = require("glob");
@@ -102,7 +103,12 @@ additionalAssets.forEach(a=>{
   log(`    ${chalk.cyan('- Including:     '+a)}`);
   let aPathParts = a.split('/');
   let fileName = aPathParts[aPathParts.length-1];
-  fs.copyFileSync(a, `${CONFIG.output}/assets/${fileName}`);
+  log(`${CONFIG.output}/assets/${fileName}`);
+  if(fs.lstatSync(a).isDirectory()) {
+    copyFolderSync(a, `${CONFIG.output}/assets/${fileName}`);
+  } else {
+    fs.copyFileSync(a, `${CONFIG.output}/assets/${fileName}`);
+  }
 }); 
 log(`    ${chalk.cyanBright('Total Additional Assets')}: ${chalk.blue(additionalAssets.length)}`);
 
@@ -112,7 +118,11 @@ staticAssets.forEach(sa=>{
   log(`    ${chalk.cyan('- Including:     '+sa)}`);
   let saPathParts = sa.split('/');
   let fileName = saPathParts[saPathParts.length-1];
-  fs.copyFileSync(sa, `${CONFIG.output}/${fileName}`);
+  if(fs.lstatSync(sa).isDirectory()) {
+    copyFolderSync(sa, `${CONFIG.output}/${fileName}`);
+  } else {
+    fs.copyFileSync(sa, `${CONFIG.output}/${fileName}`);
+  }
 });
 
 log(`    ${chalk.cyanBright('Total content')}: ${chalk.blue(staticAssets.length)}`);
@@ -133,3 +143,14 @@ let timeDiff = endTime - startTime; //in ms
 timeDiff /= 1000;
 
 log(`    ${chalk.green('Usage Documentation Finished:')} ${chalk.blue(timeDiff+'s')}`);
+
+function copyFolderSync(from, to) {
+  fs.mkdirSync(to);
+  fs.readdirSync(from).forEach(element => {
+      if (fs.lstatSync(path.join(from, element)).isFile()) {
+          fs.copyFileSync(path.join(from, element), path.join(to, element));
+      } else {
+          copyFolderSync(path.join(from, element), path.join(to, element));
+      }
+  });
+}
