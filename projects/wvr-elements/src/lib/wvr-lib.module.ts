@@ -45,65 +45,11 @@ const components = [
   WvrTextComponent
 ];
 
-// tslint:disable-next-line:only-arrow-functions
-// function load(http: HttpClient, config: ConfigService): (() => Promise<boolean>) {
-//   console.log("foooo");
-
-//   return (): Promise<boolean> =>
-//     new Promise<boolean>((resolve: (a: boolean) => void): void => {
-//       setTimeout(() => {
-//         console.log("done");
-//         resolve(true);
-//       }, 10000);
-//     });
-// }
-
-const initializeConfig = (configService: ConfigService) => () => {
+const initializeConfig = (configService: ConfigService) => {
   const loadConfigPromise = configService.load();
-
-  loadConfigPromise.then(() => {
-      console.log('loaded');
-  });
 
   return loadConfigPromise;
 };
-
-// function load(http: HttpClient, config: ConfigService): (() => Promise<boolean>) {
-//   return (): Promise<boolean> =>
-//     new Promise<boolean>((resolve: (a: boolean) => void): void => {
-//       http.get('./config.json')
-//       .pipe(
-//         map((x: ConfigService) => {
-//           config.baseUrl = x.baseUrl;
-//           resolve(true);
-//         }),
-//         catchError((x: { status: number }, caught: Observable<void>): ObservableInput<{}> => {
-//           if (x.status !== 404) {
-//             resolve(false);
-//           }
-//           config.baseUrl = 'http://localhost:8080/api';
-//           resolve(true);
-
-//           return of({});
-//         })
-//       )
-//       .subscribe();
-//     });
-// }
-
-// tslint:disable-next-line:only-arrow-functions
-function initApp() {
-  // tslint:disable-next-line:arrow-return-shorthand
-  return () => {
-    // tslint:disable-next-line:arrow-parens
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        console.log('In initApp');
-        resolve();
-      }, 3000);
-    });
-  };
-}
 
 /** The main module for the Weaver Elements library. */
 @NgModule({
@@ -117,15 +63,7 @@ function initApp() {
   ],
   providers: [
     IconService,
-    ConfigService,
-    {
-      provide: APP_INITIALIZER,
-      useFactory: initApp,
-      multi: true,
-      deps: [
-        ConfigService
-      ]
-    }
+    ConfigService
   ],
   declarations: [
     ...components
@@ -137,16 +75,18 @@ function initApp() {
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class WvrLibModule {
-
   constructor(injector: Injector) {
-    elements.forEach(element => {
-      try {
-        const strategyFactory = new ElementZoneStrategyFactory(element.component, injector);
-        customElements.define(element.selector, createCustomElement(element.component, { injector, strategyFactory }));
-      } catch (e) {
-        // console.warn(e);
-      }
-    });
+    initializeConfig(injector.get(ConfigService))
+      .then(() => {
+        elements.forEach(element => {
+          try {
+            const strategyFactory = new ElementZoneStrategyFactory(element.component, injector);
+            customElements.define(element.selector, createCustomElement(element.component, { injector, strategyFactory }));
+          } catch (e) {
+            // console.warn(e);
+          }
+        });
+      });
     const doc = injector.get(DOCUMENT);
     doc.querySelectorAll('[wvr-hide-content]')
       .forEach(elem => {

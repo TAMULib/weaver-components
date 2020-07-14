@@ -16,10 +16,14 @@ const server = new StaticServer({
 server.start(function () {
   console.log('Server listening to', server.port);
   fsPromises.copyFile('index.html', `${latestPath}/index.html`);
+  fsPromises.copyFile('config.json', `${latestPath}/config.json`);
 });
 
 process.on('exit', function () {
   fs.unlink(`${latestPath}/index.html`, err => {
+    if (err) throw err;
+  });
+  fs.unlink(`${latestPath}/config.json`, err => {
     if (err) throw err;
   });
   console.log('Cleaning up');

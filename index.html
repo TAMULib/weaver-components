@@ -17,38 +17,151 @@
 </head>
 
 <body>
-
   <wvr-header>
-    <wvr-nav-list top-navigation aligned="RIGHT">
-      <wvr-nav-li href="#about-us">
-        <wvr-text value="About" text-color="white"></wvr-text>
+    <wvr-nav-list top-navigation>
+      <wvr-nav-li>
+        <wvr-dropdown
+          btn-type="link"
+          btn-text-decoration="none"
+          btn-text-decoration-active="none"
+          btn-text-decoration-hover="none"
+          toggle-on="click"
+          menu-width="400px"
+          menu-padding="0"
+          menu-item-margin="0"
+          wvr-hide-content>
+          <wvr-dropdown-btn>
+            <wvr-text value="Dropdown 1" text-color="white"></wvr-text>
+          </wvr-dropdown-btn>
+          <wvr-dropdown-menu>
+            <div class="list-group">
+              <button type="button" class="list-group-item list-group-item-action active">
+                <wvr-text value="Option One"></wvr-text>
+              </button>
+              <button type="button" class="list-group-item list-group-item-action">
+                <wvr-text value="Option Two"></wvr-text>
+              </button>
+              <button type="button" class="list-group-item list-group-item-action">
+                <wvr-text value="Option Three"></wvr-text>
+              </button>
+              <button type="button" class="list-group-item list-group-item-action">
+                <wvr-text value="Option Four"></wvr-text>
+              </button>
+              <button type="button" class="list-group-item list-group-item-action" disabled>
+                <wvr-text value="Option Five" text-decoration="line-through"></wvr-text>
+              </button>
+            </div>
+          </wvr-dropdown-menu>
+        </wvr-dropdown>
       </wvr-nav-li>
-      <wvr-nav-li href="#hours">
-        <wvr-text value="Hours" text-color="white"></wvr-text>
+      <wvr-nav-li>
+        <wvr-dropdown
+          btn-type="link"
+          btn-text-decoration="none"
+          btn-text-decoration-active="none"
+          btn-text-decoration-hover="none"
+          btn-box-shadow-focus="none"
+          toggle-on="mouseover"
+          menu-animation-speed="350"
+          menu-width="400px"
+          menu-x-offset="-140px"
+          menu-padding="45px 10px 0px 10px"
+          menu-item-margin="5px 0 0 0"
+          wvr-hide-content>
+          <wvr-dropdown-btn>
+            <wvr-text value="Dropdown 2" text-color="white"></wvr-text>
+          </wvr-dropdown-btn>
+          <wvr-dropdown-menu>
+            <ul class="list-unstyled">
+              <li wvr-dropdown-menu-item>
+                <a href="#linkOne" id="linkOne">
+                  <wvr-text value="Link One" text-decoration="underline">
+                </a>
+                <p>
+                  <wvr-text value="Description for link one"></wvr-text>
+                </p>
+              </li>
+              <li wvr-dropdown-menu-item>
+                <a href="#linkTwo" id="linkTwo">
+                  <wvr-text value="Link Two" text-decoration="underline">
+                </a>
+                <p>
+                  <wvr-text value="Description for link Two"></wvr-text>
+                </p>
+              </li>
+              <li wvr-dropdown-menu-item>
+                <a href="#linkThree" id="linkThree">
+                  <wvr-text value="Link Three" text-decoration="underline">
+                </a>
+                <p>
+                  <wvr-text value="Description for link Three"></wvr-text>
+                </p>
+              </li>
+              <li wvr-dropdown-menu-item>
+                <a href="#linkFour" id="linkFour">
+                  <wvr-text value="Link Four" text-decoration="underline">
+                </a>
+                <p>
+                  <wvr-text value="Description for link Four"></wvr-text>
+                </p>
+              </li>
+            </ul>
+          </wvr-dropdown-menu>
+        </wvr-dropdown>
       </wvr-nav-li>
-      <wvr-nav-li href="#contact">
-        <wvr-text value="Contact" text-color="white"></wvr-text>
+      <wvr-nav-li>
+        <wvr-text value="Action 1"></wvr-text>
       </wvr-nav-li>
     </wvr-nav-list>
     <wvr-nav-list bottom-navigation>
-      <wvr-nav-li href="#1">
-        <wvr-text value="Link 1" text-color="black"></wvr-text>
+      <wvr-nav-li href="#1" id="1">
+        <wvr-text value="Example 1" text-color="black"></wvr-text>
       </wvr-nav-li>
-      <wvr-nav-li href="#2">
-        <wvr-text value="Link 2" text-color="black"></wvr-text>
+      <wvr-nav-li href="#2" id="2">
+        <wvr-text value="Example 2" text-color="black"></wvr-text>
       </wvr-nav-li>
-      <wvr-nav-li href="#3">
-        <wvr-text value="Link 3" text-color="black"></wvr-text>
+      <wvr-nav-li>
+        <wvr-dropdown
+          btn-type="link"
+          btn-text-decoration="none"
+          btn-text-decoration-active="none"
+          btn-text-decoration-hover="none"
+          toggle-on="click"
+          menu-width="400px"
+          menu-padding="0"
+          menu-item-margin="0"
+          wvr-hide-content>
+          <wvr-dropdown-btn>
+            <wvr-text value="Dropdown 1" text-color="white"></wvr-text>
+          </wvr-dropdown-btn>
+          <wvr-dropdown-menu>
+            <div class="list-group">
+              <button type="button" class="list-group-item list-group-item-action active">
+                <wvr-text value="Option One"></wvr-text>
+              </button>
+              <button type="button" class="list-group-item list-group-item-action">
+                <wvr-text value="Option Two"></wvr-text>
+              </button>
+              <button type="button" class="list-group-item list-group-item-action">
+                <wvr-text value="Option Three"></wvr-text>
+              </button>
+              <button type="button" class="list-group-item list-group-item-action">
+                <wvr-text value="Option Four"></wvr-text>
+              </button>
+              <button type="button" class="list-group-item list-group-item-action" disabled>
+                <wvr-text value="Option Five" text-decoration="line-through"></wvr-text>
+              </button>
+            </div>
+          </wvr-dropdown-menu>
+        </wvr-dropdown>
       </wvr-nav-li>
     </wvr-nav-list>
   </wvr-header>
-
   <br />
-
   <wvr-it-works></wvr-it-works>
 
   <div class="container" style="text-align: center;">
-    <wvr-dropdown btn-type="primary">
+    <wvr-dropdown btn-type="primary" pacement="right">
       <wvr-dropdown-btn>
         <wvr-text value="Primary Dropdown"></wvr-text>
       </wvr-dropdown-btn>
@@ -202,8 +315,54 @@
       </wvr-dropdown-menu>
     </wvr-dropdown>
   </div>
+  <br /><hr /><br />
+
+  <div class="container" style="text-align: center;">
+    <!--
+      btn-font-size="50px"
+    -->
+    <wvr-dropdown
+      btn-background="tomato"
+      btn-background-active="yellow"
+      btn-background-hover="red"
+      btn-border-color="1px solid black"
+      btn-border-active="1px solid teal"
+      btn-border-hover="1px solid green"
+      btn-border-focus="1px solid blue"
+      btn-border-radius="6px"
+      btn-box-shadow-focus="var(--wvr-btn-primary-focus-box-shadow)"
+      btn-type="link"
+      btn-size="small"
+      btn-color="var(--wvr-btn-primary-color)"
+      btn-color-active="var(--wvr-black)"
+      btn-color-hover="teal"
+      btn-cursor="help"
+      btn-font-family="cursive"
+      btn-href=""
+      btn-line-height="1.2"
+      btn-padding="1.5rem 1.5rem"
+      btn-text-align="left"
+      btn-text-decoration="none"
+      btn-text-decorationActive="none"
+      btn-text-decorationFocus="none"
+      btn-text-decorationHover="none"
+      btn-vertical-align="var(--wvr-btn-vertical-align)">
+      <wvr-dropdown-btn>
+        <wvr-text value="Customized Drop Down"></wvr-text>
+      </wvr-dropdown-btn>
+      <wvr-dropdown-menu>
+        <ul class="list-unstyled">
+          <li wvr-dropdown-menu-item>
+            <a href="#linkOne" id="linkOne"><wvr-text value="Link One" text-decoration="underline"></a>
+            <p><wvr-text value="Description for link one"></wvr-text></p>
+          </li>
+        </ul>
+      </wvr-dropdown-menu>
+    </wvr-dropdown>
+  </div>
 
   <br /><hr /><br />
+
   <div class="container" style="text-align: center;">
 
     <wvr-button btn-class="primary" btn-size="large">
@@ -254,7 +413,7 @@
                 color-hover="var(--wvr-black)"
                 text-decoration-hover="none"
                 border-radius="5px"
-                cursor="var(--wvr-btn-cursor-pointer)"
+                cursor="help"
                 font-family="cursive"
                 font-size="18px"
                 line-height="1"
@@ -294,13 +453,19 @@
     </wvr-button>
   </div>
 
+  <br /><hr /><br />
+  <div class="container" style="text-align: center;">
+    <wvr-icon set="custom" name="weaver-w"></wvr-icon>
+    <wvr-icon set="custom" name="weaver-w" color="#500000" size="64px"></wvr-icon>
+  </div>
+
   <wvr-footer>
     <wvr-nav-list aligned="CENTER">
       <wvr-nav-li>
         <wvr-text value="Action 1"></wvr-text>
       </wvr-nav-li>
-      <wvr-nav-li href="#0">
-        <wvr-text value="Link"></wvr-text>
+      <wvr-nav-li href="#3" id="3">
+        <wvr-text value="Example" text-color="black"></wvr-text>
       </wvr-nav-li>
       <wvr-nav-li>
         <wvr-text value="Action 2"></wvr-text>

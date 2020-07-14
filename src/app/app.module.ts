@@ -17,7 +17,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   entryComponents: []
 })
 export class AppModule {
-  ngDoBootstrap(): void {
+  ngDoBootstrap(app): void {
     // OVERRIDE
   }
 }

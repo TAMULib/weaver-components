@@ -125,6 +125,8 @@ staticAssets.forEach(sa=>{
   }
 });
 
+fs.copyFileSync('./config-docs.json', `${CONFIG.output}/../config.json`);
+
 log(`    ${chalk.cyanBright('Total content')}: ${chalk.blue(staticAssets.length)}`);
 
 // Prepare Index

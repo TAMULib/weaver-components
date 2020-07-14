@@ -13,10 +13,10 @@ export class IconService {
 
   iconRegister: Map<string, IconSet> = new Map<string, IconSet>();
 
-  private ASSET_PATH = 'http://localhost:4200/assets';
+  private readonly ASSET_PATH: string;
 
   constructor(private http: HttpClient, config: ConfigService) {
-    console.log(config.baseUrl);
+    this.ASSET_PATH = `${config.baseUrl}/assets`;
   }
 
   registerIcons(icons: IconSet): void {
