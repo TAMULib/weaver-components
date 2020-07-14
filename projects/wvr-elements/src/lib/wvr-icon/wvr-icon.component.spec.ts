@@ -1,5 +1,5 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { async, ComponentFixture, inject, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { WvrIconComponent } from './wvr-icon.component';
 
 describe('WvrIconComponent', () => {
@@ -8,6 +8,7 @@ describe('WvrIconComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [ HttpClientTestingModule ],
       declarations: [ WvrIconComponent ]
     })
     .compileComponents();
@@ -19,8 +20,10 @@ describe('WvrIconComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create', inject([HttpTestingController],
+    (httpMock: HttpTestingController) => {
     expect(component)
       .toBeTruthy();
-  });
+  }));
+
 });

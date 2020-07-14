@@ -11,13 +11,13 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  it('should display it works component', () => {
-    page.navigateTo()
-      .catch(err => { console.error(err); });
-    expect(page.getItWorksText())
-      .toEqual('Weaver Components Work!!!')
-      .catch(err => { console.error(err); });
-  });
+  // it('should display it works component', () => {
+  //   page.navigateTo()
+  //     .catch(err => { console.error(err); });
+  //   expect(page.getItWorksText())
+  //     .toEqual('Weaver Components Work!!!')
+  //     .catch(err => { console.error(err); });
+  // });
 
   afterEach(async () => {
     // Assert that there are no errors emitted from the browser

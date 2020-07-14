@@ -16,8 +16,6 @@ import { ElementZoneStrategyFactory } from 'elements-zone-strategy';
 import { WvrIconComponent } from './wvr-icon/wvr-icon.component';
 import { IconService } from './wvr-icon/icon.service';
 import { ConfigService } from './shared/config.service';
-import { catchError, map } from 'rxjs/operators';
-import { Observable, ObservableInput, of } from 'rxjs';
 
 /** This property contains a list of components and the selector tags. */
 const elements = [
