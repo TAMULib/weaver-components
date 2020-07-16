@@ -1,0 +1,19 @@
+@import "~bootstrap/scss/bootstrap";
+@import "../shared/styles/host-styles.scss";
+
+:host {
+
+  --wvr-icon-color: inherit;
+  --wvr-icon-size: inherit;
+
+  wvr-icon-wrapper {
+    color: var(--wvr-icon-color);
+    ::ng-deep {
+      svg {
+        width: var(--wvr-icon-size);
+        height: var(--wvr-icon-size);
+      }
+    }
+  }
+
+}

@@ -1,20 +1,34 @@
 <div #WvrDropdown class="wvr-components wvr-dropdown d-inline-flex align-items-center">
-  <div ngbDropdown display="dynamic" placement="bottom-right" class="d-inline-block" (openChange)="detectChanges()">
-    <div (click)="clickOpen($event)" [ngClass]="{
-      'btn-primary': btnType === 'primary', 
-      'btn-secondary': btnType === 'secondary',
-      'btn-success': btnType === 'success',
-      'btn-danger': btnType === 'danger',
-      'btn-warning': btnType === 'warning',
-      'btn-info': btnType === 'info',
-      'btn-light': btnType === 'light',
-      'btn-dark': btnType === 'dark',
-      'btn-link': btnType === 'link',
-      'plain flex-fill': btnType === 'plain',
-      'btn': btnType !== 'plain'
-    }" ngDropdownAnchor>
-      <ng-content select="wvr-dropdown-btn"></ng-content>
-    </div>
+  <div ngbDropdown display="dynamic" class="d-inline-block" (openChange)="detectChanges()">
+    <wvr-button-element (click)="clickOpen($event)"
+      [background]="btnBackground"
+      [backgroundActive]="btnBackgroundActive"
+      [backgroundHover]="btnBackgroundHover"
+      [borderColor]="btnBorderColor"
+      [borderActive]="btnBorderActive"
+      [borderHover]="btnBorderHover"
+      [borderFocus]="btnBorderFocus"
+      [borderRadius]="btnBorderRadius"
+      [boxShadowFocus]="btnBoxShadowFocus"
+      [btnClass]="btnType"
+      [btnSize]="btnSize"
+      [color]="btnColor"
+      [colorActive]="btnColorActive"
+      [colorHover]="btnColorHover"
+      [cursor]="btnCursor"
+      [fontFamily]="btnFontFamily"
+      [fontSize]="btnFontSize"
+      [href]="btnHref"
+      [lineHeight]="btnLineHeight"
+      [padding]="btnPadding"
+      [textAlign]="btnTextAlign"
+      [textDecoration]="btnTextDecoration"
+      [textDecorationActive]="btnTextDecorationActive"
+      [textDecorationFocus]="btnTextDecorationFocus"
+      [textDecorationHover]="btnTextDecorationHover"
+      [verticalAlign]="btnVerticalAlign" ngbDropdownAnchor>
+      <ng-content select="wvr-dropdown-btn" ngProjectAs="wvr-btn-content"></ng-content>
+    </wvr-button-element>
     <div ngbDropdownMenu [ngClass]="{open: open,closed: !open}">
       <ng-content select="wvr-dropdown-menu"></ng-content>
     </div>
