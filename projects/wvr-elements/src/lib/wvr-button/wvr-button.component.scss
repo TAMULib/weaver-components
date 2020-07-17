@@ -1060,4 +1060,13 @@
     text-decoration: var(--wvr-btn-link-active-text-decoration);
   }
 
+  .btn {
+    ::ng-deep {
+      svg {
+        vertical-align: middle;
+        margin: 0px 0px 0px 5px;
+      }
+    }
+  }
+
 }
