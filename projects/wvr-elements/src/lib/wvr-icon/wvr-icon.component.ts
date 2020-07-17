@@ -23,7 +23,8 @@ export class WvrIconComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.iconService.getIcon(this.set, this.name)
-      .subscribe(svg => {
+      .toPromise()
+      .then(svg => {
         this.iconSvg = this.sanitizer.bypassSecurityTrustHtml(svg);
         this.cdRef.detectChanges();
       });
