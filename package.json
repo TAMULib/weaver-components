@@ -43,7 +43,7 @@
     "static:clean": "rimraf static"
   },
   "dependencies": {
-    "@angular/animations": "^9.0.1",
+    "@angular/animations": "^10.0.4",
     "@angular/common": "^9.0.1",
     "@angular/compiler": "^9.0.1",
     "@angular/core": "^9.0.1",

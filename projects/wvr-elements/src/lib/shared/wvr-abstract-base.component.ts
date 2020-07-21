@@ -1,8 +1,16 @@
-import { ChangeDetectorRef } from '@angular/core';
+import { HostBinding, Input } from '@angular/core';
 import { debounceTime, map } from 'rxjs/operators';
 import { fromEvent, Observable } from 'rxjs';
 
 export abstract class WvrAbstractBaseComponent {
+
+  @Input() animateRotationTiming  = '250ms ease-out';
+
+  @HostBinding('style.--wvr-animate-rotation-degree') _animateRotationDegree = '90deg';
+  @Input() set animateRotationDegree(value: number) {
+    this._animateRotationDegree = `${value}deg`;
+  }
+  rotationState: 'rotated' | 'default' = 'default';
 
   get isMobileAgent(): boolean {
     const agent = navigator.userAgent || navigator.vendor || (window as any).opera;
@@ -19,6 +27,22 @@ export abstract class WvrAbstractBaseComponent {
     this.screenSizeChanged$ = fromEvent(window, 'resize')
       .pipe(debounceTime(50))
       .pipe(map(this.checkScreenSize));
+  }
+
+  protected onClick($event): void {
+    // Override This
+  }
+
+  protected onMouseover($event): void {
+    // Override This
+  }
+
+  protected onMouseenter($event): void {
+    // Override This
+  }
+
+  protected onMouseleave($event): void {
+    // Override This
   }
 
   private checkScreenSize = () =>  document.body.offsetWidth < 991;

@@ -1,38 +1,7 @@
-<button *ngIf="!href"
-class="wvr-components wvr-button btn"
-[type]="wvrBtnType"
-[ngClass]="{
-  'btn-primary': btnClass==='primary',
-  'btn-secondary': btnClass==='secondary',
-  'btn-success': btnClass==='success',
-  'btn-danger': btnClass==='danger',
-  'btn-warning': btnClass==='warning',
-  'btn-info': btnClass==='info',
-  'btn-light': btnClass==='light',
-  'btn-dark': btnClass==='dark',
-  'btn-link': btnClass==='link',
-  'btn-outline-primary': btnClass==='outline-primary',
-  'btn-outline-secondary': btnClass==='outline-secondary',
-  'btn-outline-success': btnClass==='outline-success',
-  'btn-outline-danger': btnClass==='outline-danger',
-  'btn-outline-warning': btnClass==='outline-warning',
-  'btn-outline-info': btnClass==='outline-info',
-  'btn-outline-light': btnClass==='outline-light',
-  'btn-outline-dark': btnClass==='outline-dark',
-  'btn-outline-link': btnClass==='outline-link',
-  'btn-lg': btnSize==='large',
-  'btn-sm': btnSize==='small',
-  'btn-block':btnSize==='block'
-}"
-role="button"
-ngbButton
->
-  <ng-container *ngTemplateOutlet="content"></ng-container>
-</button>
-
-<a *ngIf="href"
+<button-wrapper [@toggleRotation]="{value: rotationState, params: {animateRotationTiming: animateRotationTiming}}">
+  <button *ngIf="!href"
   class="wvr-components wvr-button btn"
-   [href]="hrefUrl"
+  [type]="wvrBtnType"
   [ngClass]="{
     'btn-primary': btnClass==='primary',
     'btn-secondary': btnClass==='secondary',
@@ -56,9 +25,41 @@ ngbButton
     'btn-sm': btnSize==='small',
     'btn-block':btnSize==='block'
   }"
-  role="button" aria-label="button">
-  <ng-container *ngTemplateOutlet="content"></ng-container>
-</a>
+  role="button"
+  >
+    <ng-container *ngTemplateOutlet="content"></ng-container>
+  </button>
+
+  <a *ngIf="href"
+    class="wvr-components wvr-button btn"
+    [href]="hrefUrl"
+    [ngClass]="{
+      'btn-primary': btnClass==='primary',
+      'btn-secondary': btnClass==='secondary',
+      'btn-success': btnClass==='success',
+      'btn-danger': btnClass==='danger',
+      'btn-warning': btnClass==='warning',
+      'btn-info': btnClass==='info',
+      'btn-light': btnClass==='light',
+      'btn-dark': btnClass==='dark',
+      'btn-link': btnClass==='link',
+      'btn-outline-primary': btnClass==='outline-primary',
+      'btn-outline-secondary': btnClass==='outline-secondary',
+      'btn-outline-success': btnClass==='outline-success',
+      'btn-outline-danger': btnClass==='outline-danger',
+      'btn-outline-warning': btnClass==='outline-warning',
+      'btn-outline-info': btnClass==='outline-info',
+      'btn-outline-light': btnClass==='outline-light',
+      'btn-outline-dark': btnClass==='outline-dark',
+      'btn-outline-link': btnClass==='outline-link',
+      'btn-lg': btnSize==='large',
+      'btn-sm': btnSize==='small',
+      'btn-block':btnSize==='block'
+    }"
+    role="button" aria-label="button">
+    <ng-container *ngTemplateOutlet="content"></ng-container>
+  </a>
+</button-wrapper>
 
 <ng-template #content>
   <ng-content select="wvr-text, wvr-text-element, wvr-icon, wvr-btn-content"></ng-content>

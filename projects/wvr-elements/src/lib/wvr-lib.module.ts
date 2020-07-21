@@ -1,8 +1,9 @@
 import { DOCUMENT } from '@angular/common';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { APP_INITIALIZER, CUSTOM_ELEMENTS_SCHEMA, Injector, NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { CUSTOM_ELEMENTS_SCHEMA, Injector, NgModule } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { WvrButtonComponent } from './wvr-button/wvr-button.component';
 import { WvrHeaderComponent } from './wvr-header/wvr-header.component';
 import { WvrItWorksComponent } from './wvr-it-works/wvr-it-works.component';
@@ -52,9 +53,10 @@ const initializeConfig = (configService: ConfigService) => {
 /** The main module for the Weaver Elements library. */
 @NgModule({
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
-    NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   exports: [
     ...components

@@ -1,10 +1,12 @@
-import { ChangeDetectorRef, Component, ElementRef, HostBinding, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, HostBinding, HostListener, Input, Output } from '@angular/core';
 import { WvrAbstractBaseComponent } from '../shared/wvr-abstract-base.component';
+import { wvrComponentBaseProps } from '../shared/wvr-base-component-props';
 
 @Component({
   selector: 'wvr-button-element',
   templateUrl: './wvr-button.component.html',
-  styleUrls: ['./wvr-button.component.scss']
+  styleUrls: ['./wvr-button.component.scss'],
+  ...wvrComponentBaseProps
 })
 export class WvrButtonComponent extends WvrAbstractBaseComponent {
 
@@ -358,5 +360,15 @@ export class WvrButtonComponent extends WvrAbstractBaseComponent {
 
   /** Allows for the override of button vertical align property */
   @HostBinding('style.--wvr-btn-vertical-align') @Input() verticalAlign;
+
+  constructor(private cdRef: ChangeDetectorRef) {
+    super();
+  }
+
+  onClick(): void {
+    this.rotationState = this.rotationState === 'default' ? 'rotated' : 'default';
+    this.cdRef.detectChanges();
+    console.log(this.rotationState);
+  }
 
 }

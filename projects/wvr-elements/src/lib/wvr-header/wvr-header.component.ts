@@ -1,6 +1,7 @@
 import { AfterContentChecked, ChangeDetectorRef, Component, ElementRef, HostBinding, Input, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { WvrAbstractBaseComponent } from '../shared/wvr-abstract-base.component';
+import { baseHostProps } from '../shared/wvr-base-component-props';
 
 /**
  * Intended to appear at the top of document and provides for branding, links and page title.
