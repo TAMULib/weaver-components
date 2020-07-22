@@ -2,14 +2,11 @@ import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, EventEmitter, 
 import { IconService } from './icon.service';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { WvrAbstractBaseComponent } from '../shared/wvr-abstract-base.component';
-import { animate, state, style, transition, trigger } from '@angular/animations';
-import { wvrComponentBaseProps } from '../shared/wvr-base-component-props';
 
 @Component({
   selector: 'wvr-icon-element',
   templateUrl: './wvr-icon.component.html',
-  styleUrls: ['./wvr-icon.component.scss'],
-  ...wvrComponentBaseProps
+  styleUrls: ['./wvr-icon.component.scss']
 })
 export class WvrIconComponent extends WvrAbstractBaseComponent implements AfterViewInit {
 
@@ -31,8 +28,8 @@ export class WvrIconComponent extends WvrAbstractBaseComponent implements AfterV
   iconSvg: SafeHtml;
 
   constructor(private elemRef: ElementRef, private iconService: IconService,
-              private sanitizer: DomSanitizer, private cdRef: ChangeDetectorRef) {
-    super();
+              private sanitizer: DomSanitizer, cdRef: ChangeDetectorRef) {
+    super(cdRef);
   }
 
   ngAfterViewInit(): void {

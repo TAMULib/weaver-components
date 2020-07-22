@@ -1,5 +1,6 @@
 import { ChangeDetectorRef, Component, ElementRef, HostBinding, HostListener, Input, OnInit } from '@angular/core';
 import { ResizeSensor } from 'css-element-queries';
+import { WvrAbstractBaseComponent } from '../shared/wvr-abstract-base.component';
 
 /**
  * A fullwidth footer component which attaches to the bottom of the document body.
@@ -9,7 +10,7 @@ import { ResizeSensor } from 'css-element-queries';
   templateUrl: './wvr-footer.component.html',
   styleUrls: ['./wvr-footer.component.scss']
 })
-export class WvrFooterComponent implements OnInit {
+export class WvrFooterComponent extends WvrAbstractBaseComponent implements OnInit {
 
   /** An internal reference to the body element. */
   private parentElement: HTMLElement;
@@ -36,7 +37,9 @@ export class WvrFooterComponent implements OnInit {
    * @param elementRef: ElementRef - a reference to the footer element, used internally for styling.
    * @param ref: ChangeDetectorRef - utilized internally to force change detection.
    */
-  constructor(private readonly elementRef: ElementRef, private ref: ChangeDetectorRef) { }
+  constructor(private readonly elementRef: ElementRef, cdRef: ChangeDetectorRef) {
+    super(cdRef);
+  }
 
   /**
    * Resizes the width of the footer to match its parents width,
@@ -48,7 +51,7 @@ export class WvrFooterComponent implements OnInit {
     const newIsSticky = this.parentElement.clientHeight <= compareHeight;
     if (this.isSticky !== newIsSticky) {
       this.isSticky = newIsSticky;
-      this.ref.detectChanges();
+      this.cdRef.detectChanges();
     }
   }
 

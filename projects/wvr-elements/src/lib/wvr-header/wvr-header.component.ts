@@ -1,7 +1,6 @@
 import { AfterContentChecked, ChangeDetectorRef, Component, ElementRef, HostBinding, Input, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { WvrAbstractBaseComponent } from '../shared/wvr-abstract-base.component';
-import { baseHostProps } from '../shared/wvr-base-component-props';
 
 /**
  * Intended to appear at the top of document and provides for branding, links and page title.
@@ -67,7 +66,7 @@ export class WvrHeaderComponent extends WvrAbstractBaseComponent implements OnIn
   @Input() set displayBottomNav(value: 'true' | 'false') {
     this._displayBottomNav = value;
     this.checkBottomNavHasChildren();
-    this.ref.detectChanges();
+    this.cdRef.detectChanges();
   }
 
   get displayBottomNav(): 'true' | 'false' {
@@ -81,22 +80,22 @@ export class WvrHeaderComponent extends WvrAbstractBaseComponent implements OnIn
    * @param domSanitizer: DomSanitizer - this parameter is injected to the weaver component instance.
    * @param elementRef: ElementRef  - a reference to the bottom nav list element.
    */
-  constructor(private readonly domSanitizer: DomSanitizer, private readonly elementRef: ElementRef, private ref: ChangeDetectorRef) {
-    super();
+  constructor(private readonly domSanitizer: DomSanitizer, private readonly elementRef: ElementRef, cdRef: ChangeDetectorRef) {
+    super(cdRef);
   }
 
   ngOnInit(): void {
     this.screenSizeChanged$.subscribe(iml => {
       this.isMobileLayout = iml;
-      this.ref.detectChanges();
+      this.cdRef.detectChanges();
     });
     this.checkBottomNavHasChildren();
-    this.ref.detectChanges();
+    this.cdRef.detectChanges();
   }
 
   ngAfterContentChecked(): void {
     this.checkBottomNavHasChildren();
-    this.ref.detectChanges();
+    this.cdRef.detectChanges();
   }
 
   /** Determines if the bottom nav list has children in order to display bottom nav section. */

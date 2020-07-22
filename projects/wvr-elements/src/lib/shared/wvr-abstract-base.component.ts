@@ -1,8 +1,14 @@
-import { HostBinding, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, HostBinding, HostListener, Input, Output } from '@angular/core';
 import { debounceTime, map } from 'rxjs/operators';
 import { fromEvent, Observable } from 'rxjs';
+import { wvrComponentBaseProps } from './wvr-base-component-props';
 
+@Component({...wvrComponentBaseProps})
 export abstract class WvrAbstractBaseComponent {
+
+  @Input() animate: 'rotation' | 'fadeIn' | 'fadeOut';
+
+  @Input() animateOn: 'click' | 'mouseover' | 'mouseenter' | 'mouseleave' | 'animationEventTrigger';
 
   @Input() animateRotationTiming  = '250ms ease-out';
 
@@ -23,26 +29,49 @@ export abstract class WvrAbstractBaseComponent {
 
   isMobileLayout = this.isMobileAgent;
 
-  constructor() {
+  constructor(protected cdRef: ChangeDetectorRef) {
     this.screenSizeChanged$ = fromEvent(window, 'resize')
       .pipe(debounceTime(50))
       .pipe(map(this.checkScreenSize));
   }
 
   protected onClick($event): void {
-    // Override This
+    if (this.animateOn ===  'click') {
+      this.selectAnimation();
+    }
   }
 
   protected onMouseover($event): void {
-    // Override This
+    if (this.animateOn ===  'mouseover') {
+      this.selectAnimation();
+    }
   }
 
   protected onMouseenter($event): void {
-    // Override This
+    if (this.animateOn ===  'mouseenter') {
+      this.selectAnimation();
+    }
   }
 
   protected onMouseleave($event): void {
-    // Override This
+    if (this.animateOn ===  'mouseleave') {
+     this.selectAnimation();
+    }
+  }
+
+  @HostListener('animationEventTrigger, [$event]') protected onAnimationEvent($event): void {
+    this.selectAnimation();
+    // tslint:disable-next-line:no-console
+    console.log('animation event');
+  }
+
+  @Output() protected readonly animationEventTrigger = new EventEmitter<Event>();
+
+  private selectAnimation(): void {
+    if (this.animate === 'rotation') {
+      this.rotationState = this.rotationState === 'default' ? 'rotated' : 'default';
+    }
+    this.cdRef.detectChanges();
   }
 
   private checkScreenSize = () =>  document.body.offsetWidth < 991;

@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostBinding, HostListener, Input, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, HostBinding, HostListener, Input, ViewChild } from '@angular/core';
 import { NgbDropdown, NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
 import { WvrAbstractBaseComponent } from '../shared/wvr-abstract-base.component';
 
@@ -341,8 +341,8 @@ export class WvrDropdownComponent extends WvrAbstractBaseComponent {
    */
   private closing = false;
 
-  constructor(private cdRef: ChangeDetectorRef, private config: NgbDropdownConfig, private eRef: ElementRef) {
-    super();
+  constructor(cdRef: ChangeDetectorRef, private config: NgbDropdownConfig, private eRef: ElementRef) {
+    super(cdRef);
     config.autoClose = false;
   }
 
