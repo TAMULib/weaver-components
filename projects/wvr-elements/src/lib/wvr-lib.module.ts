@@ -17,7 +17,9 @@ import { ElementZoneStrategyFactory } from 'elements-zone-strategy';
 import { WvrIconComponent } from './wvr-icon/wvr-icon.component';
 import { IconService } from './wvr-icon/icon.service';
 import { ConfigService } from './shared/config.service';
-import { WvrAbstractBaseComponent } from './shared/wvr-abstract-base.component';
+import { WvrBaseComponent } from './shared/wvr-base.component';
+
+
 
 /** This property contains a list of components and the selector tags. */
 const elements = [
@@ -34,7 +36,7 @@ const elements = [
 
 /** This property contains a list of components classes. */
 const components = [
-  WvrAbstractBaseComponent,
+  WvrBaseComponent,
   WvrButtonComponent,
   WvrDropdownComponent,
   WvrFooterComponent,

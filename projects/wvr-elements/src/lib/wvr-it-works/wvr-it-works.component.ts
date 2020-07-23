@@ -1,4 +1,5 @@
 import { Component, HostBinding, Input } from '@angular/core';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 /**
  * Provides a simple component to prove the basic functionality of the Weaver Components.
@@ -8,7 +9,7 @@ import { Component, HostBinding, Input } from '@angular/core';
   templateUrl: './wvr-it-works.component.html',
   styleUrls: ['./wvr-it-works.component.scss']
 })
-export class WvrItWorksComponent {
+export class WvrItWorksComponent extends WvrBaseComponent {
 
   /** The text value to be displayed in the title. */
   title = 'it-works-component';

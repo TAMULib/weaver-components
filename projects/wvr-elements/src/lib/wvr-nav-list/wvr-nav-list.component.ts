@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Alignment } from '../shared/alignment.enum';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 /**
  * The WvrNavList Component presents a navigation list.
@@ -10,7 +11,7 @@ import { Alignment } from '../shared/alignment.enum';
   templateUrl: './wvr-nav-list.component.html',
   styleUrls: ['./wvr-nav-list.component.scss']
 })
-export class WvrNavListComponent {
+export class WvrNavListComponent extends WvrBaseComponent {
 
   /** The aligned property describing the positioning of the list elements. */
   @Input() aligned = Alignment.LEFT;

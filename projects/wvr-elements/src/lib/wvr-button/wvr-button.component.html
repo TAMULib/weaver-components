@@ -1,4 +1,4 @@
-<button-wrapper [@toggleRotation]="{value: rotationState, params: {animateRotationTiming: animateRotationTiming}}">
+<button-wrapper #animationRoot>
   <button *ngIf="!href"
   class="wvr-components wvr-button btn"
   [type]="wvrBtnType"

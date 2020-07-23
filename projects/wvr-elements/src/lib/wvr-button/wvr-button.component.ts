@@ -1,12 +1,12 @@
-import { ChangeDetectorRef, Component, EventEmitter, HostBinding, HostListener, Input, Output } from '@angular/core';
-import { WvrAbstractBaseComponent } from '../shared/wvr-abstract-base.component';
+import { Component, HostBinding, Input } from '@angular/core';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 @Component({
   selector: 'wvr-button-element',
   templateUrl: './wvr-button.component.html',
   styleUrls: ['./wvr-button.component.scss']
 })
-export class WvrButtonComponent extends WvrAbstractBaseComponent {
+export class WvrButtonComponent extends WvrBaseComponent {
 
   /** Used to define the class type for button component.  */
   @Input() btnClass: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark' | 'link' |
@@ -358,10 +358,5 @@ export class WvrButtonComponent extends WvrAbstractBaseComponent {
 
   /** Allows for the override of button vertical align property */
   @HostBinding('style.--wvr-btn-vertical-align') @Input() verticalAlign;
-
-  onClick($event): void {
-    super.onClick($event);
-    this.animationEventTrigger.emit($event);
-  }
 
 }

@@ -1,6 +1,6 @@
-import { ChangeDetectorRef, Component, ElementRef, HostBinding, HostListener, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, HostBinding, HostListener, Injector, Input, OnInit } from '@angular/core';
 import { ResizeSensor } from 'css-element-queries';
-import { WvrAbstractBaseComponent } from '../shared/wvr-abstract-base.component';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 /**
  * A fullwidth footer component which attaches to the bottom of the document body.
@@ -10,7 +10,7 @@ import { WvrAbstractBaseComponent } from '../shared/wvr-abstract-base.component'
   templateUrl: './wvr-footer.component.html',
   styleUrls: ['./wvr-footer.component.scss']
 })
-export class WvrFooterComponent extends WvrAbstractBaseComponent implements OnInit {
+export class WvrFooterComponent extends WvrBaseComponent implements OnInit {
 
   /** An internal reference to the body element. */
   private parentElement: HTMLElement;
@@ -37,8 +37,8 @@ export class WvrFooterComponent extends WvrAbstractBaseComponent implements OnIn
    * @param elementRef: ElementRef - a reference to the footer element, used internally for styling.
    * @param ref: ChangeDetectorRef - utilized internally to force change detection.
    */
-  constructor(private readonly elementRef: ElementRef, cdRef: ChangeDetectorRef) {
-    super(cdRef);
+  constructor(injector: Injector, private readonly elementRef: ElementRef, cdRef: ChangeDetectorRef) {
+    super(injector);
   }
 
   /**
@@ -51,7 +51,7 @@ export class WvrFooterComponent extends WvrAbstractBaseComponent implements OnIn
     const newIsSticky = this.parentElement.clientHeight <= compareHeight;
     if (this.isSticky !== newIsSticky) {
       this.isSticky = newIsSticky;
-      this.cdRef.detectChanges();
+      this._cdRef.detectChanges();
     }
   }
 

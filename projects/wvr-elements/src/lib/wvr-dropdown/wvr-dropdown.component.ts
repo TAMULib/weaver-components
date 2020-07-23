@@ -1,13 +1,13 @@
-import { ChangeDetectorRef, Component, ElementRef, HostBinding, HostListener, Input, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, HostBinding, HostListener, Injector, Input, ViewChild } from '@angular/core';
 import { NgbDropdown, NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
-import { WvrAbstractBaseComponent } from '../shared/wvr-abstract-base.component';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 @Component({
   selector: 'wvr-dropdown-element',
   templateUrl: './wvr-dropdown.component.html',
   styleUrls: ['./wvr-dropdown.component.scss']
 })
-export class WvrDropdownComponent extends WvrAbstractBaseComponent {
+export class WvrDropdownComponent extends WvrBaseComponent {
 
   /** Sets asside a reference to the NgbDropdown element. */
   @ViewChild(NgbDropdown) private dropdown: NgbDropdown;
@@ -341,14 +341,14 @@ export class WvrDropdownComponent extends WvrAbstractBaseComponent {
    */
   private closing = false;
 
-  constructor(cdRef: ChangeDetectorRef, private config: NgbDropdownConfig, private eRef: ElementRef) {
-    super(cdRef);
+  constructor(injector: Injector, cdRef: ChangeDetectorRef, private config: NgbDropdownConfig, private eRef: ElementRef) {
+    super(injector);
     config.autoClose = false;
   }
 
   /** A utility method for manually detecting state changes */
   detectChanges(): void {
-    this.cdRef.detectChanges();
+    this._cdRef.detectChanges();
   }
 
   /** An access method to expose the `isOpen` utility method from `NgbDropdown` */
@@ -403,7 +403,7 @@ export class WvrDropdownComponent extends WvrAbstractBaseComponent {
       .click();
     setTimeout(() => {
       this.open = true;
-      this.cdRef.detectChanges();
+      this._cdRef.detectChanges();
       this.dropdown.open();
     }, this._animationSpeedMili);
   }
@@ -412,7 +412,7 @@ export class WvrDropdownComponent extends WvrAbstractBaseComponent {
   private closeDropdown(): void {
     this.closing = true;
     this.open = false;
-    this.cdRef.detectChanges();
+    this._cdRef.detectChanges();
     setTimeout(() => {
       this.dropdown.close();
       this.closing = false;

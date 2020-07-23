@@ -2,21 +2,34 @@ import { Component } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 
 export const baseHostProps = {
-  '(click)': 'onClick($event)',
-  '(mouseover)': 'onMouseover($event)',
-  '(mouseenter)': 'onMouseenter($event)',
-  '(mouseleave)': 'onMouseleave($event)'
+  '(mousedown)': 'onEvent($event)',
+  '(mouseup)': 'onEvent($event)',
+  '(click)': 'onEvent($event)',
+  '(mouseenter)': 'onEvent($event)',
+  '(mouseleave)': 'onEvent($event)',
+  '(mouseover)': 'onEvent($event)',
+  '(mousemove)': 'onEvent($event)'
 };
 
-export const baseAnimationsProps = [
-  trigger('toggleRotation', [
-    state('default', style({ transform: 'rotate(0)' })),
-    state('rotated', style({ transform: 'rotate(var(--wvr-animate-rotation-degree))' })),
-    transition('rotated <=> default', animate('{{animateRotationTiming}}'))
-  ])
-];
+/*
+  onchange
+  onblure
+  onfocus
+  oncancel
+  onresize
+  onwheel
+  input
+  ondblclick
+  onkeydown
+  onkeypress
+  onkeyup
+  ondrag
+  ondrop
+  onload
+  onprogress
+  ontimout
+  */
 
-export const wvrComponentBaseProps: Component = {
-  host: baseHostProps,
-  animations: baseAnimationsProps
+export const wvrBaseComponentProps: Component = {
+  host: baseHostProps
 };
