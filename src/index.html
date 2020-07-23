@@ -159,7 +159,7 @@
     </wvr-nav-list>
   </wvr-header>
   <br />
-  <wvr-it-works></wvr-it-works>
+  <wvr-it-works animate="{animationTrigger: 'fadetoggle'}" animate-config="{animationTrigger: 'elem1'}"></wvr-it-works>
 
   <div class="container" style="text-align: center;">
     <wvr-dropdown btn-type="primary" pacement="right">
@@ -461,21 +461,16 @@
       <wvr-icon set="custom" name="weaver-w" color="#500000"></wvr-icon>
       <wvr-text value="Icon Btn"></wvr-text>
     </wvr-button>
-    <wvr-button btn-class="info" wvr-btn-type="button" animate="{click: 'fadetoggle'}" animate-config="{
-      fadetoggle: {
-        timing: '100ms ease-in',
-        value: 0.25
-      }}
-    ">
+    <wvr-button btn-class="info" wvr-btn-type="button" animate="{click: 'animationTrigger'}" animate-config="{animationTrigger: 'elem1'}">
       <wvr-text value="Icon Btn"></wvr-text>
-      <wvr-icon set="feather" name="chevron-right" color="#500000"></wvr-icon>
+      <wvr-icon set="feather" name="chevron-right" color="#500000" animate="{animationTrigger: 'rotationToggle'}" animate-config="{animationTrigger: 'elem1'}"></wvr-icon>
     </wvr-button>
   </div>
 
-  <!--animate="{click: 'animationEventTrigger'}" animate-config="{emitTrigger: 'rotate1'}"-->
+  <!--animate="{click: 'animationTrigger'}" animate-config="{emitTrigger: 'rotate1'}"-->
 
   <wvr-footer>
-    <!--animate="{animationEventTrigger: 'fadeToggle'}" animate-config="{recieveTrigger: 'rotate1'}"-->
+    <!--animate="{animationTrigger: 'fadeToggle'}" animate-config="{recieveTrigger: 'rotate1'}"-->
     <wvr-nav-list aligned="CENTER">
       <wvr-nav-li>
         <wvr-text value="Action 1"></wvr-text>

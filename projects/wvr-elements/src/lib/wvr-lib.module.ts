@@ -18,8 +18,7 @@ import { WvrIconComponent } from './wvr-icon/wvr-icon.component';
 import { IconService } from './wvr-icon/icon.service';
 import { ConfigService } from './shared/config.service';
 import { WvrBaseComponent } from './shared/wvr-base.component';
-
-
+import { WvrAnimationService } from './shared/wvr-animation.service';
 
 /** This property contains a list of components and the selector tags. */
 const elements = [
@@ -67,7 +66,8 @@ const initializeConfig = (configService: ConfigService) => {
   ],
   providers: [
     IconService,
-    ConfigService
+    ConfigService,
+    WvrAnimationService
   ],
   declarations: [
     ...components

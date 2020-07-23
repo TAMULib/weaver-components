@@ -1,11 +1,12 @@
-import { ChangeDetectorRef, Component, ElementRef, EventEmitter, HostBinding, HostListener, Injector, Input, Output, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, EventEmitter, HostBinding, HostListener, Injector, Input, Output, ViewChild, OnInit } from '@angular/core';
 import { debounceTime, map } from 'rxjs/operators';
 import { fromEvent, Observable, of } from 'rxjs';
 import { wvrBaseComponentProps } from './wvr-base-component-props';
 import { animate, AnimationBuilder, AnimationMetadata, AnimationPlayer, style } from '@angular/animations';
+import { WvrAnimationService } from './wvr-animation.service';
 
 @Component({...wvrBaseComponentProps})
-export class WvrBaseComponent {
+export class WvrBaseComponent implements OnInit {
 
   private _animationSettings: any;
   @Input() set animate(value: string) {
@@ -13,7 +14,7 @@ export class WvrBaseComponent {
     this._animationSettings = eval(`(${value})`);
   }
 
-  private _animationConfig: {string: {string: string}};
+  private _animationConfig: any;
   @Input() set animateConfig(value: string) {
     // tslint:disable-next-line:no-eval
     this._animationConfig = eval(`(${value})`);
@@ -41,24 +42,37 @@ export class WvrBaseComponent {
 
   protected readonly _builder: AnimationBuilder;
 
+  protected readonly _animationService: WvrAnimationService;
+
   @Output() protected readonly animationEventTrigger = new EventEmitter<Event>();
 
   constructor(injector: Injector) {
 
     this._cdRef = injector.get(ChangeDetectorRef);
     this._builder = injector.get(AnimationBuilder);
+    this._animationService = injector.get(WvrAnimationService);
 
     this.screenSizeChanged$ = fromEvent(window, 'resize')
       .pipe(debounceTime(50))
       .pipe(map(this.checkScreenSize));
   }
 
+  ngOnInit(): void {
+    if (this._animationConfig && this._animationSettings.animationTrigger) {
+      this._animationService.registerAnimationReciever(this._animationConfig.animationTrigger, this);
+    }
+  }
+
+  triggerAnimations(animationTriggerType: string): void {
+    const animations: Array<string> = Array.isArray(this._animationSettings[animationTriggerType]) ?
+                         this._animationSettings[animationTriggerType] :
+                         [this._animationSettings[animationTriggerType]];
+    animations.forEach(a => this.playAnimation(this.selectAnimation(a)));
+  }
+
   private onEvent($event): void {
     if (this._animationSettings && this._animationSettings[$event.type]) {
-      const animations: Array<string> = Array.isArray(this._animationSettings[$event.type]) ?
-                         this._animationSettings[$event.type] :
-                         [this._animationSettings[$event.type]];
-      animations.forEach(a => this.playAnimation(this.selectAnimation(a)));
+      this.triggerAnimations($event.type);
     }
   }
 
@@ -142,6 +156,10 @@ export class WvrBaseComponent {
                                        0}` }))
       ];
       this._animationStates.faded = !this._animationStates.faded;
+    }
+
+    if (animationName === 'animationTrigger') {
+      this._animationService.triggerAnimationReciever(this._animationConfig[animationName]);
     }
 
     /*
