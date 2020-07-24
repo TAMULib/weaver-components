@@ -8,10 +8,12 @@ export const baseHostProps = {
   '(mouseenter)': 'onEvent($event)',
   '(mouseleave)': 'onEvent($event)',
   '(mouseover)': 'onEvent($event)',
-  '(mousemove)': 'onEvent($event)'
+  '(mousemove)': 'onEvent($event)',
+  '(onchange)': 'onEvent($event)'
 };
 
 /*
+  clickaway
   onchange
   onblure
   onfocus

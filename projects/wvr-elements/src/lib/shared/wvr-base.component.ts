@@ -1,29 +1,29 @@
-import { ChangeDetectorRef, Component, ElementRef, EventEmitter, HostBinding, HostListener, Injector, Input, Output, ViewChild, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, EventEmitter, HostBinding, HostListener, Injector, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { debounceTime, map } from 'rxjs/operators';
 import { fromEvent, Observable, of } from 'rxjs';
 import { wvrBaseComponentProps } from './wvr-base-component-props';
-import { animate, AnimationBuilder, AnimationMetadata, AnimationPlayer, style } from '@angular/animations';
+import { AnimationBuilder, AnimationPlayer, AnimationReferenceMetadata } from '@angular/animations';
 import { WvrAnimationService } from './wvr-animation.service';
+import { wvrAnimationDefaults } from './wvr-animations';
 
 @Component({...wvrBaseComponentProps})
 export class WvrBaseComponent implements OnInit {
 
-  private _animationSettings: any;
+  private _animationSettings: any = {};
   @Input() set animate(value: string) {
     // tslint:disable-next-line:no-eval
     this._animationSettings = eval(`(${value})`);
   }
 
-  private _animationConfig: any;
+  private _animationConfig: any = {};
   @Input() set animateConfig(value: string) {
     // tslint:disable-next-line:no-eval
     this._animationConfig = eval(`(${value})`);
   }
 
-  private _animationStates = {
-    rotated: false,
-    faded: false
-  };
+  @Input() animateId: string;
+
+  @Input() animateTarget: string;
 
   @ViewChild('animationRoot') private animationRootElem: ElementRef;
 
@@ -40,8 +40,6 @@ export class WvrBaseComponent implements OnInit {
 
   protected readonly _cdRef: ChangeDetectorRef;
 
-  protected readonly _builder: AnimationBuilder;
-
   protected readonly _animationService: WvrAnimationService;
 
   @Output() protected readonly animationEventTrigger = new EventEmitter<Event>();
@@ -49,7 +47,6 @@ export class WvrBaseComponent implements OnInit {
   constructor(injector: Injector) {
 
     this._cdRef = injector.get(ChangeDetectorRef);
-    this._builder = injector.get(AnimationBuilder);
     this._animationService = injector.get(WvrAnimationService);
 
     this.screenSizeChanged$ = fromEvent(window, 'resize')
@@ -59,7 +56,7 @@ export class WvrBaseComponent implements OnInit {
 
   ngOnInit(): void {
     if (this._animationConfig && this._animationSettings.animationTrigger) {
-      this._animationService.registerAnimationReciever(this._animationConfig.animationTrigger, this);
+      this._animationService.registerAnimationReciever(this.animateTarget, this);
     }
   }
 
@@ -67,119 +64,32 @@ export class WvrBaseComponent implements OnInit {
     const animations: Array<string> = Array.isArray(this._animationSettings[animationTriggerType]) ?
                          this._animationSettings[animationTriggerType] :
                          [this._animationSettings[animationTriggerType]];
-    animations.forEach(a => this.playAnimation(this.selectAnimation(a)));
+    animations.forEach(an => {
+
+      if (an === 'animationTrigger') {
+        this._animationService.triggerAnimationReciever(this.animateId);
+      } else {
+        const timing = this._animationConfig[an] ?
+                   this._animationConfig[an].timing :
+                   wvrAnimationDefaults[an].timing;
+
+        const value = this._animationConfig[an] ?
+                      this._animationConfig[an].value :
+                      wvrAnimationDefaults[an].value;
+
+        const a = this._animationService.selectAnimation(an, timing, value);
+
+        if (a) {
+          this._animationService.playAnimation(a, this.animationRootElem.nativeElement);
+        }
+      }
+    });
   }
 
   private onEvent($event): void {
     if (this._animationSettings && this._animationSettings[$event.type]) {
       this.triggerAnimations($event.type);
     }
-  }
-
-  private playAnimation(animation: AnimationMetadata | Array<AnimationMetadata>): void {
-    const animationFactory = this._builder
-      .build(animation);
-    const player: AnimationPlayer = animationFactory.create(this.animationRootElem.nativeElement);
-    player.play();
-  }
-
-  // tslint:disable-next-line:cyclomatic-complexity
-  private selectAnimation(animationName): AnimationMetadata | Array<AnimationMetadata> {
-    let animation = [];
-    const timing = this._animationConfig[animationName] &&
-                   this._animationConfig[animationName].timing ?
-                   this._animationConfig[animationName].timing :
-                   '250ms linear';
-
-    if (animationName === 'rotationToggle') {
-      animation = [
-        animate(timing,
-          style({ transform: this._animationStates.rotated ?
-                             'rotate(0)' :
-                             `rotate(${this._animationConfig[animationName] &&
-                                       this._animationConfig[animationName].value ?
-                                       this._animationConfig[animationName].value :
-                                       '90'}deg)` }))
-      ];
-      this._animationStates.rotated = !this._animationStates.rotated;
-    }
-
-    if (animationName === 'rotate') {
-      animation = [
-        animate(timing,
-          style({ transform: `rotate(${this._animationConfig[animationName] &&
-                                       this._animationConfig[animationName].value ?
-                                       this._animationConfig[animationName].value :
-                                       '90'}deg)` }))
-      ];
-      this._animationStates.rotated = true;
-    }
-
-    if (animationName === 'unrotate') {
-      animation = [
-        animate(timing,
-          style({ transform: 'rotate(0)' }))
-      ];
-      this._animationStates.rotated = false;
-    }
-
-    if (animationName === 'fadein') {
-      animation = [
-        animate(timing,
-          style({ opacity: this._animationConfig[animationName] &&
-                           this._animationConfig[animationName].value ?
-                           this._animationConfig[animationName].value :
-                           1 }))
-      ];
-      this._animationStates.rotated = false;
-    }
-
-    if (animationName === 'fadeout') {
-      animation = [
-        animate(timing,
-          style({ opacity: this._animationConfig[animationName] &&
-                           this._animationConfig[animationName].value ?
-                           this._animationConfig[animationName].value :
-                           0 }))
-      ];
-      this._animationStates.rotated = false;
-    }
-
-    if (animationName === 'fadetoggle') {
-      animation = [
-        animate(timing,
-          style({ opacity: this._animationStates.faded ?
-                             1 :
-                             `${this._animationConfig[animationName] &&
-                                       this._animationConfig[animationName].value ?
-                                       this._animationConfig[animationName].value :
-                                       0}` }))
-      ];
-      this._animationStates.faded = !this._animationStates.faded;
-    }
-
-    if (animationName === 'animationTrigger') {
-      this._animationService.triggerAnimationReciever(this._animationConfig[animationName]);
-    }
-
-    /*
-
-    slideopen
-    slideclosed
-    slidetoggle
-
-    bounce
-
-    grow
-    shrink
-    growshrinktoggle
-
-    color
-    colorToggle
-
-    */
-
-    return animation;
   }
 
   private checkScreenSize = () =>  document.body.offsetWidth < 991;
