@@ -13,6 +13,14 @@ export const wvrAnimationDefaults = {
     value: 0,
     timing: '250ms linear'
   },
+  fadein: {
+    value: 1,
+    timing: '250ms linear'
+  },
+  fadeout: {
+    value: 0,
+    timing: '250ms linear'
+  },
   fadetoggle: {
     value: 0,
     timing: '250ms linear'

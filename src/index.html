@@ -397,9 +397,9 @@
 
   <br /><hr /><br />
   <div class="container" style="text-align: center;">
-    <wvr-button animate="{click: 'rotationToggle'}"
+    <wvr-button animate="{click: 'rotationtoggle'}"
                 animate-config="{
-                  rotationToggle: {
+                  rotationtoggle: {
                     timing: '1000ms ease-in',
                     value: 180
                   }
@@ -464,15 +464,13 @@
   <div class="container" style="text-align: center;">
     <wvr-icon set="custom" name="weaver-w"></wvr-icon>
     <wvr-icon set="custom" name="weaver-w" color="#500000" size="64px"></wvr-icon>
-    <wvr-button btn-class="primary" wvr-btn-type="button" animate="{mouseenter: 'fadeout', mouseleave: 'fadein'}" animate-config="{fadeout: {
-      value: 0.5
-    }}">
+    <wvr-button btn-class="primary" wvr-btn-type="button" animate="{click: 'rotationtoggle'}">
       <wvr-icon set="custom" name="weaver-w" color="#500000"></wvr-icon>
       <wvr-text value="Icon Btn"></wvr-text>
     </wvr-button>
     <wvr-button btn-class="info" wvr-btn-type="button" animate="{click: 'animationTrigger'}" animate-target="elem1">
       <wvr-text value="Icon Btn"></wvr-text>
-      <wvr-icon set="feather" name="chevron-right" color="#500000" animate="{animationTrigger: 'rotate'}" animate-id="elem1"></wvr-icon>
+      <wvr-icon set="feather" name="chevron-right" color="#500000" animate="{animationTrigger: 'rotationtoggle'}" animate-id="elem1"></wvr-icon>
     </wvr-button>
   </div>
 

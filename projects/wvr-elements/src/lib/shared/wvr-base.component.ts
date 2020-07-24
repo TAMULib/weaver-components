@@ -21,6 +21,8 @@ export class WvrBaseComponent implements OnInit {
     this._animationConfig = eval(`(${value})`);
   }
 
+  private animationStateId: number;
+
   @Input() animateId: string;
 
   @Input() animateTarget: string;
@@ -55,8 +57,11 @@ export class WvrBaseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this._animationConfig && this._animationSettings.animationTrigger) {
-      this._animationService.registerAnimationReciever(this.animateTarget, this);
+    if (this._animationSettings) {
+      if (this.animateId) {
+        this._animationService.registerAnimationReciever(this.animateId, this);
+      }
+      this.animationStateId = this._animationService.registerAnimationStates();
     }
   }
 
@@ -65,23 +70,12 @@ export class WvrBaseComponent implements OnInit {
                          this._animationSettings[animationTriggerType] :
                          [this._animationSettings[animationTriggerType]];
     animations.forEach(an => {
-
       if (an === 'animationTrigger') {
-        this._animationService.triggerAnimationReciever(this.animateId);
+        this._animationService.triggerAnimationReciever(this.animateTarget);
       } else {
-        const timing = this._animationConfig[an] ?
-                   this._animationConfig[an].timing :
-                   wvrAnimationDefaults[an].timing;
-
-        const value = this._animationConfig[an] ?
-                      this._animationConfig[an].value :
-                      wvrAnimationDefaults[an].value;
-
-        const a = this._animationService.selectAnimation(an, timing, value);
-
-        if (a) {
-          this._animationService.playAnimation(a, this.animationRootElem.nativeElement);
-        }
+        const timing = this._animationConfig[an] ? this._animationConfig[an].timing : undefined;
+        const value = this._animationConfig[an] ? this._animationConfig[an].value : undefined;
+        this._animationService.playAnimation(this.animationStateId, an, timing, value, this.animationRootElem.nativeElement);
       }
     });
   }
