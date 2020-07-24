@@ -40,6 +40,8 @@ export class WvrBaseComponent implements OnInit {
 
   isMobileLayout = this.isMobileAgent;
 
+  protected readonly _eRef: ElementRef;
+
   protected readonly _cdRef: ChangeDetectorRef;
 
   protected readonly _animationService: WvrAnimationService;
@@ -49,6 +51,7 @@ export class WvrBaseComponent implements OnInit {
   constructor(injector: Injector) {
 
     this._cdRef = injector.get(ChangeDetectorRef);
+    this._eRef = injector.get(ElementRef);
     this._animationService = injector.get(WvrAnimationService);
 
     this.screenSizeChanged$ = fromEvent(window, 'resize')
@@ -57,11 +60,17 @@ export class WvrBaseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this._animationSettings) {
+    const animationEvents = Object.keys(this._animationSettings);
+    if (animationEvents.length) {
       if (this.animateId) {
         this._animationService.registerAnimationReciever(this.animateId, this);
       }
       this.animationStateId = this._animationService.registerAnimationStates();
+      animationEvents.forEach(eventName => {
+        if (eventName !== 'animationTrigger') {
+          (this._eRef.nativeElement as HTMLElement).addEventListener(eventName, this.onEvent.bind(this));
+        }
+      });
     }
   }
 
@@ -81,9 +90,7 @@ export class WvrBaseComponent implements OnInit {
   }
 
   private onEvent($event): void {
-    if (this._animationSettings && this._animationSettings[$event.type]) {
-      this.triggerAnimations($event.type);
-    }
+    this.triggerAnimations($event.type);
   }
 
   private checkScreenSize = () =>  document.body.offsetWidth < 991;
