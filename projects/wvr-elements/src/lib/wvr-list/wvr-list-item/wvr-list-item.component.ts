@@ -10,7 +10,7 @@ export class WvrListItemComponent implements OnInit {
 
   private readonly parent: HTMLElement;
 
-  private readonly listType: string;
+  listType: string;
 
   @Input() description: string;
 
