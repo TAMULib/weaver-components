@@ -1,0 +1,8 @@
+@import "../shared/styles/host-styles.scss";
+
+:host {
+  font-family: var(--wvr-font-family-sans-serif);
+  ::ng-deep {
+    @import "~bootstrap/scss/bootstrap";
+  }
+}
