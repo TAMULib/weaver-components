@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Injector, Input } from '@angular/core';
 import { Alignment } from '../shared/alignment.enum';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
@@ -18,5 +18,9 @@ export class WvrNavListComponent extends WvrBaseComponent {
 
   /** Toggles the display of the list horizontally or vertically. */
   @Input() vertical: 'true' | 'false' = 'false';
+
+  constructor(injector: Injector) {
+    super(injector);
+  }
 
 }

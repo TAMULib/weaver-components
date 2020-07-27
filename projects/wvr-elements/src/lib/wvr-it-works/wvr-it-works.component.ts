@@ -1,4 +1,4 @@
-import { Component, HostBinding, Input } from '@angular/core';
+import { Component, HostBinding, Input, Injector } from '@angular/core';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 /**
@@ -19,5 +19,9 @@ export class WvrItWorksComponent extends WvrBaseComponent {
 
   /** Allows for the override of the --wvr-primary css variable. */
   @HostBinding('style.--wvr-primary') @Input() primary;
+
+  constructor(injector: Injector) {
+    super(injector);
+  }
 
 }

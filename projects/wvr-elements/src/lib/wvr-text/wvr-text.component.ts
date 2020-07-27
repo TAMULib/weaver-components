@@ -1,4 +1,4 @@
-import { Component, HostBinding, Input } from '@angular/core';
+import { Component, HostBinding, Input, Injector } from '@angular/core';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 /**
@@ -62,5 +62,9 @@ export class WvrTextComponent extends WvrBaseComponent {
 
   /** Allows for the override of word-spacing property for wvr-text */
   @HostBinding('style.--wvr-text-word-spacing') @Input() wordSpacing;
+
+  constructor(injector: Injector) {
+    super(injector);
+  }
 
 }

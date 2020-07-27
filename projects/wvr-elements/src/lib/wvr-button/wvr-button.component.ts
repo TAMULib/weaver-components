@@ -1,4 +1,4 @@
-import { Component, HostBinding, Input } from '@angular/core';
+import { Component, HostBinding, Input, Injector } from '@angular/core';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 @Component({
@@ -358,5 +358,9 @@ export class WvrButtonComponent extends WvrBaseComponent {
 
   /** Allows for the override of button vertical align property */
   @HostBinding('style.--wvr-btn-vertical-align') @Input() verticalAlign;
+
+  constructor(injector: Injector) {
+    super(injector);
+  }
 
 }
