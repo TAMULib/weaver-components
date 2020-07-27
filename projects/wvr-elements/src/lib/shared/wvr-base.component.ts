@@ -5,7 +5,8 @@ import { wvrBaseComponentProps } from './wvr-base-component-props';
 import { WvrAnimationService } from './wvr-animation.service';
 
 @Component({
-  template: '',
+  selector: 'wrv-base',
+  template: '<div>base works!!</div>',
   ...wvrBaseComponentProps
 })
 export class WvrBaseComponent implements OnInit {
