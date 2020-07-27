@@ -9,7 +9,7 @@ describe('WvrItWorksComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ BrowserAnimationsModule ],
-      declarations: [WvrItWorksComponent]
+      declarations: [ WvrItWorksComponent ]
     })
       .compileComponents()
       .catch(err => { console.error(err); });
