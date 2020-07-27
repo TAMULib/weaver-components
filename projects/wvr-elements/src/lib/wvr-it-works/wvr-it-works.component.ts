@@ -1,4 +1,4 @@
-import { Component, HostBinding, Input, Injector } from '@angular/core';
+import { Component, HostBinding, Injector, Input } from '@angular/core';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 /**
