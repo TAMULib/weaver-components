@@ -1,6 +1,5 @@
 <wvr-list-wrapper>
-  <ul *ngIf="listType==='ul' || listType==='us'"
-      [ngClass]="{'list-unstyled': listType==='us'}">
+  <ul *ngIf="listType==='ul' || listType==='us'" [ngClass]="{'list-unstyled': listType==='us'}">
     <ng-container *ngTemplateOutlet="listContent"></ng-container>
   </ul>
 
@@ -12,12 +11,15 @@
     <ng-container *ngTemplateOutlet="listContent"></ng-container>
   </dl>
 
-  <div *ngIf="listType==='list-group'
-          || listType==='list-group-item-action'">
+  <ul *ngIf="listType==='ul-list-group' || listType==='list-group'" class="list-group">
+    <ng-container *ngTemplateOutlet="listContent"></ng-container>
+  </ul>
+
+  <div *ngIf="listType==='div-list-group-buttons'" class="list-group">
     <ng-container *ngTemplateOutlet="listContent"></ng-container>
   </div>
 
-  <ul *ngIf="listType==='list-group-flush'">
+  <ul *ngIf="listType==='list-group-flush'" class="list-group list-group-flush">
     <ng-container *ngTemplateOutlet="listContent"></ng-container>
   </ul>
 

@@ -4,5 +4,10 @@
   font-family: var(--wvr-font-family-sans-serif);
   ::ng-deep {
     @import "~bootstrap/scss/bootstrap";
+
+    .list-group-flush > wvr-list-item > wvr-list-item-wrapper > .list-group-item {
+      border-width: 0 0 1px;
+    }
+
   }
 }

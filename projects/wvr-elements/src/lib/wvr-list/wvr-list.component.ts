@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, ElementRef, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'wvr-list-element',
@@ -8,5 +8,7 @@ import { ChangeDetectorRef, Component, ElementRef, Input } from '@angular/core';
 export class WvrListComponent {
 
   @Input() listType =  'ul';
+
+  @Input() context: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark';
 
 }
