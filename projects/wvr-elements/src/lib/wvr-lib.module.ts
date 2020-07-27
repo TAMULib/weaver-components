@@ -19,6 +19,7 @@ import { IconService } from './wvr-icon/icon.service';
 import { ConfigService } from './shared/config.service';
 import { WvrBaseComponent } from './shared/wvr-base.component';
 import { WvrAnimationService } from './shared/wvr-animation.service';
+import { AnimationBuilder } from '@angular/animations';
 
 /** This property contains a list of components and the selector tags. */
 const elements = [

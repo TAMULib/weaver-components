@@ -2,11 +2,12 @@ import { ChangeDetectorRef, Component, ElementRef, EventEmitter, HostBinding, Ho
 import { debounceTime, map } from 'rxjs/operators';
 import { fromEvent, Observable, of } from 'rxjs';
 import { wvrBaseComponentProps } from './wvr-base-component-props';
-import { AnimationBuilder, AnimationPlayer, AnimationReferenceMetadata } from '@angular/animations';
 import { WvrAnimationService } from './wvr-animation.service';
-import { wvrAnimationDefaults } from './wvr-animations';
 
-@Component({...wvrBaseComponentProps})
+@Component({
+  template: '',
+  ...wvrBaseComponentProps
+})
 export class WvrBaseComponent implements OnInit {
 
   private _animationSettings: any = {};

@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { WvrBaseComponent } from './wvr-base.component';
 import { wvrAnimationDefaults, wvrAnimations } from './wvr-animations';
 import { animation, AnimationBuilder, AnimationMetadata, AnimationPlayer, AnimationReferenceMetadata, useAnimation } from '@angular/animations';
-import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
-import { isFormattedError } from '@angular/compiler';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @Injectable({
   providedIn: 'root'

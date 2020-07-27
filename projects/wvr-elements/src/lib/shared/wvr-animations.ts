@@ -1,6 +1,6 @@
 import { animate, AnimationMetadata, style } from '@angular/animations';
 
-export const wvrAnimationDefaults = {
+const wvrAnimationDefaults = {
   rotationtoggle: {
     value: 90,
     timing: '250ms linear'
@@ -93,7 +93,7 @@ const wvrAnimations = {
 
 };
 
-export { wvrAnimations };
+export { wvrAnimations, wvrAnimationDefaults };
 
 /*
     slideopen
