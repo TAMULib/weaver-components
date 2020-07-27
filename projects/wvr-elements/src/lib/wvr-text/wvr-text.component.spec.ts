@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { WvrTextComponent } from './wvr-text.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('WvrTextComponent', () => {
   let component: WvrTextComponent;
@@ -7,6 +8,7 @@ describe('WvrTextComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [ BrowserAnimationsModule ],
       declarations: [WvrTextComponent]
     })
       .compileComponents()

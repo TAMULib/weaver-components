@@ -1,5 +1,5 @@
 import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { WvrDropdownComponent } from './wvr-dropdown.component';
 import { NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
 import { ChangeDetectionStrategy } from '@angular/core';
@@ -11,6 +11,7 @@ describe('WvrDropdownComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [ BrowserAnimationsModule ],
       declarations: [
         WvrDropdownComponent,
         NgbDropdown
