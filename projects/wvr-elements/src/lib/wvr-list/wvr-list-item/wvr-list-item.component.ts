@@ -15,6 +15,12 @@ export class WvrListItemComponent implements AfterViewInit {
 
   @Input() context: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark';
 
+  @Input() customContentItemHeading: string;
+
+  @Input() cusomContentHeadingSmallText: string;
+
+  @Input() customContentSmallText: string;
+
   // displayActiveState: boolean = false
 
   constructor(private readonly ref: ElementRef, private readonly cdRef: ChangeDetectorRef , private readonly renderer: Renderer2) {

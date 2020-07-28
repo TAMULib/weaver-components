@@ -23,8 +23,13 @@
     <ng-container *ngTemplateOutlet="listContent"></ng-container>
   </ul>
 
+  <div *ngIf="listType==='custom-content-list-group'" class="list-group">
+    <ng-container *ngTemplateOutlet="listContent"></ng-container>
+  </div>
+
 </wvr-list-wrapper>
 
 <ng-template #listContent>
   <ng-content select="wvr-list-item, wvr-list-item-element, .badge"></ng-content>
 </ng-template>
+

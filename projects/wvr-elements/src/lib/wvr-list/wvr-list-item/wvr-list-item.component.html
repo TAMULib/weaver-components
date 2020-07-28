@@ -14,7 +14,7 @@
 </wvr-list-item-wrapper>
 
 <wvr-list-item-wrapper *ngIf="listType==='ul-list-group' || listType==='list-group'" (click)="onClick($event)">
-  <li class="list-group-item"
+  <li class="list-group-item d-flex justify-content-between align-items-center"
   [ngClass]="{
     'list-group-item-primary': context === 'primary',
     'list-group-item-secondary': context === 'secondary',
@@ -49,6 +49,19 @@
   <li class="list-group-item">
     <ng-container *ngTemplateOutlet="contentProjection"></ng-container>
   </li>
+</wvr-list-item-wrapper>
+
+<wvr-list-item-wrapper *ngIf="listType==='custom-content-list-group'" (click)="onClick($event)">
+  <a class="list-group-item list-group-item-action flex-column align-items-start">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">{{customContentItemHeading}}</h5>
+      <small class="text-muted">{{cusomContentHeadingSmallText}}</small>
+    </div>
+    <p class="mb-1">
+      <ng-container *ngTemplateOutlet="contentProjection"></ng-container>
+    </p>
+    <small class="text-muted">{{customContentSmallText}}</small>
+  </a>
 </wvr-list-item-wrapper>
 
 <ng-template #contentProjection>
