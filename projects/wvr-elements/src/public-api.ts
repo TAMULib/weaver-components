@@ -12,6 +12,7 @@ export * from './lib/wvr-icon/wvr-icon.component';
 export * from './lib/wvr-icon/icon.service';
 export * from './lib/wvr-it-works/wvr-it-works.component';
 export * from './lib/wvr-list/wvr-list.component';
+export * from './lib/wvr-list/wvr-list-item/wvr-list-item.component';
 export * from './lib/wvr-lib.module';
 export * from './lib/wvr-nav-list/wvr-nav-li/wvr-nav-li.component';
 export * from './lib/wvr-nav-list/wvr-nav-list.component';
