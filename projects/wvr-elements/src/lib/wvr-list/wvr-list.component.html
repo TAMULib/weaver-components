@@ -1,0 +1,35 @@
+<wvr-list-wrapper>
+  <ul *ngIf="listType==='ul' || listType==='us'" [ngClass]="{'list-unstyled': listType==='us'}">
+    <ng-container *ngTemplateOutlet="listContent"></ng-container>
+  </ul>
+
+  <ol *ngIf="listType==='ol'">
+    <ng-container *ngTemplateOutlet="listContent"></ng-container>
+  </ol>
+
+  <dl *ngIf="listType==='dl'">
+    <ng-container *ngTemplateOutlet="listContent"></ng-container>
+  </dl>
+
+  <ul *ngIf="listType==='ul-list-group' || listType==='list-group'" class="list-group">
+    <ng-container *ngTemplateOutlet="listContent"></ng-container>
+  </ul>
+
+  <div *ngIf="listType==='div-list-group-buttons'" class="list-group">
+    <ng-container *ngTemplateOutlet="listContent"></ng-container>
+  </div>
+
+  <ul *ngIf="listType==='list-group-flush'" class="list-group list-group-flush">
+    <ng-container *ngTemplateOutlet="listContent"></ng-container>
+  </ul>
+
+  <div *ngIf="listType==='custom-content-list-group'" class="list-group">
+    <ng-container *ngTemplateOutlet="listContent"></ng-container>
+  </div>
+
+</wvr-list-wrapper>
+
+<ng-template #listContent>
+  <ng-content select="wvr-list-item, wvr-list-item-element, .badge"></ng-content>
+</ng-template>
+

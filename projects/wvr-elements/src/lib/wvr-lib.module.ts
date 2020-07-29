@@ -7,6 +7,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { WvrButtonComponent } from './wvr-button/wvr-button.component';
 import { WvrHeaderComponent } from './wvr-header/wvr-header.component';
 import { WvrItWorksComponent } from './wvr-it-works/wvr-it-works.component';
+import { WvrListComponent } from './wvr-list/wvr-list.component';
+import { WvrListItemComponent } from './wvr-list/wvr-list-item/wvr-list-item.component';
 import { WvrNavLiComponent } from './wvr-nav-list/wvr-nav-li/wvr-nav-li.component';
 import { WvrNavListComponent } from './wvr-nav-list/wvr-nav-list.component';
 import { WvrTextComponent } from './wvr-text/wvr-text.component';
@@ -20,6 +22,7 @@ import { ConfigService } from './shared/config.service';
 import { WvrBaseComponent } from './shared/wvr-base.component';
 import { WvrAnimationService } from './shared/wvr-animation.service';
 
+
 /** This property contains a list of components and the selector tags. */
 const elements = [
   { component: WvrButtonComponent, selector: 'wvr-button' },
@@ -28,6 +31,8 @@ const elements = [
   { component: WvrHeaderComponent, selector: 'wvr-header' },
   { component: WvrIconComponent, selector: 'wvr-icon' },
   { component: WvrItWorksComponent, selector: 'wvr-it-works' },
+  { component: WvrListComponent, selector: 'wvr-list' },
+  { component: WvrListItemComponent, selector: 'wvr-list-item'},
   { component: WvrNavListComponent, selector: 'wvr-nav-list' },
   { component: WvrNavLiComponent, selector: 'wvr-nav-li' },
   { component: WvrTextComponent, selector: 'wvr-text' }
@@ -41,6 +46,8 @@ const components = [
   WvrFooterComponent,
   WvrHeaderComponent,
   WvrIconComponent,
+  WvrListComponent,
+  WvrListItemComponent,
   WvrItWorksComponent,
   WvrNavListComponent,
   WvrNavLiComponent,

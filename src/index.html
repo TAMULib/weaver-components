@@ -14,6 +14,12 @@
     [wvr-hide-content] {
       display: none;
     }
+    .index-container {
+      margin: 12px;
+      padding: 15px;
+      border-bottom: 1px solid grey;
+    }
+
   </style>
 </head>
 
@@ -161,7 +167,8 @@
   <br />
   <wvr-it-works animate="{animationTrigger: 'fadetoggle'}" animate-id="elem1"></wvr-it-works>
 
-  <div class="container" style="text-align: center;">
+  <div class="container index-container">
+    <wvr-text value="Dropdown with Buttons" text-decoration="underline"></wvr-text><br />
     <wvr-dropdown btn-type="primary" pacement="right">
       <wvr-dropdown-btn>
         <wvr-text value="Primary Dropdown"></wvr-text>
@@ -316,10 +323,9 @@
       </wvr-dropdown-menu>
     </wvr-dropdown>
   </div>
-  <br /><hr /><br />
 
-  <div class="container" style="text-align: center;">
-
+  <div class="container index-container">
+    <wvr-text value="Customized Drop Down" text-decoration="underline"></wvr-text><br />
     <wvr-dropdown
       menu-y-offset='67px'
       btn-background="tomato"
@@ -361,15 +367,13 @@
     </wvr-dropdown>
   </div>
 
-  <br /><hr /><br />
-
-  <div class="container" style="text-align: center;">
-
+  <div class="container index-container">
+    <wvr-text value="Button List" text-decoration="underline"></wvr-text><br />
     <wvr-button btn-class="primary" btn-size="large">
       <wvr-text value="Large Size Primary Button"></wvr-text>
     </wvr-button>
     <wvr-button btn-class="secondary" btn-size="small">
-      <wvr-text value="Small Size Secondary"></wvr-text>
+      <wvr-text value="Secondary"></wvr-text>
     </wvr-button>
     <wvr-button btn-class="success">
       <wvr-text value="Success"></wvr-text>
@@ -394,9 +398,9 @@
     </wvr-button>
 
   </div>
-
-  <br /><hr /><br />
-  <div class="container" style="text-align: center;">
+  
+  <div class="container index-container">
+    <wvr-text value="Customized" text-decoration="underline"></wvr-text><br />
     <wvr-button animate="{click: 'rotationtoggle'}"
                 animate-config="{
                   rotationtoggle: {
@@ -432,8 +436,8 @@
     </wvr-button>
   </div>
 
-  <br /><hr /><br />
-  <div class="container" style="text-align: center;">
+  <div class="container index-container">
+    <wvr-text value="Outline Button List" text-decoration="underline"></wvr-text><br />
     <wvr-button btn-class="outline-primary" wvr-btn-type="button">
       <wvr-text value="Outline Primary"></wvr-text>
     </wvr-button>
@@ -460,8 +464,8 @@
     </wvr-button>
   </div>
 
-  <br /><hr /><br />
-  <div class="container" style="text-align: center;">
+  <div class="container index-container">
+    <wvr-text value="Weaver Icon List" text-decoration="underline"></wvr-text><br />
     <wvr-icon set="custom" name="weaver-w"></wvr-icon>
     <wvr-icon set="custom" name="weaver-w" color="#500000" size="64px"></wvr-icon>
     <wvr-button btn-class="primary" wvr-btn-type="button" animate="{click: 'rotationtoggle'}">
@@ -474,6 +478,118 @@
     </wvr-button>
   </div>
 
+  <div class="container index-container">
+
+    <wvr-text value="Weaver List Component" text-decoration="underline"></wvr-text><br />
+    <wvr-text value="Unordered list" text-decoration="underline"></wvr-text><br />
+    <wvr-list list-type="ul">
+      <wvr-list-item>
+        <wvr-text value="Item 1"></wvr-text>
+      </wvr-list-item>
+      <wvr-list-item>
+        <wvr-text value="Item 2"></wvr-text>
+      </wvr-list-item>
+      <wvr-list-item>
+        <wvr-text value="Item 3"></wvr-text>
+      </wvr-list-item>
+    </wvr-list>
+    <br /><hr /><br />
+    <wvr-text value="Ordered list" text-decoration="underline"></wvr-text><br />
+    <wvr-list list-type="ol">
+      <wvr-list-item>
+        <wvr-text value="Item 1"></wvr-text>
+      </wvr-list-item>
+      <wvr-list-item>
+        <wvr-text value="Item 2"></wvr-text>
+      </wvr-list-item>
+      <wvr-list-item>
+        <wvr-text value="Item 3"></wvr-text>
+      </wvr-list-item>
+    </wvr-list>
+    <br /><hr /><br />
+    <wvr-text value="Definition list" text-decoration="underline"></wvr-text><br />
+    <wvr-list list-type="dl">
+      <wvr-list-item description="Description 1">
+        <wvr-text value="Item 1"></wvr-text>
+      </wvr-list-item>
+      <wvr-list-item description="Description 2">
+        <wvr-text value="Item 2"></wvr-text>
+      </wvr-list-item>
+      <wvr-list-item description="Description 3">
+        <wvr-text value="Item 3"></wvr-text>
+      </wvr-list-item>
+    </wvr-list>
+    <br /><hr /><br />
+    <wvr-text value="List Group" text-decoration="underline"></wvr-text><br />
+    <wvr-list list-type="list-group">
+      <wvr-list-item>
+        <wvr-text value="Item 1"></wvr-text>
+      </wvr-list-item>
+      <wvr-list-item>
+        <wvr-text value="Item 2"></wvr-text>
+      </wvr-list-item>
+      <wvr-list-item>
+        <wvr-text value="Item 3"></wvr-text>
+      </wvr-list-item>
+    </wvr-list>
+    <br /><hr /><br />
+    <wvr-text value="Flush List Group" text-decoration="underline"></wvr-text><br />
+    <wvr-list list-type="list-group-flush" context="info">
+      <wvr-list-item>
+        <wvr-text value="Item 1"></wvr-text>
+      </wvr-list-item>
+      <wvr-list-item context="warning">
+        <wvr-text value="Item 2"></wvr-text>
+      </wvr-list-item>
+      <wvr-list-item context="success">
+        <wvr-text value="Item 3"></wvr-text>
+      </wvr-list-item>
+    </wvr-list>
+    <br /><hr /><br />
+    <wvr-text value="Contextual Classes with Badge"text-decoration="underline"></wvr-text><br />
+    <wvr-list list-type="ul-list-group" context="info">
+      <wvr-list-item>
+        <wvr-text value="Item 1"></wvr-text>
+        <span class="badge badge-primary badge-pill">
+          <wvr-text value="14"></wvr-text>
+        </span>
+      </wvr-list-item>
+      <wvr-list-item context="warning">
+        <wvr-text value="Item 2"></wvr-text>
+        <span class="badge badge-secondary badge-pill">
+          <wvr-text value="28"></wvr-text>
+        </span>
+      </wvr-list-item>
+      <wvr-list-item context="success">
+        <wvr-text value="Item 3"></wvr-text>
+        <span class="badge badge-success badge-pill">
+          <wvr-text value="46"></wvr-text>
+        </span>
+      </wvr-list-item>
+    </wvr-list>
+    <br /><hr /><br />
+    <wvr-text value="Custom Content List Group" text-decoration="underline"></wvr-text><br />
+    <wvr-list list-type="custom-content-list-group">
+      <wvr-list-item
+          custom-content-item-heading="Custom Content Item Heading"
+          cusom-content-heading-small-text="Custom Content Heading Small Text"
+          custom-content-small-text="Custom Content Small Text">
+        <wvr-text value="Custom Content Description 1"></wvr-text>
+      </wvr-list-item>
+      <wvr-list-item
+          custom-content-item-heading="Custom Content Item Heading2"
+          cusom-content-heading-small-text="Custom Content Heading Small Text2"
+          custom-content-small-text="Custom Content Small Text2">
+        <wvr-text value="Custom Content Description 2"></wvr-text>
+      </wvr-list-item>
+      <wvr-list-item
+          custom-content-item-heading="Custom Content Item Heading3"
+          cusom-content-heading-small-text="Custom Content Heading Small Text3"
+          custom-content-small-text="Custom Content Small Text3">
+        <wvr-text value="Custom Content Description 3"></wvr-text>
+      </wvr-list-item>
+    </wvr-list>
+  </div>
   <wvr-footer>
     <wvr-nav-list aligned="CENTER">
       <wvr-nav-li>
