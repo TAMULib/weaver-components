@@ -1,5 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { WvrHeaderComponent } from './wvr-header.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 describe('WvrHeaderComponent', () => {
   let component: WvrHeaderComponent;
@@ -7,7 +9,11 @@ describe('WvrHeaderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [WvrHeaderComponent]
+      imports: [ BrowserAnimationsModule ],
+      declarations: [
+        WvrBaseComponent,
+        WvrHeaderComponent
+      ]
     })
       .compileComponents()
       .catch(err => { console.error(err); });

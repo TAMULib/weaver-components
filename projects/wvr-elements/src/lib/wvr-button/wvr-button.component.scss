@@ -513,6 +513,10 @@
   --wvr-btn-link-hover-color: var(--wvr-btn-link-hover-color-default);
   --wvr-btn-link-hover-text-decoration: var(--wvr-btn-link-hover-text-decoration-default);
 
+  button-wrapper {
+    display: inline-block;
+  }
+
   .wvr-button.btn {
     border-radius: 4.8px; // var(--wvr-btn-border-radius);
     font-family: var(--wvr-btn-font-family-sans-serif);
@@ -1062,9 +1066,11 @@
 
   .btn {
     ::ng-deep {
-      wvr-icon svg {
-        vertical-align: middle;
-        margin: 0px 0px 0px 5px;
+      wvr-icon {
+        margin: 0px 5px 0px 0px;
+        svg {
+          vertical-align: middle;
+        }
       }
     }
   }

@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Alignment } from '../shared/alignment.enum';
 import { WvrNavListComponent } from './wvr-nav-list.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 describe('WvrNavListComponent', () => {
   let component: WvrNavListComponent;
@@ -8,7 +10,11 @@ describe('WvrNavListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [WvrNavListComponent]
+      imports: [ BrowserAnimationsModule ],
+      declarations: [
+        WvrBaseComponent,
+        WvrNavListComponent
+      ]
     })
       .compileComponents()
       .catch(err => { console.error(err); });

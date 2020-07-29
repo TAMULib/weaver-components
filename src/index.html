@@ -165,7 +165,7 @@
     </wvr-nav-list>
   </wvr-header>
   <br />
-  <wvr-it-works></wvr-it-works>
+  <wvr-it-works animate="{animationTrigger: 'fadetoggle'}" animate-id="elem1"></wvr-it-works>
 
   <div class="container index-container">
     <wvr-text value="Dropdown with Buttons" text-decoration="underline"></wvr-text><br />
@@ -398,10 +398,17 @@
     </wvr-button>
 
   </div>
-
+  
   <div class="container index-container">
     <wvr-text value="Customized" text-decoration="underline"></wvr-text><br />
-    <wvr-button btn-class="primary"
+    <wvr-button animate="{click: 'rotationtoggle'}"
+                animate-config="{
+                  rotationtoggle: {
+                    timing: '1000ms ease-in',
+                    value: 180
+                  }
+                }"
+                btn-class="primary"
                 btn-size="large"
                 wvr-btn-type="button"
                 background="tomato"
@@ -461,13 +468,13 @@
     <wvr-text value="Weaver Icon List" text-decoration="underline"></wvr-text><br />
     <wvr-icon set="custom" name="weaver-w"></wvr-icon>
     <wvr-icon set="custom" name="weaver-w" color="#500000" size="64px"></wvr-icon>
-    <wvr-button btn-class="primary" wvr-btn-type="button">
+    <wvr-button btn-class="primary" wvr-btn-type="button" animate="{click: 'rotationtoggle'}">
       <wvr-icon set="custom" name="weaver-w" color="#500000"></wvr-icon>
       <wvr-text value="Icon Btn"></wvr-text>
     </wvr-button>
-    <wvr-button btn-class="info" wvr-btn-type="button">
+    <wvr-button btn-class="info" wvr-btn-type="button" animate="{click: 'animationTrigger'}" animate-target="elem1">
       <wvr-text value="Icon Btn"></wvr-text>
-      <wvr-icon set="custom" name="weaver-w" color="#500000"></wvr-icon>
+      <wvr-icon set="feather" name="chevron-right" color="#500000" animate="{animationTrigger: 'rotationtoggle'}" animate-id="elem1"></wvr-icon>
     </wvr-button>
   </div>
 
@@ -583,7 +590,6 @@
       </wvr-list-item>
     </wvr-list>
   </div>
-
   <wvr-footer>
     <wvr-nav-list aligned="CENTER">
       <wvr-nav-li>

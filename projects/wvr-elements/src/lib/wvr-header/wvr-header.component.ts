@@ -1,6 +1,6 @@
-import { AfterContentChecked, ChangeDetectorRef, Component, ElementRef, HostBinding, Input, OnInit } from '@angular/core';
+import { AfterContentChecked, ChangeDetectorRef, Component, ElementRef, HostBinding, Injector, Input, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { WvrAbstractBaseComponent } from '../shared/wvr-abstract-base.component';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 /**
  * Intended to appear at the top of document and provides for branding, links and page title.
@@ -10,7 +10,7 @@ import { WvrAbstractBaseComponent } from '../shared/wvr-abstract-base.component'
   templateUrl: './wvr-header.component.html',
   styleUrls: ['./wvr-header.component.scss']
 })
-export class WvrHeaderComponent extends WvrAbstractBaseComponent implements OnInit, AfterContentChecked {
+export class WvrHeaderComponent extends WvrBaseComponent implements OnInit, AfterContentChecked {
 
   /** The text value to be displayed beside the logo. */
   @Input() logoText = 'Weaver Components';
@@ -66,7 +66,7 @@ export class WvrHeaderComponent extends WvrAbstractBaseComponent implements OnIn
   @Input() set displayBottomNav(value: 'true' | 'false') {
     this._displayBottomNav = value;
     this.checkBottomNavHasChildren();
-    this.ref.detectChanges();
+    this._cdRef.detectChanges();
   }
 
   get displayBottomNav(): 'true' | 'false' {
@@ -80,22 +80,23 @@ export class WvrHeaderComponent extends WvrAbstractBaseComponent implements OnIn
    * @param domSanitizer: DomSanitizer - this parameter is injected to the weaver component instance.
    * @param elementRef: ElementRef  - a reference to the bottom nav list element.
    */
-  constructor(private readonly domSanitizer: DomSanitizer, private readonly elementRef: ElementRef, private ref: ChangeDetectorRef) {
-    super();
+  constructor(injector: Injector, private readonly domSanitizer: DomSanitizer,
+              private readonly elementRef: ElementRef) {
+    super(injector);
   }
 
   ngOnInit(): void {
     this.screenSizeChanged$.subscribe(iml => {
       this.isMobileLayout = iml;
-      this.ref.detectChanges();
+      this._cdRef.detectChanges();
     });
     this.checkBottomNavHasChildren();
-    this.ref.detectChanges();
+    this._cdRef.detectChanges();
   }
 
   ngAfterContentChecked(): void {
     this.checkBottomNavHasChildren();
-    this.ref.detectChanges();
+    this._cdRef.detectChanges();
   }
 
   /** Determines if the bottom nav list has children in order to display bottom nav section. */

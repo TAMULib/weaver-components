@@ -8,6 +8,7 @@
 
   wvr-icon-wrapper {
     color: var(--wvr-icon-color);
+    display: inline-block;
     ::ng-deep {
       svg {
         width: var(--wvr-icon-size);
