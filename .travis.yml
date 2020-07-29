@@ -17,7 +17,6 @@ script:
   - npm run test:ci
 
 after_success:
-- cat ./static/weaver-components/reports/coverage/wvr-elements/lcov.info | ./node_modules/coveralls/bin/coveralls.js,
 - npm run build:static-production
 
 notifications:

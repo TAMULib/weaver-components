@@ -37,7 +37,7 @@
     "build:static": "npm run build:static-docs && npm run build:static-reports",
     "build:static-setup": "node scripts/build-wvr-components-static.js",
     "build:static-docs": "npm run test:audit && npm run build:static-setup && npm run build:docs-usage && npm run build:docs-development",
-    "build:static-reports": "npm run build:static-setup && ng test --no-watch --code-coverage",
+    "build:static-reports": "npm run build:static-setup && npm run test:coverage",
     "build:static-production": "npm run build:static && ls -A | grep -v static | xargs rimraf && mv static/weaver-components/* . && rimraf static",
     "static:serve": "static-server static -p 8081",
     "static:clean": "rimraf static"
