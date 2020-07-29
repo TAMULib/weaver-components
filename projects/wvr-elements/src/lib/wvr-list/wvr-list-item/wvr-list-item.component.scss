@@ -2,86 +2,6 @@
 
 :host {
 
-  ::ng-deep {
-    .badge {
-      display: inline-block;
-      padding: .25em .4em;
-      font-size: 75%;
-      font-weight: 700;
-      line-height: 1;
-      text-align: center;
-      white-space: nowrap;
-      vertical-align: baseline;
-    }
-
-    .badge-pill {
-      padding-right: .6em;
-      padding-left: .6em;
-      border-radius: 10rem;
-    }
-
-    .badge-primary {
-      color: var(--wvr-white);
-      background-color: var(--wvr-primary);
-    }
-
-    .badge-secondary {
-      color: var(--wvr-white);
-      background-color: var(--wvr-secondary);
-    }
-
-    .badge-success {
-      color: var(--wvr-white);
-      background-color: var(--wvr-success);
-    }
-
-    .badge-danger {
-      color: var(--wvr-white);
-      background-color: var(--wvr-danger);
-    }
-
-    .badge-info {
-      color: var(--wvr-white);
-      background-color: var(--wvr-info);
-    }
-
-    .badge-warning {
-      color: var(--wvr-gray-dark);
-      background-color: var(--wvr-warning);
-    }
-
-    .badge-light {
-      color: var(--wvr-gray-dark);
-      background-color: var(--wvr-light);
-    }
-
-    .badge-dark {
-      color: var(--wvr-white);
-      background-color: var(--wvr-dark);
-    }
-
-    // custom-content
-    h5 {
-      font-family: var(--wvr-font-family-sans-serif);
-      font-weight: 500;
-      line-height: 1.2;
-    }
-
-    .small, small {
-      font-size: 80%;
-      font-weight: 400;
-    }
-
-    .mb-1, .my-1 {
-      margin-bottom: .25rem!important;
-    }
-
-    p {
-      margin-top: 0;
-    }
-
-  }
-
   // list-item default colors
   --wvr-list-group-item-primary-color-default: #004085;
   --wvr-list-group-item-secondary-color-default: #383d41;
@@ -183,6 +103,7 @@
     color: var(--wvr-list-group-item-warning-color);
     background-color: var(--wvr-list-group-item-warning-background-color);
   }
+
   .list-group-item-info {
     color: var(--wvr-list-group-item-info-color);
     background-color: var(--wvr-list-group-item-info-background-color);
@@ -196,6 +117,86 @@
   .list-group-item-dark {
     color: var(--wvr-list-group-item-dark-color);
     background-color: var(--wvr-list-group-item-dark-background-color);
+  }
+
+  ::ng-deep {
+    .badge {
+      display: inline-block;
+      padding: .25em .4em;
+      font-size: 75%;
+      font-weight: 700;
+      line-height: 1;
+      text-align: center;
+      white-space: nowrap;
+      vertical-align: baseline;
+    }
+
+    .badge-pill {
+      padding-right: .6em;
+      padding-left: .6em;
+      border-radius: 10rem;
+    }
+
+    .badge-primary {
+      color: var(--wvr-white);
+      background-color: var(--wvr-primary);
+    }
+
+    .badge-secondary {
+      color: var(--wvr-white);
+      background-color: var(--wvr-secondary);
+    }
+
+    .badge-success {
+      color: var(--wvr-white);
+      background-color: var(--wvr-success);
+    }
+
+    .badge-danger {
+      color: var(--wvr-white);
+      background-color: var(--wvr-danger);
+    }
+
+    .badge-info {
+      color: var(--wvr-white);
+      background-color: var(--wvr-info);
+    }
+
+    .badge-warning {
+      color: var(--wvr-gray-dark);
+      background-color: var(--wvr-warning);
+    }
+
+    .badge-light {
+      color: var(--wvr-gray-dark);
+      background-color: var(--wvr-light);
+    }
+
+    .badge-dark {
+      color: var(--wvr-white);
+      background-color: var(--wvr-dark);
+    }
+
+    // custom-content
+    h5 {
+      font-family: var(--wvr-font-family-sans-serif);
+      font-weight: 500;
+      line-height: 1.2;
+    }
+
+    .small, small {
+      font-size: 80%;
+      font-weight: 400;
+    }
+
+    .mb-1, .my-1 {
+      margin-bottom: .25rem!important;
+    }
+
+    p {
+      margin-top: 0;
+    }
+
   }
 
 }

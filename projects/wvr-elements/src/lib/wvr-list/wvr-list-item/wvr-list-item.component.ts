@@ -21,8 +21,6 @@ export class WvrListItemComponent implements AfterViewInit {
 
   @Input() customContentSmallText: string;
 
-  // displayActiveState: boolean = false
-
   constructor(private readonly ref: ElementRef, private readonly cdRef: ChangeDetectorRef , private readonly renderer: Renderer2) {
     this.parent = (ref.nativeElement as HTMLElement).closest('wvr-list');
 
