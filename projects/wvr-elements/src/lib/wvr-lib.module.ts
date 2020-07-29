@@ -1,8 +1,9 @@
 import { DOCUMENT } from '@angular/common';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { APP_INITIALIZER, CUSTOM_ELEMENTS_SCHEMA, Injector, NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { CUSTOM_ELEMENTS_SCHEMA, Injector, NgModule } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { WvrButtonComponent } from './wvr-button/wvr-button.component';
 import { WvrHeaderComponent } from './wvr-header/wvr-header.component';
 import { WvrItWorksComponent } from './wvr-it-works/wvr-it-works.component';
@@ -16,6 +17,8 @@ import { ElementZoneStrategyFactory } from 'elements-zone-strategy';
 import { WvrIconComponent } from './wvr-icon/wvr-icon.component';
 import { IconService } from './wvr-icon/icon.service';
 import { ConfigService } from './shared/config.service';
+import { WvrBaseComponent } from './shared/wvr-base.component';
+import { WvrAnimationService } from './shared/wvr-animation.service';
 
 /** This property contains a list of components and the selector tags. */
 const elements = [
@@ -32,6 +35,7 @@ const elements = [
 
 /** This property contains a list of components classes. */
 const components = [
+  WvrBaseComponent,
   WvrButtonComponent,
   WvrDropdownComponent,
   WvrFooterComponent,
@@ -52,16 +56,18 @@ const initializeConfig = (configService: ConfigService) => {
 /** The main module for the Weaver Elements library. */
 @NgModule({
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
-    NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   exports: [
     ...components
   ],
   providers: [
     IconService,
-    ConfigService
+    ConfigService,
+    WvrAnimationService
   ],
   declarations: [
     ...components

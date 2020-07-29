@@ -159,7 +159,7 @@
     </wvr-nav-list>
   </wvr-header>
   <br />
-  <wvr-it-works></wvr-it-works>
+  <wvr-it-works animate="{animationTrigger: 'fadetoggle'}" animate-id="elem1"></wvr-it-works>
 
   <div class="container" style="text-align: center;">
     <wvr-dropdown btn-type="primary" pacement="right">
@@ -397,7 +397,14 @@
 
   <br /><hr /><br />
   <div class="container" style="text-align: center;">
-    <wvr-button btn-class="primary"
+    <wvr-button animate="{click: 'rotationtoggle'}"
+                animate-config="{
+                  rotationtoggle: {
+                    timing: '1000ms ease-in',
+                    value: 180
+                  }
+                }"
+                btn-class="primary"
                 btn-size="large"
                 wvr-btn-type="button"
                 background="tomato"
@@ -457,16 +464,15 @@
   <div class="container" style="text-align: center;">
     <wvr-icon set="custom" name="weaver-w"></wvr-icon>
     <wvr-icon set="custom" name="weaver-w" color="#500000" size="64px"></wvr-icon>
-    <wvr-button btn-class="primary" wvr-btn-type="button">
+    <wvr-button btn-class="primary" wvr-btn-type="button" animate="{click: 'rotationtoggle'}">
       <wvr-icon set="custom" name="weaver-w" color="#500000"></wvr-icon>
       <wvr-text value="Icon Btn"></wvr-text>
     </wvr-button>
-    <wvr-button btn-class="info" wvr-btn-type="button">
+    <wvr-button btn-class="info" wvr-btn-type="button" animate="{click: 'animationTrigger'}" animate-target="elem1">
       <wvr-text value="Icon Btn"></wvr-text>
-      <wvr-icon set="custom" name="weaver-w" color="#500000"></wvr-icon>
+      <wvr-icon set="feather" name="chevron-right" color="#500000" animate="{animationTrigger: 'rotationtoggle'}" animate-id="elem1"></wvr-icon>
     </wvr-button>
   </div>
-
 
   <wvr-footer>
     <wvr-nav-list aligned="CENTER">

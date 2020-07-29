@@ -1,4 +1,5 @@
-import { Component, HostBinding, Input } from '@angular/core';
+import { Component, HostBinding, Injector, Input } from '@angular/core';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 /**
  * The Weaver Text Component allows for a node based textual entry. This will support i18n in the future.
@@ -8,7 +9,7 @@ import { Component, HostBinding, Input } from '@angular/core';
   templateUrl: './wvr-text.component.html',
   styleUrls: ['./wvr-text.component.scss']
 })
-export class WvrTextComponent {
+export class WvrTextComponent extends WvrBaseComponent {
 
   /** The text value to be displayed in the text node. */
   @Input() value: string;
@@ -61,5 +62,9 @@ export class WvrTextComponent {
 
   /** Allows for the override of word-spacing property for wvr-text */
   @HostBinding('style.--wvr-text-word-spacing') @Input() wordSpacing;
+
+  constructor(injector: Injector) {
+    super(injector);
+  }
 
 }
