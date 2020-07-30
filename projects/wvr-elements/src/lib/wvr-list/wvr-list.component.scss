@@ -6,11 +6,17 @@
     @import "~bootstrap/scss/bootstrap";
 
     .list-group-flush > wvr-list-item > wvr-list-item-wrapper > .list-group-item {
-      border-width: 0 0 2px;
-      border-color: rgba(0, 0, 0, 0.19);
       border-right: 0;
       border-left: 0;
       border-radius: 0;
+    }
+
+    .list-group-flush > wvr-list-item:first-child > wvr-list-item-wrapper > .list-group-item {
+      border-top: 0;
+    }
+
+    .list-group-flush > wvr-list-item:last-child > wvr-list-item-wrapper > .list-group-item {
+      border-bottom: 0;
     }
 
   }
