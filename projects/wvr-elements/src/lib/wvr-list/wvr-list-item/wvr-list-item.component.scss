@@ -46,6 +46,10 @@
   --wvr-list-group-item-dark-color: var(--wvr-list-group-item-dark-color-default);
   --wvr-list-group-item-dark-background-color: var(--wvr-list-group-item-dark-background-color-default);
 
+  wvr-list-wrapper {
+    display: inline-block;
+  }
+
   .list-group-item {
     position: relative;
     display: block;

@@ -142,7 +142,7 @@ const wvrAnimations = {
     const value = v ===  wvrAnimationDefaults.expandcollapsetoggle.value ?
                   s.get('expandcollapseheight') :
                   v;
-
+    console.log(value);
     const a = [
       animate('{{timing}}',
         style({ height: s.get('expandcollapsetoggle') ? value : '0' }))

@@ -591,6 +591,30 @@
       </wvr-list-item>
     </wvr-list>
   </div>
+
+  <div class="container index-container">
+    <wvr-list list-type="us">
+      <wvr-list-item>
+        <wvr-button btn-class="info" wvr-btn-type="button" animate="{click: 'animationTrigger'}" animate-target="list1">
+          <wvr-text value="Icon Btn"></wvr-text>
+          <wvr-icon set="feather" name="chevron-right" color="#500000" animate="{animationTrigger: 'rotationtoggle'}" animate-id="list1"></wvr-icon>
+        </wvr-button>
+      </wvr-list-item>
+    </wvr-list>
+    
+    <wvr-list list-type="us" animate="{animationTrigger: 'expandcollapsetoggle'}" animate-id="list1">
+      <wvr-list-item>
+        <wvr-text value="Item One"></wvr-text>
+      </wvr-list-item>
+      <wvr-list-item>
+        <wvr-text value="Item Two"></wvr-text>
+      </wvr-list-item>
+      <wvr-list-item>
+        <wvr-text value="Item Three"></wvr-text>
+      </wvr-list-item>
+    </wvr-list>
+  </div>
+
   <wvr-footer>
     <wvr-nav-list aligned="CENTER">
       <wvr-nav-li>
