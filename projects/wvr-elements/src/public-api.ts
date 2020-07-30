@@ -3,7 +3,6 @@
  */
 
 export * from './lib/shared/alignment.enum';
-export * from './lib/shared/theme.enum';
 export * from './lib/wvr-button/wvr-button.component';
 export * from './lib/wvr-dropdown/wvr-dropdown.component';
 export * from './lib/wvr-footer/wvr-footer.component';

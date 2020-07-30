@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, ElementRef, EventEmitter, HostBinding, Ho
 import { debounceTime, map } from 'rxjs/operators';
 import { fromEvent, Observable, of } from 'rxjs';
 import { wvrBaseComponentProps } from './wvr-base-component-props';
-import { WvrAnimationService } from './wvr-animation.service';
+import { WvrAnimationService } from './animation/wvr-animation.service';
 
 @Component({
   selector: 'wvr-base',

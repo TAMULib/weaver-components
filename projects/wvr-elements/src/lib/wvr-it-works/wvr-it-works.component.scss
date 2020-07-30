@@ -1,5 +1,9 @@
 @import "~bootstrap/scss/bootstrap";
 
+div.container {
+  overflow: hidden;
+}
+
 .it-works {
   color: var(--wvr-primary);
 }
