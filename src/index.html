@@ -398,7 +398,7 @@
     </wvr-button>
 
   </div>
-  
+
   <div class="container index-container">
     <wvr-text value="Customized" text-decoration="underline"></wvr-text><br />
     <wvr-button animate="{click: 'rotationtoggle'}"
@@ -480,9 +480,10 @@
 
   <div class="container index-container">
 
-    <wvr-text value="Weaver List Component" text-decoration="underline"></wvr-text><br />
-    <wvr-text value="Unordered list" text-decoration="underline"></wvr-text><br />
-    <wvr-list list-type="ul">
+    <wvr-text value="Weaver List Component" text-decoration="underline"></wvr-text><br /><br />
+
+    <wvr-text value="Unordered List" text-decoration="underline"></wvr-text><br />
+    <wvr-list list-type="unordered">
       <wvr-list-item>
         <wvr-text value="Item 1"></wvr-text>
       </wvr-list-item>
@@ -493,9 +494,10 @@
         <wvr-text value="Item 3"></wvr-text>
       </wvr-list-item>
     </wvr-list>
-    <br /><hr /><br />
-    <wvr-text value="Ordered list" text-decoration="underline"></wvr-text><br />
-    <wvr-list list-type="ol">
+    <br /><br />
+
+    <wvr-text value="Ordered List" text-decoration="underline"></wvr-text><br />
+    <wvr-list list-type="ordered">
       <wvr-list-item>
         <wvr-text value="Item 1"></wvr-text>
       </wvr-list-item>
@@ -506,9 +508,24 @@
         <wvr-text value="Item 3"></wvr-text>
       </wvr-list-item>
     </wvr-list>
-    <br /><hr /><br />
-    <wvr-text value="Definition list" text-decoration="underline"></wvr-text><br />
-    <wvr-list list-type="dl">
+    <br /><br />
+
+    <wvr-text value="Unstyled List" text-decoration="underline"></wvr-text><br />
+    <wvr-list list-type="unstyled">
+      <wvr-list-item>
+        <wvr-text value="Item 1"></wvr-text>
+      </wvr-list-item>
+      <wvr-list-item>
+        <wvr-text value="Item 2"></wvr-text>
+      </wvr-list-item>
+      <wvr-list-item>
+        <wvr-text value="Item 3"></wvr-text>
+      </wvr-list-item>
+    </wvr-list>
+    <br /><br />
+
+    <wvr-text value="Described List" text-decoration="underline"></wvr-text><br />
+    <wvr-list list-type="described">
       <wvr-list-item description="Description 1">
         <wvr-text value="Item 1"></wvr-text>
       </wvr-list-item>
@@ -519,9 +536,10 @@
         <wvr-text value="Item 3"></wvr-text>
       </wvr-list-item>
     </wvr-list>
-    <br /><hr /><br />
-    <wvr-text value="List Group" text-decoration="underline"></wvr-text><br />
-    <wvr-list list-type="list-group">
+    <br /><br />
+
+    <wvr-text value="Group List" text-decoration="underline"></wvr-text><br />
+    <wvr-list list-type="group">
       <wvr-list-item>
         <wvr-text value="Item 1"></wvr-text>
       </wvr-list-item>
@@ -532,9 +550,24 @@
         <wvr-text value="Item 3"></wvr-text>
       </wvr-list-item>
     </wvr-list>
-    <br /><hr /><br />
-    <wvr-text value="Flush List Group" text-decoration="underline"></wvr-text><br />
-    <wvr-list list-type="list-group-flush" context="info">
+    <br /><br />
+
+    <wvr-text value="Group List - Div" text-decoration="underline"></wvr-text><br />
+    <wvr-list list-type="group-div">
+      <wvr-list-item>
+        <wvr-text value="Item 1"></wvr-text>
+      </wvr-list-item>
+      <wvr-list-item>
+        <wvr-text value="Item 2"></wvr-text>
+      </wvr-list-item>
+      <wvr-list-item>
+        <wvr-text value="Item 3"></wvr-text>
+      </wvr-list-item>
+    </wvr-list>
+    <br /><br />
+
+    <wvr-text value="Group List - Flush" text-decoration="underline"></wvr-text><br />
+    <wvr-list list-type="group-flush" context="info">
       <wvr-list-item>
         <wvr-text value="Item 1"></wvr-text>
       </wvr-list-item>
@@ -545,9 +578,10 @@
         <wvr-text value="Item 3"></wvr-text>
       </wvr-list-item>
     </wvr-list>
-    <br /><hr /><br />
-    <wvr-text value="Contextual Classes with Badge"text-decoration="underline"></wvr-text><br />
-    <wvr-list list-type="ul-list-group" context="info">
+    <br /><br />
+
+    <wvr-text value="Group List - Contextual Classes"text-decoration="underline"></wvr-text><br />
+    <wvr-list list-type="group-ul" context="info">
       <wvr-list-item>
         <wvr-text value="Item 1"></wvr-text>
         <span class="badge badge-primary badge-pill">
@@ -567,9 +601,10 @@
         </span>
       </wvr-list-item>
     </wvr-list>
-    <br /><hr /><br />
-    <wvr-text value="Custom Content List Group" text-decoration="underline"></wvr-text><br />
-    <wvr-list list-type="custom-content-list-group">
+    <br /><br />
+
+    <wvr-text value="Group List - Custom Content" text-decoration="underline"></wvr-text><br />
+    <wvr-list list-type="group-custom-content">
       <wvr-list-item
           custom-content-item-heading="Custom Content Item Heading"
           cusom-content-heading-small-text="Custom Content Heading Small Text"
@@ -589,7 +624,9 @@
         <wvr-text value="Custom Content Description 3"></wvr-text>
       </wvr-list-item>
     </wvr-list>
+
   </div>
+
   <wvr-footer>
     <wvr-nav-list aligned="CENTER">
       <wvr-nav-li>

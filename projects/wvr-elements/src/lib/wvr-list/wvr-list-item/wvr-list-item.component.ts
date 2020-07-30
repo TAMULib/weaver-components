@@ -25,7 +25,7 @@ export class WvrListItemComponent implements AfterViewInit {
     this.parent = (ref.nativeElement as HTMLElement).closest('wvr-list');
 
     const listTypeAttribute = this.parent ? this.parent.getAttribute('list-type') : undefined ;
-    this.listType = listTypeAttribute ? listTypeAttribute : 'ul';
+    this.listType = listTypeAttribute ? listTypeAttribute : 'unordered';
 
     const contextAttribute = this.parent ?
       (this.parent.getAttribute('context') as 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark')

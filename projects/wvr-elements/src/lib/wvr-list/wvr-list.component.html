@@ -1,29 +1,29 @@
 <wvr-list-wrapper>
-  <ul *ngIf="listType==='ul' || listType==='us'" [ngClass]="{'list-unstyled': listType==='us'}">
+  <ul *ngIf="listType==='unordered' || listType==='unstyled'" [ngClass]="{'list-unstyled': listType==='unstyled'}">
     <ng-container *ngTemplateOutlet="listContent"></ng-container>
   </ul>
 
-  <ol *ngIf="listType==='ol'">
+  <ol *ngIf="listType==='ordered'">
     <ng-container *ngTemplateOutlet="listContent"></ng-container>
   </ol>
 
-  <dl *ngIf="listType==='dl'">
+  <dl *ngIf="listType==='described'">
     <ng-container *ngTemplateOutlet="listContent"></ng-container>
   </dl>
 
-  <ul *ngIf="listType==='ul-list-group' || listType==='list-group'" class="list-group">
+  <ul *ngIf="listType==='group-ul' || listType==='group'" class="list-group">
     <ng-container *ngTemplateOutlet="listContent"></ng-container>
   </ul>
 
-  <div *ngIf="listType==='div-list-group-buttons'" class="list-group">
+  <div *ngIf="listType==='group-div'" class="list-group">
     <ng-container *ngTemplateOutlet="listContent"></ng-container>
   </div>
 
-  <ul *ngIf="listType==='list-group-flush'" class="list-group list-group-flush">
+  <ul *ngIf="listType==='group-flush'" class="list-group list-group-flush">
     <ng-container *ngTemplateOutlet="listContent"></ng-container>
   </ul>
 
-  <div *ngIf="listType==='custom-content-list-group'" class="list-group">
+  <div *ngIf="listType==='group-custom-content'" class="list-group">
     <ng-container *ngTemplateOutlet="listContent"></ng-container>
   </div>
 

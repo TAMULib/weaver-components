@@ -1,9 +1,9 @@
-<example name="Unordered list">
+<example name="Unordered">
   <desciption>
-    Unordered list <code>wvr-header</code> component.
+    Unordered <code>wvr-list</code> component.
   </desciption>
   <snippet>
-    <wvr-list list-type="ul">
+    <wvr-list list-type="unordered">
       <wvr-list-item>
         <wvr-text value="Item 1"></wvr-text>
       </wvr-list-item>
@@ -17,12 +17,12 @@
   </snippet>
 </example>
 
-  <example name="Ordered list">
+  <example name="Ordered">
   <desciption>
-    Ordered list <code>wvr-header</code> component.
+    Ordered <code>wvr-list</code> component.
   </desciption>
   <snippet>
-    <wvr-list list-type="ol">
+    <wvr-list list-type="ordered">
       <wvr-list-item>
         <wvr-text value="Item 1"></wvr-text>
       </wvr-list-item>
@@ -36,12 +36,31 @@
   </snippet>
 </example>
 
-  <example name="Definition list">
+<example name="Unstyled">
   <desciption>
-    Definition list <code>wvr-header</code> component.
+    Unstyled <code>wvr-list</code> component.
   </desciption>
   <snippet>
-    <wvr-list list-type="dl">
+    <wvr-list list-type="unstyled">
+      <wvr-list-item>
+        <wvr-text value="Item 1"></wvr-text>
+      </wvr-list-item>
+      <wvr-list-item>
+        <wvr-text value="Item 2"></wvr-text>
+      </wvr-list-item>
+      <wvr-list-item>
+        <wvr-text value="Item 3"></wvr-text>
+      </wvr-list-item>
+    </wvr-list>
+  </snippet>
+</example>
+
+  <example name="Described">
+  <desciption>
+    Described <code>wvr-list</code> component.
+  </desciption>
+  <snippet>
+    <wvr-list list-type="described">
       <wvr-list-item description="Description 1">
         <wvr-text value="Item 1"></wvr-text>
       </wvr-list-item>
@@ -55,12 +74,12 @@
   </snippet>
 </example>
 
-  <example name="List Group">
+  <example name="Group">
   <desciption>
-    List Group <code>wvr-header</code> component.
+    Group <code>wvr-list</code> component.
   </desciption>
   <snippet>
-    <wvr-list list-type="list-group">
+    <wvr-list list-type="group">
       <wvr-list-item>
         <wvr-text value="Item 1"></wvr-text>
       </wvr-list-item>
@@ -74,12 +93,12 @@
   </snippet>
 </example>
 
-  <example name="Flush List Group">
+  <example name="Group - Flush">
   <desciption>
-    Flush List Group <code>wvr-header</code> component.
+    Group - Flush <code>wvr-list</code> component.
   </desciption>
   <snippet>
-    <wvr-list list-type="list-group-flush" context="info">
+    <wvr-list list-type="group-flush" context="info">
       <wvr-list-item>
         <wvr-text value="Item 1"></wvr-text>
       </wvr-list-item>
@@ -93,12 +112,12 @@
   </snippet>
 </example>
 
-  <example name="Contextual Classes">
+  <example name="Group - Contextual Classes">
   <desciption>
-    Contextual Classes <code>wvr-header</code> component.
+    Contextual Classes <code>wvr-list</code> component.
   </desciption>
   <snippet>
-    <wvr-list list-type="ul-list-group" context="info">
+    <wvr-list list-type="group-ul" context="info">
       <wvr-list-item>
         <wvr-text value="Item 1"></wvr-text>
         <span class="badge badge-primary badge-pill">
@@ -121,12 +140,12 @@
   </snippet>
 </example>
 
-  <example name="Custom Content List Group">
+  <example name="Group - Custom Content">
   <desciption>
-    Custom Content List Group <code>wvr-header</code> component.
+    Group - Custom Content <code>wvr-list</code> component.
   </desciption>
   <snippet>
-    <wvr-list list-type="custom-content-list-group">
+    <wvr-list list-type="group-custom-content">
       <wvr-list-item
           custom-content-item-heading="Custom Content Item Heading"
           cusom-content-heading-small-text="Custom Content Heading Small Text"
