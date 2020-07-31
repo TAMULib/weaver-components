@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ɵConsole } from '@angular/core';
 import { WvrBaseComponent } from '../wvr-base.component';
-import { wvrAnimationDefaults, wvrAnimations } from './wvr-animations';
+import { wvrAnimationDefaults, wvrAnimationInitialization, wvrAnimations } from './wvr-animations';
 import { animation, AnimationBuilder, AnimationMetadata, AnimationPlayer, AnimationReferenceMetadata, useAnimation } from '@angular/animations';
 
 @Injectable({
@@ -39,9 +39,22 @@ export class WvrAnimationService {
     }
   }
 
-  compileAnimation(stateId: number, animationName: string,
-                   value: string, animationRoot: HTMLElement): AnimationMetadata | Array<AnimationMetadata> {
+  initializeAnimationElement(stateId, animationConfig: {}, animationRootElem): void {
+    Object.keys(animationConfig)
+      .forEach(animName => {
+        console.log(animName);
+        const animConf = animationConfig[animName];
+        const initializationMethod = wvrAnimationInitialization[animName];
+        if (initializationMethod && animationRootElem) {
+          const from = animConf.from ?
+                      animConf.from :
+                      wvrAnimationDefaults[animName].from;
+          initializationMethod(this.animationStates.get(stateId), from, animationRootElem.nativeElement);
+        }
+      });
+  }
 
+  compileAnimation(stateId: number, animationName: string, animationRoot: HTMLElement): AnimationMetadata | Array<AnimationMetadata> {
     const a = wvrAnimations[animationName];
 
     if (!a) {
@@ -50,28 +63,40 @@ export class WvrAnimationService {
       return undefined;
     }
 
-    return a(this.animationStates.get(stateId), value, animationRoot);
+    return a(this.animationStates.get(stateId), animationRoot);
   }
 
   selectAnimation(stateId: number, animationName: string, timing: string,
-                  value: string, animationRoot: HTMLElement): AnimationReferenceMetadata {
-    const t = timing ? timing : wvrAnimationDefaults[animationName].timing;
-    const v = value ? value : wvrAnimationDefaults[animationName].value;
+                  to: string, from: string, animationRoot: HTMLElement): AnimationReferenceMetadata {
+
     const animationInput: AnimationMetadata | Array<AnimationMetadata> =
-      this.compileAnimation(stateId, animationName, v, animationRoot);
+      this.compileAnimation(stateId, animationName, animationRoot);
 
     if (animationInput) {
       return useAnimation(animation(animationInput), {
         params: {
-          timing: t,
-          value: v
+          timing,
+          to,
+          from
         }
       });
     }
   }
 
-  playAnimation(stateId, animationName, timing, value, animationRoot: HTMLElement): void {
-    const a = this.selectAnimation(stateId, animationName, timing, value, animationRoot);
+  playAnimation(stateId: number, animationName: string, animationConfig: {}, animationRoot: HTMLElement): void {
+
+    const timing = animationConfig[animationName] ?
+                   animationConfig[animationName].timing :
+                   wvrAnimationDefaults[animationName].timing;
+    const to = animationConfig[animationName] ?
+                   animationConfig[animationName].to :
+                   wvrAnimationDefaults[animationName].to;
+    const from = animationConfig[animationName] ?
+                   animationConfig[animationName].from :
+                   wvrAnimationDefaults[animationName].from;
+
+    console.log(timing, to, from);
+    const a = this.selectAnimation(stateId, animationName, timing, to, from, animationRoot);
     if (a) {
       const animationFactory = this.builder
       .build(a);

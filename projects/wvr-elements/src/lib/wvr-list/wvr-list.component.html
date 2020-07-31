@@ -1,4 +1,4 @@
-<wvr-list-wrapper>
+<wvr-list-wrapper  #animationRoot>
   <ul *ngIf="listType==='unordered' || listType==='unstyled'" [ngClass]="{'list-unstyled': listType==='unstyled'}">
     <ng-container *ngTemplateOutlet="listContent"></ng-container>
   </ul>

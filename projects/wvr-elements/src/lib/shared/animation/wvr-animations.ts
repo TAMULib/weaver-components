@@ -1,153 +1,126 @@
 import { animate, AnimationMetadata, style } from '@angular/animations';
 
 const wvrAnimationDefaults = {
-  fadein: {
-    value: 1,
+  fade: {
+    from: 1,
+    to: 0,
     timing: '250ms linear'
   },
-  fadeout: {
-    value: 0,
-    timing: '250ms linear'
-  },
-  fadetoggle: {
-    value: 0,
-    timing: '250ms linear'
-  },
-  rotationtoggle: {
-    value: 90,
+  fadeToggle: {
+    from: 1,
+    to: 0,
     timing: '250ms linear'
   },
   rotate: {
-    value: 90,
+    from: 0,
+    to: 90,
     timing: '250ms linear'
   },
-  unrotate: {
-    value: 0,
+  rotateToggle: {
+    from: 0,
+    to: 90,
     timing: '250ms linear'
   },
-  expand: {
-    value: '*',
+  expandCollapse: {
+    from: '*',
+    to: '0px',
     timing: '250ms linear'
   },
-  collapse: {
-    value: 0,
+  expandCollapseToggle: {
+    from: '*',
+    to: '0px',
     timing: '250ms linear'
+  }
+};
+
+export const wvrAnimationInitialization = {
+  fade: (s: Map<string, any>, from: string, elem: HTMLElement): void => {
+    elem.style.opacity = from;
   },
-  expandcollapsetoggle: {
-    value: '*',
-    timing: '250ms linear'
+  fadeToggle: (s: Map<string, any>, from: string, elem: HTMLElement): void => {
+    elem.style.opacity = from;
+  },
+  rotate: (s: Map<string, any>, from: string, elem: HTMLElement): void => {
+    elem.style.transform = `rotate(${from}deg)`;
+  },
+  rotateToggle: (s: Map<string, any>, from: string, elem: HTMLElement): void => {
+    elem.style.transform = `rotate(${from}deg)`;
+  },
+  expandCollapse: (s: Map<string, any>, from: string, elem: HTMLElement): void => {
+    s.set('expandCollapseFrom', from ? from : elem.clientHeight);
+    if (from) {
+      elem.style.height = from;
+    }
+  },
+  expandCollapseToggle: (s: Map<string, any>, from: string, elem: HTMLElement): void => {
+    s.set('expandCollapseFrom', from ? from : elem.clientHeight);
+    if (from) {
+      elem.style.height = from;
+    }
   }
 };
 
 const wvrAnimations = {
 
-  fadein: (s: Map<string, any>, v, elem: HTMLElement): AnimationMetadata | Array<AnimationMetadata> => {
+  fade: (s: Map<string, any>, elem: HTMLElement): AnimationMetadata | Array<AnimationMetadata> => {
     const a = [
       animate('{{timing}}',
-        style({ opacity: '{{value}}' }))
+        style({ opacity: '{{to}}' }))
     ];
     s.set('fadetoggle', true);
 
     return a;
   },
 
-  fadeout: (s: Map<string, any>, v, elem: HTMLElement): AnimationMetadata | Array<AnimationMetadata> => {
+  fadeToggle: (s: Map<string, any>, elem: HTMLElement): AnimationMetadata | Array<AnimationMetadata> => {
     const a = [
       animate('{{timing}}',
-        style({ opacity: '{{value}}' }))
-    ];
-    s.set('fadetoggle', false);
-
-    return a;
-  },
-
-  fadetoggle: (s: Map<string, any>, v, elem: HTMLElement): AnimationMetadata | Array<AnimationMetadata> => {
-    const a = [
-      animate('{{timing}}',
-        style({ opacity: s.get('fadetoggle') ? 1 : 0}))
+        style({ opacity: s.get('fadetoggle') ? '{{from}}' : '{{to}}'}))
     ];
     s.set('fadetoggle', !s.get('fadetoggle'));
 
     return a;
   },
 
-  rotationtoggle: (s: Map<string, any>, v, elem: HTMLElement): AnimationMetadata | Array<AnimationMetadata> => {
+  rotate: (s: Map<string, any>, elem: HTMLElement): AnimationMetadata | Array<AnimationMetadata> => {
     const a = [
       animate('{{timing}}',
-        style({ transform: s.get('rotationtoggle') ?
-                           'rotate(0)' :
-                           `rotate(${v}deg)` }))
+        style({ transform: 'rotate({{to}}deg)' }))
     ];
-    s.set('rotationtoggle', !s.get('rotationtoggle'));
+    s.set('rotateToggle', true);
 
     return a;
   },
 
-  rotate: (s: Map<string, any>, v, elem: HTMLElement): AnimationMetadata | Array<AnimationMetadata> => {
+  rotateToggle: (s: Map<string, any>, elem: HTMLElement): AnimationMetadata | Array<AnimationMetadata> => {
     const a = [
       animate('{{timing}}',
-        style({ transform: 'rotate({{value}}deg)' }))
+        style({ transform: s.get('rotateToggle') ?
+                           'rotate({{from}}deg)' :
+                           'rotate({{to}}deg)' }))
     ];
-    s.set('rotationtoggle', true);
+    s.set('rotateToggle', !s.get('rotateToggle'));
 
     return a;
   },
 
-  unrotate: (s: Map<string, any>, v, elem: HTMLElement): AnimationMetadata | Array<AnimationMetadata> => {
+  expandCollapse: (s: Map<string, any>, elem: HTMLElement): AnimationMetadata | Array<AnimationMetadata> => {
+
     const a = [
       animate('{{timing}}',
-        style({ transform: 'rotate(0)' }))
+        style({ height: '{{to}}' }))
     ];
-    s.set('rotationtoggle', false);
+    s.set('expandCollapseToggle', true);
 
     return a;
   },
 
-  expand: (s: Map<string, any>, v, elem: HTMLElement): AnimationMetadata | Array<AnimationMetadata> => {
-
-    if (!s.get('expandcollapseheight')) {
-      s.set('expandcollapseheight', elem.clientHeight);
-    }
-
+  expandCollapseToggle: (s: Map<string, any>, elem: HTMLElement): AnimationMetadata | Array<AnimationMetadata> => {
     const a = [
       animate('{{timing}}',
-        style({ height: s.get('expandcollapseheight') }))
+        style({ height: s.get('expandCollapseToggle') ?  s.get('expandCollapseFrom') : '{{to}}'}))
     ];
-    s.set('expandcollapsetoggle', true);
-
-    return a;
-  },
-
-  collapse: (s: Map<string, any>, v, elem: HTMLElement): AnimationMetadata | Array<AnimationMetadata> => {
-
-    if (!s.get('expandcollapseheight')) {
-      s.set('expandcollapseheight', elem.clientHeight);
-    }
-
-    const a = [
-      animate('{{timing}}',
-        style({ height: '0' }))
-    ];
-    s.set('expandcollapsetoggle', false);
-
-    return a;
-  },
-
-  expandcollapsetoggle: (s: Map<string, any>, v, elem: HTMLElement): AnimationMetadata | Array<AnimationMetadata> => {
-
-    if (!s.get('expandcollapseheight')) {
-      s.set('expandcollapseheight', elem.clientHeight);
-    }
-
-    const value = v ===  wvrAnimationDefaults.expandcollapsetoggle.value ?
-                  s.get('expandcollapseheight') :
-                  v;
-    console.log(value);
-    const a = [
-      animate('{{timing}}',
-        style({ height: s.get('expandcollapsetoggle') ? value : '0' }))
-    ];
-    s.set('expandcollapsetoggle', !s.get('expandcollapsetoggle'));
+    s.set('expandCollapseToggle', !s.get('expandCollapseToggle'));
 
     return a;
   }
