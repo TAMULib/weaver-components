@@ -23,7 +23,7 @@
     "prebuild": "npm run build:wvr-elements",
     "postbuild": "npm run build:wvr-components",
     "start": "ng serve --port 4200",
-    "start:static": "node scripts/serve-static.js",
+    "start:dist": "node scripts/serve-static.js",
     "test": "npm run test:unit && npm run test:e2e",
     "test:audit": "rimraf .lighthouseci && lhci autorun --upload.target=temporary-public-storage --config=./lighthouserc.json && node scripts/build-wvr-components-lighthouse-badges.js",
     "test:e2e": "ng e2e",
@@ -40,8 +40,8 @@
     "build:static-docs": "npm run test:audit && npm run build:static-setup && npm run build:docs-usage && npm run build:docs-development",
     "build:static-reports": "npm run build:static-setup && npm run test:coverage",
     "build:static-production": "npm run build:static && ls -A | grep -v static | xargs rimraf && mv static/weaver-components/* . && rimraf static",
-    "static:serve": "static-server static -p 8081",
-    "static:clean": "rimraf static"
+    "start:static": "static-server static -p 8081",
+    "clean:static": "rimraf static"
   },
   "dependencies": {
     "@angular/animations": "^10.0.7",
