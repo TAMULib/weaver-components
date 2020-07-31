@@ -1,7 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { WvrItWorksComponent } from './wvr-it-works.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 describe('WvrItWorksComponent', () => {
   let component: WvrItWorksComponent;
@@ -11,7 +10,6 @@ describe('WvrItWorksComponent', () => {
     TestBed.configureTestingModule({
       imports: [ BrowserAnimationsModule ],
       declarations: [
-        WvrBaseComponent,
         WvrItWorksComponent
       ]
     })
