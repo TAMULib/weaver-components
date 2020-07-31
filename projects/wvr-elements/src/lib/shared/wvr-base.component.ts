@@ -1,15 +1,10 @@
 import { ChangeDetectorRef, Component, ElementRef, EventEmitter, HostBinding, HostListener, Injector, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { debounceTime, map } from 'rxjs/operators';
 import { fromEvent, Observable, of } from 'rxjs';
-import { wvrBaseComponentProps } from './wvr-base-component-props';
 import { WvrAnimationService } from './animation/wvr-animation.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
-@Component({
-  selector: 'wvr-base',
-  template: '<span></span>',
-  ...wvrBaseComponentProps
-})
-export class WvrBaseComponent implements OnInit {
+export abstract class WvrBaseComponent implements OnInit {
 
   private _animationSettings: any = {};
   @Input() set animate(value: string) {
@@ -42,19 +37,22 @@ export class WvrBaseComponent implements OnInit {
 
   isMobileLayout = this.isMobileAgent;
 
+  protected readonly _animationService: WvrAnimationService;
+
+  protected readonly _domSanitizer: DomSanitizer;
+
   protected readonly _eRef: ElementRef;
 
   protected readonly _cdRef: ChangeDetectorRef;
-
-  protected readonly _animationService: WvrAnimationService;
 
   @Output() protected readonly animationEventTrigger = new EventEmitter<Event>();
 
   constructor(injector: Injector) {
 
-    this._cdRef = injector.get(ChangeDetectorRef);
-    this._eRef = injector.get(ElementRef);
     this._animationService = injector.get(WvrAnimationService);
+    this._cdRef = injector.get(ChangeDetectorRef);
+    this._domSanitizer = injector.get(DomSanitizer);
+    this._eRef = injector.get(ElementRef);
 
     this.screenSizeChanged$ = fromEvent(window, 'resize')
       .pipe(debounceTime(50))

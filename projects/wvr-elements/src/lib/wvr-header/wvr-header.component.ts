@@ -1,5 +1,4 @@
 import { AfterContentChecked, ChangeDetectorRef, Component, ElementRef, HostBinding, Injector, Input, OnInit } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 /**
@@ -80,8 +79,7 @@ export class WvrHeaderComponent extends WvrBaseComponent implements OnInit, Afte
    * @param domSanitizer: DomSanitizer - this parameter is injected to the weaver component instance.
    * @param elementRef: ElementRef  - a reference to the bottom nav list element.
    */
-  constructor(injector: Injector, private readonly domSanitizer: DomSanitizer,
-              private readonly elementRef: ElementRef) {
+  constructor(injector: Injector) {
     super(injector);
   }
 
@@ -101,7 +99,7 @@ export class WvrHeaderComponent extends WvrBaseComponent implements OnInit, Afte
 
   /** Determines if the bottom nav list has children in order to display bottom nav section. */
   private checkBottomNavHasChildren(): void {
-    const bottomNavListElement = (this.elementRef.nativeElement as HTMLElement).querySelector('.bottom-nav wvr-nav-li, .bottom-nav wvr-nav-li-element');
+    const bottomNavListElement = (this._eRef.nativeElement as HTMLElement).querySelector('.bottom-nav wvr-nav-li, .bottom-nav wvr-nav-li-element');
     this.isBottomNavHidden = !(this.displayBottomNav === 'true' || (this.displayBottomNav === undefined && !!bottomNavListElement));
   }
 
