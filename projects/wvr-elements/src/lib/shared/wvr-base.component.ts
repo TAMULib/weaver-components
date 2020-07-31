@@ -1,10 +1,11 @@
-import { ChangeDetectorRef, Component, ElementRef, EventEmitter, HostBinding, HostListener, Injector, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, EventEmitter, HostBinding, HostListener, Injector, Input, OnInit, Output, ViewChild, Directive } from '@angular/core';
 import { debounceTime, map } from 'rxjs/operators';
 import { fromEvent, Observable, of } from 'rxjs';
 import { wvrBaseComponentProps } from './wvr-base-component-props';
 import { WvrAnimationService } from './wvr-animation.service';
 import { DomSanitizer } from '@angular/platform-browser';
 
+@Directive()
 export abstract class WvrBaseComponent implements OnInit {
 
   private _animationSettings: any = {};
