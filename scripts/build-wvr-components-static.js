@@ -7,9 +7,9 @@ const reportPath = `${staticPath}/reports`;
   fs.ensureDir(`${docPath}/`);
   fs.ensureDir(`${reportPath}`);
 
-  fs.copy("index-static.html", `${staticPath}/index.html`);
-  fs.copy("index-docs.html", `${docPath}/index.html`);
-  fs.copy("index-reports.html", `${reportPath}/index.html`);
+  fs.copy("src/index-static.html", `${staticPath}/index.html`);
+  fs.copy("src/index-docs.html", `${docPath}/index.html`);
+  fs.copy("src/index-reports.html", `${reportPath}/index.html`);
   fs.copy("src/assets", `${docPath}/assets`);
 
 })();
