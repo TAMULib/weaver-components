@@ -6,7 +6,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ConfigService } from './core/config.service';
-import { WvrAnimationService } from './shared/wvr-animation.service';
+import { WvrAnimationService } from './core/wvr-animation.service';
 import { WvrButtonComponent } from './wvr-button/wvr-button.component';
 import { WvrDropdownComponent } from './wvr-dropdown/wvr-dropdown.component';
 import { WvrFooterComponent } from './wvr-footer/wvr-footer.component';
