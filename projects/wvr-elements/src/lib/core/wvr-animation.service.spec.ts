@@ -1,7 +1,6 @@
 import { TestBed } from '@angular/core/testing';
-
-import { WvrAnimationService } from './wvr-animation.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { WvrAnimationService } from './wvr-animation.service';
 
 describe('WvrAnimationService', () => {
   let service: WvrAnimationService;
@@ -17,4 +16,5 @@ describe('WvrAnimationService', () => {
     expect(service)
       .toBeTruthy();
   });
+
 });

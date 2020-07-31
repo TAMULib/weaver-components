@@ -1,7 +1,7 @@
 import { animation, AnimationBuilder, AnimationMetadata, AnimationPlayer, AnimationReferenceMetadata, useAnimation } from '@angular/animations';
 import { Injectable } from '@angular/core';
-import { wvrAnimationDefaults, wvrAnimations } from './wvr-animations';
-import { WvrBaseComponent } from './wvr-base.component';
+import { wvrAnimationDefaults, wvrAnimations } from '../shared/wvr-animations';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 @Injectable({
   providedIn: 'root',

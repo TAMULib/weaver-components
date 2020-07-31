@@ -26,6 +26,7 @@ describe('WvrIconComponent', () => {
     (httpMock: HttpTestingController) => {
       expect(component)
         .toBeTruthy();
-    }));
+    })
+  );
 
 });

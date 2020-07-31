@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Directive, ElementRef, EventEmitter, Injector, Input
 import { DomSanitizer } from '@angular/platform-browser';
 import { fromEvent, Observable } from 'rxjs';
 import { debounceTime, map } from 'rxjs/operators';
-import { WvrAnimationService } from './wvr-animation.service';
+import { WvrAnimationService } from '../core/wvr-animation.service';
 
 @Directive()
 export abstract class WvrBaseComponent implements OnInit {

@@ -1,7 +1,7 @@
-import { AfterViewInit, Component, ElementRef, HostBinding, Injector, Input } from '@angular/core';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { AfterViewInit, Component, HostBinding, Injector, Input } from '@angular/core';
+import { SafeHtml } from '@angular/platform-browser';
+import { IconService } from '../core/icon.service';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
-import { IconService } from './icon.service';
 
 @Component({
   selector: 'wvr-icon-element',

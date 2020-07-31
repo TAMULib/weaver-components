@@ -2,9 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { share } from 'rxjs/operators';
-import { ConfigService } from '../shared/config.service';
-import { Icon } from './icon';
-import { IconSet } from './icon-set';
+import { Icon } from '../wvr-icon/icon';
+import { IconSet } from '../wvr-icon/icon-set';
+import { ConfigService } from './config.service';
 
 @Injectable({
   providedIn: 'root'
