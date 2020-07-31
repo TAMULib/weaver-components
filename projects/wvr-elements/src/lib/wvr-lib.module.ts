@@ -15,7 +15,6 @@ import { WvrTextComponent } from './wvr-text/wvr-text.component';
 import { WvrFooterComponent } from './wvr-footer/wvr-footer.component';
 import { WvrDropdownComponent } from './wvr-dropdown/wvr-dropdown.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ElementZoneStrategyFactory } from 'elements-zone-strategy';
 import { WvrIconComponent } from './wvr-icon/wvr-icon.component';
 import { IconService } from './wvr-icon/icon.service';
 import { ConfigService } from './shared/config.service';
@@ -88,8 +87,7 @@ export class WvrLibModule {
       .then(() => {
         elements.forEach(element => {
           try {
-            const strategyFactory = new ElementZoneStrategyFactory(element.component, injector);
-            customElements.define(element.selector, createCustomElement(element.component, { injector, strategyFactory }));
+            customElements.define(element.selector, createCustomElement(element.component, { injector }));
           } catch (e) {
             // console.warn(e);
           }
