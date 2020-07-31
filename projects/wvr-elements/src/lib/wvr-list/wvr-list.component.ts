@@ -7,7 +7,7 @@ import { Component, Input } from '@angular/core';
 })
 export class WvrListComponent {
 
-  @Input() listType =  'ul';
+  @Input() listType =  'unordered';
 
   @Input() context: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark';
 
