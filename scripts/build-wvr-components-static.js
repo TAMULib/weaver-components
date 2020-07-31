@@ -1,6 +1,6 @@
 const fs = require('fs-extra');
 const staticPath = 'static';
-const weaverComponentsPath = 'static/weaverComponents';
+const weaverComponentsPath = 'static/weaver-components';
 const docPath = `${weaverComponentsPath}/docs`;
 const reportPath = `${weaverComponentsPath}/reports`;
 
