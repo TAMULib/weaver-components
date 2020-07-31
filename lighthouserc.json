@@ -6,7 +6,7 @@
     "collect": {
       "numberOfRuns": 1,
       "url": ["http://localhost:8080/"],
-      "startServerCommand": "npm run start:static"
+      "startServerCommand": "npm run start:dist"
     },
     "assert": {
       "assertions": {
