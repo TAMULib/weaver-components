@@ -3,8 +3,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { WvrDropdownComponent } from './wvr-dropdown.component';
 import { NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
 import { ChangeDetectionStrategy } from '@angular/core';
-import { doesNotMatch } from 'assert';
-import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 describe('WvrDropdownComponent', () => {
   let component: WvrDropdownComponent;
@@ -14,7 +12,6 @@ describe('WvrDropdownComponent', () => {
     TestBed.configureTestingModule({
       imports: [ BrowserAnimationsModule ],
       declarations: [
-        WvrBaseComponent,
         WvrDropdownComponent,
         NgbDropdown
       ]
