@@ -362,7 +362,7 @@ export class WvrDropdownComponent extends WvrBaseComponent {
    */
   @HostListener('mouseenter', ['$event']) hoverOpen($event: Event): void {
     if (this.toggleOn === 'mouseover' && !this.closing) {
-     this.openDropdown();
+      this.openDropdown();
     }
   }
 
@@ -419,5 +419,5 @@ export class WvrDropdownComponent extends WvrBaseComponent {
     }, this._animationSpeedMili);
   }
 
-// tslint:disable-next-line:max-file-line-count
+  // tslint:disable-next-line:max-file-line-count
 }

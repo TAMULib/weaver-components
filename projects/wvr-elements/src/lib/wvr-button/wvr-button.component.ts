@@ -10,7 +10,7 @@ export class WvrButtonComponent extends WvrBaseComponent {
 
   /** Used to define the class type for button component.  */
   @Input() btnClass: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark' | 'link' |
-  'outline-primary' | 'outline-secondary' | 'outline-success' | 'outline-danger' | 'outline-warning' | 'outline-info' | 'outline-light' | 'outline-dark' | 'outline-link' = 'primary';
+    'outline-primary' | 'outline-secondary' | 'outline-success' | 'outline-danger' | 'outline-warning' | 'outline-info' | 'outline-light' | 'outline-dark' | 'outline-link' = 'primary';
 
   /** Used to define the size for button component.  */
   @Input() btnSize: 'large' | 'small' | 'block';

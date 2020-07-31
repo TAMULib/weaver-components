@@ -82,7 +82,7 @@ const wvrAnimations = {
   fadetoggle: (s: Map<string, boolean>, v): AnimationMetadata | Array<AnimationMetadata> => {
     const a = [
       animate('{{timing}}',
-        style({ opacity: s.get('fadetoggle') ? 1 : 0}))
+        style({ opacity: s.get('fadetoggle') ? 1 : 0 }))
     ];
     s.set('fadetoggle', !s.get('fadetoggle'));
 

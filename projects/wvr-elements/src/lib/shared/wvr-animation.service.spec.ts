@@ -8,7 +8,7 @@ describe('WvrAnimationService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ BrowserAnimationsModule ]
+      imports: [BrowserAnimationsModule]
     });
     service = TestBed.inject(WvrAnimationService);
   });

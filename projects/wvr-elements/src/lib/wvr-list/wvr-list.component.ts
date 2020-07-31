@@ -9,7 +9,7 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
 })
 export class WvrListComponent extends WvrBaseComponent {
 
-  @Input() listType =  'unordered';
+  @Input() listType = 'unordered';
 
   @Input() context: Theme;
 
