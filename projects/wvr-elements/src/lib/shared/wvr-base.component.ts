@@ -1,9 +1,8 @@
-import { ChangeDetectorRef, Component, ElementRef, EventEmitter, HostBinding, HostListener, Injector, Input, OnInit, Output, ViewChild, Directive } from '@angular/core';
-import { debounceTime, map } from 'rxjs/operators';
-import { fromEvent, Observable, of } from 'rxjs';
-import { wvrBaseComponentProps } from './wvr-base-component-props';
-import { WvrAnimationService } from './wvr-animation.service';
+import { ChangeDetectorRef, Directive, ElementRef, EventEmitter, Injector, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { fromEvent, Observable } from 'rxjs';
+import { debounceTime, map } from 'rxjs/operators';
+import { WvrAnimationService } from './wvr-animation.service';
 
 @Directive()
 export abstract class WvrBaseComponent implements OnInit {
@@ -77,9 +76,9 @@ export abstract class WvrBaseComponent implements OnInit {
   }
 
   triggerAnimations(animationTriggerType: string): void {
-    const animations: Array<string> = Array.isArray(this._animationSettings[animationTriggerType]) ?
-                         this._animationSettings[animationTriggerType] :
-                         [this._animationSettings[animationTriggerType]];
+    const animations: Array<string> = Array.isArray(this._animationSettings[animationTriggerType])
+      ? this._animationSettings[animationTriggerType]
+      : [this._animationSettings[animationTriggerType]];
     animations.forEach(an => {
       if (an === 'animationTrigger') {
         this._animationService.triggerAnimationReciever(this.animateTarget);

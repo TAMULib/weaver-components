@@ -1,4 +1,4 @@
-import { AfterContentChecked, ChangeDetectorRef, Component, ElementRef, HostBinding, Injector, Input, OnInit } from '@angular/core';
+import { AfterContentChecked, Component, HostBinding, Injector, Input, OnInit } from '@angular/core';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 /**

@@ -1,4 +1,5 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostListener, Input } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, Input } from '@angular/core';
+import { Theme } from '../../shared/theme.type';
 
 @Component({
   selector: 'wvr-list-item-element',
@@ -13,7 +14,7 @@ export class WvrListItemComponent implements AfterViewInit {
 
   @Input() description: string;
 
-  @Input() context: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark';
+  @Input() context: Theme;
 
   @Input() customContentItemHeading: string;
 
@@ -27,9 +28,7 @@ export class WvrListItemComponent implements AfterViewInit {
     const listTypeAttribute = this.parent ? this.parent.getAttribute('list-type') : undefined ;
     this.listType = listTypeAttribute ? listTypeAttribute : 'unordered';
 
-    const contextAttribute = this.parent ?
-      (this.parent.getAttribute('context') as 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark')
-      : undefined ;
+    const contextAttribute = this.parent ? (this.parent.getAttribute('context') as Theme) : undefined ;
     this.context = contextAttribute ? contextAttribute : undefined;
   }
 

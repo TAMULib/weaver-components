@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { WvrBaseComponent } from './wvr-base.component';
-import { wvrAnimationDefaults, wvrAnimations } from './wvr-animations';
 import { animation, AnimationBuilder, AnimationMetadata, AnimationPlayer, AnimationReferenceMetadata, useAnimation } from '@angular/animations';
+import { Injectable } from '@angular/core';
+import { wvrAnimationDefaults, wvrAnimations } from './wvr-animations';
+import { WvrBaseComponent } from './wvr-base.component';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +13,7 @@ export class WvrAnimationService {
 
   private animationStates = new Map<number, Map<string, boolean>>();
 
-  constructor(private readonly builder: AnimationBuilder) {}
+  constructor(private readonly builder: AnimationBuilder) { }
 
   registerAnimationReciever(recieverName: string, component: WvrBaseComponent): void {
     let recievers = this.recieversRegistry.get(recieverName);
@@ -72,7 +72,7 @@ export class WvrAnimationService {
     const a = this.selectAnimation(stateId, animationName, timing, value);
     if (a) {
       const animationFactory = this.builder
-      .build(a);
+        .build(a);
       const player: AnimationPlayer = animationFactory.create(animationRoot);
       player.play();
     }

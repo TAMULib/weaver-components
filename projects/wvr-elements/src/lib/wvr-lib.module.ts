@@ -4,21 +4,21 @@ import { CUSTOM_ELEMENTS_SCHEMA, Injector, NgModule } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ConfigService } from './shared/config.service';
+import { WvrAnimationService } from './shared/wvr-animation.service';
 import { WvrButtonComponent } from './wvr-button/wvr-button.component';
+import { WvrDropdownComponent } from './wvr-dropdown/wvr-dropdown.component';
+import { WvrFooterComponent } from './wvr-footer/wvr-footer.component';
 import { WvrHeaderComponent } from './wvr-header/wvr-header.component';
+import { IconService } from './wvr-icon/icon.service';
+import { WvrIconComponent } from './wvr-icon/wvr-icon.component';
 import { WvrItWorksComponent } from './wvr-it-works/wvr-it-works.component';
-import { WvrListComponent } from './wvr-list/wvr-list.component';
 import { WvrListItemComponent } from './wvr-list/wvr-list-item/wvr-list-item.component';
+import { WvrListComponent } from './wvr-list/wvr-list.component';
 import { WvrNavLiComponent } from './wvr-nav-list/wvr-nav-li/wvr-nav-li.component';
 import { WvrNavListComponent } from './wvr-nav-list/wvr-nav-list.component';
 import { WvrTextComponent } from './wvr-text/wvr-text.component';
-import { WvrFooterComponent } from './wvr-footer/wvr-footer.component';
-import { WvrDropdownComponent } from './wvr-dropdown/wvr-dropdown.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { WvrIconComponent } from './wvr-icon/wvr-icon.component';
-import { IconService } from './wvr-icon/icon.service';
-import { ConfigService } from './shared/config.service';
-import { WvrAnimationService } from './shared/wvr-animation.service';
 
 /** This property contains a list of components and the selector tags. */
 const elements = [

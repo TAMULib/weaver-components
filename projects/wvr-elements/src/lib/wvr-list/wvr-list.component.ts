@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Theme } from '../shared/theme.type';
 
 @Component({
   selector: 'wvr-list-element',
@@ -9,6 +10,6 @@ export class WvrListComponent {
 
   @Input() listType =  'unordered';
 
-  @Input() context: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark';
+  @Input() context: Theme;
 
 }
