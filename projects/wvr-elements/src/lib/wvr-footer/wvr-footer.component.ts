@@ -34,10 +34,8 @@ export class WvrFooterComponent extends WvrBaseComponent implements OnInit {
 
   /**
    * The weaver footer component constructor
-   * @param elementRef: ElementRef - a reference to the footer element, used internally for styling.
-   * @param ref: ChangeDetectorRef - utilized internally to force change detection.
    */
-  constructor(injector: Injector, private readonly elementRef: ElementRef, cdRef: ChangeDetectorRef) {
+  constructor(injector: Injector) {
     super(injector);
   }
 
@@ -63,7 +61,7 @@ export class WvrFooterComponent extends WvrBaseComponent implements OnInit {
   ngOnInit(): void {
     // this.parentElement = (this.elementRef.nativeElement as HTMLElement).parentElement;
     this.parentElement = document.querySelector(this.parentElementName);
-    this.footerElement = (this.elementRef.nativeElement as HTMLElement).querySelector('footer.wvr-footer');
+    this.footerElement = (this._eRef.nativeElement as HTMLElement).querySelector('footer.wvr-footer');
     const rs = new ResizeSensor(this.parentElement, () => {
       this.positionSelf();
     });

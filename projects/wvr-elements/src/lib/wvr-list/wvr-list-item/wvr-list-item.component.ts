@@ -1,14 +1,15 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, Input } from '@angular/core';
+import { AfterViewInit, Component, Injector, Input, OnInit } from '@angular/core';
 import { Theme } from '../../shared/theme.type';
+import { WvrBaseComponent } from '../../shared/wvr-base.component';
 
 @Component({
   selector: 'wvr-list-item-element',
   templateUrl: './wvr-list-item.component.html',
   styleUrls: ['./wvr-list-item.component.scss']
 })
-export class WvrListItemComponent implements AfterViewInit {
+export class WvrListItemComponent extends WvrBaseComponent implements OnInit, AfterViewInit {
 
-  private readonly parent: HTMLElement;
+  private _parent: HTMLElement;
 
   listType: string;
 
@@ -22,18 +23,22 @@ export class WvrListItemComponent implements AfterViewInit {
 
   @Input() customContentSmallText: string;
 
-  constructor(private readonly ref: ElementRef, private readonly cdRef: ChangeDetectorRef) {
-    this.parent = (ref.nativeElement as HTMLElement).closest('wvr-list');
+  constructor(injector: Injector) {
+    super(injector);
+  }
 
-    const listTypeAttribute = this.parent ? this.parent.getAttribute('list-type') : undefined ;
+  ngOnInit(): void {
+    this._parent = (this._eRef.nativeElement as HTMLElement).closest('wvr-list');
+
+    const listTypeAttribute = this._parent ? this._parent.getAttribute('list-type') : undefined;
     this.listType = listTypeAttribute ? listTypeAttribute : 'unordered';
 
-    const contextAttribute = this.parent ? (this.parent.getAttribute('context') as Theme) : undefined ;
+    const contextAttribute = this._parent ? (this._parent.getAttribute('context') as Theme) : undefined;
     this.context = contextAttribute ? contextAttribute : undefined;
   }
 
   ngAfterViewInit(): void {
-    this.cdRef.detectChanges();
+    this._cdRef.detectChanges();
   }
 
 }

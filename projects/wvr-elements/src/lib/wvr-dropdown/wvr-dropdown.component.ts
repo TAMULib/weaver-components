@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, ElementRef, HostBinding, HostListener, Injector, Input, ViewChild } from '@angular/core';
+import { Component, HostBinding, HostListener, Injector, Input, ViewChild } from '@angular/core';
 import { NgbDropdown, NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
@@ -341,7 +341,7 @@ export class WvrDropdownComponent extends WvrBaseComponent {
    */
   private closing = false;
 
-  constructor(injector: Injector, cdRef: ChangeDetectorRef, private config: NgbDropdownConfig, private eRef: ElementRef) {
+  constructor(injector: Injector, config: NgbDropdownConfig) {
     super(injector);
     config.autoClose = false;
   }
@@ -382,7 +382,7 @@ export class WvrDropdownComponent extends WvrBaseComponent {
    * And the click occured off of the wvr-dropdown component.
    */
   @HostListener('document:click', ['$event']) clickout($event): void {
-    if (!this.eRef.nativeElement.contains($event.target)) {
+    if (!this._eRef.nativeElement.contains($event.target)) {
       this.closeDropdown();
     }
   }
