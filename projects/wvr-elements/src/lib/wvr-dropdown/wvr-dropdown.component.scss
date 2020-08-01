@@ -61,7 +61,6 @@
   }
 
   ::ng-deep {
-    @import "~bootstrap/scss/bootstrap";
     wvr-dropdown-menu {
       display: var(--wvr-dropdown-menu-display);
       flex-direction: var(--wvr-dropdown-menu-flex-direction);

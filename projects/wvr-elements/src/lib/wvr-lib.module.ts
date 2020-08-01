@@ -29,7 +29,7 @@ const elements = [
   { component: WvrIconComponent, selector: 'wvr-icon' },
   { component: WvrItWorksComponent, selector: 'wvr-it-works' },
   { component: WvrListComponent, selector: 'wvr-list' },
-  { component: WvrListItemComponent, selector: 'wvr-list-item'},
+  { component: WvrListItemComponent, selector: 'wvr-list-item' },
   { component: WvrNavListComponent, selector: 'wvr-nav-list' },
   { component: WvrNavLiComponent, selector: 'wvr-nav-li' },
   { component: WvrTextComponent, selector: 'wvr-text' }
@@ -83,20 +83,18 @@ const initializeConfig = (configService: ConfigService) => {
 })
 export class WvrLibModule {
   constructor(injector: Injector) {
-    initializeConfig(injector.get(ConfigService))
-      .then(() => {
-        elements.forEach(element => {
-          try {
-            customElements.define(element.selector, createCustomElement(element.component, { injector }));
-          } catch (e) {
-            // console.warn(e);
-          }
-        });
+    initializeConfig(injector.get(ConfigService)).then(() => {
+      elements.forEach(element => {
+        try {
+          customElements.define(element.selector, createCustomElement(element.component, { injector }));
+        } catch (e) {
+          // console.warn(e);
+        }
       });
+    });
     const doc = injector.get(DOCUMENT);
-    doc.querySelectorAll('[wvr-hide-content]')
-      .forEach(elem => {
-        elem.removeAttribute('wvr-hide-content');
-      });
+    doc.querySelectorAll('[wvr-hide-content]').forEach(elem => {
+      elem.removeAttribute('wvr-hide-content');
+    });
   }
 }
