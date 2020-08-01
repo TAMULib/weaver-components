@@ -31,4 +31,4 @@ deploy:
   github_token: $GITHUB_TOKEN
   keep_history: true
   on:
-    branch: sprint9-staging-cleanup
+    branch: sprint9-staging-bundle-fix
