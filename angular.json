@@ -47,14 +47,13 @@
                 }
               ],
               "optimization": true,
-              "outputHashing": "all",
+              "outputHashing": "none",
               "sourceMap": false,
               "extractCss": false,
               "extractLicenses": true,
               "namedChunks": false,
               "commonChunk": false,
               "vendorChunk": false,
-              "experimentalRollupPass": false,
               "buildOptimizer": true,
               "budgets": [
                 {
