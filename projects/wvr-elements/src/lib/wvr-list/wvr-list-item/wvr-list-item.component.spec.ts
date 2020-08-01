@@ -1,5 +1,6 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { WvrListItemComponent } from './wvr-list-item.component';
 
 describe('WvrListItemComponent', () => {
@@ -8,9 +9,10 @@ describe('WvrListItemComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ WvrListItemComponent ]
-    })
-    .compileComponents();
+      imports: [BrowserAnimationsModule],
+      declarations: [WvrListItemComponent],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

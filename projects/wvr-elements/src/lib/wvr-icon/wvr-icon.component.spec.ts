@@ -1,7 +1,8 @@
-import { async, ComponentFixture, inject, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { WvrIconComponent } from './wvr-icon.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { async, ComponentFixture, inject, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { WvrIconComponent } from './wvr-icon.component';
 
 describe('WvrIconComponent', () => {
   let component: WvrIconComponent;
@@ -9,12 +10,10 @@ describe('WvrIconComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ HttpClientTestingModule, BrowserAnimationsModule ],
-      declarations: [
-        WvrIconComponent
-      ]
-    })
-    .compileComponents();
+      imports: [HttpClientTestingModule, BrowserAnimationsModule],
+      declarations: [WvrIconComponent],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -25,8 +24,9 @@ describe('WvrIconComponent', () => {
 
   it('should create', inject([HttpTestingController],
     (httpMock: HttpTestingController) => {
-    expect(component)
-      .toBeTruthy();
-  }));
+      expect(component)
+        .toBeTruthy();
+    })
+  );
 
 });

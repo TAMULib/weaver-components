@@ -1,6 +1,7 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { WvrItWorksComponent } from './wvr-it-works.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { WvrItWorksComponent } from './wvr-it-works.component';
 
 describe('WvrItWorksComponent', () => {
   let component: WvrItWorksComponent;
@@ -8,12 +9,10 @@ describe('WvrItWorksComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ BrowserAnimationsModule ],
-      declarations: [
-        WvrItWorksComponent
-      ]
-    })
-      .compileComponents()
+      imports: [BrowserAnimationsModule],
+      declarations: [WvrItWorksComponent],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    }).compileComponents()
       .catch(err => { console.error(err); });
   }));
 

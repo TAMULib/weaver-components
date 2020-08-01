@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { IconSet } from './icon-set';
-import { Icon } from './icon';
-import { Observable, of } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { share } from 'rxjs/operators';
-import { ConfigService } from '../shared/config.service';
+import { Icon } from '../wvr-icon/icon';
+import { IconSet } from '../wvr-icon/icon-set';
+import { ConfigService } from './config.service';
 
 @Injectable({
   providedIn: 'root'
@@ -26,14 +26,11 @@ export class IconService {
   getIcon(set: string, name: string): Observable<string> {
     const iSet = this.getOrSetIconSet(set);
 
-    return this.getOrSetIcon(iSet, name)
-        .svg;
+    return this.getOrSetIcon(iSet, name).svg;
   }
 
   private addIcon(set: string, icon: Icon): void {
-    this.getOrSetIconSet(set)
-      .icons
-      .push(icon);
+    this.getOrSetIconSet(set).icons.push(icon);
   }
 
   private fetchIcon(set: IconSet, name: string): Observable<string> {

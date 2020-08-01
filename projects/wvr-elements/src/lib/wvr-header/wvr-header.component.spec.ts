@@ -1,6 +1,7 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { WvrHeaderComponent } from './wvr-header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { WvrHeaderComponent } from './wvr-header.component';
 
 describe('WvrHeaderComponent', () => {
   let component: WvrHeaderComponent;
@@ -11,7 +12,8 @@ describe('WvrHeaderComponent', () => {
       imports: [ BrowserAnimationsModule ],
       declarations: [
         WvrHeaderComponent
-      ]
+      ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
       .compileComponents()
       .catch(err => { console.error(err); });

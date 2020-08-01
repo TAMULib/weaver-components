@@ -1,6 +1,7 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { WvrTextComponent } from './wvr-text.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { WvrTextComponent } from './wvr-text.component';
 
 describe('WvrTextComponent', () => {
   let component: WvrTextComponent;
@@ -8,12 +9,10 @@ describe('WvrTextComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ BrowserAnimationsModule ],
-      declarations: [
-        WvrTextComponent
-      ]
-    })
-      .compileComponents()
+      imports: [BrowserAnimationsModule],
+      declarations: [WvrTextComponent],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    }).compileComponents()
       .catch(err => { console.error(err); });
   }));
 

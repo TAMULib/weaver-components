@@ -1,15 +1,23 @@
 const fs = require('fs-extra');
-const staticPath = 'static/weaver-components';
-const docPath = `${staticPath}/docs`;
-const reportPath = `${staticPath}/reports`;
+const staticPath = 'static';
+const weaverComponentsPath = 'static/weaver-components';
+const docPath = `${weaverComponentsPath}/docs`;
+const reportPath = `${weaverComponentsPath}/reports`;
 
 (async function build() {
   fs.ensureDir(`${docPath}/`);
   fs.ensureDir(`${reportPath}`);
 
-  fs.copy("index-static.html", `${staticPath}/index.html`);
-  fs.copy("index-docs.html", `${docPath}/index.html`);
-  fs.copy("index-reports.html", `${reportPath}/index.html`);
-  fs.copy("src/assets", `${docPath}/assets`);
+  fs.copy("src/config-docs.json", `${weaverComponentsPath}/config.json`);
+  fs.copy("src/index-static.html", `${weaverComponentsPath}/index.html`);
 
+  fs.copy("src/config-docs.json", `${staticPath}/config.json`);
+  fs.copy("src/index-static.html", `${staticPath}/index.html`);
+
+  fs.copy("src/config-docs.json", `${docPath}/config.json`);
+  fs.copy("src/index-docs.html", `${docPath}/index.html`);
+
+  fs.copy("src/config-docs.json", `${reportPath}/config.json`);
+  fs.copy("src/index-reports.html", `${reportPath}/index.html`);
+  fs.copy("src/assets", `${docPath}/assets`);
 })();

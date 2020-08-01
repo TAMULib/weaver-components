@@ -1,4 +1,4 @@
-import { AfterContentChecked, ChangeDetectorRef, Component, ElementRef, HostBinding, Injector, Input, OnInit } from '@angular/core';
+import { AfterContentChecked, Component, HostBinding, Injector, Input, OnInit } from '@angular/core';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 /**
@@ -76,8 +76,6 @@ export class WvrHeaderComponent extends WvrBaseComponent implements OnInit, Afte
 
   /**
    * The weaver header component constructor
-   * @param domSanitizer: DomSanitizer - this parameter is injected to the weaver component instance.
-   * @param elementRef: ElementRef  - a reference to the bottom nav list element.
    */
   constructor(injector: Injector) {
     super(injector);

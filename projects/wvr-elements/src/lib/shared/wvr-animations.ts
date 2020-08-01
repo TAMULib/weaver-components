@@ -32,9 +32,7 @@ const wvrAnimations = {
   rotationtoggle: (s: Map<string, boolean>, v): AnimationMetadata | Array<AnimationMetadata> => {
     const a = [
       animate('{{timing}}',
-        style({ transform: s.get('rotationtoggle') ?
-                           'rotate(0)' :
-                           `rotate(${v}deg)` }))
+        style({ transform: s.get('rotationtoggle') ? 'rotate(0)' : `rotate(${v}deg)` }))
     ];
     s.set('rotationtoggle', !s.get('rotationtoggle'));
 
@@ -84,7 +82,7 @@ const wvrAnimations = {
   fadetoggle: (s: Map<string, boolean>, v): AnimationMetadata | Array<AnimationMetadata> => {
     const a = [
       animate('{{timing}}',
-        style({ opacity: s.get('fadetoggle') ? 1 : 0}))
+        style({ opacity: s.get('fadetoggle') ? 1 : 0 }))
     ];
     s.set('fadetoggle', !s.get('fadetoggle'));
 
