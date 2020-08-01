@@ -1,3 +1,5 @@
+@import "../shared/styles/wvr-variables.scss";
+
 :host {
   font-family: var(--wvr-font-family-sans-serif);
   ::ng-deep {
