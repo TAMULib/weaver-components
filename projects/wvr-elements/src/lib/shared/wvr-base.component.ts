@@ -3,6 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { fromEvent, Observable } from 'rxjs';
 import { debounceTime, map } from 'rxjs/operators';
 import { WvrAnimationService } from '../core/wvr-animation.service';
+import * as JSON5 from 'json5';
 
 @Directive()
 // tslint:disable-next-line:directive-class-suffix
@@ -10,14 +11,12 @@ export abstract class WvrBaseComponent implements OnInit {
 
   private _animationSettings: any = {};
   @Input() set animate(value: string) {
-    // tslint:disable-next-line:no-eval
-    this._animationSettings = eval(`(${value})`);
+    this._animationSettings = JSON5.parse(value);
   }
 
   private _animationConfig: any = {};
   @Input() set animateConfig(value: string) {
-    // tslint:disable-next-line:no-eval
-    this._animationConfig = eval(`(${value})`);
+    this._animationConfig =  JSON5.parse(value);
   }
 
   private animationStateId: number;
