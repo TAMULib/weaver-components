@@ -83,7 +83,8 @@ const initializeConfig = (configService: ConfigService) => {
 })
 export class WvrLibModule {
   constructor(injector: Injector) {
-    initializeConfig(injector.get(ConfigService)).then(() => {
+    initializeConfig(injector.get(ConfigService))
+      .then(() => {
       elements.forEach(element => {
         try {
           customElements.define(element.selector, createCustomElement(element.component, { injector }));
@@ -93,8 +94,9 @@ export class WvrLibModule {
       });
     });
     const doc = injector.get(DOCUMENT);
-    doc.querySelectorAll('[wvr-hide-content]').forEach(elem => {
-      elem.removeAttribute('wvr-hide-content');
-    });
+    doc.querySelectorAll('[wvr-hide-content]')
+      .forEach(elem => {
+        elem.removeAttribute('wvr-hide-content');
+      });
   }
 }

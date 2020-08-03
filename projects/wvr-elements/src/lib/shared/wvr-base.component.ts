@@ -5,6 +5,7 @@ import { debounceTime, map } from 'rxjs/operators';
 import { WvrAnimationService } from '../core/wvr-animation.service';
 
 @Directive()
+// tslint:disable-next-line:directive-class-suffix
 export abstract class WvrBaseComponent implements OnInit {
 
   private _animationSettings: any = {};
