@@ -18,7 +18,7 @@ export class WvrButtonComponent extends WvrBaseComponent {
   /** Used to define the type of a button.  */
   @Input() wvrBtnType: 'button' | 'checkbox' | 'radio' | 'reset' | 'submit' = 'button';
 
-  /** Allows for the button component to be an anchor tag component if hrefUrl property present. */
+  /** Allows for the button component to be an anchor tag component if href property present. */
   @Input() href: string;
 
   /** Allows for the override of background */

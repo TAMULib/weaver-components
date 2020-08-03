@@ -234,10 +234,10 @@ export class WvrDropdownComponent extends WvrBaseComponent {
   }
 
   /** Allows for override of button href value. */
-  btnHref = '';
+  @Input() btnHref = '';
 
   /** Allows for override of button size.  */
-  btnSize = '';
+  @Input() btnSize = '';
 
   /** Allows for the visual customization of the dropdown menu activation button.  */
   @Input() btnType: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark' | 'link' | 'plain' = 'plain';
@@ -399,13 +399,15 @@ export class WvrDropdownComponent extends WvrBaseComponent {
 
   /** A methos for handeling the opening of the dropdown, and updating state. */
   private openDropdown(): void {
-    document.querySelector('body')
+    if (!this.isMobileLayout) {
+      document.querySelector('body')
       .click();
-    setTimeout(() => {
-      this.open = true;
-      this._cdRef.detectChanges();
-      this.dropdown.open();
-    }, this._animationSpeedMili);
+      setTimeout(() => {
+        this.open = true;
+        this._cdRef.detectChanges();
+        this.dropdown.open();
+      }, this._animationSpeedMili);
+    }
   }
 
   /** A methos for handeling the closing of the dropdown, and updating state. */
