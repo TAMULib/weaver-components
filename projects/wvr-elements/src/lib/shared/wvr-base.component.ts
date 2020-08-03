@@ -74,6 +74,10 @@ export abstract class WvrBaseComponent implements OnInit {
         }
       });
     }
+    this.screenSizeChanged$.subscribe(iml => {
+      this.isMobileLayout = iml;
+      this._cdRef.detectChanges();
+    });
   }
 
   triggerAnimations(animationTriggerType: string): void {
