@@ -2,6 +2,7 @@
  * Public API Surface of elements
  */
 
+export * from './lib/shared/wvr-base.component';
 export * from './lib/shared/alignment.enum';
 export * from './lib/shared/theme.type';
 export * from './lib/wvr-button/wvr-button.component';

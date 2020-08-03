@@ -12,7 +12,8 @@ describe('WvrButtonComponent', () => {
       imports: [BrowserAnimationsModule],
       declarations: [WvrButtonComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
-    }).compileComponents();
+    })
+    .compileComponents();
   }));
 
   beforeEach(() => {

@@ -82,12 +82,8 @@ export class WvrHeaderComponent extends WvrBaseComponent implements OnInit, Afte
   }
 
   ngOnInit(): void {
-    this.screenSizeChanged$.subscribe(iml => {
-      this.isMobileLayout = iml;
-      this._cdRef.detectChanges();
-    });
+    super.ngOnInit();
     this.checkBottomNavHasChildren();
-    this._cdRef.detectChanges();
   }
 
   ngAfterContentChecked(): void {
@@ -99,6 +95,7 @@ export class WvrHeaderComponent extends WvrBaseComponent implements OnInit, Afte
   private checkBottomNavHasChildren(): void {
     const bottomNavListElement = (this._eRef.nativeElement as HTMLElement).querySelector('.bottom-nav wvr-nav-li, .bottom-nav wvr-nav-li-element');
     this.isBottomNavHidden = !(this.displayBottomNav === 'true' || (this.displayBottomNav === undefined && !!bottomNavListElement));
+    this._cdRef.detectChanges();
   }
 
 }

@@ -27,7 +27,8 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/config.json"
+              "src/config.json",
+              "src/weaver-components.js"
             ],
             "styles": [
               "src/styles.scss"
