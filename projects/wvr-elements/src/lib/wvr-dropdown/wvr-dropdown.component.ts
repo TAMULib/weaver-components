@@ -189,6 +189,17 @@ export class WvrDropdownComponent extends WvrBaseComponent {
     return this._btnFontSize ? this._btnFontSize : 'var(--wvr-btn-font-size-default)';
   }
 
+  /** Allows for override the button font weight. */
+  private _btnFontWeight: string;
+
+  @Input() set btnFontWeight(value: string) {
+    this._btnFontWeight = value;
+  }
+
+  get btnFontWeight(): string {
+    return this._btnFontWeight ? this._btnFontWeight : 'var(--wvr-btn-font-weight-default)';
+  }
+
   /** Allows for override the button line height. */
   private _btnLineHeight: string;
 

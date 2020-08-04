@@ -347,6 +347,9 @@ export class WvrButtonComponent extends WvrBaseComponent {
   /** Allows for the override of button font size property */
   @HostBinding('style.--wvr-btn-font-size') @Input() fontSize;
 
+  /** Allows for the override of button font weight property */
+  @HostBinding('style.--wvr-btn-font-weight') @Input() fontWeight;
+
   /** Allows for the override of button hover line height property */
   @HostBinding('style.--wvr-btn-line-height') @Input() lineHeight;
 
