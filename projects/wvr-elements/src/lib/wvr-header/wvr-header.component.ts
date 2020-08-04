@@ -84,6 +84,7 @@ export class WvrHeaderComponent extends WvrBaseComponent implements OnInit, Afte
   ngOnInit(): void {
     super.ngOnInit();
     this.checkBottomNavHasChildren();
+    this._cdRef.detectChanges();
   }
 
   ngAfterContentChecked(): void {

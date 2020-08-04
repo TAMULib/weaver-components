@@ -77,6 +77,7 @@ export abstract class WvrBaseComponent implements OnInit {
       this.isMobileLayout = iml;
       this._cdRef.detectChanges();
     });
+    this.isMobileLayout = this.checkScreenSize();
   }
 
   triggerAnimations(animationTriggerType: string): void {
@@ -98,6 +99,6 @@ export abstract class WvrBaseComponent implements OnInit {
     this.triggerAnimations($event.type);
   }
 
-  private checkScreenSize = () => document.body.offsetWidth < 991;
+  private checkScreenSize = () => document.body.offsetWidth < 767;
 
 }
