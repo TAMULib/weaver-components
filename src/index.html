@@ -407,7 +407,8 @@
                 animate-config="{
                   rotateToggle: {
                     timing: '1000ms ease-in',
-                    to: 180
+                    to: 180,
+                    from: 0
                   }
                 }"
                 btn-class="primary"
@@ -660,13 +661,13 @@
       <wvr-list-item>
         <wvr-button btn-class="link">
           <wvr-text value="Item Two"></wvr-text>
-          <wvr-icon set="feather" name="chevron-right" animate="{animationTrigger: 'rotateToggle'}"></wvr-icon>
+          <wvr-icon set="feather" name="chevron-right"></wvr-icon>
         </wvr-button>
       </wvr-list-item>
       <wvr-list-item>
         <wvr-button btn-class="link">
           <wvr-text value="Item Three"></wvr-text>
-          <wvr-icon set="feather" name="chevron-right" animate="{animationTrigger: 'rotateToggle'}"></wvr-icon>
+          <wvr-icon set="feather" name="chevron-right"></wvr-icon>
         </wvr-button>
       </wvr-list-item>
     </wvr-list>
