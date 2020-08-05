@@ -1,5 +1,9 @@
 @import "../shared/styles/wvr-variables.scss";
 
+div.container {
+  overflow: hidden;
+}
+
 .it-works {
   color: var(--wvr-primary);
 }

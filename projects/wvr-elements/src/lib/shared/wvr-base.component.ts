@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Directive, ElementRef, EventEmitter, Injector, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { AfterContentInit, ChangeDetectorRef, Directive, ElementRef, EventEmitter, Injector, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { fromEvent, Observable } from 'rxjs';
 import { debounceTime, map } from 'rxjs/operators';
@@ -7,7 +7,7 @@ import * as JSON5 from 'json5';
 
 @Directive()
 // tslint:disable-next-line:directive-class-suffix
-export abstract class WvrBaseComponent implements OnInit {
+export abstract class WvrBaseComponent implements AfterContentInit, OnInit {
 
   private _animationSettings: any = {};
   @Input() set animate(value: string) {
@@ -80,6 +80,13 @@ export abstract class WvrBaseComponent implements OnInit {
     this.isMobileLayout = this.checkScreenSize();
   }
 
+  ngAfterContentInit(): void {
+    setTimeout(() => {
+      this._animationService
+        .initializeAnimationElement(this.animationStateId, this._animationConfig, this.animationRootElem);
+    }, 1);
+  }
+
   triggerAnimations(animationTriggerType: string): void {
     const animations: Array<string> = Array.isArray(this._animationSettings[animationTriggerType])
       ? this._animationSettings[animationTriggerType]
@@ -88,9 +95,8 @@ export abstract class WvrBaseComponent implements OnInit {
       if (an === 'animationTrigger') {
         this._animationService.triggerAnimationReciever(this.animateTarget);
       } else {
-        const timing = this._animationConfig[an] ? this._animationConfig[an].timing : undefined;
-        const value = this._animationConfig[an] ? this._animationConfig[an].value : undefined;
-        this._animationService.playAnimation(this.animationStateId, an, timing, value, this.animationRootElem.nativeElement);
+        this._animationService
+          .playAnimation(this.animationStateId, an, this._animationConfig, this.animationRootElem.nativeElement);
       }
     });
   }

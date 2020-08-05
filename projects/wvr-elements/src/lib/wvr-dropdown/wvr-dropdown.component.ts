@@ -408,7 +408,7 @@ export class WvrDropdownComponent extends WvrBaseComponent {
     }
   }
 
-  /** A methos for handeling the opening of the dropdown, and updating state. */
+  /** Handles the opening of the dropdown, and updating state. */
   private openDropdown(): void {
     if (!this.isMobileLayout) {
       document.querySelector('body')
@@ -421,7 +421,7 @@ export class WvrDropdownComponent extends WvrBaseComponent {
     }
   }
 
-  /** A methos for handeling the closing of the dropdown, and updating state. */
+  /** Handles the closing of the dropdown, and updating state. */
   private closeDropdown(): void {
     this.closing = true;
     this.open = false;

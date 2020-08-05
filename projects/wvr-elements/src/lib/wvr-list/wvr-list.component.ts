@@ -1,5 +1,4 @@
 import { Component, Injector, Input } from '@angular/core';
-import { Theme } from '../shared/theme.type';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 @Component({
@@ -10,8 +9,6 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
 export class WvrListComponent extends WvrBaseComponent {
 
   @Input() listType = 'unordered';
-
-  @Input() context: Theme;
 
   constructor(injector: Injector) {
     super(injector);

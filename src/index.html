@@ -166,7 +166,8 @@
     </wvr-nav-list>
   </wvr-header>
   <br />
-  <wvr-it-works animate="{animationTrigger: 'fadetoggle'}" animate-id="elem1"></wvr-it-works>
+
+  <wvr-it-works animate="{animationTrigger: 'fadeToggle'}" animate-id="elem1"></wvr-it-works>
 
   <div class="container index-container">
     <wvr-text value="Dropdown with Buttons" text-decoration="underline"></wvr-text><br />
@@ -402,11 +403,11 @@
 
   <div class="container index-container">
     <wvr-text value="Customized" text-decoration="underline"></wvr-text><br />
-    <wvr-button animate="{click: 'rotationtoggle'}"
+    <wvr-button animate="{click: 'rotateToggle'}"
                 animate-config="{
-                  rotationtoggle: {
+                  rotateToggle: {
                     timing: '1000ms ease-in',
-                    value: 180
+                    to: 180
                   }
                 }"
                 btn-class="primary"
@@ -469,13 +470,13 @@
     <wvr-text value="Weaver Icon List" text-decoration="underline"></wvr-text><br />
     <wvr-icon set="custom" name="weaver-w"></wvr-icon>
     <wvr-icon set="custom" name="weaver-w" color="#500000" size="64px"></wvr-icon>
-    <wvr-button btn-class="primary" wvr-btn-type="button" animate="{click: 'rotationtoggle'}">
+    <wvr-button btn-class="primary" wvr-btn-type="button" animate="{click: 'rotateToggle'}">
       <wvr-icon set="custom" name="weaver-w" color="#500000"></wvr-icon>
       <wvr-text value="Icon Btn"></wvr-text>
     </wvr-button>
     <wvr-button btn-class="info" wvr-btn-type="button" animate="{click: 'animationTrigger'}" animate-target="elem1">
       <wvr-text value="Icon Btn"></wvr-text>
-      <wvr-icon set="feather" name="chevron-right" color="#500000" animate="{animationTrigger: 'rotationtoggle'}" animate-id="elem1"></wvr-icon>
+      <wvr-icon set="feather" name="chevron-right" color="#500000" animate="{animationTrigger: 'rotateToggle'}" animate-id="elem1"></wvr-icon>
     </wvr-button>
   </div>
 
@@ -623,6 +624,50 @@
           cusom-content-heading-small-text="Custom Content Heading Small Text3"
           custom-content-small-text="Custom Content Small Text3">
         <wvr-text value="Custom Content Description 3"></wvr-text>
+      </wvr-list-item>
+    </wvr-list>
+
+  </div>
+
+  <div class="container index-container">
+
+    <wvr-text value="Expanding / Collapsing List" text-decoration="underline"></wvr-text><br /><br />
+
+    <wvr-list list-type="unstyled">
+      <wvr-list-item>
+        <wvr-button btn-class="link" animate="{click: 'animationTrigger'}" animate-target="list2">
+          <wvr-text value="Item One"></wvr-text>
+          <wvr-icon set="feather" name="chevron-right" animate="{animationTrigger: 'rotateToggle'}" animate-id="list2"></wvr-icon>
+        </wvr-button>
+        <wvr-list list-type="unordered" animate="{animationTrigger: 'expandCollapseToggle'}" animate-id="list2" animate-config="{
+          expandCollapseToggle: {
+            timing: '250ms ease-in',
+            to: '100px',
+            from: '0px'
+          }
+        }">
+          <wvr-list-item>
+            <wvr-text value="Item One.One"></wvr-text>
+          </wvr-list-item>
+          <wvr-list-item>
+            <wvr-text value="Item One.Two"></wvr-text>
+          </wvr-list-item>
+          <wvr-list-item>
+            <wvr-text value="Item One.Three"></wvr-text>
+          </wvr-list-item>
+        </wvr-list>
+      </wvr-list-item>
+      <wvr-list-item>
+        <wvr-button btn-class="link">
+          <wvr-text value="Item Two"></wvr-text>
+          <wvr-icon set="feather" name="chevron-right" animate="{animationTrigger: 'rotateToggle'}"></wvr-icon>
+        </wvr-button>
+      </wvr-list-item>
+      <wvr-list-item>
+        <wvr-button btn-class="link">
+          <wvr-text value="Item Three"></wvr-text>
+          <wvr-icon set="feather" name="chevron-right" animate="{animationTrigger: 'rotateToggle'}"></wvr-icon>
+        </wvr-button>
       </wvr-list-item>
     </wvr-list>
 

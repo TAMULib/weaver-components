@@ -2,6 +2,12 @@
 
 :host {
   font-family: var(--wvr-font-family-sans-serif);
+
+  wvr-list-wrapper {
+    display: block;
+    overflow: hidden;
+  }
+
   ::ng-deep {
 
     .list-group-flush > wvr-list-item > wvr-list-item-wrapper > .list-group-item {
