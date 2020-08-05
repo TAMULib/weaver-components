@@ -1,12 +1,11 @@
 {
   "extends": "lighthouse:default",
   "siteTitle": "Lighthouse Report",
-
   "ci": {
     "collect": {
       "numberOfRuns": 1,
       "url": ["http://localhost:8080/"],
-      "startServerCommand": "npm run start:static"
+      "startServerCommand": "npm run start:dist"
     },
     "assert": {
       "assertions": {

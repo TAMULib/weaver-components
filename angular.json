@@ -19,14 +19,16 @@
           "options": {
             "preserveSymlinks": true,
             "outputPath": "dist/weaver-components",
-            "index": "./index.html",
+            "index": "./src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "aot": false,
+            "aot": true,
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/config.json",
+              "src/weaver-components.js"
             ],
             "styles": [
               "src/styles.scss"
@@ -46,23 +48,24 @@
                 }
               ],
               "optimization": true,
-              "outputHashing": "all",
+              "outputHashing": "none",
               "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
+              "extractCss": false,
               "extractLicenses": true,
+              "namedChunks": false,
+              "commonChunk": false,
               "vendorChunk": false,
-              "buildOptimizer": false,
+              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "5mb",
-                  "maximumError": "8mb"
+                  "maximumWarning": "1mb",
+                  "maximumError": "4mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
+                  "maximumWarning": "50kb",
+                  "maximumError": "500kb"
                 }
               ]
             }

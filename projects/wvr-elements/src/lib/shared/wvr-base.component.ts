@@ -1,22 +1,22 @@
-import { AfterContentInit, ChangeDetectorRef, Component, ElementRef, EventEmitter, HostBinding, HostListener, Injector, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { debounceTime, map } from 'rxjs/operators';
-import { fromEvent, Observable, of } from 'rxjs';
-import { WvrAnimationService } from './animation/wvr-animation.service';
+import { AfterContentInit, ChangeDetectorRef, Directive, ElementRef, EventEmitter, Injector, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { wvrAnimationDefaults, wvrAnimationInitialization } from './animation/wvr-animations';
+import { fromEvent, Observable } from 'rxjs';
+import { debounceTime, map } from 'rxjs/operators';
+import { WvrAnimationService } from '../core/wvr-animation.service';
+import * as JSON5 from 'json5';
 
+@Directive()
+// tslint:disable-next-line:directive-class-suffix
 export abstract class WvrBaseComponent implements AfterContentInit, OnInit {
 
   private _animationSettings: any = {};
   @Input() set animate(value: string) {
-    // tslint:disable-next-line:no-eval
-    this._animationSettings = eval(`(${value})`);
+    this._animationSettings = JSON5.parse(value);
   }
 
   private _animationConfig: any = {};
   @Input() set animateConfig(value: string) {
-    // tslint:disable-next-line:no-eval
-    this._animationConfig = eval(`(${value})`);
+    this._animationConfig =  JSON5.parse(value);
   }
 
   private animationStateId: number;
@@ -73,18 +73,24 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit {
         }
       });
     }
+    this.screenSizeChanged$.subscribe(iml => {
+      this.isMobileLayout = iml;
+      this._cdRef.detectChanges();
+    });
+    this.isMobileLayout = this.checkScreenSize();
   }
 
   ngAfterContentInit(): void {
     setTimeout(() => {
-      this._animationService.initializeAnimationElement(this.animationStateId, this._animationConfig, this.animationRootElem);
+      this._animationService
+        .initializeAnimationElement(this.animationStateId, this._animationConfig, this.animationRootElem);
     }, 1);
   }
 
   triggerAnimations(animationTriggerType: string): void {
-    const animations: Array<string> = Array.isArray(this._animationSettings[animationTriggerType]) ?
-                         this._animationSettings[animationTriggerType] :
-                         [this._animationSettings[animationTriggerType]];
+    const animations: Array<string> = Array.isArray(this._animationSettings[animationTriggerType])
+      ? this._animationSettings[animationTriggerType]
+      : [this._animationSettings[animationTriggerType]];
     animations.forEach(an => {
       if (an === 'animationTrigger') {
         this._animationService.triggerAnimationReciever(this.animateTarget);
@@ -99,6 +105,6 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit {
     this.triggerAnimations($event.type);
   }
 
-  private checkScreenSize = () =>  document.body.offsetWidth < 991;
+  private checkScreenSize = () => document.body.offsetWidth < 767;
 
 }

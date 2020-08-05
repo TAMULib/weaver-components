@@ -1,6 +1,6 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostBinding, Injector, Input } from '@angular/core';
-import { IconService } from './icon.service';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { AfterViewInit, Component, HostBinding, Injector, Input } from '@angular/core';
+import { SafeHtml } from '@angular/platform-browser';
+import { IconService } from '../core/icon.service';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 @Component({
@@ -20,8 +20,7 @@ export class WvrIconComponent extends WvrBaseComponent implements AfterViewInit 
 
   iconSvg: SafeHtml;
 
-  constructor(injector: Injector, private elemRef: ElementRef, private iconService: IconService,
-              private sanitizer: DomSanitizer) {
+  constructor(injector: Injector, private iconService: IconService) {
     super(injector);
   }
 
@@ -29,7 +28,7 @@ export class WvrIconComponent extends WvrBaseComponent implements AfterViewInit 
     this.iconService.getIcon(this.set, this.name)
       .toPromise()
       .then(svg => {
-        this.iconSvg = this.sanitizer.bypassSecurityTrustHtml(svg);
+        this.iconSvg = this._domSanitizer.bypassSecurityTrustHtml(svg);
         this._cdRef.detectChanges();
       });
   }

@@ -33,7 +33,7 @@ const wvrAnimationDefaults = {
   }
 };
 
-export const wvrAnimationInitialization = {
+const wvrAnimationInitialization = {
   fade: (s: Map<string, any>, from: string, elem: HTMLElement): void => {
     elem.style.opacity = from;
   },
@@ -127,7 +127,7 @@ const wvrAnimations = {
 
 };
 
-export { wvrAnimations, wvrAnimationDefaults };
+export { wvrAnimations, wvrAnimationInitialization, wvrAnimationDefaults };
 
 /*
     slideopen

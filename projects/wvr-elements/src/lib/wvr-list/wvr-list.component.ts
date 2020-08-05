@@ -8,9 +8,7 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
 })
 export class WvrListComponent extends WvrBaseComponent {
 
-  @Input() listType =  'unordered';
-
-  @Input() context: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark';
+  @Input() listType = 'unordered';
 
   constructor(injector: Injector) {
     super(injector);

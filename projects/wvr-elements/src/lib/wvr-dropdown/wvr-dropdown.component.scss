@@ -1,4 +1,4 @@
-@import "../shared/styles/host-styles.scss";
+@import "../shared/styles/wvr-variables.scss";
 
 :host {
   --wvr-dropdown-menu-animation-speed: 0.25s;
@@ -17,7 +17,6 @@
 .wvr-dropdown {
   font-family: var(--wvr-font-family-sans-serif);
   position: relative;
-  width: var(--wvr-dropdown-menu-width);
 
   .dropdown-toggle::after {
     display:none;
@@ -61,7 +60,6 @@
   }
 
   ::ng-deep {
-    @import "~bootstrap/scss/bootstrap";
     wvr-dropdown-menu {
       display: var(--wvr-dropdown-menu-display);
       flex-direction: var(--wvr-dropdown-menu-flex-direction);

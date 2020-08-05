@@ -1,0 +1,36 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "projects",
+    "sourceMap": true,
+    "declaration": true,
+    "downlevelIteration": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es2015",
+    "module": "es2020",
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2018",
+      "dom"
+    ],
+    "paths": {
+      "wvr-elements": [
+        "projects/wvr-elements/src/public-api",
+        "dist/wvr-elements"
+      ],
+      "wvr-elements/*": [
+        "projects/wvr-elements/src/public-api/*",
+        "dist/wvr-elements/*",
+      ]
+    }
+  },
+  "angularCompilerOptions": {
+    "ivyCompiler": true
+  }
+}
