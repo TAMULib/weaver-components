@@ -17,7 +17,7 @@
   </snippet>
 </example>
 
-  <example name="Weaver List - Ordered">
+<example name="Weaver List - Ordered">
   <desciption>
     Ordered <code>wvr-list</code> component.
   </desciption>
@@ -55,7 +55,7 @@
   </snippet>
 </example>
 
-  <example name="Weaver List - Described">
+<example name="Weaver List - Described">
   <desciption>
     Described <code>wvr-list</code> component.
   </desciption>
@@ -74,7 +74,7 @@
   </snippet>
 </example>
 
-  <example name="Weaver List - Group">
+<example name="Weaver List - Group">
   <desciption>
     Group <code>wvr-list</code> component.
   </desciption>
@@ -93,7 +93,7 @@
   </snippet>
 </example>
 
-  <example name="Weaver List - Group - Flush">
+<example name="Weaver List - Group - Flush">
   <desciption>
     Group - Flush <code>wvr-list</code> component.
   </desciption>
@@ -112,7 +112,7 @@
   </snippet>
 </example>
 
-  <example name="Weaver List - Group - Contextual Classes">
+<example name="Weaver List - Group - Contextual Classes">
   <desciption>
     Contextual Classes <code>wvr-list</code> component.
   </desciption>
@@ -140,7 +140,7 @@
   </snippet>
 </example>
 
-  <example name="Weaver List - Group - Custom Content">
+<example name="Weaver List - Group - Custom Content">
   <desciption>
     Group - Custom Content <code>wvr-list</code> component.
   </desciption>
@@ -163,6 +163,51 @@
           cusom-content-heading-small-text="Custom Content Heading Small Text3"
           custom-content-small-text="Custom Content Small Text3">
         <wvr-text value="Custom Content Description 3"></wvr-text>
+      </wvr-list-item>
+    </wvr-list>
+  </snippet>
+</example>
+
+<example name="Weaver List - Expand/Collapse">
+  <desciption>
+    Unstyled <code>wvr-list</code> with expand/collapse animations.
+  </desciption>
+  <snippet>
+    <wvr-list list-type="unstyled">
+      <wvr-list-item>
+        <wvr-button btn-class="link" animate="{click: 'animationTrigger'}" animate-target="list1">
+          <wvr-text value="Item One"></wvr-text>
+          <wvr-icon set="feather" name="chevron-right" animate="{animationTrigger: 'rotateToggle'}" animate-id="list1"></wvr-icon>
+        </wvr-button>
+        <wvr-list list-type="unordered" animate="{animationTrigger: 'expandCollapseToggle'}" animate-id="list1" animate-config="{
+          expandCollapseToggle: {
+            timing: '250ms ease-in',
+            to: '100px',
+            from: '0px'
+          }
+        }">
+          <wvr-list-item>
+            <wvr-text value="Item One.One"></wvr-text>
+          </wvr-list-item>
+          <wvr-list-item>
+            <wvr-text value="Item One.Two"></wvr-text>
+          </wvr-list-item>
+          <wvr-list-item>
+            <wvr-text value="Item One.Three"></wvr-text>
+          </wvr-list-item>
+        </wvr-list>
+      </wvr-list-item>
+      <wvr-list-item>
+        <wvr-button btn-class="link">
+          <wvr-text value="Item Two"></wvr-text>
+          <wvr-icon set="feather" name="chevron-right"></wvr-icon>
+        </wvr-button>
+      </wvr-list-item>
+      <wvr-list-item>
+        <wvr-button btn-class="link">
+          <wvr-text value="Item Three"></wvr-text>
+          <wvr-icon set="feather" name="chevron-right"></wvr-icon>
+        </wvr-button>
       </wvr-list-item>
     </wvr-list>
   </snippet>

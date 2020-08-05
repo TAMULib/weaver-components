@@ -128,3 +128,31 @@
     </wvr-button>
   </snippet>
 </example>
+
+<example name="Weaver Button Animations">
+  <desciption>
+    The default <code>wvr-button</code> component with animations.
+  </desciption>
+  <snippet>
+
+    <wvr-button btn-class="primary" wvr-btn-type="button" animate="{click: 'rotateToggle'}">
+      <wvr-text value="Default Animation"></wvr-text>
+    </wvr-button>
+
+    <wvr-button btn-class="info" wvr-btn-type="button" animate="{click: 'animationTrigger'}" animate-target="icon1">
+      <wvr-text value="Targeted Animation"></wvr-text>
+      <wvr-icon set="feather" name="chevron-right" color="#500000" animate="{animationTrigger: 'rotateToggle'}" animate-id="icon1"></wvr-icon>
+    </wvr-button>
+
+    <wvr-button btn-class="success" wvr-btn-type="button" animate="{click: 'rotateToggle'}" animate-config="{
+      rotateToggle: {
+        timing: '1000ms ease-in-out',
+        to: 180,
+        from: 0
+      }
+    }">
+      <wvr-text value="Customized Animation"></wvr-text>
+    </wvr-button>
+
+  </snippet>
+</example>
