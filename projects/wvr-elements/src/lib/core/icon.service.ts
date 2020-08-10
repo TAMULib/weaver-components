@@ -16,7 +16,7 @@ export class IconService {
   private readonly ASSET_PATH: string;
 
   constructor(private http: HttpClient, config: ConfigService) {
-    this.ASSET_PATH = `${config.baseUrl}/assets`;
+    this.ASSET_PATH = `${config.assetUrl}/assets`;
   }
 
   registerIcons(icons: IconSet): void {
@@ -30,7 +30,8 @@ export class IconService {
   }
 
   private addIcon(set: string, icon: Icon): void {
-    this.getOrSetIconSet(set).icons.push(icon);
+    this.getOrSetIconSet(set).icons
+      .push(icon);
   }
 
   private fetchIcon(set: IconSet, name: string): Observable<string> {

@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ConfigService {
-  baseUrl: string;
+  assetUrl: string;
 
   constructor(private http: HttpClient) {
 
@@ -13,15 +13,20 @@ export class ConfigService {
 
   load(): Promise<void> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const url = 'config.json';
+    const componentScript = document.getElementsByTagName('script');
+    const componentScriptSrc = componentScript[componentScript.length - 1].src;
+    const componentScriptSrcPathParts = componentScriptSrc.split('/');
+    componentScriptSrcPathParts.pop();
+    const configBasePath = componentScriptSrcPathParts.join('/');
+    const configUrl = `${configBasePath}/config.json`;
 
-    const promise = this.http.get(url, { headers })
+    const promise = this.http.get(configUrl, { headers })
       .toPromise()
       .then(configs => {
-        this.baseUrl = (configs as any).baseUrl;
+        this.assetUrl = (configs as any).assetUrl;
       })
       .catch(err => {
-        this.baseUrl = 'http://localhost:4200';
+        this.assetUrl = 'http://localhost:4200';
       });
 
     return promise;
