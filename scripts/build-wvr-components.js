@@ -23,9 +23,7 @@ const latestPath = `${basePath}/latest`;
   fs.ensureDir(dirPath);
 
   await concat(files, `${dirPath}/weaver-components.js`);
-
   fs.copy(configPath, `${dirPath}/config.json`);
-
   fs.copy(`${dirPath}/weaver-components.js`, `${latestPath}/weaver-components.js`);
   fs.copy(configPath, `${latestPath}/config.json`);
   fs.copy(`${dirPath}/weaver-components.js`, 'dist/static/docs/usage/weaver-components.js');

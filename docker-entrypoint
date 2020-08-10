@@ -1,0 +1,12 @@
+#!/bin/bash
+
+configTemplate=`cat tmp/config-template.json`
+
+configCompiled=${configTemplate//"{{assetUrl}}"/$ASSET_URL}
+
+echo $configCompiled > "/usr/local/apache2/htdocs/wvr-components/1x/config.json"
+echo $configCompiled > "/usr/local/apache2/htdocs/wvr-components/latest/config.json"
+
+echo "Done docker-entrypoint..."
+
+exec "$@"

@@ -11,4 +11,9 @@ RUN npm run build
 RUN ls -la
 
 FROM httpd:2.4-alpine
+
 COPY --from=npm /app/dist/bundle/ /usr/local/apache2/htdocs/wvr-components/
+
+COPY docker-entrypoint /usr/local/bin/
+COPY src/config-template.json tmp/config-template.json
+ENTRYPOINT ["docker-entrypoint"] 
