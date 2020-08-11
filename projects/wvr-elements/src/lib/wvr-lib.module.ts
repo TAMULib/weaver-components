@@ -1,17 +1,17 @@
 import { DOCUMENT } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
-import { CUSTOM_ELEMENTS_SCHEMA, Injector, NgModule } from '@angular/core';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { APP_INITIALIZER, CUSTOM_ELEMENTS_SCHEMA, Injector, NgModule } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ConfigService } from './core/config.service';
+import { IconService } from './core/icon.service';
 import { WvrAnimationService } from './core/wvr-animation.service';
 import { WvrButtonComponent } from './wvr-button/wvr-button.component';
 import { WvrDropdownComponent } from './wvr-dropdown/wvr-dropdown.component';
 import { WvrFooterComponent } from './wvr-footer/wvr-footer.component';
 import { WvrHeaderComponent } from './wvr-header/wvr-header.component';
-import { IconService } from './core/icon.service';
 import { WvrIconComponent } from './wvr-icon/wvr-icon.component';
 import { WvrItWorksComponent } from './wvr-it-works/wvr-it-works.component';
 import { WvrListItemComponent } from './wvr-list/wvr-list-item/wvr-list-item.component';
@@ -50,11 +50,9 @@ const components = [
   WvrTextComponent
 ];
 
-const initializeConfig = (configService: ConfigService) => {
-  const loadConfigPromise = configService.load();
+const initializeConfig = (configService: ConfigService) => configService.load;
 
-  return loadConfigPromise;
-};
+const provideConfig = (configService: ConfigService) => () => configService.appConfig;
 
 /** The main module for the Weaver Elements library. */
 @NgModule({
@@ -70,7 +68,22 @@ const initializeConfig = (configService: ConfigService) => {
   providers: [
     IconService,
     ConfigService,
-    WvrAnimationService
+    WvrAnimationService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeConfig,
+      deps: [
+        HttpClient,
+        ConfigService
+      ]
+    },
+    {
+      provide: 'APP_CONFIG',
+      useFactory: provideConfig,
+      deps: [
+        ConfigService
+      ]
+    }
   ],
   declarations: [
     ...components
@@ -83,15 +96,12 @@ const initializeConfig = (configService: ConfigService) => {
 })
 export class WvrLibModule {
   constructor(injector: Injector) {
-    initializeConfig(injector.get(ConfigService))
-      .then(() => {
-      elements.forEach(element => {
-        try {
-          customElements.define(element.selector, createCustomElement(element.component, { injector }));
-        } catch (e) {
-          // console.warn(e);
-        }
-      });
+    elements.forEach(element => {
+      try {
+        customElements.define(element.selector, createCustomElement(element.component, { injector }));
+      } catch (e) {
+        // console.warn(e);
+      }
     });
     const doc = injector.get(DOCUMENT);
     doc.querySelectorAll('[wvr-hide-content]')

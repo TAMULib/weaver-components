@@ -1,35 +1,45 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { AppConfig } from './app-config';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ConfigService {
-  assetUrl: string;
+
+  private _appConfig: AppConfig;
+  get appConfig(): AppConfig {
+    return this._appConfig;
+  }
 
   constructor(private http: HttpClient) {
 
   }
 
-  load(): Promise<void> {
+  load(): Promise<AppConfig> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const configUrl = this.obtainConfigPath();
+
+    const configPromise = this.http.get<AppConfig>(configUrl, { headers })
+    .toPromise();
+
+    configPromise.then(appConfig => {
+      this._appConfig = appConfig;
+    });
+
+    return configPromise;
+  }
+
+  // tslint:disable-next-line:prefer-function-over-method
+  private obtainConfigPath(): string {
     const componentScript = document.getElementsByTagName('script');
     const componentScriptSrc = componentScript[componentScript.length - 1].src;
     const componentScriptSrcPathParts = componentScriptSrc.split('/');
     componentScriptSrcPathParts.pop();
     const configBasePath = componentScriptSrcPathParts.join('/');
-    const configUrl = `${configBasePath}/config.json`;
 
-    const promise = this.http.get(configUrl, { headers })
-      .toPromise()
-      .then(configs => {
-        this.assetUrl = (configs as any).assetUrl;
-      })
-      .catch(err => {
-        this.assetUrl = 'http://localhost:4200';
-      });
-
-    return promise;
+    return `${configBasePath}/config.json`;
   }
 
 }
