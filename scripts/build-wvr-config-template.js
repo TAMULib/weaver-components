@@ -18,7 +18,7 @@ readInterface.on('line', line => {
 });
 
 readInterface.on('close', () => {
-  fs.writeFile('./src/config-template.json', configTemplate);
+  fs.writeFile('./src/config-template.json', JSON.stringify(configTemplate));
 });
 
 const snakeToCamelCase = (snakeCaseString) => {

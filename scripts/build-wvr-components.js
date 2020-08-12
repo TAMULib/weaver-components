@@ -1,6 +1,7 @@
 const fs = require('fs-extra');
 const concat = require('concat');
 const package = require('../package.json');
+const cp = require('child_process');
 
 const majorVersion = package.version.split('.')[0];
 const assetPath = 'dist/weaver-components';
@@ -8,6 +9,9 @@ const basePath = 'dist/bundle';
 const dirName = `${majorVersion}x`;
 const dirPath = `${basePath}/${dirName}`;
 const latestPath = `${basePath}/latest`;
+
+
+cp.fork(__dirname + '/build-wvr-config-template.js');
 
 (async function build() {
   const files = [
