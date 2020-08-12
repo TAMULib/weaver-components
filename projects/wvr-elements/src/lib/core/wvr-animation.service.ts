@@ -46,9 +46,7 @@ export class WvrAnimationService {
         const animConf = animationConfig[animName];
         const initializationMethod = wvrAnimationInitialization[animName];
         if (initializationMethod && animationRootElem) {
-          const from = animConf.from ?
-                      animConf.from :
-                      wvrAnimationDefaults[animName].from;
+          const from = animConf.from ? animConf.from : wvrAnimationDefaults[animName].from;
           initializationMethod(this.animationStates.get(stateId), from, animationRootElem.nativeElement);
         }
       });
@@ -75,11 +73,7 @@ export class WvrAnimationService {
 
     if (animationInput) {
       return useAnimation(animation(animationInput), {
-        params: {
-            timing,
-            to,
-            from
-          }
+        params: { timing, to, from }
       });
     }
   }
@@ -98,8 +92,7 @@ export class WvrAnimationService {
 
     const a = this.selectAnimation(stateId, animationName, timing, to, from, animationRoot);
     if (a) {
-      const animationFactory = this.builder
-      .build(a);
+      const animationFactory = this.builder.build(a);
       const player: AnimationPlayer = animationFactory.create(animationRoot);
       player.play();
     }

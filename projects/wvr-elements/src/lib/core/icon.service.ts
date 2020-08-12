@@ -27,11 +27,6 @@ export class IconService {
     return this.getOrSetIcon(iSet, name).svg;
   }
 
-  private addIcon(set: string, icon: Icon): void {
-    this.getOrSetIconSet(set).icons
-      .push(icon);
-  }
-
   private fetchIcon(set: IconSet, name: string): Observable<string> {
 
     return this.http.get(`${this.appConfig.assetUrl}/icons/${set.name}/${name}.svg`, { responseType: 'text' })

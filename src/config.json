@@ -1,4 +1,4 @@
 {
-  "baseUrl" : "http://localhost:4200",
-  "assetUrl" : "http://localhost:4200/assets"
+  "baseUrl" : "http://localhost:8080",
+  "assetUrl" : "http://localhost:8080/assets"
 }
