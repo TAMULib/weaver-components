@@ -6,7 +6,7 @@ versionLocation=/usr/local/apache2/htdocs/wvr-components/1x/config.json
 latestLocation=/usr/local/apache2/htdocs/wvr-components/latest/config.json
 
 eval "cat << EOF | tee $versionLocation $latestLocation
-$(<src/config-template.json)
+$(<tmp/config-template.json)
 EOF"
 
 echo "Done docker-entrypoint..."
