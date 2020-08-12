@@ -1,30 +1,46 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, InjectionToken } from '@angular/core';
+import { AppConfig } from './app-config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ConfigService {
-  baseUrl: string;
+
+  private _appConfig: AppConfig;
+  get appConfig(): AppConfig {
+    return this._appConfig;
+  }
 
   constructor(private http: HttpClient) {
 
   }
 
-  load(): Promise<void> {
+  load(emptyConfig: {}): Promise<AppConfig> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const url = 'config.json';
+    const configUrl = this.obtainConfigPath();
 
-    const promise = this.http.get(url, { headers })
-      .toPromise()
-      .then(configs => {
-        this.baseUrl = (configs as any).baseUrl;
-      })
-      .catch(err => {
-        this.baseUrl = 'http://localhost:4200';
-      });
+    const configPromise = this.http.get<AppConfig>(configUrl, { headers })
+    .toPromise();
 
-    return promise;
+    configPromise.then(appConfig => {
+      // tslint:disable-next-line:prefer-object-spread
+      this._appConfig = Object.assign(emptyConfig, appConfig);
+    });
+
+    return configPromise;
+
+  }
+
+  // tslint:disable-next-line:prefer-function-over-method
+  private obtainConfigPath(): string {
+    const componentScript = document.getElementsByTagName('script');
+    const componentScriptSrc = componentScript[componentScript.length - 1].src;
+    const componentScriptSrcPathParts = componentScriptSrc.split('/');
+    componentScriptSrcPathParts.pop();
+    const configBasePath = componentScriptSrcPathParts.join('/');
+
+    return `${configBasePath}/config.json`;
   }
 
 }

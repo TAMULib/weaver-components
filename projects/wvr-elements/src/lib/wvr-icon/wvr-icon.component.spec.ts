@@ -3,6 +3,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, inject, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { WvrIconComponent } from './wvr-icon.component';
+import { APP_CONFIG } from '../core/app-config';
 
 describe('WvrIconComponent', () => {
   let component: WvrIconComponent;
@@ -12,8 +13,15 @@ describe('WvrIconComponent', () => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule, BrowserAnimationsModule],
       declarations: [WvrIconComponent],
+      providers: [{
+        provide: APP_CONFIG, useValue: {
+          baseUrl: 'http://localhost:4200',
+          assetUrl: 'http://localhost:4200/assets'
+        }
+      }],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
-    }).compileComponents();
+    })
+    .compileComponents();
   }));
 
   beforeEach(() => {

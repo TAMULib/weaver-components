@@ -1,38 +1,5 @@
 import { animate, AnimationMetadata, style } from '@angular/animations';
 
-const wvrAnimationDefaults = {
-  fade: {
-    from: 1,
-    to: 0,
-    timing: '250ms linear'
-  },
-  fadeToggle: {
-    from: 1,
-    to: 0,
-    timing: '250ms linear'
-  },
-  rotate: {
-    from: 0,
-    to: 90,
-    timing: '250ms linear'
-  },
-  rotateToggle: {
-    from: 0,
-    to: 90,
-    timing: '250ms linear'
-  },
-  expandCollapse: {
-    from: '*',
-    to: '0px',
-    timing: '250ms linear'
-  },
-  expandCollapseToggle: {
-    from: '*',
-    to: '0px',
-    timing: '250ms linear'
-  }
-};
-
 const wvrAnimationInitialization = {
   fade: (s: Map<string, any>, from: string, elem: HTMLElement): void => {
     elem.style.opacity = from;
@@ -127,7 +94,7 @@ const wvrAnimations = {
 
 };
 
-export { wvrAnimations, wvrAnimationInitialization, wvrAnimationDefaults };
+export { wvrAnimations, wvrAnimationInitialization };
 
 /*
     slideopen

@@ -16,7 +16,6 @@ const server = new StaticServer({
 server.start(function () {
   console.log('Server listening to', server.port);
   fsPromises.copyFile('src/index.html', `${latestPath}/index.html`);
-  fsPromises.copyFile('src/config-static.json', `${latestPath}/config.json`);
 });
 
 process.on('exit', function () {

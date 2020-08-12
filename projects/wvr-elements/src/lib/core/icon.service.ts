@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { share } from 'rxjs/operators';
 import { Icon } from '../wvr-icon/icon';
 import { IconSet } from '../wvr-icon/icon-set';
-import { ConfigService } from './config.service';
+import { AppConfig, APP_CONFIG } from './app-config';
 
 @Injectable({
   providedIn: 'root'
@@ -13,10 +13,7 @@ export class IconService {
 
   iconRegister: Map<string, IconSet> = new Map<string, IconSet>();
 
-  private readonly ASSET_PATH: string;
-
-  constructor(private http: HttpClient, config: ConfigService) {
-    this.ASSET_PATH = `${config.baseUrl}/assets`;
+  constructor(private http: HttpClient, @Inject(APP_CONFIG) private appConfig: AppConfig) {
   }
 
   registerIcons(icons: IconSet): void {
@@ -29,13 +26,9 @@ export class IconService {
     return this.getOrSetIcon(iSet, name).svg;
   }
 
-  private addIcon(set: string, icon: Icon): void {
-    this.getOrSetIconSet(set).icons.push(icon);
-  }
-
   private fetchIcon(set: IconSet, name: string): Observable<string> {
 
-    return this.http.get(`${this.ASSET_PATH}/icons/${set.name}/${name}.svg`, { responseType: 'text' })
+    return this.http.get(`${this.appConfig.assetUrl}/icons/${set.name}/${name}.svg`, { responseType: 'text' })
       .pipe(share());
   }
 

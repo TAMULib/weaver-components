@@ -8,19 +8,15 @@ const reportPath = `${weaverComponentsPath}/reports`;
   fs.ensureDir(`${docPath}/`);
   fs.ensureDir(`${reportPath}`);
 
-  fs.copy("src/config-docs.json", `${weaverComponentsPath}/config.json`);
   fs.copy("src/index-static.html", `${weaverComponentsPath}/index.html`);
   fs.copy("src/assets", `${weaverComponentsPath}/assets`);
 
-  fs.copy("src/config-docs.json", `${staticPath}/config.json`);
   fs.copy("src/index-static.html", `${staticPath}/index.html`);
   fs.copy("src/assets", `${staticPath}/assets`);
 
-  fs.copy("src/config-docs.json", `${docPath}/config.json`);
   fs.copy("src/index-docs.html", `${docPath}/index.html`);
   fs.copy("src/assets", `${docPath}/assets`);
 
-  fs.copy("src/config-docs.json", `${reportPath}/config.json`);
   fs.copy("src/index-reports.html", `${reportPath}/index.html`);
   fs.copy("src/assets", `${reportPath}/assets`);
 })();
