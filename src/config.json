@@ -1,4 +1,4 @@
 {
-  "baseUrl" : "http://localhost:4200",
-  "assetUrl" : "http://localhost:4200/assets"
+  "baseUrl" : "https://labs.library.tamu.edu/wvr-components/latest",
+  "assetUrl" : "https://labs.library.tamu.edu/wvr-components/latest/assets"
 }
