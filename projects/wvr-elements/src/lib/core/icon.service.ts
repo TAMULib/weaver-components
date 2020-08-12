@@ -1,11 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, Inject } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { share } from 'rxjs/operators';
 import { Icon } from '../wvr-icon/icon';
 import { IconSet } from '../wvr-icon/icon-set';
-import { ConfigService } from './config.service';
-import { AppConfig } from './app-config';
+import { AppConfig, APP_CONFIG } from './app-config';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +13,8 @@ export class IconService {
 
   iconRegister: Map<string, IconSet> = new Map<string, IconSet>();
 
-  constructor(private http: HttpClient, @Inject('APP_CONFIG') private appConfig: AppConfig) {
-    console.log(appConfig);
+  constructor(private http: HttpClient, @Inject(APP_CONFIG) private appConfig: AppConfig) {
+
   }
 
   registerIcons(icons: IconSet): void {

@@ -1,10 +1,11 @@
 import { DOCUMENT } from '@angular/common';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { APP_INITIALIZER, CUSTOM_ELEMENTS_SCHEMA, Injector, NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { CUSTOM_ELEMENTS_SCHEMA, Injector, NgModule } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { APP_CONFIG, blankConfig } from './core/app-config';
 import { ConfigService } from './core/config.service';
 import { IconService } from './core/icon.service';
 import { WvrAnimationService } from './core/wvr-animation.service';
@@ -50,9 +51,11 @@ const components = [
   WvrTextComponent
 ];
 
-const initializeConfig = (configService: ConfigService) => configService.load;
+const initializeConfig = (configService: ConfigService) => {
+  const loadConfigPromise = configService.load(blankConfig);
 
-const provideConfig = (configService: ConfigService) => () => configService.appConfig;
+  return loadConfigPromise;
+};
 
 /** The main module for the Weaver Elements library. */
 @NgModule({
@@ -70,16 +73,8 @@ const provideConfig = (configService: ConfigService) => () => configService.appC
     ConfigService,
     WvrAnimationService,
     {
-      provide: APP_INITIALIZER,
-      useFactory: initializeConfig,
-      deps: [
-        HttpClient,
-        ConfigService
-      ]
-    },
-    {
-      provide: 'APP_CONFIG',
-      useFactory: provideConfig,
+      provide: APP_CONFIG,
+      useValue: blankConfig,
       deps: [
         ConfigService
       ]
@@ -96,17 +91,20 @@ const provideConfig = (configService: ConfigService) => () => configService.appC
 })
 export class WvrLibModule {
   constructor(injector: Injector) {
-    elements.forEach(element => {
-      try {
-        customElements.define(element.selector, createCustomElement(element.component, { injector }));
-      } catch (e) {
-        // console.warn(e);
-      }
-    });
-    const doc = injector.get(DOCUMENT);
-    doc.querySelectorAll('[wvr-hide-content]')
-      .forEach(elem => {
-        elem.removeAttribute('wvr-hide-content');
+    initializeConfig(injector.get(ConfigService))
+      .then(() => {
+        elements.forEach(element => {
+          try {
+            customElements.define(element.selector, createCustomElement(element.component, { injector }));
+          } catch (e) {
+            // console.warn(e);
+          }
+        });
+        const doc = injector.get(DOCUMENT);
+        doc.querySelectorAll('[wvr-hide-content]')
+          .forEach(elem => {
+            elem.removeAttribute('wvr-hide-content');
+          });
       });
   }
 }

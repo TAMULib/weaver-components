@@ -1,7 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, InjectionToken } from '@angular/core';
 import { AppConfig } from './app-config';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +16,7 @@ export class ConfigService {
 
   }
 
-  load(): Promise<AppConfig> {
+  load(emptyConfig: {}): Promise<AppConfig> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const configUrl = this.obtainConfigPath();
 
@@ -25,10 +24,12 @@ export class ConfigService {
     .toPromise();
 
     configPromise.then(appConfig => {
-      this._appConfig = appConfig;
+      // tslint:disable-next-line:prefer-object-spread
+      this._appConfig = Object.assign(emptyConfig, appConfig);
     });
 
     return configPromise;
+
   }
 
   // tslint:disable-next-line:prefer-function-over-method
