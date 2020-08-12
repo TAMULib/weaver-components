@@ -13,7 +13,7 @@ export class IconService {
 
   iconRegister: Map<string, IconSet> = new Map<string, IconSet>();
 
-  constructor(private http: HttpClient, @Inject(APP_CONFIG) private appConfig: AppConfig) {
+  constructor(private readonly http: HttpClient, @Inject(APP_CONFIG) private readonly appConfig: AppConfig) {
 
   }
 
@@ -48,8 +48,7 @@ export class IconService {
   }
 
   private getOrSetIcon(set: IconSet, name: string): Icon {
-    let icon: Icon = set.icons
-      .find(i => i.name === name);
+    let icon: Icon = set.icons.find(i => i.name === name);
     if (icon) {
       return icon;
     }

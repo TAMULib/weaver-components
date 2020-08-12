@@ -29,7 +29,7 @@ export const elements = [
 })
 export class AppModule {
 
-  constructor(private injector: Injector) {
+  constructor(private readonly injector: Injector) {
 
   }
 
@@ -42,9 +42,10 @@ export class AppModule {
       }
     });
     const doc = this.injector.get(DOCUMENT);
-    doc.querySelectorAll('[wvr-hide-content]').forEach(elem => {
-      elem.removeAttribute('wvr-hide-content');
-    });
+    doc.querySelectorAll('[wvr-hide-content]')
+      .forEach(elem => {
+        elem.removeAttribute('wvr-hide-content');
+      });
   }
 
 }

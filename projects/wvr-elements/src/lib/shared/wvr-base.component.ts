@@ -49,7 +49,6 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit {
   @Output() protected readonly animationEventTrigger = new EventEmitter<Event>();
 
   constructor(injector: Injector) {
-
     this._animationService = injector.get(WvrAnimationService);
     this._cdRef = injector.get(ChangeDetectorRef);
     this._domSanitizer = injector.get(DomSanitizer);
