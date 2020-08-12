@@ -14,7 +14,6 @@ export class IconService {
   iconRegister: Map<string, IconSet> = new Map<string, IconSet>();
 
   constructor(private http: HttpClient, @Inject(APP_CONFIG) private appConfig: AppConfig) {
-
   }
 
   registerIcons(icons: IconSet): void {
@@ -25,11 +24,6 @@ export class IconService {
     const iSet = this.getOrSetIconSet(set);
 
     return this.getOrSetIcon(iSet, name).svg;
-  }
-
-  private addIcon(set: string, icon: Icon): void {
-    this.getOrSetIconSet(set).icons
-      .push(icon);
   }
 
   private fetchIcon(set: IconSet, name: string): Observable<string> {
