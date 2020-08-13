@@ -1,9 +1,9 @@
-import { AfterContentInit, ChangeDetectorRef, Directive, ElementRef, EventEmitter, Injector, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { AfterContentInit, Directive, ElementRef, EventEmitter, Injector, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import * as JSON5 from 'json5';
 import { fromEvent, Observable } from 'rxjs';
 import { debounceTime, map } from 'rxjs/operators';
 import { WvrAnimationService } from '../core/wvr-animation.service';
-import * as JSON5 from 'json5';
 
 @Directive()
 // tslint:disable-next-line:directive-class-suffix
@@ -89,7 +89,7 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit {
       : [this._animationSettings[animationTriggerType]];
     animations.forEach(an => {
       if (an === 'animationTrigger') {
-        this._animationService.triggerAnimationReciever(this.animateTarget);
+        this._animationService.triggerAnimationTarget(this.animateTarget);
       } else {
         this._animationService
           .playAnimation(this.animationStateId, an, this._animationConfig, this.animationRootElem.nativeElement);
