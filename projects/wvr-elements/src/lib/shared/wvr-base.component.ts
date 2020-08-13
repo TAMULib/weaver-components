@@ -25,7 +25,7 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit {
 
   @Input() animateTarget: string;
 
-  @ViewChild('animationRoot') private animationRootElem: ElementRef;
+  @ViewChild('animationRoot') animationRootElem: ElementRef;
 
   get isMobileAgent(): boolean {
     const agent = navigator.userAgent || navigator.vendor || (window as any).opera;
@@ -44,14 +44,11 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit {
 
   protected readonly _eRef: ElementRef;
 
-  protected readonly _cdRef: ChangeDetectorRef;
-
   @Output() protected readonly animationEventTrigger = new EventEmitter<Event>();
 
   constructor(injector: Injector) {
 
     this._animationService = injector.get(WvrAnimationService);
-    this._cdRef = injector.get(ChangeDetectorRef);
     this._domSanitizer = injector.get(DomSanitizer);
     this._eRef = injector.get(ElementRef);
 
@@ -75,7 +72,6 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit {
     }
     this.screenSizeChanged$.subscribe(iml => {
       this.isMobileLayout = iml;
-      this._cdRef.detectChanges();
     });
     this.isMobileLayout = this.checkScreenSize();
   }

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Injector, Input, OnInit } from '@angular/core';
+import { Component, Injector, Input, OnInit } from '@angular/core';
 import { Theme } from '../../shared/theme.type';
 import { WvrBaseComponent } from '../../shared/wvr-base.component';
 
@@ -7,7 +7,7 @@ import { WvrBaseComponent } from '../../shared/wvr-base.component';
   templateUrl: './wvr-list-item.component.html',
   styleUrls: ['./wvr-list-item.component.scss']
 })
-export class WvrListItemComponent extends WvrBaseComponent implements OnInit, AfterViewInit {
+export class WvrListItemComponent extends WvrBaseComponent implements OnInit {
 
   private _parent: HTMLElement;
 
@@ -35,10 +35,6 @@ export class WvrListItemComponent extends WvrBaseComponent implements OnInit, Af
 
     const contextAttribute = this._parent ? (this._parent.getAttribute('context') as Theme) : undefined;
     this.context = contextAttribute ? contextAttribute : undefined;
-  }
-
-  ngAfterViewInit(): void {
-    this._cdRef.detectChanges();
   }
 
 }
