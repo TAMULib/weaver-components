@@ -11,7 +11,7 @@ import { IconSet } from '../wvr-icon/icon-set';
 })
 export class IconService {
 
-  iconRegister: Map<string, IconSet> = new Map<string, IconSet>();
+  private readonly _iconRegister: Map<string, IconSet> = new Map<string, IconSet>();
 
   constructor(
     private readonly http: HttpClient,
@@ -21,7 +21,7 @@ export class IconService {
   }
 
   registerIcons(icons: IconSet): void {
-    this.iconRegister.set(icons.name, icons);
+    this._iconRegister.set(icons.name, icons);
   }
 
   getIcon(set: string, name: string): Observable<string> {
@@ -30,14 +30,8 @@ export class IconService {
     return this.getOrSetIcon(iSet, name).svg;
   }
 
-  private fetchIcon(set: IconSet, name: string): Observable<string> {
-
-    return this.http.get(`${this.appConfig.assetUrl}/icons/${set.name}/${name}.svg`, { responseType: 'text' })
-      .pipe(share());
-  }
-
   private getOrSetIconSet(set: string): IconSet {
-    let iSet = this.iconRegister.get(set);
+    let iSet = this._iconRegister.get(set);
     if (iSet) {
       return iSet;
     }
@@ -45,7 +39,7 @@ export class IconService {
       name: set,
       icons: []
     };
-    this.iconRegister.set(set, iSet);
+    this._iconRegister.set(set, iSet);
 
     return iSet;
   }
@@ -63,6 +57,12 @@ export class IconService {
     set.icons.push(icon);
 
     return icon;
+  }
+
+  private fetchIcon(set: IconSet, name: string): Observable<string> {
+
+    return this.http.get(`${this.appConfig.assetUrl}/icons/${set.name}/${name}.svg`, { responseType: 'text' })
+      .pipe(share());
   }
 
 }
