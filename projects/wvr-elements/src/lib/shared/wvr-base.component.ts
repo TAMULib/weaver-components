@@ -25,7 +25,7 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit {
 
   @Input() animateTarget: string;
 
-  @ViewChild('animationRoot') private animationRootElem: ElementRef;
+  @ViewChild('animationRoot') private readonly animationRootElem: ElementRef;
 
   get isMobileAgent(): boolean {
     const agent = navigator.userAgent || navigator.vendor || (window as any).opera;
@@ -105,6 +105,6 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit {
     this.triggerAnimations($event.type);
   }
 
-  private checkScreenSize = () => document.body.offsetWidth < 767;
+  private readonly checkScreenSize = () => document.body.offsetWidth < 767;
 
 }

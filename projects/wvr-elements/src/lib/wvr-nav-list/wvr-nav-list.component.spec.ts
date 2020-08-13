@@ -13,7 +13,8 @@ describe('WvrNavListComponent', () => {
       imports: [BrowserAnimationsModule],
       declarations: [WvrNavListComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
-    }).compileComponents()
+    })
+      .compileComponents()
       .catch(err => { console.error(err); });
   }));
 

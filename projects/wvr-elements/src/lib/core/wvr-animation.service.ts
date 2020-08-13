@@ -1,7 +1,7 @@
 import { animation, AnimationBuilder, AnimationMetadata, AnimationPlayer, AnimationReferenceMetadata, useAnimation } from '@angular/animations';
 import { Injectable } from '@angular/core';
-import { wvrAnimationInitialization, wvrAnimations } from '../shared/animation/wvr-animations';
 import { wvrAnimationDefaults } from '../shared/animation/wvr-animation-defaults';
+import { wvrAnimationInitialization, wvrAnimations } from '../shared/animation/wvr-animations';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 @Injectable({
@@ -10,9 +10,9 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
 })
 export class WvrAnimationService {
 
-  private recieversRegistry = new Map<string, Array<WvrBaseComponent>>();
+  private readonly recieversRegistry = new Map<string, Array<WvrBaseComponent>>();
 
-  private animationStates = new Map<number, Map<string, boolean>>();
+  private readonly animationStates = new Map<number, Map<string, boolean>>();
 
   constructor(private readonly builder: AnimationBuilder) { }
 
@@ -36,7 +36,9 @@ export class WvrAnimationService {
   triggerAnimationReciever(recieverName: string): void {
     const recievers = this.recieversRegistry.get(recieverName);
     if (recievers) {
-      recievers.forEach(r => r.triggerAnimations('animationTrigger'));
+      recievers.forEach(r => {
+        r.triggerAnimations('animationTrigger');
+      });
     }
   }
 
@@ -46,9 +48,7 @@ export class WvrAnimationService {
         const animConf = animationConfig[animName];
         const initializationMethod = wvrAnimationInitialization[animName];
         if (initializationMethod && animationRootElem) {
-          const from = animConf.from ?
-                      animConf.from :
-                      wvrAnimationDefaults[animName].from;
+          const from = animConf.from ? animConf.from : wvrAnimationDefaults[animName].from;
           initializationMethod(this.animationStates.get(stateId), from, animationRootElem.nativeElement);
         }
       });
@@ -71,15 +71,11 @@ export class WvrAnimationService {
                   to: string, from: string, animationRoot: HTMLElement): AnimationReferenceMetadata {
 
     const animationInput: AnimationMetadata | Array<AnimationMetadata> =
-    this.compileAnimation(stateId, animationName, animationRoot);
+      this.compileAnimation(stateId, animationName, animationRoot);
 
     if (animationInput) {
       return useAnimation(animation(animationInput), {
-        params: {
-            timing,
-            to,
-            from
-          }
+        params: { timing, to, from }
       });
     }
   }
@@ -87,19 +83,18 @@ export class WvrAnimationService {
   playAnimation(stateId: number, animationName: string, animationConfig: {}, animationRoot: HTMLElement): void {
 
     const timing = animationConfig[animationName] ?
-                   animationConfig[animationName].timing :
-                   wvrAnimationDefaults[animationName].timing;
+      animationConfig[animationName].timing :
+      wvrAnimationDefaults[animationName].timing;
     const to = animationConfig[animationName] ?
-                   animationConfig[animationName].to :
-                   wvrAnimationDefaults[animationName].to;
+      animationConfig[animationName].to :
+      wvrAnimationDefaults[animationName].to;
     const from = animationConfig[animationName] ?
-                   animationConfig[animationName].from :
-                   wvrAnimationDefaults[animationName].from;
+      animationConfig[animationName].from :
+      wvrAnimationDefaults[animationName].from;
 
     const a = this.selectAnimation(stateId, animationName, timing, to, from, animationRoot);
     if (a) {
-      const animationFactory = this.builder
-      .build(a);
+      const animationFactory = this.builder.build(a);
       const player: AnimationPlayer = animationFactory.create(animationRoot);
       player.play();
     }

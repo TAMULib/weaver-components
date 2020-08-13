@@ -10,7 +10,7 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
 export class WvrDropdownComponent extends WvrBaseComponent {
 
   /** Sets asside a reference to the NgbDropdown element. */
-  @ViewChild(NgbDropdown) private dropdown: NgbDropdown;
+  @ViewChild(NgbDropdown) dropdown: NgbDropdown;
 
   /** Binds the value of the animationspeed in seconds to the css variable `--wvr-dropdown-menu-animation-speed` */
   @HostBinding('style.--wvr-dropdown-menu-animation-speed') private _animationSpeedSeconds;

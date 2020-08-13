@@ -1,7 +1,8 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { APP_CONFIG } from '../shared/config/app-config';
+import { testAppConfig } from '../shared/config/test-app-config';
 import { IconService } from './icon.service';
-import { APP_CONFIG } from './app-config';
 
 describe('IconService', () => {
   let service: IconService;
@@ -10,10 +11,8 @@ describe('IconService', () => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
       providers: [{
-        provide: APP_CONFIG, useValue: {
-          baseUrl: 'http://localhost:4200',
-          assetUrl: 'http://localhost:4200/assets'
-        }
+        provide: APP_CONFIG,
+        useValue: testAppConfig
       }]
     });
     service = TestBed.inject(IconService);
