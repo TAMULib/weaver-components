@@ -25,7 +25,7 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit {
 
   @Input() animateTarget: string;
 
-  @ViewChild('animationRoot') private readonly animationRootElem: ElementRef;
+  @ViewChild('animationRoot') private animationRootElem: ElementRef;
 
   get isMobileAgent(): boolean {
     const agent = navigator.userAgent || navigator.vendor || (window as any).opera;

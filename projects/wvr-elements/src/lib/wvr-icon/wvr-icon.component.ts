@@ -10,13 +10,13 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
 })
 export class WvrIconComponent extends WvrBaseComponent implements AfterViewInit {
 
-  @Input() private readonly set: string;
+  @Input() private set: string;
 
-  @Input() private readonly name: string;
+  @Input() private name: string;
 
-  @HostBinding('style.--wvr-icon-color') @Input() private readonly color: string;
+  @HostBinding('style.--wvr-icon-color') @Input() private color: string;
 
-  @HostBinding('style.--wvr-icon-size') @Input() private readonly size = '24px';
+  @HostBinding('style.--wvr-icon-size') @Input() private size = '24px';
 
   iconSvg: SafeHtml;
 
