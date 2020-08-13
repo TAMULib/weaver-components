@@ -12,7 +12,8 @@ describe('WvrTextComponent', () => {
       imports: [BrowserAnimationsModule],
       declarations: [WvrTextComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
-    }).compileComponents()
+    })
+      .compileComponents()
       .catch(err => { console.error(err); });
   }));
 

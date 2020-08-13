@@ -60,14 +60,17 @@ describe('WvrHeaderComponent', () => {
     const bottomNavElement = fixture.nativeElement.querySelector('.bottom-nav') as HTMLElement;
 
     component.displayBottomNav = 'true';
+    fixture.detectChanges();
     expect(bottomNavElement.hasAttribute('hidden'))
       .toEqual(false);
 
     component.displayBottomNav = 'false';
+    fixture.detectChanges();
     expect(bottomNavElement.hasAttribute('hidden'))
       .toEqual(true);
 
     component.displayBottomNav = undefined;
+    fixture.detectChanges();
     expect(bottomNavElement.hasAttribute('hidden'))
       .toEqual(true);
 

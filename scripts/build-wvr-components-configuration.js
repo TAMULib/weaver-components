@@ -1,5 +1,4 @@
 const dotEnv = require('dotenv-override-true');
-const { exec } = require('child_process');
 const fs = require('fs-extra');
 
 let defaults = dotEnv.config({

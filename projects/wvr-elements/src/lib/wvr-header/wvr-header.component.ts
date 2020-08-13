@@ -65,11 +65,14 @@ export class WvrHeaderComponent extends WvrBaseComponent implements OnInit, Afte
   @Input() set displayBottomNav(value: 'true' | 'false') {
     this._displayBottomNav = value;
     this.checkBottomNavHasChildren();
-    this._cdRef.detectChanges();
   }
 
   get displayBottomNav(): 'true' | 'false' {
     return this._displayBottomNav;
+  }
+
+  get logoId(): string {
+    return this.logoHref.split('#')[1];
   }
 
   isBottomNavHidden = false;
@@ -84,19 +87,16 @@ export class WvrHeaderComponent extends WvrBaseComponent implements OnInit, Afte
   ngOnInit(): void {
     super.ngOnInit();
     this.checkBottomNavHasChildren();
-    this._cdRef.detectChanges();
   }
 
   ngAfterContentChecked(): void {
     this.checkBottomNavHasChildren();
-    this._cdRef.detectChanges();
   }
 
   /** Determines if the bottom nav list has children in order to display bottom nav section. */
   private checkBottomNavHasChildren(): void {
     const bottomNavListElement = (this._eRef.nativeElement as HTMLElement).querySelector('.bottom-nav wvr-nav-li, .bottom-nav wvr-nav-li-element');
     this.isBottomNavHidden = !(this.displayBottomNav === 'true' || (this.displayBottomNav === undefined && !!bottomNavListElement));
-    this._cdRef.detectChanges();
   }
 
 }

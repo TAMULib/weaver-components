@@ -12,7 +12,8 @@ describe('WvrFooterComponent', () => {
       imports: [BrowserAnimationsModule],
       declarations: [WvrFooterComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
-    }).compileComponents();
+    })
+      .compileComponents();
   }));
 
   beforeEach(() => {

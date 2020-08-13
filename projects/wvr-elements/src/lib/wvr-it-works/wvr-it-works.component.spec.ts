@@ -12,7 +12,8 @@ describe('WvrItWorksComponent', () => {
       imports: [BrowserAnimationsModule],
       declarations: [WvrItWorksComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
-    }).compileComponents()
+    })
+      .compileComponents()
       .catch(err => { console.error(err); });
   }));
 

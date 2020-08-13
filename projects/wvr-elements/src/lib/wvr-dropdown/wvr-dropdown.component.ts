@@ -10,7 +10,7 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
 export class WvrDropdownComponent extends WvrBaseComponent {
 
   /** Sets asside a reference to the NgbDropdown element. */
-  @ViewChild(NgbDropdown) private dropdown: NgbDropdown;
+  @ViewChild(NgbDropdown) dropdown: NgbDropdown;
 
   /** Binds the value of the animationspeed in seconds to the css variable `--wvr-dropdown-menu-animation-speed` */
   @HostBinding('style.--wvr-dropdown-menu-animation-speed') private _animationSpeedSeconds;
@@ -284,7 +284,7 @@ export class WvrDropdownComponent extends WvrBaseComponent {
    * Binds the input from `menu-y-offset` to the css variable `--wvr-dropdown-y-offset`.
    * This css variable is applied by `margin-top` css rule to the menu.
    */
-  @HostBinding('style.--wvr-dropdown-menu-y-offset') @Input() menuYOffset = '34px';
+  @HostBinding('style.--wvr-dropdown-menu-y-offset') @Input() menuYOffset;
 
   /**
    * Binds the input from `item-margin` to the css variable `--wvr-dropdown-item-margin`.
@@ -357,11 +357,6 @@ export class WvrDropdownComponent extends WvrBaseComponent {
     config.autoClose = false;
   }
 
-  /** A utility method for manually detecting state changes */
-  detectChanges(): void {
-    this._cdRef.detectChanges();
-  }
-
   /** An access method to expose the `isOpen` utility method from `NgbDropdown` */
   isOpen(): boolean {
     return this.dropdown ? this.dropdown.isOpen() : false;
@@ -415,7 +410,6 @@ export class WvrDropdownComponent extends WvrBaseComponent {
       .click();
       setTimeout(() => {
         this.open = true;
-        this._cdRef.detectChanges();
         this.dropdown.open();
       }, this._animationSpeedMili);
     }
@@ -425,7 +419,6 @@ export class WvrDropdownComponent extends WvrBaseComponent {
   private closeDropdown(): void {
     this.closing = true;
     this.open = false;
-    this._cdRef.detectChanges();
     setTimeout(() => {
       this.dropdown.close();
       this.closing = false;

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
@@ -16,9 +16,8 @@ describe('WvrDropdownComponent', () => {
         NgbDropdown
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
-    }).overrideComponent(WvrDropdownComponent, {
-      set: { changeDetection: ChangeDetectionStrategy.Default }
-    }).compileComponents();
+    })
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -68,7 +67,7 @@ describe('WvrDropdownComponent', () => {
 
   it('should return "false" from `isOpen` method if `dropdown` is undefined', () => {
     // tslint:disable-next-line:no-string-literal
-    component['dropdown'] = undefined;
+    component.dropdown = undefined;
     expect(component.isOpen())
       .toBeFalse();
   });

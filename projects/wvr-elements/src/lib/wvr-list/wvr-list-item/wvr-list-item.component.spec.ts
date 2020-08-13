@@ -12,7 +12,8 @@ describe('WvrListItemComponent', () => {
       imports: [BrowserAnimationsModule],
       declarations: [WvrListItemComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
-    }).compileComponents();
+    })
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -22,6 +23,7 @@ describe('WvrListItemComponent', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(component)
+      .toBeTruthy();
   });
 });
