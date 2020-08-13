@@ -13,6 +13,9 @@
       "doc",
       "directive"
     ],
+    "deprecation": {
+      "severity": "warning"
+    },
     "member-ordering": [
       true,
       {

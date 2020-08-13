@@ -1,4 +1,4 @@
-@import "../shared/styles/host-styles.scss";
+@import "../shared/styles/wvr-variables.scss";
 
 :host {
   --wvr-dropdown-menu-animation-speed: 0.25s;
@@ -10,14 +10,13 @@
   --wvr-dropdown-menu-padding: 25px;
   --wvr-dropdown-menu-width: fit-content;
   --wvr-dropdown-menu-x-offset: 0px;
-  --wvr-dropdown-menu-y-offset: -1px;
+  --wvr-dropdown-menu-y-offset: -6px;
   --wvr-dropdown-menu-item-margin: 0 0 10px 0;
 }
 
 .wvr-dropdown {
   font-family: var(--wvr-font-family-sans-serif);
   position: relative;
-  width: var(--wvr-dropdown-menu-width);
 
   .dropdown-toggle::after {
     display:none;
@@ -61,7 +60,6 @@
   }
 
   ::ng-deep {
-    @import "~bootstrap/scss/bootstrap";
     wvr-dropdown-menu {
       display: var(--wvr-dropdown-menu-display);
       flex-direction: var(--wvr-dropdown-menu-flex-direction);

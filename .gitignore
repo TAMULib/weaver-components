@@ -50,3 +50,6 @@ docs/
 static/
 development/
 .lighthouseci/
+package-lock.json
+src/config.json
+src/config-template.json

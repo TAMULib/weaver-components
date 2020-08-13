@@ -1,5 +1,6 @@
-import { ChangeDetectorRef, Component, ElementRef, HostBinding, HostListener, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, HostBinding, HostListener, Injector, Input, OnInit } from '@angular/core';
 import { ResizeSensor } from 'css-element-queries';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 /**
  * A fullwidth footer component which attaches to the bottom of the document body.
@@ -9,7 +10,7 @@ import { ResizeSensor } from 'css-element-queries';
   templateUrl: './wvr-footer.component.html',
   styleUrls: ['./wvr-footer.component.scss']
 })
-export class WvrFooterComponent implements OnInit {
+export class WvrFooterComponent extends WvrBaseComponent implements OnInit {
 
   /** An internal reference to the body element. */
   private parentElement: HTMLElement;
@@ -33,10 +34,10 @@ export class WvrFooterComponent implements OnInit {
 
   /**
    * The weaver footer component constructor
-   * @param elementRef: ElementRef - a reference to the footer element, used internally for styling.
-   * @param ref: ChangeDetectorRef - utilized internally to force change detection.
    */
-  constructor(private readonly elementRef: ElementRef, private ref: ChangeDetectorRef) { }
+  constructor(injector: Injector) {
+    super(injector);
+  }
 
   /**
    * Resizes the width of the footer to match its parents width,
@@ -48,7 +49,6 @@ export class WvrFooterComponent implements OnInit {
     const newIsSticky = this.parentElement.clientHeight <= compareHeight;
     if (this.isSticky !== newIsSticky) {
       this.isSticky = newIsSticky;
-      this.ref.detectChanges();
     }
   }
 
@@ -58,9 +58,9 @@ export class WvrFooterComponent implements OnInit {
    * a call to positionSelf as the callback method.
    */
   ngOnInit(): void {
-    // this.parentElement = (this.elementRef.nativeElement as HTMLElement).parentElement;
+    // this.parentElement = (this._eRef.nativeElement as HTMLElement).parentElement;
     this.parentElement = document.querySelector(this.parentElementName);
-    this.footerElement = (this.elementRef.nativeElement as HTMLElement).querySelector('footer.wvr-footer');
+    this.footerElement = (this._eRef.nativeElement as HTMLElement).querySelector('footer.wvr-footer');
     const rs = new ResizeSensor(this.parentElement, () => {
       this.positionSelf();
     });

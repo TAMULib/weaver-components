@@ -1,9 +1,8 @@
-import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
-
-import { WvrDropdownComponent } from './wvr-dropdown.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
-import { ChangeDetectionStrategy } from '@angular/core';
-import { doesNotMatch } from 'assert';
+import { WvrDropdownComponent } from './wvr-dropdown.component';
 
 describe('WvrDropdownComponent', () => {
   let component: WvrDropdownComponent;
@@ -11,15 +10,14 @@ describe('WvrDropdownComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [BrowserAnimationsModule],
       declarations: [
         WvrDropdownComponent,
         NgbDropdown
-      ]
+      ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
-    .overrideComponent(WvrDropdownComponent, {
-      set: { changeDetection: ChangeDetectionStrategy.Default }
-    })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -30,7 +28,7 @@ describe('WvrDropdownComponent', () => {
 
   it('should create', () => {
     expect(component)
-    .toBeTruthy();
+      .toBeTruthy();
   });
 
   it('should have btnType defined', () => {
@@ -53,7 +51,7 @@ describe('WvrDropdownComponent', () => {
       .toEqual('0.5s');
   });
 
-  it('should report open status with `isOpen` method',  done => {
+  it('should report open status with `isOpen` method', done => {
     expect(component.isOpen())
       .toBeFalse();
     const compElem = (fixture.elementRef.nativeElement as HTMLElement);
@@ -67,9 +65,9 @@ describe('WvrDropdownComponent', () => {
     }, 251);
   });
 
-  it('should return "false" from `isOpen` method if `dropdown` is undefined',  () => {
+  it('should return "false" from `isOpen` method if `dropdown` is undefined', () => {
     // tslint:disable-next-line:no-string-literal
-    component['dropdown'] = undefined;
+    component.dropdown = undefined;
     expect(component.isOpen())
       .toBeFalse();
   });
@@ -108,13 +106,13 @@ describe('WvrDropdownComponent', () => {
       .dispatchEvent(new MouseEvent('click'));
     setTimeout(() => {
       expect(component.open)
-      .toBeTrue();
+        .toBeTrue();
       compElem
         .querySelector('[ngbDropdownAnchor]')
         .dispatchEvent(new MouseEvent('click'));
       setTimeout(() => {
         expect(component.open)
-        .toBeFalse();
+          .toBeFalse();
         done();
       }, 251);
     }, 251);
@@ -152,11 +150,11 @@ describe('WvrDropdownComponent', () => {
       .dispatchEvent(new MouseEvent('click'));
     setTimeout(() => {
       expect(component.open)
-      .toBeTrue();
+        .toBeTrue();
       document.dispatchEvent(new MouseEvent('click'));
       setTimeout(() => {
         expect(component.open)
-        .toBeFalse();
+          .toBeFalse();
         done();
       }, 251);
     }, 251);
@@ -170,7 +168,7 @@ describe('WvrDropdownComponent', () => {
     compElem.click();
     setTimeout(() => {
       expect(component.open)
-      .toBeTrue();
+        .toBeTrue();
       done();
     }, 251);
   });

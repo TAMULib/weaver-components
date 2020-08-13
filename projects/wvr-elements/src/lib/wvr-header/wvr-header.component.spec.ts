@@ -1,4 +1,6 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { WvrHeaderComponent } from './wvr-header.component';
 
 describe('WvrHeaderComponent', () => {
@@ -7,7 +9,11 @@ describe('WvrHeaderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [WvrHeaderComponent]
+      imports: [ BrowserAnimationsModule ],
+      declarations: [
+        WvrHeaderComponent
+      ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
       .compileComponents()
       .catch(err => { console.error(err); });
@@ -54,14 +60,17 @@ describe('WvrHeaderComponent', () => {
     const bottomNavElement = fixture.nativeElement.querySelector('.bottom-nav') as HTMLElement;
 
     component.displayBottomNav = 'true';
+    fixture.detectChanges();
     expect(bottomNavElement.hasAttribute('hidden'))
       .toEqual(false);
 
     component.displayBottomNav = 'false';
+    fixture.detectChanges();
     expect(bottomNavElement.hasAttribute('hidden'))
       .toEqual(true);
 
     component.displayBottomNav = undefined;
+    fixture.detectChanges();
     expect(bottomNavElement.hasAttribute('hidden'))
       .toEqual(true);
 

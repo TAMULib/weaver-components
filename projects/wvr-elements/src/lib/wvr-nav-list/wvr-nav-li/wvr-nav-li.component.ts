@@ -1,4 +1,5 @@
-import { Component, HostBinding, Input } from '@angular/core';
+import { Component, HostBinding, Injector, Input } from '@angular/core';
+import { WvrBaseComponent } from '../../shared/wvr-base.component';
 
 /**
  * The WvrNavLi Component is the list element to be used with the wvr-nav-list element.
@@ -8,7 +9,7 @@ import { Component, HostBinding, Input } from '@angular/core';
   templateUrl: './wvr-nav-li.component.html',
   styleUrls: ['./wvr-nav-li.component.scss']
 })
-export class WvrNavLiComponent {
+export class WvrNavLiComponent extends WvrBaseComponent {
 
   /** A resolvable URI to to which this li will link, when provided. If no link is provided, the list element will not display as a link. */
   @Input() href: string;
@@ -39,5 +40,9 @@ export class WvrNavLiComponent {
 
   /** Allows for the override of the --wvr-nav-link-text-decoration-hover css variable. Default: none */
   @HostBinding('style.--wvr-nav-link-text-decoration-hover') @Input() linkTextDecorationHover;
+
+  constructor(injector: Injector) {
+    super(injector);
+  }
 
 }

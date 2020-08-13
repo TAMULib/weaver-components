@@ -1,5 +1,4 @@
-@import "~bootstrap/scss/bootstrap";
-@import "../shared/styles/host-styles.scss";
+@import "../shared/styles/wvr-variables.scss";
 
 :host {
 
@@ -8,6 +7,7 @@
 
   wvr-icon-wrapper {
     color: var(--wvr-icon-color);
+    display: inline-block;
     ::ng-deep {
       svg {
         width: var(--wvr-icon-size);

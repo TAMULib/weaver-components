@@ -1,36 +1,23 @@
+/*
+  This is a "Solution Style" tsconfig.json file, and is used by editors and TypeScript’s language server to improve development experience.
+  It is not intended to be used to perform a compilation.
+
+  To learn more about this file see: https://angular.io/config/solution-tsconfig.
+*/
 {
-  "compileOnSave": false,
-  "compilerOptions": {
-    "baseUrl": "./",
-    "outDir": "projects",
-    "sourceMap": true,
-    "declaration": true,
-    "downlevelIteration": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "target": "es2015",
-    "module": "esnext",
-    "moduleResolution": "node",
-    "importHelpers": true,
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "lib": [
-      "es2018",
-      "dom"
-    ],
-    "paths": {
-      "wvr-elements": [
-        "projects/wvr-elements/src/public-api",
-        "dist/wvr-elements"
-      ],
-      "wvr-elements/*": [
-        "projects/wvr-elements/src/public-api/*",
-        "dist/wvr-elements/*",
-      ]
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/wvr-elements/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/wvr-elements/tsconfig.spec.json"
     }
-  },
-  "angularCompilerOptions": {
-    "ivyCompiler": true
-  }
+  ]
 }

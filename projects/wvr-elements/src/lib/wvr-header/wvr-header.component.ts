@@ -1,6 +1,5 @@
-import { AfterContentChecked, ChangeDetectorRef, Component, ElementRef, HostBinding, Input, OnInit } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
-import { WvrAbstractBaseComponent } from '../shared/wvr-abstract-base.component';
+import { AfterContentChecked, Component, HostBinding, Injector, Input, OnInit } from '@angular/core';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 /**
  * Intended to appear at the top of document and provides for branding, links and page title.
@@ -10,7 +9,7 @@ import { WvrAbstractBaseComponent } from '../shared/wvr-abstract-base.component'
   templateUrl: './wvr-header.component.html',
   styleUrls: ['./wvr-header.component.scss']
 })
-export class WvrHeaderComponent extends WvrAbstractBaseComponent implements OnInit, AfterContentChecked {
+export class WvrHeaderComponent extends WvrBaseComponent implements OnInit, AfterContentChecked {
 
   /** The text value to be displayed beside the logo. */
   @Input() logoText = 'Weaver Components';
@@ -66,41 +65,37 @@ export class WvrHeaderComponent extends WvrAbstractBaseComponent implements OnIn
   @Input() set displayBottomNav(value: 'true' | 'false') {
     this._displayBottomNav = value;
     this.checkBottomNavHasChildren();
-    this.ref.detectChanges();
   }
 
   get displayBottomNav(): 'true' | 'false' {
     return this._displayBottomNav;
   }
 
+  get logoId(): string {
+    return this.logoHref.split('#')[1];
+  }
+
   isBottomNavHidden = false;
 
   /**
    * The weaver header component constructor
-   * @param domSanitizer: DomSanitizer - this parameter is injected to the weaver component instance.
-   * @param elementRef: ElementRef  - a reference to the bottom nav list element.
    */
-  constructor(private readonly domSanitizer: DomSanitizer, private readonly elementRef: ElementRef, private ref: ChangeDetectorRef) {
-    super();
+  constructor(injector: Injector) {
+    super(injector);
   }
 
   ngOnInit(): void {
-    this.screenSizeChanged$.subscribe(iml => {
-      this.isMobileLayout = iml;
-      this.ref.detectChanges();
-    });
+    super.ngOnInit();
     this.checkBottomNavHasChildren();
-    this.ref.detectChanges();
   }
 
   ngAfterContentChecked(): void {
     this.checkBottomNavHasChildren();
-    this.ref.detectChanges();
   }
 
   /** Determines if the bottom nav list has children in order to display bottom nav section. */
   private checkBottomNavHasChildren(): void {
-    const bottomNavListElement = (this.elementRef.nativeElement as HTMLElement).querySelector('.bottom-nav wvr-nav-li, .bottom-nav wvr-nav-li-element');
+    const bottomNavListElement = (this._eRef.nativeElement as HTMLElement).querySelector('.bottom-nav wvr-nav-li, .bottom-nav wvr-nav-li-element');
     this.isBottomNavHidden = !(this.displayBottomNav === 'true' || (this.displayBottomNav === undefined && !!bottomNavListElement));
   }
 

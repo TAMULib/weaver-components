@@ -1,16 +1,16 @@
-import { ChangeDetectorRef, Component, ElementRef, HostBinding, Input } from '@angular/core';
-import { WvrAbstractBaseComponent } from '../shared/wvr-abstract-base.component';
+import { Component, HostBinding, Injector, Input } from '@angular/core';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 @Component({
   selector: 'wvr-button-element',
   templateUrl: './wvr-button.component.html',
   styleUrls: ['./wvr-button.component.scss']
 })
-export class WvrButtonComponent extends WvrAbstractBaseComponent {
+export class WvrButtonComponent extends WvrBaseComponent {
 
   /** Used to define the class type for button component.  */
   @Input() btnClass: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark' | 'link' |
-  'outline-primary' | 'outline-secondary' | 'outline-success' | 'outline-danger' | 'outline-warning' | 'outline-info' | 'outline-light' | 'outline-dark' | 'outline-link' = 'primary';
+    'outline-primary' | 'outline-secondary' | 'outline-success' | 'outline-danger' | 'outline-warning' | 'outline-info' | 'outline-light' | 'outline-dark' | 'outline-link' = 'primary';
 
   /** Used to define the size for button component.  */
   @Input() btnSize: 'large' | 'small' | 'block';
@@ -18,7 +18,7 @@ export class WvrButtonComponent extends WvrAbstractBaseComponent {
   /** Used to define the type of a button.  */
   @Input() wvrBtnType: 'button' | 'checkbox' | 'radio' | 'reset' | 'submit' = 'button';
 
-  /** Allows for the button component to be an anchor tag component if hrefUrl property present. */
+  /** Allows for the button component to be an anchor tag component if href property present. */
   @Input() href: string;
 
   /** Allows for the override of background */
@@ -347,6 +347,9 @@ export class WvrButtonComponent extends WvrAbstractBaseComponent {
   /** Allows for the override of button font size property */
   @HostBinding('style.--wvr-btn-font-size') @Input() fontSize;
 
+  /** Allows for the override of button font weight property */
+  @HostBinding('style.--wvr-btn-font-weight') @Input() fontWeight;
+
   /** Allows for the override of button hover line height property */
   @HostBinding('style.--wvr-btn-line-height') @Input() lineHeight;
 
@@ -358,5 +361,9 @@ export class WvrButtonComponent extends WvrAbstractBaseComponent {
 
   /** Allows for the override of button vertical align property */
   @HostBinding('style.--wvr-btn-vertical-align') @Input() verticalAlign;
+
+  constructor(injector: Injector) {
+    super(injector);
+  }
 
 }

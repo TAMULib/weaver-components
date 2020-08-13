@@ -1,5 +1,7 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { APP_CONFIG } from '../shared/config/app-config';
+import { testAppConfig } from '../shared/config/test-app-config';
 import { IconService } from './icon.service';
 
 describe('IconService', () => {
@@ -7,7 +9,11 @@ describe('IconService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ HttpClientTestingModule ]
+      imports: [HttpClientTestingModule],
+      providers: [{
+        provide: APP_CONFIG,
+        useValue: testAppConfig
+      }]
     });
     service = TestBed.inject(IconService);
   });
@@ -16,4 +22,5 @@ describe('IconService', () => {
     expect(service)
       .toBeTruthy();
   });
+
 });

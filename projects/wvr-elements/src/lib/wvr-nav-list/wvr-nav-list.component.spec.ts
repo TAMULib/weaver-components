@@ -1,4 +1,6 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Alignment } from '../shared/alignment.enum';
 import { WvrNavListComponent } from './wvr-nav-list.component';
 
@@ -8,7 +10,9 @@ describe('WvrNavListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [WvrNavListComponent]
+      imports: [BrowserAnimationsModule],
+      declarations: [WvrNavListComponent],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
       .compileComponents()
       .catch(err => { console.error(err); });

@@ -1,10 +1,11 @@
-@import "../shared/styles/host-styles.scss";
+@import "../shared/styles/wvr-variables.scss";
 
 :host {
   --wvr-btn-cursor-default: pointer;
   --wvr-btn-border-radius-default: 5px; //.25rem;
   --wvr-btn-font-family-sans-serif-default: var(--wvr-font-family-sans-serif);
   --wvr-btn-font-size-default: 1rem;
+  --wvr-btn-font-weight-default: normal;
   --wvr-btn-line-height-default: 1.5;
   --wvr-btn-padding-default: .375rem .75rem;
   --wvr-btn-text-align-default: center;
@@ -15,6 +16,7 @@
   --wvr-btn-cursor: var(--wvr-btn-cursor-default);
   --wvr-btn-font-family-sans-serif: var(--wvr-btn-font-family-sans-serif-default);
   --wvr-btn-font-size: var(--wvr-btn-font-size-default);
+  --wvr-btn-font-weight: var(--wvr-btn-font-weight-default);
   --wvr-btn-line-height: var(--wvr-btn-line-height-default);
   --wvr-btn-padding: var(--wvr-btn-padding-default);
   --wvr-btn-text-align: var(--wvr-btn-text-align-default);
@@ -513,10 +515,16 @@
   --wvr-btn-link-hover-color: var(--wvr-btn-link-hover-color-default);
   --wvr-btn-link-hover-text-decoration: var(--wvr-btn-link-hover-text-decoration-default);
 
+  button-wrapper {
+    display: inline-block;
+    overflow: hidden;
+  }
+
   .wvr-button.btn {
-    border-radius: 4.8px; // var(--wvr-btn-border-radius);
+    border-radius: var(--wvr-btn-border-radius);
     font-family: var(--wvr-btn-font-family-sans-serif);
     font-size: var(--wvr-btn-font-size);
+    font-weight: var(--wvr-btn-font-weight);
     line-height: var(--wvr-btn-line-height);
     padding: var(--wvr-btn-padding);
     text-align: var(--wvr-btn-text-align);
@@ -1058,6 +1066,17 @@
     border-color: var(--wvr-btn-link-active-background);
     color: var(--wvr-btn-link-active-color);
     text-decoration: var(--wvr-btn-link-active-text-decoration);
+  }
+
+  .btn {
+    ::ng-deep {
+      wvr-icon {
+        margin: 0px 5px 0px 0px;
+        svg {
+          vertical-align: middle;
+        }
+      }
+    }
   }
 
 }

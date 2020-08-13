@@ -1,5 +1,6 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { WvrButtonComponent } from './wvr-button.component';
 
 describe('WvrButtonComponent', () => {
@@ -8,7 +9,9 @@ describe('WvrButtonComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ WvrButtonComponent ]
+      imports: [BrowserAnimationsModule],
+      declarations: [WvrButtonComponent],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
     .compileComponents();
   }));
@@ -20,7 +23,8 @@ describe('WvrButtonComponent', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(component)
+      .toBeTruthy();
   });
 
   it("should have as btnClass 'primary'", () => {

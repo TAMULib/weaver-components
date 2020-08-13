@@ -1,0 +1,35 @@
+<wvr-list-wrapper  #animationRoot>
+  <ul *ngIf="listType==='unordered' || listType==='unstyled'" [ngClass]="{'list-unstyled': listType==='unstyled'}">
+    <ng-container *ngTemplateOutlet="listContent"></ng-container>
+  </ul>
+
+  <ol *ngIf="listType==='ordered'">
+    <ng-container *ngTemplateOutlet="listContent"></ng-container>
+  </ol>
+
+  <dl *ngIf="listType==='described'">
+    <ng-container *ngTemplateOutlet="listContent"></ng-container>
+  </dl>
+
+  <ul *ngIf="listType==='group-ul' || listType==='group'" class="list-group">
+    <ng-container *ngTemplateOutlet="listContent"></ng-container>
+  </ul>
+
+  <div *ngIf="listType==='group-div'" class="list-group">
+    <ng-container *ngTemplateOutlet="listContent"></ng-container>
+  </div>
+
+  <ul *ngIf="listType==='group-flush'" class="list-group list-group-flush">
+    <ng-container *ngTemplateOutlet="listContent"></ng-container>
+  </ul>
+
+  <div *ngIf="listType==='group-custom-content'" class="list-group">
+    <ng-container *ngTemplateOutlet="listContent"></ng-container>
+  </div>
+
+</wvr-list-wrapper>
+
+<ng-template #listContent>
+  <ng-content select="wvr-list-item, wvr-list-item-element, .badge"></ng-content>
+</ng-template>
+

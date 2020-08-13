@@ -1,16 +1,16 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, HostBinding, HostListener, Input, ViewChild } from '@angular/core';
+import { Component, HostBinding, HostListener, Injector, Input, ViewChild } from '@angular/core';
 import { NgbDropdown, NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
-import { WvrAbstractBaseComponent } from '../shared/wvr-abstract-base.component';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 @Component({
   selector: 'wvr-dropdown-element',
   templateUrl: './wvr-dropdown.component.html',
   styleUrls: ['./wvr-dropdown.component.scss']
 })
-export class WvrDropdownComponent extends WvrAbstractBaseComponent {
+export class WvrDropdownComponent extends WvrBaseComponent {
 
   /** Sets asside a reference to the NgbDropdown element. */
-  @ViewChild(NgbDropdown) private dropdown: NgbDropdown;
+  @ViewChild(NgbDropdown) dropdown: NgbDropdown;
 
   /** Binds the value of the animationspeed in seconds to the css variable `--wvr-dropdown-menu-animation-speed` */
   @HostBinding('style.--wvr-dropdown-menu-animation-speed') private _animationSpeedSeconds;
@@ -189,6 +189,17 @@ export class WvrDropdownComponent extends WvrAbstractBaseComponent {
     return this._btnFontSize ? this._btnFontSize : 'var(--wvr-btn-font-size-default)';
   }
 
+  /** Allows for override the button font weight. */
+  private _btnFontWeight: string;
+
+  @Input() set btnFontWeight(value: string) {
+    this._btnFontWeight = value;
+  }
+
+  get btnFontWeight(): string {
+    return this._btnFontWeight ? this._btnFontWeight : 'var(--wvr-btn-font-weight-default)';
+  }
+
   /** Allows for override the button line height. */
   private _btnLineHeight: string;
 
@@ -234,10 +245,10 @@ export class WvrDropdownComponent extends WvrAbstractBaseComponent {
   }
 
   /** Allows for override of button href value. */
-  btnHref = '';
+  @Input() btnHref = '';
 
   /** Allows for override of button size.  */
-  btnSize = '';
+  @Input() btnSize = '';
 
   /** Allows for the visual customization of the dropdown menu activation button.  */
   @Input() btnType: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark' | 'link' | 'plain' = 'plain';
@@ -273,7 +284,7 @@ export class WvrDropdownComponent extends WvrAbstractBaseComponent {
    * Binds the input from `menu-y-offset` to the css variable `--wvr-dropdown-y-offset`.
    * This css variable is applied by `margin-top` css rule to the menu.
    */
-  @HostBinding('style.--wvr-dropdown-menu-y-offset') @Input() menuYOffset = '34px';
+  @HostBinding('style.--wvr-dropdown-menu-y-offset') @Input() menuYOffset;
 
   /**
    * Binds the input from `item-margin` to the css variable `--wvr-dropdown-item-margin`.
@@ -341,14 +352,9 @@ export class WvrDropdownComponent extends WvrAbstractBaseComponent {
    */
   private closing = false;
 
-  constructor(private cdRef: ChangeDetectorRef, private config: NgbDropdownConfig, private eRef: ElementRef) {
-    super();
+  constructor(injector: Injector, config: NgbDropdownConfig) {
+    super(injector);
     config.autoClose = false;
-  }
-
-  /** A utility method for manually detecting state changes */
-  detectChanges(): void {
-    this.cdRef.detectChanges();
   }
 
   /** An access method to expose the `isOpen` utility method from `NgbDropdown` */
@@ -362,7 +368,7 @@ export class WvrDropdownComponent extends WvrAbstractBaseComponent {
    */
   @HostListener('mouseenter', ['$event']) hoverOpen($event: Event): void {
     if (this.toggleOn === 'mouseover' && !this.closing) {
-     this.openDropdown();
+      this.openDropdown();
     }
   }
 
@@ -382,7 +388,7 @@ export class WvrDropdownComponent extends WvrAbstractBaseComponent {
    * And the click occured off of the wvr-dropdown component.
    */
   @HostListener('document:click', ['$event']) clickout($event): void {
-    if (!this.eRef.nativeElement.contains($event.target)) {
+    if (!this._eRef.nativeElement.contains($event.target)) {
       this.closeDropdown();
     }
   }
@@ -397,27 +403,27 @@ export class WvrDropdownComponent extends WvrAbstractBaseComponent {
     }
   }
 
-  /** A methos for handeling the opening of the dropdown, and updating state. */
+  /** Handles the opening of the dropdown, and updating state. */
   private openDropdown(): void {
-    document.querySelector('body')
+    if (!this.isMobileLayout) {
+      document.querySelector('body')
       .click();
-    setTimeout(() => {
-      this.open = true;
-      this.cdRef.detectChanges();
-      this.dropdown.open();
-    }, this._animationSpeedMili);
+      setTimeout(() => {
+        this.open = true;
+        this.dropdown.open();
+      }, this._animationSpeedMili);
+    }
   }
 
-  /** A methos for handeling the closing of the dropdown, and updating state. */
+  /** Handles the closing of the dropdown, and updating state. */
   private closeDropdown(): void {
     this.closing = true;
     this.open = false;
-    this.cdRef.detectChanges();
     setTimeout(() => {
       this.dropdown.close();
       this.closing = false;
     }, this._animationSpeedMili);
   }
 
-// tslint:disable-next-line:max-file-line-count
+  // tslint:disable-next-line:max-file-line-count
 }

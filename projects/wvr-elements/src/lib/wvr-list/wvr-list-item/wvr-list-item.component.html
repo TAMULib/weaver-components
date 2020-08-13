@@ -1,0 +1,70 @@
+<wvr-list-item-wrapper *ngIf="listType==='unordered'  || listType==='unstyled' || listType==='ordered'">
+  <li>
+    <ng-container *ngTemplateOutlet="contentProjection"></ng-container>
+  </li>
+</wvr-list-item-wrapper>
+
+<wvr-list-item-wrapper *ngIf="listType==='described'">
+  <dt>
+    {{description}}
+  </dt>
+  <dd>
+    <ng-container *ngTemplateOutlet="contentProjection"></ng-container>
+  </dd>
+</wvr-list-item-wrapper>
+
+<wvr-list-item-wrapper *ngIf="listType==='group-ul' || listType==='group'">
+  <li class="list-group-item d-flex justify-content-between align-items-center"
+  [ngClass]="{
+    'list-group-item-primary': context === 'primary',
+    'list-group-item-secondary': context === 'secondary',
+    'list-group-item-success': context === 'success',
+    'list-group-item-danger': context === 'danger',
+    'list-group-item-info': context === 'info',
+    'list-group-item-warning': context === 'warning',
+    'list-group-item-light': context === 'light',
+    'list-group-item-dark': context === 'dark'
+  }">
+    <ng-container *ngTemplateOutlet="contentProjection"></ng-container>
+  </li>
+</wvr-list-item-wrapper>
+
+<wvr-list-item-wrapper *ngIf="listType==='group-div'">
+  <button class="list-group-item list-group-item-action"
+  [ngClass]="{
+    'list-group-item-primary': context === 'primary',
+    'list-group-item-secondary': context === 'secondary',
+    'list-group-item-success': context === 'success',
+    'list-group-item-danger': context === 'danger',
+    'list-group-item-info': context === 'info',
+    'list-group-item-warning': context === 'warning',
+    'list-group-item-light': context === 'light',
+    'list-group-item-dark': context === 'dark'
+  }">
+    <ng-container *ngTemplateOutlet="contentProjection"></ng-container>
+  </button>
+</wvr-list-item-wrapper>
+
+<wvr-list-item-wrapper *ngIf="listType==='group-flush'">
+  <li class="list-group-item">
+    <ng-container *ngTemplateOutlet="contentProjection"></ng-container>
+  </li>
+</wvr-list-item-wrapper>
+
+<wvr-list-item-wrapper *ngIf="listType==='group-custom-content'">
+  <a class="list-group-item list-group-item-action flex-column align-items-start">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">{{customContentItemHeading}}</h5>
+      <small>{{cusomContentHeadingSmallText}}</small>
+    </div>
+    <p class="mb-1">
+      <ng-container *ngTemplateOutlet="contentProjection"></ng-container>
+    </p>
+    <small>{{customContentSmallText}}</small>
+  </a>
+</wvr-list-item-wrapper>
+
+<ng-template #contentProjection>
+  <ng-content></ng-content>
+</ng-template>
+

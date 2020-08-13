@@ -1,8 +1,8 @@
-<header class="wvr-components wvr-header">
+<header class="wvr-components wvr-header" #animationRoot>
 
   <nav class="top-nav navbar navbar-expand-lg">
     <div class="container">
-      <a class="navbar-brand d-flex" [href]="logoHref" [id]="logoHref.split('#')[1]">
+      <a class="navbar-brand d-flex" [href]="logoHref" [id]="logoId">
         <img alt="Logo" class="logo-img d-inline-block align-top" [src]='logoSrc' />
         <span class="text-white align-self-center d-inline-block pl-1">{{logoText}}</span>
       </a>
