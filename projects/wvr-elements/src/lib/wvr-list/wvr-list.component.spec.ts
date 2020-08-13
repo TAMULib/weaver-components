@@ -12,7 +12,8 @@ describe('WvrListComponent', () => {
       imports: [BrowserAnimationsModule],
       declarations: [WvrListComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
-    }).compileComponents();
+    })
+      .compileComponents();
   }));
 
   beforeEach(() => {

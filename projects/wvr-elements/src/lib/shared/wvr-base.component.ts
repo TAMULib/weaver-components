@@ -105,6 +105,6 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit {
     this.triggerAnimations($event.type);
   }
 
-  private checkScreenSize = () => document.body.offsetWidth < 767;
+  private readonly checkScreenSize = () => document.body.offsetWidth < 767;
 
 }

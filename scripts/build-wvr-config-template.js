@@ -1,8 +1,6 @@
 const fs = require('fs-extra');
 const readline = require('readline');
 
-const defaultsEnv = fs.readFileSync('./defaults.env', 'utf8');
-
 const readInterface = readline.createInterface({
   input: fs.createReadStream('./defaults.env')
 });

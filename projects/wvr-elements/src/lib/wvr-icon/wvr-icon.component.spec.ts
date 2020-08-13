@@ -2,8 +2,9 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, inject, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { APP_CONFIG } from '../shared/config/app-config';
+import { testAppConfig } from '../shared/config/test-app-config';
 import { WvrIconComponent } from './wvr-icon.component';
-import { APP_CONFIG } from '../core/app-config';
 
 describe('WvrIconComponent', () => {
   let component: WvrIconComponent;
@@ -14,10 +15,8 @@ describe('WvrIconComponent', () => {
       imports: [HttpClientTestingModule, BrowserAnimationsModule],
       declarations: [WvrIconComponent],
       providers: [{
-        provide: APP_CONFIG, useValue: {
-          baseUrl: 'http://localhost:4200',
-          assetUrl: 'http://localhost:4200/assets'
-        }
+        provide: APP_CONFIG,
+        useValue: testAppConfig
       }],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })

@@ -72,6 +72,10 @@ export class WvrHeaderComponent extends WvrBaseComponent implements OnInit, Afte
     return this._displayBottomNav;
   }
 
+  get logoId(): string {
+    return this.logoHref.split('#')[1];
+  }
+
   isBottomNavHidden = false;
 
   /**

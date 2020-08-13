@@ -12,7 +12,8 @@ describe('WvrNavLiComponent', () => {
       imports: [BrowserAnimationsModule],
       declarations: [WvrNavLiComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
-    }).compileComponents()
+    })
+      .compileComponents()
       .catch(err => { console.error(err); });
   }));
 

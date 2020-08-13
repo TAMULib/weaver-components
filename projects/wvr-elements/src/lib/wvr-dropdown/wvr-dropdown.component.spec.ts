@@ -16,9 +16,11 @@ describe('WvrDropdownComponent', () => {
         NgbDropdown
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
-    }).overrideComponent(WvrDropdownComponent, {
-      set: { changeDetection: ChangeDetectionStrategy.Default }
-    }).compileComponents();
+    })
+      .overrideComponent(WvrDropdownComponent, {
+        set: { changeDetection: ChangeDetectionStrategy.Default }
+      })
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -68,7 +70,7 @@ describe('WvrDropdownComponent', () => {
 
   it('should return "false" from `isOpen` method if `dropdown` is undefined', () => {
     // tslint:disable-next-line:no-string-literal
-    component['dropdown'] = undefined;
+    component.dropdown = undefined;
     expect(component.isOpen())
       .toBeFalse();
   });
