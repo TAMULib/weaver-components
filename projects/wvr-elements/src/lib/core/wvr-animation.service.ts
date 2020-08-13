@@ -16,7 +16,7 @@ export class WvrAnimationService {
 
   constructor(private readonly builder: AnimationBuilder) { }
 
-  registerAnimationReciever(recieverName: string, component: WvrBaseComponent): void {
+  registerAnimationTargets(recieverName: string, component: WvrBaseComponent): void {
     let recievers = this.recieversRegistry.get(recieverName);
     if (!recievers) {
       recievers = new Array<WvrBaseComponent>();
