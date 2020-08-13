@@ -28,7 +28,7 @@ export class IconService {
 
   private fetchIcon(set: IconSet, name: string): Observable<string> {
 
-    return this.http.get(`${this.appConfig.assetUrl}/icons/${set.name}/${name}.svg`, { responseType: 'text' })
+    return this.http.get(`${this.appConfig.assetsUrl}/icons/${set.name}/${name}.svg`, { responseType: 'text' })
       .pipe(share());
   }
 
