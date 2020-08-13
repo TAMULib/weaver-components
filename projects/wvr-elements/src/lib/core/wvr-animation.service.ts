@@ -30,7 +30,6 @@ export class WvrAnimationService {
     this.animationStates.set(id, new Map<string, boolean>());
 
     return id;
-
   }
 
   triggerAnimationReciever(recieverName: string): void {
@@ -54,36 +53,6 @@ export class WvrAnimationService {
       });
   }
 
-  compileAnimation(stateId, animationName, value): AnimationMetadata | Array<AnimationMetadata> {
-
-    const a = wvrAnimations[animationName];
-
-    if (!a) {
-      console.warn(`${animationName} not a known animation.`);
-
-      return undefined;
-    }
-
-    return a(this.animationStates.get(stateId), value);
-  }
-
-  selectAnimation(stateId: number, animationName: string, timing: string,
-                  to: string, from: string, animationRoot: HTMLElement): AnimationReferenceMetadata {
-
-    const animationInput: AnimationMetadata | Array<AnimationMetadata> =
-    this.compileAnimation(stateId, animationName, animationRoot);
-
-    if (animationInput) {
-      return useAnimation(animation(animationInput), {
-        params: {
-            timing,
-            to,
-            from
-          }
-      });
-    }
-  }
-
   playAnimation(stateId: number, animationName: string, animationConfig: {}, animationRoot: HTMLElement): void {
 
     const timing = animationConfig[animationName] ?
@@ -103,6 +72,36 @@ export class WvrAnimationService {
       const player: AnimationPlayer = animationFactory.create(animationRoot);
       player.play();
     }
+  }
+
+  selectAnimation(stateId: number, animationName: string, timing: string,
+                  to: string, from: string, animationRoot: HTMLElement): AnimationReferenceMetadata {
+
+    const animationInput: AnimationMetadata | Array<AnimationMetadata> =
+    this.compileAnimation(stateId, animationName, animationRoot);
+
+    if (animationInput) {
+      return useAnimation(animation(animationInput), {
+        params: {
+            timing,
+            to,
+            from
+          }
+      });
+    }
+  }
+
+  compileAnimation(stateId, animationName, value): AnimationMetadata | Array<AnimationMetadata> {
+
+    const a = wvrAnimations[animationName];
+
+    if (!a) {
+      console.warn(`${animationName} not a known animation.`);
+
+      return undefined;
+    }
+
+    return a(this.animationStates.get(stateId), value);
   }
 
 }
