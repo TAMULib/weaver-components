@@ -1,4 +1,4 @@
-import { Component, HostBinding, Injector, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, HostBinding, Injector, Input } from '@angular/core';
 import { SafeHtml } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -10,7 +10,7 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
   templateUrl: './wvr-icon.component.html',
   styleUrls: ['./wvr-icon.component.scss']
 })
-export class WvrIconComponent extends WvrBaseComponent implements OnInit {
+export class WvrIconComponent extends WvrBaseComponent implements AfterViewInit {
 
   @Input() set: string;
 
@@ -26,7 +26,7 @@ export class WvrIconComponent extends WvrBaseComponent implements OnInit {
     super(injector);
   }
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this.iconSvg = this.iconService.getIcon(this.set, this.name)
       .pipe(map(svg => this._domSanitizer.bypassSecurityTrustHtml(svg)));
   }
