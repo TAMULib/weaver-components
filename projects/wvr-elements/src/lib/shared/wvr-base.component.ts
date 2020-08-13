@@ -64,7 +64,7 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit {
     const animationEvents = Object.keys(this._animationSettings);
     if (animationEvents.length) {
       if (this.animateId) {
-        this._animationService.registerAnimationReciever(this.animateId, this);
+        this._animationService.registerAnimationTargets(this.animateId, this);
       }
       this.animationStateId = this._animationService.registerAnimationStates();
       animationEvents.forEach(eventName => {

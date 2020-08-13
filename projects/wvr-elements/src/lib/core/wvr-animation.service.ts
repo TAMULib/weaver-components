@@ -53,7 +53,7 @@ export class WvrAnimationService {
       });
   }
 
-  playAnimation(stateId: number, animationName: string, animationConfig: {}, animationRoot: HTMLElement): void {
+  playAnimation(stateId: number, animationName: string, animationConfig: {}, animationRoot: HTMLElement): AnimationPlayer {
 
     const timing = animationConfig[animationName] ?
                    animationConfig[animationName].timing :
@@ -71,11 +71,13 @@ export class WvrAnimationService {
       .build(a);
       const player: AnimationPlayer = animationFactory.create(animationRoot);
       player.play();
+
+      return player;
     }
   }
 
-  selectAnimation(stateId: number, animationName: string, timing: string,
-                  to: string, from: string, animationRoot: HTMLElement): AnimationReferenceMetadata {
+  private selectAnimation(stateId: number, animationName: string, timing: string,
+                          to: string, from: string, animationRoot: HTMLElement): AnimationReferenceMetadata {
 
     const animationInput: AnimationMetadata | Array<AnimationMetadata> =
     this.compileAnimation(stateId, animationName, animationRoot);
@@ -91,7 +93,7 @@ export class WvrAnimationService {
     }
   }
 
-  compileAnimation(stateId, animationName, value): AnimationMetadata | Array<AnimationMetadata> {
+  private compileAnimation(stateId, animationName, value): AnimationMetadata | Array<AnimationMetadata> {
 
     const a = wvrAnimations[animationName];
 
