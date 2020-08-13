@@ -74,6 +74,7 @@ const components = [
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class WvrLibModule {
+
   constructor(injector: Injector) {
     elements.forEach(element => {
       try {
@@ -88,4 +89,5 @@ export class WvrLibModule {
         elem.removeAttribute('wvr-hide-content');
       });
   }
+
 }
