@@ -16,7 +16,7 @@ export class WvrAnimationService {
 
   constructor(private readonly builder: AnimationBuilder) { }
 
-  registerAnimationReciever(recieverName: string, component: WvrBaseComponent): void {
+  registerAnimationTargets(recieverName: string, component: WvrBaseComponent): void {
     let recievers = this.recieversRegistry.get(recieverName);
     if (!recievers) {
       recievers = new Array<WvrBaseComponent>();
@@ -30,7 +30,6 @@ export class WvrAnimationService {
     this.animationStates.set(id, new Map<string, boolean>());
 
     return id;
-
   }
 
   triggerAnimationReciever(recieverName: string): void {
@@ -54,37 +53,7 @@ export class WvrAnimationService {
       });
   }
 
-  compileAnimation(stateId, animationName, value): AnimationMetadata | Array<AnimationMetadata> {
-
-    const a = wvrAnimations[animationName];
-
-    if (!a) {
-      console.warn(`${animationName} not a known animation.`);
-
-      return undefined;
-    }
-
-    return a(this.animationStates.get(stateId), value);
-  }
-
-  selectAnimation(stateId: number, animationName: string, timing: string,
-                  to: string, from: string, animationRoot: HTMLElement): AnimationReferenceMetadata {
-
-    const animationInput: AnimationMetadata | Array<AnimationMetadata> =
-    this.compileAnimation(stateId, animationName, animationRoot);
-
-    if (animationInput) {
-      return useAnimation(animation(animationInput), {
-        params: {
-            timing,
-            to,
-            from
-          }
-      });
-    }
-  }
-
-  playAnimation(stateId: number, animationName: string, animationConfig: {}, animationRoot: HTMLElement): void {
+  playAnimation(stateId: number, animationName: string, animationConfig: {}, animationRoot: HTMLElement): AnimationPlayer {
 
     const timing = animationConfig[animationName] ?
                    animationConfig[animationName].timing :
@@ -102,7 +71,37 @@ export class WvrAnimationService {
       .build(a);
       const player: AnimationPlayer = animationFactory.create(animationRoot);
       player.play();
+
+      return player;
     }
+  }
+
+  private selectAnimation(stateId: number, animationName: string, timing: string,
+                          to: string, from: string, animationRoot: HTMLElement): AnimationReferenceMetadata {
+
+    const animationInput: AnimationMetadata | Array<AnimationMetadata> =
+    this.compileAnimation(stateId, animationName, animationRoot);
+
+    return useAnimation(animation(animationInput), {
+      params: {
+          timing,
+          to,
+          from
+        }
+    });
+  }
+
+  private compileAnimation(stateId, animationName, value): AnimationMetadata | Array<AnimationMetadata> {
+
+    const a = wvrAnimations[animationName];
+
+    if (!a) {
+      console.warn(`${animationName} not a known animation.`);
+
+      return [];
+    }
+
+    return a(this.animationStates.get(stateId), value);
   }
 
 }

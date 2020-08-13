@@ -2,7 +2,7 @@ import { InjectionToken } from '@angular/core';
 
 export interface AppConfig {
   baseUrl?: string;
-  assetUrl?: string;
+  assetsUrl?: string;
 }
 
 export const blankConfig: AppConfig = {};

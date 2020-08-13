@@ -4,6 +4,7 @@
 
 export * from './lib/shared/wvr-base.component';
 export * from './lib/shared/alignment.enum';
+export * from './lib/core/app-config';
 export * from './lib/wvr-button/wvr-button.component';
 export * from './lib/wvr-dropdown/wvr-dropdown.component';
 export * from './lib/wvr-footer/wvr-footer.component';
