@@ -82,15 +82,13 @@ export class WvrAnimationService {
     const animationInput: AnimationMetadata | Array<AnimationMetadata> =
     this.compileAnimation(stateId, animationName, animationRoot);
 
-    if (animationInput) {
-      return useAnimation(animation(animationInput), {
-        params: {
-            timing,
-            to,
-            from
-          }
-      });
-    }
+    return useAnimation(animation(animationInput), {
+      params: {
+          timing,
+          to,
+          from
+        }
+    });
   }
 
   private compileAnimation(stateId, animationName, value): AnimationMetadata | Array<AnimationMetadata> {
@@ -100,7 +98,7 @@ export class WvrAnimationService {
     if (!a) {
       console.warn(`${animationName} not a known animation.`);
 
-      return undefined;
+      return [];
     }
 
     return a(this.animationStates.get(stateId), value);
