@@ -1,9 +1,9 @@
-import { AfterContentInit, ChangeDetectorRef, Directive, ElementRef, EventEmitter, Injector, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { AfterContentInit, Directive, ElementRef, EventEmitter, Injector, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import * as JSON5 from 'json5';
 import { fromEvent, Observable } from 'rxjs';
 import { debounceTime, map } from 'rxjs/operators';
 import { WvrAnimationService } from '../core/wvr-animation.service';
-import * as JSON5 from 'json5';
 
 @Directive()
 // tslint:disable-next-line:directive-class-suffix
@@ -25,7 +25,7 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit {
 
   @Input() animateTarget: string;
 
-  @ViewChild('animationRoot') private animationRootElem: ElementRef;
+  @ViewChild('animationRoot') animationRootElem: ElementRef;
 
   get isMobileAgent(): boolean {
     const agent = navigator.userAgent || navigator.vendor || (window as any).opera;
@@ -44,14 +44,11 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit {
 
   protected readonly _eRef: ElementRef;
 
-  protected readonly _cdRef: ChangeDetectorRef;
-
   @Output() protected readonly animationEventTrigger = new EventEmitter<Event>();
 
   constructor(injector: Injector) {
 
     this._animationService = injector.get(WvrAnimationService);
-    this._cdRef = injector.get(ChangeDetectorRef);
     this._domSanitizer = injector.get(DomSanitizer);
     this._eRef = injector.get(ElementRef);
 
@@ -75,7 +72,6 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit {
     }
     this.screenSizeChanged$.subscribe(iml => {
       this.isMobileLayout = iml;
-      this._cdRef.detectChanges();
     });
     this.isMobileLayout = this.checkScreenSize();
   }
@@ -93,7 +89,7 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit {
       : [this._animationSettings[animationTriggerType]];
     animations.forEach(an => {
       if (an === 'animationTrigger') {
-        this._animationService.triggerAnimationReciever(this.animateTarget);
+        this._animationService.triggerAnimationTarget(this.animateTarget);
       } else {
         this._animationService
           .playAnimation(this.animationStateId, an, this._animationConfig, this.animationRootElem.nativeElement);

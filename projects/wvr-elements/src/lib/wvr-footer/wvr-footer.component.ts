@@ -49,7 +49,6 @@ export class WvrFooterComponent extends WvrBaseComponent implements OnInit {
     const newIsSticky = this.parentElement.clientHeight <= compareHeight;
     if (this.isSticky !== newIsSticky) {
       this.isSticky = newIsSticky;
-      this._cdRef.detectChanges();
     }
   }
 
