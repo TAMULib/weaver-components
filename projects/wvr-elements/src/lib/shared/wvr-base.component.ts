@@ -1,4 +1,4 @@
-import { AfterContentInit, Directive, ElementRef, EventEmitter, Injector, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { AfterContentInit, Directive, ElementRef, EventEmitter, Injector, Input, OnInit, Output, ViewChild, HostBinding } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import * as JSON5 from 'json5';
 import { fromEvent, Observable } from 'rxjs';
@@ -8,6 +8,9 @@ import { WvrAnimationService } from '../core/wvr-animation.service';
 @Directive()
 // tslint:disable-next-line:directive-class-suffix
 export abstract class WvrBaseComponent implements AfterContentInit, OnInit {
+
+  @HostBinding('class.wvr-bootstrap')
+  wvrBootstrap = true;
 
   private _animationSettings: any = {};
   @Input() set animate(value: string) {
