@@ -1,4 +1,4 @@
-import { AfterContentInit, ChangeDetectorRef, Directive, ElementRef, EventEmitter, HostBinding, Injector, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { AfterContentInit, Directive, ElementRef, EventEmitter, HostBinding, Injector, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import * as JSON5 from 'json5';
 import { fromEvent, Observable } from 'rxjs';
@@ -12,7 +12,6 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit {
   @HostBinding('class.wvr-bootstrap') wvrBootstrap = true;
 
   private _animationSettings: any = {};
-  private _cdRef: ChangeDetectorRef;
   @Input() set animate(value: string) {
     this._animationSettings = JSON5.parse(value);
   }
@@ -47,11 +46,11 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit {
 
   protected readonly _eRef: ElementRef;
 
-  @HostBinding('class.wvr-hidden') get _hiddenInMobile(): boolean {
+  @HostBinding('class.wvr-hidden') private get _hiddenInMobile(): boolean {
     return this.isMobileLayout && this.hiddenInMobile;
   }
 
-  @Input() hiddenInMobile = this._hiddenInMobile ? this._hiddenInMobile : false;
+  @Input() hiddenInMobile = false;
 
   @Output() protected readonly animationEventTrigger = new EventEmitter<Event>();
 
@@ -59,7 +58,6 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit {
     this._animationService = injector.get(WvrAnimationService);
     this._domSanitizer = injector.get(DomSanitizer);
     this._eRef = injector.get(ElementRef);
-    this._cdRef = injector.get(ChangeDetectorRef);
 
     this.screenSizeChanged$ = fromEvent(window, 'resize')
       .pipe(debounceTime(50))
