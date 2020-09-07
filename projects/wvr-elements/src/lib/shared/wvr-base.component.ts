@@ -47,10 +47,7 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit {
 
   protected readonly _eRef: ElementRef;
 
-  // tslint:disable-next-line: prefer-inline-decorator
-  @HostBinding('class.hidden')
-  @HostBinding('hidden')
-  get _hiddenInMobile(): boolean {
+  @HostBinding('class.wvr-hidden') get _hiddenInMobile(): boolean {
     return this.isMobileLayout && this.hiddenInMobile;
   }
 
