@@ -30,17 +30,50 @@
 
 </header>
 
-<nav *ngIf="isMobileLayout" class="bottom-nav-mobile navbar navbar-expand-lg">
+<nav *ngIf="isMobileLayout" class="mobile-menu" [ngClass]="{'closed': mobileMenuClosed}">
+  <div class="mobile-menu-header">
+    <div (click)="toggleMobileMenu()">
+      <span>
+        <wvr-text-element value="Close" font-size="0.75em"></wvr-text-element>
+      </span>
+      <svg class="bi bi-x" width="1.25em" height="1.25em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z"/>
+        <path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z"/>
+      </svg>
+    </div>
+  </div>
   <div class="container">
-    <div class="flex-fill align-self-stretch mobile-menu">
-      <ng-container *ngTemplateOutlet="bottomNavContent"></ng-container>
+    <div class="flex-fill align-self-stretch">
+      <ng-container *ngTemplateOutlet="mobileMenuContent"></ng-container>
     </div>
   </div>
 </nav>
+
+<div class="container" class="mobile-menu-button">
+  <svg
+    (click)="toggleMobileMenu()"
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    class="feather feather-menu mobile-menu-button">
+    <line x1="3" y1="6" x2="21" y2="6" />
+    <line x1="3" y1="12" x2="21" y2="12" />
+    <line x1="3" y1="18" x2="21" y2="18" />
+  </svg>
+</div>
 
 <ng-template #topNavContent >
   <ng-content select="wvr-nav-list[top-navigation],wvr-nav-list-element[top-navigation]"></ng-content>
 </ng-template>
 <ng-template #bottomNavContent >
   <ng-content select="wvr-nav-list[bottom-navigation],wvr-nav-list-element[bottom-navigation]"></ng-content>
+</ng-template>
+<ng-template #mobileMenuContent >
+  <ng-content select="[mobile-menu]"></ng-content>
 </ng-template>

@@ -50,6 +50,46 @@
   padding: var(--bottom-nav-padding);
 }
 
-.mobile-menu-button:hover {
-  cursor: pointer;
+.mobile-menu-button,
+.mobile-menu {
+  display: none;
+}
+
+@media (max-width: 767px) {
+
+
+  .mobile-menu-button {
+    display: block;
+  }
+
+  .mobile-menu-button:hover {
+    cursor: pointer;
+  }
+
+  .mobile-menu {
+    display: inline-block;
+  }
+
+  .mobile-menu.closed {
+    width: 0px;
+    opacity: 0;
+  }
+
+  .mobile-menu-header {
+    display: flex;
+    justify-content: flex-end;
+    background: #000;
+    color: #fff;
+    width: 100%;
+    padding: 12px 10px;
+    li {
+      font-weight: lighter;
+      min-width: auto;
+      border-bottom: none;
+    }
+    li:hover {
+      background: transparent;
+    }
+  }
+
 }
