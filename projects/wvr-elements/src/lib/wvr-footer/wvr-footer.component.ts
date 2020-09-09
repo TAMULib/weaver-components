@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, ElementRef, HostBinding, HostListener, Injector, Input, OnInit } from '@angular/core';
 import { ResizeSensor } from 'css-element-queries';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
+import { debounce } from '../shared/utility';
 
 /**
  * A fullwidth footer component which attaches to the bottom of the document body.
@@ -43,7 +44,7 @@ export class WvrFooterComponent extends WvrBaseComponent implements OnInit {
    * Resizes the width of the footer to match its parents width,
    * and calculates height to determine 'stickiness'
    */
-  @HostListener('window:resize', ['$event']) positionSelf(): void {
+  @HostListener('window:resize', ['$event']) @debounce() positionSelf(): void {
     this.footerElement.style.width = `${this.parentElement.clientWidth}px`;
     const compareHeight = this.isSticky ? (window.innerHeight - this.footerElement.clientHeight) : window.innerHeight;
     const newIsSticky = this.parentElement.clientHeight <= compareHeight;
