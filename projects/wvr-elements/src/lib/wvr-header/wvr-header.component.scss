@@ -53,6 +53,7 @@
 .mobile-menu-button,
 .mobile-menu {
   display: none;
+  overflow: hidden;
 }
 
 @media (max-width: 767px) {

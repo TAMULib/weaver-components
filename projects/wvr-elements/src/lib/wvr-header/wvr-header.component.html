@@ -42,10 +42,8 @@
       </svg>
     </div>
   </div>
-  <div class="container">
-    <div class="flex-fill align-self-stretch">
-      <ng-container *ngTemplateOutlet="mobileMenuContent"></ng-container>
-    </div>
+  <div class="flex-fill align-self-stretch">
+    <ng-container *ngTemplateOutlet="mobileMenuContent"></ng-container>
   </div>
 </nav>
 
@@ -68,12 +66,18 @@
   </svg>
 </div>
 
-<ng-template #topNavContent >
-  <ng-content select="wvr-nav-list[top-navigation],wvr-nav-list-element[top-navigation]"></ng-content>
+<ng-template #topNavContent>
+  <div *ngIf="!isMobileLayout">
+    <ng-content select="wvr-nav-list[top-navigation],wvr-nav-list-element[top-navigation]"></ng-content>
+  </div>
 </ng-template>
-<ng-template #bottomNavContent >
-  <ng-content select="wvr-nav-list[bottom-navigation],wvr-nav-list-element[bottom-navigation]"></ng-content>
+<ng-template #bottomNavContent>
+  <div class="h-100" *ngIf="!isMobileLayout">
+    <ng-content select="wvr-nav-list[bottom-navigation],wvr-nav-list-element[bottom-navigation]"></ng-content>
+  </div>
 </ng-template>
-<ng-template #mobileMenuContent >
-  <ng-content select="[mobile-menu]"></ng-content>
+<ng-template #mobileMenuContent>
+  <div *ngIf="isMobileLayout">
+    <ng-content select="[mobile-menu]"></ng-content>
+  </div>
 </ng-template>
