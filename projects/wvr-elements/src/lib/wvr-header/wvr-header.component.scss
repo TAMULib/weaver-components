@@ -83,6 +83,9 @@
     color: #fff;
     width: 100%;
     padding: 12px 10px;
+    .mobile-menu-close:hover {
+      cursor: pointer;
+    }
     li {
       font-weight: lighter;
       min-width: auto;

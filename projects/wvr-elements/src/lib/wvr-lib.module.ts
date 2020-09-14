@@ -6,6 +6,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { IconService } from './core/icon.service';
+import { MobileService } from './core/mobile.service';
 import { WvrAnimationService } from './core/wvr-animation.service';
 import { WvrButtonComponent } from './wvr-button/wvr-button.component';
 import { WvrDropdownComponent } from './wvr-dropdown/wvr-dropdown.component';
@@ -62,6 +63,7 @@ const components = [
   ],
   providers: [
     IconService,
+    MobileService,
     WvrAnimationService
   ],
   declarations: [

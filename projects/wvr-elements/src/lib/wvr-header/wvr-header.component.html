@@ -32,7 +32,7 @@
 
 <nav *ngIf="isMobileLayout" class="mobile-menu" [ngClass]="{'closed': mobileMenuClosed}">
   <div class="mobile-menu-header">
-    <div (click)="toggleMobileMenu()">
+    <div class="mobile-menu-close" (click)="toggleMobileMenu()">
       <span>
         <wvr-text-element value="Close" font-size="0.75em"></wvr-text-element>
       </span>
