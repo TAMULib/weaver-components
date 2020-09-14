@@ -44,7 +44,7 @@ export class WvrFooterComponent extends WvrBaseComponent implements OnInit {
    * Resizes the width of the footer to match its parents width,
    * and calculates height to determine 'stickiness'
    */
-  @HostListener('window:resize', ['$event']) @debounce() positionSelf(): void {
+  @HostListener('window:resize', ['$event']) positionSelf(): void {
     this.footerElement.style.width = `${this.parentElement.clientWidth}px`;
     const compareHeight = this.isSticky ? (window.innerHeight - this.footerElement.clientHeight) : window.innerHeight;
     const newIsSticky = this.parentElement.clientHeight <= compareHeight;
