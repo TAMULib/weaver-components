@@ -24,7 +24,7 @@
 </head>
 
 <body>
-  <wvr-header>
+  <wvr-header hidden-in-mobile="true">
     <wvr-nav-list top-navigation>
       <wvr-nav-li>
         <wvr-dropdown
@@ -122,7 +122,7 @@
         <wvr-text value="Action 1"></wvr-text>
       </wvr-nav-li>
     </wvr-nav-list>
-    <wvr-nav-list bottom-navigation>
+    <wvr-nav-list bottom-navigation hidden-in-mobile="true">
       <wvr-nav-li href="#1" id="1">
         <wvr-text value="Example 1" text-color="black"></wvr-text>
       </wvr-nav-li>
@@ -168,13 +168,13 @@
   </wvr-header>
   <br />
 
-  <wvr-it-works animate="{animationTrigger: 'fadeToggle'}" animate-id="elem1"></wvr-it-works>
+  <wvr-it-works animate="{animationTrigger: 'fadeToggle'}" animate-id="elem1" hidden-in-mobile="true"></wvr-it-works>
 
   <div class="container index-container">
     <wvr-text value="Dropdown with Buttons" text-decoration="underline"></wvr-text><br />
-    <wvr-dropdown btn-type="primary" placement="right" dropdown-menu-display="static">
+    <wvr-dropdown btn-type="primary" hidden-in-mobile="true" placement="right" dropdown-menu-display="static">
       <wvr-dropdown-btn>
-        <wvr-text value="Primary Dropdown"></wvr-text>
+        <wvr-text value="Primary Dropdown Hidden in Mobile"></wvr-text>
       </wvr-dropdown-btn>
       <wvr-dropdown-menu>
         <wvr-dropdown-menu-item>
@@ -372,7 +372,7 @@
 
   <div class="container index-container">
     <wvr-text value="Button List" text-decoration="underline"></wvr-text><br />
-    <wvr-button btn-class="primary" btn-size="large">
+    <wvr-button btn-class="primary" btn-size="large" hidden-in-mobile="true">
       <wvr-text value="Large Size Primary Button"></wvr-text>
     </wvr-button>
     <wvr-button btn-class="secondary" btn-size="small">
@@ -442,8 +442,8 @@
 
   <div class="container index-container">
     <wvr-text value="Outline Button List" text-decoration="underline"></wvr-text><br />
-    <wvr-button btn-class="outline-primary" wvr-btn-type="button">
-      <wvr-text value="Outline Primary"></wvr-text>
+    <wvr-button btn-class="outline-primary" wvr-btn-type="button" hidden-in-mobile="true">
+      <wvr-text value="Outline Primary (Hidden in MV)"></wvr-text>
     </wvr-button>
     <wvr-button btn-class="outline-secondary" wvr-btn-type="button">
       <wvr-text value="Outline Secondary"></wvr-text>
@@ -471,13 +471,13 @@
   <div class="container index-container">
     <wvr-text value="Weaver Icon List" text-decoration="underline"></wvr-text><br />
     <wvr-icon set="custom" name="weaver-w"></wvr-icon>
-    <wvr-icon set="custom" name="weaver-w" color="#500000" size="64px"></wvr-icon>
+    <wvr-icon set="custom" name="weaver-w" color="#500000" size="64px" hidden-in-mobile="true"></wvr-icon>
     <wvr-button btn-class="primary" wvr-btn-type="button" animate="{click: 'rotateToggle'}">
       <wvr-icon set="custom" name="weaver-w" color="#500000"></wvr-icon>
       <wvr-text value="Icon Btn"></wvr-text>
     </wvr-button>
-    <wvr-button btn-class="info" wvr-btn-type="button" animate="{click: 'animationTrigger'}" animate-target="elem1">
-      <wvr-text value="Icon Btn"></wvr-text>
+    <wvr-button btn-class="info" wvr-btn-type="button" animate="{click: 'animationTrigger'}" animate-target="elem1" hidden-in-mobile="true">
+      <wvr-text value="Icon Btn to Be Hidden in Mobile View"></wvr-text>
       <wvr-icon set="feather" name="chevron-right" color="#500000" animate="{animationTrigger: 'rotateToggle'}" animate-id="elem1"></wvr-icon>
     </wvr-button>
   </div>
@@ -487,7 +487,7 @@
     <wvr-text value="Weaver List Component" text-decoration="underline"></wvr-text><br /><br />
 
     <wvr-text value="Unordered List" text-decoration="underline"></wvr-text><br />
-    <wvr-list list-type="unordered">
+    <wvr-list list-type="unordered" hidden-in-mobile="true">
       <wvr-list-item>
         <wvr-text value="Item 1"></wvr-text>
       </wvr-list-item>
@@ -608,7 +608,7 @@
     <br /><br />
 
     <wvr-text value="Group List - Custom Content" text-decoration="underline"></wvr-text><br />
-    <wvr-list list-type="group-custom-content">
+    <wvr-list list-type="group-custom-content" hidden-in-mobile="true">
       <wvr-list-item
           custom-content-item-heading="Custom Content Item Heading"
           cusom-content-heading-small-text="Custom Content Heading Small Text"
@@ -635,7 +635,7 @@
 
     <wvr-text value="Expanding / Collapsing List" text-decoration="underline"></wvr-text><br /><br />
 
-    <wvr-list list-type="unstyled">
+    <wvr-list list-type="unstyled" hidden-in-mobile="true">
       <wvr-list-item>
         <wvr-button btn-class="link" animate="{click: 'animationTrigger'}" animate-target="list2">
           <wvr-text value="Item One"></wvr-text>
@@ -675,7 +675,7 @@
 
   </div>
 
-  <wvr-footer>
+  <wvr-footer hidden-in-mobile="true">
     <wvr-nav-list aligned="CENTER">
       <wvr-nav-li>
         <wvr-text value="Action 1"></wvr-text>

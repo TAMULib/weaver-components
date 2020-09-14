@@ -84,6 +84,12 @@ export class WvrHeaderComponent extends WvrBaseComponent implements OnInit, Afte
     super(injector);
   }
 
+  mobileMenuClosed = true;
+
+  toggleMobileMenu(): void {
+    this.mobileMenuClosed = !this.mobileMenuClosed;
+  }
+
   ngOnInit(): void {
     super.ngOnInit();
     this.checkBottomNavHasChildren();
