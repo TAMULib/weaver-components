@@ -352,7 +352,7 @@ export class WvrDropdownComponent extends WvrBaseComponent {
    */
   private closing = false;
 
-  @Input() displayDropdownMenu = 'dynamic';
+  @Input() dropdownMenuDisplay = 'dynamic';
 
   constructor(injector: Injector, config: NgbDropdownConfig) {
     super(injector);
