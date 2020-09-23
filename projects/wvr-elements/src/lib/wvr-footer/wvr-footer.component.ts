@@ -1,7 +1,6 @@
-import { ChangeDetectorRef, Component, ElementRef, HostBinding, HostListener, Injector, Input, OnInit } from '@angular/core';
+import { Component, HostBinding, HostListener, Injector, Input, OnInit } from '@angular/core';
 import { ResizeSensor } from 'css-element-queries';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
-import { debounce } from '../shared/utility';
 
 /**
  * A fullwidth footer component which attaches to the bottom of the document body.
