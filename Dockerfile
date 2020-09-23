@@ -20,4 +20,13 @@ RUN chmod +x /usr/local/bin/docker-entrypoint
 
 ENTRYPOINT ["docker-entrypoint"]
 
+RUN apk update; 
+RUN apk upgrade;
+
+RUN echo "" >> /usr/local/apache2/conf/httpd.conf
+RUN echo "###SPECIFIC CUSTOMIZATIONS###" >> /usr/local/apache2/conf/httpd.conf
+RUN echo "" >> /usr/local/apache2/conf/httpd.conf
+
+RUN printf '<Directory /usr/local/apache2/htdocs> \nOrder Allow,Deny \nAllow from all \nAllowOverride all \nHeader set Access-Control-Allow-Origin "*" \n</Directory>' >> /usr/local/apache2/conf/httpd.conf
+
 CMD ["httpd", "-D", "FOREGROUND"]

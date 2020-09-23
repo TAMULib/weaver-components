@@ -32,9 +32,12 @@ export class WvrListItemComponent extends WvrBaseComponent implements OnInit {
 
     const listTypeAttribute = this._parent ? this._parent.getAttribute('list-type') : undefined;
     this.listType = listTypeAttribute ? listTypeAttribute : 'unordered';
-
     const contextAttribute = this._parent ? (this._parent.getAttribute('context') as Theme) : undefined;
-    this.context = contextAttribute ? contextAttribute : undefined;
+    this.context = this.context ?
+                   this.context :
+                   contextAttribute ?
+                   contextAttribute :
+                   undefined;
   }
 
 }

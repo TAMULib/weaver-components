@@ -17,7 +17,6 @@ export class IconService {
     private readonly http: HttpClient,
     @Inject(APP_CONFIG) private readonly appConfig: AppConfig
   ) {
-
   }
 
   registerIcons(icons: IconSet): void {
