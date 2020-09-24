@@ -1,5 +1,5 @@
 <button-wrapper #animationRoot>
-  <button *ngIf="!href"
+  <button (click)="test($event)" *ngIf="!href"
   class="wvr-components wvr-button btn"
   [type]="wvrBtnType"
   [ngClass]="{

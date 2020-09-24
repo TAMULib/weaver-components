@@ -1,3 +1,4 @@
+import * as RestActions from '../core/rest/rest.actions';
 import { Component, HostBinding, Injector, Input } from '@angular/core';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
@@ -364,6 +365,19 @@ export class WvrButtonComponent extends WvrBaseComponent {
 
   constructor(injector: Injector) {
     super(injector);
+  }
+
+  test($event): void {
+    this.store.dispatch(RestActions.getRequest({
+      request: {
+        url: 'http://localhost:4200',
+        options: {
+          responseType: 'text'
+        }
+      },
+      success: response => [RestActions.logResponse({response})],
+      failure: error => [RestActions.logResponse({response: error})]
+    }));
   }
 
 }

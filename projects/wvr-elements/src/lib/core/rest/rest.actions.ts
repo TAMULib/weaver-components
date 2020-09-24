@@ -93,3 +93,10 @@ export const deleteRequest = createAction(
     failure: failure
   }>()
 );
+
+export const logResponse = createAction(
+  '[REST] Log',
+  props<{
+    response: any
+  }>()
+);

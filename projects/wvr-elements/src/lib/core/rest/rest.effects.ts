@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Observable, of } from 'rxjs';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import * as RestActions from './rest.actions';
 import { RestService } from './rest.service';
 import { WvrRequest } from './wvr-request';
@@ -122,6 +122,16 @@ export class RestEffects {
         failure: action.failure
       }))
     )
+  );
+
+  logResponse = createEffect(
+    () => this.actions.pipe(
+      ofType(RestActions.logResponse),
+      map(action => action.response),
+      tap(console.log)
+    ), {
+      dispatch: false
+    }
   );
 ​
   private options = (request: WvrRequest): Observable<any> => this.rest.options(request);

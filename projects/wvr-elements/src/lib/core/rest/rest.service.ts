@@ -13,36 +13,37 @@ export class RestService {
 ​
   }
 ​
-  options<T>(request: WvrRequest): Observable<T> {
-    return this.processRequest<T>(request, (url: string, options: any): any => this.http.options<T>(url, options));
+  options(request: WvrRequest): Observable<any> {
+    return this.processRequest(request, (url: string, options: any): any => this.http.options(url, options));
   }
 ​
-  get<T>(request: WvrRequest): Observable<T> {
-    return this.processRequest<T>(request, (url: string, options: any): any => this.http.get<T>(url, options));
+  get(request: WvrRequest): Observable<any> {
+    return this.processRequest(request, (url: string, options: any): any => this.http.get(url, options));
   }
 ​
-  post<T>(request: WvrRequest): Observable<T> {
-    return this.processRequestWithData<T>(request, (url: string, body: any, options: any): any => this.http.post<T>(url, body, options));
+  post(request: WvrRequest): Observable<any> {
+    return this.processRequestWithData(request, (url: string, body: any, options: any): any => this.http.post(url, body, options));
   }
 ​
-  put<T>(request: WvrRequest): Observable<T> {
-    return this.processRequestWithData<T>(request, (url: string, body: any, options: any): any => this.http.put<T>(url, body, options));
+  put(request: WvrRequest): Observable<any> {
+    return this.processRequestWithData(request, (url: string, body: any, options: any): any => this.http.put(url, body, options));
   }
 ​
-  patch<T>(request: WvrRequest): Observable<T> {
-    return this.processRequestWithData<T>(request, (url: string, body: any, options: any): any => this.http.patch<T>(url, body, options));
+  patch(request: WvrRequest): Observable<any> {
+    return this.processRequestWithData(request, (url: string, body: any, options: any): any => this.http.patch(url, body, options));
   }
 ​
-  delete<T>(request: WvrRequest): Observable<T> {
-    return this.processRequest<T>(request, (url: string, options: any): any => this.http.delete<T>(url, options));
+  delete(request: WvrRequest): Observable<any> {
+    return this.processRequest(request, (url: string, options: any): any => this.http.delete(url, options));
   }
 ​
-  private processRequest<T>(request: WvrRequest, callback: (url: string, options: any) => Observable<T>): Observable<T> {
+  private processRequest(request: WvrRequest, callback: (url: string, options: any) => Observable<any>): Observable<any> {
     return this.preprocessOptions(request)
       .pipe(switchMap(options => callback(request.url, options)));
   }
 ​
-  private processRequestWithData<T>(request: WvrRequest, callback: (url: string, body: any, options: any) => Observable<T>): Observable<T> {
+  // tslint:disable-next-line:max-line-length
+  private processRequestWithData(request: WvrRequest, callback: (url: string, body: any, options: any) => Observable<any>): Observable<any> {
     return this.preprocessOptions(request)
       .pipe(switchMap(options => callback(request.url, request.body, options)));
   }

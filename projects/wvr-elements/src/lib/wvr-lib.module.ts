@@ -5,10 +5,13 @@ import { createCustomElement } from '@angular/elements';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { IconService } from './core/icon.service';
 import { MobileService } from './core/mobile.service';
-import { metaReducers, reducers } from './core/store';
+import { RestEffects } from './core/rest/rest.effects';
+import { ROOT_REDUCER } from './core/store';
 import { WvrAnimationService } from './core/wvr-animation.service';
 import { WvrButtonComponent } from './wvr-button/wvr-button.component';
 import { WvrDropdownComponent } from './wvr-dropdown/wvr-dropdown.component';
@@ -59,7 +62,11 @@ const components = [
     BrowserModule,
     HttpClientModule,
     NgbModule,
-    StoreModule.forRoot(reducers, { metaReducers })
+    StoreModule.forRoot(ROOT_REDUCER),
+    EffectsModule.forRoot([
+      RestEffects
+    ]),
+    StoreDevtoolsModule.instrument()
   ],
   exports: [
     ...components

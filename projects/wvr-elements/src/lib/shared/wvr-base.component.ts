@@ -1,11 +1,10 @@
 import { AfterContentInit, Directive, ElementRef, EventEmitter, HostBinding, Injector, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Store } from '@ngrx/store';
 import * as JSON5 from 'json5';
-import { fromEvent, Observable } from 'rxjs';
-import { debounceTime, map } from 'rxjs/operators';
-import { WvrAnimationService } from '../core/wvr-animation.service';
-import { IconService } from '../core/icon.service';
 import { MobileService } from '../core/mobile.service';
+import { RootState } from '../core/store';
+import { WvrAnimationService } from '../core/wvr-animation.service';
 
 @Directive()
 // tslint:disable-next-line:directive-class-suffix
@@ -48,6 +47,8 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit {
 
   protected readonly _eRef: ElementRef;
 
+  protected readonly store: Store<RootState>;
+
   private readonly mobileService: MobileService;
 
   @HostBinding('class.wvr-hidden') private get _hiddenInMobile(): boolean {
@@ -63,6 +64,7 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit {
     this._domSanitizer = injector.get(DomSanitizer);
     this._eRef = injector.get(ElementRef);
     this.mobileService = injector.get(MobileService);
+    this.store = injector.get(Store);
   }
 
   ngOnInit(): void {
