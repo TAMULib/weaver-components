@@ -19,7 +19,7 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit {
 
   private _animationConfig: any = {};
   @Input() set animateConfig(value: string) {
-    this._animationConfig =  JSON5.parse(value);
+    this._animationConfig = JSON5.parse(value);
   }
 
   private animationStateId: number;
@@ -64,7 +64,7 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit {
     this._domSanitizer = injector.get(DomSanitizer);
     this._eRef = injector.get(ElementRef);
     this.mobileService = injector.get(MobileService);
-    this.store = injector.get(Store);
+    this.store = injector.get<Store<RootState>>(Store);
   }
 
   ngOnInit(): void {

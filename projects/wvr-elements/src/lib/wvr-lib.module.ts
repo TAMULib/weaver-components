@@ -11,9 +11,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { IconService } from './core/icon.service';
 import { MobileService } from './core/mobile.service';
 import { RestEffects } from './core/rest/rest.effects';
-import { ROOT_REDUCER } from './core/store';
+import { metaReducers, ROOT_REDUCER } from './core/store';
 import { WvrAnimationService } from './core/wvr-animation.service';
-import { initiliaizeInjector } from './shared/utility/decorators.utilty';
 import { WvrButtonComponent } from './wvr-button/wvr-button.component';
 import { WvrDropdownComponent } from './wvr-dropdown/wvr-dropdown.component';
 import { WvrFooterComponent } from './wvr-footer/wvr-footer.component';
@@ -63,7 +62,7 @@ const components = [
     BrowserModule,
     HttpClientModule,
     NgbModule,
-    StoreModule.forRoot(ROOT_REDUCER),
+    StoreModule.forRoot(ROOT_REDUCER, { metaReducers }),
     EffectsModule.forRoot([
       RestEffects
     ]),
@@ -88,9 +87,6 @@ const components = [
 })
 export class WvrLibModule {
   constructor(injector: Injector) {
-
-    initiliaizeInjector(injector);
-
     elements.forEach(element => {
       try {
         customElements.define(element.selector, createCustomElement(element.component, { injector }));

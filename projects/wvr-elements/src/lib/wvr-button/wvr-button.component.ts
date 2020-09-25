@@ -1,9 +1,8 @@
-import * as RestActions from '../core/rest/rest.actions';
 import { Component, HostBinding, Injector, Input } from '@angular/core';
-import { WvrBaseComponent } from '../shared/wvr-base.component';
-import { Observable } from 'rxjs';
-import { WvrSelect } from '../shared/utility/decorators.utilty';
+import * as RestActions from '../core/rest/rest.actions';
 import { selectResponse } from '../core/store';
+import { WvrSelect } from '../shared/utility/decorators.utilty';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 @Component({
   selector: 'wvr-button-element',
@@ -366,18 +365,14 @@ export class WvrButtonComponent extends WvrBaseComponent {
   /** Allows for the override of button vertical align property */
   @HostBinding('style.--wvr-btn-vertical-align') @Input() verticalAlign;
 
-  @WvrSelect({selector: selectResponse}) selectedData: Observable<string>;
+  @WvrSelect({ selector: selectResponse }) selectedData;
 
   constructor(injector: Injector) {
     super(injector);
   }
 
   test($event): void {
-
-    this.selectedData
-      .subscribe(r => {
-        console.log(r);
-      });
+    this.selectedData.subscribe(console.log);
 
     this.store.dispatch(RestActions.getRequest({
       request: {
@@ -386,8 +381,8 @@ export class WvrButtonComponent extends WvrBaseComponent {
           responseType: 'text'
         }
       },
-      success: response => [RestActions.logResponse({response})],
-      failure: error => [RestActions.logResponse({response: error})]
+      success: response => [], //RestActions.logResponse({response})
+      failure: error => [] // RestActions.logResponse({response: error})
     }));
   }
 
