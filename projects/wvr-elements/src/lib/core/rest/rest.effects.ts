@@ -123,16 +123,6 @@ export class RestEffects {
       }))
     )
   );
-
-  logResponse = createEffect(
-    () => this.actions.pipe(
-      ofType(RestActions.logResponse),
-      map(action => action.response),
-      tap(console.log)
-    ), {
-      dispatch: false
-    }
-  );
 ​
   private options = (request: WvrRequest): Observable<any> => this.rest.options(request);
 ​

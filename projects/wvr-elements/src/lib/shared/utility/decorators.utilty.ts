@@ -26,8 +26,11 @@ export interface SelectOptions {
 
 // tslint:disable-next-line:only-arrow-functions
 function WvrSelect<T, V>(option: SelectOptions): PropertyDecorator {
-  return function (target: any, propertyKey: string) {
-    const getter = function (): Observable<V> {
+  // tslint:disable-next-line:only-arrow-functions
+  // tslint:disable-next-line:typedef
+  return function(target: any, propertyKey: string) {
+    const getter = function(): Observable<V> {
+      // tslint:disable-next-line:no-invalid-this
       return this.store.pipe(
         select(option.selector),
         filter(r => !!r)

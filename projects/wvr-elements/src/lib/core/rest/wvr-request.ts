@@ -1,7 +1,7 @@
 type map = (response: any) => any;
 
-export interface WvrRequest {
-  url: string;
+export interface WvrRequestManifest {
+  method: 'GET' | 'POST' | 'PUT' | 'DELETE';
   body?: any;
   options?: {
     headers?: { [header: string]: string | Array<string>; };
@@ -12,4 +12,8 @@ export interface WvrRequest {
     withCredentials?: boolean;
   };
   map?: map;
+}
+
+export interface WvrRequest extends WvrRequestManifest {
+  url: string;
 }

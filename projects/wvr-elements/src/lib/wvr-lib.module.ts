@@ -10,6 +10,7 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { IconService } from './core/icon.service';
 import { MobileService } from './core/mobile.service';
+import { ManifestEffects } from './core/manifest/manifest.effects';
 import { RestEffects } from './core/rest/rest.effects';
 import { metaReducers, ROOT_REDUCER } from './core/store';
 import { WvrAnimationService } from './core/wvr-animation.service';
@@ -64,7 +65,8 @@ const components = [
     NgbModule,
     StoreModule.forRoot(ROOT_REDUCER, { metaReducers }),
     EffectsModule.forRoot([
-      RestEffects
+      RestEffects,
+      ManifestEffects
     ]),
     StoreDevtoolsModule.instrument()
   ],

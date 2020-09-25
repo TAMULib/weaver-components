@@ -365,25 +365,8 @@ export class WvrButtonComponent extends WvrBaseComponent {
   /** Allows for the override of button vertical align property */
   @HostBinding('style.--wvr-btn-vertical-align') @Input() verticalAlign;
 
-  @WvrSelect({ selector: selectResponse }) selectedData;
-
   constructor(injector: Injector) {
     super(injector);
-  }
-
-  test($event): void {
-    this.selectedData.subscribe(console.log);
-
-    this.store.dispatch(RestActions.getRequest({
-      request: {
-        url: 'http://localhost:4200',
-        options: {
-          responseType: 'text'
-        }
-      },
-      success: response => [], //RestActions.logResponse({response})
-      failure: error => [] // RestActions.logResponse({response: error})
-    }));
   }
 
 }
