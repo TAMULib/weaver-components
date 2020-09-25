@@ -8,7 +8,7 @@ import * as ManifestActions from './manifest.actions';
 
 @Injectable()
 export class ManifestEffects {
-​
+
   constructor(private actions: Actions, private store: Store<RootState>) {
   }
 
@@ -17,8 +17,8 @@ export class ManifestEffects {
       ofType(ManifestActions.addEntry),
       withLatestFrom(this.store.pipe(select(selectPendingEntryRequests))),
       switchMap(([action, pendingEntryRequests]) => pendingEntryRequests
-          .filter(request => action.entry.name === request.entryName)
-          .map(request => ManifestActions.invokeEntry({request})))
+        .filter(request => action.entry.name === request.entryName)
+        .map(request => ManifestActions.invokeEntry({ request })))
     )
   );
 
@@ -27,33 +27,39 @@ export class ManifestEffects {
       ofType(ManifestActions.addEntry),
       withLatestFrom(this.store.pipe(select(selectLiveEntryRequests))),
       switchMap(([action, liveEntryRequests]) => liveEntryRequests
-          .filter(request => action.entry.name === request.entryName)
-          .map(request => {
-            let restAction;
+        .filter(request => action.entry.name === request.entryName)
+        .map(request => {
+          let restAction;
 
-            switch (action.entry.requestManifest.method) {
-              case 'POST':
-                restAction = RestActions.postRequest;
-                break;
-              case 'DELETE':
-                restAction = RestActions.deleteRequest;
-                break;
-              case 'PUT':
-                restAction = RestActions.putRequest;
-                break;
-              case 'GET':
-              default:
-                restAction = RestActions.getRequest;
-            }
+          switch (action.entry.requestManifest.method) {
+            case 'POST':
+              restAction = RestActions.postRequest;
+              break;
+            case 'PUT':
+              restAction = RestActions.putRequest;
+              break;
+            case 'PATCH':
+              restAction = RestActions.patchRequest;
+              break;
+            case 'DELETE':
+              restAction = RestActions.deleteRequest;
+              break;
+            case 'OPTIONS':
+              restAction = RestActions.optionsRequest;
+              break;
+            case 'GET':
+            default:
+              restAction = RestActions.getRequest;
+          }
 
-            return restAction({
-              request,
-              success: request.onSuccess.concat(),
-              failure: request.onFailure
-            });
+          return restAction({
+            request,
+            success: response => request.onSuccess.concat(ManifestActions.invokeEntrySuccess({ request, response })),
+            failure: error => request.onFailure.concat(ManifestActions.invokeEntryFailure({ request, error })),
+          });
 
-          }))
+        }))
     )
   );
-​
+
 }

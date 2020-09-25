@@ -1,5 +1,4 @@
-import { Action, createAction, props } from '@ngrx/store';
-import { WvrRequest } from '../rest/wvr-request';
+import { createAction, props } from '@ngrx/store';
 import { WvrEntry } from './wvr-entry';
 import { WvrEntryRequest } from './wvr-entry-request';
 import { WvrManifest } from './wvr-manifest';
@@ -28,15 +27,15 @@ export const invokeEntry = createAction(
 export const invokeEntrySuccess = createAction(
   '[MANIFEST] Invoke Entry Success',
   props<{
-    response: any,
-    request: WvrEntryRequest
+    request: WvrEntryRequest,
+    response: any
   }>()
 );
 
 export const invokeEntryFailure = createAction(
   '[MANIFEST] Invoke Entry Failure',
   props<{
-    error: any,
-    request: WvrEntryRequest
+    request: WvrEntryRequest,
+    error: any
   }>()
 );

@@ -1,8 +1,8 @@
 import { createReducer, on } from '@ngrx/store';
-import { WvrManifest } from './wvr-manifest';
 import * as ManifestActions from './manifest.actions';
 import { WvrEntry } from './wvr-entry';
 import { WvrEntryRequest } from './wvr-entry-request';
+import { WvrManifest } from './wvr-manifest';
 ​
 export interface State {
   manifests: Map<string, WvrManifest>;
@@ -49,6 +49,9 @@ export const reducer = createReducer(
   }),
   on(ManifestActions.invokeEntry, (state, { request }) => {
 
+    // should be unique, maybe uuid
+    request.id = Math.random();
+
     const entries = request.manifestName ?
                     state.manifests.get(request.manifestName).entries :
                     state.unassignedEntries;
@@ -63,28 +66,18 @@ export const reducer = createReducer(
       ...state
     };
   }),
-  on(ManifestActions.invokeEntrySuccess, (state, { response }) => {
-
-
+  on(ManifestActions.invokeEntrySuccess, (state, { request, response }) => {
 
     return {
-      ...state
+      ...state,
+      liveEntryRequests: state.liveEntryRequests.filter(lr => lr.id === request.id)
     };
   }),
-  on(ManifestActions.invokeEntry, (state, { request }) => {
-
-    const entries = request.manifestName ?
-                    state.manifests.get(request.manifestName).entries :
-                    state.unassignedEntries;
-
-    if (entries.filter(e => e.name === request.entryName).length === 0) {
-      state.pendingEntryRequests.push(request);
-    } else {
-      state.liveEntryRequests.push(request);
-    }
+  on(ManifestActions.invokeEntryFailure, (state, { request, error }) => {
 
     return {
-      ...state
+      ...state,
+      liveEntryRequests: state.liveEntryRequests.filter(lr => lr.id === request.id)
     };
   })
 );

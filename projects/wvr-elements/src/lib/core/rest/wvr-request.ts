@@ -1,7 +1,7 @@
 type map = (response: any) => any;
 
 export interface WvrRequestManifest {
-  method: 'GET' | 'POST' | 'PUT' | 'DELETE';
+  method: 'OPTIONS' | 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
   body?: any;
   options?: {
     headers?: { [header: string]: string | Array<string>; };
