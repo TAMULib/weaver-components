@@ -1,6 +1,9 @@
 import * as RestActions from '../core/rest/rest.actions';
 import { Component, HostBinding, Injector, Input } from '@angular/core';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
+import { Observable } from 'rxjs';
+import { WvrSelect } from '../shared/utility/decorators.utilty';
+import { selectResponse } from '../core/store';
 
 @Component({
   selector: 'wvr-button-element',
@@ -363,11 +366,19 @@ export class WvrButtonComponent extends WvrBaseComponent {
   /** Allows for the override of button vertical align property */
   @HostBinding('style.--wvr-btn-vertical-align') @Input() verticalAlign;
 
+  @WvrSelect({selector: selectResponse}) selectedData: Observable<string>;
+
   constructor(injector: Injector) {
     super(injector);
   }
 
   test($event): void {
+
+    this.selectedData
+      .subscribe(r => {
+        console.log(r);
+      });
+
     this.store.dispatch(RestActions.getRequest({
       request: {
         url: 'http://localhost:4200',
