@@ -1,21 +1,21 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Observable, of } from 'rxjs';
-import { catchError, map, switchMap, tap } from 'rxjs/operators';
+import { catchError, map, switchMap } from 'rxjs/operators';
+import { Request } from './request';
 import * as RestActions from './rest.actions';
 import { RestService } from './rest.service';
-import { WvrRequest } from './wvr-request';
-​
+
 @Injectable()
 export class RestEffects {
-​
+
   constructor(
     private actions: Actions,
     private rest: RestService
   ) {
-​
+
   }
-​
+
   request = createEffect(
     () => this.actions.pipe(
       ofType(RestActions.request),
@@ -26,32 +26,32 @@ export class RestEffects {
             success: action.success
           })),
           catchError(error => of(RestActions.requestFailure({
-              error,
-              failure: action.failure,
-              retry: action
-            })))
+            error,
+            failure: action.failure,
+            retry: action
+          })))
         ))
     )
   );
-​
+
   requestSuccess = createEffect(
     () => this.actions.pipe(
       ofType(RestActions.requestSuccess),
       switchMap(action => action.success(action.response))
     )
   );
-​
+
   requestFailure = createEffect(
     () => this.actions.pipe(
       ofType(RestActions.requestFailure),
       // tslint:disable-next-line:arrow-return-shorthand
       switchMap(action => {
-        // TODO: retry and refres
+        // TODO: handle error, refresh token, retry
         return action.failure(action.error);
       })
     )
   );
-​
+
   optionsRequest = createEffect(
     () => this.actions.pipe(
       ofType(RestActions.optionsRequest),
@@ -63,7 +63,7 @@ export class RestEffects {
       }))
     )
   );
-​
+
   getRequest = createEffect(
     () => this.actions.pipe(
       ofType(RestActions.getRequest),
@@ -75,7 +75,7 @@ export class RestEffects {
       }))
     )
   );
-​
+
   postRequest = createEffect(
     () => this.actions.pipe(
       ofType(RestActions.postRequest),
@@ -87,7 +87,7 @@ export class RestEffects {
       }))
     )
   );
-​
+
   putRequest = createEffect(
     () => this.actions.pipe(
       ofType(RestActions.putRequest),
@@ -99,7 +99,7 @@ export class RestEffects {
       }))
     )
   );
-​
+
   patchRequest = createEffect(
     () => this.actions.pipe(
       ofType(RestActions.patchRequest),
@@ -111,7 +111,7 @@ export class RestEffects {
       }))
     )
   );
-​
+
   deleteRequest = createEffect(
     () => this.actions.pipe(
       ofType(RestActions.deleteRequest),
@@ -123,17 +123,17 @@ export class RestEffects {
       }))
     )
   );
-​
-  private options = (request: WvrRequest): Observable<any> => this.rest.options(request);
-​
-  private get = (request: WvrRequest): Observable<any> => this.rest.get(request);
-​
-  private post = (request: WvrRequest): Observable<any> => this.rest.post(request);
-​
-  private put = (request: WvrRequest): Observable<any> => this.rest.put(request);
-​
-  private patch = (request: WvrRequest): Observable<any> => this.rest.patch(request);
-​
-  private delete = (request: WvrRequest): Observable<any> => this.rest.delete(request);
-​
+
+  private options = (request: Request): Observable<any> => this.rest.options(request);
+
+  private get = (request: Request): Observable<any> => this.rest.get(request);
+
+  private post = (request: Request): Observable<any> => this.rest.post(request);
+
+  private put = (request: Request): Observable<any> => this.rest.put(request);
+
+  private patch = (request: Request): Observable<any> => this.rest.patch(request);
+
+  private delete = (request: Request): Observable<any> => this.rest.delete(request);
+
 }

@@ -6,13 +6,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EffectsModule } from '@ngrx/effects';
-import { StoreModule } from '@ngrx/store';
+import { Store, StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { IconService } from './core/icon.service';
 import { MobileService } from './core/mobile.service';
 import { ManifestEffects } from './core/manifest/manifest.effects';
 import { RestEffects } from './core/rest/rest.effects';
-import { metaReducers, ROOT_REDUCER } from './core/store';
+import { metaReducers, RootState, ROOT_REDUCER } from './core/store';
 import { WvrAnimationService } from './core/wvr-animation.service';
 import { WvrButtonComponent } from './wvr-button/wvr-button.component';
 import { WvrDropdownComponent } from './wvr-dropdown/wvr-dropdown.component';
@@ -25,6 +25,8 @@ import { WvrListComponent } from './wvr-list/wvr-list.component';
 import { WvrNavLiComponent } from './wvr-nav-list/wvr-nav-li/wvr-nav-li.component';
 import { WvrNavListComponent } from './wvr-nav-list/wvr-nav-list.component';
 import { WvrTextComponent } from './wvr-text/wvr-text.component';
+
+import * as ManifestActions from './core/manifest/manifest.actions';
 
 /** This property contains a list of components and the selector tags. */
 const elements = [
@@ -88,7 +90,44 @@ const components = [
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class WvrLibModule {
-  constructor(injector: Injector) {
+  constructor(injector: Injector, store: Store<RootState>) {
+
+    store.dispatch(ManifestActions.submitRequest({
+      request: {
+        manifestName: 'sample',
+        entryName: 'one'
+      }
+    }));
+
+    // store.dispatch(ManifestActions.submitRequest({
+    //   request: {
+    //     manifestName: 'sample',
+    //     entryName: 'two'
+    //   }
+    // }));
+
+    store.dispatch(ManifestActions.addManifests({
+      manifests: [{
+        name: 'sample',
+        baseUrl: 'http://localhost:4200',
+        entries: [{
+          name: 'one',
+          path: '/',
+          methods: ['GET'],
+          options: {
+            responseType: 'text'
+          }
+        }, {
+          name: 'two',
+          path: '/',
+          methods: ['GET'],
+          options: {
+            responseType: 'text'
+          }
+        }]
+      }]
+    }));
+
     elements.forEach(element => {
       try {
         customElements.define(element.selector, createCustomElement(element.component, { injector }));

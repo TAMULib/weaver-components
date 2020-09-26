@@ -1,9 +1,9 @@
 import { createReducer, on } from '@ngrx/store';
 import * as RestActions from './rest.actions';
-import { WvrRequest } from './wvr-request';
+import { Request } from './request';
 ​
 export interface State {
-  request: WvrRequest;
+  request: Request;
   response: any;
   error: any;
 }

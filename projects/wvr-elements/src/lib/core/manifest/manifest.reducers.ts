@@ -1,83 +1,146 @@
-import { createReducer, on } from '@ngrx/store';
+import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
+import { Action, createReducer, on } from '@ngrx/store';
+import { Manifest } from './manifest';
+import { ManifestEntryRequest } from './manifest-entry-request';
 import * as ManifestActions from './manifest.actions';
-import { WvrEntry } from './wvr-entry';
-import { WvrEntryRequest } from './wvr-entry-request';
-import { WvrManifest } from './wvr-manifest';
-​
-export interface State {
-  manifests: Map<string, WvrManifest>;
-  unassignedEntries: Array<WvrEntry>;
-  pendingEntryRequests: Array<WvrEntryRequest>;
-  liveEntryRequests: Array<WvrEntryRequest>;
+
+export interface State extends EntityState<Manifest> {
+  pendingRequests: Array<ManifestEntryRequest>;
+  processingRequest: ManifestEntryRequest;
 }
-​
-export const initialState: State = {
-  manifests: new Map<string, WvrManifest>(),
-  unassignedEntries: new Array<WvrEntry>(),
-  pendingEntryRequests: new Array<WvrEntryRequest>(),
-  liveEntryRequests: new Array<WvrEntryRequest>()
-};
-​
-export const reducer = createReducer(
+
+export function selectManifestByName(manifest: Manifest): string {
+  return manifest.name;
+}
+
+export const adapter: EntityAdapter<Manifest> = createEntityAdapter<Manifest>({
+  selectId: selectManifestByName
+});
+
+export const initialState: State = adapter.getInitialState({
+  pendingRequests: [],
+  processingRequest: undefined
+});
+
+const manifestReducer = createReducer(
   initialState,
   on(ManifestActions.addManifest, (state, { manifest }) => {
-
-    manifest.entries = state.unassignedEntries
-      .filter(e => e.manifestName === manifest.name);
-
-    state.manifests.set(manifest.name, manifest);
-
+    return adapter.addOne(manifest, state)
+  }),
+  on(ManifestActions.setManifest, (state, { manifest }) => {
+    return adapter.setOne(manifest, state)
+  }),
+  on(ManifestActions.upsertManifest, (state, { manifest }) => {
+    return adapter.upsertOne(manifest, state);
+  }),
+  on(ManifestActions.addManifests, (state, { manifests }) => {
+    return adapter.addMany(manifests, state);
+  }),
+  on(ManifestActions.upsertManifests, (state, { manifests }) => {
+    return adapter.upsertMany(manifests, state);
+  }),
+  on(ManifestActions.updateManifest, (state, { update }) => {
+    return adapter.updateOne(update, state);
+  }),
+  on(ManifestActions.updateManifests, (state, { updates }) => {
+    return adapter.updateMany(updates, state);
+  }),
+  on(ManifestActions.mapManifest, (state, { entityMap }) => {
+    return adapter.mapOne(entityMap, state);
+  }),
+  on(ManifestActions.mapManifests, (state, { entityMap }) => {
+    return adapter.map(entityMap, state);
+  }),
+  on(ManifestActions.deleteManifest, (state, { id }) => {
+    return adapter.removeOne(id, state);
+  }),
+  on(ManifestActions.deleteManifests, (state, { ids }) => {
+    return adapter.removeMany(ids, state);
+  }),
+  on(ManifestActions.deleteManifestsByPredicate, (state, { predicate }) => {
+    return adapter.removeMany(predicate, state);
+  }),
+  on(ManifestActions.loadManifests, (state, { manifests }) => {
+    return adapter.setAll(manifests, state);
+  }),
+  on(ManifestActions.clearManifests, state => {
+    return adapter.removeAll({ ...state, selectedManifestId: null });
+  }),
+  on(ManifestActions.submitRequest, (state, { request }) => {
     return {
       ...state,
-      unassignedEntries: state.unassignedEntries
-        .filter(e => e.manifestName !== manifest.name)
-    };
-  }),
-  on(ManifestActions.addEntry, (state, { entry }) => {
-
-    if (state.manifests.has(entry.manifestName)) {
-      state.manifests.get(entry.manifestName)
-        .entries
-        .push(entry);
-    } else {
-      state.unassignedEntries.push(entry);
+      processingRequests: request
     }
-
-    return {
-      ...state
-    };
   }),
-  on(ManifestActions.invokeEntry, (state, { request }) => {
-
-    // should be unique, maybe uuid
-    request.id = Math.random();
-
-    const entries = request.manifestName ?
-                    state.manifests.get(request.manifestName).entries :
-                    state.unassignedEntries;
-
-    if (entries.filter(e => e.name === request.entryName).length === 0) {
-      state.pendingEntryRequests.push(request);
-    } else {
-      state.liveEntryRequests.push(request);
+  on(ManifestActions.submitRequestSuccess, (state, { request, response, manifest }) => {
+    return adapter.updateOne({
+      id: manifest.name,
+      changes: {
+        entries: manifest.entries.map(entry => {
+          if (entry.name === request.entryName) {
+            return { ...entry, response }
+          }
+          return entry;
+        })
+      }
+    }, {
+      ...state,
+      processingRequests: undefined
+    });
+  }),
+  on(ManifestActions.submitRequestFailure, (state, { request, error, manifest }) => {
+    return adapter.updateOne({
+      id: manifest.name,
+      changes: {
+        entries: manifest.entries.map(entry => {
+          if (entry.name === request.entryName) {
+            return { ...entry, error }
+          }
+          return entry;
+        })
+      }
+    }, {
+      ...state,
+      processingRequests: undefined
+    });
+  }),
+  on(ManifestActions.queueRequest, (state, { request }) => {
+    return {
+      ...state,
+      pendingRequests: state.pendingRequests.concat([{ ...request }]),
+      processingRequests: undefined
     }
-
-    return {
-      ...state
-    };
   }),
-  on(ManifestActions.invokeEntrySuccess, (state, { request, response }) => {
-
+  on(ManifestActions.dequeueRequest, (state, { request }) => {
     return {
       ...state,
-      liveEntryRequests: state.liveEntryRequests.filter(lr => lr.id === request.id)
-    };
-  }),
-  on(ManifestActions.invokeEntryFailure, (state, { request, error }) => {
-
-    return {
-      ...state,
-      liveEntryRequests: state.liveEntryRequests.filter(lr => lr.id === request.id)
-    };
+      pendingRequests: state.pendingRequests.filter(r => r.manifestName !== request.manifestName && r.entryName !== request.entryName)
+    }
   })
 );
+
+export function reducer(state: State | undefined, action: Action) {
+  return manifestReducer(state, action);
+}
+
+// get the selectors
+const {
+  selectIds,
+  selectEntities,
+  selectAll,
+  selectTotal,
+} = adapter.getSelectors();
+
+// select the array of manifest names
+export const selectManifestNames = selectIds;
+
+// select the dictionary of manifest entities
+export const selectManifestEntities = selectEntities;
+
+// select the array of manifests
+export const selectAllManifests = selectAll;
+
+// select the total manifest count
+export const selectManifestTotal = selectTotal;
+
+export const selectPendingRequests = (state: State) => state.pendingRequests

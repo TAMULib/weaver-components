@@ -1,41 +1,58 @@
+import { EntityMap, EntityMapOne, Predicate, Update } from '@ngrx/entity';
 import { createAction, props } from '@ngrx/store';
-import { WvrEntry } from './wvr-entry';
-import { WvrEntryRequest } from './wvr-entry-request';
-import { WvrManifest } from './wvr-manifest';
+import { Manifest } from './manifest';
+import { ManifestEntryRequest } from './manifest-entry-request';
 
-export const addManifest = createAction(
-  '[MANIFEST] Add Manifest',
+export const loadManifests = createAction('[Manifest] Load Manifests', props<{ manifests: Manifest[] }>());
+export const addManifest = createAction('[Manifest] Add Manifest', props<{ manifest: Manifest }>());
+export const setManifest = createAction('[Manifest] Set Manifest', props<{ manifest: Manifest }>());
+export const upsertManifest = createAction('[Manifest] Upsert Manifest', props<{ manifest: Manifest }>());
+export const addManifests = createAction('[Manifest] Add Manifests', props<{ manifests: Manifest[] }>());
+export const upsertManifests = createAction('[Manifest] Upsert Manifests', props<{ manifests: Manifest[] }>());
+export const updateManifest = createAction('[Manifest] Update Manifest', props<{ update: Update<Manifest> }>());
+export const updateManifests = createAction('[Manifest] Update Manifests', props<{ updates: Update<Manifest>[] }>());
+export const mapManifest = createAction('[Manifest] Map Manifest', props<{ entityMap: EntityMapOne<Manifest> }>());
+export const mapManifests = createAction('[Manifest] Map Manifests', props<{ entityMap: EntityMap<Manifest> }>());
+export const deleteManifest = createAction('[Manifest] Delete Manifest', props<{ id: string }>());
+export const deleteManifests = createAction('[Manifest] Delete Manifests', props<{ ids: string[] }>());
+export const deleteManifestsByPredicate = createAction('[Manifest] Delete Manifests By Predicate', props<{ predicate: Predicate<Manifest> }>());
+export const clearManifests = createAction('[Manifest] Clear Manifests');
+
+export const submitRequest = createAction(
+  '[Manifest] Submit Request',
   props<{
-    manifest: WvrManifest
+    request: ManifestEntryRequest
   }>()
 );
 
-export const addEntry = createAction(
-  '[MANIFEST] Add Entry',
+export const submitRequestSuccess = createAction(
+  '[Manifest] Submit Request Success',
   props<{
-    entry: WvrEntry
-  }>()
-);
-
-export const invokeEntry = createAction(
-  '[MANIFEST] Invoke Entry',
-  props<{
-    request: WvrEntryRequest
-  }>()
-);
-
-export const invokeEntrySuccess = createAction(
-  '[MANIFEST] Invoke Entry Success',
-  props<{
-    request: WvrEntryRequest,
+    manifest: Manifest,
+    request: ManifestEntryRequest,
     response: any
   }>()
 );
 
-export const invokeEntryFailure = createAction(
-  '[MANIFEST] Invoke Entry Failure',
+export const submitRequestFailure = createAction(
+  '[Manifest] Submit Request Failure',
   props<{
-    request: WvrEntryRequest,
+    manifest: Manifest,
+    request: ManifestEntryRequest,
     error: any
+  }>()
+);
+
+export const queueRequest = createAction(
+  '[Manifest] Queue Request',
+  props<{
+    request: ManifestEntryRequest
+  }>()
+);
+
+export const dequeueRequest = createAction(
+  '[Manifest] Dequeue Request',
+  props<{
+    request: ManifestEntryRequest
   }>()
 );

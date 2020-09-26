@@ -1,65 +1,122 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { select, Store } from '@ngrx/store';
-import { switchMap, withLatestFrom } from 'rxjs/operators';
+import { combineLatest, of } from 'rxjs';
+import { map, mergeMap, pluck, switchMap, take } from 'rxjs/operators';
+import { RequestMethod } from '../rest/request-method';
 import * as RestActions from '../rest/rest.actions';
-import { RootState, selectLiveEntryRequests, selectPendingEntryRequests } from '../store';
+import { RootState, selectManifestByName, selectManifestEntities, selectPendingRequests } from '../store';
+import { Manifest } from './manifest';
 import * as ManifestActions from './manifest.actions';
 
 @Injectable()
 export class ManifestEffects {
 
   constructor(private actions: Actions, private store: Store<RootState>) {
+
   }
 
-  addEntry = createEffect(
+  submitRequest = createEffect(
     () => this.actions.pipe(
-      ofType(ManifestActions.addEntry),
-      withLatestFrom(this.store.pipe(select(selectPendingEntryRequests))),
-      switchMap(([action, pendingEntryRequests]) => pendingEntryRequests
-        .filter(request => action.entry.name === request.entryName)
-        .map(request => ManifestActions.invokeEntry({ request })))
-    )
-  );
+      ofType(ManifestActions.submitRequest),
+      pluck('request'),
+      mergeMap(request => combineLatest([
+        of(request),
+        this.store.pipe(
+          select(selectManifestByName(request.manifestName)),
+          take(1)
+        )
+      ])),
+      map(([request, manifest]) => {
 
-  invokeEntry = createEffect(
+        if (!manifest) {
+          return ManifestActions.queueRequest({ request });
+        }
+
+        const entry = manifest.entries.find(e => e.name === request.entryName);
+
+        if (!entry) {
+          return ManifestActions.queueRequest({ request });
+        }
+
+        const method = request.method ? request.method : entry.methods[0];
+        // TODO: validate method with allowed methods on manifests entry
+        const url = manifest.baseUrl + entry.path;
+        const options = { ...entry.options, ...request.options };
+
+        const onSuccess = request.onSuccess ? request.onSuccess : [];
+        const onFailure = request.onFailure ? request.onFailure : [];
+
+        const restAction = this.requestsByMethod(method);
+
+        return restAction({
+          request: {
+            url,
+            method,
+            options
+          },
+          success: (response) => onSuccess.concat(ManifestActions.submitRequestSuccess({ manifest, request, response })),
+          failure: (error) => onFailure.concat(ManifestActions.submitRequestFailure({ manifest, request, error }))
+        })
+      })
+    ));
+
+  dequeue = createEffect(
     () => this.actions.pipe(
-      ofType(ManifestActions.addEntry),
-      withLatestFrom(this.store.pipe(select(selectLiveEntryRequests))),
-      switchMap(([action, liveEntryRequests]) => liveEntryRequests
-        .filter(request => action.entry.name === request.entryName)
-        .map(request => {
-          let restAction;
+      ofType(
+        ManifestActions.addManifest,
+        ManifestActions.setManifest,
+        ManifestActions.upsertManifest,
+        ManifestActions.addManifests,
+        ManifestActions.upsertManifests,
+        ManifestActions.updateManifest,
+        ManifestActions.updateManifests
+      ),
+      mergeMap(request => combineLatest([
+        this.store.pipe(
+          select(selectManifestEntities),
+          take(1)
+        ),
+        this.store.pipe(
+          select(selectPendingRequests),
+          take(1)
+        )
+      ])),
+      switchMap(([manifests, pendingRequests]) => {
+        const pendingRequestActions = [];
 
-          switch (action.entry.requestManifest.method) {
-            case 'POST':
-              restAction = RestActions.postRequest;
-              break;
-            case 'PUT':
-              restAction = RestActions.putRequest;
-              break;
-            case 'PATCH':
-              restAction = RestActions.patchRequest;
-              break;
-            case 'DELETE':
-              restAction = RestActions.deleteRequest;
-              break;
-            case 'OPTIONS':
-              restAction = RestActions.optionsRequest;
-              break;
-            case 'GET':
-            default:
-              restAction = RestActions.getRequest;
+        pendingRequests.forEach(request => {
+          const manifest: Manifest = manifests[request.manifestName];
+          if (manifest) {
+            const entry = manifest.entries.find(e => e.name === request.entryName);
+            if (entry) {
+              pendingRequestActions.push(ManifestActions.dequeueRequest({ request }))
+            }
           }
+        });
 
-          return restAction({
-            request,
-            success: response => request.onSuccess.concat(ManifestActions.invokeEntrySuccess({ request, response })),
-            failure: error => request.onFailure.concat(ManifestActions.invokeEntryFailure({ request, error })),
-          });
-
-        }))
+        return pendingRequestActions;
+      })
     )
   );
+
+  resubmitRequest = createEffect(
+    () => this.actions.pipe(
+      ofType(ManifestActions.dequeueRequest),
+      pluck('request'),
+      map(request => ManifestActions.submitRequest({ request }))
+    )
+  )
+
+  private requestsByMethod = (method: RequestMethod) => {
+    switch (method) {
+      case 'OPTIONS': return RestActions.optionsRequest;
+      case 'GET': return RestActions.getRequest;
+      case 'POST': return RestActions.postRequest;
+      case 'PUT': return RestActions.putRequest;
+      case 'PATCH': return RestActions.patchRequest;
+      case 'DELETE': return RestActions.deleteRequest;
+    }
+  };
 
 }
