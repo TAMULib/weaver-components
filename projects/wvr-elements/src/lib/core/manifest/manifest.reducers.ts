@@ -70,7 +70,7 @@ const manifestReducer = createReducer(
   on(ManifestActions.submitRequest, (state, { request }) => {
     return {
       ...state,
-      processingRequests: request
+      processingRequest: request
     }
   }),
   on(ManifestActions.submitRequestSuccess, (state, { request, response, manifest }) => {
@@ -86,7 +86,7 @@ const manifestReducer = createReducer(
       }
     }, {
       ...state,
-      processingRequests: undefined
+      processingRequest: undefined
     });
   }),
   on(ManifestActions.submitRequestFailure, (state, { request, error, manifest }) => {
@@ -102,14 +102,14 @@ const manifestReducer = createReducer(
       }
     }, {
       ...state,
-      processingRequests: undefined
+      processingRequest: undefined
     });
   }),
   on(ManifestActions.queueRequest, (state, { request }) => {
     return {
       ...state,
       pendingRequests: state.pendingRequests.concat([{ ...request }]),
-      processingRequests: undefined
+      processingRequest: undefined
     }
   }),
   on(ManifestActions.dequeueRequest, (state, { request }) => {
