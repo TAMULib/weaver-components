@@ -82,8 +82,7 @@ export class WvrHeaderComponent extends WvrBaseComponent implements OnInit, Afte
 
   mobileMenuClosed = true;
 
-  @WvrSelect({ selector: rootStore.selectManifestEntryResponse('sample', 'one') })
-  private sampleTestResponse: Observable<string>;
+  @WvrSelect({ selector: rootStore.selectManifestEntryResponse('sample', 'one') }) private sampleTestResponse: Observable<string>;
 
   /**
    * The weaver header component constructor
@@ -96,7 +95,7 @@ export class WvrHeaderComponent extends WvrBaseComponent implements OnInit, Afte
     super.ngOnInit();
     this.checkBottomNavHasChildren();
 
-    this.sampleTestResponse.subscribe(console.log);
+    // this.sampleTestResponse.subscribe(console.log);
   }
 
   ngAfterContentChecked(): void {
