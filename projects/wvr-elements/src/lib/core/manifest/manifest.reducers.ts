@@ -79,7 +79,7 @@ const manifestReducer = createReducer(
       changes: {
         entries: manifest.entries.map(entry => {
           if (entry.name === request.entryName) {
-            return { ...entry, response }
+            return { ...entry, request, response }
           }
           return entry;
         })
@@ -95,7 +95,7 @@ const manifestReducer = createReducer(
       changes: {
         entries: manifest.entries.map(entry => {
           if (entry.name === request.entryName) {
-            return { ...entry, error }
+            return { ...entry, request, error }
           }
           return entry;
         })
