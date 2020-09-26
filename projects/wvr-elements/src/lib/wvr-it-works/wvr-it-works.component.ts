@@ -1,4 +1,7 @@
 import { Component, HostBinding, Injector, Input } from '@angular/core';
+import { Observable } from 'rxjs';
+import { selectManifestEntryResponse } from '../core/store';
+import { WvrSelect } from '../shared/utility/decorators.utilty';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 /**
@@ -10,6 +13,8 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
   styleUrls: ['./wvr-it-works.component.scss']
 })
 export class WvrItWorksComponent extends WvrBaseComponent {
+
+  @WvrSelect({ selector: selectManifestEntryResponse('Directory App', 'All Sorted') }) private allSorted: Observable<any>;
 
   /** The text value to be displayed in the title. */
   title = 'it-works-component';

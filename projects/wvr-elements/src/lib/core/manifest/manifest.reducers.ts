@@ -9,6 +9,7 @@ export interface State extends EntityState<Manifest> {
   processingRequest: ManifestEntryRequest;
 }
 
+// tslint:disable-next-line:only-arrow-functions
 export function selectManifestByName(manifest: Manifest): string {
   return manifest.name;
 }

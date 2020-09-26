@@ -6,6 +6,7 @@
     "angular-tslint-rules"
   ],
   "rules": {
+    "only-arrow-functions":false,
     "comment-type": [
       true,
       "singleline",

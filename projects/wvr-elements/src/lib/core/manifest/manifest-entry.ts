@@ -6,13 +6,13 @@ export interface ManifestEntry {
   description?: string;
   path: string;
   // allowed methods for entry
-  methods: Array<RequestMethod>,
+  methods: Array<RequestMethod>;
   // options defined by manifest to be merged with request
-  options?: RequestOptions,
+  options?: RequestOptions;
   // last request submitted
-  request?: any,
+  request?: any;
   // response from last successful request
-  response?: any,
+  response?: any;
   // error from last failed request
-  error?: any
+  error?: any;
 }
