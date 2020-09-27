@@ -158,7 +158,13 @@
           "options": {
             "main": "projects/wvr-elements/src/test.ts",
             "tsConfig": "projects/wvr-elements/tsconfig.spec.json",
-            "karmaConfig": "projects/wvr-elements/karma.conf.js"
+            "karmaConfig": "projects/wvr-elements/karma.conf.js",
+            "codeCoverage": true,
+            "codeCoverageExclude": [
+              "/projects/wvr-elements/src/lib/core/*",
+              "/projects/wvr-elements/src/lib/shared/*",
+              "/projects/wvr-elements/src/lib/shared/animation/*"
+            ]
           }
         },
         "lint": {
