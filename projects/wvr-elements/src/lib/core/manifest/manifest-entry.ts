@@ -1,6 +1,8 @@
 import { RequestMethod } from '../rest/request-method';
 import { RequestOptions } from '../rest/request-options';
 
+export type map = (response) => any;
+
 export interface ManifestEntry {
   name: string; // unique
   description?: string;
@@ -15,4 +17,5 @@ export interface ManifestEntry {
   response?: any;
   // error from last failed request
   error?: any;
+  map?: map;
 }

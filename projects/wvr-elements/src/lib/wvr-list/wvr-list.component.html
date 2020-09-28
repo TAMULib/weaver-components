@@ -30,6 +30,7 @@
 </wvr-list-wrapper>
 
 <ng-template #listContent>
-  <ng-content select="wvr-list-item, wvr-list-item-element, .badge"></ng-content>
+  <!-- <wvr-list-item *ngFor="let person of (data.allSorted | async)?.payload['ArrayList&lt;LdapUser&gt;']">{{person.firstName}} {{person.lastName}}</wvr-list-item> -->
+  <ng-content select="wvr-list-item, wvr-list-item-element, .wvr-compile"></ng-content>
 </ng-template>
 

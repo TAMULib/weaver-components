@@ -144,4 +144,4 @@ export const selectAllManifests = selectAll;
 // select the total manifest count
 export const selectManifestTotal = selectTotal;
 
-export const selectPendingRequests = (state: State) => state.pendingRequests
+export const selectPendingRequests = (state: State) => state.pendingRequests;

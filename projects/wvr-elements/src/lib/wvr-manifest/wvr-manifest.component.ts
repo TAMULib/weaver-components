@@ -44,7 +44,8 @@ export class WvrManifestComponent extends WvrBaseComponent implements AfterConte
           .split(',') as Array<RequestMethod>,
         path: e.getAttribute('path'),
         description: e.getAttribute('path'),
-        options: JSON.parse(e.getAttribute('options'))
+        options: JSON.parse(e.getAttribute('options')),
+        map: data => data.payload[Object.keys(data.payload)[0]]
       };
 
       return me;

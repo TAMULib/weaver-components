@@ -636,6 +636,7 @@
     <wvr-text value="Expanding / Collapsing List" text-decoration="underline"></wvr-text><br /><br />
 
     <wvr-list list-type="unstyled" hidden-in-mobile="true">
+
       <wvr-list-item>
         <wvr-button btn-class="link" animate="{click: 'animationTrigger'}" animate-target="list2">
           <wvr-text value="Item One"></wvr-text>
@@ -674,6 +675,28 @@
     </wvr-list>
 
   </div>
+
+  <div class="container index-container">
+
+    <wvr-text value="Wvr Store, and Communication" text-decoration="underline"></wvr-text><br /><br />
+
+    <wvr-list list-type="unstyled" hidden-in-mobile="true" wvr-data="[
+      {
+        manifest: 'Directory App',
+        entry: 'All Sorted',
+        as: 'allSorted'
+      }
+    ]">
+      <template class="wvr-compile">
+        {{#each allSorted}}
+          <wvr-list-item>{{fullName}}</wvr-list-item>
+        {{/each}}
+      </template>
+    </wvr-list>
+
+  </div>
+
+         
 
   <wvr-footer hidden-in-mobile="true">
     <wvr-nav-list aligned="CENTER">

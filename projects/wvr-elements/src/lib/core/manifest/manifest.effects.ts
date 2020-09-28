@@ -43,7 +43,6 @@ export class ManifestEffects {
         // TODO: validate method with allowed methods on manifests entry
         const url = manifest.baseUrl + entry.path;
         const options = { ...entry.options, ...request.options };
-
         const onSuccess = request.onSuccess ? request.onSuccess : [];
         const onFailure = request.onFailure ? request.onFailure : [];
 
@@ -53,11 +52,12 @@ export class ManifestEffects {
           request: {
             url,
             method,
-            options
+            options,
+            map: entry.map
           },
-          success: (response) => onSuccess.concat(ManifestActions.submitRequestSuccess({ manifest, request, response })),
-          failure: (error) => onFailure.concat(ManifestActions.submitRequestFailure({ manifest, request, error }))
-        })
+          success: response => onSuccess.concat(ManifestActions.submitRequestSuccess({ manifest, request, response })),
+          failure: error => onFailure.concat(ManifestActions.submitRequestFailure({ manifest, request, error }))
+        });
       })
     ));
 
@@ -90,7 +90,7 @@ export class ManifestEffects {
           if (manifest) {
             const entry = manifest.entries.find(e => e.name === request.entryName);
             if (entry) {
-              pendingRequestActions.push(ManifestActions.dequeueRequest({ request }))
+              pendingRequestActions.push(ManifestActions.dequeueRequest({ request }));
             }
           }
         });
@@ -106,16 +106,17 @@ export class ManifestEffects {
       pluck('request'),
       map(request => ManifestActions.submitRequest({ request }))
     )
-  )
+  );
 
   private requestsByMethod = (method: RequestMethod) => {
     switch (method) {
       case 'OPTIONS': return RestActions.optionsRequest;
-      case 'GET': return RestActions.getRequest;
       case 'POST': return RestActions.postRequest;
       case 'PUT': return RestActions.putRequest;
       case 'PATCH': return RestActions.patchRequest;
       case 'DELETE': return RestActions.deleteRequest;
+      case 'GET': return RestActions.getRequest;
+      default: return;
     }
   };
 

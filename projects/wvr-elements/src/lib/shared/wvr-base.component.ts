@@ -1,14 +1,28 @@
 import { AfterContentInit, Directive, ElementRef, EventEmitter, HostBinding, Injector, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import * as JSON5 from 'json5';
+import { Observable } from 'rxjs';
 import { MobileService } from '../core/mobile.service';
-import { RootState } from '../core/store';
+import { RootState, selectManifestEntryResponse } from '../core/store';
 import { WvrAnimationService } from '../core/wvr-animation.service';
+import * as ManifestActions from '../core/manifest/manifest.actions';
+import { filter } from 'rxjs/operators';
+import * as Handlebars from 'handlebars';
+
+interface WvrDataSelect {
+  manifest: string;
+  entry: string;
+  as: string;
+}
 
 @Directive()
 // tslint:disable-next-line:directive-class-suffix
 export abstract class WvrBaseComponent implements AfterContentInit, OnInit {
+
+  data: {[as: string]: Observable<any>} = {};
+
+  @Input() private wvrData: string;
 
   @HostBinding('class.wvr-bootstrap') wvrBootstrap = true;
 
@@ -65,21 +79,24 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit {
     this._eRef = injector.get(ElementRef);
     this.mobileService = injector.get(MobileService);
     this.store = injector.get<Store<RootState>>(Store);
+
+    Handlebars.registerHelper('repeat', (n, block) => {
+        let accum = '';
+        for (let i = 0; i < n; ++i) {
+            block.data.index = i;
+            block.data.first = i === 0;
+            block.data.last = i === (n - 1);
+            accum += block.fn(this);
+        }
+
+        return accum;
+    });
+    Handlebars.registerHelper('json', context => JSON.stringify(context));
   }
 
   ngOnInit(): void {
-    const animationEvents = Object.keys(this._animationSettings);
-    if (animationEvents.length) {
-      if (this.animateId) {
-        this._animationService.registerAnimationTargets(this.animateId, this);
-      }
-      this.animationStateId = this._animationService.registerAnimationStates();
-      animationEvents.forEach(eventName => {
-        if (eventName !== 'animationTrigger') {
-          (this._eRef.nativeElement as HTMLElement).addEventListener(eventName, this.onEvent.bind(this));
-        }
-      });
-    }
+    this.processAnimations();
+    this.processData();
   }
 
   ngAfterContentInit(): void {
@@ -87,6 +104,7 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit {
       this._animationService
         .initializeAnimationElement(this.animationStateId, this._animationConfig, this.animationRootElem);
     }, 1);
+    this.parseProjectedContent();
   }
 
   triggerAnimations(animationTriggerType: string): void {
@@ -107,4 +125,69 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit {
     this.triggerAnimations($event.type);
   }
 
+  private processAnimations(): void {
+    const animationEvents = Object.keys(this._animationSettings);
+    if (animationEvents.length) {
+      if (this.animateId) {
+        this._animationService.registerAnimationTargets(this.animateId, this);
+      }
+      this.animationStateId = this._animationService.registerAnimationStates();
+      animationEvents.forEach(eventName => {
+        if (eventName !== 'animationTrigger') {
+          (this._eRef.nativeElement as HTMLElement).addEventListener(eventName, this.onEvent.bind(this));
+        }
+      });
+    }
+  }
+
+  private processData(): void {
+
+    if (!this.wvrData) {
+      return;
+    }
+
+    const valueParsed = JSON5.parse(this.wvrData);
+    // tslint:disable-next-line:max-line-length
+    const wvrDataSelects: Array<any> = Array.isArray(valueParsed) ? valueParsed : [valueParsed];
+
+    wvrDataSelects
+      .filter((s: WvrDataSelect) => !!s.manifest && !!s.entry && !!s.as)
+      .forEach(s => {
+        this.data[s.as] = this.store.pipe(
+          select(selectManifestEntryResponse(s.manifest, s.entry)),
+          filter(r => !!r)
+        );
+        this.store.dispatch(ManifestActions.submitRequest({
+          request: {
+            manifestName: s.manifest,
+            entryName: s.entry
+          }
+        }));
+      });
+  }
+
+  private parseProjectedContent(): void {
+    if (!!this.wvrData) {
+      setTimeout(() => {
+        const elem = (this._eRef.nativeElement as HTMLElement);
+        const projectedContentElem = elem.querySelector('.wvr-compile');
+
+        const valueParsed = JSON5.parse(this.wvrData);
+        // tslint:disable-next-line:max-line-length
+        const wvrDataSelects: Array<any> = Array.isArray(valueParsed) ? valueParsed : [valueParsed];
+
+        wvrDataSelects
+          .filter((s: WvrDataSelect) => !!s.manifest && !!s.entry && !!s.as)
+          .forEach((s: WvrDataSelect) => {
+            this.data[s.as].subscribe(d => {
+              const data = {};
+              data[s.as] = d;
+              const compiledContent = Handlebars.compile(projectedContentElem.innerHTML)(data);
+              elem.innerHTML = elem.innerHTML.replace(projectedContentElem.outerHTML, compiledContent);
+            });
+          });
+
+      }, 1);
+    }
+  }
 }

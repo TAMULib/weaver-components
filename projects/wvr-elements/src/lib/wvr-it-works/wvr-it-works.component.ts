@@ -14,8 +14,6 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
 })
 export class WvrItWorksComponent extends WvrBaseComponent {
 
-  @WvrSelect({ selector: selectManifestEntryResponse('Directory App', 'All Sorted') }) private allSorted: Observable<any>;
-
   /** The text value to be displayed in the title. */
   title = 'it-works-component';
 

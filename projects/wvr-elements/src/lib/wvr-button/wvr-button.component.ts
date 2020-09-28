@@ -367,22 +367,10 @@ export class WvrButtonComponent extends WvrBaseComponent {
   @HostBinding('style.--wvr-btn-vertical-align') @Input() verticalAlign;
 
   // tslint:disable-next-line:max-line-length
-  @WvrSelect({ selector: rootStore.selectManifestEntryResponse('Directory App', 'All Sorted') }) private sampleTestResponse: Observable<any>;
+  // @WvrSelect({ selector: rootStore.selectManifestEntryResponse('Directory App', 'All Sorted') }) private sampleTestResponse: Observable<any>;
 
   constructor(injector: Injector) {
     super(injector);
-  }
-
-  test(): void {
-
-    this.sampleTestResponse.subscribe(console.log);
-
-    this.store.dispatch(ManifestActions.submitRequest({
-      request: {
-        manifestName: 'Directory App',
-        entryName: 'All Sorted'
-      }
-    }));
   }
 
 }
