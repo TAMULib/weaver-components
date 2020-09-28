@@ -45,6 +45,11 @@ export const selectManifestTotal = createSelector(
   fromManifest.selectManifestTotal
 );
 
+export const selectCurrentRequest = createSelector(
+  selectManifestState,
+  fromManifest.selectCurrentRequest
+);
+
 export const selectPendingRequests = createSelector(
   selectManifestState,
   fromManifest.selectPendingRequests

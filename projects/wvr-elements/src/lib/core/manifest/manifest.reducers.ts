@@ -6,7 +6,7 @@ import * as ManifestActions from './manifest.actions';
 
 export interface State extends EntityState<Manifest> {
   pendingRequests: Array<ManifestEntryRequest>;
-  processingRequest: ManifestEntryRequest;
+  currentRequest: ManifestEntryRequest;
 }
 
 // tslint:disable-next-line:only-arrow-functions
@@ -20,7 +20,7 @@ export const adapter: EntityAdapter<Manifest> = createEntityAdapter<Manifest>({
 
 export const initialState: State = adapter.getInitialState({
   pendingRequests: [],
-  processingRequest: undefined
+  currentRequest: undefined
 });
 
 const manifestReducer = createReducer(
@@ -70,7 +70,7 @@ const manifestReducer = createReducer(
   on(ManifestActions.submitRequest, (state, { request }) => {
     return {
       ...state,
-      processingRequests: request
+      currentRequest: request
     }
   }),
   on(ManifestActions.submitRequestSuccess, (state, { request, response, manifest }) => {
@@ -79,14 +79,14 @@ const manifestReducer = createReducer(
       changes: {
         entries: manifest.entries.map(entry => {
           if (entry.name === request.entryName) {
-            return { ...entry, response }
+            return { ...entry, request, response }
           }
           return entry;
         })
       }
     }, {
       ...state,
-      processingRequests: undefined
+      currentRequest: undefined
     });
   }),
   on(ManifestActions.submitRequestFailure, (state, { request, error, manifest }) => {
@@ -95,21 +95,21 @@ const manifestReducer = createReducer(
       changes: {
         entries: manifest.entries.map(entry => {
           if (entry.name === request.entryName) {
-            return { ...entry, error }
+            return { ...entry, request, error }
           }
           return entry;
         })
       }
     }, {
       ...state,
-      processingRequests: undefined
+      currentRequest: undefined
     });
   }),
   on(ManifestActions.queueRequest, (state, { request }) => {
     return {
       ...state,
       pendingRequests: state.pendingRequests.concat([{ ...request }]),
-      processingRequests: undefined
+      currentRequest: undefined
     }
   }),
   on(ManifestActions.dequeueRequest, (state, { request }) => {
@@ -143,5 +143,7 @@ export const selectAllManifests = selectAll;
 
 // select the total manifest count
 export const selectManifestTotal = selectTotal;
+
+export const selectCurrentRequest = (state: State) => state.currentRequest;
 
 export const selectPendingRequests = (state: State) => state.pendingRequests;
