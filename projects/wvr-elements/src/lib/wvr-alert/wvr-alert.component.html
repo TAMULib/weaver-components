@@ -14,18 +14,22 @@
 
     <div *ngIf="alertType==='basic'" class="flex-fill align-self-stretch">
       <ng-content select="wvr-text"></ng-content>
+      <ng-container *ngTemplateOutlet="alertLinkUrl"></ng-container>
     </div>
 
     <div *ngIf="alertType==='closable'" class="flex-fill align-self-stretch">
       <ng-container *ngTemplateOutlet="closable"></ng-container>
+      <ng-container *ngTemplateOutlet="alertLinkUrl"></ng-container>
     </div>
 
     <div *ngIf="alertType==='self-closing'" class="flex-fill align-self-stretch">
       <ng-container *ngTemplateOutlet="selfClosing"></ng-container>
+      <ng-container *ngTemplateOutlet="alertLinkUrl"></ng-container>
     </div>
 
     <div *ngIf="alertType==='custom'" class="flex-fill align-self-stretch">
       <ng-container *ngTemplateOutlet="custom"></ng-container>
+      <ng-container *ngTemplateOutlet="alertLinkUrl"></ng-container>
     </div>
 
 </div>
@@ -47,6 +51,12 @@
 
 <ng-template #custom>
   <ng-content select="wvr-custom-alert"></ng-content>
+</ng-template>
+
+<ng-template #alertLinkUrl>
+  <a *ngIf="alertLinkUrl" [href]="alertLinkUrl">
+    <span class="alert-link"> {{alertLinkText}} </span>
+  </a>
 </ng-template>
 
 

@@ -17,6 +17,12 @@ export class WvrAlertComponent extends WvrBaseComponent implements OnInit {
   /** Used to define the text of an alert message.  */
   @Input() alertMessage: string;
 
+  /** Used to define the alert link href value. */
+  @Input() alertLinkUrl: string;
+
+  /** Used to define the text value alert link href. */
+  @Input() alertLinkText: string;
+
   /** Used to self close the alert box. */
   alertClosed = false;
 
@@ -35,7 +41,12 @@ export class WvrAlertComponent extends WvrBaseComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const wvrAlertElem = this._eRef.nativeElement as HTMLElement;
+    const alertType = wvrAlertElem.getAttribute('alert-type');
     setTimeout(() => {
+      if(alertType === "self-closing") {
+        wvrAlertElem.classList.add('wvr-hidden');
+      }
       this.alertClosed = true;
     }, 8000);
   }
