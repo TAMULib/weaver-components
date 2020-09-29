@@ -687,14 +687,20 @@
         as: 'allSorted'
       }
     ]">
-      <template class="wvr-compile">
-        {{#each allSorted}}
-          <wvr-list-item>{{fullName}}</wvr-list-item>
-        {{/each}}
-      </template>
+      <wvr-template>
+        <!-- 
+          
+          {{#each allSorted}}
+            <wvr-list-item>{{fullName}}</wvr-list-item>
+          {{/each}} 
+          
+        -->
+      </wvr-template>
     </wvr-list>
 
   </div>
+
+  <!-- <wvr-list-item *ngFor="let person of (data.allSorted | async)?.payload['ArrayList&lt;LdapUser&gt;']">{{person.firstName}} {{person.lastName}}</wvr-list-item> -->
 
   <wvr-footer hidden-in-mobile="true">
     <wvr-nav-list aligned="CENTER">

@@ -24,7 +24,6 @@ export const metaReducers: Array<MetaReducer<RootState>> = [];
 // rest selectors
 export const selectRestState = createFeatureSelector<RootState, fromRest.State>('rest');
 
-
 // manifest selectors
 export const selectManifestState = createFeatureSelector<RootState, fromManifest.State>('manifests');
 
@@ -57,31 +56,33 @@ export const selectPendingRequests = createSelector(
 
 export const selectManifestByName = (manifestName: string) => createSelector(
   selectManifestEntities,
-  (manifestEntities) => manifestEntities[manifestName]
+  manifestEntities => manifestEntities[manifestName]
 );
 
 export const selectManifestEntryResponse = (manifestName: string, entryName: string) => createSelector(
   selectManifestEntities,
-  (manifestEntities) => {
+  manifestEntities => {
     if (manifestEntities[manifestName]) {
       const manifestEntry = findManifestEntry(manifestEntities[manifestName], entryName);
+
       return manifestEntry ? manifestEntry.response : undefined;
     }
+
     return undefined;
   }
 );
 
 export const selectManifestEntryError = (manifestName: string, entryName: string) => createSelector(
   selectManifestEntities,
-  (manifestEntities) => {
+  manifestEntities => {
     if (manifestEntities[manifestName]) {
       const manifestEntry = findManifestEntry(manifestEntities[manifestName], entryName);
+
       return manifestEntry ? manifestEntry.error : undefined;
     }
+
     return undefined;
   }
 );
 
-const findManifestEntry = (manifest: Manifest, entryName: string): ManifestEntry => {
-  return manifest.entries.find(e => e.name === entryName);
-}
+const findManifestEntry = (manifest: Manifest, entryName: string): ManifestEntry => manifest.entries.find(e => e.name === entryName);

@@ -105,13 +105,6 @@ export class WvrLibModule {
       }
     }));
 
-    // store.dispatch(ManifestActions.submitRequest({
-    //   request: {
-    //     manifestName: 'sample',
-    //     entryName: 'two'
-    //   }
-    // }));
-
     store.dispatch(ManifestActions.addManifests({
       manifests: [{
         name: 'sample',

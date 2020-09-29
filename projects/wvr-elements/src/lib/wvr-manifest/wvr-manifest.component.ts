@@ -4,6 +4,7 @@ import { ManifestEntry } from '../core/manifest/manifest-entry';
 import { RequestMethod } from '../core/rest/request-method';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 import * as ManifestActions from '../core/manifest/manifest.actions';
+import * as JSON5 from 'json5';
 
 @Component({
   selector: 'wvr-manifest-element',
@@ -44,7 +45,7 @@ export class WvrManifestComponent extends WvrBaseComponent implements AfterConte
           .split(',') as Array<RequestMethod>,
         path: e.getAttribute('path'),
         description: e.getAttribute('path'),
-        options: JSON.parse(e.getAttribute('options')),
+        options: JSON5.parse(e.getAttribute('options')),
         map: data => data.payload[Object.keys(data.payload)[0]]
       };
 

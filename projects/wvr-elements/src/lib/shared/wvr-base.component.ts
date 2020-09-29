@@ -82,7 +82,7 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit {
 
     Handlebars.registerHelper('repeat', (n, block) => {
         let accum = '';
-        for (let i = 0; i < n; ++i) {
+        for (let i = 0; i < n; i += 1) {
             block.data.index = i;
             block.data.first = i === 0;
             block.data.last = i === (n - 1);
@@ -167,27 +167,37 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit {
   }
 
   private parseProjectedContent(): void {
-    if (!!this.wvrData) {
-      setTimeout(() => {
-        const elem = (this._eRef.nativeElement as HTMLElement);
-        const projectedContentElem = elem.querySelector('.wvr-compile');
 
-        const valueParsed = JSON5.parse(this.wvrData);
-        // tslint:disable-next-line:max-line-length
-        const wvrDataSelects: Array<any> = Array.isArray(valueParsed) ? valueParsed : [valueParsed];
-
-        wvrDataSelects
-          .filter((s: WvrDataSelect) => !!s.manifest && !!s.entry && !!s.as)
-          .forEach((s: WvrDataSelect) => {
-            this.data[s.as].subscribe(d => {
-              const data = {};
-              data[s.as] = d;
-              const compiledContent = Handlebars.compile(projectedContentElem.innerHTML)(data);
-              elem.innerHTML = elem.innerHTML.replace(projectedContentElem.outerHTML, compiledContent);
-            });
-          });
-
-      }, 1);
+    if (!this.wvrData) {
+      return;
     }
+
+    setTimeout(() => {
+      const elem = (this._eRef.nativeElement as HTMLElement);
+      const projectedContentElem = elem.querySelector('wvr-template');
+
+      if (!projectedContentElem) {
+        return;
+      }
+
+      const valueParsed = JSON5.parse(this.wvrData);
+      const wvrDataSelects: Array<any> = Array.isArray(valueParsed) ? valueParsed : [valueParsed];
+
+      wvrDataSelects
+        .filter((s: WvrDataSelect) => !!s.manifest && !!s.entry && !!s.as)
+        .forEach((s: WvrDataSelect) => {
+          this.data[s.as].subscribe(d => {
+            const data = {};
+            data[s.as] = d;
+            const compiledContent = Handlebars.compile(projectedContentElem.innerHTML)(data);
+            elem.innerHTML = elem.innerHTML
+              .replace(projectedContentElem.outerHTML, compiledContent
+                .replace('<!--', '')
+                .replace('-->', ''));
+          });
+        });
+
+    }, 0);
+
   }
 }

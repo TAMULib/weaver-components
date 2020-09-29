@@ -13,5 +13,5 @@ export class WvrListComponent extends WvrBaseComponent {
   constructor(injector: Injector) {
     super(injector);
   }
-  
+
 }
