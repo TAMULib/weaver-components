@@ -1,0 +1,54 @@
+<div
+  class="wvr-components wvr-alert alert"
+  [ngClass]="{
+    'alert-primary': alertClass==='primary',
+    'alert-secondary': alertClass==='secondary',
+    'alert-success': alertClass==='success',
+    'alert-danger': alertClass==='danger',
+    'alert-warning': alertClass==='warning',
+    'alert-info': alertClass==='info',
+    'alert-light': alertClass==='light',
+    'alert-dark': alertClass==='dark'
+  }"
+  role="alert">
+
+    <div *ngIf="alertType==='basic'" class="flex-fill align-self-stretch">
+      <ng-content select="wvr-text"></ng-content>
+    </div>
+
+    <div *ngIf="alertType==='closable'" class="flex-fill align-self-stretch">
+      <ng-container *ngTemplateOutlet="closable"></ng-container>
+    </div>
+
+    <div *ngIf="alertType==='self-closing'" class="flex-fill align-self-stretch">
+      <ng-container *ngTemplateOutlet="selfClosing"></ng-container>
+    </div>
+
+    <div *ngIf="alertType==='custom'" class="flex-fill align-self-stretch">
+      <ng-container *ngTemplateOutlet="custom"></ng-container>
+    </div>
+
+</div>
+
+<ng-template #closable>
+    <div class="alert-dismissible">
+      {{alertMessage}}
+      <button type="button" class="close btn btn-{{alertClass}}" aria-label="Close" (click)="clickClose($event)">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+</ng-template>
+
+<ng-template #selfClosing>
+  <div *ngIf="!alertClosed" class="alert-dismissible" (close)="alertClosed = true">
+    {{alertMessage}}
+  </div>
+</ng-template>
+
+<ng-template #custom>
+  <ng-content select="wvr-custom-alert"></ng-content>
+</ng-template>
+
+
+
+

@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { IconService } from './core/icon.service';
 import { MobileService } from './core/mobile.service';
+import { WvrAlertComponent } from './wvr-alert/wvr-alert.component';
 import { WvrAnimationService } from './core/wvr-animation.service';
 import { WvrButtonComponent } from './wvr-button/wvr-button.component';
 import { WvrDropdownComponent } from './wvr-dropdown/wvr-dropdown.component';
@@ -22,6 +23,7 @@ import { WvrTextComponent } from './wvr-text/wvr-text.component';
 
 /** This property contains a list of components and the selector tags. */
 const elements = [
+  { component: WvrAlertComponent, selector: 'wvr-alert'},
   { component: WvrButtonComponent, selector: 'wvr-button' },
   { component: WvrDropdownComponent, selector: 'wvr-dropdown' },
   { component: WvrFooterComponent, selector: 'wvr-footer' },
@@ -37,6 +39,7 @@ const elements = [
 
 /** This property contains a list of components classes. */
 const components = [
+  WvrAlertComponent,
   WvrButtonComponent,
   WvrDropdownComponent,
   WvrFooterComponent,

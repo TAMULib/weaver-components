@@ -1,0 +1,74 @@
+<example name="Weaver Alert Basic">
+  <desciption>
+    The basic <code>wvr-alert</code> component with no customizations.
+  </desciption>
+  <snippet>
+    <wvr-alert
+      alert-class="primary"
+      alert-type="basic">
+        <wvr-text value="This is a basic alert"></wvr-text>
+    </wvr-alert>
+
+    <wvr-alert
+      alert-class="secondary"
+      alert-type="basic">
+        <wvr-text value="This is a basic alert"></wvr-text>
+    </wvr-alert>
+
+    <wvr-alert
+      alert-class="info"
+      alert-type="basic">
+        <wvr-text value="This is a basic alert"></wvr-text>
+    </wvr-alert>
+
+    <wvr-alert
+      alert-class="danger"
+      alert-type="basic">
+        <wvr-text value="This is a basic alert"></wvr-text>
+    </wvr-alert>
+  </snippet>
+</example>
+
+<example name="Weaver Alert Closable">
+  <desciption>
+    The closable <code>wvr-alert</code> component.
+  </desciption>
+  <snippet>
+    <wvr-alert
+      alert-class="secondary"
+      alert-type="closable"
+      alert-message="This is closable alert">
+  </wvr-alert>
+  </snippet>
+</example>
+
+<example name="Weaver Alert Self-Closing">
+  <desciption>
+    The <code>wvr-alert</code> component with self closing feature.
+  </desciption>
+  <snippet>
+    <wvr-alert
+      alert-class="success"
+      alert-type="self-closing"
+      alert-message="This is self closing alert message">
+    </wvr-alert>
+  </snippet>
+</example>
+
+<example name="Weaver Alert Custom Content">
+  <desciption>
+    The <code>wvr-alert</code> component with custom content.
+  </desciption>
+  <snippet>
+    <wvr-alert
+      alert-class="danger"
+      alert-type="custom">
+        <wvr-custom-alert>
+          <h4 class="alert-heading">Custom Alert Heading</h4>
+          <p>Custom Alert Body</p>
+          <hr>
+          <p class="mb-0">Custom Alert footer section.</p>
+        </wvr-custom-alert>
+    </wvr-alert>
+  </snippet>
+</example>
