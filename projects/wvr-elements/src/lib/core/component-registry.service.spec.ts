@@ -42,4 +42,10 @@ describe('ComponentRegistryService', () => {
       .toBeTruthy();
   });
 
+  it('should unregister components', () => {
+    service.unRegisterComponent(component.id);
+    expect(service.getComponent(component.id))
+      .toBeUndefined();
+  });
+
 });

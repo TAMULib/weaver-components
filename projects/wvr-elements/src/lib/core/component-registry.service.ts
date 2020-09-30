@@ -6,13 +6,22 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
 })
 export class ComponentRegistryService {
 
-  private readonly registry: Array<WvrBaseComponent> = new Array<WvrBaseComponent>();
+  private index = -1;
+  private readonly registry: Map<number, WvrBaseComponent> = new Map<number, WvrBaseComponent>();
 
   register(component: WvrBaseComponent): number {
-    return this.registry.push(component) - 1;
+    // tslint:disable-next-line:increment-decrement
+    this.registry.set(++this.index, component);
+
+    return this.index;
+  }
+
+  unRegisterComponent(id: number): void {
+    this.registry.delete(id);
   }
 
   getComponent(id: number): WvrBaseComponent {
-    return this.registry[id];
+    return this.registry.get(id);
   }
+
 }

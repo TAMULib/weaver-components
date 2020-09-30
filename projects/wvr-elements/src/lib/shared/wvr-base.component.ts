@@ -1,4 +1,4 @@
-import { AfterContentInit, Directive, ElementRef, EventEmitter, HostBinding, Injector, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { AfterContentInit, Directive, ElementRef, EventEmitter, HostBinding, Injector, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import * as JSON5 from 'json5';
 import { fromEvent, Observable } from 'rxjs';
@@ -11,7 +11,7 @@ import { idText } from 'typescript';
 
 @Directive()
 // tslint:disable-next-line:directive-class-suffix
-export abstract class WvrBaseComponent implements AfterContentInit, OnInit {
+export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDestroy {
 
   readonly id: number;
 
@@ -71,6 +71,7 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit {
     this._eRef = injector.get(ElementRef);
     this.mobileService = injector.get(MobileService);
     this.id = this.componentRegistry.register(this);
+    (this._eRef.nativeElement as HTMLElement).setAttribute('id', `wvr-component-${this.id}`);
   }
 
   ngOnInit(): void {
@@ -93,6 +94,10 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit {
       this._animationService
         .initializeAnimationElement(this.animationStateId, this._animationConfig, this.animationRootElem);
     }, 1);
+  }
+
+  ngOnDestroy(): void {
+    this.componentRegistry.unRegisterComponent(this.id);
   }
 
   triggerAnimations(animationTriggerType: string): void {
