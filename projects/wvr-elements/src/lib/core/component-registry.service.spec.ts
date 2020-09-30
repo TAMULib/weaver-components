@@ -1,6 +1,7 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
 import { WvrItWorksComponent } from '../wvr-it-works/wvr-it-works.component';
 
 import { ComponentRegistryService } from './component-registry.service';
@@ -39,6 +40,12 @@ describe('ComponentRegistryService', () => {
 
   it('should retrieve components', () => {
     expect(service.getComponent(component.id) === component)
+      .toBeTruthy();
+  });
+
+  it('should retrieve components by element', () => {
+    // tslint:disable-next-line:no-string-literal
+    expect(service.getComponentByElement(component['_eRef'].nativeElement as HTMLElement) === component)
       .toBeTruthy();
   });
 

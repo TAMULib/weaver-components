@@ -24,4 +24,17 @@ export class ComponentRegistryService {
     return this.registry.get(id);
   }
 
+  getComponentByElement(element: HTMLElement): WvrBaseComponent {
+    const htmlID = element.getAttribute('id');
+
+    if (!htmlID) {
+      return;
+    }
+
+    const id = htmlID.replace(WvrBaseComponent.HTML_ID_BASE, '');
+
+    return this.getComponent(parseInt(id, 10));
+
+  }
+
 }
