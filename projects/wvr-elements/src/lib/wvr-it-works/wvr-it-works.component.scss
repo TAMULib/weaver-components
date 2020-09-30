@@ -7,3 +7,7 @@ div.container {
 .it-works {
   color: var(--wvr-primary);
 }
+
+:host {
+  font-family: var(--wvr-font-family-sans-serif);
+}

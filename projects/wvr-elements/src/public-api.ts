@@ -19,4 +19,6 @@ export * from './lib/wvr-list/wvr-list-item/wvr-list-item.component';
 export * from './lib/wvr-lib.module';
 export * from './lib/wvr-nav-list/wvr-nav-li/wvr-nav-li.component';
 export * from './lib/wvr-nav-list/wvr-nav-list.component';
+export * from './lib/wvr-tabs/wvr-tabs.component';
+export * from './lib/wvr-tabs/wvr-tab/wvr-tab.component';
 export * from './lib/wvr-text/wvr-text.component';
