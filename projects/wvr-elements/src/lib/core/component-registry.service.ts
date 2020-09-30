@@ -7,25 +7,30 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
 export class ComponentRegistryService {
 
   private index = -1;
-  private readonly registry: Map<number, WvrBaseComponent> = new Map<number, WvrBaseComponent>();
+  private readonly registry: Map<number | string, WvrBaseComponent> = new Map<number, WvrBaseComponent>();
 
   register(component: WvrBaseComponent): number {
+
+    // tslint:disable-next-line:no-string-literal
+    const element = (component['_eRef'].nativeElement as HTMLElement);
     // tslint:disable-next-line:increment-decrement
-    this.registry.set(++this.index, component);
+    const id: number | string = element.hasAttribute('id') ? ++this.index : `${element.getAttribute('id')}-${++this.index}`;
+
+    this.registry.set(id, component);
 
     return this.index;
   }
 
-  unRegisterComponent(id: number): void {
+  unRegisterComponent(id: number | string): void {
     this.registry.delete(id);
   }
 
-  getComponent(id: number): WvrBaseComponent {
+  getComponent(id: number | string): WvrBaseComponent {
     return this.registry.get(id);
   }
 
   getComponentByElement(element: HTMLElement): WvrBaseComponent {
-    const htmlID = element.getAttribute('id');
+    const htmlID = element.hasAttribute('wvr-id') ? element.getAttribute('wvr-id') : element.getAttribute('id');
 
     if (!htmlID) {
       return;

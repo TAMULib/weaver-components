@@ -70,7 +70,10 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
     this._eRef = injector.get(ElementRef);
     this.mobileService = injector.get(MobileService);
     this.id = this.componentRegistry.register(this);
-    (this._eRef.nativeElement as HTMLElement).setAttribute('id', `${WvrBaseComponent.HTML_ID_BASE}-${this.id}`);
+
+    const element = (this._eRef.nativeElement as HTMLElement);
+    const htmlIDAttrName = element.hasAttribute('id') ? 'wvr-id' : 'id';
+    element.setAttribute(htmlIDAttrName, `${WvrBaseComponent.HTML_ID_BASE}-${this.id}`);
   }
 
   ngOnInit(): void {
