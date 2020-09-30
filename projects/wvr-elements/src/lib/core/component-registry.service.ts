@@ -35,7 +35,7 @@ export class ComponentRegistryService {
       return;
     }
 
-    const id = parseInt(htmlID.replace(WvrBaseComponent.HTML_ID_BASE, ''), 10);
+    const id = parseInt(htmlID.replace(`${WvrBaseComponent.HTML_ID_BASE}-`, ''), 10);
 
     return this.getComponent(id);
   }

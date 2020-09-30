@@ -1,0 +1,9 @@
+<li class="nav-item">
+  <a class="nav-link" [ngClass]="{active: active}" href="#" (click)="clickActivation($event)">
+    {{tabTitle}}
+  </a>
+</li>
+
+<template class="tab-content">
+  <ng-content></ng-content>
+</template>

@@ -1,0 +1,15 @@
+@import "../shared/styles/wvr-variables.scss";
+
+:host {
+
+  --tab-content-display: block;
+  --tab-content-padding: 25px 0px;
+
+  font-family: var(--wvr-font-family-sans-serif);
+
+  tab-content {
+    display: var(--tab-content-display);
+    padding: var(--tab-content-padding);
+  }
+
+}
