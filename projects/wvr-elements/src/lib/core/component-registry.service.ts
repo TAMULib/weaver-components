@@ -14,9 +14,7 @@ export class ComponentRegistryService {
     // tslint:disable-next-line:no-string-literal
     const element = (component['_eRef'].nativeElement as HTMLElement);
     // tslint:disable-next-line:increment-decrement
-    const id: number | string = element.hasAttribute('id') ? ++this.index : `${element.getAttribute('id')}-${++this.index}`;
-
-    this.registry.set(id, component);
+    this.registry.set(++this.index, component);
 
     return this.index;
   }
@@ -37,7 +35,9 @@ export class ComponentRegistryService {
       return;
     }
 
-    return this.getComponent(hasNativeId ? htmlID : parseInt(htmlID.replace(WvrBaseComponent.HTML_ID_BASE, ''), 10));
+    const id = parseInt(htmlID.replace(WvrBaseComponent.HTML_ID_BASE, ''), 10);
+
+    return this.getComponent(id);
   }
 
 }
