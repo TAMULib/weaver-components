@@ -30,16 +30,14 @@ export class ComponentRegistryService {
   }
 
   getComponentByElement(element: HTMLElement): WvrBaseComponent {
-    const htmlID = element.hasAttribute('wvr-id') ? element.getAttribute('wvr-id') : element.getAttribute('id');
+    const hasNativeId = element.hasAttribute('wvr-id');
+    const htmlID = hasNativeId ? element.getAttribute('wvr-id') : element.getAttribute('id');
 
     if (!htmlID) {
       return;
     }
 
-    const id = htmlID.replace(WvrBaseComponent.HTML_ID_BASE, '');
-
-    return this.getComponent(parseInt(id, 10));
-
+    return this.getComponent(hasNativeId ? htmlID : parseInt(htmlID.replace(WvrBaseComponent.HTML_ID_BASE, ''), 10));
   }
 
 }
