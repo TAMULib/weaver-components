@@ -2,8 +2,7 @@
   <ng-container *ngTemplateOutlet="content"></ng-container>
 </ul>
 
-<tab-content [innerHTML]="activeTabContent">
-</tab-content>
+<tab-content [innerHTML]="activeTabContent"></tab-content>
 
 <ng-template #content>
   <ng-content select="wvr-tab, wvr-tab-element"></ng-content>

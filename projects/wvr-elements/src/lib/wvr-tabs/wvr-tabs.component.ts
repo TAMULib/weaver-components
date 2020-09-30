@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SafeHtml } from '@angular/platform-browser';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 import { WvrTabComponent } from './wvr-tab/wvr-tab.component';
 
@@ -11,7 +12,7 @@ export class WvrTabsComponent extends WvrBaseComponent {
 
   private tabs = new Array<WvrTabComponent>();
 
-  activeTabContent = 'Tab Content';
+  activeTabContent: SafeHtml = 'Tab Content';
 
   addTab(tab: WvrTabComponent): void {
     if (!this.tabs.length) {

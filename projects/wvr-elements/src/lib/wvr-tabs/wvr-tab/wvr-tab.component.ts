@@ -13,7 +13,7 @@ export class WvrTabComponent extends WvrBaseComponent implements AfterViewInit {
 
   active = false;
 
-  @Input() tabTitle = `Tab ${this.id}`;
+  @Input() tabText = `Tab ${this.id}`;
 
   clickActivation($event: MouseEvent): void {
     $event.preventDefault();
@@ -24,7 +24,9 @@ export class WvrTabComponent extends WvrBaseComponent implements AfterViewInit {
     this.parent.deactivateTabs();
     this.active = true;
     const elem = (this._eRef.nativeElement as HTMLElement);
-    this.parent.activeTabContent = (elem.querySelector('.tab-content') as HTMLElement).innerText;
+    const contentTemplate = elem.querySelectorAll('template')[0];
+    const safeHtml = this._domSanitizer.bypassSecurityTrustHtml(contentTemplate.querySelectorAll('.tab-content')[0].innerHTML);
+    this.parent.activeTabContent = safeHtml;
   }
 
   deActivate(): void {
