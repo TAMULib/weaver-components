@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Injector } from '@angular/core';
 import { SafeHtml } from '@angular/platform-browser';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 import { WvrTabComponent } from './wvr-tab/wvr-tab.component';
@@ -17,6 +17,10 @@ export class WvrTabsComponent extends WvrBaseComponent {
   tabContentID = `wvr-tab-content-${this.id}`;
 
   activeTabContent: SafeHtml = 'Tab Content';
+
+  constructor(injector: Injector) {
+    super(injector);
+  }
 
   addTab(tab: WvrTabComponent): void {
     if (!this.tabs.length) {

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input } from '@angular/core';
+import { AfterViewInit, Component, Injector, Input } from '@angular/core';
 import { SafeHtml } from '@angular/platform-browser';
 import { WvrBaseComponent } from '../../shared/wvr-base.component';
 import { WvrTabsComponent } from '../wvr-tabs.component';
@@ -17,6 +17,10 @@ export class WvrTabComponent extends WvrBaseComponent implements AfterViewInit {
   htmlId = `wvr-tab-link-${this.id}`;
 
   @Input() tabText = `Tab ${this.id}`;
+
+  constructor(injector: Injector) {
+    super(injector);
+  }
 
   clickActivation($event: MouseEvent): void {
     $event.preventDefault();
