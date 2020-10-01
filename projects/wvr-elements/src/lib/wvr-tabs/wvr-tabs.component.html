@@ -1,8 +1,8 @@
-<ul class="nav nav-tabs">
+<ul class="nav nav-tabs" role="tablist">
   <ng-container *ngTemplateOutlet="content"></ng-container>
 </ul>
 
-<tab-content [innerHTML]="activeTabContent"></tab-content>
+<tab-content [innerHTML]="activeTabContent" [id]="tabContentID" role="tabpanel" [attr.aria-labelledby]="activeTab?.htmlId"></tab-content>
 
 <ng-template #content>
   <ng-content select="wvr-tab, wvr-tab-element"></ng-content>

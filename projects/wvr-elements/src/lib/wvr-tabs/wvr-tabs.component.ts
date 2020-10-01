@@ -12,6 +12,10 @@ export class WvrTabsComponent extends WvrBaseComponent {
 
   private tabs = new Array<WvrTabComponent>();
 
+  activeTab: WvrTabComponent;
+
+  tabContentID = `wvr-tab-content-${this.id}`;
+
   activeTabContent: SafeHtml = 'Tab Content';
 
   addTab(tab: WvrTabComponent): void {
@@ -19,6 +23,11 @@ export class WvrTabsComponent extends WvrBaseComponent {
       tab.activate();
     }
     this.tabs.push(tab);
+  }
+
+  activateTab(tab: WvrTabComponent): void {
+    this.activeTab = tab;
+    this.activeTabContent = tab.getTabContent();
   }
 
   deactivateTabs(): void {
