@@ -67,8 +67,20 @@
     cursor: pointer;
   }
 
-  .mobile-menu {
-    display: inline-block;
+  .mobile-menu-content {
+    white-space: nowrap !important;
+    ::ng-deep {
+      .section-title {
+        white-space: nowrap !important;
+      }
+      tl-nav-li > a {
+        white-space: nowrap !important;
+      }
+      wvr-dropdown-element,
+      .section-title  {
+        min-width: 200px;
+      }
+    }
   }
 
   .mobile-menu.closed {
