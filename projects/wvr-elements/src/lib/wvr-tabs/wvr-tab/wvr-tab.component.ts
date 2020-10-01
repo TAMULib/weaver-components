@@ -39,8 +39,12 @@ export class WvrTabComponent extends WvrBaseComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     const tabsElements: HTMLElement = (this._eRef.nativeElement as HTMLElement).closest('wvr-tabs');
-    this.parent = this.componentRegistry.getComponentByElement(tabsElements) as WvrTabsComponent;
-    this.parent.addTab(this);
+    if (tabsElements) {
+      this.parent = this.componentRegistry.getComponentByElement(tabsElements) as WvrTabsComponent;
+      this.parent.addTab(this);
+    } else {
+      console.warn('The wvr-tab component must be contained within a wvr-tabs component.');
+    }
   }
 
   getTabContent(): SafeHtml {

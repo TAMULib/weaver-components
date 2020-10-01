@@ -28,6 +28,7 @@ export class ComponentRegistryService {
   }
 
   getComponentByElement(element: HTMLElement): WvrBaseComponent {
+
     const hasNativeId = element.hasAttribute('wvr-id');
     const htmlID = hasNativeId ? element.getAttribute('wvr-id') : element.getAttribute('id');
 
