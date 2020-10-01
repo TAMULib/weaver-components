@@ -1,4 +1,4 @@
-<div
+<div *ngIf="!alertClosed"
   class="wvr-components wvr-alert alert"
   [ngClass]="{
     'alert-primary': alertClass==='primary',
@@ -12,31 +12,32 @@
   }"
   role="alert">
 
-    <div *ngIf="alertType==='basic'" class="flex-fill align-self-stretch">
-      <ng-content select="wvr-text"></ng-content>
-      <ng-container *ngTemplateOutlet="alertLinkUrl"></ng-container>
+    <div *ngIf="alertType==='basic'" class="basic flex-fill align-self-stretch">
+      <ng-container *ngTemplateOutlet="basic"></ng-container>
     </div>
 
-    <div *ngIf="alertType==='closable'" class="flex-fill align-self-stretch">
+    <div *ngIf="alertType==='closable'" class="closable flex-fill align-self-stretch">
       <ng-container *ngTemplateOutlet="closable"></ng-container>
-      <ng-container *ngTemplateOutlet="alertLinkUrl"></ng-container>
     </div>
 
-    <div *ngIf="alertType==='self-closing'" class="flex-fill align-self-stretch">
+    <div *ngIf="alertType==='self-closing'" class="self-closing flex-fill align-self-stretch">
       <ng-container *ngTemplateOutlet="selfClosing"></ng-container>
-      <ng-container *ngTemplateOutlet="alertLinkUrl"></ng-container>
     </div>
 
-    <div *ngIf="alertType==='custom'" class="flex-fill align-self-stretch">
+    <div *ngIf="alertType==='custom'" class="custom flex-fill align-self-stretch">
       <ng-container *ngTemplateOutlet="custom"></ng-container>
       <ng-container *ngTemplateOutlet="alertLinkUrl"></ng-container>
     </div>
 
 </div>
 
+<ng-template #basic>
+  <ng-content select="wvr-text, wvr-text-element"></ng-content>
+</ng-template>
+
 <ng-template #closable>
-    <div class="alert-dismissible">
-      {{alertMessage}}
+   <div class="alert-dismissible">
+      <ng-container *ngTemplateOutlet="basic"></ng-container>
       <button type="button" class="close btn btn-{{alertClass}}" aria-label="Close" (click)="clickClose($event)">
         <span aria-hidden="true">×</span>
       </button>
@@ -44,21 +45,14 @@
 </ng-template>
 
 <ng-template #selfClosing>
-  <div *ngIf="!alertClosed" class="alert-dismissible" (close)="alertClosed = true">
-    {{alertMessage}}
+  <div class="alert-dismissible" (close)="alertClosed = true">
+    <ng-container *ngTemplateOutlet="basic"></ng-container>
   </div>
 </ng-template>
 
 <ng-template #custom>
   <ng-content select="wvr-custom-alert"></ng-content>
 </ng-template>
-
-<ng-template #alertLinkUrl>
-  <a *ngIf="alertLinkUrl" [href]="alertLinkUrl">
-    <span class="alert-link"> {{alertLinkText}} </span>
-  </a>
-</ng-template>
-
 
 
 

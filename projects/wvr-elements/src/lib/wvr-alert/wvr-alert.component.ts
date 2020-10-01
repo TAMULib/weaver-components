@@ -9,46 +9,32 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
 export class WvrAlertComponent extends WvrBaseComponent implements OnInit {
 
   /** Used to define the class type of an alert component.  */
-  @Input() alertClass: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark';
+  @Input() alertClass: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark' = 'primary';
 
   /** Used to define the type of alert.  */
-  @Input() alertType: 'basic' | 'closable' | 'self-closing' | 'custom';
-
-  /** Used to define the text of an alert message.  */
-  @Input() alertMessage: string;
-
-  /** Used to define the alert link href value. */
-  @Input() alertLinkUrl: string;
-
-  /** Used to define the text value alert link href. */
-  @Input() alertLinkText: string;
+  @Input() alertType: 'basic' | 'closable' | 'self-closing' | 'custom' = 'basic';
 
   /** Used to self close the alert box. */
   alertClosed = false;
 
-  constructor(injector: Injector) {
-    super(injector);
-  }
+  /** Setting the delay timer for the self closing alert message */
+  @Input() closeTimer = 5000;
 
   /**
    * An event handle method for the `document:click` event.
    * Closes the alert box once the `X` is clicked.
    */
-  @HostListener('document:click', ['$event']) clickClose($event): void {
-    const closeElem = $event.target as HTMLElement;
-    const alertElem = closeElem.closest('.wvr-alert');
-    alertElem.classList.add('wvr-hidden');
+  clickClose($event: MouseEvent): void {
+    if (($event.target as HTMLElement).closest('div.closable')) {
+      this.alertClosed = true;
+    }
   }
 
   ngOnInit(): void {
-    const wvrAlertElem = this._eRef.nativeElement as HTMLElement;
-    const alertType = wvrAlertElem.getAttribute('alert-type');
+    const alertType = (this._eRef.nativeElement as HTMLElement).getAttribute('alert-type');
     setTimeout(() => {
-      if(alertType === "self-closing") {
-        wvrAlertElem.classList.add('wvr-hidden');
-      }
-      this.alertClosed = true;
-    }, 8000);
+        this.alertClosed = (alertType === 'self-closing') ? true : false;
+    }, this.closeTimer);
   }
 
 }

@@ -174,23 +174,21 @@
     <wvr-text value="Alert Component" text-decoration="underline"></wvr-text><br /><br />
     <wvr-alert
       alert-class="primary"
-      alert-link-url="http://www.google.com"
-      alert-link-text="This is an example link"
       alert-type="basic">
         <wvr-text value="This is basic primary alert. "></wvr-text>
-
     </wvr-alert>
 
     <wvr-alert
       alert-class="secondary"
-      alert-type="closable"
-      alert-message="This is closable secondary alert">
+      alert-type="closable">
+        <wvr-text value="This is closable secondary alert."></wvr-text>
     </wvr-alert>
 
     <wvr-alert
       alert-class="success"
       alert-type="self-closing"
-      alert-message="This is self closing success alert message">
+      close-timer="5000">
+        <wvr-text value="This is self closing success alert"></wvr-text>
     </wvr-alert>
 
     <wvr-alert
