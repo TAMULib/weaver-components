@@ -71,6 +71,32 @@
     display: inline-block;
   }
 
+  .mobile-menu > div > div > wvr-nav-li > li {
+    > a {
+      white-space: nowrap;
+    }
+  }
+
+  // .mobile-menu > div.mobile-menu-content {
+  //   > div > wvr-nav-li > li > a {
+  //     white-space: nowrap;
+  //   }
+    // background: tomato;
+    // >div {
+    //   wvr-nav-li > li.nav-item {
+    //     a {
+    //       white-space: nowrap;
+    //     }
+    //     .mobile-display {
+    //       white-space: nowrap;
+    //     }
+    //     wvr-dropdown-element > .wvr-dropdown .dropdown wvr-button-element {
+    //       white-space: nowrap;
+    //     }
+    //   }
+    // }
+  // }
+
   .mobile-menu.closed {
     width: 0px;
     opacity: 0;
