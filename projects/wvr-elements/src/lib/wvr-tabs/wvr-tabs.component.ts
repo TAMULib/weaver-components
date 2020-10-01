@@ -4,7 +4,7 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
 import { WvrTabComponent } from './wvr-tab/wvr-tab.component';
 
 @Component({
-  selector: 'wvr-wvr-tabs-element',
+  selector: 'wvr-tabs-element',
   templateUrl: './wvr-tabs.component.html',
   styleUrls: ['./wvr-tabs.component.scss']
 })
