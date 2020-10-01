@@ -20,6 +20,10 @@ export class WvrAlertComponent extends WvrBaseComponent implements OnInit {
   /** Setting the delay timer for the self closing alert message */
   @Input() closeTimer = 5000;
 
+  constructor(injector: Injector) {
+    super(injector);
+  }
+
   /**
    * An event handle method for the `document:click` event.
    * Closes the alert box once the `X` is clicked.
