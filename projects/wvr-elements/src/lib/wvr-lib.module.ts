@@ -20,6 +20,8 @@ import { WvrListComponent } from './wvr-list/wvr-list.component';
 import { WvrNavLiComponent } from './wvr-nav-list/wvr-nav-li/wvr-nav-li.component';
 import { WvrNavListComponent } from './wvr-nav-list/wvr-nav-list.component';
 import { WvrTextComponent } from './wvr-text/wvr-text.component';
+import { WvrTabsComponent } from './wvr-tabs/wvr-tabs.component';
+import { WvrTabComponent } from './wvr-tabs/wvr-tab/wvr-tab.component';
 
 /** This property contains a list of components and the selector tags. */
 const elements = [
@@ -34,7 +36,9 @@ const elements = [
   { component: WvrListItemComponent, selector: 'wvr-list-item' },
   { component: WvrNavListComponent, selector: 'wvr-nav-list' },
   { component: WvrNavLiComponent, selector: 'wvr-nav-li' },
-  { component: WvrTextComponent, selector: 'wvr-text' }
+  { component: WvrTextComponent, selector: 'wvr-text' },
+  { component: WvrTabsComponent, selector: 'wvr-tabs' },
+  { component: WvrTabComponent, selector: 'wvr-tab' }
 ];
 
 /** This property contains a list of components classes. */
@@ -50,7 +54,9 @@ const components = [
   WvrItWorksComponent,
   WvrNavListComponent,
   WvrNavLiComponent,
-  WvrTextComponent
+  WvrTextComponent,
+  WvrTabsComponent,
+  WvrTabComponent
 ];
 
 /** The main module for the Weaver Elements library. */

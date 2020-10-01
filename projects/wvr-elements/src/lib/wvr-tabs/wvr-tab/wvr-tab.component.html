@@ -1,0 +1,11 @@
+<li class="nav-item">
+  <a [id]="htmlId" class="nav-link" [ngClass]="{active: active}" href="#" (click)="clickActivation($event)" role="tab" [attr.aria-controls]="parent?.tabContentID">
+    {{tabText}}
+  </a>
+</li>
+
+<template>
+  <div class="tab-content">
+    <ng-content></ng-content>
+  </div>
+</template>
