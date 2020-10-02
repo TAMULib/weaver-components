@@ -1,4 +1,5 @@
-import { Component, HostBinding, Injector, Input, OnInit } from '@angular/core';
+import { AfterContentInit, Component, ElementRef, Injector, Input, OnInit, ViewChild } from '@angular/core';
+import { SafeHtml } from '@angular/platform-browser';
 import { Theme } from '../../shared/theme.type';
 import { WvrBaseComponent } from '../../shared/wvr-base.component';
 import { WvrListComponent } from '../wvr-list.component';
@@ -8,7 +9,7 @@ import { WvrListComponent } from '../wvr-list.component';
   templateUrl: './wvr-list-item.component.html',
   styleUrls: ['./wvr-list-item.component.scss']
 })
-export class WvrListItemComponent extends WvrBaseComponent implements OnInit {
+export class WvrListItemComponent extends WvrBaseComponent implements OnInit, AfterContentInit  {
 
   private parent: WvrListComponent;
 
@@ -26,6 +27,20 @@ export class WvrListItemComponent extends WvrBaseComponent implements OnInit {
 
   htmlId = `wvr-li-${this.id}`;
 
+  @ViewChild('liWrapper') contentProjection: ElementRef<HTMLTemplateElement>;
+
+  get htmlContent(): string {
+    const elems = this.contentProjection.nativeElement.children;
+
+    let htmlString = '';
+    for (let i = 0; i < elems.length; i++) {
+      const elem = elems.item(i);
+      htmlString += elem.outerHTML;
+    }
+
+    return htmlString;
+  }
+
   constructor(injector: Injector) {
     super(injector);
   }
@@ -33,6 +48,7 @@ export class WvrListItemComponent extends WvrBaseComponent implements OnInit {
   ngOnInit(): void {
     this.parent = this.componentRegistry
       .getComponentByElement((this._eRef.nativeElement as HTMLElement).closest('wvr-list')) as WvrListComponent;
+    this.parent.addListItem(this);
 
     const listTypeAttribute = this.parent ? this.parent.listType : undefined;
     this.listType = listTypeAttribute ? listTypeAttribute : 'unordered';
@@ -42,8 +58,6 @@ export class WvrListItemComponent extends WvrBaseComponent implements OnInit {
                    parentTheme ?
                    parentTheme :
                    undefined;
-
-    this.parent.addListItem(this);
   }
 
 }

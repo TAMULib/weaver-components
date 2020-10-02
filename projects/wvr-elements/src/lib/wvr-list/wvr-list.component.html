@@ -1,35 +1,34 @@
 <wvr-list-wrapper  #animationRoot>
-  <ul *ngIf="listType==='unordered' || listType==='unstyled'" [ngClass]="{'list-unstyled': listType==='unstyled'}" [attr.aria-owns]="ariaOwns" role="presentaion">
-    <ng-container *ngTemplateOutlet="listContent"></ng-container>
+  
+  <ul innerHtml="{{listItemsHtml}}" *ngIf="listType==='unordered' || listType==='unstyled'" [ngClass]="{'list-unstyled': listType==='unstyled'}">
   </ul>
 
-  <ol *ngIf="listType==='ordered'" [attr.aria-owns]="ariaOwns" role="presentaion">
-    <ng-container *ngTemplateOutlet="listContent"></ng-container>
+  <ol innerHtml="{{listItemsHtml}}" *ngIf="listType==='ordered'">
   </ol>
 
-  <dl *ngIf="listType==='described'" [attr.aria-owns]="ariaOwns" role="presentaion">
-    <ng-container *ngTemplateOutlet="listContent"></ng-container>
+  <dl innerHtml="{{listItemsHtml}}" *ngIf="listType==='described'">
   </dl>
 
-  <ul *ngIf="listType==='group-ul' || listType==='group'" class="list-group" [attr.aria-owns]="ariaOwns" role="presentaion">
-    <ng-container *ngTemplateOutlet="listContent"></ng-container>
+  <ul innerHtml="{{listItemsHtml}}" *ngIf="listType==='group-ul' || listType==='group'" class="list-group">
   </ul>
 
-  <div *ngIf="listType==='group-div'" class="list-group">
-    <ng-container *ngTemplateOutlet="listContent"></ng-container>
+  <div innerHtml="{{listItemsHtml}}" *ngIf="listType==='group-div'" class="list-group">
   </div>
 
-  <ul *ngIf="listType==='group-flush'" class="list-group list-group-flush" [attr.aria-owns]="ariaOwns" role="presentaion">
-    <ng-container *ngTemplateOutlet="listContent"></ng-container>
+  <ul innerHtml="{{listItemsHtml}}" *ngIf="listType==='group-flush'" class="list-group list-group-flush">
   </ul>
 
-  <div *ngIf="listType==='group-custom-content'" class="list-group">
-    <ng-container *ngTemplateOutlet="listContent"></ng-container>
+  <div innerHtml="{{listItemsHtml}}" *ngIf="listType==='group-custom-content'" class="list-group">
   </div>
 
 </wvr-list-wrapper>
 
-<ng-template #listContent>
+
+<template>
+  <ng-container *ngTemplateOutlet="contentProjection"></ng-container>
+</template>
+
+<ng-template #contentProjection>
   <ng-content select="wvr-list-item, wvr-list-item-element, .badge"></ng-content>
 </ng-template>
 
