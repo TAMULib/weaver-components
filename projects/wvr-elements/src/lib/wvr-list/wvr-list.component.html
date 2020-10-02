@@ -1,17 +1,17 @@
 <wvr-list-wrapper  #animationRoot>
-  <ul *ngIf="listType==='unordered' || listType==='unstyled'" [ngClass]="{'list-unstyled': listType==='unstyled'}">
+  <ul *ngIf="listType==='unordered' || listType==='unstyled'" [ngClass]="{'list-unstyled': listType==='unstyled'}" [attr.aria-owns]="ariaOwns" role="presentaion">
     <ng-container *ngTemplateOutlet="listContent"></ng-container>
   </ul>
 
-  <ol *ngIf="listType==='ordered'">
+  <ol *ngIf="listType==='ordered'" [attr.aria-owns]="ariaOwns" role="presentaion">
     <ng-container *ngTemplateOutlet="listContent"></ng-container>
   </ol>
 
-  <dl *ngIf="listType==='described'">
+  <dl *ngIf="listType==='described'" [attr.aria-owns]="ariaOwns" role="presentaion">
     <ng-container *ngTemplateOutlet="listContent"></ng-container>
   </dl>
 
-  <ul *ngIf="listType==='group-ul' || listType==='group'" class="list-group">
+  <ul *ngIf="listType==='group-ul' || listType==='group'" class="list-group" [attr.aria-owns]="ariaOwns" role="presentaion">
     <ng-container *ngTemplateOutlet="listContent"></ng-container>
   </ul>
 
@@ -19,7 +19,7 @@
     <ng-container *ngTemplateOutlet="listContent"></ng-container>
   </div>
 
-  <ul *ngIf="listType==='group-flush'" class="list-group list-group-flush">
+  <ul *ngIf="listType==='group-flush'" class="list-group list-group-flush" [attr.aria-owns]="ariaOwns" role="presentaion">
     <ng-container *ngTemplateOutlet="listContent"></ng-container>
   </ul>
 

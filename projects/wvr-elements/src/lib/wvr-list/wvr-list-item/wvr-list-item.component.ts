@@ -1,6 +1,7 @@
-import { Component, Injector, Input, OnInit } from '@angular/core';
+import { Component, HostBinding, Injector, Input, OnInit } from '@angular/core';
 import { Theme } from '../../shared/theme.type';
 import { WvrBaseComponent } from '../../shared/wvr-base.component';
+import { WvrListComponent } from '../wvr-list.component';
 
 @Component({
   selector: 'wvr-list-item-element',
@@ -9,7 +10,7 @@ import { WvrBaseComponent } from '../../shared/wvr-base.component';
 })
 export class WvrListItemComponent extends WvrBaseComponent implements OnInit {
 
-  private _parent: HTMLElement;
+  private parent: WvrListComponent;
 
   listType: string;
 
@@ -23,21 +24,26 @@ export class WvrListItemComponent extends WvrBaseComponent implements OnInit {
 
   @Input() customContentSmallText: string;
 
+  htmlId = `wvr-li-${this.id}`;
+
   constructor(injector: Injector) {
     super(injector);
   }
 
   ngOnInit(): void {
-    this._parent = (this._eRef.nativeElement as HTMLElement).closest('wvr-list');
+    this.parent = this.componentRegistry
+      .getComponentByElement((this._eRef.nativeElement as HTMLElement).closest('wvr-list')) as WvrListComponent;
 
-    const listTypeAttribute = this._parent ? this._parent.getAttribute('list-type') : undefined;
+    const listTypeAttribute = this.parent ? this.parent.listType : undefined;
     this.listType = listTypeAttribute ? listTypeAttribute : 'unordered';
-    const contextAttribute = this._parent ? (this._parent.getAttribute('context') as Theme) : undefined;
+    const parentTheme = this.parent ? this.parent.context : undefined;
     this.context = this.context ?
                    this.context :
-                   contextAttribute ?
-                   contextAttribute :
+                   parentTheme ?
+                   parentTheme :
                    undefined;
+
+    this.parent.addListItem(this);
   }
 
 }
