@@ -23,12 +23,6 @@ export class WvrListComponent extends WvrBaseComponent implements AfterContentIn
     return this._htmlString;
   }
 
-  get ariaOwns(): string {
-    return this.listItems
-      .map(li => `#${li.htmlId}`)
-      .join(',');
-  }
-
   constructor(injector: Injector) {
     super(injector);
     this.listItems = new Array<WvrListItemComponent>();
