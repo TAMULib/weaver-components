@@ -46,18 +46,26 @@ export class WvrListItemComponent extends WvrBaseComponent implements OnInit, Af
   }
 
   ngOnInit(): void {
-    this.parent = this.componentRegistry
-      .getComponentByElement((this._eRef.nativeElement as HTMLElement).closest('wvr-list')) as WvrListComponent;
-    this.parent.addListItem(this);
 
-    const listTypeAttribute = this.parent ? this.parent.listType : undefined;
-    this.listType = listTypeAttribute ? listTypeAttribute : 'unordered';
-    const parentTheme = this.parent ? this.parent.context : undefined;
-    this.context = this.context ?
-                   this.context :
-                   parentTheme ?
-                   parentTheme :
-                   undefined;
+    const listElem: HTMLElement = (this._eRef.nativeElement as HTMLElement).closest('wvr-list');
+
+    if (listElem) {
+      this.parent = this.componentRegistry
+      .getComponentByElement(listElem) as WvrListComponent;
+      this.parent.addListItem(this);
+
+      const listTypeAttribute = this.parent ? this.parent.listType : undefined;
+      this.listType = listTypeAttribute ? listTypeAttribute : 'unordered';
+      const parentTheme = this.parent ? this.parent.context : undefined;
+      this.context = this.context ?
+                    this.context :
+                    parentTheme ?
+                    parentTheme :
+                    undefined;
+    } else {
+      console.warn('The wvr-list-item component must be contained within a wvr-list component.');
+    }
+
   }
 
 }
