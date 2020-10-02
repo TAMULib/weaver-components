@@ -1,6 +1,6 @@
 import { AfterContentChecked, Component, HostBinding, Injector, Input, OnInit } from '@angular/core';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
-console.log("BUILD 6");
+
 /**
  * Intended to appear at the top of document and provides for branding, links and page title.
  */
