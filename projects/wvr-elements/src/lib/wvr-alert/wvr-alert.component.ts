@@ -11,11 +11,14 @@ export class WvrAlertComponent extends WvrBaseComponent implements OnInit {
   /** Used to define the class type of an alert component.  */
   @Input() alertClass: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark' = 'primary';
 
-  /** Used to define the type of alert.  */
-  @Input() alertType: 'basic' | 'closable' | 'self-closing' | 'custom' = 'basic';
+  /** Used to define the type of alert. */
+  @Input() alertType: 'basic' | 'self-closing' | 'custom' = 'basic';
 
   /** Used to self close the alert box. */
   alertClosed = false;
+
+  /** Used to display the Close button. */
+  @Input() closable: 'true' | 'false' = 'true';
 
   /** Setting the delay timer for the self closing alert message */
   @Input() closeTimer = 5000;
@@ -29,9 +32,7 @@ export class WvrAlertComponent extends WvrBaseComponent implements OnInit {
    * Closes the alert box once the `X` is clicked.
    */
   clickClose($event: MouseEvent): void {
-    if (($event.target as HTMLElement).closest('div.closable')) {
       this.alertClosed = true;
-    }
   }
 
   ngOnInit(): void {

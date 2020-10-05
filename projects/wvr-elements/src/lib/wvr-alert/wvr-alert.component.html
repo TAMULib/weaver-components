@@ -13,11 +13,8 @@
   role="alert">
 
     <div *ngIf="alertType==='basic'" class="basic flex-fill align-self-stretch">
+      <ng-container *ngTemplateOutlet="closeButton"></ng-container>
       <ng-container *ngTemplateOutlet="basic"></ng-container>
-    </div>
-
-    <div *ngIf="alertType==='closable'" class="closable flex-fill align-self-stretch">
-      <ng-container *ngTemplateOutlet="closable"></ng-container>
     </div>
 
     <div *ngIf="alertType==='self-closing'" class="self-closing flex-fill align-self-stretch">
@@ -25,6 +22,7 @@
     </div>
 
     <div *ngIf="alertType==='custom'" class="custom flex-fill align-self-stretch">
+      <ng-container *ngTemplateOutlet="closeButton"></ng-container>
       <ng-container *ngTemplateOutlet="custom"></ng-container>
     </div>
 
@@ -32,15 +30,6 @@
 
 <ng-template #basic>
   <ng-content select="wvr-text, wvr-text-element"></ng-content>
-</ng-template>
-
-<ng-template #closable>
-   <div class="alert-dismissible">
-      <ng-container *ngTemplateOutlet="basic"></ng-container>
-      <button type="button" class="close btn btn-{{alertClass}}" aria-label="Close" (click)="clickClose($event)">
-        <span aria-hidden="true">×</span>
-      </button>
-    </div>
 </ng-template>
 
 <ng-template #selfClosing>
@@ -51,6 +40,12 @@
 
 <ng-template #custom>
   <ng-content select="wvr-custom-alert"></ng-content>
+</ng-template>
+
+<ng-template #closeButton>
+  <button type="button" class="close btn btn-{{alertClass}}" aria-label="Close" (click)="clickClose($event)" *ngIf="closable==='true'">
+       <span aria-hidden="true">×</span>
+     </button>
 </ng-template>
 
 
