@@ -29,19 +29,6 @@
   </snippet>
 </example>
 
-<example name="Weaver Alert Closable">
-  <desciption>
-    The closable <code>wvr-alert</code> component.
-  </desciption>
-  <snippet>
-    <wvr-alert
-      alert-class="secondary"
-      alert-type="closable">
-        <wvr-text value="This is closable secondary alert."></wvr-text>
-    </wvr-alert>
-  </snippet>
-</example>
-
 <example name="Weaver Alert Self-Closing">
   <desciption>
     The <code>wvr-alert</code> component with self closing feature based on the input closing timer.
@@ -70,6 +57,26 @@
           </h4>
           <p>
             <wvr-text value="Custom Alert Body"></wvr-text>
+          </p>
+          <hr>
+          <p class="mb-0">
+            <wvr-text value="Custom Alert footer section."></wvr-text>
+          </p>
+        </wvr-custom-alert>
+    </wvr-alert>
+  </snippet>
+
+  <snippet>
+    <wvr-alert
+      alert-class="danger"
+      alert-type="custom"
+      closable="false">
+        <wvr-custom-alert>
+          <h4 class="alert-heading">
+            <wvr-text value="Custom Alert Heading"></wvr-text>
+          </h4>
+          <p>
+            <wvr-text value="Custom Alert Body with no closable button"></wvr-text>
           </p>
           <hr>
           <p class="mb-0">

@@ -38,8 +38,8 @@ describe('WvrAlertComponent', () => {
       .toEqual('basic');
   });
 
-  it('should close when closable', () => {
-    component.alertType = 'closable';
+  it('should close when close button is clicked', () => {
+    component.alertType = 'custom';
     fixture.detectChanges();
     const alertElem = fixture.elementRef.nativeElement as HTMLElement;
     // tslint:disable-next-line: no-unnecessary-type-assertion
