@@ -1,4 +1,4 @@
-import { Component, HostListener, Injector, Input, OnInit } from '@angular/core';
+import { AfterContentInit, Component, HostListener, Injector, Input, OnInit } from '@angular/core';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 @Component({
@@ -6,7 +6,7 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
   templateUrl: './wvr-alert.component.html',
   styleUrls: ['./wvr-alert.component.scss']
 })
-export class WvrAlertComponent extends WvrBaseComponent implements OnInit {
+export class WvrAlertComponent extends WvrBaseComponent implements AfterContentInit, OnInit {
 
   /** Used to define the class type of an alert component.  */
   @Input() alertClass: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark' = 'primary';
@@ -36,9 +36,8 @@ export class WvrAlertComponent extends WvrBaseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const alertType = (this._eRef.nativeElement as HTMLElement).getAttribute('alert-type');
     setTimeout(() => {
-        this.alertClosed = (alertType === 'self-closing') ? true : false;
+        this.alertClosed = (this.alertType === 'self-closing') ? true : false;
     }, this.closeTimer);
   }
 
