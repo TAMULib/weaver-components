@@ -98,6 +98,11 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
+            "codeCoverage": true,
+            "codeCoverageExclude": [
+              "/src/polyfills.ts",
+              "/src/test.ts"
+            ],
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -161,9 +166,8 @@
             "karmaConfig": "projects/wvr-elements/karma.conf.js",
             "codeCoverage": true,
             "codeCoverageExclude": [
-              "/projects/wvr-elements/src/lib/core/*",
-              "/projects/wvr-elements/src/lib/shared/*",
-              "/projects/wvr-elements/src/lib/shared/animation/*"
+                "/src/polyfills.ts",
+                "/src/test.ts"
             ]
           }
         },
