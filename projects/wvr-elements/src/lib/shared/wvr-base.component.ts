@@ -1,4 +1,4 @@
-import { AfterContentInit, Directive, ElementRef, EventEmitter, HostBinding, Injector, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { AfterContentInit, Directive, ElementRef, EventEmitter, HostBinding, Injector, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { select, Store } from '@ngrx/store';
 import * as JSON5 from 'json5';
@@ -9,6 +9,7 @@ import { WvrAnimationService } from '../core/wvr-animation.service';
 import * as ManifestActions from '../core/manifest/manifest.actions';
 import { filter } from 'rxjs/operators';
 import * as Handlebars from 'handlebars';
+import { ComponentRegistryService } from '../core/component-registry.service';
 
 interface WvrDataSelect {
   manifest: string;
@@ -18,7 +19,11 @@ interface WvrDataSelect {
 
 @Directive()
 // tslint:disable-next-line:directive-class-suffix
-export abstract class WvrBaseComponent implements AfterContentInit, OnInit {
+export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDestroy {
+
+  readonly id: number;
+
+  static readonly HTML_ID_BASE = 'wvr-component';
 
   data: {[as: string]: Observable<any>} = {};
 
@@ -27,6 +32,7 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit {
   @HostBinding('class.wvr-bootstrap') wvrBootstrap = true;
 
   private _animationSettings: any = {};
+
   @Input() set animate(value: string) {
     this._animationSettings = JSON5.parse(value);
   }
@@ -56,6 +62,7 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit {
   }
 
   protected readonly store: Store<RootState>;
+  protected readonly componentRegistry: ComponentRegistryService;
 
   protected readonly _animationService: WvrAnimationService;
 
@@ -74,11 +81,13 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit {
   @Output() protected readonly animationEventTrigger = new EventEmitter<Event>();
 
   constructor(injector: Injector) {
+    this.componentRegistry = injector.get(ComponentRegistryService);
     this._animationService = injector.get(WvrAnimationService);
     this._domSanitizer = injector.get(DomSanitizer);
     this._eRef = injector.get(ElementRef);
     this.mobileService = injector.get(MobileService);
     this.store = injector.get<Store<RootState>>(Store);
+    this.id = this.componentRegistry.register(this);
 
     Handlebars.registerHelper('repeat', (n, block) => {
         let accum = '';
@@ -92,6 +101,10 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit {
         return accum;
     });
     Handlebars.registerHelper('json', context => JSON.stringify(context));
+
+    const element = (this._eRef.nativeElement as HTMLElement);
+    const htmlIDAttrName = element.hasAttribute('id') ? 'wvr-id' : 'id';
+    element.setAttribute(htmlIDAttrName, `${WvrBaseComponent.HTML_ID_BASE}-${this.id}`);
   }
 
   ngOnInit(): void {
@@ -105,6 +118,10 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit {
         .initializeAnimationElement(this.animationStateId, this._animationConfig, this.animationRootElem);
     }, 1);
     this.parseProjectedContent();
+  }
+
+  ngOnDestroy(): void {
+    this.componentRegistry.unRegisterComponent(this.id);
   }
 
   triggerAnimations(animationTriggerType: string): void {
