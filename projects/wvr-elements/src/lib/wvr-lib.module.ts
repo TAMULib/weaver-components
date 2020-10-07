@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { IconService } from './core/icon.service';
 import { MobileService } from './core/mobile.service';
+import { WvrAlertComponent } from './wvr-alert/wvr-alert.component';
 import { WvrAnimationService } from './core/wvr-animation.service';
 import { WvrButtonComponent } from './wvr-button/wvr-button.component';
 import { WvrDropdownComponent } from './wvr-dropdown/wvr-dropdown.component';
@@ -19,9 +20,12 @@ import { WvrListComponent } from './wvr-list/wvr-list.component';
 import { WvrNavLiComponent } from './wvr-nav-list/wvr-nav-li/wvr-nav-li.component';
 import { WvrNavListComponent } from './wvr-nav-list/wvr-nav-list.component';
 import { WvrTextComponent } from './wvr-text/wvr-text.component';
+import { WvrTabsComponent } from './wvr-tabs/wvr-tabs.component';
+import { WvrTabComponent } from './wvr-tabs/wvr-tab/wvr-tab.component';
 
 /** This property contains a list of components and the selector tags. */
 const elements = [
+  { component: WvrAlertComponent, selector: 'wvr-alert'},
   { component: WvrButtonComponent, selector: 'wvr-button' },
   { component: WvrDropdownComponent, selector: 'wvr-dropdown' },
   { component: WvrFooterComponent, selector: 'wvr-footer' },
@@ -32,11 +36,14 @@ const elements = [
   { component: WvrListItemComponent, selector: 'wvr-list-item' },
   { component: WvrNavListComponent, selector: 'wvr-nav-list' },
   { component: WvrNavLiComponent, selector: 'wvr-nav-li' },
-  { component: WvrTextComponent, selector: 'wvr-text' }
+  { component: WvrTextComponent, selector: 'wvr-text' },
+  { component: WvrTabsComponent, selector: 'wvr-tabs' },
+  { component: WvrTabComponent, selector: 'wvr-tab' }
 ];
 
 /** This property contains a list of components classes. */
 const components = [
+  WvrAlertComponent,
   WvrButtonComponent,
   WvrDropdownComponent,
   WvrFooterComponent,
@@ -47,7 +54,9 @@ const components = [
   WvrItWorksComponent,
   WvrNavListComponent,
   WvrNavLiComponent,
-  WvrTextComponent
+  WvrTextComponent,
+  WvrTabsComponent,
+  WvrTabComponent
 ];
 
 /** The main module for the Weaver Elements library. */
