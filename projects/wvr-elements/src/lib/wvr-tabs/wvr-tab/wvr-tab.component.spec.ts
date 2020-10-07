@@ -27,4 +27,16 @@ describe('WvrTabComponent', () => {
     expect(component)
       .toBeTruthy();
   });
+
+  it('should have unique id', () => {
+    const tabElem = (fixture.elementRef.nativeElement as HTMLElement).querySelector('li a');
+    expect(component.htmlId)
+      .toEqual(tabElem.getAttribute('id'));
+  });
+
+  it('should have unique tab text', () => {
+    const tabElem = (fixture.elementRef.nativeElement as HTMLElement).querySelector('li a');
+    expect(component.tabText.trim())
+      .toEqual(tabElem.innerHTML.trim());
+  });
 });
