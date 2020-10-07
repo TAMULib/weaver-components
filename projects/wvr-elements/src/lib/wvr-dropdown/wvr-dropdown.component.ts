@@ -109,7 +109,7 @@ export class WvrDropdownComponent extends WvrBaseComponent {
   }
 
   get btnColor(): string {
-    return this._btnColor ? this._btnColor : `var(--wvr-btn-${this.btnType}-color-default`;
+    return this._btnColor ? this._btnColor : `var(--wvr-btn-${this.btnType}-color-default)`;
   }
 
   /** Allows for override the button color in active state. */
