@@ -45,7 +45,7 @@
     "test:e2e": "ng e2e",
     "test:unit": "ng test --no-watch",
     "test:watch": "ng test",
-    "test:report": "cat ./static/weaver-components/reports/coverage/weaver-components/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "test:report": "cat ./static/weaver-components/reports/coverage/weaver-elements/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "test:coverage": "ng test --no-watch --code-coverage",
     "test:ci": "npm run test:coverage && npm run test:audit"
   },
