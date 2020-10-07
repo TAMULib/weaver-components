@@ -2,6 +2,9 @@ import { Component, HostBinding, HostListener, Injector, Input, ViewChild } from
 import { NgbDropdown, NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
+/**
+ * A dropdown with button and contextualized styling.
+ */
 @Component({
   selector: 'wvr-dropdown-element',
   templateUrl: './wvr-dropdown.component.html',
@@ -31,6 +34,7 @@ export class WvrDropdownComponent extends WvrBaseComponent {
     this._btnBackground = value;
   }
 
+  /** An accessor for the assigned background of this dropdowns button. */
   get btnBackground(): string {
     return this._btnBackground ? this._btnBackground : `var(--wvr-btn-${this.btnType}-background-default)`;
   }

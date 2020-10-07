@@ -1,6 +1,9 @@
 import { AfterContentInit, Component, HostListener, Injector, Input, OnInit } from '@angular/core';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
+/**
+ * A message display with contextualized styling.
+ */
 @Component({
   selector: 'wvr-alert-element',
   templateUrl: './wvr-alert.component.html',
@@ -35,6 +38,7 @@ export class WvrAlertComponent extends WvrBaseComponent implements AfterContentI
       this.alertClosed = true;
   }
 
+  /** Initializes the closing timer for a self closing alert. */
   ngOnInit(): void {
     setTimeout(() => {
         this.alertClosed = (this.alertType === 'self-closing') ? true : false;
