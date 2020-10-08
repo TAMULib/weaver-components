@@ -24,7 +24,7 @@
 </head>
 
 <body>
-  <wvr-header hidden-in-mobile="true">
+  <wvr-header>
     <wvr-nav-list top-navigation>
       <wvr-nav-li>
         <wvr-dropdown
@@ -169,6 +169,58 @@
   <br />
 
   <wvr-it-works animate="{animationTrigger: 'fadeToggle'}" animate-id="elem1" hidden-in-mobile="true"></wvr-it-works>
+
+  <div class="container index-container">
+    <wvr-text value="Alert Component" text-decoration="underline"></wvr-text><br /><br />
+    <wvr-alert
+      alert-class="primary"
+      alert-type="basic">
+        <wvr-text value="This is basic primary alert. "></wvr-text>
+    </wvr-alert>
+
+    <wvr-alert
+      alert-class="success"
+      alert-type="self-closing"
+      close-timer="5000">
+        <wvr-text value="This is self closing success alert"></wvr-text>
+    </wvr-alert>
+
+    <wvr-alert
+      alert-class="success"
+      alert-type="custom">
+        <wvr-custom-alert>
+          <h4 class="alert-heading">
+            <wvr-text value="Custom Alert Heading"></wvr-text>
+          </h4>
+          <p>
+            <wvr-text value="Custom Alert Body"></wvr-text>
+          </p>
+          <hr>
+          <p class="mb-0">
+            <wvr-text value="Custom Alert footer section."></wvr-text>
+          </p>
+        </wvr-custom-alert>
+    </wvr-alert>
+
+    <wvr-alert
+      alert-class="danger"
+      alert-type="custom"
+      closable="false">
+        <wvr-custom-alert>
+          <h4 class="alert-heading">
+            <wvr-text value="Custom Alert Heading"></wvr-text>
+          </h4>
+          <p>
+            <wvr-text value="Custom Alert Body with no closable button"></wvr-text>
+          </p>
+          <hr>
+          <p class="mb-0">
+            <wvr-text value="Custom Alert footer section."></wvr-text>
+          </p>
+        </wvr-custom-alert>
+    </wvr-alert>
+
+  </div>
 
   <div class="container index-container">
     <wvr-text value="Dropdown with Buttons" text-decoration="underline"></wvr-text><br />
@@ -673,6 +725,27 @@
       </wvr-list-item>
     </wvr-list>
 
+  </div>
+
+  <div class="container index-container">
+
+    <wvr-text value="Tabs" text-decoration="underline"></wvr-text><br /><br />
+  
+    <wvr-tabs>
+      <wvr-tab tab-text="Tab One">
+        <div class="jumbotron">
+          <h3><wvr-text value="First Tab Header"></wvr-text></h3>
+          <wvr-text value="My First Tab Content"></wvr-text>
+        </div>
+      </wvr-tab>
+      <wvr-tab tab-text="Tab Two">
+        <div class="jumbotron">
+          <h3><wvr-text value="Second Tab Header"></wvr-text></h3>
+          <wvr-text value="My Second Tab Content"></wvr-text>
+        </div>
+      </wvr-tab>
+    </wvr-tabs>
+  
   </div>
 
   <wvr-footer hidden-in-mobile="true">

@@ -94,4 +94,13 @@ describe('WvrHeaderComponent', () => {
 
   });
 
+  it('should have toggle menu', () => {
+    expect(component.mobileMenuClosed)
+      .toBeTruthy();
+    component.toggleMobileMenu();
+    fixture.detectChanges();
+    expect(component.mobileMenuClosed)
+    .toBe(false);
+  });
+
 });

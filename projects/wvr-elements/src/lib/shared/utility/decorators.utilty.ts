@@ -1,3 +1,4 @@
+/** Used to delay the repeated execution of the decorated method until the specified time has elapsed. */
 // tslint:disable-next-line:only-arrow-functions
 function debounce(delay = 300): MethodDecorator {
     return (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
