@@ -2,13 +2,18 @@ import { Injectable } from '@angular/core';
 import { fromEvent, Observable } from 'rxjs';
 import { delay, map, throttleTime } from 'rxjs/operators';
 
+/**
+ * A centralized uitlity for logic conerning mobile layout.
+ */
 @Injectable({
   providedIn: 'root'
 })
 export class MobileService {
 
+  /** Indicates the layout state of the viewport. */
   isMobileLayout: boolean;
 
+  /** An observable used for resize events. */
   private readonly screenSizeChanged$: Observable<boolean>;
 
   constructor() {
@@ -23,6 +28,7 @@ export class MobileService {
     this.isMobileLayout = this.checkScreenSize();
   }
 
+  /** A mapping method to map resize events to boolean.  */
   private readonly checkScreenSize = () => window.innerWidth < 767;
 
 }

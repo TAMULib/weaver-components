@@ -1,5 +1,6 @@
 import { animate, AnimationMetadata, style } from '@angular/animations';
 
+/** Defines an initialization method for each predefined animaiton. */
 const wvrAnimationInitialization = {
   fade: (s: Map<string, any>, from: string, elem: HTMLElement): void => {
     elem.style.opacity = from;
@@ -27,6 +28,7 @@ const wvrAnimationInitialization = {
   }
 };
 
+/** Describes the AnimationAnimateMetadata to be used for each predefined animation. */
 const wvrAnimations = {
 
   fade: (s: Map<string, any>, elem: HTMLElement): AnimationMetadata | Array<AnimationMetadata> => {

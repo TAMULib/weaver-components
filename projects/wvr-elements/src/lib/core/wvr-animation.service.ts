@@ -4,18 +4,24 @@ import { wvrAnimationDefaults } from '../shared/animation/wvr-animation-defaults
 import { wvrAnimationInitialization, wvrAnimations } from '../shared/animation/wvr-animations';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
+/**
+ * A centralized utility for handeling animation tasks.
+ */
 @Injectable({
   providedIn: 'root',
   deps: [AnimationBuilder]
 })
 export class WvrAnimationService {
 
+  /** A registry of WvrBaseComponent which are participating in animations. */
   private readonly _animationTargetsRegistry = new Map<string, Array<WvrBaseComponent>>();
 
+  /** Records state for each WvrBaseComponent which is participating in animation */
   private readonly animationStates = new Map<number, Map<string, boolean>>();
 
   constructor(private readonly builder: AnimationBuilder) { }
 
+  /** Adds a component to the registry of targets */
   registerAnimationTargets(targetName: string, component: WvrBaseComponent): void {
     let targets = this._animationTargetsRegistry.get(targetName);
     /* istanbul ignore else */
@@ -26,6 +32,7 @@ export class WvrAnimationService {
     targets.push(component);
   }
 
+  /** Creates an entry in the animation state registry and assigns a random identifier */
   registerAnimationStates(): number {
     const id = Math.random();
     this.animationStates.set(id, new Map<string, boolean>());
@@ -33,6 +40,7 @@ export class WvrAnimationService {
     return id;
   }
 
+  /** Triggers associated animations from the _animationTargetsRegistry. */
   triggerAnimationTarget(targetName: string): void {
     const targets = this._animationTargetsRegistry.get(targetName);
     if (targets) {
@@ -42,6 +50,7 @@ export class WvrAnimationService {
     }
   }
 
+  /** Runs the initialization function for each configured animation.  */
   initializeAnimationElement(stateId, animationConfig: {}, animationRootElem): void {
     Object.keys(animationConfig)
       .forEach(animName => {
@@ -54,6 +63,7 @@ export class WvrAnimationService {
       });
   }
 
+  /** Plays the specified animation. */
   playAnimation(stateId: number, animationName: string, animationConfig: {}, animationRoot: HTMLElement): AnimationPlayer {
     const timing = animationConfig[animationName] ?
       animationConfig[animationName].timing :
@@ -75,6 +85,7 @@ export class WvrAnimationService {
     }
   }
 
+  /** Retrieves specified the animation. */
   private selectAnimation(stateId: number, animationName: string, timing: string,
                           to: string, from: string, animationRoot: HTMLElement): AnimationReferenceMetadata {
     const animationInput: AnimationMetadata | Array<AnimationMetadata> =
@@ -89,6 +100,7 @@ export class WvrAnimationService {
     });
   }
 
+  /** Compiles the specified animation. */
   private compileAnimation(stateId, animationName, value): AnimationMetadata | Array<AnimationMetadata> {
     const a = wvrAnimations[animationName];
 
