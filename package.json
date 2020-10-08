@@ -4,7 +4,7 @@
     "type": "git",
     "url": "git+https://github.com/TAMULib/weaver-components.git"
   },
-  "version": "1.5.0-rc4",
+  "version": "1.5.0",
   "private": false,
   "license": "MIT",
   "bin": {
@@ -45,7 +45,7 @@
     "test:e2e": "ng e2e",
     "test:unit": "ng test --no-watch",
     "test:watch": "ng test",
-    "test:report": "cat ./static/weaver-components/reports/coverage/weaver-components/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "test:report": "cat ./static/weaver-components/reports/coverage/wvr-elements/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "test:coverage": "ng test --no-watch --code-coverage",
     "test:ci": "npm run test:coverage && npm run test:audit"
   },

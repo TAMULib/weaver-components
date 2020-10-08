@@ -4,6 +4,9 @@ import { Theme } from '../../shared/theme.type';
 import { WvrBaseComponent } from '../../shared/wvr-base.component';
 import { WvrListComponent } from '../wvr-list.component';
 
+/**
+ * A sub component to the WvrListComponent.
+ */
 @Component({
   selector: 'wvr-list-item-element',
   templateUrl: './wvr-list-item.component.html',
@@ -11,24 +14,34 @@ import { WvrListComponent } from '../wvr-list.component';
 })
 export class WvrListItemComponent extends WvrBaseComponent implements OnInit, AfterContentInit  {
 
+  /** The WvrListComponent which contains this list item.  */
   private parent: WvrListComponent;
 
+  /** The type of list which contains this list item. */
   listType: string;
 
+  /** Attribute input used with descriptive lists as the text of the DT element. */
   @Input() description: string;
 
+  /** The visual contextualization for this list item. */
   @Input() context: Theme;
 
+  /** A heading to be displayed for list items with custom content. */
   @Input() customContentItemHeading: string;
 
-  @Input() cusomContentHeadingSmallText: string;
+  /** A subtext to be displayed beneath the heading for list items with custom content.   */
+  @Input() customContentHeadingSmallText: string;
 
+  /** A subtext to be displayed beneath the main content for list items with custom content.   */
   @Input() customContentSmallText: string;
 
+  /** A contructed identifier dervied from this comonents id and the prefix `wvr-li` */
   htmlId = `wvr-li-${this.id}`;
 
+  /** A view child reference to the html template contianing the projected content. */
   @ViewChild('liWrapper') contentProjection: ElementRef<HTMLTemplateElement>;
 
+  /** A getter for the html content contined withing the `contentProjection` template */
   get htmlContent(): string {
     const elems = this.contentProjection.nativeElement.children;
 
@@ -45,6 +58,7 @@ export class WvrListItemComponent extends WvrBaseComponent implements OnInit, Af
     super(injector);
   }
 
+  /** Registers this list item with the parent list. */
   ngOnInit(): void {
 
     const listElem: HTMLElement = (this._eRef.nativeElement as HTMLElement).closest('wvr-list');

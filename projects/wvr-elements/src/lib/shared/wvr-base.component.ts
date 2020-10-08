@@ -21,39 +21,52 @@ interface WvrDataSelect {
 // tslint:disable-next-line:directive-class-suffix
 export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDestroy {
 
+  /** A generated unique identifier for this comonent. */
   readonly id: number;
 
+  /** A statically accessible reference to the prefix used in deriving the HTML identifier. */
   static readonly HTML_ID_BASE = 'wvr-component';
 
   data: {[as: string]: Observable<any>} = {};
 
   @Input() private wvrData: string;
 
+  /** A host binding used to ensure the presense of the `wvr-bootstrap` class. */
   @HostBinding('class.wvr-bootstrap') wvrBootstrap = true;
 
+  /** An object representation of the animation instructions for this component. */
   private _animationSettings: any = {};
 
+  /** A setter which parses a json string describing animation instructions and stores the derived object in `_animationSettings`. */
   @Input() set animate(value: string) {
     this._animationSettings = JSON5.parse(value);
   }
 
+  /** An object representation of the settings specifying the specific behavior of the animation for this component. */
   private _animationConfig: any = {};
+
+  /** A setter which parses a json string describing animation setting and stores the derived object in `_animationConfig`. */
   @Input() set animateConfig(value: string) {
     this._animationConfig = JSON5.parse(value);
   }
 
+  /** An identifier used to access the animation state for this component. */
   private animationStateId: number;
 
+  /** An attribute input allowing for the designation of an animation identifier for the purpose of animation targeting. */
   @Input() animateId: string;
 
+  /** An attribute input allowing for the designation of an animation target for animation events. */
   @Input() animateTarget: string;
 
+  /** A view child of the template element containing the #animationRoot identifier. */
   @ViewChild('animationRoot') animationRootElem: ElementRef;
 
+  /** An accessor which uses the mobileService to determine if the current layout mode is mobile. */
   get isMobileLayout(): boolean {
     return this.mobileService.isMobileLayout;
   }
-
+  /** An accessor which determines if the current userAgent mode is mobile. */
   get isMobileAgent(): boolean {
     const agent = navigator.userAgent || navigator.vendor || (window as any).opera;
 
@@ -62,22 +75,30 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
   }
 
   protected readonly store: Store<RootState>;
+  /** A reference to the  ComponentRegistryService */
   protected readonly componentRegistry: ComponentRegistryService;
 
+  /** A reference to the  WvrAnimationService */
   protected readonly _animationService: WvrAnimationService;
 
+  /** A reference to the  DomSanitizer */
   protected readonly _domSanitizer: DomSanitizer;
 
+  /** A reference to the  ElementRef */
   protected readonly _eRef: ElementRef;
 
+  /** A reference to the  MobileService */
   private readonly mobileService: MobileService;
 
+  /** A host bound accessor which applies the wvr-hidden class if both isMobileLayout and hiddenInMobile evaluate to true.  */
   @HostBinding('class.wvr-hidden') private get _hiddenInMobile(): boolean {
     return this.mobileService.isMobileLayout && this.hiddenInMobile;
   }
 
+  /** An attribute input specifying if this component should be hidden in the mobile layout. */
   @Input() hiddenInMobile = false;
 
+  /** An Output biding used for triggering animations. */
   @Output() protected readonly animationEventTrigger = new EventEmitter<Event>();
 
   constructor(injector: Injector) {
@@ -107,23 +128,29 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
     element.setAttribute(htmlIDAttrName, `${WvrBaseComponent.HTML_ID_BASE}-${this.id}`);
   }
 
+  /** Used to setup this component for animating. */
   ngOnInit(): void {
     this.processAnimations();
     this.processData();
+    this.initializeAnimationRegistration();
   }
 
+  /** Used for post content initialization animation setup. */
   ngAfterContentInit(): void {
     setTimeout(() => {
       this._animationService
         .initializeAnimationElement(this.animationStateId, this._animationConfig, this.animationRootElem);
     }, 1);
     this.parseProjectedContent();
+    this.initializeAnimationElement();
   }
 
+  /** Handles the the unregistering of this component with the component registry. */
   ngOnDestroy(): void {
     this.componentRegistry.unRegisterComponent(this.id);
   }
 
+  /** Plays the animation specified by the incoming animation trigger.  */
   triggerAnimations(animationTriggerType: string): void {
     const animations: Array<string> = Array.isArray(this._animationSettings[animationTriggerType])
       ? this._animationSettings[animationTriggerType]
@@ -138,6 +165,29 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
     });
   }
 
+  private initializeAnimationRegistration(): void {
+    const animationEvents = Object.keys(this._animationSettings);
+    if (animationEvents.length) {
+      if (this.animateId) {
+        this._animationService.registerAnimationTargets(this.animateId, this);
+      }
+      this.animationStateId = this._animationService.registerAnimationStates();
+      animationEvents.forEach(eventName => {
+        if (eventName !== 'animationTrigger') {
+          (this._eRef.nativeElement as HTMLElement).addEventListener(eventName, this.onEvent.bind(this));
+        }
+      });
+    }
+  }
+
+  private initializeAnimationElement(): void {
+    setTimeout(() => {
+      this._animationService
+        .initializeAnimationElement(this.animationStateId, this._animationConfig, this.animationRootElem);
+    }, 1);
+  }
+
+  /** Trigger's the animation specified by the incoming event. */
   private onEvent($event): void {
     this.triggerAnimations($event.type);
   }

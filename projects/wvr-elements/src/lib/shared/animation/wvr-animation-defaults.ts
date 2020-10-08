@@ -1,3 +1,4 @@
+/** Default settings for each predefined animation. */
 export const wvrAnimationDefaults = {
   fade: {
     from: 1,
