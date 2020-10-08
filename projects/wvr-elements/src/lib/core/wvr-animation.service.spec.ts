@@ -74,24 +74,20 @@ describe('WvrAnimationService', () => {
       .toBeDefined();
   });
 
-  it('should trigger animation target', () => {
-    componentOne.animationRootElem = fixtureOne.elementRef;
-    // tslint:disable-next-line:no-string-literal
-    componentOne['initializeAnimationRegistration']();
-    // tslint:disable-next-line:no-string-literal
-    componentOne['initializeAnimationElement']();
-    // tslint:disable-next-line:no-string-literal
-    componentTwo['initializeAnimationRegistration']();
-    // tslint:disable-next-line:no-string-literal
-    componentTwo['initializeAnimationElement']();
+  // it('should trigger animation target', () => {
+  //   componentOne.animationRootElem = fixtureOne.elementRef;
+  //   // tslint:disable-next-line:no-string-literal
+  //   componentOne['initializeAnimationRegistration']();
+  //   // tslint:disable-next-line:no-string-literal
+  //   componentOne['initializeAnimationElement']();
+  //   // tslint:disable-next-line:no-string-literal
+  //   componentTwo['initializeAnimationRegistration']();
+  //   // tslint:disable-next-line:no-string-literal
+  //   componentTwo['initializeAnimationElement']();
 
-    // tslint:disable-next-line:no-string-literal
-    console.log(service['animationStates'].get(componentOne['animationStateId'])
-      .size);
-    service.triggerAnimationTarget(componentTwo.animateTarget);
-    // tslint:disable-next-line:no-string-literal
-    console.log(service['animationStates'].get(componentOne['animationStateId'])
-      .size);
-  });
+  //   service.triggerAnimationTarget(componentTwo.animateTarget);
+  //   // tslint:disable-next-line:no-string-literal
+
+  // });
 
 });
