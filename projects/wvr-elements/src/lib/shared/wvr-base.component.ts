@@ -99,26 +99,12 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
 
   /** Used to setup this component for animating. */
   ngOnInit(): void {
-    const animationEvents = Object.keys(this._animationSettings);
-    if (animationEvents.length) {
-      if (this.animateId) {
-        this._animationService.registerAnimationTargets(this.animateId, this);
-      }
-      this.animationStateId = this._animationService.registerAnimationStates();
-      animationEvents.forEach(eventName => {
-        if (eventName !== 'animationTrigger') {
-          (this._eRef.nativeElement as HTMLElement).addEventListener(eventName, this.onEvent.bind(this));
-        }
-      });
-    }
+    this.initializeAnimationRegistration();
   }
 
   /** Used for post content initialization animation setup. */
   ngAfterContentInit(): void {
-    setTimeout(() => {
-      this._animationService
-        .initializeAnimationElement(this.animationStateId, this._animationConfig, this.animationRootElem);
-    }, 1);
+    this.initializeAnimationElement();
   }
 
   /** Handles the the unregistering of this component with the component registry. */
@@ -139,6 +125,28 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
           .playAnimation(this.animationStateId, an, this._animationConfig, this.animationRootElem.nativeElement);
       }
     });
+  }
+
+  private initializeAnimationRegistration(): void {
+    const animationEvents = Object.keys(this._animationSettings);
+    if (animationEvents.length) {
+      if (this.animateId) {
+        this._animationService.registerAnimationTargets(this.animateId, this);
+      }
+      this.animationStateId = this._animationService.registerAnimationStates();
+      animationEvents.forEach(eventName => {
+        if (eventName !== 'animationTrigger') {
+          (this._eRef.nativeElement as HTMLElement).addEventListener(eventName, this.onEvent.bind(this));
+        }
+      });
+    }
+  }
+
+  private initializeAnimationElement(): void {
+    setTimeout(() => {
+      this._animationService
+        .initializeAnimationElement(this.animationStateId, this._animationConfig, this.animationRootElem);
+    }, 1);
   }
 
   /** Trigger's the animation specified by the incoming event. */
