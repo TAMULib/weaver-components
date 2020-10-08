@@ -18,6 +18,7 @@ export class WvrAnimationService {
 
   registerAnimationTargets(targetName: string, component: WvrBaseComponent): void {
     let targets = this._animationTargetsRegistry.get(targetName);
+    /* istanbul ignore else */
     if (!targets) {
       targets = new Array<WvrBaseComponent>();
       this._animationTargetsRegistry.set(targetName, targets);
