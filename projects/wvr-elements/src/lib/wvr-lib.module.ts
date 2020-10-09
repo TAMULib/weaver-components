@@ -25,20 +25,20 @@ import { WvrTabComponent } from './wvr-tabs/wvr-tab/wvr-tab.component';
 
 /** This property contains a list of components and the selector tags. */
 const elements = [
-  { component: WvrAlertComponent, selector: 'wvr-alert'},
-  { component: WvrButtonComponent, selector: 'wvr-button' },
-  { component: WvrDropdownComponent, selector: 'wvr-dropdown' },
-  { component: WvrFooterComponent, selector: 'wvr-footer' },
-  { component: WvrHeaderComponent, selector: 'wvr-header' },
-  { component: WvrIconComponent, selector: 'wvr-icon' },
-  { component: WvrItWorksComponent, selector: 'wvr-it-works' },
-  { component: WvrListComponent, selector: 'wvr-list' },
-  { component: WvrListItemComponent, selector: 'wvr-list-item' },
-  { component: WvrNavListComponent, selector: 'wvr-nav-list' },
-  { component: WvrNavLiComponent, selector: 'wvr-nav-li' },
-  { component: WvrTextComponent, selector: 'wvr-text' },
-  { component: WvrTabsComponent, selector: 'wvr-tabs' },
-  { component: WvrTabComponent, selector: 'wvr-tab' }
+  { component: WvrAlertComponent, selector: 'wvre-alert'},
+  { component: WvrButtonComponent, selector: 'wvre-button' },
+  { component: WvrDropdownComponent, selector: 'wvre-dropdown' },
+  { component: WvrFooterComponent, selector: 'wvre-footer' },
+  { component: WvrHeaderComponent, selector: 'wvre-header' },
+  { component: WvrIconComponent, selector: 'wvre-icon' },
+  { component: WvrItWorksComponent, selector: 'wvre-it-works' },
+  { component: WvrListComponent, selector: 'wvre-list' },
+  { component: WvrListItemComponent, selector: 'wvre-list-item' },
+  { component: WvrNavListComponent, selector: 'wvre-nav-list' },
+  { component: WvrNavLiComponent, selector: 'wvre-nav-li' },
+  { component: WvrTextComponent, selector: 'wvre-text' },
+  { component: WvrTabsComponent, selector: 'wvre-tabs' },
+  { component: WvrTabComponent, selector: 'wvre-tab' }
 ];
 
 /** This property contains a list of components classes. */
