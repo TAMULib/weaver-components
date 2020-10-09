@@ -520,7 +520,7 @@
     overflow: hidden;
   }
 
-  .wvr-button.btn {
+  .wvre-button.btn {
     border-radius: var(--wvr-btn-border-radius);
     font-family: var(--wvr-btn-font-family-sans-serif);
     font-size: var(--wvr-btn-font-size);
@@ -532,7 +532,7 @@
     border: var(--wvr-btn-border)
   }
 
-  .wvr-button.btn:not(:disabled):not(.disabled) {
+  .wvre-button.btn:not(:disabled):not(.disabled) {
     cursor: var(--wvr-btn-cursor);
   }
 
@@ -1070,7 +1070,7 @@
 
   .btn {
     ::ng-deep {
-      wvr-icon {
+      wvre-icon {
         margin: 0px 5px 0px 0px;
         svg {
           vertical-align: middle;
