@@ -5,7 +5,7 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
  * Provides a simple component to prove the basic functionality of the Weaver Components.
  */
 @Component({
-  selector: 'wvr-it-works-element',
+  selector: 'wvr-it-works-component',
   templateUrl: './wvr-it-works.component.html',
   styleUrls: ['./wvr-it-works.component.scss']
 })

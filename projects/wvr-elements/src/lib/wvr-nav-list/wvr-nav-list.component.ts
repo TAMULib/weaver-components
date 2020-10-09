@@ -7,7 +7,7 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
  * Elements within this list must be wvre-nav-li elements and can be either links of action elements.
  */
 @Component({
-  selector: 'wvr-nav-list-element',
+  selector: 'wvr-nav-list-component',
   templateUrl: './wvr-nav-list.component.html',
   styleUrls: ['./wvr-nav-list.component.scss']
 })

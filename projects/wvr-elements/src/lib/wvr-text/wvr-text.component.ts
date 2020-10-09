@@ -5,7 +5,7 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
  * The Weaver Text Component allows for a node based textual entry. This will support i18n in the future.
  */
 @Component({
-  selector: 'wvr-text-element',
+  selector: 'wvr-text-component',
   templateUrl: './wvr-text.component.html',
   styleUrls: ['./wvr-text.component.scss']
 })

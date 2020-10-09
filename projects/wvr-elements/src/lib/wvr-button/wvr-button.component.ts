@@ -2,7 +2,7 @@ import { Component, HostBinding, Injector, Input } from '@angular/core';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 @Component({
-  selector: 'wvr-button-element',
+  selector: 'wvr-button-component',
   templateUrl: './wvr-button.component.html',
   styleUrls: ['./wvr-button.component.scss']
 })

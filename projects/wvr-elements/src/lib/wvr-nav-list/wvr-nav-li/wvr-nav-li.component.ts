@@ -5,7 +5,7 @@ import { WvrBaseComponent } from '../../shared/wvr-base.component';
  * The WvrNavLi Component is the list element to be used with the wvre-nav-list element.
  */
 @Component({
-  selector: 'wvr-nav-li-element',
+  selector: 'wvr-nav-li-component',
   templateUrl: './wvr-nav-li.component.html',
   styleUrls: ['./wvr-nav-li.component.scss']
 })

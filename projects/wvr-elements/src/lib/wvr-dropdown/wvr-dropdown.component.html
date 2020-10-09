@@ -1,6 +1,6 @@
 <div #WvrDropdown class="wvr-components wvre-dropdown d-inline-flex align-items-center">
   <div ngbDropdown display="{{dropdownMenuDisplay}}" class="d-inline-block">
-    <wvr-button-element (click)="clickOpen($event)"
+    <wvr-button-component (click)="clickOpen($event)"
       [background]="btnBackground"
       [backgroundActive]="btnBackgroundActive"
       [backgroundHover]="btnBackgroundHover"
@@ -29,7 +29,7 @@
       [textDecorationHover]="btnTextDecorationHover"
       [verticalAlign]="btnVerticalAlign" ngbDropdownAnchor>
       <ng-content select="wvre-dropdown-btn" ngProjectAs="wvre-btn-content"></ng-content>
-    </wvr-button-element>
+    </wvr-button-component>
     <div ngbDropdownMenu [ngClass]="{open: open,closed: !open}">
       <ng-content select="wvre-dropdown-menu"></ng-content>
     </div>

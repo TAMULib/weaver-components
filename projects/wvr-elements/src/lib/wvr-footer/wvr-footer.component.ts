@@ -6,7 +6,7 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
  * A fullwidth footer component which attaches to the bottom of the document body.
  */
 @Component({
-  selector: 'wvr-footer-element',
+  selector: 'wvr-footer-component',
   templateUrl: './wvr-footer.component.html',
   styleUrls: ['./wvr-footer.component.scss']
 })

@@ -5,7 +5,7 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
  * Intended to appear at the top of document and provides for branding, links and page title.
  */
 @Component({
-  selector: 'wvr-header-element',
+  selector: 'wvr-header-component',
   templateUrl: './wvr-header.component.html',
   styleUrls: ['./wvr-header.component.scss']
 })
@@ -101,7 +101,7 @@ export class WvrHeaderComponent extends WvrBaseComponent implements OnInit, Afte
 
   /** Determines if the bottom nav list has children in order to display bottom nav section. */
   private checkBottomNavHasChildren(): void {
-    const bottomNavListElement = (this._eRef.nativeElement as HTMLElement).querySelector('.bottom-nav wvre-nav-li, .bottom-nav wvre-nav-li-element');
+    const bottomNavListElement = (this._eRef.nativeElement as HTMLElement).querySelector('.bottom-nav wvre-nav-li, .bottom-nav wvr-nav-li-component');
     this.isBottomNavHidden = !(this.displayBottomNav === 'true' || (this.displayBottomNav === undefined && !!bottomNavListElement));
   }
 

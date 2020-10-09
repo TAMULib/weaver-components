@@ -6,7 +6,7 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
  * A dropdown with button and contextualized styling.
  */
 @Component({
-  selector: 'wvr-dropdown-element',
+  selector: 'wvr-dropdown-component',
   templateUrl: './wvr-dropdown.component.html',
   styleUrls: ['./wvr-dropdown.component.scss']
 })

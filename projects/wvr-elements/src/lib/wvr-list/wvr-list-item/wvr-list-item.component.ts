@@ -8,7 +8,7 @@ import { WvrListComponent } from '../wvr-list.component';
  * A sub component to the WvrListComponent.
  */
 @Component({
-  selector: 'wvr-list-item-element',
+  selector: 'wvr-list-item-component',
   templateUrl: './wvr-list-item.component.html',
   styleUrls: ['./wvr-list-item.component.scss']
 })
