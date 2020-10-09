@@ -6,7 +6,7 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
  * A fullwidth footer component which attaches to the bottom of the document body.
  */
 @Component({
-  selector: 'wvr-footer-element',
+  selector: 'wvr-footer-component',
   templateUrl: './wvr-footer.component.html',
   styleUrls: ['./wvr-footer.component.scss']
 })
@@ -60,7 +60,7 @@ export class WvrFooterComponent extends WvrBaseComponent implements OnInit {
   ngOnInit(): void {
     // this.parentElement = (this._eRef.nativeElement as HTMLElement).parentElement;
     this.parentElement = document.querySelector(this.parentElementName);
-    this.footerElement = (this._eRef.nativeElement as HTMLElement).querySelector('footer.wvr-footer');
+    this.footerElement = (this._eRef.nativeElement as HTMLElement).querySelector('footer.wvre-footer');
     const rs = new ResizeSensor(this.parentElement, () => {
       this.positionSelf();
     });

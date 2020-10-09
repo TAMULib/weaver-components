@@ -7,7 +7,7 @@ import { WvrTabComponent } from './wvr-tab/wvr-tab.component';
  * The principle component for a a tabbed presentation.
  */
 @Component({
-  selector: 'wvr-tabs-element',
+  selector: 'wvr-tabs-component',
   templateUrl: './wvr-tabs.component.html',
   styleUrls: ['./wvr-tabs.component.scss']
 })

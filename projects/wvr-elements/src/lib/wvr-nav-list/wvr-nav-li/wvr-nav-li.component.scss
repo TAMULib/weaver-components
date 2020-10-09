@@ -1,7 +1,7 @@
 :host {
-  --wvr-nav-li-cursor: pointer;
-  --wvr-nav-li-height: 100%;
-  --wvr-nav-li-width: 140px;
+  --wvre-nav-li-cursor: pointer;
+  --wvre-nav-li-height: 100%;
+  --wvre-nav-li-width: 140px;
   --wvr-nav-link-background-hover: var(--wvr-primary);
   --wvr-nav-link-color-hover: var(--wvr-dark);
   --wvr-nav-link-color: var(--wvr-blue);
@@ -12,10 +12,10 @@
 
 a.nav-link,
 li.nav-item {
-  height: var(--wvr-nav-li-height);
-  min-width: var(--wvr-nav-li-width);
-  cursor: var(--wvr-nav-li-cursor);
-  ::ng-deep wvr-dropdown {
+  height: var(--wvre-nav-li-height);
+  min-width: var(--wvre-nav-li-width);
+  cursor: var(--wvre-nav-li-cursor);
+  ::ng-deep wvre-dropdown {
     display: flex;
     width: 100%;
     height: 100%;
@@ -24,15 +24,15 @@ li.nav-item {
 
     [ngbdropdown],
     [ngdropdownanchor], 
-    wvr-dropdown-btn,
-    .wvr-dropdown {
+    wvre-dropdown-btn,
+    .wvre-dropdown {
       width: 100%;
       height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
     }
-    wvr-dropdown-menu {
+    wvre-dropdown-menu {
       justify-self: self-start;
     }
   }

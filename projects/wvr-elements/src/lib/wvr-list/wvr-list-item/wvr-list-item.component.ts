@@ -8,7 +8,7 @@ import { WvrListComponent } from '../wvr-list.component';
  * A sub component to the WvrListComponent.
  */
 @Component({
-  selector: 'wvr-list-item-element',
+  selector: 'wvr-list-item-component',
   templateUrl: './wvr-list-item.component.html',
   styleUrls: ['./wvr-list-item.component.scss']
 })
@@ -61,7 +61,7 @@ export class WvrListItemComponent extends WvrBaseComponent implements OnInit, Af
   /** Registers this list item with the parent list. */
   ngOnInit(): void {
 
-    const listElem: HTMLElement = (this._eRef.nativeElement as HTMLElement).closest('wvr-list');
+    const listElem: HTMLElement = (this._eRef.nativeElement as HTMLElement).closest('wvre-list');
 
     if (listElem) {
       this.parent = this.componentRegistry
@@ -77,7 +77,7 @@ export class WvrListItemComponent extends WvrBaseComponent implements OnInit, Af
                     parentTheme :
                     undefined;
     } else {
-      console.warn('The wvr-list-item component must be contained within a wvr-list component.');
+      console.warn('The wvre-list-item component must be contained within a wvre-list component.');
     }
 
   }
