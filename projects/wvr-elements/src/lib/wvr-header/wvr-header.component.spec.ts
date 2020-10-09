@@ -86,7 +86,7 @@ describe('WvrHeaderComponent', () => {
       .toEqual(false);
 
     // removing/replacing the children
-    const wvrNavLiElement = document.createElement('wvre-nav-li-component');
+    const wvrNavLiElement = document.createElement('wvr-nav-li-component');
     wvrNavList.replaceChild(wvrNavLiElement, wvrNavLi);
     fixture.detectChanges();
     expect(bottomNavElement.hasAttribute('hidden'))
