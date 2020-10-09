@@ -68,12 +68,12 @@
 
 <ng-template #topNavContent>
   <div *ngIf="!isMobileLayout">
-    <ng-content select="wvre-nav-list[top-navigation],wvre-nav-list-element[top-navigation]"></ng-content>
+    <ng-content select="wvre-nav-list[top-navigation],wvr-nav-list-element[top-navigation]"></ng-content>
   </div>
 </ng-template>
 <ng-template #bottomNavContent>
   <div class="h-100" *ngIf="!isMobileLayout">
-    <ng-content select="wvre-nav-list[bottom-navigation],wvre-nav-list-element[bottom-navigation]"></ng-content>
+    <ng-content select="wvre-nav-list[bottom-navigation],wvr-nav-list-element[bottom-navigation]"></ng-content>
   </div>
 </ng-template>
 <ng-template #mobileMenuContent>

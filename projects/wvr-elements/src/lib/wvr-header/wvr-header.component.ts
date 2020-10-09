@@ -101,7 +101,7 @@ export class WvrHeaderComponent extends WvrBaseComponent implements OnInit, Afte
 
   /** Determines if the bottom nav list has children in order to display bottom nav section. */
   private checkBottomNavHasChildren(): void {
-    const bottomNavListElement = (this._eRef.nativeElement as HTMLElement).querySelector('.bottom-nav wvr-nav-li, .bottom-nav wvr-nav-li-element');
+    const bottomNavListElement = (this._eRef.nativeElement as HTMLElement).querySelector('.bottom-nav wvre-nav-li, .bottom-nav wvre-nav-li-element');
     this.isBottomNavHidden = !(this.displayBottomNav === 'true' || (this.displayBottomNav === undefined && !!bottomNavListElement));
   }
 

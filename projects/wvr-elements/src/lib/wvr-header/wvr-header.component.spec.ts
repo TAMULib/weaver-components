@@ -75,8 +75,8 @@ describe('WvrHeaderComponent', () => {
       .toEqual(true);
 
     // creating mock childres
-    const wvrNavList = document.createElement('wvr-nav-list');
-    const wvrNavLi = document.createElement('wvr-nav-li');
+    const wvrNavList = document.createElement('wvre-nav-list');
+    const wvrNavLi = document.createElement('wvre-nav-li');
 
     // adding children to assert hidden attribute does not exist
     wvrNavList.appendChild(wvrNavLi);
@@ -86,7 +86,7 @@ describe('WvrHeaderComponent', () => {
       .toEqual(false);
 
     // removing/replacing the children
-    const wvrNavLiElement = document.createElement('wvr-nav-li-element');
+    const wvrNavLiElement = document.createElement('wvre-nav-li-element');
     wvrNavList.replaceChild(wvrNavLiElement, wvrNavLi);
     fixture.detectChanges();
     expect(bottomNavElement.hasAttribute('hidden'))
