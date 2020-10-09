@@ -14,7 +14,7 @@
   --top-nav-padding: var(--wvr-navbar-padding);
 }
 
-.wvr-header {
+.wvre-header {
   font-family: var(--wvr-font-family-sans-serif);
 }
 
@@ -76,7 +76,7 @@
       tl-nav-li > a {
         white-space: nowrap !important;
       }
-      wvr-dropdown-element,
+      wvr-dropdown-component,
       .section-title  {
         min-width: 200px;
       }

@@ -8,7 +8,7 @@ import { WvrListItemComponent } from './wvr-list-item/wvr-list-item.component';
  * A stylable list.
  */
 @Component({
-  selector: 'wvr-list-element',
+  selector: 'wvr-list-component',
   templateUrl: './wvr-list.component.html',
   styleUrls: ['./wvr-list.component.scss']
 })

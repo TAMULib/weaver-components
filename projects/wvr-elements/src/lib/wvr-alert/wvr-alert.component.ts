@@ -5,7 +5,7 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
  * A message display with contextualized styling.
  */
 @Component({
-  selector: 'wvr-alert-element',
+  selector: 'wvr-alert-component',
   templateUrl: './wvr-alert.component.html',
   styleUrls: ['./wvr-alert.component.scss']
 })

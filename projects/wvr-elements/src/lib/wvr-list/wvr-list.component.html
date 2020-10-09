@@ -1,4 +1,4 @@
-<wvr-list-wrapper  #animationRoot>
+<wvre-list-wrapper  #animationRoot>
   
   <ul innerHtml="{{listItemsHtml}}" *ngIf="listType==='unordered' || listType==='unstyled'" [ngClass]="{'list-unstyled': listType==='unstyled'}">
   </ul>
@@ -21,7 +21,7 @@
   <div innerHtml="{{listItemsHtml}}" *ngIf="listType==='group-custom-content'" class="list-group">
   </div>
 
-</wvr-list-wrapper>
+</wvre-list-wrapper>
 
 
 <template>
@@ -29,6 +29,6 @@
 </template>
 
 <ng-template #contentProjection>
-  <ng-content select="wvr-list-item, wvr-list-item-element, wvr-template"></ng-content>
+  <ng-content select="wvre-list-item, wvr-list-item-component, wvre-template"></ng-content>
 </ng-template>
 

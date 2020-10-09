@@ -3,24 +3,24 @@
 :host {
   font-family: var(--wvr-font-family-sans-serif);
 
-  wvr-list-wrapper {
+  wvre-list-wrapper {
     display: block;
     overflow: hidden;
   }
 
   ::ng-deep {
 
-    .list-group-flush > wvr-list-item > wvr-list-item-wrapper > .list-group-item {
+    .list-group-flush > wvre-list-item > wvre-list-item-wrapper > .list-group-item {
       border-right: 0;
       border-left: 0;
       border-radius: 0;
     }
 
-    .list-group-flush > wvr-list-item:first-child > wvr-list-item-wrapper > .list-group-item {
+    .list-group-flush > wvre-list-item:first-child > wvre-list-item-wrapper > .list-group-item {
       border-top: 0;
     }
 
-    .list-group-flush > wvr-list-item:last-child > wvr-list-item-wrapper > .list-group-item {
+    .list-group-flush > wvre-list-item:last-child > wvre-list-item-wrapper > .list-group-item {
       border-bottom: 0;
     }
 

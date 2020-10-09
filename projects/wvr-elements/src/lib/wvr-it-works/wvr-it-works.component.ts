@@ -8,7 +8,7 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
  * Provides a simple component to prove the basic functionality of the Weaver Components.
  */
 @Component({
-  selector: 'wvr-it-works-element',
+  selector: 'wvr-it-works-component',
   templateUrl: './wvr-it-works.component.html',
   styleUrls: ['./wvr-it-works.component.scss']
 })
@@ -21,7 +21,7 @@ export class WvrItWorksComponent extends WvrBaseComponent {
   @Input() text = 'Weaver Components Work';
 
   /** Allows for the override of the --wvr-primary css variable. */
-  @HostBinding('style.--wvr-primary') @Input() primary;
+  @HostBinding('style.--wvre-primary') @Input() primary;
 
   constructor(injector: Injector) {
     super(injector);

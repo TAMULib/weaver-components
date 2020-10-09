@@ -6,7 +6,7 @@ export class AppPage {
   }
 
   async getItWorksText(): Promise<string> {
-    return element(by.css('wvr-it-works'))
+    return element(by.css('wvre-it-works'))
       .getText() as Promise<string>;
   }
 }

@@ -3,47 +3,47 @@
 :host {
 
   //font rules
-  --wvr-text-font-size: default;
-  --wvr-text-font-family: default;
-  --wvr-text-font-style: default;
-  --wvr-text-font-variant: default;
-  --wvr-text-font-weight: default;
-  --wvr-text-font-stretch: default;
-  --wvr-text-line-height: default;
+  --wvre-text-font-size: default;
+  --wvre-text-font-family: default;
+  --wvre-text-font-style: default;
+  --wvre-text-font-variant: default;
+  --wvre-text-font-weight: default;
+  --wvre-text-font-stretch: default;
+  --wvre-text-line-height: default;
 
   //text rules
-  --wvr-text-color: default;
-  --wvr-text-direction:default;
-  --wvr-text-letter-spacing:default;
-  --wvr-text-text-align: default;
-  --wvr-text-text-decoration:default;
-  --wvr-text-text-transform:default;
-  --wvr-text-text-indent:default;
-  --wvr-text-text-shadow: default;
-  --wvr-text-word-spacing:default;
+  --wvre-text-color: default;
+  --wvre-text-direction:default;
+  --wvre-text-letter-spacing:default;
+  --wvre-text-text-align: default;
+  --wvre-text-text-decoration:default;
+  --wvre-text-text-transform:default;
+  --wvre-text-text-indent:default;
+  --wvre-text-text-shadow: default;
+  --wvre-text-word-spacing:default;
 
 }
 
-wvr-text-node {
+wvre-text-node {
 
   //font rules
-  font-family: var(--wvr-text-font-family);
-  font-size: var(--wvr-text-font-size);
-  font-stretch: var(--wvr-text-font-stretch);
-  font-style: var(--wvr-text-font-style);
-  font-variant: var(--wvr-text-font-variant);
-  font-weight: var(--wvr-text-font-weight);
-  line-height: var(--wvr-text-line-height);
+  font-family: var(--wvre-text-font-family);
+  font-size: var(--wvre-text-font-size);
+  font-stretch: var(--wvre-text-font-stretch);
+  font-style: var(--wvre-text-font-style);
+  font-variant: var(--wvre-text-font-variant);
+  font-weight: var(--wvre-text-font-weight);
+  line-height: var(--wvre-text-line-height);
 
   //text rules
-  color: var(--wvr-text-color);
-  direction: var(--wvr-text-direction);
-  letter-spacing: var(--wvr-text-letter-spacing);
-  text-align: var(--wvr-text-text-align);
-  text-decoration:var(--wvr-text-text-decoration);
-  text-indent: var(--wvr-text-text-indent);
-  text-shadow: var(--wvr-text-text-shadow);
-  text-transform: var(--wvr-text-text-transform);
-  word-spacing: var(--wvr-text-word-spacing);
+  color: var(--wvre-text-color);
+  direction: var(--wvre-text-direction);
+  letter-spacing: var(--wvre-text-letter-spacing);
+  text-align: var(--wvre-text-text-align);
+  text-decoration:var(--wvre-text-text-decoration);
+  text-indent: var(--wvre-text-text-indent);
+  text-shadow: var(--wvre-text-text-shadow);
+  text-transform: var(--wvre-text-text-transform);
+  word-spacing: var(--wvre-text-word-spacing);
 
 }

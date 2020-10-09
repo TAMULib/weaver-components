@@ -1,5 +1,5 @@
 <div *ngIf="!alertClosed"
-  class="wvr-components wvr-alert alert"
+  class="wvr-components wvre-alert alert"
   [ngClass]="{
     'alert-primary': alertClass==='primary',
     'alert-secondary': alertClass==='secondary',
@@ -29,7 +29,7 @@
 </div>
 
 <ng-template #basic>
-  <ng-content select="wvr-text, wvr-text-element"></ng-content>
+  <ng-content select="wvre-text, wvr-text-component"></ng-content>
 </ng-template>
 
 <ng-template #selfClosing>
@@ -39,7 +39,7 @@
 </ng-template>
 
 <ng-template #custom>
-  <ng-content select="wvr-custom-alert"></ng-content>
+  <ng-content select="wvre-custom-alert"></ng-content>
 </ng-template>
 
 <ng-template #closeButton>

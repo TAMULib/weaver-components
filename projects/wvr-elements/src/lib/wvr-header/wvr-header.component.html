@@ -1,4 +1,4 @@
-<header class="wvr-components wvr-header" #animationRoot>
+<header class="wvr-components wvre-header" #animationRoot>
 
   <nav class="top-nav navbar navbar-expand-lg">
     <div class="container">
@@ -34,7 +34,7 @@
   <div class="mobile-menu-header">
     <div class="mobile-menu-close" (click)="toggleMobileMenu()">
       <span>
-        <wvr-text-element value="Close" font-size="0.75em"></wvr-text-element>
+        <wvre-text-component value="Close" font-size="0.75em"></wvre-text-component>
       </span>
       <svg class="bi bi-x" width="1.25em" height="1.25em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
         <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z"/>
@@ -68,12 +68,12 @@
 
 <ng-template #topNavContent>
   <div *ngIf="!isMobileLayout">
-    <ng-content select="wvr-nav-list[top-navigation],wvr-nav-list-element[top-navigation]"></ng-content>
+    <ng-content select="wvre-nav-list[top-navigation],wvr-nav-list-component[top-navigation]"></ng-content>
   </div>
 </ng-template>
 <ng-template #bottomNavContent>
   <div class="h-100" *ngIf="!isMobileLayout">
-    <ng-content select="wvr-nav-list[bottom-navigation],wvr-nav-list-element[bottom-navigation]"></ng-content>
+    <ng-content select="wvre-nav-list[bottom-navigation],wvr-nav-list-component[bottom-navigation]"></ng-content>
   </div>
 </ng-template>
 <ng-template #mobileMenuContent>
