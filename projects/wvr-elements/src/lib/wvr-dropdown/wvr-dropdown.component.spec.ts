@@ -175,106 +175,106 @@ describe('WvrDropdownComponent', () => {
 
   it('should have customization for button background', () => {
     expect(component.btnBackground)
-      .toEqual('var(--wvre-btn-plain-background-default)');
-    component.btnBackground = 'var(--wvre-dropdown-menu-background)';
+      .toEqual('var(--wvr-btn-plain-background-default)');
+    component.btnBackground = 'var(--wvr-dropdown-menu-background)';
     fixture.detectChanges();
     expect(component.btnBackground)
-      .toEqual('var(--wvre-dropdown-menu-background)');
+      .toEqual('var(--wvr-dropdown-menu-background)');
   });
 
   it('should have customization for active button color', () => {
     expect(component.btnBackgroundActive)
-      .toEqual('var(--wvre-btn-plain-active-background-default)');
-    component.btnBackgroundActive = 'var(--wvre-btn-warning-active-background-default)';
+      .toEqual('var(--wvr-btn-plain-active-background-default)');
+    component.btnBackgroundActive = 'var(--wvr-btn-warning-active-background-default)';
     fixture.detectChanges();
     expect(component.btnBackgroundActive)
-      .toEqual('var(--wvre-btn-warning-active-background-default)');
+      .toEqual('var(--wvr-btn-warning-active-background-default)');
 
   });
 
   it('should have customization for hover button color', () => {
     expect(component.btnBackgroundHover)
-      .toEqual('var(--wvre-btn-plain-hover-background-default)');
-    component.btnBackgroundHover = 'var(--wvre-btn-warning-hover-background-default)';
+      .toEqual('var(--wvr-btn-plain-hover-background-default)');
+    component.btnBackgroundHover = 'var(--wvr-btn-warning-hover-background-default)';
     fixture.detectChanges();
     expect(component.btnBackgroundHover)
-      .toEqual('var(--wvre-btn-warning-hover-background-default)');
+      .toEqual('var(--wvr-btn-warning-hover-background-default)');
 
   });
 
   it('should have customization for button border value', () => {
     expect(component.btnBorderColor)
-      .toEqual('var(--wvre-btn-plain-border-default)');
-    component.btnBorderColor = 'var(--wvre-btn-primary-border-default)';
+      .toEqual('var(--wvr-btn-plain-border-default)');
+    component.btnBorderColor = 'var(--wvr-btn-primary-border-default)';
     fixture.detectChanges();
     expect(component.btnBorderColor)
-      .toEqual('var(--wvre-btn-primary-border-default)');
+      .toEqual('var(--wvr-btn-primary-border-default)');
 
   });
 
   it('should have customization for button border value in active state', () => {
     expect(component.btnBorderActive)
-      .toEqual('var(--wvre-btn-plain-active-border-default)');
-    component.btnBorderActive = 'var(--wvre-btn-primary-active-border-default)';
+      .toEqual('var(--wvr-btn-plain-active-border-default)');
+    component.btnBorderActive = 'var(--wvr-btn-primary-active-border-default)';
     fixture.detectChanges();
     expect(component.btnBorderActive)
-      .toEqual('var(--wvre-btn-primary-active-border-default)');
+      .toEqual('var(--wvr-btn-primary-active-border-default)');
 
   });
 
   it('should have customization for button border value in focus state', () => {
     expect(component.btnBorderFocus)
-      .toEqual('var(--wvre-btn-plain-focus-border-default)');
-    component.btnBorderFocus = 'var(--wvre-btn-primary-focus-border-default)';
+      .toEqual('var(--wvr-btn-plain-focus-border-default)');
+    component.btnBorderFocus = 'var(--wvr-btn-primary-focus-border-default)';
     fixture.detectChanges();
     expect(component.btnBorderFocus)
-      .toEqual('var(--wvre-btn-primary-focus-border-default)');
+      .toEqual('var(--wvr-btn-primary-focus-border-default)');
 
   });
 
   it('should have customization for button border value in hover state', () => {
     expect(component.btnBorderHover)
-      .toEqual('var(--wvre-btn-plain-hover-border-default)');
-    component.btnBorderHover = 'var(--wvre-btn-primary-hover-border-default)';
+      .toEqual('var(--wvr-btn-plain-hover-border-default)');
+    component.btnBorderHover = 'var(--wvr-btn-primary-hover-border-default)';
     fixture.detectChanges();
     expect(component.btnBorderHover)
-      .toEqual('var(--wvre-btn-primary-hover-border-default)');
+      .toEqual('var(--wvr-btn-primary-hover-border-default)');
 
   });
 
   it('should have customization for button color in default state', () => {
     expect(component.btnColor)
-      .toEqual('var(--wvre-btn-plain-color-default)');
-    component.btnColor = 'var(--wvre-btn-primary-color-default)';
+      .toEqual('var(--wvr-btn-plain-color-default)');
+    component.btnColor = 'var(--wvr-btn-primary-color-default)';
     fixture.detectChanges();
     expect(component.btnColor)
-      .toEqual('var(--wvre-btn-primary-color-default)');
+      .toEqual('var(--wvr-btn-primary-color-default)');
 
   });
 
   it('should have customization for button color in active state', () => {
     expect(component.btnColorActive)
-      .toEqual('var(--wvre-btn-plain-active-color-default)');
-    component.btnColorActive = 'var(--wvre-btn-primary-active-color-default)';
+      .toEqual('var(--wvr-btn-plain-active-color-default)');
+    component.btnColorActive = 'var(--wvr-btn-primary-active-color-default)';
     fixture.detectChanges();
     expect(component.btnColorActive)
-      .toEqual('var(--wvre-btn-primary-active-color-default)');
+      .toEqual('var(--wvr-btn-primary-active-color-default)');
 
   });
 
   it('should have customization for button color in hover state', () => {
     expect(component.btnColorHover)
-      .toEqual('var(--wvre-btn-plain-hover-color-default)');
-    component.btnColorHover = 'var(--wvre-btn-primary-hover-color-default)';
+      .toEqual('var(--wvr-btn-plain-hover-color-default)');
+    component.btnColorHover = 'var(--wvr-btn-primary-hover-color-default)';
     fixture.detectChanges();
     expect(component.btnColorHover)
-      .toEqual('var(--wvre-btn-primary-hover-color-default)');
+      .toEqual('var(--wvr-btn-primary-hover-color-default)');
 
   });
 
   it('should have customization for button border radius', () => {
     expect(component.btnBorderRadius)
-      .toEqual('var(--wvre-btn-border-radius)');
+      .toEqual('var(--wvr-btn-border-radius)');
     component.btnBorderRadius = '12px';
     fixture.detectChanges();
     expect(component.btnBorderRadius)
@@ -283,16 +283,16 @@ describe('WvrDropdownComponent', () => {
 
   it('should have customization for button border radius', () => {
     expect(component.btnBoxShadowFocus)
-      .toEqual('var(--wvre-btn-plain-focus-box-shadow-default)');
-    component.btnBoxShadowFocus = 'var(--wvre-btn-primary-focus-box-shadow-default)';
+      .toEqual('var(--wvr-btn-plain-focus-box-shadow-default)');
+    component.btnBoxShadowFocus = 'var(--wvr-btn-primary-focus-box-shadow-default)';
     fixture.detectChanges();
     expect(component.btnBoxShadowFocus)
-      .toEqual('var(--wvre-btn-primary-focus-box-shadow-default)');
+      .toEqual('var(--wvr-btn-primary-focus-box-shadow-default)');
   });
 
   it('should have customization for button cursor', () => {
     expect(component.btnCursor)
-      .toEqual('var(--wvre-btn-cursor-default)');
+      .toEqual('var(--wvr-btn-cursor-default)');
     component.btnCursor = 'pointer';
     fixture.detectChanges();
     expect(component.btnCursor)
@@ -301,101 +301,102 @@ describe('WvrDropdownComponent', () => {
 
   it('should have customization for button font family', () => {
     expect(component.btnFontFamily)
-      .toEqual('var(--wvre-btn-font-family-sans-serif-default)');
-    component.btnFontFamily = 'var(--wvre-font-family-sans-serif)';
+      .toEqual('var(--wvr-btn-font-family-sans-serif-default)');
+    component.btnFontFamily = 'var(--wvr-font-family-sans-serif)';
     fixture.detectChanges();
     expect(component.btnFontFamily)
-      .toEqual('var(--wvre-font-family-sans-serif)');
+      .toEqual('var(--wvr-font-family-sans-serif)');
   });
 
   it('should have customization for button font size', () => {
     expect(component.btnFontSize)
-      .toEqual('var(--wvre-btn-font-size-default)');
-    component.btnFontSize = 'var(--wvre-btn-font-size)';
+      .toEqual('var(--wvr-btn-font-size-default)');
+    component.btnFontSize = 'var(--wvr-btn-font-size)';
     fixture.detectChanges();
     expect(component.btnFontSize)
-      .toEqual('var(--wvre-btn-font-size)');
+      .toEqual('var(--wvr-btn-font-size)');
   });
 
   it('should have customization for button font weight', () => {
     expect(component.btnFontWeight)
-      .toEqual('var(--wvre-btn-font-weight-default)');
-    component.btnFontWeight = 'var(--wvre-btn-font-weight)';
+      .toEqual('var(--wvr-btn-font-weight-default)');
+    component.btnFontWeight = 'var(--wvr-btn-font-weight)';
     fixture.detectChanges();
     expect(component.btnFontWeight)
-      .toEqual('var(--wvre-btn-font-weight)');
+      .toEqual('var(--wvr-btn-font-weight)');
   });
 
   it('should have customization for button line height', () => {
     expect(component.btnLineHeight)
-      .toEqual('var(--wvre-btn-line-height-default)');
-    component.btnLineHeight = 'var(--wvre-btn-line-height)';
+      .toEqual('var(--wvr-btn-line-height-default)');
+    component.btnLineHeight = 'var(--wvr-btn-line-height)';
     fixture.detectChanges();
     expect(component.btnLineHeight)
-      .toEqual('var(--wvre-btn-line-height)');
+      .toEqual('var(--wvr-btn-line-height)');
   });
 
   it('should have customization for button padding rule', () => {
     expect(component.btnPadding)
-      .toEqual('var(--wvre-btn-padding-default)');
-    component.btnPadding = 'var(--wvre-btn-padding)';
+      .toEqual('var(--wvr-btn-padding-default)');
+    component.btnPadding = 'var(--wvr-btn-padding)';
     fixture.detectChanges();
     expect(component.btnPadding)
-      .toEqual('var(--wvre-btn-padding)');
+      .toEqual('var(--wvr-btn-padding)');
   });
 
   it('should have customization for button text align rule', () => {
     expect(component.btnTextAlign)
-      .toEqual('var(--wvre-btn-text-align-default)');
-    component.btnTextAlign = 'var(--wvre-btn-text-align)';
+      .toEqual('var(--wvr-btn-text-align-default)');
+    component.btnTextAlign = 'var(--wvr-btn-text-align)';
     fixture.detectChanges();
     expect(component.btnTextAlign)
-      .toEqual('var(--wvre-btn-text-align)');
+      .toEqual('var(--wvr-btn-text-align)');
   });
 
   it('should have customization for button vertical align', () => {
     expect(component.btnVerticalAlign)
-      .toEqual('var(--wvre-btn-vertical-align-default)');
-    component.btnVerticalAlign = 'var(--wvre-btn-vertical-align)';
+      .toEqual('var(--wvr-btn-vertical-align-default)');
+    component.btnVerticalAlign = 'var(--wvr-btn-vertical-align)';
     fixture.detectChanges();
     expect(component.btnVerticalAlign)
-      .toEqual('var(--wvre-btn-vertical-align)');
+      .toEqual('var(--wvr-btn-vertical-align)');
   });
 
   it('should have customization for button text decoration', () => {
     expect(component.btnTextDecoration)
-      .toEqual('var(--wvre-btn-plain-text-decoration-default)');
-    component.btnTextDecoration = 'var(--wvre-btn-primary-text-decoration)';
+      .toEqual('var(--wvr-btn-plain-text-decoration-default)');
+    component.btnTextDecoration = 'var(--wvr-btn-primary-text-decoration)';
     fixture.detectChanges();
     expect(component.btnTextDecoration)
-      .toEqual('var(--wvre-btn-primary-text-decoration)');
+      .toEqual('var(--wvr-btn-primary-text-decoration)');
   });
 
   it('should have customization for button text decoration in active state', () => {
     expect(component.btnTextDecorationActive)
-      .toEqual('var(--wvre-btn-plain-active-text-decoration-default)');
-    component.btnTextDecorationActive = 'var(--wvre-btn-primary-active-text-decoration)';
+      .toEqual('var(--wvr-btn-plain-active-text-decoration-default)');
+    component.btnTextDecorationActive = 'var(--wvr-btn-primary-active-text-decoration)';
     fixture.detectChanges();
     expect(component.btnTextDecorationActive)
-      .toEqual('var(--wvre-btn-primary-active-text-decoration)');
+      .toEqual('var(--wvr-btn-primary-active-text-decoration)');
   });
 
   it('should have customization for button text decoration in focus state', () => {
     expect(component.btnTextDecorationFocus)
-      .toEqual('var(--wvre-btn-plain-focus-text-decoration-default)');
-    component.btnTextDecorationFocus = 'var(--wvre-btn-primary-focus-text-decoration)';
+      .toEqual('var(--wvr-btn-plain-focus-text-decoration-default)');
+    component.btnTextDecorationFocus = 'var(--wvr-btn-primary-focus-text-decoration)';
     fixture.detectChanges();
     expect(component.btnTextDecorationFocus)
-      .toEqual('var(--wvre-btn-primary-focus-text-decoration)');
+      .toEqual('var(--wvr-btn-primary-focus-text-decoration)');
   });
 
   it('should have customization for button text decoration in focus state', () => {
     expect(component.btnTextDecorationHover)
-      .toEqual('var(--wvre-btn-plain-hover-text-decoration-default)');
-    component.btnTextDecorationHover = 'var(--wvre-btn-primary-hover-text-decoration)';
+      .toEqual('var(--wvr-btn-plain-hover-text-decoration-default)');
+    component.btnTextDecorationHover = 'var(--wvr-btn-primary-hover-text-decoration)';
     fixture.detectChanges();
     expect(component.btnTextDecorationHover)
-      .toEqual('var(--wvre-btn-primary-hover-text-decoration)');
+      .toEqual('var(--wvr-btn-primary-hover-text-decoration)');
   });
 
+// tslint:disable-next-line:max-file-line-count
 });

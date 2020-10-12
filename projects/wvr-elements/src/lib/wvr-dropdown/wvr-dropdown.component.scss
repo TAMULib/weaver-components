@@ -1,20 +1,20 @@
 @import "../shared/styles/wvr-variables.scss";
 
 :host {
-  --wvre-dropdown-menu-animation-speed: 0.25s;
-  --wvre-dropdown-menu-background: var(--wvr-white);
-  --wvre-dropdown-menu-border: 1px solid var(--wvr-gray-dark);
-  --wvre-dropdown-menu-border-radius: 6px;
-  --wvre-dropdown-menu-display: flex;
-  --wvre-dropdown-menu-flex-direction: column;
-  --wvre-dropdown-menu-padding: 25px;
-  --wvre-dropdown-menu-width: fit-content;
-  --wvre-dropdown-menu-x-offset: 0px;
-  --wvre-dropdown-menu-y-offset: -6px;
-  --wvre-dropdown-menu-item-margin: 0 0 10px 0;
+  --wvr-dropdown-menu-animation-speed: 0.25s;
+  --wvr-dropdown-menu-background: var(--wvr-white);
+  --wvr-dropdown-menu-border: 1px solid var(--wvr-gray-dark);
+  --wvr-dropdown-menu-border-radius: 6px;
+  --wvr-dropdown-menu-display: flex;
+  --wvr-dropdown-menu-flex-direction: column;
+  --wvr-dropdown-menu-padding: 25px;
+  --wvr-dropdown-menu-width: fit-content;
+  --wvr-dropdown-menu-x-offset: 0px;
+  --wvr-dropdown-menu-y-offset: -6px;
+  --wvr-dropdown-menu-item-margin: 0 0 10px 0;
 }
 
-.wvre-dropdown {
+.wvr-dropdown {
   font-family: var(--wvr-font-family-sans-serif);
   position: relative;
 
@@ -28,20 +28,20 @@
   }
 
   [ngbDropdownMenu] {
-    background: var(--wvre-dropdown-menu-background);
-    border: var(--wvre-dropdown-menu-border);
-    border-radius: var(--wvre-dropdown-menu-border-radius);
-    left: var(--wvre-dropdown-menu-x-offset) !important;
-    top: var(--wvre-dropdown-menu-y-offset) !important;
-    padding: var(--wvre-dropdown-menu-padding);
+    background: var(--wvr-dropdown-menu-background);
+    border: var(--wvr-dropdown-menu-border);
+    border-radius: var(--wvr-dropdown-menu-border-radius);
+    left: var(--wvr-dropdown-menu-x-offset) !important;
+    top: var(--wvr-dropdown-menu-y-offset) !important;
+    padding: var(--wvr-dropdown-menu-padding);
     position: absolute;
-    width: var(--wvre-dropdown-menu-width);
+    width: var(--wvr-dropdown-menu-width);
     z-index: 1200;
   }
 
   .open {
-    animation: openDD var(--wvre-dropdown-menu-animation-speed) ease-in-out;
-    background: var(--wvre-dropdown-menu-background);
+    animation: openDD var(--wvr-dropdown-menu-animation-speed) ease-in-out;
+    background: var(--wvr-dropdown-menu-background);
   }
 
   @keyframes openDD {
@@ -50,7 +50,7 @@
   }
 
   .closed {
-    animation: closeDD var(--wvre-dropdown-menu-animation-speed) ease-in-out;
+    animation: closeDD var(--wvr-dropdown-menu-animation-speed) ease-in-out;
     visibility:hidden;
   }
 
@@ -61,13 +61,13 @@
 
   ::ng-deep {
     wvre-dropdown-menu {
-      display: var(--wvre-dropdown-menu-display);
-      flex-direction: var(--wvre-dropdown-menu-flex-direction);
+      display: var(--wvr-dropdown-menu-display);
+      flex-direction: var(--wvr-dropdown-menu-flex-direction);
       height: auto;
       width: auto;
       [wvre-dropdown-menu-item],
       wvre-dropdown-menu-item {
-        margin: var(--wvre-dropdown-menu-item-margin) !important;
+        margin: var(--wvr-dropdown-menu-item-margin) !important;
       }
     }
   }

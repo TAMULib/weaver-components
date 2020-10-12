@@ -236,7 +236,7 @@
   --wvr-btn-link-active-text-decoration-default: underline;
   --wvr-btn-link-background-default: transparent;
   --wvr-btn-link-color-default: var(--wvr-primary);
-  --wvre-btn-link-text-decoration-default: underline;
+  --wvr-btn-link-text-decoration-default: underline;
   --wvr-btn-link-focus-box-shadow-default: none;
   --wvr-btn-link-focus-text-decoration-default: none;
   --wvr-btn-link-hover-background-default: transparent;
@@ -506,7 +506,7 @@
   // btn-link
   --wvr-btn-link-background : var(--wvr-btn-link-background-default);
   --wvr-btn-link-color: var(--wvr-btn-link-color-default);
-  --wvre-btn-link-text-decoration: var(--wvre-btn-link-text-decoration-default);
+  --wvr-btn-link-text-decoration: var(--wvr-btn-link-text-decoration-default);
   // btn-link-focus
   --wvr-btn-link-focus-box-shadow: var(--wvr-btn-link-focus-box-shadow-default);
   --wvr-btn-link-focus-text-decoration: var(--wvr-btn-link-focus-text-decoration-default);
@@ -520,7 +520,7 @@
     overflow: hidden;
   }
 
-  .wvre-button.btn {
+  .wvr-button.btn {
     border-radius: var(--wvr-btn-border-radius);
     font-family: var(--wvr-btn-font-family-sans-serif);
     font-size: var(--wvr-btn-font-size);
@@ -532,7 +532,7 @@
     border: var(--wvr-btn-border)
   }
 
-  .wvre-button.btn:not(:disabled):not(.disabled) {
+  .wvr-button.btn:not(:disabled):not(.disabled) {
     cursor: var(--wvr-btn-cursor);
   }
 
@@ -1042,7 +1042,7 @@
     background: var(--wvr-btn-link-background);
     border-color: var(--wvr-btn-link-background);
     color: var(--wvr-btn-link-color);
-    text-decoration: var(--wvre-btn-link-text-decoration);
+    text-decoration: var(--wvr-btn-link-text-decoration);
   }
 
   .btn.btn-link.focus,

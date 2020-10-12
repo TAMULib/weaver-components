@@ -2,16 +2,16 @@
 
 :host {
 
-  --wvre-icon-color: inherit;
-  --wvre-icon-size: inherit;
+  --wvr-icon-color: inherit;
+  --wvr-icon-size: inherit;
 
   wvre-icon-wrapper {
-    color: var(--wvre-icon-color);
+    color: var(--wvr-icon-color);
     display: inline-block;
     ::ng-deep {
       svg {
-        width: var(--wvre-icon-size);
-        height: var(--wvre-icon-size);
+        width: var(--wvr-icon-size);
+        height: var(--wvr-icon-size);
       }
     }
   }

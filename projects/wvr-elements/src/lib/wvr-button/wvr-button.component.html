@@ -1,6 +1,6 @@
 <button-wrapper #animationRoot>
   <button *ngIf="!href"
-  class="wvr-components wvre-button btn"
+  class="wvr-components wvr-button btn"
   (click)="test()"
   [type]="wvrBtnType"
   [ngClass]="{
@@ -32,7 +32,7 @@
   </button>
 
   <a *ngIf="href"
-    class="wvr-components wvre-button btn"
+    class="wvr-components wvr-button btn"
     [href]="href"
     [ngClass]="{
       'btn-primary': btnClass==='primary',
