@@ -1,9 +1,9 @@
 @import "../shared/styles/wvr-variables.scss";
 
 :host {
-  --wvre-nav-list-height: 100%;
+  --wvr-nav-list-height: 100%;
 }
 
 .navbar-nav {
-  height: var(--wvre-nav-list-height);
+  height: var(--wvr-nav-list-height);
 }

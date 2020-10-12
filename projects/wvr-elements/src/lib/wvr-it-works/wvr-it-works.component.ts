@@ -18,7 +18,7 @@ export class WvrItWorksComponent extends WvrBaseComponent {
   @Input() text = 'Weaver Components Work';
 
   /** Allows for the override of the --wvr-primary css variable. */
-  @HostBinding('style.--wvre-primary') @Input() primary;
+  @HostBinding('style.--wvr-primary') @Input() primary;
 
   constructor(injector: Injector) {
     super(injector);
