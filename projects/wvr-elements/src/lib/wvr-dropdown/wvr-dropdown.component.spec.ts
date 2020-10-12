@@ -398,4 +398,5 @@ describe('WvrDropdownComponent', () => {
       .toEqual('var(--wvr-btn-primary-hover-text-decoration)');
   });
 
+// tslint:disable-next-line:max-file-line-count
 });
