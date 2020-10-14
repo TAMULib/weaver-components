@@ -12,7 +12,10 @@ RUN ls -la
 
 FROM httpd:2.4-alpine
 
-COPY --from=npm /app/dist/bundle/ /usr/local/apache2/htdocs/wvr-components/
+COPY --from=npm /app/dist/bundle/ /usr/local/apache2/htdocs/wvr-components/bundle
+
+RUN ln -s /usr/local/apache2/htdocs/wvr-components/bundle /usr/local/apache2/htdocs/wvr-components/latest
+RUN ln -s /usr/local/apache2/htdocs/wvr-components/bundle /usr/local/apache2/htdocs/wvr-components/1x
 
 COPY src/config-template.json tmp/config-template.json
 COPY docker-entrypoint /usr/local/bin/

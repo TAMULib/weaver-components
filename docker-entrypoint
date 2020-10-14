@@ -2,10 +2,9 @@
 
 set -e
 
-versionLocation=/usr/local/apache2/htdocs/wvr-components/1x/config.json
-latestLocation=/usr/local/apache2/htdocs/wvr-components/latest/config.json
+location=/usr/local/apache2/htdocs/wvr-components/config.json
 
-eval "cat << EOF | tee $versionLocation $latestLocation
+eval "cat << EOF | tee $location $location
 $(<tmp/config-template.json)
 EOF"
 
