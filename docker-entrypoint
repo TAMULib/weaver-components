@@ -4,7 +4,7 @@ set -e
 
 location=/usr/local/apache2/htdocs/wvr-components/bundle/config.json
 
-eval "cat << EOF | echo $location
+eval "cat << EOF | tee $location
 $(<tmp/config-template.json)
 EOF"
 
