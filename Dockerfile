@@ -8,8 +8,6 @@ COPY . .
 RUN npm install
 RUN npm run build
 
-RUN ls -la
-
 FROM httpd:2.4-alpine
 
 ARG MAJOR_VERSION=0x
