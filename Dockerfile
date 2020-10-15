@@ -12,8 +12,8 @@ RUN ls -la
 
 FROM httpd:2.4-alpine
 
-ARG MAJOR_VERSION=1x
-ARG MAJOR_MINOR_VERSION=1.0
+ARG MAJOR_VERSION=0x
+ARG MAJOR_MINOR_VERSION=0.0
 
 COPY --from=npm /app/dist/bundle/ /usr/local/apache2/htdocs/wvr-components/bundle
 
