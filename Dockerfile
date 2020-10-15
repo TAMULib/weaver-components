@@ -21,7 +21,7 @@ RUN ln -s /usr/local/apache2/htdocs/wvr-components/bundle /usr/local/apache2/htd
 RUN ln -s /usr/local/apache2/htdocs/wvr-components/bundle /usr/local/apache2/htdocs/wvr-components/${MAJOR_VERSION}
 RUN ln -s /usr/local/apache2/htdocs/wvr-components/bundle /usr/local/apache2/htdocs/wvr-components/${MAJOR_MINOR_VERSION}
 
-COPY src/config-template.json tmp/config-template.json
+COPY --from=npm /app/src/config-template.json tmp/config-template.json
 COPY docker-entrypoint /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint
 
