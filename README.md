@@ -21,6 +21,16 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `npm start` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
+## Docker deployment
+
+```
+docker volume create serve
+docker build -t weaver-components .
+docker run -p 8080:80 -v serve:/usr/local/apache2/htdocs/wvr-components weaver-components
+
+docker system prune -a -f
+```
+
 ## Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.

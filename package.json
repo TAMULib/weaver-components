@@ -22,7 +22,7 @@
     "build": "ng build --prod --output-hashing none",
     "build:clean": "npm run clean && npm run build",
     "build:wvr-elements": "ng build wvr-elements",
-    "build:wvr-components": "node scripts/build-wvr-components.js",
+    "build:wvr-components": "node scripts/build-wvr-config-template.js && node scripts/build-wvr-components.js",
     "build:wvr-components-static": "node scripts/build-wvr-components-static.js",
     "build:lighthouse": "node scripts/build-lighthouse.js",
     "prebuild": "npm run build:wvr-elements",

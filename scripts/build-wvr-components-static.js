@@ -5,7 +5,7 @@ const docPath = `${weaverComponentsPath}/docs`;
 const reportPath = `${weaverComponentsPath}/reports`;
 
 (async function build() {
-  fs.ensureDir(`${docPath}/`);
+  fs.ensureDir(`${docPath}`);
   fs.ensureDir(`${reportPath}`);
 
   fs.copy("src/index-static.html", `${weaverComponentsPath}/index.html`);

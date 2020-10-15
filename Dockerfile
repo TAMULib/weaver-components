@@ -10,28 +10,22 @@ RUN npm run build
 
 FROM httpd:2.4-alpine
 
-ARG MAJOR_VERSION=0x
-ARG MAJOR_MINOR_VERSION=0.0
+ENV BASE_URL=http://localhost:4200
+ENV ASSETS_URL=http://localhost:4200/assets
 
-COPY --from=npm /app/dist/bundle/ /usr/local/apache2/htdocs/wvr-components/bundle
+VOLUME /usr/local/apache2/htdocs/wvr-components
 
-RUN ln -s /usr/local/apache2/htdocs/wvr-components/bundle /usr/local/apache2/htdocs/wvr-components/latest
-RUN ln -s /usr/local/apache2/htdocs/wvr-components/bundle /usr/local/apache2/htdocs/wvr-components/${MAJOR_VERSION}
-RUN ln -s /usr/local/apache2/htdocs/wvr-components/bundle /usr/local/apache2/htdocs/wvr-components/${MAJOR_MINOR_VERSION}
+COPY --from=npm /app/dist/bundle/ /bundle
 
-COPY --from=npm /app/src/config-template.json tmp/config-template.json
-COPY docker-entrypoint /usr/local/bin/
-RUN chmod +x /usr/local/bin/docker-entrypoint
+COPY docker-entrypoint.sh /entrypoint.sh
 
-ENTRYPOINT ["docker-entrypoint"]
+ENTRYPOINT ["/entrypoint.sh"]
 
-RUN apk update; 
+RUN apk update;
 RUN apk upgrade;
-
-RUN echo "" >> /usr/local/apache2/conf/httpd.conf
-RUN echo "###SPECIFIC CUSTOMIZATIONS###" >> /usr/local/apache2/conf/httpd.conf
-RUN echo "" >> /usr/local/apache2/conf/httpd.conf
 
 RUN printf '<Directory /usr/local/apache2/htdocs> \nOrder Allow,Deny \nAllow from all \nAllowOverride all \nHeader set Access-Control-Allow-Origin "*" \n</Directory>' >> /usr/local/apache2/conf/httpd.conf
 
 CMD ["httpd", "-D", "FOREGROUND"]
+
+EXPOSE 80

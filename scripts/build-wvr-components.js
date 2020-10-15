@@ -1,11 +1,14 @@
 const fs = require('fs-extra');
 const concat = require('concat');
-const cp = require('child_process');
 
-const assetPath = 'dist/weaver-components';
+const package = require('../projects/wvr-elements/package.json');
+
+const versionParts = package.version.split('.');
+const majorVersion = versionParts[0];
+const majorMinorVersion = `${versionParts[0]}.${versionParts[1]}`;
+
+const assetPath = 'dist/weaver-components/assets';
 const bundlePath = 'dist/bundle';
-
-cp.fork(__dirname + '/build-wvr-config-template.js');
 
 (async function build() {
   const files = [
@@ -17,10 +20,24 @@ cp.fork(__dirname + '/build-wvr-config-template.js');
     'dist/weaver-components/main-es5.js'
   ];
 
-  fs.ensureDir(bundlePath);
+  await fs.ensureDir(bundlePath);
+  await fs.ensureDir(`${bundlePath}/latest`);
+  await fs.ensureDir(`${bundlePath}/${majorVersion}`);
+  await fs.ensureDir(`${bundlePath}/${majorMinorVersion}`);
 
-  await concat(files, `${bundlePath}/weaver-components.js`);
-  fs.copy('dist/weaver-components/assets', "dist/static/docs/usage/assets");
-  fs.copy(`${assetPath}/assets`, `${bundlePath}/assets`);
+  await concat(files, `${bundlePath}/latest/weaver-components.js`);
+  fs.copy('dist/config-template.json', `${bundlePath}/latest/config-template.json`);
+
+  await concat(files, `${bundlePath}/${majorVersion}/weaver-components.js`);
+  fs.copy('dist/config-template.json', `${bundlePath}/${majorVersion}/config-template.json`);
+
+  await concat(files, `${bundlePath}/${majorMinorVersion}/weaver-components.js`);
+  fs.copy('dist/config-template.json', `${bundlePath}/${majorMinorVersion}/config-template.json`);
+
+  // NOTE: assets are not versioned
+  fs.copy(`${assetPath}`, `${bundlePath}/assets`);
+
+  await fs.ensureDir("dist/static/docs/usage/assets");
+  fs.copy(`${assetPath}`, "dist/static/docs/usage/assets");
 
 })();
