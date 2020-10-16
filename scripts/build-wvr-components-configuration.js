@@ -11,7 +11,7 @@ if(process.argv[2]) {
   });
 }
 
-let configTemplate = fs.readFileSync('./src/config-template.json', 'utf8');
+let configTemplate = fs.readFileSync('./dist/config-template.json', 'utf8');
 
 Object.keys(defaults.parsed)
   .forEach(key => {
