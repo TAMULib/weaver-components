@@ -2,11 +2,10 @@
 
 set -e
 
-location=/usr/local/apache2/htdocs/wvr-components/bundle/config.json
+config=/usr/local/apache2/htdocs/wvr-components/bundle/config.json
+template=tmp/config-template.json
 
-eval "cat << EOF | tee $location
-$(<tmp/config-template.json)
-EOF"
+echo $(eval echo $(echo $(cat $template) | sed -r "s/\\\"/\\\\\"/g")) > $config
 
 echo "Done docker-entrypoint..."
 
