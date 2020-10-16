@@ -1,13 +1,11 @@
-#!/bin/bash
+#!/bin/sh
 
 set -e
 
-versionLocation=/usr/local/apache2/htdocs/wvr-components/1x/config.json
-latestLocation=/usr/local/apache2/htdocs/wvr-components/latest/config.json
+config=/usr/local/apache2/htdocs/wvr-components/bundle/config.json
+template=tmp/config-template.json
 
-eval "cat << EOF | tee $versionLocation $latestLocation
-$(<tmp/config-template.json)
-EOF"
+echo $(eval echo $(echo $(cat $template) | sed -r "s/\\\"/\\\\\"/g")) > $config
 
 echo "Done docker-entrypoint..."
 
