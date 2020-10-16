@@ -38,7 +38,7 @@
     "build:static-production": "npm run build:static && node scripts/build-wvr-components-configuration.js defaults-ci-overrides.env && ls -A | grep -v static | xargs rimraf && mv static/weaver-components/* . && rimraf static",
     "clean": "rimraf dist",
     "clean:static": "rimraf static",
-    "docker:push": "node scripts/docker-push.js 10.55.134.48/weaver/wvr-components",
+    "docker:push": "node scripts/docker-push.js",
     "lint": "ng lint",
     "link": "npm link ./dist/wvr-elements",
     "ng": "ng",
