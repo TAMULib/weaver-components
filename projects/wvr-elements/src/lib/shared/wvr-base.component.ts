@@ -5,17 +5,12 @@ import * as JSON5 from 'json5';
 import { Observable } from 'rxjs';
 import { MobileService } from '../core/mobile.service';
 import { RootState, selectManifestEntryResponse } from '../core/store';
+import { TemplateService } from '../core/template.service';
 import { WvrAnimationService } from '../core/wvr-animation.service';
 import * as ManifestActions from '../core/manifest/manifest.actions';
 import { filter } from 'rxjs/operators';
-import * as Handlebars from 'handlebars';
 import { ComponentRegistryService } from '../core/component-registry.service';
-
-interface WvrDataSelect {
-  manifest: string;
-  entry: string;
-  as: string;
-}
+import { WvrDataSelect } from '../core/data-select';
 
 @Directive()
 // tslint:disable-next-line:directive-class-suffix
@@ -90,6 +85,9 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
   /** A reference to the  MobileService */
   private readonly mobileService: MobileService;
 
+  /** A reference to the  MobileService */
+  private readonly templateService: TemplateService;
+
   /** A host bound accessor which applies the wvr-hidden class if both isMobileLayout and hiddenInMobile evaluate to true.  */
   @HostBinding('class.wvr-hidden') private get _hiddenInMobile(): boolean {
     return this.mobileService.isMobileLayout && this.hiddenInMobile;
@@ -107,21 +105,9 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
     this._domSanitizer = injector.get(DomSanitizer);
     this._eRef = injector.get(ElementRef);
     this.mobileService = injector.get(MobileService);
+    this.templateService = injector.get(TemplateService);
     this.store = injector.get<Store<RootState>>(Store);
     this.id = this.componentRegistry.register(this);
-
-    Handlebars.registerHelper('repeat', (n, block) => {
-        let accum = '';
-        for (let i = 0; i < n; i += 1) {
-            block.data.index = i;
-            block.data.first = i === 0;
-            block.data.last = i === (n - 1);
-            accum += block.fn(this);
-        }
-
-        return accum;
-    });
-    Handlebars.registerHelper('json', context => JSON.stringify(context));
 
     const element = (this._eRef.nativeElement as HTMLElement);
     const htmlIDAttrName = element.hasAttribute('id') ? 'wvr-id' : 'id';
@@ -141,7 +127,7 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
       this._animationService
         .initializeAnimationElement(this.animationStateId, this._animationConfig, this.animationRootElem);
     }, 1);
-    this.parseProjectedContent();
+    this.templateService.parseProjectedContent(this, this._eRef.nativeElement);
     this.initializeAnimationElement();
   }
 
@@ -163,6 +149,14 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
           .playAnimation(this.animationStateId, an, this._animationConfig, this.animationRootElem.nativeElement);
       }
     });
+  }
+
+  hasWvrData(): boolean {
+    return !!this.wvrData;
+  }
+
+  getWvrData(): string {
+    return this.wvrData;
   }
 
   private initializeAnimationRegistration(): void {
@@ -233,38 +227,4 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
       });
   }
 
-  private parseProjectedContent(): void {
-
-    if (!this.wvrData) {
-      return;
-    }
-
-    setTimeout(() => {
-      const elem = (this._eRef.nativeElement as HTMLElement);
-      const projectedContentElem = elem.querySelector('wvr-template');
-
-      if (!projectedContentElem) {
-        return;
-      }
-
-      const valueParsed = JSON5.parse(this.wvrData);
-      const wvrDataSelects: Array<any> = Array.isArray(valueParsed) ? valueParsed : [valueParsed];
-
-      wvrDataSelects
-        .filter((s: WvrDataSelect) => !!s.manifest && !!s.entry && !!s.as)
-        .forEach((s: WvrDataSelect) => {
-          this.data[s.as].subscribe(d => {
-            const data = {};
-            data[s.as] = d;
-            const compiledContent = Handlebars.compile(projectedContentElem.innerHTML)(data);
-            elem.innerHTML = elem.innerHTML
-              .replace(projectedContentElem.outerHTML, compiledContent
-                .replace('<!--', '')
-                .replace('-->', ''));
-          });
-        });
-
-    }, 0);
-
-  }
 }

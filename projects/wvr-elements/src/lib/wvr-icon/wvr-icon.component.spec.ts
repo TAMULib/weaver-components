@@ -2,6 +2,8 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, inject, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StoreModule } from '@ngrx/store';
+import { metaReducers, ROOT_REDUCER } from '../core/store';
 import { APP_CONFIG } from '../shared/config/app-config';
 import { testAppConfig } from '../shared/config/test-app-config';
 import { WvrIconComponent } from './wvr-icon.component';
@@ -12,7 +14,7 @@ describe('WvrIconComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, BrowserAnimationsModule],
+      imports: [HttpClientTestingModule, BrowserAnimationsModule, StoreModule.forRoot(ROOT_REDUCER, { metaReducers })],
       declarations: [WvrIconComponent],
       providers: [{
         provide: APP_CONFIG,

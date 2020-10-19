@@ -95,8 +95,7 @@ const components = [
     WvrAnimationService
   ],
   declarations: [
-    ...components,
-    WvrManifestComponent
+    ...components
   ],
   bootstrap: [],
   entryComponents: [

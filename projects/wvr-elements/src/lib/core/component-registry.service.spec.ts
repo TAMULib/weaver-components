@@ -1,10 +1,11 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { WvrBaseComponent } from '../shared/wvr-base.component';
+import { StoreModule } from '@ngrx/store';
 import { WvrItWorksComponent } from '../wvr-it-works/wvr-it-works.component';
 
 import { ComponentRegistryService } from './component-registry.service';
+import { metaReducers, ROOT_REDUCER } from './store';
 
 describe('ComponentRegistryService', () => {
   let service: ComponentRegistryService;
@@ -13,7 +14,7 @@ describe('ComponentRegistryService', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule],
+      imports: [BrowserAnimationsModule, StoreModule.forRoot(ROOT_REDUCER, { metaReducers })],
       declarations: [WvrItWorksComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
