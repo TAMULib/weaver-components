@@ -1,15 +1,9 @@
 const fs = require('fs-extra');
 const concat = require('concat');
-const package = require('../package.json');
 const cp = require('child_process');
 
-const majorVersion = package.version.split('.')[0];
 const assetPath = 'dist/weaver-components';
-const basePath = 'dist/bundle';
-const dirName = `${majorVersion}x`;
-const dirPath = `${basePath}/${dirName}`;
-const latestPath = `${basePath}/latest`;
-
+const bundlePath = 'dist/bundle';
 
 cp.fork(__dirname + '/build-wvr-config-template.js');
 
@@ -23,15 +17,10 @@ cp.fork(__dirname + '/build-wvr-config-template.js');
     'dist/weaver-components/main-es5.js'
   ];
 
-  fs.ensureDir(dirPath);
+  fs.ensureDir(bundlePath);
 
-  await concat(files, `${dirPath}/weaver-components.js`);
-  fs.copy(`${dirPath}/weaver-components.js`, `${latestPath}/weaver-components.js`);
-  fs.copy(`${dirPath}/weaver-components.js`, 'dist/static/docs/usage/weaver-components.js');
+  await concat(files, `${bundlePath}/weaver-components.js`);
   fs.copy('dist/weaver-components/assets', "dist/static/docs/usage/assets");
+  fs.copy(`${assetPath}/assets`, `${bundlePath}/assets`);
 
-  // to ensure static assets present in latest and <latest>x folders
-  fs.ensureDir(assetPath);
-  fs.copy(`${assetPath}/assets`, `${dirPath}/assets`);
-  fs.copy(`${assetPath}/assets`, `${latestPath}/assets`);
 })();

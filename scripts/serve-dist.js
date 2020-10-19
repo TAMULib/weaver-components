@@ -4,10 +4,9 @@ const StaticServer = require('static-server');
 
 const fsPromises = fs.promises;
 const basePath = 'dist/bundle';
-const latestPath = `${basePath}/latest`;
 
 const server = new StaticServer({
-  rootPath: 'dist/bundle/latest',
+  rootPath: 'dist/bundle',
   port: 8080,
   name: 'wvr-component-static-server',
   followSymlink: true,
@@ -15,14 +14,14 @@ const server = new StaticServer({
 
 server.start(function () {
   console.log('Server listening to', server.port);
-  fsPromises.copyFile('src/index.html', `${latestPath}/index.html`);
+  fsPromises.copyFile('src/index.html', `${basePath}/index.html`);
 });
 
 process.on('exit', function () {
-  fs.unlink(`${latestPath}/index.html`, err => {
+  fs.unlink(`${basePath}/index.html`, err => {
     if (err) throw err;
   });
-  fs.unlink(`${latestPath}/config.json`, err => {
+  fs.unlink(`${basePath}/config.json`, err => {
     if (err) throw err;
   });
   console.log('Cleaning up');

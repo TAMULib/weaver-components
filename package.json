@@ -15,6 +15,9 @@
     "wvr-build-static": ".scripts/build-wvr-components-static.js",
     "wvr-serve-dist": ".scripts/serve-dist.js"
   },
+  "config": {
+    "DOCKER_SERVER": "10.55.134.48/weaver/wvr-components"
+  },
   "scripts": {
     "build": "ng build --prod --output-hashing none",
     "build:clean": "npm run clean && npm run build",
@@ -27,6 +30,7 @@
     "build:docs": "npm run build:docs-usage && npm run build:docs-development",
     "build:docs-development": "compodoc --output ./static/weaver-components/docs/development -p ./projects/wvr-elements/tsconfig.docs.json",
     "build:docs-usage": "node scripts/build-wvr-ud.js",
+    "build:docker": "node scripts/build-docker.js",
     "build:static": "npm run build:static-docs && npm run build:static-reports",
     "build:static-setup": "node scripts/build-wvr-components-static.js",
     "build:static-docs": "npm run test:audit && npm run build:static-setup && npm run build:docs-usage && npm run build:docs-development",
@@ -34,12 +38,14 @@
     "build:static-production": "npm run build:static && node scripts/build-wvr-components-configuration.js defaults-ci-overrides.env && ls -A | grep -v static | xargs rimraf && mv static/weaver-components/* . && rimraf static",
     "clean": "rimraf dist",
     "clean:static": "rimraf static",
+    "docker:push": "node scripts/docker-push.js",
     "lint": "ng lint",
     "link": "npm link ./dist/wvr-elements",
     "ng": "ng",
     "start": "node scripts/build-wvr-components-configuration.js defaults-dev-overrides.env && ng serve --port 4200",
     "start:dist": "node scripts/build-wvr-components-configuration.js defaults-dist-overrides.env && node scripts/serve-dist.js",
     "start:static": "node scripts/build-wvr-components-configuration.js defaults-static-overrides.env && static-server static -p 8081",
+    "start:docker": "node scripts/start-docker.js",
     "test": "npm run test:unit && npm run test:e2e",
     "test:audit": "rimraf .lighthouseci && lhci autorun --upload.target=temporary-public-storage --config=./lighthouserc.json && node scripts/build-wvr-components-lighthouse-badges.js",
     "test:e2e": "ng e2e",
@@ -118,6 +124,7 @@
     "ng-packagr": "^10.0.4",
     "protractor": "~7.0.0",
     "rimraf": "^3.0.2",
+    "shelljs": "^0.8.4",
     "static-server": "^2.2.1",
     "ts-loader": "^8.0.3",
     "ts-node": "~9.0.0",
