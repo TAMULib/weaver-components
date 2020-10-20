@@ -5,6 +5,7 @@ import { RequestMethod } from '../core/rest/request-method';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 import * as ManifestActions from '../core/manifest/manifest.actions';
 import * as JSON5 from 'json5';
+import * as mappingStrategies from './mapping-strategies';
 
 @Component({
   selector: 'wvr-manifest-element',
@@ -17,6 +18,8 @@ export class WvrManifestComponent extends WvrBaseComponent implements AfterConte
   @Input() private baseUrl: string;
 
   @Input() private description: string;
+
+  @Input() private mappingStrategy;
 
   // tslint:disable-next-line:no-empty
   constructor(private injector: Injector) {
@@ -38,6 +41,9 @@ export class WvrManifestComponent extends WvrBaseComponent implements AfterConte
 
   private buildEntries(): Array<ManifestEntry> {
     const entryNodes = Array.from((this._eRef.nativeElement as HTMLElement).querySelectorAll('wvr-manifest-entry'));
+    const ms = mappingStrategies[this.mappingStrategy] ?
+               mappingStrategies[this.mappingStrategy] :
+               mappingStrategies.none;
     const entries: Array<ManifestEntry> = entryNodes.map(e => {
       const me = {
         name: e.getAttribute('name'),
@@ -46,7 +52,7 @@ export class WvrManifestComponent extends WvrBaseComponent implements AfterConte
         path: e.getAttribute('path'),
         description: e.getAttribute('path'),
         options: JSON5.parse(e.getAttribute('options')),
-        map: data => data.payload[Object.keys(data.payload)[0]]
+        map: ms
       };
 
       return me;
