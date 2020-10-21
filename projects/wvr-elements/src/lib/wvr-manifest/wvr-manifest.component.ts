@@ -40,7 +40,7 @@ export class WvrManifestComponent extends WvrBaseComponent implements AfterConte
   }
 
   private buildEntries(): Array<ManifestEntry> {
-    const entryNodes = Array.from((this._eRef.nativeElement as HTMLElement).querySelectorAll('wvr-manifest-entry'));
+    const entryNodes = Array.from((this._eRef.nativeElement as HTMLElement).querySelectorAll('wvre-manifest-entry'));
     const ms = mappingStrategies[this.mappingStrategy] ?
                mappingStrategies[this.mappingStrategy] :
                mappingStrategies.none;
@@ -52,7 +52,7 @@ export class WvrManifestComponent extends WvrBaseComponent implements AfterConte
         path: e.getAttribute('path'),
         description: e.getAttribute('path'),
         options: JSON5.parse(e.getAttribute('options')),
-        map: ms
+        map: ms.map
       };
 
       return me;

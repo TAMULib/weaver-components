@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Observable, of } from 'rxjs';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { catchError, map, mergeMap, switchMap } from 'rxjs/operators';
 import { Request } from './request';
 import * as RestActions from './rest.actions';
 import { RestService } from './rest.service';
@@ -19,7 +19,7 @@ export class RestEffects {
   request = createEffect(
     () => this.actions.pipe(
       ofType(RestActions.request),
-      switchMap(action => action.method(action.request)
+      mergeMap(action => action.method(action.request)
         .pipe(
           map(response => RestActions.requestSuccess({
             response: action.request.map ? action.request.map(response) : response,

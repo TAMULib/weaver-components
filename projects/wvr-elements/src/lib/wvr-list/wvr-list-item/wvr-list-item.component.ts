@@ -43,6 +43,11 @@ export class WvrListItemComponent extends WvrBaseComponent implements OnInit, Af
 
   /** A getter for the html content contined withing the `contentProjection` template */
   get htmlContent(): string {
+
+    if (!this.contentProjection) {
+      return '';
+    }
+
     const elems = this.contentProjection.nativeElement.children;
 
     let htmlString = '';

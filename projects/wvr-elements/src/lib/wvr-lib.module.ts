@@ -31,6 +31,7 @@ import { WvrNavListComponent } from './wvr-nav-list/wvr-nav-list.component';
 import { WvrTextComponent } from './wvr-text/wvr-text.component';
 import { WvrTabsComponent } from './wvr-tabs/wvr-tabs.component';
 import { WvrTabComponent } from './wvr-tabs/wvr-tab/wvr-tab.component';
+import { SafePipe } from './shared/pipes/safe.pipe';
 
 /** This property contains a list of components and the selector tags. */
 const elements = [
@@ -69,7 +70,8 @@ const components = [
   WvrManifestComponent,
   WvrManifestEntryComponent,
   WvrTabsComponent,
-  WvrTabComponent
+  WvrTabComponent,
+  SafePipe
 ];
 
 /** The main module for the Weaver Elements library. */

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { mergeMap, switchMap } from 'rxjs/operators';
 import { Request } from './request';
 
 @Injectable({
@@ -39,13 +39,13 @@ export class RestService {
 
   private processRequest(request: Request, callback: (url: string, options: any) => Observable<any>): Observable<any> {
     return this.preprocessOptions(request)
-      .pipe(switchMap(options => callback(request.url, options)));
+      .pipe(mergeMap(options => callback(request.url, options)));
   }
 
   // tslint:disable-next-line:max-line-length
   private processRequestWithData(request: Request, callback: (url: string, body: any, options: any) => Observable<any>): Observable<any> {
     return this.preprocessOptions(request)
-      .pipe(switchMap(options => callback(request.url, request.body, options)));
+      .pipe(mergeMap(options => callback(request.url, request.body, options)));
   }
 
   // tslint:disable-next-line:prefer-function-over-method

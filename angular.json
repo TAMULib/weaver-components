@@ -39,7 +39,8 @@
               }
             ],
             "allowedCommonJsDependencies": [
-              "css-element-queries"
+              "css-element-queries",
+              "handlebars"
             ]
           },
           "configurations": {

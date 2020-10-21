@@ -1,6 +1,7 @@
-import { AfterContentInit, AfterViewInit, Component, Injector, Input } from '@angular/core';
+import { AfterContentInit, AfterViewInit, Component, Injector, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { SafeHtml } from '@angular/platform-browser';
 import { Theme } from '../shared/theme.type';
+import { debounce } from '../shared/utility';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 import { WvrListItemComponent } from './wvr-list-item/wvr-list-item.component';
 
@@ -12,7 +13,7 @@ import { WvrListItemComponent } from './wvr-list-item/wvr-list-item.component';
   templateUrl: './wvr-list.component.html',
   styleUrls: ['./wvr-list.component.scss']
 })
-export class WvrListComponent extends WvrBaseComponent implements AfterContentInit {
+export class WvrListComponent extends WvrBaseComponent {
 
   /** All WvrListItemComponent contained within this list. */
   private readonly listItems: Array<WvrListItemComponent>;
@@ -24,12 +25,7 @@ export class WvrListComponent extends WvrBaseComponent implements AfterContentIn
   @Input() context: Theme;
 
   /** The raw combined html for each list item. */
-  private _htmlString: string;
-
-  /** A SafeHtml represntation of the `_htmlString`. */
-  get listItemsHtml(): SafeHtml {
-    return this._htmlString;
-  }
+  listItemsHtml: string;
 
   constructor(injector: Injector) {
     super(injector);
@@ -39,15 +35,13 @@ export class WvrListComponent extends WvrBaseComponent implements AfterContentIn
   /** Registers the incoming WvrListItemComponent as a child list item of this list.  */
   addListItem(listItem: WvrListItemComponent): void {
     this.listItems.push(listItem);
+    this.renderList();
   }
 
-  /** Contstructs the `_htmlString` from the combined html content of each list item contained within this list. */
-  ngAfterContentInit(): void {
-    setTimeout(() => {
-      this._htmlString = this.listItems
+  @debounce() private renderList(): void {
+    this.listItemsHtml = this.listItems
         .map(li => li.htmlContent)
         .join('\n');
-    }, 0);
   }
 
 }
