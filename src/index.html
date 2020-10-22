@@ -691,17 +691,17 @@
       }
     ]">
       <wvre-template>
-        <!-- 
-          
+        <!--
           {{#each allSorted}}
             <wvre-list-item>{{fullName}}</wvre-list-item>
-          {{/each}} 
-          
+          {{/each}}
         -->
       </wvre-template>
     </wvre-list>
 
   </div>
+
+  
 
   <div class="container index-container">
 
@@ -740,7 +740,7 @@
 
   <wvre-manifest name="Directory App" base-url="https://api-dev.library.tamu.edu/directory-service" mapping-strategy="weaver">
     <wvre-manifest-entry name="All Sorted" path="/ldap/all-sorted" methods="GET"></wvre-manifest-entry>
-    <wvre-manifest-entry name="Departments" path="/ldap/departments" methods="GET"></wvre-manifest-entry>
+    <wvre-manifest-entry name="Departments" path="/ldap/departments" methods="GET" mapping-strategy="none"></wvre-manifest-entry>
   </wvre-manifest>
 
   <script defer src="weaver-components.js"></script>

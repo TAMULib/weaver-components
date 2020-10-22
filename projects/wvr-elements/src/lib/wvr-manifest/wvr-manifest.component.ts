@@ -41,10 +41,14 @@ export class WvrManifestComponent extends WvrBaseComponent implements AfterConte
 
   private buildEntries(): Array<ManifestEntry> {
     const entryNodes = Array.from((this._eRef.nativeElement as HTMLElement).querySelectorAll('wvre-manifest-entry'));
-    const ms = mappingStrategies[this.mappingStrategy] ?
+    let ms = mappingStrategies[this.mappingStrategy] ?
                mappingStrategies[this.mappingStrategy] :
                mappingStrategies.none;
     const entries: Array<ManifestEntry> = entryNodes.map(e => {
+      const eMS = e.getAttribute('mapping-strategy');
+      ms = mappingStrategies[eMS] ?
+           mappingStrategies[eMS] :
+           ms;
       const me = {
         name: e.getAttribute('name'),
         methods: e.getAttribute('methods')

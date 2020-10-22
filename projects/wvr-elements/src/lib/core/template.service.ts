@@ -28,7 +28,6 @@ export class TemplateService {
       if (!projectedContentElem) {
         return;
       }
-
       const valueParsed = JSON5.parse(component.getWvrData());
       const wvrDataSelects: Array<any> = Array.isArray(valueParsed) ? valueParsed : [valueParsed];
 
@@ -41,6 +40,7 @@ export class TemplateService {
   }
 
   compile(d: {}, s: WvrDataSelect, elem: HTMLElement, projectedContentElem: HTMLElement): void {
+    console.log("compile");
     const data = {};
     data[s.as] = d;
     const compiledContent = Handlebars.compile(projectedContentElem.innerHTML)(data);
