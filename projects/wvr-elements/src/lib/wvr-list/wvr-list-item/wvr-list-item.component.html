@@ -1,73 +1,65 @@
-<template #liWrapper *ngIf="listType==='unordered'  || listType==='unstyled' || listType==='ordered'">
-  <li [id]="htmlId">
-    <ng-container *ngTemplateOutlet="contentProjection"></ng-container>
-  </li>
-</template>
+<li [id]="htmlId" *ngIf="listType==='unordered' || listType==='unstyled' || listType==='ordered'">
+  <ng-container *ngTemplateOutlet="content"></ng-container>
+</li>
 
-<template #liWrapper *ngIf="listType==='described'">
-  <dt [id]="htmlId">
-    {{description}}
-  </dt>
-  <dd>
-    <ng-container *ngTemplateOutlet="contentProjection"></ng-container>
-  </dd>
-</template>
+<dt [id]="htmlId" *ngIf="listType==='described'">
+  {{description}}
+</dt>
+<dd *ngIf="listType==='described'">
+  <ng-container *ngTemplateOutlet="content"></ng-container>
+</dd>
 
-<template #liWrapper *ngIf="listType==='group-ul' || listType==='group'">
-  <li class="list-group-item d-flex justify-content-between align-items-center"
-  [id]="htmlId"
-  [ngClass]="{
-    'list-group-item-primary': context === 'primary',
-    'list-group-item-secondary': context === 'secondary',
-    'list-group-item-success': context === 'success',
-    'list-group-item-danger': context === 'danger',
-    'list-group-item-info': context === 'info',
-    'list-group-item-warning': context === 'warning',
-    'list-group-item-light': context === 'light',
-    'list-group-item-dark': context === 'dark'
-  }">
-    <ng-container *ngTemplateOutlet="contentProjection"></ng-container>
-  </li>
-</template>
+<li class="list-group-item d-flex justify-content-between align-items-center"
+    *ngIf="listType==='group-ul' || listType==='group'"
+    [id]="htmlId"
+    [ngClass]="{
+      'list-group-item-primary': context === 'primary',
+      'list-group-item-secondary': context === 'secondary',
+      'list-group-item-success': context === 'success',
+      'list-group-item-danger': context === 'danger',
+      'list-group-item-info': context === 'info',
+      'list-group-item-warning': context === 'warning',
+      'list-group-item-light': context === 'light',
+      'list-group-item-dark': context === 'dark'
+    }">
+  <ng-container *ngTemplateOutlet="content"></ng-container>
+</li>
 
-<template #liWrapper *ngIf="listType==='group-div'">
-  <button class="list-group-item list-group-item-action"
-  [id]="htmlId"
-  [ngClass]="{
-    'list-group-item-primary': context === 'primary',
-    'list-group-item-secondary': context === 'secondary',
-    'list-group-item-success': context === 'success',
-    'list-group-item-danger': context === 'danger',
-    'list-group-item-info': context === 'info',
-    'list-group-item-warning': context === 'warning',
-    'list-group-item-light': context === 'light',
-    'list-group-item-dark': context === 'dark'
-  }" role="listitem">
-    <ng-container *ngTemplateOutlet="contentProjection"></ng-container>
-  </button>
-</template>
+<button class="list-group-item list-group-item-action"
+        role="listitem"
+        *ngIf="listType==='group-div'"
+        [id]="htmlId"
+        [ngClass]="{
+          'list-group-item-primary': context === 'primary',
+          'list-group-item-secondary': context === 'secondary',
+          'list-group-item-success': context === 'success',
+          'list-group-item-danger': context === 'danger',
+          'list-group-item-info': context === 'info',
+          'list-group-item-warning': context === 'warning',
+          'list-group-item-light': context === 'light',
+          'list-group-item-dark': context === 'dark'
+        }">
+  <ng-container *ngTemplateOutlet="content"></ng-container>
+</button>
 
-<template #liWrapper *ngIf="listType==='group-flush'">
-  <li [id]="htmlId" class="list-group-item">
-    <ng-container *ngTemplateOutlet="contentProjection"></ng-container>
-  </li>
-</template>
+<li [id]="htmlId" class="list-group-item" *ngIf="listType==='group-flush'">
+  <ng-container *ngTemplateOutlet="content"></ng-container>
+</li>
 
-<template #liWrapper *ngIf="listType==='group-custom-content'">
-  <a [id]="htmlId" class="list-group-item list-group-item-action flex-column align-items-start" role="listitem">
-    <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">{{customContentItemHeading}}</h5>
-      <small>{{customContentHeadingSmallText}}</small>
-    </div>
-    <p class="mb-1">
-      <ng-container *ngTemplateOutlet="contentProjection"></ng-container>
-    </p>
-    <small>{{customContentSmallText}}</small>
-  </a>
-</template>
+<a [id]="htmlId"
+    class="list-group-item list-group-item-action flex-column align-items-start"
+    role="listitem"
+    *ngIf="listType==='group-custom-content'">
+  <div class="d-flex w-100 justify-content-between">
+    <h5 class="mb-1">{{customContentItemHeading}}</h5>
+    <small>{{customContentHeadingSmallText}}</small>
+  </div>
+  <p class="mb-1">
+    <ng-container *ngTemplateOutlet="content"></ng-container>
+  </p>
+  <small>{{customContentSmallText}}</small>
+</a>
 
-
-<ng-template #contentProjection>
+<ng-template #content>
   <ng-content></ng-content>
 </ng-template>
-
