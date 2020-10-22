@@ -3,14 +3,14 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { select, Store } from '@ngrx/store';
 import * as JSON5 from 'json5';
 import { Observable } from 'rxjs';
+import { filter } from 'rxjs/operators';
+import { ComponentRegistryService } from '../core/component-registry.service';
+import { WvrDataSelect } from '../core/data-select';
+import * as ManifestActions from '../core/manifest/manifest.actions';
 import { MobileService } from '../core/mobile.service';
 import { RootState, selectManifestEntryResponse } from '../core/store';
 import { TemplateService } from '../core/template.service';
 import { WvrAnimationService } from '../core/wvr-animation.service';
-import * as ManifestActions from '../core/manifest/manifest.actions';
-import { filter } from 'rxjs/operators';
-import { ComponentRegistryService } from '../core/component-registry.service';
-import { WvrDataSelect } from '../core/data-select';
 
 @Directive()
 // tslint:disable-next-line:directive-class-suffix
@@ -18,9 +18,6 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
 
   /** A generated unique identifier for this comonent. */
   readonly id: number;
-
-  /** A statically accessible reference to the prefix used in deriving the HTML identifier. */
-  static readonly HTML_ID_BASE = 'wvr-component';
 
   data: {[as: string]: Observable<any>} = {};
 
@@ -71,7 +68,7 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
 
   protected readonly store: Store<RootState>;
   /** A reference to the  ComponentRegistryService */
-  protected readonly componentRegistry: ComponentRegistryService;
+  protected readonly componentRegistry: ComponentRegistryService<WvrBaseComponent>;
 
   /** A reference to the  WvrAnimationService */
   protected readonly _animationService: WvrAnimationService;
@@ -111,7 +108,7 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
 
     const element = (this._eRef.nativeElement as HTMLElement);
     const htmlIDAttrName = element.hasAttribute('id') ? 'wvr-id' : 'id';
-    element.setAttribute(htmlIDAttrName, `${WvrBaseComponent.HTML_ID_BASE}-${this.id}`);
+    element.setAttribute(htmlIDAttrName, `${ComponentRegistryService.HTML_ID_BASE}-${this.id}`);
   }
 
   /** Used to setup this component for animating. */
@@ -119,6 +116,7 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
     this.processAnimations();
     this.processData();
     this.initializeAnimationRegistration();
+    this.templateService.parseProjectedContent(this, this._eRef.nativeElement);
   }
 
   /** Used for post content initialization animation setup. */
@@ -127,7 +125,6 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
       this._animationService
         .initializeAnimationElement(this.animationStateId, this._animationConfig, this.animationRootElem);
     }, 1);
-    this.templateService.parseProjectedContent(this, this._eRef.nativeElement);
     this.initializeAnimationElement();
   }
 

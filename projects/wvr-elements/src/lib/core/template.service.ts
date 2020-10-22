@@ -19,17 +19,15 @@ export class TemplateService {
   }
 
   parseProjectedContent(component: WvrBaseComponent, elem: HTMLElement): void {
-    if (!component.hasWvrData) {
+    if (!component.hasWvrData()) {
       return;
     }
 
     setTimeout(() => {
-      const projectedContentElem = elem.querySelector('wvr-template') as HTMLElement;
-
+      const projectedContentElem = elem.querySelector('wvre-template') as HTMLElement;
       if (!projectedContentElem) {
         return;
       }
-
       const valueParsed = JSON5.parse(component.getWvrData());
       const wvrDataSelects: Array<any> = Array.isArray(valueParsed) ? valueParsed : [valueParsed];
 
@@ -37,19 +35,18 @@ export class TemplateService {
         .filter((s: WvrDataSelect) => !!s.manifest && !!s.entry && !!s.as)
         .forEach((s: WvrDataSelect) => {
           component.data[s.as].subscribe(d => this.compile(d, s, elem, projectedContentElem));
-
-      }, 0);
+        });
     });
   }
 
   compile(d: {}, s: WvrDataSelect, elem: HTMLElement, projectedContentElem: HTMLElement): void {
+    console.log("compile");
     const data = {};
     data[s.as] = d;
     const compiledContent = Handlebars.compile(projectedContentElem.innerHTML)(data);
-    elem.innerHTML = elem.innerHTML
-      .replace(projectedContentElem.outerHTML, compiledContent
+    projectedContentElem.outerHTML = compiledContent
         .replace('<!--', '')
-        .replace('-->', ''));
+        .replace('-->', '');
   }
 
 }

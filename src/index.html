@@ -522,15 +522,11 @@
 
   <div class="container index-container">
     <wvre-text value="Weaver Icon List" text-decoration="underline"></wvre-text><br />
-    <wvre-icon set="custom" name="weaver-w"></wvre-icon>
-    <wvre-icon set="custom" name="weaver-w" color="#500000" size="64px" hidden-in-mobile="true"></wvre-icon>
     <wvre-button btn-class="primary" wvr-btn-type="button" animate="{click: 'rotateToggle'}">
-      <wvre-icon set="custom" name="weaver-w" color="#500000"></wvre-icon>
       <wvre-text value="Icon Btn"></wvre-text>
     </wvre-button>
     <wvre-button btn-class="info" wvr-btn-type="button" animate="{click: 'animationTrigger'}" animate-target="elem1" hidden-in-mobile="true">
       <wvre-text value="Icon Btn to Be Hidden in Mobile View"></wvre-text>
-      <wvre-icon set="feather" name="chevron-right" color="#500000" animate="{animationTrigger: 'rotateToggle'}" animate-id="elem1"></wvre-icon>
     </wvre-button>
   </div>
 
@@ -685,51 +681,7 @@
 
   <div class="container index-container">
 
-    <wvre-text value="Expanding / Collapsing List" text-decoration="underline"></wvre-text><br /><br />
-
-    <wvre-list list-type="unstyled" hidden-in-mobile="true">
-      <wvre-list-item>
-        <wvre-button btn-class="link" animate="{click: 'animationTrigger'}" animate-target="list2">
-          <wvre-text value="Item One"></wvre-text>
-          <wvre-icon set="feather" name="chevron-right" animate="{animationTrigger: 'rotateToggle'}" animate-id="list2"></wvre-icon>
-        </wvre-button>
-        <wvre-list list-type="unordered" animate="{animationTrigger: 'expandCollapseToggle'}" animate-id="list2" animate-config="{
-          expandCollapseToggle: {
-            timing: '250ms ease-in',
-            to: '100px',
-            from: '0px'
-          }
-        }">
-          <wvre-list-item>
-            <wvre-text value="Item One.One"></wvre-text>
-          </wvre-list-item>
-          <wvre-list-item>
-            <wvre-text value="Item One.Two"></wvre-text>
-          </wvre-list-item>
-          <wvre-list-item>
-            <wvre-text value="Item One.Three"></wvre-text>
-          </wvre-list-item>
-        </wvre-list>
-      </wvre-list-item>
-      <wvre-list-item>
-        <wvre-button btn-class="link">
-          <wvre-text value="Item Two"></wvre-text>
-          <wvre-icon set="feather" name="chevron-right"></wvre-icon>
-        </wvre-button>
-      </wvre-list-item>
-      <wvre-list-item>
-        <wvre-button btn-class="link">
-          <wvre-text value="Item Three"></wvre-text>
-          <wvre-icon set="feather" name="chevron-right"></wvre-icon>
-        </wvre-button>
-      </wvre-list-item>
-    </wvre-list>
-
-  </div>
-
-  <div class="container index-container">
-
-    <wvre-text value="Wvr Store, and Communication" text-decoration="underline"></wvr-text><br /><br />
+    <wvre-text value="Wvr Store, and Communication" text-decoration="underline"></wvre-text><br /><br />
 
     <wvre-list list-type="unstyled" hidden-in-mobile="true" wvr-data="[
       {
@@ -739,21 +691,21 @@
       }
     ]">
       <wvre-template>
-        <!-- 
-          
+        <!--
           {{#each allSorted}}
-            <wvr-list-item>{{fullName}}</wvr-list-item>
-          {{/each}} 
-          
+            <wvre-list-item>{{fullName}}</wvre-list-item>
+          {{/each}}
         -->
       </wvre-template>
     </wvre-list>
 
   </div>
 
-  <!-- <wvr-list-item *ngFor="let person of (data.allSorted | async)?.payload['ArrayList&lt;LdapUser&gt;']">{{person.firstName}} {{person.lastName}}</wvr-list-item> -->
+  
 
-    <wvre-text value="Tabs" text-decoration="underline"></wvr-text><br /><br />
+  <div class="container index-container">
+
+    <wvre-text value="Tabs" text-decoration="underline"></wvre-text><br /><br />
   
     <wvre-tabs>
       <wvre-tab tab-text="Tab One">
@@ -786,10 +738,10 @@
     </wvre-nav-list>
   </wvre-footer>
 
-  <wvr-manifest name="Directory App" base-url="https://api-dev.library.tamu.edu/directory-service">
-    <wvr-manifest-entry name="All Sorted" path="/ldap/all-sorted" methods="GET"></wvr-manifest-entry>
-    <wvr-manifest-entry name="Departments" path="/ldap/departments" methods="GET"></wvr-manifest-entry>
-  </wvr-manifest>
+  <wvre-manifest name="Directory App" base-url="https://api-dev.library.tamu.edu/directory-service" mapping-strategy="weaver">
+    <wvre-manifest-entry name="All Sorted" path="/ldap/all-sorted" methods="GET"></wvre-manifest-entry>
+    <wvre-manifest-entry name="Departments" path="/ldap/departments" methods="GET" mapping-strategy="none"></wvre-manifest-entry>
+  </wvre-manifest>
 
   <script defer src="weaver-components.js"></script>
 

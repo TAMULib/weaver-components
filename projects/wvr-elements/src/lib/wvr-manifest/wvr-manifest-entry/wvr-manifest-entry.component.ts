@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 export class WvrManifestEntryComponent {
 
   // tslint:disable-next-line:no-empty
-  constructor() { }
+  constructor() { 
+
+  }
 
 }
