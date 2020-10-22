@@ -1,5 +1,5 @@
 import { Template } from '@angular/compiler/src/render3/r3_ast';
-import { AfterViewInit, Component, Injector, OnInit, TemplateRef, ViewChild, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Injector, OnInit, TemplateRef, ViewChild, ViewChildren } from '@angular/core';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 @Component({
@@ -9,9 +9,17 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
 })
 export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit, OnInit {
 
-  cardHeader: string;
+  hasCardHeader: boolean;
+  hasCardImg: boolean;
+  hasCardTitle: boolean;
+  hasCardListTop: boolean;
+  hasCardBody: boolean;
+  hasCardListBottom: boolean;
+  hasCardLinkBody: boolean;
+  hasCardButton: boolean;
+  hasCardFooter: boolean;
 
-  @ViewChildren('cardHeaderContent') cardHeaderTemplate: TemplateRef<any>;
+  @ViewChild('cardHeaderContent') cardHeaderTemplate: ElementRef<any>;
 
   /** The weaver card text center attribute */
   cardTextCenter: boolean;
@@ -32,6 +40,8 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit,
     this.renderCardImg();
     this.renderCardTitle();
     this.renderCardLinks();
+    this.renderCardLists();
+    this.renderCardButtons();
     this.renderCardFooter();
   }
 
@@ -46,12 +56,10 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit,
   private renderCardHeader(): void {
     const elem = this._eRef.nativeElement as HTMLElement;
     const wvrCardHeaderElem = elem.querySelector('wvre-card-header');
-    console.log(this.cardHeaderTemplate);
     if (wvrCardHeaderElem) {
       const headerText = wvrCardHeaderElem.innerHTML;
       wvrCardHeaderElem.outerHTML = headerText;
-      this.cardHeader = 'true';
-      console.log(this.cardHeader, typeof this.cardHeader);
+      this.hasCardHeader = true;
     }
   }
 
@@ -62,6 +70,7 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit,
       this.footerTextMuted = wvrCardFooterElem.hasAttribute('text-muted');
       const footerText = wvrCardFooterElem.innerHTML;
       wvrCardFooterElem.outerHTML = footerText;
+      this.hasCardFooter = true;
     }
   }
 
@@ -71,6 +80,7 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit,
     if (wvrCardImgElem) {
       const imgSrc = wvrCardImgElem.getAttribute('src');
       wvrCardImgElem.outerHTML = `<img alt="Card Image Cap" class="card-img-top" src="${imgSrc}" />`;
+      this.hasCardImg = true;
     }
   }
 
@@ -80,6 +90,7 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit,
     if (wvrCardTitleElem) {
       const titleText = wvrCardTitleElem.innerHTML;
       wvrCardTitleElem.outerHTML = `${titleText}`;
+      this.hasCardTitle = true;
     }
   }
 
@@ -90,7 +101,28 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit,
       const linkHref = link.getAttribute('href');
       const linkText = link.innerHTML;
       link.outerHTML = `<a href="${linkHref}" class="card-link">${linkText}</a>`;
+      this.hasCardLinkBody = true;
     });
+  }
+
+  private renderCardLists(): void {
+    const elem = this._eRef.nativeElement as HTMLElement;
+    const wvrCardListsTop = elem.querySelectorAll('wvre-list[top]');
+    const wvrCardListsBottom = elem.querySelectorAll('wvre-list[bottom]');
+    if (wvrCardListsTop.length) {
+      this.hasCardListTop = true;
+    }
+    if (wvrCardListsBottom.length) {
+      this.hasCardListBottom = true;
+    }
+  }
+
+  private renderCardButtons(): void {
+    const elem = this._eRef.nativeElement as HTMLElement;
+    const wvrCardButton = elem.querySelectorAll('wvre-button');
+    if (wvrCardButton.length) {
+      this.hasCardButton = true;
+    }
   }
 
 }
