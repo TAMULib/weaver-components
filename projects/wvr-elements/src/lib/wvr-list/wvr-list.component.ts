@@ -1,4 +1,4 @@
-import { AfterContentInit, AfterViewInit, Component, Injector, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { AfterContentInit, AfterViewInit, Component, ElementRef, Injector, Input, OnChanges, SimpleChanges, TemplateRef, ViewChild } from '@angular/core';
 import { SafeHtml } from '@angular/platform-browser';
 import { Theme } from '../shared/theme.type';
 import { debounce } from '../shared/utility';
@@ -13,7 +13,7 @@ import { WvrListItemComponent } from './wvr-list-item/wvr-list-item.component';
   templateUrl: './wvr-list.component.html',
   styleUrls: ['./wvr-list.component.scss']
 })
-export class WvrListComponent extends WvrBaseComponent {
+export class WvrListComponent extends WvrBaseComponent implements AfterContentInit {
 
   /** All WvrListItemComponent contained within this list. */
   private readonly listItems: Array<WvrListItemComponent>;
@@ -24,6 +24,8 @@ export class WvrListComponent extends WvrBaseComponent {
   /** Specifies the display style of this list.  */
   @Input() context: Theme;
 
+  @ViewChild('animationRoot') renderRoot: ElementRef<HTMLElement>;
+
   /** The raw combined html for each list item. */
   listItemsHtml: string;
 
@@ -32,13 +34,28 @@ export class WvrListComponent extends WvrBaseComponent {
     this.listItems = new Array<WvrListItemComponent>();
   }
 
+  ngAfterContentInit(): void {
+    setTimeout(() => {
+      this.renderList();
+    });
+  }
+
   /** Registers the incoming WvrListItemComponent as a child list item of this list.  */
   addListItem(listItem: WvrListItemComponent): void {
     this.listItems.push(listItem);
-    this.renderList();
+    this.asyncRenderList();
   }
 
-  @debounce() private renderList(): void {
+  /** A debounced and discrinimate call to renderList.  */
+  @debounce(25) private asyncRenderList(): void {
+    const listElem = (this.renderRoot.nativeElement as HTMLElement).querySelector('ul, ol, dl');
+    if (listElem && listElem.childElementCount !== this.listItems.length) {
+      this.renderList();
+    }
+  }
+
+  /** Combine HTML into a single string for display  */
+  private renderList(): void {
     this.listItemsHtml = this.listItems
         .map(li => li.htmlContent)
         .join('\n');
