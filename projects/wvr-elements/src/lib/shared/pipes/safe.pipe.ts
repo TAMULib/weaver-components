@@ -10,7 +10,8 @@ export class SafePipe implements PipeTransform {
 
   }
 
-  transform(value: string, type: string): SafeHtml | SafeStyle | SafeScript | SafeUrl | SafeResourceUrl {
+  transform(value: string, type: 'html' | 'style' | 'script' | 'url' | 'resourceUrl')
+    : SafeHtml | SafeStyle | SafeScript | SafeUrl | SafeResourceUrl {
     switch (type) {
       case 'html':
         return this._sanitizer.bypassSecurityTrustHtml(value);

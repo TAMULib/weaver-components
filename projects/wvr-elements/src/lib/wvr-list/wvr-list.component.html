@@ -1,24 +1,24 @@
 <wvre-list-wrapper  #animationRoot>
   
-  <ul [innerHtml]="listItemsHtml | safe: 'html'" *ngIf="listType==='unordered' || listType==='unstyled'" [ngClass]="{'list-unstyled': listType==='unstyled'}">
+  <ul [innerHtml]="listItemsHtml | default: '' | safe: 'html'" *ngIf="listType==='unordered' || listType==='unstyled'" [ngClass]="{'list-unstyled': listType==='unstyled'}">
   </ul>
 
-  <ol [innerHtml]="listItemsHtml | safe: 'html'" *ngIf="listType==='ordered'">
+  <ol [innerHtml]="listItemsHtml | default: '' | safe: 'html'" *ngIf="listType==='ordered'">
   </ol>
 
-  <dl [innerHtml]="listItemsHtml | safe: 'html'" *ngIf="listType==='described'">
+  <dl [innerHtml]="listItemsHtml | default: '' | safe: 'html'" *ngIf="listType==='described'">
   </dl>
 
-  <ul [innerHtml]="listItemsHtml | safe: 'html'" *ngIf="listType==='group-ul' || listType==='group'" class="list-group">
+  <ul [innerHtml]="listItemsHtml | default: '' | safe: 'html'" *ngIf="listType==='group-ul' || listType==='group'" class="list-group">
   </ul>
 
-  <div [innerHtml]="listItemsHtml | safe: 'html'" *ngIf="listType==='group-div'" class="list-group">
+  <div [innerHtml]="listItemsHtml | default: '' | safe: 'html'" *ngIf="listType==='group-div'" class="list-group">
   </div>
 
-  <ul [innerHtml]="listItemsHtml | safe: 'html'" *ngIf="listType==='group-flush'" class="list-group list-group-flush">
+  <ul [innerHtml]="listItemsHtml | default: '' | safe: 'html'" *ngIf="listType==='group-flush'" class="list-group list-group-flush">
   </ul>
 
-  <div [innerHtml]="listItemsHtml | safe: 'html'" *ngIf="listType==='group-custom-content'" class="list-group">
+  <div [innerHtml]="listItemsHtml | default: '' | safe: 'html'" *ngIf="listType==='group-custom-content'" class="list-group">
   </div>
 
 </wvre-list-wrapper>
