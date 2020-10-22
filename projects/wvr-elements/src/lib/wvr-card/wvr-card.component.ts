@@ -19,8 +19,6 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit,
   hasCardButton: boolean;
   hasCardFooter: boolean;
 
-  @ViewChild('cardHeaderContent') cardHeaderTemplate: ElementRef<any>;
-
   /** The weaver card text center attribute */
   cardTextCenter: boolean;
 
