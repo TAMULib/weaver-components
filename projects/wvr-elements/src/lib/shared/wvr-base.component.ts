@@ -3,14 +3,14 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { select, Store } from '@ngrx/store';
 import * as JSON5 from 'json5';
 import { Observable } from 'rxjs';
+import { filter } from 'rxjs/operators';
+import { ComponentRegistryService } from '../core/component-registry.service';
+import { WvrDataSelect } from '../core/data-select';
+import * as ManifestActions from '../core/manifest/manifest.actions';
 import { MobileService } from '../core/mobile.service';
 import { RootState, selectManifestEntryResponse } from '../core/store';
 import { TemplateService } from '../core/template.service';
 import { WvrAnimationService } from '../core/wvr-animation.service';
-import * as ManifestActions from '../core/manifest/manifest.actions';
-import { filter, tap } from 'rxjs/operators';
-import { ComponentRegistryService } from '../core/component-registry.service';
-import { WvrDataSelect } from '../core/data-select';
 
 @Directive()
 // tslint:disable-next-line:directive-class-suffix
