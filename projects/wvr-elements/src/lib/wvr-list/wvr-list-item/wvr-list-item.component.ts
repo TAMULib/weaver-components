@@ -40,13 +40,8 @@ export class WvrListItemComponent extends WvrBaseComponent implements OnInit, Af
   /** Registers this list item with the parent list. */
   ngOnInit(): void {
     const parent = this._eRef.nativeElement.parentNode.parentNode.parentNode;
-    if (parent) {
-      this.listType = parent.listType;
-      this.context = this.context ? this.context : parent.context ? parent.context : undefined;
-    } else {
-      this.listType = 'unordered';
-      this.context = undefined;
-    }
+    this.listType = parent.listType;
+    this.context = this.context ? this.context : parent.context ? parent.context : undefined;
   }
 
   ngAfterViewInit(): void {
