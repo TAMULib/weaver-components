@@ -1,8 +1,6 @@
-import { AfterContentInit, Component, ElementRef, Injector, Input, OnInit, ViewChild } from '@angular/core';
-import { SafeHtml } from '@angular/platform-browser';
+import { AfterViewInit, Component, Injector, Input, OnInit } from '@angular/core';
 import { Theme } from '../../shared/theme.type';
 import { WvrBaseComponent } from '../../shared/wvr-base.component';
-import { WvrListComponent } from '../wvr-list.component';
 
 /**
  * A sub component to the WvrListComponent.
@@ -12,10 +10,7 @@ import { WvrListComponent } from '../wvr-list.component';
   templateUrl: './wvr-list-item.component.html',
   styleUrls: ['./wvr-list-item.component.scss']
 })
-export class WvrListItemComponent extends WvrBaseComponent implements OnInit, AfterContentInit  {
-
-  /** The WvrListComponent which contains this list item.  */
-  private parent: WvrListComponent;
+export class WvrListItemComponent extends WvrBaseComponent implements OnInit, AfterViewInit {
 
   /** The type of list which contains this list item. */
   listType: string;
@@ -38,53 +33,27 @@ export class WvrListItemComponent extends WvrBaseComponent implements OnInit, Af
   /** A contructed identifier dervied from this comonents id and the prefix `wvr-li` */
   htmlId = `wvr-li-${this.id}`;
 
-  /** A view child reference to the html template contianing the projected content. */
-  @ViewChild('liWrapper') contentProjection: ElementRef<HTMLTemplateElement>;
-
-  /** A getter for the html content contined withing the `contentProjection` template */
-  get htmlContent(): string {
-
-    if (!this.contentProjection) {
-      return '';
-    }
-
-    const elems = this.contentProjection.nativeElement.children;
-
-    let htmlString = '';
-    for (let i = 0; i < elems.length; i++) {
-      const elem = elems.item(i);
-      htmlString += elem.outerHTML;
-    }
-
-    return htmlString;
-  }
-
   constructor(injector: Injector) {
     super(injector);
   }
 
   /** Registers this list item with the parent list. */
   ngOnInit(): void {
+    const parent = this._eRef.nativeElement.parentNode.parentNode.parentNode;
+    this.listType = parent.listType;
+    this.context = this.context ? this.context : parent.context ? parent.context : undefined;
+  }
 
-    const listElem: HTMLElement = (this._eRef.nativeElement as HTMLElement).closest('wvre-list');
+  ngAfterViewInit(): void {
+    // get the element's parent node
+    const parent = this._eRef.nativeElement.parentNode;
 
-    if (listElem) {
-      this.parent = this.componentRegistry
-      .getComponentByElement(listElem) as WvrListComponent;
-      this.parent.addListItem(this);
-
-      const listTypeAttribute = this.parent ? this.parent.listType : undefined;
-      this.listType = listTypeAttribute ? listTypeAttribute : 'unordered';
-      const parentTheme = this.parent ? this.parent.context : undefined;
-      this.context = this.context ?
-                    this.context :
-                    parentTheme ?
-                    parentTheme :
-                    undefined;
-    } else {
-      console.warn('The wvre-list-item component must be contained within a wvre-list component.');
+    // move all children out of the element
+    while (this._eRef.nativeElement.firstChild) {
+      parent.insertBefore(this._eRef.nativeElement.firstChild, this._eRef.nativeElement);
     }
-
+    // remove the empty element
+    parent.removeChild(this._eRef.nativeElement);
   }
 
 }

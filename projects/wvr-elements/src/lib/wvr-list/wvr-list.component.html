@@ -1,34 +1,41 @@
-<wvre-list-wrapper  #animationRoot>
-  
-  <ul [innerHtml]="listItemsHtml | default: '' | safe: 'html'" *ngIf="listType==='unordered' || listType==='unstyled'" [ngClass]="{'list-unstyled': listType==='unstyled'}">
+<wvre-list-wrapper #animationRoot [ngSwitch]="true">
+
+  <ul *ngSwitchCase="listType === 'unordered'">
+    <ng-container *ngTemplateOutlet="selection"></ng-container>
   </ul>
 
-  <ol [innerHtml]="listItemsHtml | default: '' | safe: 'html'" *ngIf="listType==='ordered'">
+  <ul *ngSwitchCase="listType === 'unstyled'" class="list-unstyled">
+    <ng-container *ngTemplateOutlet="selection"></ng-container>
+  </ul>
+
+  <ol *ngSwitchCase="listType === 'ordered'">
+    <ng-container *ngTemplateOutlet="selection"></ng-container>
   </ol>
 
-  <dl [innerHtml]="listItemsHtml | default: '' | safe: 'html'" *ngIf="listType==='described'">
+  <dl *ngSwitchCase="listType === 'described'">
+    <ng-container *ngTemplateOutlet="selection"></ng-container>
   </dl>
 
-  <ul [innerHtml]="listItemsHtml | default: '' | safe: 'html'" *ngIf="listType==='group-ul' || listType==='group'" class="list-group">
+  <ul *ngSwitchCase="listType === 'group-ul' || listType === 'group'" class="list-group">
+    <ng-container *ngTemplateOutlet="selection"></ng-container>
   </ul>
 
-  <div [innerHtml]="listItemsHtml | default: '' | safe: 'html'" *ngIf="listType==='group-div'" class="list-group">
+  <div *ngSwitchCase="listType === 'group-div'" class="list-group">
+    <ng-container *ngTemplateOutlet="selection"></ng-container>
   </div>
 
-  <ul [innerHtml]="listItemsHtml | default: '' | safe: 'html'" *ngIf="listType==='group-flush'" class="list-group list-group-flush">
+  <ul *ngSwitchCase="listType === 'group-flush'" class="list-group list-group-flush">
+    <ng-container *ngTemplateOutlet="selection"></ng-container>
   </ul>
 
-  <div [innerHtml]="listItemsHtml | default: '' | safe: 'html'" *ngIf="listType==='group-custom-content'" class="list-group">
+  <div *ngSwitchCase="listType === 'group-custom-content'" class="list-group">
+    <ng-container *ngTemplateOutlet="selection"></ng-container>
   </div>
+
+  <div *ngSwitchDefault></div>
 
 </wvre-list-wrapper>
 
-
-<template>
-  <ng-container *ngTemplateOutlet="contentProjection"></ng-container>
-</template>
-
-<ng-template #contentProjection>
+<ng-template #selection>
   <ng-content select="wvre-list-item, wvr-list-item-component, wvre-template"></ng-content>
 </ng-template>
-

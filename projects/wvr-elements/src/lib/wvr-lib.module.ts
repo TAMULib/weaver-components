@@ -14,8 +14,10 @@ import { ManifestEffects } from './core/manifest/manifest.effects';
 import { MobileService } from './core/mobile.service';
 import { RestEffects } from './core/rest/rest.effects';
 import { metaReducers, RootState, ROOT_REDUCER } from './core/store';
-import { WvrAlertComponent } from './wvr-alert/wvr-alert.component';
 import { WvrAnimationService } from './core/wvr-animation.service';
+import { DefaultPipe } from './shared/pipes/default.pipe';
+import { SafePipe } from './shared/pipes/safe.pipe';
+import { WvrAlertComponent } from './wvr-alert/wvr-alert.component';
 import { WvrButtonComponent } from './wvr-button/wvr-button.component';
 import { WvrDropdownComponent } from './wvr-dropdown/wvr-dropdown.component';
 import { WvrFooterComponent } from './wvr-footer/wvr-footer.component';
@@ -24,19 +26,17 @@ import { WvrIconComponent } from './wvr-icon/wvr-icon.component';
 import { WvrItWorksComponent } from './wvr-it-works/wvr-it-works.component';
 import { WvrListItemComponent } from './wvr-list/wvr-list-item/wvr-list-item.component';
 import { WvrListComponent } from './wvr-list/wvr-list.component';
-import { WvrManifestComponent } from './wvr-manifest/wvr-manifest.component';
 import { WvrManifestEntryComponent } from './wvr-manifest/wvr-manifest-entry/wvr-manifest-entry.component';
+import { WvrManifestComponent } from './wvr-manifest/wvr-manifest.component';
 import { WvrNavLiComponent } from './wvr-nav-list/wvr-nav-li/wvr-nav-li.component';
 import { WvrNavListComponent } from './wvr-nav-list/wvr-nav-list.component';
-import { WvrTextComponent } from './wvr-text/wvr-text.component';
-import { WvrTabsComponent } from './wvr-tabs/wvr-tabs.component';
 import { WvrTabComponent } from './wvr-tabs/wvr-tab/wvr-tab.component';
-import { SafePipe } from './shared/pipes/safe.pipe';
-import { DefaultPipe } from './shared/pipes/default.pipe';
+import { WvrTabsComponent } from './wvr-tabs/wvr-tabs.component';
+import { WvrTextComponent } from './wvr-text/wvr-text.component';
 
 /** This property contains a list of components and the selector tags. */
 const elements = [
-  { component: WvrAlertComponent, selector: 'wvre-alert'},
+  { component: WvrAlertComponent, selector: 'wvre-alert' },
   { component: WvrButtonComponent, selector: 'wvre-button' },
   { component: WvrDropdownComponent, selector: 'wvre-dropdown' },
   { component: WvrFooterComponent, selector: 'wvre-footer' },
@@ -71,7 +71,10 @@ const components = [
   WvrManifestComponent,
   WvrManifestEntryComponent,
   WvrTabsComponent,
-  WvrTabComponent,
+  WvrTabComponent
+];
+
+const pipes = [
   SafePipe,
   DefaultPipe
 ];
@@ -91,7 +94,8 @@ const components = [
     StoreDevtoolsModule.instrument()
   ],
   exports: [
-    ...components
+    ...components,
+    ...pipes
   ],
   providers: [
     IconService,
@@ -99,7 +103,8 @@ const components = [
     WvrAnimationService
   ],
   declarations: [
-    ...components
+    ...components,
+    ...pipes
   ],
   bootstrap: [],
   entryComponents: [
