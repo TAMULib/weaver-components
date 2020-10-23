@@ -21,9 +21,12 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "css-element-queries": "^1.2.3"
-  ,    "tslib": "^2.0.0"
-},
+    "css-element-queries": "^1.2.3",    "tslib": "^2.0.0"
+  },
+  "bin": {
+    "wvr-test": "./scripts/wvr-test.js",
+    "wvr-ud": "./scripts/build-wvr-ud.js"
+  },
   "peerDependencies": {
     "@angular/common": "^9.0.0",
     "@angular/core": "^9.0.0"

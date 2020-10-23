@@ -7,14 +7,6 @@
   "version": "1.6.0-rc3",
   "private": false,
   "license": "MIT",
-  "bin": {
-    "wvr-ud": "./scripts/build-wvr-ud.js",
-    "wvr-build-components": ".scripts/build-wvr-components.js",
-    "wvr-build-configuration": ".scripts/build-wvr-components-configuration.js",
-    "wvr-build-lighthouse": ".scripts/build-wvr-components-lighthouse-badges.js",
-    "wvr-build-static": ".scripts/build-wvr-components-static.js",
-    "wvr-serve-dist": ".scripts/serve-dist.js"
-  },
   "config": {
     "DOCKER_SERVER": "10.55.134.48/weaver/wvr-components"
   },

@@ -23,4 +23,6 @@ cp.fork(__dirname + '/build-wvr-config-template.js');
   fs.copy('dist/weaver-components/assets', "dist/static/docs/usage/assets");
   fs.copy(`${assetPath}/assets`, `${bundlePath}/assets`);
 
+  fs.copy('scripts', "dist/wvr-elements/scripts");
+
 })();
