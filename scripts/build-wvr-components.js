@@ -24,5 +24,6 @@ cp.fork(__dirname + '/build-wvr-config-template.js');
   fs.copy(`${assetPath}/assets`, `${bundlePath}/assets`);
 
   fs.copy('scripts', "dist/wvr-elements/scripts");
+  fs.copy('.wvr-ud', "dist/wvr-elements/.wvr-ud");
 
 })();

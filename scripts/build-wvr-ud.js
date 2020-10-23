@@ -16,6 +16,9 @@ const log = console.log;
 
 const startTime = new Date();
 
+const NM_WVR_UD_DIR = `${process.cwd()}/node_modules/@wvr/elements/.wvr-ud`;
+const NM_UD_STATIC_ASSETS_DIR = `${NM_WVR_UD_DIR}/static-assets`;
+
 const WVR_UD_DIR = `${process.cwd()}/.wvr-ud`;
 const WVR_UD_STATIC_ASSETS_DIR = `${WVR_UD_DIR}/static-assets`;
 const CONFIG = require(`${WVR_UD_DIR}/config.json`);
@@ -113,36 +116,59 @@ additionalAssets.forEach(a=>{
 log(`    ${chalk.cyanBright('Total Additional Assets')}: ${chalk.blue(additionalAssets.length)}`);
 
 log(`    ${chalk.green('Including Static Content:')}`);
-let staticAssets = glob.sync(`${WVR_UD_STATIC_ASSETS_DIR}/**/*`, {});
-staticAssets.forEach(sa=>{
-  log(`    ${chalk.cyan('- Including:     '+sa)}`);
-  let saPathParts = sa.split('/');
-  let fileName = saPathParts[saPathParts.length-1];
-  if(fs.lstatSync(sa).isDirectory()) {
-    copyFolderSync(sa, `${CONFIG.output}/${fileName}`);
-  } else {
-    fs.copyFileSync(sa, `${CONFIG.output}/${fileName}`);
-  }
+
+
+const stlyeFiles = [];
+
+if(fs.existsSync(`${NM_UD_STATIC_ASSETS_DIR}/styles.css`)) {
+  stlyeFiles.push(`${NM_UD_STATIC_ASSETS_DIR}/styles.css`);
+};
+
+if(fs.existsSync(`${WVR_UD_STATIC_ASSETS_DIR}/styles.css`)) {
+  stlyeFiles.push(`${WVR_UD_STATIC_ASSETS_DIR}/styles.css`);
+};
+
+if(fs.existsSync(`${WVR_UD_STATIC_ASSETS_DIR}/overrides.css`)) {
+  stlyeFiles.push(`${WVR_UD_STATIC_ASSETS_DIR}/overrides.css`);
+};
+
+concat(stlyeFiles, `${WVR_UD_STATIC_ASSETS_DIR}/styles.css`).finally(() => {
+  const staticAssets = glob.sync(`${WVR_UD_STATIC_ASSETS_DIR}/**/*`, {});
+  staticAssets.forEach(sa=>{
+    log(`    ${chalk.cyan('- Including:     '+sa)}`);
+    let saPathParts = sa.split('/');
+    let fileName = saPathParts[saPathParts.length-1];
+    if(fs.lstatSync(sa).isDirectory()) {
+      copyFolderSync(sa, `${CONFIG.output}/${fileName}`);
+    } else {
+      fs.copyFileSync(sa, `${CONFIG.output}/${fileName}`);
+    }
+  });
+
+  log(`    ${chalk.cyanBright('Total content')}: ${chalk.blue(staticAssets.length)}`);
+  
+  // Prepare Index
+  log(`    ${chalk.green('Parsing Index Template:')}`);
+  log(`    ${chalk.cyan('- Parsing:     index-base.html')}`);
+  const localIndexBase = `${WVR_UD_DIR}/static-assets/index-base.html`;
+  const nmIndexBase = `${NM_WVR_UD_DIR}/static-assets/index-base.html`;
+  let content = fs.existsSync(localIndexBase) ?
+                fs.readFileSync(localIndexBase, 'utf8') :
+                fs.readFileSync(nmIndexBase, 'utf8');
+  content = content.replace('{{EXAMPLE_MANIFEST}}', JSON.stringify(exampleManifest));
+  content = content.replace(/{{PROJECT_NAME}}/g, `${packageJson.name} ${packageJson.version}`);
+  content = content.replace(/{{BASE_PATH}}/g, CONFIG.basePath);
+  fs.ensureDirSync(CONFIG.output);
+  fs.writeFileSync(`${CONFIG.output}/index.html`, content);
+  log(`    ${chalk.cyanBright('Finished Parsing Index Template')}`);
+
+  const endTime = new Date();
+  let timeDiff = endTime - startTime; //in ms
+  timeDiff /= 1000;
+
+  log(`    ${chalk.green('Usage Documentation Finished:')} ${chalk.blue(timeDiff+'s')}`);
+
 });
-
-log(`    ${chalk.cyanBright('Total content')}: ${chalk.blue(staticAssets.length)}`);
-
-// Prepare Index
-log(`    ${chalk.green('Parsing Index Template:')}`);
-log(`    ${chalk.cyan('- Parsing:     index-base.html')}`);
-let content = fs.readFileSync(`${WVR_UD_DIR}/static-assets/index-base.html`, 'utf8');
-content = content.replace('{{EXAMPLE_MANIFEST}}', JSON.stringify(exampleManifest));
-content = content.replace(/{{PROJECT_NAME}}/g, `${packageJson.name} ${packageJson.version}`);
-content = content.replace(/{{BASE_PATH}}/g, CONFIG.basePath);
-fs.ensureDirSync(CONFIG.output);
-fs.writeFileSync(`${CONFIG.output}/index.html`, content);
-log(`    ${chalk.cyanBright('Finished Parsing Index Template')}`);
-
-const endTime = new Date();
-let timeDiff = endTime - startTime; //in ms
-timeDiff /= 1000;
-
-log(`    ${chalk.green('Usage Documentation Finished:')} ${chalk.blue(timeDiff+'s')}`);
 
 function copyFolderSync(from, to) {
   fs.mkdirSync(to);

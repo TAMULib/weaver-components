@@ -24,7 +24,6 @@
     "css-element-queries": "^1.2.3",    "tslib": "^2.0.0"
   },
   "bin": {
-    "wvr-test": "./scripts/wvr-test.js",
     "wvr-ud": "./scripts/build-wvr-ud.js"
   },
   "peerDependencies": {
