@@ -8,7 +8,7 @@ import { ComponentRegistryService } from './component-registry.service';
 import { metaReducers, ROOT_REDUCER } from './store';
 
 describe('ComponentRegistryService', () => {
-  let service: ComponentRegistryService;
+  let service: ComponentRegistryService<any>;
   let component: WvrItWorksComponent;
   let fixture: ComponentFixture<WvrItWorksComponent>;
 
