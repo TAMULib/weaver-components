@@ -18,7 +18,7 @@ angularCli.default({
   }).then(c => {
     fs.copySync('scripts', "dist/wvr-elements/scripts");
     fs.copySync('.wvr-ud', "dist/wvr-elements/.wvr-ud");
-    
+
     shell.exec(`npm publish dist/wvr-elements/ ${next}`);
 
     shell.exit();
