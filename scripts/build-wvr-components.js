@@ -1,3 +1,5 @@
+#! /usr/bin/env node
+
 const fs = require('fs-extra');
 const concat = require('concat');
 const cp = require('child_process');

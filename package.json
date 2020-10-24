@@ -34,6 +34,7 @@
     "lint": "ng lint",
     "link": "npm link ./dist/wvr-elements",
     "ng": "ng",
+    "prepublishOnly": "npm run build && node scripts/build-publish.js",
     "start": "node scripts/build-wvr-components-configuration.js defaults-dev-overrides.env && ng serve --port 4200",
     "start:dist": "node scripts/build-wvr-components-configuration.js defaults-dist-overrides.env && node scripts/serve-dist.js",
     "start:static": "node scripts/build-wvr-components-configuration.js defaults-static-overrides.env && static-server static -p 8081",
