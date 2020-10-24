@@ -1,7 +1,12 @@
 #! /usr/bin/env node
 
 const fs = require('fs-extra');
+const shell = require('shelljs')
 const angularCli = require('@angular/cli');
+
+const next = process.argv[2] ?
+             '--tag next' :
+             '';
 
 angularCli.default({
     cliArgs: [
@@ -13,5 +18,9 @@ angularCli.default({
   }).then(c => {
     fs.copySync('scripts', "dist/wvr-elements/scripts");
     fs.copySync('.wvr-ud', "dist/wvr-elements/.wvr-ud");
-    process.exit(c);
+    
+    shell.exec(`npm publish dist/wvr-elements/ ${next}`);
+
+    shell.exit();
+
   });
