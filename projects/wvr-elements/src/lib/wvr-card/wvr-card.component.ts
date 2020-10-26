@@ -1,21 +1,38 @@
-import { AfterViewInit, Component, Injector, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Injector, Input, ViewChild } from '@angular/core';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
+/**
+ * A component wrapper for the bootstrap card element.
+ */
 @Component({
   selector: 'wvr-card-component',
   templateUrl: './wvr-card.component.html',
   styleUrls: ['./wvr-card.component.scss']
 })
-export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit, OnInit {
+export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit {
 
+  /** Indicates the presence of the card header in the projected content. */
   hasCardHeader: boolean;
+
+  /** Indicates the presence of the card img in the projected content. */
   hasCardImg: boolean;
+
+  /** Indicates the presence of the card tile in the projected content. */
   hasCardTitle: boolean;
+
+  /** Indicates the presence of the card list top in the projected content. */
   hasCardListTop: boolean;
-  hasCardBody: boolean;
+
+  /** Indicates the presence of the card list bottom in the projected content. */
   hasCardListBottom: boolean;
+
+  /** Indicates the presence of the card links in the projected content. */
   hasCardLinkBody: boolean;
+
+  /** Indicates the presence of the card buttons in the projected content. */
   hasCardButton: boolean;
+
+  /** Indicates the presence of the card footer in the projected content. */
   hasCardFooter: boolean;
 
   /** The weaver card text center attribute */
@@ -24,30 +41,28 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit,
   /** The weaver card footer text muted attribute */
   footerTextMuted: boolean;
 
+  /** Allows for the override of the default 'wvre' sufix for psudo components. */
   @Input() selectorPrefix = 'wvre';
 
-  @Input() manualRender = false;
+  /** Toggles the centering of header and footer texts. */
+  @Input() textCenter;
+
+  /** Element reference to the root html elment in the template. */
+  @ViewChild('animationRoot') rootElem: ElementRef<HTMLElement>;
+
+  /** Convenience referece this components ElementReference's nativeElement. */
+  private readonly elem: HTMLElement;
 
   /**
    * The weaver card component constructor
    */
   constructor(injector: Injector) {
     super(injector);
+    this.elem = this._eRef.nativeElement as HTMLElement;
   }
 
+  /** Called after the view has been intialized. Handles the rendering of the projected content. */
   ngAfterViewInit(): void {
-    if (!this.manualRender) {
-      this.render();
-    }
-  }
-
-  addImage(wvrCardImgElem: Element): void {
-    const imgSrc = wvrCardImgElem.getAttribute('src');
-    wvrCardImgElem.outerHTML = `<img alt="Card Image Cap" class="card-img-top" src="${imgSrc}" />`;
-    this.hasCardImg = true;
-  }
-
-  render(): void {
     this.renderCard();
     this.renderCardHeader();
     this.renderCardImg();
@@ -58,29 +73,28 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit,
     this.renderCardFooter();
   }
 
+  /** Prepares the card for display */
   private renderCard(): void {
-    const elem = this._eRef.nativeElement as HTMLElement;
-    const wvrCardElem = elem.querySelector('.wvr-card');
-    if (wvrCardElem.parentElement.hasAttribute('text-center')) {
+    if (this.textCenter !== undefined && this.textCenter !== 'false') {
+        const wvrCardElem: HTMLElement = this.rootElem.nativeElement;
         wvrCardElem.classList.add('text-center');
     }
   }
 
+  /** Prepares the card header for display, and sets it to the DOM */
   private renderCardHeader(): void {
-    const elem = this._eRef.nativeElement as HTMLElement;
-    const wvrCardHeaderElem = elem.querySelector('wvre-card-header');
+    const wvrCardHeaderElem = this.elem.querySelector(`${this.selectorPrefix}-card-header`);
 
     if (wvrCardHeaderElem) {
-      console.log(wvrCardHeaderElem.innerHTML);
       const headerText = wvrCardHeaderElem.innerHTML;
       wvrCardHeaderElem.outerHTML = headerText;
       this.hasCardHeader = true;
     }
   }
 
+  /** Prepares the card footer for display, and sets it to the DOM */
   private renderCardFooter(): void {
-    const elem = this._eRef.nativeElement as HTMLElement;
-    const wvrCardFooterElem = elem.querySelector('wvre-card-footer');
+    const wvrCardFooterElem = this.elem.querySelector(`${this.selectorPrefix}-card-footer`);
     if (wvrCardFooterElem) {
       this.footerTextMuted = wvrCardFooterElem.hasAttribute('text-muted');
       const footerText = wvrCardFooterElem.innerHTML;
@@ -89,17 +103,19 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit,
     }
   }
 
+  /** Prepares the card image for display, and sets it to the DOM */
   private renderCardImg(): void {
-    const elem = this._eRef.nativeElement as HTMLElement;
-    const wvrCardImgElem = elem.querySelector(`${this.selectorPrefix}-card-img`);
+    const wvrCardImgElem = this.elem.querySelector(`${this.selectorPrefix}-card-img`);
     if (wvrCardImgElem) {
-      this.addImage(wvrCardImgElem);
+      const imgSrc = wvrCardImgElem.getAttribute('src');
+      wvrCardImgElem.outerHTML = `<img alt="Card Image Cap" class="card-img-top" src="${imgSrc}" />`;
+      this.hasCardImg = true;
     }
   }
 
+  /** Prepares the card title for display, and sets it to the DOM */
   private renderCardTitle(): void {
-    const elem = this._eRef.nativeElement as HTMLElement;
-    const wvrCardTitleElem = elem.querySelector(`${this.selectorPrefix}-card-title`);
+    const wvrCardTitleElem = this.elem.querySelector(`${this.selectorPrefix}-card-title`);
     if (wvrCardTitleElem) {
       const titleText = wvrCardTitleElem.innerHTML;
       wvrCardTitleElem.outerHTML = `${titleText}`;
@@ -107,9 +123,9 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit,
     }
   }
 
+  /** Prepares the card links for display, and sets it to the DOM */
   private renderCardLinks(): void {
-    const elem = this._eRef.nativeElement as HTMLElement;
-    const wvrCardLinksElem = elem.querySelectorAll(`${this.selectorPrefix}-card-link`);
+    const wvrCardLinksElem = this.elem.querySelectorAll(`${this.selectorPrefix}-card-link`);
     wvrCardLinksElem.forEach(link => {
       const linkHref = link.getAttribute('href');
       const linkText = link.innerHTML;
@@ -118,10 +134,10 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit,
     });
   }
 
+  /** Prepares the card list for display, and sets it to the DOM */
   private renderCardLists(): void {
-    const elem = this._eRef.nativeElement as HTMLElement;
-    const wvrCardListsTop = elem.querySelectorAll(`wvre-list[top], ${this.selectorPrefix}-list[top]`);
-    const wvrCardListsBottom = elem.querySelectorAll(`wvre-list[bottom], ${this.selectorPrefix}-list[bottom]`);
+    const wvrCardListsTop = this.elem.querySelectorAll(`wvre-list[top], ${this.selectorPrefix}-list[top]`);
+    const wvrCardListsBottom = this.elem.querySelectorAll(`wvre-list[bottom], ${this.selectorPrefix}-list[bottom]`);
     if (wvrCardListsTop.length) {
       this.hasCardListTop = true;
     }
@@ -130,9 +146,9 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit,
     }
   }
 
+  /** Prepares the card buttons for display, and sets it to the DOM */
   private renderCardButtons(): void {
-    const elem = this._eRef.nativeElement as HTMLElement;
-    const wvrCardButton = elem.querySelectorAll(`${this.selectorPrefix}-button`);
+    const wvrCardButton = this.elem.querySelectorAll(`${this.selectorPrefix}-button`);
     if (wvrCardButton.length) {
       this.hasCardButton = true;
     }
