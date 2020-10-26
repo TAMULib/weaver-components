@@ -59,16 +59,12 @@
 
 <!-- cardListTop -->
 <ng-template #cardListTop>
-  <div class="card-body" [ngClass]="{'wvr-hidden': !hasCardListTop}">
-    <ng-content select="wvre-list[top]"></ng-content>
-  </div>
+  <ng-content [ngClass]="{'wvr-hidden': !hasCardListTop}" select="wvre-list[top]"></ng-content>
 </ng-template>
 
 <!-- cardListBotttom -->
 <ng-template #cardListBottom>
-  <div class="card-body" [ngClass]="{'wvr-hidden': !hasCardListBottom}">
-    <ng-content select="wvre-list[bottom]"></ng-content>
-  </div>
+  <ng-content [ngClass]="{'wvr-hidden': !hasCardListBottom}" select="wvre-list[bottom]"></ng-content>
 </ng-template>
 
 <!-- cardFooter -->

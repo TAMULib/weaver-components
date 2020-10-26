@@ -1,5 +1,4 @@
-import { Template } from '@angular/compiler/src/render3/r3_ast';
-import { AfterViewInit, Component, ElementRef, Injector, OnInit, TemplateRef, ViewChild, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, Injector, Input, OnInit } from '@angular/core';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 @Component({
@@ -25,6 +24,10 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit,
   /** The weaver card footer text muted attribute */
   footerTextMuted: boolean;
 
+  @Input() selectorPrefix = 'wvre';
+
+  @Input() manualRender = false;
+
   /**
    * The weaver card component constructor
    */
@@ -33,6 +36,18 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit,
   }
 
   ngAfterViewInit(): void {
+    if (!this.manualRender) {
+      this.render();
+    }
+  }
+
+  addImage(wvrCardImgElem: Element): void {
+    const imgSrc = wvrCardImgElem.getAttribute('src');
+    wvrCardImgElem.outerHTML = `<img alt="Card Image Cap" class="card-img-top" src="${imgSrc}" />`;
+    this.hasCardImg = true;
+  }
+
+  render(): void {
     this.renderCard();
     this.renderCardHeader();
     this.renderCardImg();
@@ -54,7 +69,9 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit,
   private renderCardHeader(): void {
     const elem = this._eRef.nativeElement as HTMLElement;
     const wvrCardHeaderElem = elem.querySelector('wvre-card-header');
+
     if (wvrCardHeaderElem) {
+      console.log(wvrCardHeaderElem.innerHTML);
       const headerText = wvrCardHeaderElem.innerHTML;
       wvrCardHeaderElem.outerHTML = headerText;
       this.hasCardHeader = true;
@@ -74,17 +91,15 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit,
 
   private renderCardImg(): void {
     const elem = this._eRef.nativeElement as HTMLElement;
-    const wvrCardImgElem = elem.querySelector('wvre-card-img');
+    const wvrCardImgElem = elem.querySelector(`${this.selectorPrefix}-card-img`);
     if (wvrCardImgElem) {
-      const imgSrc = wvrCardImgElem.getAttribute('src');
-      wvrCardImgElem.outerHTML = `<img alt="Card Image Cap" class="card-img-top" src="${imgSrc}" />`;
-      this.hasCardImg = true;
+      this.addImage(wvrCardImgElem);
     }
   }
 
   private renderCardTitle(): void {
     const elem = this._eRef.nativeElement as HTMLElement;
-    const wvrCardTitleElem = elem.querySelector('wvre-card-title');
+    const wvrCardTitleElem = elem.querySelector(`${this.selectorPrefix}-card-title`);
     if (wvrCardTitleElem) {
       const titleText = wvrCardTitleElem.innerHTML;
       wvrCardTitleElem.outerHTML = `${titleText}`;
@@ -94,7 +109,7 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit,
 
   private renderCardLinks(): void {
     const elem = this._eRef.nativeElement as HTMLElement;
-    const wvrCardLinksElem = elem.querySelectorAll('wvre-card-link');
+    const wvrCardLinksElem = elem.querySelectorAll(`${this.selectorPrefix}-card-link`);
     wvrCardLinksElem.forEach(link => {
       const linkHref = link.getAttribute('href');
       const linkText = link.innerHTML;
@@ -105,8 +120,8 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit,
 
   private renderCardLists(): void {
     const elem = this._eRef.nativeElement as HTMLElement;
-    const wvrCardListsTop = elem.querySelectorAll('wvre-list[top]');
-    const wvrCardListsBottom = elem.querySelectorAll('wvre-list[bottom]');
+    const wvrCardListsTop = elem.querySelectorAll(`wvre-list[top], ${this.selectorPrefix}-list[top]`);
+    const wvrCardListsBottom = elem.querySelectorAll(`wvre-list[bottom], ${this.selectorPrefix}-list[bottom]`);
     if (wvrCardListsTop.length) {
       this.hasCardListTop = true;
     }
@@ -117,7 +132,7 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit,
 
   private renderCardButtons(): void {
     const elem = this._eRef.nativeElement as HTMLElement;
-    const wvrCardButton = elem.querySelectorAll('wvre-button');
+    const wvrCardButton = elem.querySelectorAll(`${this.selectorPrefix}-button`);
     if (wvrCardButton.length) {
       this.hasCardButton = true;
     }
