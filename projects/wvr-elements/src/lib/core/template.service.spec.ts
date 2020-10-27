@@ -26,9 +26,9 @@ describe('TemplateService', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WvrItWorksComponent);
     component = fixture.componentInstance;
-
     projectedContent = document.createElement('wvr-template');
     projectedContent.innerHTML = '<!--<p>{{json data.test}}</p>-->';
+
     fixture.detectChanges();
   });
 
@@ -37,7 +37,7 @@ describe('TemplateService', () => {
       .toBeTruthy();
   });
 
-  it('should compile a tamplate', () => {
+  it('should compile a template', () => {
     const testData = {test: {data: 'foo'}};
     const testSelect: WvrDataSelect = {
       as: 'data',
@@ -45,10 +45,10 @@ describe('TemplateService', () => {
       manifest: undefined
     };
     const elem = fixture.elementRef.nativeElement as HTMLElement;
-    elem.innerHTML = projectedContent.outerHTML;
+    elem.appendChild(projectedContent);
     service.compile(testData, testSelect, elem, projectedContent);
-    expect(elem.innerHTML)
-      .toEqual('<p>{"data":"foo"}</p>');
+    expect(elem.querySelector('p').innerHTML)
+      .toEqual('{"data":"foo"}');
   });
 
 });
