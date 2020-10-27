@@ -10,6 +10,7 @@ export * from './lib/core/mobile.service';
 export * from './lib/core/icon.service';
 export * from './lib/wvr-alert/wvr-alert.component';
 export * from './lib/wvr-button/wvr-button.component';
+export * from './lib/wvr-card/wvr-card.component';
 export * from './lib/wvr-dropdown/wvr-dropdown.component';
 export * from './lib/wvr-footer/wvr-footer.component';
 export * from './lib/wvr-header/wvr-header.component';

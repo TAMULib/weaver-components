@@ -10,6 +10,7 @@ import { MobileService } from './core/mobile.service';
 import { WvrAlertComponent } from './wvr-alert/wvr-alert.component';
 import { WvrAnimationService } from './core/wvr-animation.service';
 import { WvrButtonComponent } from './wvr-button/wvr-button.component';
+import { WvrCardComponent } from './wvr-card/wvr-card.component';
 import { WvrDropdownComponent } from './wvr-dropdown/wvr-dropdown.component';
 import { WvrFooterComponent } from './wvr-footer/wvr-footer.component';
 import { WvrHeaderComponent } from './wvr-header/wvr-header.component';
@@ -25,8 +26,9 @@ import { WvrTabComponent } from './wvr-tabs/wvr-tab/wvr-tab.component';
 
 /** This property contains a list of components and the selector tags. */
 const elements = [
-  { component: WvrAlertComponent, selector: 'wvre-alert'},
+  { component: WvrAlertComponent, selector: 'wvre-alert' },
   { component: WvrButtonComponent, selector: 'wvre-button' },
+  { component: WvrCardComponent, selector: 'wvre-card' },
   { component: WvrDropdownComponent, selector: 'wvre-dropdown' },
   { component: WvrFooterComponent, selector: 'wvre-footer' },
   { component: WvrHeaderComponent, selector: 'wvre-header' },
@@ -45,6 +47,7 @@ const elements = [
 const components = [
   WvrAlertComponent,
   WvrButtonComponent,
+  WvrCardComponent,
   WvrDropdownComponent,
   WvrFooterComponent,
   WvrHeaderComponent,
