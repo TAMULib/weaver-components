@@ -47,6 +47,12 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit 
   /** Toggles the centering of header and footer texts. */
   @Input() textCenter;
 
+  /** Used to describe the type of card. */
+  @Input() cardType: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark';
+
+  /** Used to describe the format of card. */
+  @Input() panelFormat: 'solid' | 'outlined' | 'mixed';
+
   /** Element reference to the root html elment in the template. */
   @ViewChild('animationRoot') rootElem: ElementRef<HTMLElement>;
 
@@ -73,6 +79,20 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit 
     this.renderCardFooter();
   }
 
+  isOutLined(cardType: string): boolean {
+    return this.cardType === cardType &&
+            ((!this.panelFormat || this.panelFormat === 'mixed') ||
+             this.panelFormat === 'outlined');
+  }
+
+  isSolid(cardType: string): boolean {
+    return this.cardType === cardType && this.panelFormat === 'solid';
+  }
+
+  isMixed(cardType: string): boolean {
+    return this.cardType === cardType && (!this.panelFormat || this.panelFormat === 'mixed');
+  }
+
   /** Prepares the card for display */
   private renderCard(): void {
     if (this.textCenter !== undefined && this.textCenter !== 'false') {
@@ -86,8 +106,12 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit 
     const wvrCardHeaderElem = this.elem.querySelector(`${this.selectorPrefix}-card-header`);
 
     if (wvrCardHeaderElem) {
+      const classList: DOMTokenList  = wvrCardHeaderElem.classList;
       const headerText = wvrCardHeaderElem.innerHTML;
       wvrCardHeaderElem.outerHTML = headerText;
+      // tslint:disable-next-line: no-unbound-method
+      classList.forEach(c => wvrCardHeaderElem.classList
+        .add);
       this.hasCardHeader = true;
     }
   }
