@@ -26,7 +26,6 @@
 </li>
 
 <button class="list-group-item list-group-item-action"
-        role="listitem"
         *ngIf="listType==='group-div'"
         [id]="htmlId"
         [ngClass]="{
@@ -48,7 +47,6 @@
 
 <a [id]="htmlId"
     class="list-group-item list-group-item-action flex-column align-items-start"
-    role="listitem"
     *ngIf="listType==='group-custom-content'">
   <div class="d-flex w-100 justify-content-between">
     <h5 class="mb-1">{{customContentItemHeading}}</h5>
