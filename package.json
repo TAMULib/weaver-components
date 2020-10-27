@@ -4,17 +4,9 @@
     "type": "git",
     "url": "git+https://github.com/TAMULib/weaver-components.git"
   },
-  "version": "1.6.0-rc3",
+  "version": "1.6.0-rc5",
   "private": false,
   "license": "MIT",
-  "bin": {
-    "wvr-ud": "./scripts/build-wvr-ud.js",
-    "wvr-build-components": ".scripts/build-wvr-components.js",
-    "wvr-build-configuration": ".scripts/build-wvr-components-configuration.js",
-    "wvr-build-lighthouse": ".scripts/build-wvr-components-lighthouse-badges.js",
-    "wvr-build-static": ".scripts/build-wvr-components-static.js",
-    "wvr-serve-dist": ".scripts/serve-dist.js"
-  },
   "config": {
     "DOCKER_SERVER": "10.55.134.48/weaver/wvr-components"
   },
@@ -31,6 +23,8 @@
     "build:docs-development": "compodoc --output ./static/weaver-components/docs/development -p ./projects/wvr-elements/tsconfig.docs.json",
     "build:docs-usage": "node scripts/build-wvr-ud.js",
     "build:docker": "node scripts/build-docker.js",
+    "build:publish": "npm run build && node scripts/build-publish.js $1",
+    "build:publish-next": "npm run build:publish next",
     "build:static": "npm run build:static-docs && npm run build:static-reports",
     "build:static-setup": "node scripts/build-wvr-components-static.js",
     "build:static-docs": "npm run test:audit && npm run build:static-setup && npm run build:docs-usage && npm run build:docs-development",

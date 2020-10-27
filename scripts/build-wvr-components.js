@@ -1,3 +1,5 @@
+#! /usr/bin/env node
+
 const fs = require('fs-extra');
 const concat = require('concat');
 const cp = require('child_process');
@@ -22,5 +24,8 @@ cp.fork(__dirname + '/build-wvr-config-template.js');
   await concat(files, `${bundlePath}/weaver-components.js`);
   fs.copy('dist/weaver-components/assets', "dist/static/docs/usage/assets");
   fs.copy(`${assetPath}/assets`, `${bundlePath}/assets`);
+
+  fs.copy('scripts', "dist/wvr-elements/scripts");
+  fs.copy('.wvr-ud', "dist/wvr-elements/.wvr-ud");
 
 })();

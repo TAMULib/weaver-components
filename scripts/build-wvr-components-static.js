@@ -1,3 +1,5 @@
+#! /usr/bin/env node
+
 const fs = require('fs-extra');
 const staticPath = 'static';
 const weaverComponentsPath = 'static/weaver-components';
