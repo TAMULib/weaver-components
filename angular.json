@@ -23,7 +23,7 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "aot": true,
+            "aot": false,
             "assets": [
               "src/favicon.ico",
               "src/assets",
@@ -39,7 +39,8 @@
               }
             ],
             "allowedCommonJsDependencies": [
-              "css-element-queries"
+              "css-element-queries",
+              "handlebars"
             ]
           },
           "configurations": {
@@ -58,7 +59,7 @@
               "namedChunks": false,
               "commonChunk": false,
               "vendorChunk": false,
-              "buildOptimizer": true,
+              "buildOptimizer": false,
               "budgets": [
                 {
                   "type": "initial",

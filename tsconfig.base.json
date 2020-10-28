@@ -26,7 +26,7 @@
       ],
       "wvr-elements/*": [
         "projects/wvr-elements/src/public-api/*",
-        "dist/wvr-elements/*",
+        "dist/wvr-elements/*"
       ]
     }
   },
