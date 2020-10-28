@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as Handlebars from 'handlebars';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
-import * as handlebarHelpers from './handlebars-helpers';
+import { handlebarsHelpers } from './handlebars-helpers';
 import * as JSON5 from 'json5';
 import { WvrDataSelect } from './data-select';
 
@@ -11,11 +11,13 @@ import { WvrDataSelect } from './data-select';
 export class TemplateService {
 
   constructor() {
-    Object.keys(handlebarHelpers.helpers)
-      .forEach(name => {
-        const helper = handlebarHelpers.helpers[name];
-        Handlebars.registerHelper(name, helper);
-      });
+    // Object.keys(handlebarsHelpers)
+    //   .forEach(name => {
+    //     const helper = handlebarsHelpers[name];
+    //     if (helper) {
+    //       Handlebars.registerHelper(name, helper);
+    //     }
+    //   });
   }
 
   parseProjectedContent(component: WvrBaseComponent, elem: HTMLElement): void {
