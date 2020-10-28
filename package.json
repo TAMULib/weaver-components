@@ -28,7 +28,7 @@
     "build:static-docs": "npm run test:audit && npm run build:static-setup && npm run build:docs-usage && npm run build:docs-development",
     "build:static-reports": "npm run build:static-setup && npm run test:coverage",
     "build:static-production": "npm run build:static && node scripts/build-wvr-components-configuration.js defaults-ci-overrides.env && ls -A | grep -v static | xargs rimraf && mv static/weaver-components/* . && rimraf static",
-    "clean": "npm run clean:dist && nom run clean:static",
+    "clean": "npm run clean:dist && npm run clean:static",
     "clean:dist": "rimraf dist",
     "clean:static": "rimraf static",
     "publish:docker": "node scripts/docker-push.js",
