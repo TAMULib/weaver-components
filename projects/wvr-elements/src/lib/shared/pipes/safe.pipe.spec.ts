@@ -1,5 +1,5 @@
 import { inject, TestBed } from '@angular/core/testing';
-import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
+import { BrowserModule, DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { SafePipe } from './safe.pipe';
 
 describe('SafePipe', () => {
@@ -13,10 +13,12 @@ describe('SafePipe', () => {
       });
   });
 
-  it('create an instance', inject([DomSanitizer], (domSanitizer: DomSanitizer) => {
+  it('transform html to SafeHtml', inject([DomSanitizer], (domSanitizer: DomSanitizer) => {
     const pipe = new SafePipe(domSanitizer);
-    expect(pipe)
-      .toBeTruthy();
+    const safeHtml = pipe.transform('<p>test</p>', 'html');
+    console.log('\n\n\n', safeHtml['changingThisBreaksApplicationSecurity'], '\n\n\n');
+    expect(safeHtml['changingThisBreaksApplicationSecurity'])
+      .toEqual('<p>test</p>');
   }));
 
 });
