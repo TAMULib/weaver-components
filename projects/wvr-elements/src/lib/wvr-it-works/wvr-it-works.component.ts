@@ -1,4 +1,7 @@
 import { Component, HostBinding, Injector, Input } from '@angular/core';
+import { Observable } from 'rxjs';
+import { selectManifestEntryResponse } from '../core/store';
+import { WvrSelect } from '../shared/utility/decorators.utilty';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 /**

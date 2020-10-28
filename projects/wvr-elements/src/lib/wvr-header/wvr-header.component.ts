@@ -1,4 +1,7 @@
 import { AfterContentChecked, Component, HostBinding, Injector, Input, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import * as rootStore from '../core/store';
+import { WvrSelect } from '../shared/utility/decorators.utilty';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 /**
@@ -77,6 +80,10 @@ export class WvrHeaderComponent extends WvrBaseComponent implements OnInit, Afte
 
   isBottomNavHidden = false;
 
+  mobileMenuClosed = true;
+
+  @WvrSelect({ selector: rootStore.selectManifestEntryResponse('sample', 'one') }) private sampleTestResponse: Observable<string>;
+
   /**
    * The weaver header component constructor
    */
@@ -84,19 +91,19 @@ export class WvrHeaderComponent extends WvrBaseComponent implements OnInit, Afte
     super(injector);
   }
 
-  mobileMenuClosed = true;
-
-  toggleMobileMenu(): void {
-    this.mobileMenuClosed = !this.mobileMenuClosed;
-  }
-
   ngOnInit(): void {
     super.ngOnInit();
     this.checkBottomNavHasChildren();
+
+    // this.sampleTestResponse.subscribe(console.log);
   }
 
   ngAfterContentChecked(): void {
     this.checkBottomNavHasChildren();
+  }
+
+  toggleMobileMenu(): void {
+    this.mobileMenuClosed = !this.mobileMenuClosed;
   }
 
   /** Determines if the bottom nav list has children in order to display bottom nav section. */

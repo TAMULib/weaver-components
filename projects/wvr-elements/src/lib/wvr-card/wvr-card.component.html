@@ -1,9 +1,27 @@
 <div
   #animationRoot
   class="wvr-components wvr-card card"
-  [ngClass]="{'text-center': cardTextCenter}"
-  style="width: 18rem;">
+  [ngClass]="{
+    'text-center': cardTextCenter,
+    'border-primary': isOutLined('primary'),
+    'border-secondary': isOutLined('secondary'),
+    'border-success': isOutLined('success'),
+    'border-danger': isOutLined('danger'),
+    'border-warning': isOutLined('warning'),
+    'border-info': isOutLined('info'),
+    'border-light': isOutLined('light'),
+    'border-dark': isOutLined('dark'),
 
+    'bg-primary': isSolid('primary'),
+    'bg-secondary': isSolid('secondary'),
+    'bg-success': isSolid('success'),
+    'bg-danger': isSolid('danger'),
+    'bg-warning': isSolid('warning'),
+    'bg-info': isSolid('info'),
+    'bg-light': isSolid('light'),
+    'bg-dark': isSolid('dark')
+  }"
+  style="width: 18rem;">
   <ng-container *ngTemplateOutlet="cardHeader"></ng-container>
   <ng-container *ngTemplateOutlet="cardImg"></ng-container>
   <ng-container *ngTemplateOutlet="cardListTop"></ng-container>
@@ -15,8 +33,20 @@
 </div>
 
 <!-- cardHeader -->
+
 <ng-template #cardHeader>
-  <div class="card-header" [ngClass]="{'wvr-hidden': !hasCardHeader}">
+  <div class="card-header"
+  [ngClass]="{
+    'wvr-hidden': !hasCardHeader,
+    'bg-primary': isMixed('primary'),
+    'bg-secondary': isMixed('secondary'),
+    'bg-success': isMixed('success'),
+    'bg-danger': isMixed('danger'),
+    'bg-warning': isMixed('warning'),
+    'bg-info': isMixed('info'),
+    'bg-light': isMixed('light'),
+    'bg-dark': isMixed('dark')
+  }">
     <ng-content select="wvre-card-header"></ng-content>
   </div>
 </ng-template>
@@ -60,7 +90,10 @@
 
 <!-- cardListTop -->
 <ng-template #cardListTop>
-  <ng-content [ngClass]="{'wvr-hidden': !hasCardListTop}" select="wvre-list[top]"></ng-content>
+  <ng-content [ngClass]="{'wvr-hidden': !hasCardListTop,
+    'bg-primary': true
+  }"
+    select="wvre-list[top]"></ng-content>
 </ng-template>
 
 <!-- cardListBotttom -->
