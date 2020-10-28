@@ -16,7 +16,7 @@ describe('SafePipe', () => {
   it('transform html to SafeHtml', inject([DomSanitizer], (domSanitizer: DomSanitizer) => {
     const pipe = new SafePipe(domSanitizer);
     const safeHtml = pipe.transform('<p>test</p>', 'html');
-    console.log('\n\n\n', safeHtml['changingThisBreaksApplicationSecurity'], '\n\n\n');
+    // tslint:disable-next-line:no-string-literal
     expect(safeHtml['changingThisBreaksApplicationSecurity'])
       .toEqual('<p>test</p>');
   }));
