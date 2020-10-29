@@ -1,6 +1,7 @@
-import { AfterContentChecked, Component, HostBinding, Injector, Input, OnInit } from '@angular/core';
+import { AfterContentChecked, Component, HostBinding, Inject, Injector, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import * as rootStore from '../core/store';
+import { AppConfig, APP_CONFIG } from '../shared/config/app-config';
 import { WvrSelect } from '../shared/utility/decorators.utilty';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
@@ -24,7 +25,7 @@ export class WvrHeaderComponent extends WvrBaseComponent implements OnInit, Afte
   @Input() headerTitleUrl: string;
 
   /** A resolvable URI to an image to be displayed as the logo. */
-  @Input() logoSrc = 'assets/weaver-w.svg';
+  @Input() logoSrc = `${this.appConfig.assetsUrl}/icons/custom/weaver-w.svg`;
 
   /** A resolvable URL to a location linkable from the logo. */
   @Input() logoHref = '#logo';
@@ -87,7 +88,8 @@ export class WvrHeaderComponent extends WvrBaseComponent implements OnInit, Afte
   /**
    * The weaver header component constructor
    */
-  constructor(injector: Injector) {
+  constructor(injector: Injector,
+              @Inject(APP_CONFIG) private readonly appConfig: AppConfig) {
     super(injector);
   }
 
