@@ -9,7 +9,7 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
   templateUrl: './wvr-alert.component.html',
   styleUrls: ['./wvr-alert.component.scss']
 })
-export class WvrAlertComponent extends WvrBaseComponent implements AfterContentInit, OnInit {
+export class WvrAlertComponent extends WvrBaseComponent implements OnInit {
 
   /** Used to define the class type of an alert component.  */
   @Input() alertClass: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark' = 'primary';
