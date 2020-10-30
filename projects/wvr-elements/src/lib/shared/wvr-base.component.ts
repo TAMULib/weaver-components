@@ -134,6 +134,7 @@ export abstract class WvrBaseComponent implements OnInit, OnDestroy {
   }
 
   /** Plays the animation specified by the incoming animation trigger.  */
+  /* istanbul ignore next */
   triggerAnimations(animationTriggerType: string): void {
     const animations: Array<string> = Array.isArray(this._animationSettings[animationTriggerType])
       ? this._animationSettings[animationTriggerType]
@@ -156,6 +157,7 @@ export abstract class WvrBaseComponent implements OnInit, OnDestroy {
     return this.wvrData;
   }
 
+  /* istanbul ignore next */
   private initializeAnimationRegistration(): void {
     const animationEvents = Object.keys(this._animationSettings);
     if (animationEvents.length) {
@@ -171,6 +173,7 @@ export abstract class WvrBaseComponent implements OnInit, OnDestroy {
     }
   }
 
+  /* istanbul ignore next */
   private initializeAnimationElement(): void {
     setTimeout(() => {
       this._animationService
@@ -183,6 +186,7 @@ export abstract class WvrBaseComponent implements OnInit, OnDestroy {
     this.triggerAnimations($event.type);
   }
 
+  /* istanbul ignore next */
   private processAnimations(): void {
     const animationEvents = Object.keys(this._animationSettings);
     if (animationEvents.length) {

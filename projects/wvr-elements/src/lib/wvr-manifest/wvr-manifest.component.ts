@@ -1,68 +1,87 @@
-import { AfterContentInit, Component, Injector, Input } from '@angular/core';
+import { Component, Injector, Input } from '@angular/core';
+import * as JSON5 from 'json5';
 import { Manifest } from '../core/manifest/manifest';
 import { ManifestEntry } from '../core/manifest/manifest-entry';
-import { RequestMethod } from '../core/rest/request-method';
-import { WvrBaseComponent } from '../shared/wvr-base.component';
 import * as ManifestActions from '../core/manifest/manifest.actions';
-import * as JSON5 from 'json5';
+import { RequestMethod } from '../core/rest/request-method';
+import { debounce } from '../shared/utility';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
 import * as mappingStrategies from './mapping-strategies';
+import { WvrManifestEntryComponent } from './wvr-manifest-entry/wvr-manifest-entry.component';
 
+/**
+ * The WvrManifestComponent is used to express a potential remote data source. To be used
+ * with the `wvr-data` input.
+ */
 @Component({
-  selector: 'wvr-manifest-element',
+  selector: 'wvr-manifest-component',
   template: '<ng-content></ng-content>'
 })
-export class WvrManifestComponent extends WvrBaseComponent implements AfterContentInit {
+export class WvrManifestComponent extends WvrBaseComponent {
 
+  /** The name by which this manifest can be referenced */
   @Input() private name: string;
 
+  /** The base URL to be prepended to all paths expressed on ManifestEntries */
   @Input() private baseUrl: string;
 
+  /** A human description of this manifes */
   @Input() private description: string;
 
+  /** The strategy to be employed to unwrao response data */
   @Input() private mappingStrategy;
+
+  /** A collection of the child WvrManifestEntryComponent */
+  private readonly manifestEntries = new Array<WvrManifestEntryComponent>();
 
   // tslint:disable-next-line:no-empty
   constructor(private injector: Injector) {
     super(injector);
    }
 
-  ngAfterContentInit(): void {
-    this.store.dispatch(ManifestActions.addManifest({
-      manifest: {
-        name: this.name,
-        description: this.description,
-        baseUrl: this.baseUrl,
-        entries: this.buildEntries(),
-        authorization: undefined
-      }
-    }));
-
+  addEntry(manifestEntry: WvrManifestEntryComponent): void  {
+    this.manifestEntries.push(manifestEntry);
+    this.buildEntries();
   }
 
-  private buildEntries(): Array<ManifestEntry> {
-    const entryNodes = Array.from((this._eRef.nativeElement as HTMLElement).querySelectorAll('wvre-manifest-entry'));
+  /**
+   * Converts this manifests WvrManifestEntryComponents into ManifestEntries
+   */
+  @debounce() private buildEntries(): void {
+
     let ms = mappingStrategies[this.mappingStrategy] ?
                mappingStrategies[this.mappingStrategy] :
                mappingStrategies.none;
-    const entries: Array<ManifestEntry> = entryNodes.map(e => {
-      const eMS = e.getAttribute('mapping-strategy');
+
+    const entries: Array<ManifestEntry> = this.manifestEntries.map(e => {
+      const eMS = e.mappingStrategy;
       ms = mappingStrategies[eMS] ?
            mappingStrategies[eMS] :
            ms;
-      const me = {
-        name: e.getAttribute('name'),
-        methods: e.getAttribute('methods')
-          .split(',') as Array<RequestMethod>,
-        path: e.getAttribute('path'),
-        description: e.getAttribute('path'),
-        options: JSON5.parse(e.getAttribute('options')),
+
+      return {
+        name: e.name,
+        methods: e.methods ? e.methods
+          .split(',') as Array<RequestMethod> : [],
+        path: e.path,
+        description: e.description,
+        options: e.options ? JSON5.parse(e.options) : {},
         map: ms.map
       };
-
-      return me;
     });
 
-    return entries;
+    const manifest: Manifest = {
+        name: this.name,
+        description: this.description,
+        baseUrl: this.baseUrl,
+        entries,
+        authorization: undefined
+      };
+
+    this.store.dispatch(ManifestActions.addManifest({
+      manifest
+    }));
+
   }
 
 }

@@ -119,39 +119,6 @@ const pipes = [
 })
 export class WvrLibModule {
   constructor(injector: Injector, store: Store<RootState>) {
-
-    store.dispatch(ManifestActions.submitRequest({
-      request: {
-        manifestName: 'sample',
-        entryName: 'one'
-      }
-    }));
-
-    store.dispatch(ManifestActions.addManifests({
-      manifests: [{
-        name: 'sample',
-        baseUrl: 'http://localhost:4200',
-        entries: [
-          {
-            name: 'one',
-            path: '/',
-            methods: ['GET'],
-            options: {
-              responseType: 'text'
-            }
-          },
-          {
-            name: 'two',
-            path: '/',
-            methods: ['GET'],
-            options: {
-              responseType: 'text'
-            }
-          }
-        ]
-      }]
-    }));
-
     elements.forEach(element => {
       try {
         customElements.define(element.selector, createCustomElement(element.component, { injector }));
