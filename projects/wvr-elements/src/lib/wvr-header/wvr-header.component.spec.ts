@@ -3,6 +3,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { metaReducers, ROOT_REDUCER } from '../core/store';
+import { APP_CONFIG } from '../shared/config/app-config';
+import { testAppConfig } from '../shared/config/test-app-config';
 import { WvrHeaderComponent } from './wvr-header.component';
 
 describe('WvrHeaderComponent', () => {
@@ -15,6 +17,10 @@ describe('WvrHeaderComponent', () => {
       declarations: [
         WvrHeaderComponent
       ],
+      providers: [{
+        provide: APP_CONFIG,
+        useValue: testAppConfig
+      }],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
       .compileComponents()
