@@ -182,6 +182,7 @@ export abstract class WvrBaseComponent implements OnInit, OnDestroy {
   }
 
   /** Trigger's the animation specified by the incoming event. */
+  /* istanbul ignore next */
   private onEvent($event): void {
     this.triggerAnimations($event.type);
   }
@@ -202,6 +203,7 @@ export abstract class WvrBaseComponent implements OnInit, OnDestroy {
     }
   }
 
+  /* istanbul ignore next */
   private processData(): void {
 
     if (!this.wvrData) {

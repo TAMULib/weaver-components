@@ -18,15 +18,15 @@ import { WvrManifestComponent } from './wvr-manifest.component';
   </wvr-manifest-component>
   `
 })
-class WvrManifestTestComponent {
+class WvrManifestHostComponent {
   @ViewChild(WvrManifestComponent) manifest: WvrManifestComponent;
 }
 
 describe('WvrManifestComponent', () => {
-  let wvrManifestTestComponent: WvrManifestTestComponent;
-  let fixture: ComponentFixture<WvrManifestTestComponent>;
+  let hostComponent: WvrManifestHostComponent;
+  let hostFixture: ComponentFixture<WvrManifestHostComponent>;
 
-  let childFixture: ComponentFixture<WvrManifestEntryComponent>;
+  let entryFixture: ComponentFixture<WvrManifestEntryComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -34,31 +34,35 @@ describe('WvrManifestComponent', () => {
         BrowserAnimationsModule,
         StoreModule.forRoot(ROOT_REDUCER, { metaReducers })
       ],
-      declarations: [ WvrManifestTestComponent, WvrManifestComponent, WvrManifestEntryComponent ]
+      declarations: [
+        WvrManifestHostComponent,
+        WvrManifestComponent,
+        WvrManifestEntryComponent
+      ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(WvrManifestTestComponent);
-    wvrManifestTestComponent = fixture.componentInstance;
-    fixture.detectChanges();
+    hostFixture = TestBed.createComponent(WvrManifestHostComponent);
+    hostComponent = hostFixture.componentInstance;
+    hostFixture.detectChanges();
   });
 
   it('should create', () => {
-    expect(wvrManifestTestComponent.manifest)
+    expect(hostComponent.manifest)
       .toBeTruthy();
   });
 
   it('should add entry', () => {
 
-    childFixture = TestBed.createComponent(WvrManifestEntryComponent);
+    entryFixture = TestBed.createComponent(WvrManifestEntryComponent);
 
     // tslint:disable-next-line:no-string-literal
-    const entries = wvrManifestTestComponent.manifest['manifestEntries'];
+    const entries = hostComponent.manifest['manifestEntries'];
     const lengthBefore = entries.length;
 
-    wvrManifestTestComponent.manifest.addEntry(childFixture.componentInstance);
+    hostComponent.manifest.addEntry(entryFixture.componentInstance);
 
     expect(entries.length > lengthBefore)
       .toBeTrue();
@@ -67,7 +71,7 @@ describe('WvrManifestComponent', () => {
 
   it('should create entries', () => {
     // tslint:disable-next-line:no-string-literal
-    const entries = wvrManifestTestComponent.manifest['manifestEntries'];
+    const entries = hostComponent.manifest['manifestEntries'];
     expect(entries.length)
       .toBeTruthy();
   });
