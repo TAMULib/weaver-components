@@ -4,6 +4,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { metaReducers, ROOT_REDUCER } from '../core/store';
 import { WvrHeaderComponent } from './wvr-header.component';
+import { APP_CONFIG } from '../shared/config/app-config';
+import { testAppConfig } from '../shared/config/test-app-config';
 
 describe('WvrHeaderComponent', () => {
   let component: WvrHeaderComponent;
@@ -15,6 +17,10 @@ describe('WvrHeaderComponent', () => {
       declarations: [
         WvrHeaderComponent
       ],
+      providers: [{
+        provide: APP_CONFIG,
+        useValue: testAppConfig
+      }],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
       .compileComponents()
@@ -42,9 +48,9 @@ describe('WvrHeaderComponent', () => {
       .toEqual('Weaver Header Component');
   });
 
-  it('should have logoSrc defined', () => {
+  it('should have logoSrc as "http://localhost:4200/assets/icons/custom/weaver-w.svg"', () => {
     expect(component.logoSrc)
-      .toBeDefined();
+      .toEqual(`${testAppConfig.assetsUrl}/icons/custom/weaver-w.svg`);
   });
 
   it('should have as logoHref "#logo"', () => {
