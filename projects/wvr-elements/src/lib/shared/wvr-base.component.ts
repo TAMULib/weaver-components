@@ -14,7 +14,7 @@ import { WvrAnimationService } from '../core/wvr-animation.service';
 
 @Directive()
 // tslint:disable-next-line:directive-class-suffix
-export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDestroy {
+export abstract class WvrBaseComponent implements OnInit, OnDestroy {
 
   /** A generated unique identifier for this comonent. */
   readonly id: number;
@@ -113,20 +113,20 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
 
   /** Used to setup this component for animating. */
   ngOnInit(): void {
-    this.processAnimations();
+    // this.processAnimations();
     this.processData();
-    this.initializeAnimationRegistration();
+    // this.initializeAnimationRegistration();
     this.templateService.parseProjectedContent(this, this._eRef.nativeElement);
   }
 
+  // TODO: fix this
   /** Used for post content initialization animation setup. */
-  ngAfterContentInit(): void {
-    setTimeout(() => {
-      this._animationService
-        .initializeAnimationElement(this.animationStateId, this._animationConfig, this.animationRootElem);
-    }, 1);
-    this.initializeAnimationElement();
-  }
+  // ngAfterContentInit(): void {
+  //   setTimeout(() => {
+  //     this._animationService
+  //       .initializeAnimationElement(this.animationStateId, this._animationConfig, this.animationRootElem);
+  //   }, 1);
+  // }
 
   /** Handles the the unregistering of this component with the component registry. */
   ngOnDestroy(): void {

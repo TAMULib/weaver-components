@@ -412,23 +412,27 @@ export class WvrDropdownComponent extends WvrBaseComponent {
   /** Handles the opening of the dropdown, and updating state. */
   private openDropdown(): void {
     if (!this.isMobileLayout) {
-      document.querySelector('body')
-      .click();
-      setTimeout(() => {
-        this.open = true;
-        this.dropdown.open();
-      }, this._animationSpeedMili);
+      // document.querySelector('body')
+      // .click();
+      // setTimeout(() => {
+      //   this.open = true;
+      //   this.dropdown.open();
+      // }, this._animationSpeedMili);
+
+      this.open = true;
+      this.dropdown.open();
     }
   }
 
   /** Handles the closing of the dropdown, and updating state. */
   private closeDropdown(): void {
-    this.closing = true;
+    // this.closing = true;
     this.open = false;
-    setTimeout(() => {
-      this.dropdown.close();
-      this.closing = false;
-    }, this._animationSpeedMili);
+    this.dropdown.close();
+    // setTimeout(() => {
+    //   this.dropdown.close();
+    //   this.closing = false;
+    // }, this._animationSpeedMili);
   }
 
   // tslint:disable-next-line:max-file-line-count
