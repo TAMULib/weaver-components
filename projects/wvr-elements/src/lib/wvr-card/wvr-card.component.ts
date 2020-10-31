@@ -69,14 +69,16 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit 
 
   /** Called after the view has been intialized. Handles the rendering of the projected content. */
   ngAfterViewInit(): void {
-    this.renderCard();
-    this.renderCardHeader();
-    this.renderCardImg();
-    this.renderCardTitle();
-    this.renderCardLinks();
-    this.renderCardLists();
-    this.renderCardButtons();
-    this.renderCardFooter();
+    setTimeout(() => {
+      this.renderCard();
+      this.renderCardHeader();
+      this.renderCardImg();
+      this.renderCardTitle();
+      this.renderCardLinks();
+      this.renderCardLists();
+      this.renderCardButtons();
+      this.renderCardFooter();
+    });
   }
 
   isOutLined(cardType: string): boolean {
