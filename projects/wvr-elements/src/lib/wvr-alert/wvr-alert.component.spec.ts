@@ -1,17 +1,37 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StoreModule } from '@ngrx/store';
+import { metaReducers, ROOT_REDUCER } from '../core/store';
 import { WvrAlertComponent } from './wvr-alert.component';
+
+@Component({
+  selector: 'wvr-alert-test-component',
+  // tslint:disable-next-line:component-max-inline-declarations
+  template: `<wvr-alert-component [alertType]="'self-closing'" [closeTimer]="1"></wvr-alert-component>`
+})
+class WvrAlertHostComponent {
+  @ViewChild(WvrAlertComponent) alert: WvrAlertComponent;
+}
 
 describe('WvrAlertComponent', () => {
   let component: WvrAlertComponent;
   let fixture: ComponentFixture<WvrAlertComponent>;
 
+  let hostComponent: WvrAlertHostComponent;
+  let hostFixture: ComponentFixture<WvrAlertHostComponent>;
+
   // tslint:disable-next-line: deprecation
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule],
-      declarations: [WvrAlertComponent],
+      imports: [
+        BrowserAnimationsModule,
+        StoreModule.forRoot(ROOT_REDUCER, { metaReducers })
+      ],
+      declarations: [
+        WvrAlertHostComponent,
+        WvrAlertComponent
+      ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
     .compileComponents();
@@ -20,6 +40,11 @@ describe('WvrAlertComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WvrAlertComponent);
     component = fixture.componentInstance;
+
+    hostFixture = TestBed.createComponent(WvrAlertHostComponent);
+    hostComponent = hostFixture.componentInstance;
+
+    hostFixture.detectChanges();
     fixture.detectChanges();
   });
 
@@ -50,4 +75,16 @@ describe('WvrAlertComponent', () => {
     expect(component.alertClosed)
     .toBeTrue();
   });
+
+  it('should auto close when alert-type="self-closing"', done => {
+
+    setTimeout(() => {
+      done();
+      expect(hostComponent.alert
+        .alertClosed)
+        .toBeTrue();
+    }, 100);
+
+  });
+
 });

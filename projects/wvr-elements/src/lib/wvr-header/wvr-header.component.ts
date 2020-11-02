@@ -1,11 +1,15 @@
-import { AfterContentChecked, Component, HostBinding, Injector, Input, OnInit } from '@angular/core';
+import { AfterContentChecked, Component, HostBinding, Inject, Injector, Input, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import * as rootStore from '../core/store';
+import { AppConfig, APP_CONFIG } from '../shared/config/app-config';
+import { WvrSelect } from '../shared/utility/decorators.utilty';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 /**
  * Intended to appear at the top of document and provides for branding, links and page title.
  */
 @Component({
-  selector: 'wvr-header-element',
+  selector: 'wvr-header-component',
   templateUrl: './wvr-header.component.html',
   styleUrls: ['./wvr-header.component.scss']
 })
@@ -21,7 +25,7 @@ export class WvrHeaderComponent extends WvrBaseComponent implements OnInit, Afte
   @Input() headerTitleUrl: string;
 
   /** A resolvable URI to an image to be displayed as the logo. */
-  @Input() logoSrc = 'assets/weaver-w.svg';
+  @Input() logoSrc = `${this.appConfig.assetsUrl}/icons/custom/weaver-w.svg`;
 
   /** A resolvable URL to a location linkable from the logo. */
   @Input() logoHref = '#logo';
@@ -77,31 +81,36 @@ export class WvrHeaderComponent extends WvrBaseComponent implements OnInit, Afte
 
   isBottomNavHidden = false;
 
+  mobileMenuClosed = true;
+
+  @WvrSelect({ selector: rootStore.selectManifestEntryResponse('sample', 'one') }) private sampleTestResponse: Observable<string>;
+
   /**
    * The weaver header component constructor
    */
-  constructor(injector: Injector) {
+  constructor(injector: Injector,
+              @Inject(APP_CONFIG) private readonly appConfig: AppConfig) {
     super(injector);
-  }
-
-  mobileMenuClosed = true;
-
-  toggleMobileMenu(): void {
-    this.mobileMenuClosed = !this.mobileMenuClosed;
   }
 
   ngOnInit(): void {
     super.ngOnInit();
     this.checkBottomNavHasChildren();
+
+    // this.sampleTestResponse.subscribe(console.log);
   }
 
   ngAfterContentChecked(): void {
     this.checkBottomNavHasChildren();
   }
 
+  toggleMobileMenu(): void {
+    this.mobileMenuClosed = !this.mobileMenuClosed;
+  }
+
   /** Determines if the bottom nav list has children in order to display bottom nav section. */
   private checkBottomNavHasChildren(): void {
-    const bottomNavListElement = (this._eRef.nativeElement as HTMLElement).querySelector('.bottom-nav wvr-nav-li, .bottom-nav wvr-nav-li-element');
+    const bottomNavListElement = (this._eRef.nativeElement as HTMLElement).querySelector('.bottom-nav wvre-nav-li, .bottom-nav wvr-nav-li-component');
     this.isBottomNavHidden = !(this.displayBottomNav === 'true' || (this.displayBottomNav === undefined && !!bottomNavListElement));
   }
 

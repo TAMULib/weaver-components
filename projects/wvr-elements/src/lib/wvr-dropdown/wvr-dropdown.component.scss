@@ -22,7 +22,7 @@
     display:none;
   }
 
-  wvr-button-element {
+  wvr-button-component {
     position: relative;
     z-index: 1001;
   }
@@ -60,13 +60,13 @@
   }
 
   ::ng-deep {
-    wvr-dropdown-menu {
+    wvre-dropdown-menu {
       display: var(--wvr-dropdown-menu-display);
       flex-direction: var(--wvr-dropdown-menu-flex-direction);
       height: auto;
       width: auto;
-      [wvr-dropdown-menu-item],
-      wvr-dropdown-menu-item {
+      [wvre-dropdown-menu-item],
+      wvre-dropdown-menu-item {
         margin: var(--wvr-dropdown-menu-item-margin) !important;
       }
     }

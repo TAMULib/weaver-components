@@ -1,6 +1,10 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StoreModule } from '@ngrx/store';
+import { metaReducers, ROOT_REDUCER } from '../core/store';
+import { APP_CONFIG } from '../shared/config/app-config';
+import { testAppConfig } from '../shared/config/test-app-config';
 import { WvrHeaderComponent } from './wvr-header.component';
 
 describe('WvrHeaderComponent', () => {
@@ -9,10 +13,14 @@ describe('WvrHeaderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ BrowserAnimationsModule ],
+      imports: [ BrowserAnimationsModule, StoreModule.forRoot(ROOT_REDUCER, { metaReducers }) ],
       declarations: [
         WvrHeaderComponent
       ],
+      providers: [{
+        provide: APP_CONFIG,
+        useValue: testAppConfig
+      }],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
       .compileComponents()
@@ -75,8 +83,8 @@ describe('WvrHeaderComponent', () => {
       .toEqual(true);
 
     // creating mock childres
-    const wvrNavList = document.createElement('wvr-nav-list');
-    const wvrNavLi = document.createElement('wvr-nav-li');
+    const wvrNavList = document.createElement('wvre-nav-list');
+    const wvrNavLi = document.createElement('wvre-nav-li');
 
     // adding children to assert hidden attribute does not exist
     wvrNavList.appendChild(wvrNavLi);
@@ -86,7 +94,7 @@ describe('WvrHeaderComponent', () => {
       .toEqual(false);
 
     // removing/replacing the children
-    const wvrNavLiElement = document.createElement('wvr-nav-li-element');
+    const wvrNavLiElement = document.createElement('wvr-nav-li-component');
     wvrNavList.replaceChild(wvrNavLiElement, wvrNavLi);
     fixture.detectChanges();
     expect(bottomNavElement.hasAttribute('hidden'))

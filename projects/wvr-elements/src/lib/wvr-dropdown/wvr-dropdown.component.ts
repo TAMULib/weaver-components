@@ -6,7 +6,7 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
  * A dropdown with button and contextualized styling.
  */
 @Component({
-  selector: 'wvr-dropdown-element',
+  selector: 'wvr-dropdown-component',
   templateUrl: './wvr-dropdown.component.html',
   styleUrls: ['./wvr-dropdown.component.scss']
 })
@@ -292,7 +292,7 @@ export class WvrDropdownComponent extends WvrBaseComponent {
 
   /**
    * Binds the input from `item-margin` to the css variable `--wvr-dropdown-item-margin`.
-   * This css variable is applied by both the `[wvr-dropdown-menu-item]` and the `wvr-dropdown-menu-item`
+   * This css variable is applied by both the `[wvre-dropdown-menu-item]` and the `wvre-dropdown-menu-item`
    * css rules to each item passed to the the dropdown menu.
    */
   @HostBinding('style.--wvr-dropdown-menu-item-margin') @Input() menuItemMargin;
@@ -391,7 +391,7 @@ export class WvrDropdownComponent extends WvrBaseComponent {
   /**
    * A handler method for the `document:click` event.
    * Closes the dropdown if `toggleOn` is set to `click`
-   * And the click occured off of the wvr-dropdown component.
+   * And the click occured off of the wvre-dropdown component.
    */
   @HostListener('document:click', ['$event']) clickout($event): void {
     if (!this._eRef.nativeElement.contains($event.target)) {
@@ -412,23 +412,27 @@ export class WvrDropdownComponent extends WvrBaseComponent {
   /** Handles the opening of the dropdown, and updating state. */
   private openDropdown(): void {
     if (!this.isMobileLayout) {
-      document.querySelector('body')
-      .click();
-      setTimeout(() => {
-        this.open = true;
-        this.dropdown.open();
-      }, this._animationSpeedMili);
+      // document.querySelector('body')
+      // .click();
+      // setTimeout(() => {
+      //   this.open = true;
+      //   this.dropdown.open();
+      // }, this._animationSpeedMili);
+
+      this.open = true;
+      this.dropdown.open();
     }
   }
 
   /** Handles the closing of the dropdown, and updating state. */
   private closeDropdown(): void {
-    this.closing = true;
+    // this.closing = true;
     this.open = false;
-    setTimeout(() => {
-      this.dropdown.close();
-      this.closing = false;
-    }, this._animationSpeedMili);
+    this.dropdown.close();
+    // setTimeout(() => {
+    //   this.dropdown.close();
+    //   this.closing = false;
+    // }, this._animationSpeedMili);
   }
 
   // tslint:disable-next-line:max-file-line-count

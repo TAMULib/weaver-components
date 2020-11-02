@@ -1,11 +1,14 @@
 import { Component, HostBinding, Injector, Input } from '@angular/core';
+import { Observable } from 'rxjs';
+import { selectManifestEntryResponse } from '../core/store';
+import { WvrSelect } from '../shared/utility/decorators.utilty';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 /**
  * Provides a simple component to prove the basic functionality of the Weaver Components.
  */
 @Component({
-  selector: 'wvr-it-works-element',
+  selector: 'wvr-it-works-component',
   templateUrl: './wvr-it-works.component.html',
   styleUrls: ['./wvr-it-works.component.scss']
 })

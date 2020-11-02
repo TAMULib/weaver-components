@@ -1,0 +1,19 @@
+@import "../shared/styles/wvr-variables.scss";
+
+:host {
+  font-family: var(--wvr-font-family-sans-serif);
+  ::ng-deep {
+
+    .list-group-flush {
+      border-top: 1px solid rgba(0, 0, 0, 0.125);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    }
+
+    .bg-primary,
+    .bg-secondary,
+    .bg-danger,
+    .bg-dark {
+      color: var(--wvr-white);
+    }
+  }
+}

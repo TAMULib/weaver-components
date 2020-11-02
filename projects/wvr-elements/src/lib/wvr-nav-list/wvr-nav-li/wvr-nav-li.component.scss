@@ -15,7 +15,7 @@ li.nav-item {
   height: var(--wvr-nav-li-height);
   min-width: var(--wvr-nav-li-width);
   cursor: var(--wvr-nav-li-cursor);
-  ::ng-deep wvr-dropdown {
+  ::ng-deep wvre-dropdown {
     display: flex;
     width: 100%;
     height: 100%;
@@ -24,7 +24,7 @@ li.nav-item {
 
     [ngbdropdown],
     [ngdropdownanchor], 
-    wvr-dropdown-btn,
+    wvre-dropdown-btn,
     .wvr-dropdown {
       width: 100%;
       height: 100%;
@@ -32,7 +32,7 @@ li.nav-item {
       align-items: center;
       justify-content: center;
     }
-    wvr-dropdown-menu {
+    wvre-dropdown-menu {
       justify-self: self-start;
     }
   }

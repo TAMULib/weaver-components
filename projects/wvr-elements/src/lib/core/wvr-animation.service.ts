@@ -74,7 +74,6 @@ export class WvrAnimationService {
     const from = animationConfig[animationName] ?
       animationConfig[animationName].from :
       wvrAnimationDefaults[animationName].from;
-
     const a = this.selectAnimation(stateId, animationName, timing, to, from, animationRoot);
     if (a) {
       const animationFactory = this.builder.build(a);

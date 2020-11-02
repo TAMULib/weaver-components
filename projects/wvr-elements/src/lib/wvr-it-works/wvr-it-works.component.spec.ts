@@ -1,6 +1,8 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StoreModule } from '@ngrx/store';
+import { metaReducers, ROOT_REDUCER } from '../core/store';
 import { WvrItWorksComponent } from './wvr-it-works.component';
 
 describe('WvrItWorksComponent', () => {
@@ -9,7 +11,7 @@ describe('WvrItWorksComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule],
+      imports: [BrowserAnimationsModule, StoreModule.forRoot(ROOT_REDUCER, { metaReducers })],
       declarations: [WvrItWorksComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
@@ -37,4 +39,10 @@ describe('WvrItWorksComponent', () => {
     expect(component.text)
       .toEqual('Weaver Components Work');
   });
+
+  it('should set is mobileAgent', () => {
+    expect(component.isMobileAgent)
+      .toBeFalse();
+  });
+
 });

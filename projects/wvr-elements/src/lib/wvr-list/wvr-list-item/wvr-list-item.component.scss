@@ -44,7 +44,7 @@
   --wvr-list-group-item-dark-color: var(--wvr-list-group-item-dark-color-default);
   --wvr-list-group-item-dark-background-color: var(--wvr-list-group-item-dark-background-color-default);
 
-  wvr-list-wrapper {
+  wvre-list-wrapper {
     display: inline-block;
   }
 
@@ -69,13 +69,13 @@
     text-decoration: none;
   }
 
-  wvr-list-item:first-child > .list-group-item {
+  wvre-list-item:first-child > .list-group-item {
     margin-top: 0;
     border-top-right-radius: .25rem;
     border-top-left-radius: .25rem;
   }
 
-  wvr-list-item:last-child > .list-group-item {
+  wvre-list-item:last-child > .list-group-item {
     margin-bottom: 0;
     border-bottom-right-radius: .25rem;
     border-bottom-left-radius: .25rem;

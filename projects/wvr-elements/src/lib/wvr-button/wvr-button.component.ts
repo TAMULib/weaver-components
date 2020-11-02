@@ -1,8 +1,12 @@
 import { Component, HostBinding, Injector, Input } from '@angular/core';
+import { Observable } from 'rxjs';
+import * as ManifestActions from '../core/manifest/manifest.actions';
+import * as rootStore from '../core/store';
+import { WvrSelect } from '../shared/utility/decorators.utilty';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 @Component({
-  selector: 'wvr-button-element',
+  selector: 'wvr-button-component',
   templateUrl: './wvr-button.component.html',
   styleUrls: ['./wvr-button.component.scss']
 })
@@ -361,6 +365,9 @@ export class WvrButtonComponent extends WvrBaseComponent {
 
   /** Allows for the override of button vertical align property */
   @HostBinding('style.--wvr-btn-vertical-align') @Input() verticalAlign;
+
+  // tslint:disable-next-line:max-line-length
+  // @WvrSelect({ selector: rootStore.selectManifestEntryResponse('Directory App', 'All Sorted') }) private sampleTestResponse: Observable<any>;
 
   constructor(injector: Injector) {
     super(injector);

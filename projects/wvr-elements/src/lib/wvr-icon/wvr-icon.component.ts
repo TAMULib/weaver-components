@@ -9,7 +9,7 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
  * A reference to an Icon currently available in the configured assets.
  */
 @Component({
-  selector: 'wvr-icon-element',
+  selector: 'wvr-icon-component',
   templateUrl: './wvr-icon.component.html',
   styleUrls: ['./wvr-icon.component.scss']
 })

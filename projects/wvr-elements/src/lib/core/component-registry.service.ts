@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 /**
  * A registry for each WvrBaseComponent currently present on the page.
@@ -7,16 +6,19 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
 @Injectable({
   providedIn: 'root'
 })
-export class ComponentRegistryService {
+export class ComponentRegistryService<T> {
 
   /** Incrementing index of all registered components. */
   private index = -1;
 
   /** Registry for all WvrBaseComponent. */
-  private readonly registry: Map<number | string, WvrBaseComponent> = new Map<number, WvrBaseComponent>();
+  private readonly registry: Map<number | string, T> = new Map<number, T>();
+
+  /** A statically accessible reference to the prefix used in deriving the HTML identifier. */
+  static readonly HTML_ID_BASE = 'wvr-component';
 
   /** Adds a WvrBaseComponent to the registry. */
-  register(component: WvrBaseComponent): number {
+  register(component: T): number {
 
     // tslint:disable-next-line:no-string-literal
     const element = (component['_eRef'].nativeElement as HTMLElement);
@@ -32,12 +34,12 @@ export class ComponentRegistryService {
   }
 
   /** Retrieves a WvrBaseComponent from the registry. */
-  getComponent(id: number | string): WvrBaseComponent {
+  getComponent(id: number | string): T {
     return this.registry.get(id);
   }
 
   /** Retrieves a WvrBaseComponent from the registry by HTMLElement. */
-  getComponentByElement(element: HTMLElement): WvrBaseComponent {
+  getComponentByElement(element: HTMLElement): T {
 
     const hasNativeId = element.hasAttribute('wvr-id');
     const htmlID = hasNativeId ? element.getAttribute('wvr-id') : element.getAttribute('id');
@@ -46,7 +48,7 @@ export class ComponentRegistryService {
       return;
     }
 
-    const id = parseInt(htmlID.replace(`${WvrBaseComponent.HTML_ID_BASE}-`, ''), 10);
+    const id = parseInt(htmlID.replace(`${ComponentRegistryService.HTML_ID_BASE}-`, ''), 10);
 
     return this.getComponent(id);
   }

@@ -5,11 +5,11 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
  * A message display with contextualized styling.
  */
 @Component({
-  selector: 'wvr-alert-element',
+  selector: 'wvr-alert-component',
   templateUrl: './wvr-alert.component.html',
   styleUrls: ['./wvr-alert.component.scss']
 })
-export class WvrAlertComponent extends WvrBaseComponent implements AfterContentInit, OnInit {
+export class WvrAlertComponent extends WvrBaseComponent implements OnInit {
 
   /** Used to define the class type of an alert component.  */
   @Input() alertClass: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark' = 'primary';
@@ -40,9 +40,11 @@ export class WvrAlertComponent extends WvrBaseComponent implements AfterContentI
 
   /** Initializes the closing timer for a self closing alert. */
   ngOnInit(): void {
-    setTimeout(() => {
-        this.alertClosed = (this.alertType === 'self-closing') ? true : false;
-    }, this.closeTimer);
+    if (this.alertType === 'self-closing') {
+      setTimeout(() => {
+        this.alertClosed = true;
+      }, this.closeTimer);
+    }
   }
 
 }
