@@ -120,12 +120,12 @@ log(`    ${chalk.green('Including Static Content:')}`);
 
 const stlyeFiles = [];
 
-if(fs.existsSync(`${NM_UD_STATIC_ASSETS_DIR}/styles.css`)) {
-  stlyeFiles.push(`${NM_UD_STATIC_ASSETS_DIR}/styles.css`);
+if(fs.existsSync(`${NM_UD_STATIC_ASSETS_DIR}/_styles.css`)) {
+  stlyeFiles.push(`${NM_UD_STATIC_ASSETS_DIR}/_styles.css`);
 };
 
-if(fs.existsSync(`${WVR_UD_STATIC_ASSETS_DIR}/styles.css`)) {
-  stlyeFiles.push(`${WVR_UD_STATIC_ASSETS_DIR}/styles.css`);
+if(fs.existsSync(`${WVR_UD_STATIC_ASSETS_DIR}/_styles.css`)) {
+  stlyeFiles.push(`${WVR_UD_STATIC_ASSETS_DIR}/_styles.css`);
 };
 
 if(fs.existsSync(`${WVR_UD_STATIC_ASSETS_DIR}/overrides.css`)) {
