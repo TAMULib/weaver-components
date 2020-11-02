@@ -8,7 +8,7 @@
   "private": false,
   "license": "MIT",
   "config": {
-    "DOCKER_SERVER": "10.55.134.48/weaver/wvr-components"
+    "DOCKER_SERVER": ""
   },
   "scripts": {
     "build": "ng build --prod --output-hashing none",
