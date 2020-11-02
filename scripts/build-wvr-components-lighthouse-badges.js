@@ -1,4 +1,4 @@
-#! /usr/bin/env node
+#!/usr/bin/env node
 
 const https = require('https');
 const fs = require('fs-extra');

@@ -1,4 +1,4 @@
-#! /usr/bin/env node
+#!/usr/bin/env node
 
 const dotEnv = require('dotenv-override-true');
 const fs = require('fs-extra');
