@@ -51,7 +51,6 @@
     "test:ci": "npm run test:coverage && npm run test:audit"
   },
   "dependencies": {
-    "-": "0.0.1",
     "@angular/animations": "^10.2.0",
     "@angular/common": "^10.2.0",
     "@angular/compiler": "^10.2.0",
