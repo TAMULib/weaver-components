@@ -59,7 +59,7 @@
               "namedChunks": false,
               "commonChunk": false,
               "vendorChunk": false,
-              "buildOptimizer": false,
+              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
