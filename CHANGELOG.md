@@ -1,15 +1,71 @@
 # Changelog
 
+## [1.6.0] - 11-2-20
+### Resolves
+
+- Weaver component's build process should build multiple versions of the product. (#86)
+- Weaver Usage Docs should be converted into an angular project. (#102)
+- The wvr manifest action to submit request should afford providing response map. (#223)
+- Handlebars should be extracted into a service and all helpers declared outside of the component constructor. (#232)
+- On safari (check firefox) mobile display does not run the position footer function at load time. (#233)
+- Weaver components should provide a wvr-cards component. (#234)
+- Weaver Component selectors need to be refactored to avoid name collision with Weaver (angularjs) directives. (#237)
+- The wvr-header should use the configured asset path for the header logo. (#255)
+
+## [1.5.0] - 10-8-20
+### Resolves
+
+- Weaver Components should communicate with Weaver web services. (#195)
+- Weaver Lists should automatically assign aria owns attribute for each of its list items. (#206)
+- Weaver Components should provide an Alert Component. (#207)
+- Weaver Components should dynamically assign unique identifiers to each component. (#208)
+- Explore ngRX as a state store solution for components. (#209)
+- Weaver Components should offer a tabs component. (#210)
+
+## [1.4.0] - 9-23-20
+### Resolves
+
+- Encapsulates bootstrap within global styling
+- Performance improvements 
+- Introduces Mobile Service
+- The list item context attr should override the visual context of the list item. (#199)
+
 ## [1.3.0] - 08-13-20
 ### Resolves
 
-Weaver Components should have an element query strategy. (#27)
-Icons should be integrated into weaver buttons. (#128)
-Weaver Components should support lists with expanding and collapsing sections. (#163)
-The Wvr Icon component should support animation. (#164)
-Weaver Components should have a list component. (#165)
-Coveralls not providing the coverage notification. (#167)
-Observable subscriptions should be unsubscribed from or converted to promises. (#168)
+- Weaver Components should have an element query strategy. (#27)
+- Icons should be integrated into weaver buttons. (#128)
+- Weaver Components should support lists with expanding and collapsing sections. (#163)
+- The Wvr Icon component should support animation. (#164)
+- Weaver Components should have a list component. (#165)
+- Coveralls not providing the coverage notification. (#167)
+- Observable subscriptions should be unsubscribed from or converted to promises. (#168)
+
+## [1.2.0] - 07-16-20
+### Resolves
+
+- Weaver Component should support a global configuration paradigm. (#64)
+- Weaver Components should share vendor styling across components. (#82)
+- Weaver Components should support multiple font icon libraries. (#85)
+- Buttons must be integrated into weaver drop-down. (#129)
+- Weaver footer "stick-to-bottom" property affected by wvr-button line-height and padding property. (#150)
+
+## [1.1.0] - 06-25-20
+### Resolves
+
+- Wvr Components should provide a wvr-button component (#103)
+- CDN needs to be exposed through the firewall (#135)
+- Fix Z-Index on dropdown overlaps (#133)
+- Restore dynamic change detection for display of bottom nav (#136)
+- Dropdown inside of List inside of Header flickers instead of staying open (#119)
+
+## [1.0.0] - 06-11-20
+### Resolves
+
+- The wvr-header should support mobile and tablet layouts (#7)
+- Weaver Components should have CI hooks for lighthouse (#105)
+- wvr-component should have attribute: page-title-url (#116)
+- Weaver Drop down component selector should be renamed (#125)
 
 ## [0.0.5] - 05-14-2020
 ### Resolves
