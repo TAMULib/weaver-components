@@ -4,7 +4,7 @@ import { AppConfig, APP_CONFIG } from '../config';
 
 /** Interigates the current script tag for its src and extroplates the configuration path from that location. */
 const obtainConfigPath = (): string => {
-const componentScript = document.currentScript;
+  const componentScript = document.currentScript;
   const componentScriptSrc = componentScript.getAttribute('src');
   const componentScriptSrcPathParts = componentScriptSrc.split('/');
   componentScriptSrcPathParts.pop();
