@@ -394,8 +394,9 @@ export class WvrDropdownComponent extends WvrBaseComponent {
    * And the click occured off of the wvre-dropdown component.
    */
   @HostListener('document:click', ['$event']) clickout($event): void {
-    if (!this._eRef.nativeElement.contains($event.target)) {
-      this.closeDropdown();
+    const path = $event.composedPath();
+    if (!this._eRef.nativeElement.contains(path[0])) {
+     this.closeDropdown();
     }
   }
 
