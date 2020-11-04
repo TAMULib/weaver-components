@@ -767,13 +767,11 @@
         as: 'allSorted'
       }
     ]">
-      <wvre-template>
-        <!--
-          {{#each allSorted}}
-            <wvre-list-item>{{fullName}}</wvre-list-item>
-          {{/each}}
-        -->
-      </wvre-template>
+      <template wvr-compile>
+        {{#each allSorted}}
+          <wvre-list-item>{{fullName}}</wvre-list-item>
+        {{/each}}
+      </template>
     </wvre-list>
 
   </div>

@@ -20,7 +20,7 @@ export class TemplateService<T extends WvrDataComponent> {
     }
 
     setTimeout(() => {
-      const projectedContentElem = elem.querySelector('wvre-template') as HTMLElement;
+      const projectedContentElem = elem.querySelector('template[wvr-compile]') as HTMLTemplateElement;
       if (!projectedContentElem) {
         return;
       }
@@ -39,9 +39,7 @@ export class TemplateService<T extends WvrDataComponent> {
     const data = {};
     data[s.as] = d;
     const compiledContent = Handlebars.compile(projectedContentElem.innerHTML)(data);
-    projectedContentElem.outerHTML = compiledContent
-      .replace('<!--', '')
-      .replace('-->', '');
+    projectedContentElem.outerHTML = compiledContent;
   }
 
 }

@@ -21,6 +21,8 @@ export abstract class WvrBaseComponent implements OnInit, OnDestroy, WvrAnimatio
   /** A generated unique identifier for this comonent. */
   readonly id: number;
 
+  private readonly selectors = 'template[wvr-compile]';
+
   data: {[as: string]: Observable<any>} = {};
 
   @Input() private wvrData: string;
@@ -203,6 +205,10 @@ export abstract class WvrBaseComponent implements OnInit, OnDestroy, WvrAnimatio
         }
       });
     }
+  }
+
+  wvrSelectors(selectors: string): string {
+    return `${this.selectors},${selectors}`;
   }
 
   /* istanbul ignore next */
