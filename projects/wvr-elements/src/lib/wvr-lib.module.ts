@@ -36,6 +36,9 @@ import { WvrTabComponent } from './wvr-tabs/wvr-tab/wvr-tab.component';
 import { WvrTabsComponent } from './wvr-tabs/wvr-tabs.component';
 import { WvrTextComponent } from './wvr-text/wvr-text.component';
 
+import * as Handlebars from 'handlebars/dist/handlebars';
+import { handlebarsHelpers } from './core/handlebars-helpers';
+
 /** This property contains a list of components and the selector tags. */
 const elements = [
   { component: WvrAlertComponent, selector: 'wvre-alert' },
@@ -83,6 +86,30 @@ const pipes = [
   DefaultPipe
 ];
 
+const registerHBHelpers = function(): void {
+  Object.keys(handlebarsHelpers)
+  .forEach(helperName => {
+    const helper = handlebarsHelpers[helperName];
+    Handlebars.registerHelper(helperName, helper);
+  });
+};
+
+const registerCustomElements = function(injector: Injector): void {
+  elements.forEach(element => {
+    try {
+      customElements.define(element.selector, createCustomElement(element.component, { injector }));
+    } catch (e) {
+      // console.warn(e);
+    }
+  });
+
+  const doc = injector.get(DOCUMENT);
+  doc.querySelectorAll('[wvr-hide-content]')
+    .forEach(elem => {
+      elem.removeAttribute('wvr-hide-content');
+    });
+};
+
 /** The main module for the Weaver Elements library. */
 @NgModule({
   imports: [
@@ -118,19 +145,11 @@ const pipes = [
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class WvrLibModule {
-  constructor(injector: Injector, store: Store<RootState>) {
-    elements.forEach(element => {
-      try {
-        customElements.define(element.selector, createCustomElement(element.component, { injector }));
-      } catch (e) {
-        // console.warn(e);
-      }
-    });
-    const doc = injector.get(DOCUMENT);
-    doc.querySelectorAll('[wvr-hide-content]')
-      .forEach(elem => {
-        elem.removeAttribute('wvr-hide-content');
-      });
+  constructor(injector: Injector) {
+
+    // TODO: Registration of helpers is throwing - `TypeError: Cannot read property 'helpers' of undefined`
+    // registerHBHelpers();
+    registerCustomElements(injector);
   }
 
 }

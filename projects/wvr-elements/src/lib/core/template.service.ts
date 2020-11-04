@@ -1,26 +1,19 @@
 import { Injectable } from '@angular/core';
-import * as Handlebars from 'handlebars';
-import { WvrBaseComponent } from '../shared/wvr-base.component';
-import { handlebarsHelpers } from './handlebars-helpers';
+import * as Handlebars from 'handlebars/dist/handlebars';
 import * as JSON5 from 'json5';
 import { WvrDataSelect } from './data-select';
+import { WvrDataComponent } from './wvr-data-component';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TemplateService {
-
+export class TemplateService<T extends WvrDataComponent> {
   constructor() {
-    // Object.keys(handlebarsHelpers)
-    //   .forEach(name => {
-    //     const helper = handlebarsHelpers[name];
-    //     if (helper) {
-    //       Handlebars.registerHelper(name, helper);
-    //     }
-    //   });
+    console.log('Handlebars', Handlebars);
+    // Handlebars.registerHelper('json', context => JSON.stringify(context));
   }
 
-  parseProjectedContent(component: WvrBaseComponent, elem: HTMLElement): void {
+  parseProjectedContent(component: T, elem: HTMLElement): void {
     if (!component.hasWvrData()) {
       return;
     }
