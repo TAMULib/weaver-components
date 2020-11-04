@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import * as Handlebars from 'handlebars/dist/handlebars';
+import Handlebars from 'handlebars/dist/cjs/handlebars';
 import * as JSON5 from 'json5';
 import { WvrDataSelect } from './data-select';
 import { initializeHandlebarHelpers } from './handlebars-helpers';
@@ -40,8 +40,8 @@ export class TemplateService<T extends WvrDataComponent> {
     data[s.as] = d;
     const compiledContent = Handlebars.compile(projectedContentElem.innerHTML)(data);
     projectedContentElem.outerHTML = compiledContent
-        .replace('<!--', '')
-        .replace('-->', '');
+      .replace('<!--', '')
+      .replace('-->', '');
   }
 
 }
