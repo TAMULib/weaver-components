@@ -4,8 +4,8 @@ import { AppConfig, APP_CONFIG } from '../config';
 
 /** Interigates the current script tag for its src and extroplates the configuration path from that location. */
 const obtainConfigPath = (): string => {
-  const componentScript = document.getElementsByTagName('script');
-  const componentScriptSrc = componentScript[componentScript.length - 1].src;
+  const componentScript = document.currentScript;
+  const componentScriptSrc = componentScript.getAttribute('src');
   const componentScriptSrcPathParts = componentScriptSrc.split('/');
   componentScriptSrcPathParts.pop();
   const configBasePath = componentScriptSrcPathParts.join('/');
@@ -14,7 +14,7 @@ const obtainConfigPath = (): string => {
 };
 
 /** Obtains, parses and injects the configuration. */
-const weaverBootstrap = (module: Type<unknown>) => () => fetch(obtainConfigPath())
+const weaverBootstrap = (module: Type<unknown>) => (configPath: string) => fetch(configPath ? configPath : obtainConfigPath())
   .then((response: Response) => response.json())
   .then((appConfig: AppConfig) => platformBrowserDynamic([{
     provide: APP_CONFIG,
