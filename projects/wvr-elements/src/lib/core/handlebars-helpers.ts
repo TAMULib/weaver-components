@@ -1,8 +1,18 @@
+import Handlebars from 'handlebars/dist/cjs/handlebars';
 
-/**
- * All helpers available in templating.
- * DEV NOTE: New helpers must be registered in TemplateService.
- */
-export const handlebarsHelpers = {
-  json: context => JSON.stringify(context)
+let handlebarHelpersInitialized = false;
+
+const initializeHandlebarHelpers = (initialContext: any = {}) => {
+  if (!handlebarHelpersInitialized) {
+    console.log('initialize handlebars helpers');
+
+    Handlebars.registerHelper('json', context => JSON.stringify(context, undefined, 2));
+
+    handlebarHelpersInitialized = true;
+  }
+};
+
+export {
+  handlebarHelpersInitialized,
+  initializeHandlebarHelpers
 };

@@ -2,15 +2,16 @@ import { Injectable } from '@angular/core';
 import * as Handlebars from 'handlebars/dist/handlebars';
 import * as JSON5 from 'json5';
 import { WvrDataSelect } from './data-select';
+import { initializeHandlebarHelpers } from './handlebars-helpers';
 import { WvrDataComponent } from './wvr-data-component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TemplateService<T extends WvrDataComponent> {
+
   constructor() {
-    console.log('Handlebars', Handlebars);
-    // Handlebars.registerHelper('json', context => JSON.stringify(context));
+    initializeHandlebarHelpers({});
   }
 
   parseProjectedContent(component: T, elem: HTMLElement): void {

@@ -24,4 +24,3 @@ export * from './lib/wvr-nav-list/wvr-nav-list.component';
 export * from './lib/wvr-tabs/wvr-tabs.component';
 export * from './lib/wvr-tabs/wvr-tab/wvr-tab.component';
 export * from './lib/wvr-text/wvr-text.component';
-export * from './lib/core/store';

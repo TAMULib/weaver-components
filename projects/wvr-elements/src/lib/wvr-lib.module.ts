@@ -6,14 +6,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EffectsModule } from '@ngrx/effects';
-import { Store, StoreModule } from '@ngrx/store';
+import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { IconService } from './core/icon.service';
-import * as ManifestActions from './core/manifest/manifest.actions';
 import { ManifestEffects } from './core/manifest/manifest.effects';
 import { MobileService } from './core/mobile.service';
 import { RestEffects } from './core/rest/rest.effects';
-import { metaReducers, RootState, ROOT_REDUCER } from './core/store';
+import { metaReducers, ROOT_REDUCER } from './core/store';
 import { TemplateService } from './core/template.service';
 import { WvrAnimationService } from './core/wvr-animation.service';
 import { DefaultPipe } from './shared/pipes/default.pipe';
@@ -35,9 +34,6 @@ import { WvrNavListComponent } from './wvr-nav-list/wvr-nav-list.component';
 import { WvrTabComponent } from './wvr-tabs/wvr-tab/wvr-tab.component';
 import { WvrTabsComponent } from './wvr-tabs/wvr-tabs.component';
 import { WvrTextComponent } from './wvr-text/wvr-text.component';
-
-import * as Handlebars from 'handlebars/dist/handlebars';
-import { handlebarsHelpers } from './core/handlebars-helpers';
 
 /** This property contains a list of components and the selector tags. */
 const elements = [
@@ -86,15 +82,7 @@ const pipes = [
   DefaultPipe
 ];
 
-const registerHBHelpers = function(): void {
-  Object.keys(handlebarsHelpers)
-  .forEach(helperName => {
-    const helper = handlebarsHelpers[helperName];
-    Handlebars.registerHelper(helperName, helper);
-  });
-};
-
-const registerCustomElements = function(injector: Injector): void {
+const registerCustomElements = (injector: Injector) => {
   elements.forEach(element => {
     try {
       customElements.define(element.selector, createCustomElement(element.component, { injector }));
@@ -146,9 +134,6 @@ const registerCustomElements = function(injector: Injector): void {
 })
 export class WvrLibModule {
   constructor(injector: Injector) {
-
-    // TODO: Registration of helpers is throwing - `TypeError: Cannot read property 'helpers' of undefined`
-    // registerHBHelpers();
     registerCustomElements(injector);
   }
 
