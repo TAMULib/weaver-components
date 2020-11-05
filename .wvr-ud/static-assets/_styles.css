@@ -102,6 +102,7 @@ main {
 }
 
 #editor,
+#template-editor,
 #scss-editor,
 #source-editor {
   height:400px;
