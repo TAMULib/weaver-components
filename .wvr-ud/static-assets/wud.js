@@ -2,12 +2,14 @@ let componentManifest = JSON.parse($('#expamples-manifest').html());
 let editorElem = document.querySelector('#editor');
 let previewElem = document.querySelector('#preview');
 let desciptionElem = document.querySelector('#desciption');
+let templateElem = document.querySelector('#template');
 let activeExampleNameElem = document.querySelector('#active-component-name');
 let componentCollectionsList = document.querySelector('#component-collections');
 let componentCollectionTemplate = document.querySelector('#component-collection-template');
 let componentLinkTemplate = document.querySelector('#component-link-template');
 let editor;
 let scssEditor;
+let templateEditor;
 let sourceEditor;
 let components = [];
 let activeExample;
@@ -32,6 +34,15 @@ let setupEditor = () => {
       document.querySelector("main").classList.remove('loading');
     }, 500);
   });
+  templateEditor = ace.edit("template-editor");
+  templateEditor.setOptions({
+    readOnly: true,
+    highlightActiveLine: false,
+    highlightGutterLine: false,
+    theme: 'ace/theme/monokai',
+    mode: 'ace/mode/html'
+  });
+  templateEditor.renderer.$cursorLayer.element.style.opacity=0;
   scssEditor = ace.edit("scss-editor");
   scssEditor.setOptions({
     readOnly: true,
@@ -80,7 +91,7 @@ let setupComponentLinks = ()=>{
   });
   document.querySelector('.expand-collapse-all').addEventListener('click', e=>{
     e.preventDefault();
-  
+
     e.currentTarget.classList.contains('open') ?
     $('.component-links').collapse('hide') :
     $('.component-links').collapse('show')
@@ -95,11 +106,13 @@ let loadExample = (example) => {
   let desciption = example.querySelector('desciption').innerHTML;
   let componentScss = example.querySelector('component-scss').innerHTML;
   let componentSource = example.querySelector('component-source').innerHTML;
+  let componentTemplate = example.querySelector('component-template').rawTemplateHTML;
   document.querySelector('#copy-btn').setAttribute('data-clipboard-text', snippet);
   activeExampleNameElem.innerText = example.getAttribute('name');
   previewElem.innerHTML = snippet;
   desciptionElem.innerHTML = desciption;
   scssEditor.getSession().setValue(componentScss);
+  templateEditor.getSession().setValue(componentTemplate);
   sourceEditor.getSession().setValue(componentSource);
   editor.getSession().setValue(snippet);
 };
@@ -130,6 +143,7 @@ let renderComponentLinks = componentsToRender => {
           if(example.getAttribute('name').trim()===e.target.innerText.trim()) {
             activeExample=example;
             activeExample.querySelector('snippet').rawHTML = activeExample.querySelector('snippet').innerHTML;
+            activeExample.querySelector('component-template').rawTemplateHTML = activeExample.querySelector('component-template').innerHTML;
             loadExample(example);
           }
         });
