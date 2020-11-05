@@ -2,12 +2,13 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
 import { WvrItWorksComponent } from '../wvr-it-works/wvr-it-works.component';
 import { metaReducers, ROOT_REDUCER } from './store';
 import { WvrAnimationService } from './wvr-animation.service';
 
 describe('WvrAnimationService', () => {
-  let service: WvrAnimationService;
+  let service: WvrAnimationService<WvrBaseComponent>;
   let componentOne: WvrItWorksComponent;
   let componentTwo: WvrItWorksComponent;
   let fixtureOne: ComponentFixture<WvrItWorksComponent>;
