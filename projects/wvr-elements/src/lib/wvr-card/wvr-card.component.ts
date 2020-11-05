@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, ElementRef, Injector, Input, ViewChild } from '@angular/core';
+import { ThemedColor } from '../shared/theme';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 /**
@@ -48,7 +49,7 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit 
   @Input() textCenter;
 
   /** Used to describe the type of card. */
-  @Input() cardType: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark';
+  @Input() cardType: ThemedColor;
 
   /** Used to describe the format of card. */
   @Input() panelFormat: 'solid' | 'outlined' | 'mixed';

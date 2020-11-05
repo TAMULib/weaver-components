@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, Injector, Input, OnInit } from '@angular/core';
-import { Theme } from '../../shared/theme.type';
+import { ThemedColor } from '../../shared/theme';
 import { WvrBaseComponent } from '../../shared/wvr-base.component';
 
 /**
@@ -19,7 +19,7 @@ export class WvrListItemComponent extends WvrBaseComponent implements OnInit, Af
   @Input() description: string;
 
   /** The visual contextualization for this list item. */
-  @Input() context: Theme;
+  @Input() context: ThemedColor;
 
   /** A heading to be displayed for list items with custom content. */
   @Input() customContentItemHeading: string;

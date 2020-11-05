@@ -1,5 +1,6 @@
 import { Component, HostBinding, HostListener, Injector, Input, ViewChild } from '@angular/core';
 import { NgbDropdown, NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
+import { ThemedColor } from '../shared/theme';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 /**
@@ -255,7 +256,7 @@ export class WvrDropdownComponent extends WvrBaseComponent {
   @Input() btnSize = '';
 
   /** Allows for the visual customization of the dropdown menu activation button.  */
-  @Input() btnType: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark' | 'link' | 'plain' = 'plain';
+  @Input() btnType: ThemedColor = 'plain';
 
   /** Binds the input from `menuBackground` to the css variable `--wvr-dropdown-menu-background` */
   @HostBinding('style.--wvr-dropdown-menu-background') @Input() menuBackground;
