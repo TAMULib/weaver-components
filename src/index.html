@@ -767,13 +767,11 @@
         as: 'allSorted'
       }
     ]">
-      <wvre-template>
-        <!--
-          {{#each allSorted}}
-            <wvre-list-item>{{fullName}}</wvre-list-item>
-          {{/each}}
-        -->
-      </wvre-template>
+      <template wvr-compile>
+        {{#each allSorted}}
+          <wvre-list-item>{{fullName}}</wvre-list-item>
+        {{/each}}
+      </template>
     </wvre-list>
 
   </div>
@@ -781,7 +779,7 @@
   <div class="container index-container">
 
     <wvre-text value="Tabs" text-decoration="underline"></wvre-text><br /><br />
-  
+
     <wvre-tabs>
       <wvre-tab tab-text="Tab One">
         <div class="jumbotron">

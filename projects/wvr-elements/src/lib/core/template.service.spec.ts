@@ -2,6 +2,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
 import { WvrItWorksComponent } from '../wvr-it-works/wvr-it-works.component';
 import { WvrDataSelect } from './data-select';
 import { metaReducers, ROOT_REDUCER } from './store';
@@ -9,7 +10,7 @@ import { metaReducers, ROOT_REDUCER } from './store';
 import { TemplateService } from './template.service';
 
 describe('TemplateService', () => {
-  let service: TemplateService;
+  let service: TemplateService<WvrBaseComponent>;
   let component: WvrItWorksComponent;
   let projectedContent: HTMLElement;
   let fixture: ComponentFixture<WvrItWorksComponent>;
@@ -26,8 +27,9 @@ describe('TemplateService', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WvrItWorksComponent);
     component = fixture.componentInstance;
-    projectedContent = document.createElement('wvr-template');
-    projectedContent.innerHTML = '<!--<p>{{data.test}}</p>-->';
+    projectedContent = document.createElement('template');
+    projectedContent.setAttribute('wvr-compile', 'true');
+    projectedContent.innerHTML = '<p>{{data.test}}</p>';
 
     fixture.detectChanges();
   });

@@ -1,4 +1,4 @@
-import { AfterContentInit, Directive, ElementRef, EventEmitter, HostBinding, Injector, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
+import { Directive, ElementRef, EventEmitter, HostBinding, Injector, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { select, Store } from '@ngrx/store';
 import * as JSON5 from 'json5';
@@ -10,11 +10,13 @@ import * as ManifestActions from '../core/manifest/manifest.actions';
 import { MobileService } from '../core/mobile.service';
 import { RootState, selectManifestEntryResponse } from '../core/store';
 import { TemplateService } from '../core/template.service';
+import { WvrAnimationComponent } from '../core/wvr-animation-component';
 import { WvrAnimationService } from '../core/wvr-animation.service';
+import { WvrDataComponent } from '../core/wvr-data-component';
 
 @Directive()
 // tslint:disable-next-line:directive-class-suffix
-export abstract class WvrBaseComponent implements OnInit, OnDestroy {
+export abstract class WvrBaseComponent implements OnInit, OnDestroy, WvrAnimationComponent, WvrDataComponent {
 
   /** A generated unique identifier for this comonent. */
   readonly id: number;
@@ -71,7 +73,7 @@ export abstract class WvrBaseComponent implements OnInit, OnDestroy {
   protected readonly componentRegistry: ComponentRegistryService<WvrBaseComponent>;
 
   /** A reference to the  WvrAnimationService */
-  protected readonly _animationService: WvrAnimationService;
+  protected readonly _animationService: WvrAnimationService<WvrBaseComponent>;
 
   /** A reference to the  DomSanitizer */
   protected readonly _domSanitizer: DomSanitizer;
@@ -80,10 +82,10 @@ export abstract class WvrBaseComponent implements OnInit, OnDestroy {
   protected readonly _eRef: ElementRef;
 
   /** A reference to the  MobileService */
-  private readonly mobileService: MobileService;
+  protected readonly mobileService: MobileService;
 
   /** A reference to the  MobileService */
-  private readonly templateService: TemplateService;
+  protected readonly templateService: TemplateService<WvrBaseComponent>;
 
   /** A host bound accessor which applies the wvr-hidden class if both isMobileLayout and hiddenInMobile evaluate to true.  */
   @HostBinding('class.wvr-hidden') private get _hiddenInMobile(): boolean {
@@ -158,37 +160,15 @@ export abstract class WvrBaseComponent implements OnInit, OnDestroy {
   }
 
   /* istanbul ignore next */
-  private initializeAnimationRegistration(): void {
-    const animationEvents = Object.keys(this._animationSettings);
-    if (animationEvents.length) {
-      if (this.animateId) {
-        this._animationService.registerAnimationTargets(this.animateId, this);
-      }
-      this.animationStateId = this._animationService.registerAnimationStates();
-      animationEvents.forEach(eventName => {
-        if (eventName !== 'animationTrigger') {
-          (this._eRef.nativeElement as HTMLElement).addEventListener(eventName, this.onEvent.bind(this));
-        }
-      });
-    }
-  }
-
-  /* istanbul ignore next */
-  private initializeAnimationElement(): void {
+  initializeAnimationElement(): void {
     setTimeout(() => {
       this._animationService
         .initializeAnimationElement(this.animationStateId, this._animationConfig, this.animationRootElem);
     }, 1);
   }
 
-  /** Trigger's the animation specified by the incoming event. */
   /* istanbul ignore next */
-  private onEvent($event): void {
-    this.triggerAnimations($event.type);
-  }
-
-  /* istanbul ignore next */
-  private processAnimations(): void {
+  initializeAnimationRegistration(): void {
     const animationEvents = Object.keys(this._animationSettings);
     if (animationEvents.length) {
       if (this.animateId) {
@@ -197,7 +177,29 @@ export abstract class WvrBaseComponent implements OnInit, OnDestroy {
       this.animationStateId = this._animationService.registerAnimationStates();
       animationEvents.forEach(eventName => {
         if (eventName !== 'animationTrigger') {
-          (this._eRef.nativeElement as HTMLElement).addEventListener(eventName, this.onEvent.bind(this));
+          (this._eRef.nativeElement as HTMLElement).addEventListener(eventName, this.onAnimationEvent.bind(this));
+        }
+      });
+    }
+  }
+
+  /** Trigger's the animation specified by the incoming event. */
+  /* istanbul ignore next */
+  onAnimationEvent($event: Event): void {
+    this.triggerAnimations($event.type);
+  }
+
+  /* istanbul ignore next */
+  processAnimations(): void {
+    const animationEvents = Object.keys(this._animationSettings);
+    if (animationEvents.length) {
+      if (this.animateId) {
+        this._animationService.registerAnimationTargets(this.animateId, this);
+      }
+      this.animationStateId = this._animationService.registerAnimationStates();
+      animationEvents.forEach(eventName => {
+        if (eventName !== 'animationTrigger') {
+          (this._eRef.nativeElement as HTMLElement).addEventListener(eventName, this.onAnimationEvent.bind(this));
         }
       });
     }

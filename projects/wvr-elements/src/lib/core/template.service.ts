@@ -1,32 +1,26 @@
 import { Injectable } from '@angular/core';
-import * as Handlebars from 'handlebars';
-import { WvrBaseComponent } from '../shared/wvr-base.component';
-import { handlebarsHelpers } from './handlebars-helpers';
+import Handlebars from 'handlebars/dist/cjs/handlebars';
 import * as JSON5 from 'json5';
 import { WvrDataSelect } from './data-select';
+import { initializeHandlebarHelpers } from './handlebars-helpers';
+import { WvrDataComponent } from './wvr-data-component';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TemplateService {
+export class TemplateService<T extends WvrDataComponent> {
 
   constructor() {
-    // Object.keys(handlebarsHelpers)
-    //   .forEach(name => {
-    //     const helper = handlebarsHelpers[name];
-    //     if (helper) {
-    //       Handlebars.registerHelper(name, helper);
-    //     }
-    //   });
+    initializeHandlebarHelpers({});
   }
 
-  parseProjectedContent(component: WvrBaseComponent, elem: HTMLElement): void {
+  parseProjectedContent(component: T, elem: HTMLElement): void {
     if (!component.hasWvrData()) {
       return;
     }
 
     setTimeout(() => {
-      const projectedContentElem = elem.querySelector('wvre-template') as HTMLElement;
+      const projectedContentElem = elem.querySelector('template[wvr-compile]') as HTMLTemplateElement;
       if (!projectedContentElem) {
         return;
       }
@@ -45,9 +39,7 @@ export class TemplateService {
     const data = {};
     data[s.as] = d;
     const compiledContent = Handlebars.compile(projectedContentElem.innerHTML)(data);
-    projectedContentElem.outerHTML = compiledContent
-        .replace('<!--', '')
-        .replace('-->', '');
+    projectedContentElem.outerHTML = compiledContent;
   }
 
 }

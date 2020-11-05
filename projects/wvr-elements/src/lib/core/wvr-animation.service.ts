@@ -2,7 +2,7 @@ import { animation, AnimationBuilder, AnimationMetadata, AnimationPlayer, Animat
 import { Injectable } from '@angular/core';
 import { wvrAnimationDefaults } from '../shared/animation/wvr-animation-defaults';
 import { wvrAnimationInitialization, wvrAnimations } from '../shared/animation/wvr-animations';
-import { WvrBaseComponent } from '../shared/wvr-base.component';
+import { WvrAnimationComponent } from './wvr-animation-component';
 
 /**
  * A centralized utility for handeling animation tasks.
@@ -11,10 +11,10 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
   providedIn: 'root',
   deps: [AnimationBuilder]
 })
-export class WvrAnimationService {
+export class WvrAnimationService<T extends WvrAnimationComponent> {
 
   /** A registry of WvrBaseComponent which are participating in animations. */
-  private readonly _animationTargetsRegistry = new Map<string, Array<WvrBaseComponent>>();
+  private readonly _animationTargetsRegistry = new Map<string, Array<T>>();
 
   /** Records state for each WvrBaseComponent which is participating in animation */
   private readonly animationStates = new Map<number, Map<string, boolean>>();
@@ -22,11 +22,11 @@ export class WvrAnimationService {
   constructor(private readonly builder: AnimationBuilder) { }
 
   /** Adds a component to the registry of targets */
-  registerAnimationTargets(targetName: string, component: WvrBaseComponent): void {
+  registerAnimationTargets(targetName: string, component: T): void {
     let targets = this._animationTargetsRegistry.get(targetName);
     /* istanbul ignore else */
     if (!targets) {
-      targets = new Array<WvrBaseComponent>();
+      targets = new Array<T>();
       this._animationTargetsRegistry.set(targetName, targets);
     }
     targets.push(component);
