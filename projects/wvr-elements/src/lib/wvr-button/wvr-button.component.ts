@@ -14,7 +14,7 @@ import { ColorTheme, ThemedColor } from '../shared/theme';
 export class WvrButtonComponent extends WvrBaseComponent {
 
   /** Used to define the class type for button component.  */
-  @Input() btnClass: ThemedColor = 'primary';
+  @Input() themedColor: ThemedColor = 'primary';
 
   /** Used to define the size for button component.  */
   @Input() btnSize: 'large' | 'small' | 'block';

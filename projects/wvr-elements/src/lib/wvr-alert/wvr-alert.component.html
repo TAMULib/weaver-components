@@ -1,14 +1,14 @@
 <div *ngIf="!alertClosed"
   class="wvr-components wvr-alert alert"
   [ngClass]="{
-    'alert-primary': alertClass==='primary',
-    'alert-secondary': alertClass==='secondary',
-    'alert-success': alertClass==='success',
-    'alert-danger': alertClass==='danger',
-    'alert-warning': alertClass==='warning',
-    'alert-info': alertClass==='info',
-    'alert-light': alertClass==='light',
-    'alert-dark': alertClass==='dark'
+    'alert-primary': themedColor==='primary',
+    'alert-secondary': themedColor==='secondary',
+    'alert-success': themedColor==='success',
+    'alert-danger': themedColor==='danger',
+    'alert-warning': themedColor==='warning',
+    'alert-info': themedColor==='info',
+    'alert-light': themedColor==='light',
+    'alert-dark': themedColor==='dark'
   }"
   role="alert">
 
@@ -43,7 +43,7 @@
 </ng-template>
 
 <ng-template #closeButton>
-  <button type="button" class="close btn btn-{{alertClass}}" aria-label="Close" (click)="clickClose($event)" *ngIf="closable==='true'">
+  <button type="button" class="close btn btn-{{themedColor}}" aria-label="Close" (click)="clickClose($event)" *ngIf="closable==='true'">
        <span aria-hidden="true">×</span>
      </button>
 </ng-template>

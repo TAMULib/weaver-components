@@ -13,7 +13,7 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
 export class WvrAlertComponent extends WvrBaseComponent implements OnInit {
 
   /** Used to define the class type of an alert component.  */
-  @Input() alertClass: ThemedColor = 'primary';
+  @Input() themedColor: ThemedColor = 'primary';
 
   /** Used to define the type of alert. */
   @Input() alertType: 'basic' | 'self-closing' | 'custom' = 'basic';

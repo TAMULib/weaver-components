@@ -25,4 +25,4 @@ const DefaultColorTheme: ColorTheme = {
 
 export {
   DefaultColorTheme
-}
+};

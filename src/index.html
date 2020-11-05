@@ -131,7 +131,7 @@
       </wvre-nav-li>
       <wvre-nav-li>
         <wvre-dropdown
-          btn-type="link"
+          themed-color="link"
           btn-text-decoration="none"
           btn-text-decoration-active="none"
           btn-text-decoration-hover="none"
@@ -173,20 +173,20 @@
   <div class="container index-container">
     <wvre-text value="Alert Component" text-decoration="underline"></wvre-text><br /><br />
     <wvre-alert
-      alert-class="primary"
+      themed-color="primary"
       alert-type="basic">
         <wvre-text value="This is basic primary alert. "></wvre-text>
     </wvre-alert>
 
     <wvre-alert
-      alert-class="success"
+      themed-color="success"
       alert-type="self-closing"
       close-timer="5000">
         <wvre-text value="This is self closing success alert"></wvre-text>
     </wvre-alert>
 
     <wvre-alert
-      alert-class="success"
+      themed-color="success"
       alert-type="custom">
         <wvre-custom-alert>
           <h4 class="alert-heading">
@@ -203,7 +203,7 @@
     </wvre-alert>
 
     <wvre-alert
-      alert-class="danger"
+      themed-color="danger"
       alert-type="custom"
       closable="false">
         <wvre-custom-alert>
@@ -226,7 +226,7 @@
     <wvre-text value="Card Component" text-decoration="underline"></wvre-text>
     <br /><br />
 
-    <wvre-card card-type="primary" panel-format="mixed">
+    <wvre-card themed-color="primary" panel-format="mixed">
       <wvre-card-header>
         <wvre-text value="Card Header"></wvre-text>
       </wvre-card-header>
@@ -243,30 +243,30 @@
         <wvre-text value="Gmail"></wvre-text>
       </wvre-card-link>
 
-      <wvre-list top list-type="group-flush" context="info">
+      <wvre-list top list-type="group-flush" themed-color="info">
         <wvre-list-item>
           <wvre-text value="Item 1"></wvre-text>
         </wvre-list-item>
-        <wvre-list-item context="warning">
+        <wvre-list-item themed-color="warning">
           <wvre-text value="Item 2"></wvre-text>
         </wvre-list-item>
-        <wvre-list-item context="success">
+        <wvre-list-item themed-color="success">
           <wvre-text value="Item 3"></wvre-text>
         </wvre-list-item>
       </wvre-list>
 
       <wvre-text value="This is a basic card body content"></wvre-text>
 
-      <wvre-list bottom list-type="group-flush" context="info">
+      <wvre-list bottom list-type="group-flush" themed-color="info">
         <wvre-list-item>
           <wvre-text value="Item 1"></wvre-text>
         </wvre-list-item>
-        <wvre-list-item context="warning">
+        <wvre-list-item themed-color="warning">
           <wvre-text value="Item 2"></wvre-text>
         </wvre-list-item>
       </wvre-list>
 
-      <wvre-button btn-class="secondary">
+      <wvre-button themed-color="secondary">
         <wvre-text value="Card Button Text"></wvre-text>
       </wvre-button>
 
@@ -286,7 +286,7 @@
       <wvre-card-text>
         <wvre-text value="With supporting text below as a natural lead-in to additional content."></wvre-text>
       </wvre-card-text>
-      <wvre-button btn-class="secondary">
+      <wvre-button themed-color="secondary">
         <wvre-text value="Go somewhere"></wvre-text>
       </wvre-button>
       <wvre-card-footer text-muted>
@@ -297,7 +297,7 @@
 
   <div class="container index-container">
     <wvre-text value="Dropdown with Buttons" text-decoration="underline"></wvre-text><br />
-    <wvre-dropdown btn-type="primary" hidden-in-mobile="true" placement="right" dropdown-menu-display="static">
+    <wvre-dropdown themed-color="primary" hidden-in-mobile="true" placement="right" dropdown-menu-display="static">
       <wvre-dropdown-btn>
         <wvre-text value="Primary Dropdown Hidden in Mobile"></wvre-text>
       </wvre-dropdown-btn>
@@ -314,7 +314,7 @@
       </wvre-dropdown-menu>
     </wvre-dropdown>
 
-    <wvre-dropdown btn-type="secondary">
+    <wvre-dropdown themed-color="secondary">
       <wvre-dropdown-btn>
         <wvre-text value="Secondary Dropdown"></wvre-text>
       </wvre-dropdown-btn>
@@ -331,7 +331,7 @@
       </wvre-dropdown-menu>
     </wvre-dropdown>
 
-    <wvre-dropdown btn-type="success">
+    <wvre-dropdown themed-color="success">
       <wvre-dropdown-btn>
         <wvre-text value="Success Dropdown"></wvre-text>
       </wvre-dropdown-btn>
@@ -348,7 +348,7 @@
       </wvre-dropdown-menu>
     </wvre-dropdown>
 
-    <wvre-dropdown btn-type="danger">
+    <wvre-dropdown themed-color="danger">
       <wvre-dropdown-btn>
         <wvre-text value="Danger Dropdown"></wvre-text>
       </wvre-dropdown-btn>
@@ -365,7 +365,7 @@
       </wvre-dropdown-menu>
     </wvre-dropdown>
 
-    <wvre-dropdown btn-type="warning">
+    <wvre-dropdown themed-color="warning">
       <wvre-dropdown-btn>
         <wvre-text value="Warning Dropdown"></wvre-text>
       </wvre-dropdown-btn>
@@ -383,7 +383,7 @@
     </wvre-dropdown>
     <br />
 
-    <wvre-dropdown btn-type="info">
+    <wvre-dropdown themed-color="info">
       <wvre-dropdown-btn>
         <wvre-text value="Info Dropdown"></wvre-text>
       </wvre-dropdown-btn>
@@ -400,7 +400,7 @@
       </wvre-dropdown-menu>
     </wvre-dropdown>
 
-    <wvre-dropdown btn-type="light">
+    <wvre-dropdown themed-color="light">
       <wvre-dropdown-btn>
         <wvre-text value="Light Dropdown"></wvre-text>
       </wvre-dropdown-btn>
@@ -417,7 +417,7 @@
       </wvre-dropdown-menu>
     </wvre-dropdown>
 
-    <wvre-dropdown btn-type="dark">
+    <wvre-dropdown themed-color="dark">
       <wvre-dropdown-btn>
         <wvre-text value="Dark Dropdown"></wvre-text>
       </wvre-dropdown-btn>
@@ -434,7 +434,7 @@
       </wvre-dropdown-menu>
     </wvre-dropdown>
 
-    <wvre-dropdown btn-type="link">
+    <wvre-dropdown themed-color="link">
       <wvre-dropdown-btn>
         <wvre-text value="Link Dropdown"></wvre-text>
       </wvre-dropdown-btn>
@@ -465,7 +465,7 @@
       btn-border-focus="blue"
       btn-border-radius="6px"
       btn-box-shadow-focus="var(--wvr-btn-primary-focus-box-shadow)"
-      btn-type="link"
+      themed-color="link"
       btn-size="small"
       btn-color="var(--wvr-btn-primary-color)"
       btn-color-active="var(--wvr-black)"
@@ -497,31 +497,31 @@
 
   <div class="container index-container">
     <wvre-text value="Button List" text-decoration="underline"></wvre-text><br />
-    <wvre-button btn-class="primary" btn-size="large" hidden-in-mobile="true">
+    <wvre-button themed-color="primary" btn-size="large" hidden-in-mobile="true">
       <wvre-text value="Large Size Primary Button"></wvre-text>
     </wvre-button>
-    <wvre-button btn-class="secondary" btn-size="small">
+    <wvre-button themed-color="secondary" btn-size="small">
       <wvre-text value="Secondary"></wvre-text>
     </wvre-button>
-    <wvre-button btn-class="success">
+    <wvre-button themed-color="success">
       <wvre-text value="Success"></wvre-text>
     </wvre-button>
-    <wvre-button btn-class="danger">
+    <wvre-button themed-color="danger">
       <wvre-text value="Danger"></wvre-text>
     </wvre-button>
-    <wvre-button btn-class="warning">
+    <wvre-button themed-color="warning">
       <wvre-text value="Warning"></wvre-text>
     </wvre-button>
-    <wvre-button btn-class="info">
+    <wvre-button themed-color="info">
       <wvre-text value="Info"></wvre-text>
     </wvre-button>
-    <wvre-button btn-class="light">
+    <wvre-button themed-color="light">
       <wvre-text value="Light"></wvre-text>
     </wvre-button>
-    <wvre-button btn-class="dark">
+    <wvre-button themed-color="dark">
       <wvre-text value="Dark"></wvre-text>
     </wvre-button>
-    <wvre-button btn-class="link" wvr-btn-type="button" href="www.google.com">
+    <wvre-button themed-color="link" wvr-btn-type="button" href="www.google.com">
       <wvre-text value="Link"></wvre-text>
     </wvre-button>
 
@@ -537,7 +537,7 @@
                     from: 0
                   }
                 }"
-                btn-class="primary"
+                themed-color="primary"
                 btn-size="large"
                 wvr-btn-type="button"
                 background="tomato"
@@ -567,28 +567,28 @@
 
   <div class="container index-container">
     <wvre-text value="Outline Button List" text-decoration="underline"></wvre-text><br />
-    <wvre-button btn-class="outline-primary" wvr-btn-type="button" hidden-in-mobile="true">
+    <wvre-button themed-color="outline-primary" wvr-btn-type="button" hidden-in-mobile="true">
       <wvre-text value="Outline Primary (Hidden in MV)"></wvre-text>
     </wvre-button>
-    <wvre-button btn-class="outline-secondary" wvr-btn-type="button">
+    <wvre-button themed-color="outline-secondary" wvr-btn-type="button">
       <wvre-text value="Outline Secondary"></wvre-text>
     </wvre-button>
-    <wvre-button btn-class="outline-success" wvr-btn-type="button">
+    <wvre-button themed-color="outline-success" wvr-btn-type="button">
       <wvre-text value="Outline Success"></wvre-text>
     </wvre-button>
-    <wvre-button btn-class="outline-danger" wvr-btn-type="button">
+    <wvre-button themed-color="outline-danger" wvr-btn-type="button">
       <wvre-text value="Outline Danger"></wvre-text>
     </wvre-button>
-    <wvre-button btn-class="outline-warning" wvr-btn-type="button">
+    <wvre-button themed-color="outline-warning" wvr-btn-type="button">
       <wvre-text value="Outline Warning"></wvre-text>
     </wvre-button>
-    <wvre-button btn-class="outline-info" wvr-btn-type="button">
+    <wvre-button themed-color="outline-info" wvr-btn-type="button">
       <wvre-text value="Outline Info"></wvre-text>
     </wvre-button>
-    <wvre-button btn-class="outline-light" wvr-btn-type="button">
+    <wvre-button themed-color="outline-light" wvr-btn-type="button">
       <wvre-text value="Outline Light"></wvre-text>
     </wvre-button>
-    <wvre-button btn-class="outline-dark" wvr-btn-type="button">
+    <wvre-button themed-color="outline-dark" wvr-btn-type="button">
       <wvre-text value="Outline Dark"></wvre-text>
     </wvre-button>
   </div>
@@ -597,11 +597,11 @@
     <wvre-text value="Weaver Icon List" text-decoration="underline"></wvre-text><br />
     <wvre-icon set="custom" name="weaver-w"></wvre-icon>
     <wvre-icon set="custom" name="weaver-w" color="#500000" size="64px" hidden-in-mobile="true"></wvre-icon>
-    <wvre-button btn-class="primary" wvr-btn-type="button" animate="{click: 'rotateToggle'}">
+    <wvre-button themed-color="primary" wvr-btn-type="button" animate="{click: 'rotateToggle'}">
       <wvre-icon set="custom" name="weaver-w" color="#500000"></wvre-icon>
       <wvre-text value="Icon Btn"></wvre-text>
     </wvre-button>
-    <wvre-button btn-class="info" wvr-btn-type="button" animate="{click: 'animationTrigger'}" animate-target="elem1" hidden-in-mobile="true">
+    <wvre-button themed-color="info" wvr-btn-type="button" animate="{click: 'animationTrigger'}" animate-target="elem1" hidden-in-mobile="true">
       <wvre-text value="Icon Btn to Be Hidden in Mobile View"></wvre-text>
       <wvre-icon set="feather" name="chevron-right" color="#500000" animate="{animationTrigger: 'rotateToggle'}" animate-id="elem1"></wvre-icon>
     </wvre-button>
@@ -696,34 +696,34 @@
     <br /><br />
 
     <wvre-text value="Group List - Flush" text-decoration="underline"></wvre-text><br />
-    <wvre-list list-type="group-flush" context="info">
+    <wvre-list list-type="group-flush" themed-color="info">
       <wvre-list-item>
         <wvre-text value="Item 1"></wvre-text>
       </wvre-list-item>
-      <wvre-list-item context="warning">
+      <wvre-list-item themed-color="warning">
         <wvre-text value="Item 2"></wvre-text>
       </wvre-list-item>
-      <wvre-list-item context="success">
+      <wvre-list-item themed-color="success">
         <wvre-text value="Item 3"></wvre-text>
       </wvre-list-item>
     </wvre-list>
     <br /><br />
 
     <wvre-text value="Group List - Contextual Classes"text-decoration="underline"></wvre-text><br />
-    <wvre-list list-type="group-ul" context="info">
+    <wvre-list list-type="group-ul" themed-color="info">
       <wvre-list-item>
         <wvre-text value="Item 1"></wvre-text>
         <span class="badge badge-primary badge-pill">
           <wvre-text value="14"></wvre-text>
         </span>
       </wvre-list-item>
-      <wvre-list-item context="warning">
+      <wvre-list-item themed-color="warning">
         <wvre-text value="Item 2"></wvre-text>
         <span class="badge badge-secondary badge-pill">
           <wvre-text value="28"></wvre-text>
         </span>
       </wvre-list-item>
-      <wvre-list-item context="success">
+      <wvre-list-item themed-color="success">
         <wvre-text value="Item 3"></wvre-text>
         <span class="badge badge-success badge-pill">
           <wvre-text value="46"></wvre-text>

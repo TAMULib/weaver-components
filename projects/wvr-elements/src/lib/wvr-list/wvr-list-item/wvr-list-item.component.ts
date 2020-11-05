@@ -19,7 +19,7 @@ export class WvrListItemComponent extends WvrBaseComponent implements OnInit, Af
   @Input() description: string;
 
   /** The visual contextualization for this list item. */
-  @Input() context: ThemedColor;
+  @Input() themedColor: ThemedColor;
 
   /** A heading to be displayed for list items with custom content. */
   @Input() customContentItemHeading: string;
@@ -41,7 +41,7 @@ export class WvrListItemComponent extends WvrBaseComponent implements OnInit, Af
   ngOnInit(): void {
     const parent = this._eRef.nativeElement.parentNode.parentNode.parentNode;
     this.listType = parent.listType;
-    this.context = this.context ? this.context : parent.context ? parent.context : undefined;
+    this.themedColor = this.themedColor ? this.themedColor : parent.themedColor ? parent.themedColor : undefined;
   }
 
   ngAfterViewInit(): void {

@@ -49,7 +49,7 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit 
   @Input() textCenter;
 
   /** Used to describe the type of card. */
-  @Input() cardType: ThemedColor;
+  @Input() themedColor: ThemedColor;
 
   /** Used to describe the format of card. */
   @Input() panelFormat: 'solid' | 'outlined' | 'mixed';
@@ -82,18 +82,18 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit 
     });
   }
 
-  isOutLined(cardType: string): boolean {
-    return this.cardType === cardType &&
+  isOutLined(themedColor: string): boolean {
+    return this.themedColor === themedColor &&
             ((!this.panelFormat || this.panelFormat === 'mixed') ||
              this.panelFormat === 'outlined');
   }
 
-  isSolid(cardType: string): boolean {
-    return this.cardType === cardType && this.panelFormat === 'solid';
+  isSolid(themedColor: string): boolean {
+    return this.themedColor === themedColor && this.panelFormat === 'solid';
   }
 
-  isMixed(cardType: string): boolean {
-    return this.cardType === cardType && (!this.panelFormat || this.panelFormat === 'mixed');
+  isMixed(themedColor: string): boolean {
+    return this.themedColor === themedColor && (!this.panelFormat || this.panelFormat === 'mixed');
   }
 
   /** Prepares the card for display */
