@@ -1,28 +1,40 @@
-interface ColorTheme {
-  primary: string;
-  secondary: string;
-  success: string;
-  danger: string;
-  warning: string;
-  info: string;
-  light: string;
-  dark: string;
-  link: string;
-  plain: string;
-  outlinePrimary: string;
-  outlineSecondary: string;
-  outlineSuccess: string;
-  outlineDanger: string;
-  outlineWarning: string;
-  outlineInfo: string;
-  outlineLight: string;
-  outlineDark: string;
-  outlineLink: string;
+interface ThemeVariant {
+  baseColor: string;
+  color?: string;
+  backgroundColor?: string;
+  borderColor?: string;
+  shadowColor?: string;
+  hoverColor?: string;
+  focusColor?: string;
+  activeColor?: string;
 }
 
-type ThemedColor = keyof ColorTheme;
+interface ThemeVariants {
+  primary: ThemeVariant;
+  secondary: ThemeVariant;
+  success: ThemeVariant;
+  danger: ThemeVariant;
+  warning: ThemeVariant;
+  info: ThemeVariant;
+  light: ThemeVariant;
+  dark: ThemeVariant;
+  link: ThemeVariant;
+  plain: ThemeVariant;
+  outlinePrimary: ThemeVariant;
+  outlineSecondary: ThemeVariant;
+  outlineSuccess: ThemeVariant;
+  outlineDanger: ThemeVariant;
+  outlineWarning: ThemeVariant;
+  outlineInfo: ThemeVariant;
+  outlineLight: ThemeVariant;
+  outlineDark: ThemeVariant;
+  outlineLink: ThemeVariant;
+  tamuTan: ThemeVariant;
+}
+
+type ThemedColor = keyof ThemeVariants;
 
 export {
-  ColorTheme,
+  ThemeVariants as ColorTheme,
   ThemedColor
 };
