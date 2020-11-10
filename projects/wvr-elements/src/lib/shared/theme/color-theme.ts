@@ -32,9 +32,9 @@ interface ThemeVariants {
   tamuTan: ThemeVariant;
 }
 
-type ThemedColor = keyof ThemeVariants;
+type ThemeVariantName = keyof ThemeVariants;
 
 export {
-  ThemeVariants as ColorTheme,
-  ThemedColor
+  ThemeVariants,
+  ThemeVariantName
 };

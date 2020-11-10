@@ -9,7 +9,7 @@ import { WvrCardComponent } from './wvr-card.component';
 @Component({
   selector: 'wvr-card-test-component',
   // tslint:disable-next-line:component-max-inline-declarations
-  template: `<wvr-card-component [themedColor]="primary" [panelFormat]="mixed">
+  template: `<wvr-card-component [themeVariant]="primary" [panelFormat]="mixed">
   <wvre-card-header><wvre-text value="Card Header"></wvre-text></wvre-card-header>
   <wvre-card-title><wvre-text value="Card Title"></wvre-text></wvre-card-title>
   <wvre-card-img src="assets/lighthouse.svg"></wvre-card-img>
@@ -18,7 +18,7 @@ import { WvrCardComponent } from './wvr-card.component';
   <wvre-list top list-type="group-flush" context="info"><wvre-list-item><wvre-text value="Item 1"></wvre-text></wvre-list-item><wvre-list-item context="warning"><wvre-text value="Item 2"></wvre-text></wvre-list-item><wvre-list-item context="success"><wvre-text value="Item 3"></wvre-text></wvre-list-item></wvre-list>
   <wvre-text value="This is a basic card body content"></wvre-text>
   <wvre-list bottom list-type="group-flush" context="info"><wvre-list-item><wvre-text value="Item 1"></wvre-text></wvre-list-item><wvre-list-item context="warning"><wvre-text value="Item 2"></wvre-text></wvre-list-item></wvre-list>
-  <wvre-button themed-color="secondary"><wvre-text value="Card Button Text"></wvre-text></wvre-button>
+  <wvre-button theme-variant="secondary"><wvre-text value="Card Button Text"></wvre-text></wvre-button>
   <wvre-card-footer text-muted><wvre-text value="Card Footer1"></wvre-text></wvre-card-footer>
 </wvr-card-component>`
 })

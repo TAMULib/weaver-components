@@ -4,7 +4,7 @@ import * as ManifestActions from '../core/manifest/manifest.actions';
 import * as rootStore from '../core/store';
 import { WvrSelect } from '../shared/utility/decorators.utilty';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
-import { ColorTheme, ThemedColor } from '../shared/theme';
+import { ThemeVariantName } from '../shared/theme';
 
 @Component({
   selector: 'wvr-button-component',
@@ -14,7 +14,7 @@ import { ColorTheme, ThemedColor } from '../shared/theme';
 export class WvrButtonComponent extends WvrBaseComponent {
 
   /** Used to define the class type for button component.  */
-  @Input() themedColor: ThemedColor = 'primary';
+  @Input() themeVariant: ThemeVariantName = 'primary';
 
   /** Used to define the size for button component.  */
   @Input() btnSize: 'large' | 'small' | 'block';

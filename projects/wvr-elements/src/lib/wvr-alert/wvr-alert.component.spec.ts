@@ -54,7 +54,7 @@ describe('WvrAlertComponent', () => {
   });
 
   it("should have as alert Class as 'primary'", () => {
-    expect(component.themedColor)
+    expect(component.themeVariant)
       .toEqual('primary');
   });
 

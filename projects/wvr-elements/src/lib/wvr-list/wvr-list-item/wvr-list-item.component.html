@@ -13,14 +13,14 @@
     *ngIf="listType==='group-ul' || listType==='group'"
     [id]="htmlId"
     [ngClass]="{
-      'list-group-item-primary': themedColor === 'primary',
-      'list-group-item-secondary': themedColor === 'secondary',
-      'list-group-item-success': themedColor === 'success',
-      'list-group-item-danger': themedColor === 'danger',
-      'list-group-item-info': themedColor === 'info',
-      'list-group-item-warning': themedColor === 'warning',
-      'list-group-item-light': themedColor === 'light',
-      'list-group-item-dark': themedColor === 'dark'
+      'list-group-item-primary': themeVariant === 'primary',
+      'list-group-item-secondary': themeVariant === 'secondary',
+      'list-group-item-success': themeVariant === 'success',
+      'list-group-item-danger': themeVariant === 'danger',
+      'list-group-item-info': themeVariant === 'info',
+      'list-group-item-warning': themeVariant === 'warning',
+      'list-group-item-light': themeVariant === 'light',
+      'list-group-item-dark': themeVariant === 'dark'
     }">
   <ng-container *ngTemplateOutlet="content"></ng-container>
 </li>
@@ -29,14 +29,14 @@
         *ngIf="listType==='group-div'"
         [id]="htmlId"
         [ngClass]="{
-          'list-group-item-primary': themedColor === 'primary',
-          'list-group-item-secondary': themedColor === 'secondary',
-          'list-group-item-success': themedColor === 'success',
-          'list-group-item-danger': themedColor === 'danger',
-          'list-group-item-info': themedColor === 'info',
-          'list-group-item-warning': themedColor === 'warning',
-          'list-group-item-light': themedColor === 'light',
-          'list-group-item-dark': themedColor === 'dark'
+          'list-group-item-primary': themeVariant === 'primary',
+          'list-group-item-secondary': themeVariant === 'secondary',
+          'list-group-item-success': themeVariant === 'success',
+          'list-group-item-danger': themeVariant === 'danger',
+          'list-group-item-info': themeVariant === 'info',
+          'list-group-item-warning': themeVariant === 'warning',
+          'list-group-item-light': themeVariant === 'light',
+          'list-group-item-dark': themeVariant === 'dark'
         }">
   <ng-container *ngTemplateOutlet="content"></ng-container>
 </button>

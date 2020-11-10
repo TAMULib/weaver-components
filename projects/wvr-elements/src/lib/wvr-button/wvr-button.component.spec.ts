@@ -29,12 +29,12 @@ describe('WvrButtonComponent', () => {
       .toBeTruthy();
   });
 
-  it("should have as themedColor 'primary'", () => {
-    expect(component.themedColor)
+  it("should have as themeVariant 'primary'", () => {
+    expect(component.themeVariant)
       .toEqual('primary');
   });
 
-  it("should have as themedColor as 'button'", () => {
+  it("should have as themeVariant as 'button'", () => {
     expect(component.wvrBtnType)
       .toEqual('button');
   });

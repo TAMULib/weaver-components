@@ -1,6 +1,6 @@
 import { Component, HostBinding, HostListener, Injector, Input, ViewChild } from '@angular/core';
 import { NgbDropdown, NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
-import { ThemedColor } from '../shared/theme';
+import { ThemeVariantName } from '../shared/theme';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 /**
@@ -37,7 +37,7 @@ export class WvrDropdownComponent extends WvrBaseComponent {
 
   /** An accessor for the assigned background of this dropdowns button. */
   get btnBackground(): string {
-    return this._btnBackground ? this._btnBackground : `var(--wvr-btn-${this.themedColor}-background-default)`;
+    return this._btnBackground ? this._btnBackground : `var(--wvr-btn-${this.themeVariant}-background-default)`;
   }
 
   /** Allows for override of button background value in active state. */
@@ -48,7 +48,7 @@ export class WvrDropdownComponent extends WvrBaseComponent {
   }
 
   get btnBackgroundActive(): string {
-    return this._btnBackgroundActive ? this._btnBackgroundActive : `var(--wvr-btn-${this.themedColor}-active-background-default)`;
+    return this._btnBackgroundActive ? this._btnBackgroundActive : `var(--wvr-btn-${this.themeVariant}-active-background-default)`;
   }
 
   /** Allows for override of button background value in hover state. */
@@ -59,7 +59,7 @@ export class WvrDropdownComponent extends WvrBaseComponent {
   }
 
   get btnBackgroundHover(): string {
-    return this._btnBackgroundHover ? this._btnBackgroundHover : `var(--wvr-btn-${this.themedColor}-hover-background-default)`;
+    return this._btnBackgroundHover ? this._btnBackgroundHover : `var(--wvr-btn-${this.themeVariant}-hover-background-default)`;
   }
 
   /** Allows for override of button border value in active state. */
@@ -70,7 +70,7 @@ export class WvrDropdownComponent extends WvrBaseComponent {
   }
 
   get btnBorderActive(): string {
-    return this._btnBorderActive ? this._btnBorderActive : `var(--wvr-btn-${this.themedColor}-active-border-default)`;
+    return this._btnBorderActive ? this._btnBorderActive : `var(--wvr-btn-${this.themeVariant}-active-border-default)`;
   }
 
   /** Allows for override of button border color. */
@@ -81,7 +81,7 @@ export class WvrDropdownComponent extends WvrBaseComponent {
   }
 
   get btnBorderColor(): string {
-    return this._btnBorderColor ? this._btnBorderColor : `var(--wvr-btn-${this.themedColor}-border-default)`;
+    return this._btnBorderColor ? this._btnBorderColor : `var(--wvr-btn-${this.themeVariant}-border-default)`;
   }
 
   /** Allows for override of button border value in focus state. */
@@ -92,7 +92,7 @@ export class WvrDropdownComponent extends WvrBaseComponent {
   }
 
   get btnBorderFocus(): string {
-    return this._btnBorderFocus ? this._btnBorderFocus : `var(--wvr-btn-${this.themedColor}-focus-border-default)`;
+    return this._btnBorderFocus ? this._btnBorderFocus : `var(--wvr-btn-${this.themeVariant}-focus-border-default)`;
   }
 
   /** Allows for override of button border value in hover state. */
@@ -103,7 +103,7 @@ export class WvrDropdownComponent extends WvrBaseComponent {
   }
 
   get btnBorderHover(): string {
-    return this._btnBorderHover ? this._btnBorderHover : `var(--wvr-btn-${this.themedColor}-hover-border-default)`;
+    return this._btnBorderHover ? this._btnBorderHover : `var(--wvr-btn-${this.themeVariant}-hover-border-default)`;
   }
 
   /** Allows for override the button color. */
@@ -114,7 +114,7 @@ export class WvrDropdownComponent extends WvrBaseComponent {
   }
 
   get btnColor(): string {
-    return this._btnColor ? this._btnColor : `var(--wvr-btn-${this.themedColor}-color-default)`;
+    return this._btnColor ? this._btnColor : `var(--wvr-btn-${this.themeVariant}-color-default)`;
   }
 
   /** Allows for override the button color in active state. */
@@ -125,7 +125,7 @@ export class WvrDropdownComponent extends WvrBaseComponent {
   }
 
   get btnColorActive(): string {
-    return this._btnColorActive ? this._btnColorActive : `var(--wvr-btn-${this.themedColor}-active-color-default)`;
+    return this._btnColorActive ? this._btnColorActive : `var(--wvr-btn-${this.themeVariant}-active-color-default)`;
   }
 
   /** Allows for override the button color in hover state. */
@@ -136,7 +136,7 @@ export class WvrDropdownComponent extends WvrBaseComponent {
   }
 
   get btnColorHover(): string {
-    return this._btnColorHover ? this._btnColorHover : `var(--wvr-btn-${this.themedColor}-hover-color-default)`;
+    return this._btnColorHover ? this._btnColorHover : `var(--wvr-btn-${this.themeVariant}-hover-color-default)`;
   }
 
   /** Allows for override the button radius. */
@@ -158,7 +158,7 @@ export class WvrDropdownComponent extends WvrBaseComponent {
   }
 
   get btnBoxShadowFocus(): string {
-    return this._btnBoxShadowFocus ? this._btnBoxShadowFocus : `var(--wvr-btn-${this.themedColor}-focus-box-shadow-default)`;
+    return this._btnBoxShadowFocus ? this._btnBoxShadowFocus : `var(--wvr-btn-${this.themeVariant}-focus-box-shadow-default)`;
   }
 
   /** Allows for override the button cursor. */
@@ -256,7 +256,7 @@ export class WvrDropdownComponent extends WvrBaseComponent {
   @Input() btnSize = '';
 
   /** Allows for the visual customization of the dropdown menu activation button.  */
-  @Input() themedColor: ThemedColor = 'plain';
+  @Input() themeVariant: ThemeVariantName = 'plain';
 
   /** Binds the input from `menuBackground` to the css variable `--wvr-dropdown-menu-background` */
   @HostBinding('style.--wvr-dropdown-menu-background') @Input() menuBackground;
@@ -309,7 +309,9 @@ export class WvrDropdownComponent extends WvrBaseComponent {
   }
 
   get btnTextDecoration(): string {
-    return this._btnTextDecoration ? this._btnTextDecoration : `var(--wvr-btn-${this.themedColor}-text-decoration-default)`;
+    return this._btnTextDecoration ?
+    this._btnTextDecoration :
+    `var(--wvr-btn-${this.themeVariant}-text-decoration-default)`;
   }
 
   /** Allows for override the button text decoration. */
@@ -320,7 +322,9 @@ export class WvrDropdownComponent extends WvrBaseComponent {
   }
 
   get btnTextDecorationActive(): string {
-    return this._btnTextDecorationActive ? this._btnTextDecorationActive : `var(--wvr-btn-${this.themedColor}-active-text-decoration-default)`;
+    return this._btnTextDecorationActive ?
+    this._btnTextDecorationActive :
+    `var(--wvr-btn-${this.themeVariant}-active-text-decoration-default)`;
   }
 
   // text-decoration-focus
@@ -331,7 +335,9 @@ export class WvrDropdownComponent extends WvrBaseComponent {
   }
 
   get btnTextDecorationFocus(): string {
-    return this._btnTextDecorationFocus ? this._btnTextDecorationFocus : `var(--wvr-btn-${this.themedColor}-focus-text-decoration-default)`;
+    return this._btnTextDecorationFocus ?
+      this._btnTextDecorationFocus :
+      `var(--wvr-btn-${this.themeVariant}-focus-text-decoration-default)`;
   }
 
   private _btnTextDecorationHover: string;
@@ -341,7 +347,9 @@ export class WvrDropdownComponent extends WvrBaseComponent {
   }
 
   get btnTextDecorationHover(): string {
-    return this._btnTextDecorationHover ? this._btnTextDecorationHover : `var(--wvr-btn-${this.themedColor}-hover-text-decoration-default)`;
+    return this._btnTextDecorationHover ?
+    this._btnTextDecorationHover :
+    `var(--wvr-btn-${this.themeVariant}-hover-text-decoration-default)`;
   }
 
   @Input() placement = 'top-right';

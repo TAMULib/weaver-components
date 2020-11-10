@@ -1,5 +1,5 @@
 import { AfterContentInit, Component, HostListener, Injector, Input, OnInit } from '@angular/core';
-import { ThemedColor } from '../shared/theme';
+import { ThemeVariantName } from '../shared/theme';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 /**
@@ -13,7 +13,7 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
 export class WvrAlertComponent extends WvrBaseComponent implements OnInit {
 
   /** Used to define the class type of an alert component.  */
-  @Input() themedColor: ThemedColor = 'primary';
+  @Input() themeVariant: ThemeVariantName = 'primary';
 
   /** Used to define the type of alert. */
   @Input() alertType: 'basic' | 'self-closing' | 'custom' = 'basic';

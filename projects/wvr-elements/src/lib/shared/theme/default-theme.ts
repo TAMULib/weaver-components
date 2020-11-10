@@ -1,7 +1,7 @@
-import { ColorTheme } from '.';
+import { ThemeVariants } from '.';
 
 // tslint:disable-next-line:variable-name
-export const DefaultColorTheme: ColorTheme = {
+export const DefaultColorTheme: ThemeVariants = {
   primary: {
     baseColor: ''
   },

@@ -33,8 +33,8 @@ describe('WvrDropdownComponent', () => {
       .toBeTruthy();
   });
 
-  it('should have themedColor defined', () => {
-    expect(component.themedColor)
+  it('should have themeVariant defined', () => {
+    expect(component.themeVariant)
       .toEqual('plain');
   });
 

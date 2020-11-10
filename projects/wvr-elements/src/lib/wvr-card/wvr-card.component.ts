@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, Injector, Input, ViewChild } from '@angular/core';
-import { ThemedColor } from '../shared/theme';
+import { ThemeVariantName } from '../shared/theme';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 /**
@@ -49,7 +49,7 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit 
   @Input() textCenter;
 
   /** Used to describe the type of card. */
-  @Input() themedColor: ThemedColor;
+  @Input() themeVariant: ThemeVariantName;
 
   /** Used to describe the format of card. */
   @Input() panelFormat: 'solid' | 'outlined' | 'mixed';
@@ -82,18 +82,18 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit 
     });
   }
 
-  isOutLined(themedColor: string): boolean {
-    return this.themedColor === themedColor &&
+  isOutLined(themeVariant: string): boolean {
+    return this.themeVariant === themeVariant &&
             ((!this.panelFormat || this.panelFormat === 'mixed') ||
              this.panelFormat === 'outlined');
   }
 
-  isSolid(themedColor: string): boolean {
-    return this.themedColor === themedColor && this.panelFormat === 'solid';
+  isSolid(themeVariant: string): boolean {
+    return this.themeVariant === themeVariant && this.panelFormat === 'solid';
   }
 
-  isMixed(themedColor: string): boolean {
-    return this.themedColor === themedColor && (!this.panelFormat || this.panelFormat === 'mixed');
+  isMixed(themeVariant: string): boolean {
+    return this.themeVariant === themeVariant && (!this.panelFormat || this.panelFormat === 'mixed');
   }
 
   /** Prepares the card for display */

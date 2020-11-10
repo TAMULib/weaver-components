@@ -1,5 +1,5 @@
 import { Component, Injector, Input } from '@angular/core';
-import { ThemedColor } from '../shared/theme';
+import { ThemeVariantName } from '../shared/theme';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 /**
@@ -16,7 +16,7 @@ export class WvrListComponent extends WvrBaseComponent {
   @Input() listType = 'unordered';
 
   /** Specifies the display style of this list.  */
-  @Input() themedColor: ThemedColor;
+  @Input() themeVariant: ThemeVariantName;
 
   constructor(injector: Injector) {
     super(injector);
