@@ -1,15 +1,6 @@
-interface ThemeVariant {
-  baseColor: string;
-  color?: string;
-  backgroundColor?: string;
-  borderColor?: string;
-  shadowColor?: string;
-  hoverColor?: string;
-  focusColor?: string;
-  activeColor?: string;
-}
+import { ThemeVariant } from './theme-variant';
 
-interface ThemeVariants {
+export interface ThemeVariants {
   primary: ThemeVariant;
   secondary: ThemeVariant;
   success: ThemeVariant;
@@ -31,10 +22,3 @@ interface ThemeVariants {
   outlineLink: ThemeVariant;
   tamuTan: ThemeVariant;
 }
-
-type ThemeVariantName = keyof ThemeVariants;
-
-export {
-  ThemeVariants,
-  ThemeVariantName
-};
