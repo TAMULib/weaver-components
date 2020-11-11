@@ -35,7 +35,7 @@ describe('WvrDropdownComponent', () => {
 
   it('should have themeVariant defined', () => {
     expect(component.themeVariant)
-      .toEqual('plain');
+      .toEqual('secondary');
   });
 
   it('should have toggleOn defined', () => {

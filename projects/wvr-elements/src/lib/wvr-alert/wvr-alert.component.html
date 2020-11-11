@@ -1,15 +1,5 @@
 <div *ngIf="!alertClosed"
-  class="wvr-components wvr-alert alert"
-  [ngClass]="{
-    'alert-primary': themeVariant==='primary',
-    'alert-secondary': themeVariant==='secondary',
-    'alert-success': themeVariant==='success',
-    'alert-danger': themeVariant==='danger',
-    'alert-warning': themeVariant==='warning',
-    'alert-info': themeVariant==='info',
-    'alert-light': themeVariant==='light',
-    'alert-dark': themeVariant==='dark'
-  }"
+  class="wvr-components wvr-alert alert alert-{{themeVariant}}"
   role="alert">
 
     <div *ngIf="alertType==='basic'" class="basic flex-fill align-self-stretch">

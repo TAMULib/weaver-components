@@ -3,63 +3,27 @@ import { ThemeVariants } from '.';
 // tslint:disable-next-line:variable-name
 export const DefaultColorTheme: ThemeVariants = {
   primary: {
-    baseColor: ''
+    baseColor: '#0d6efd'
   },
   secondary: {
-    baseColor: ''
+    baseColor: '#6c757d'
   },
   success: {
-    baseColor: ''
+    baseColor: '#198754'
   },
   danger: {
-    baseColor: ''
+    baseColor: '#dc3545'
   },
   warning: {
-    baseColor: ''
+    baseColor: '#ffc107'
   },
   info: {
-    baseColor: ''
+    baseColor: '#0dcaf0'
   },
   light: {
-    baseColor: ''
+    baseColor: '#f8f9fa'
   },
   dark: {
-    baseColor: ''
-  },
-  link: {
-    baseColor: ''
-  },
-  tamuTan: {
-    baseColor: ''
-  },
-  outlineDanger: {
-    baseColor: ''
-  },
-  outlineDark: {
-    baseColor: ''
-  },
-  outlineInfo: {
-    baseColor: ''
-  },
-  outlineLight: {
-    baseColor: ''
-  },
-  outlineLink: {
-    baseColor: ''
-  },
-  outlinePrimary: {
-    baseColor: ''
-  },
-  outlineSecondary: {
-    baseColor: ''
-  },
-  outlineSuccess: {
-    baseColor: ''
-  },
-  outlineWarning: {
-    baseColor: ''
-  },
-  plain: {
-    baseColor: ''
+    baseColor: '#212529'
   }
 };

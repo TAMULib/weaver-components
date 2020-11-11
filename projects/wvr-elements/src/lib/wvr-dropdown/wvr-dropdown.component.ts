@@ -256,7 +256,7 @@ export class WvrDropdownComponent extends WvrBaseComponent {
   @Input() btnSize = '';
 
   /** Allows for the visual customization of the dropdown menu activation button.  */
-  @Input() themeVariant: ThemeVariantName = 'plain';
+  @Input() themeVariant: ThemeVariantName = 'secondary';
 
   /** Binds the input from `menuBackground` to the css variable `--wvr-dropdown-menu-background` */
   @HostBinding('style.--wvr-dropdown-menu-background') @Input() menuBackground;
