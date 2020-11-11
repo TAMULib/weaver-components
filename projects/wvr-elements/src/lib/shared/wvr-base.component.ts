@@ -30,6 +30,10 @@ export abstract class WvrBaseComponent implements OnInit, OnDestroy, WvrAnimatio
 
   @Input() private wvrData: string;
 
+  @Input() set wvrTheme(value) {
+    this.themeService.applyThemeStyle(value, this);
+  }
+
   /** A host binding used to ensure the presense of the `wvr-bootstrap` class. */
   @HostBinding('class.wvr-bootstrap') wvrBootstrap = true;
 

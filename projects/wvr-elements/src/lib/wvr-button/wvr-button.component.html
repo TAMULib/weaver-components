@@ -13,27 +13,9 @@
   </button>
 
   <a *ngIf="href"
-    class="wvr-components wvr-button btn"
+    class="wvr-components wvr-button btn btn-{{themeVariant}}"
     [href]="href"
     [ngClass]="{
-      'btn-primary': themeVariant==='primary',
-      'btn-secondary': themeVariant==='secondary',
-      'btn-success': themeVariant==='success',
-      'btn-danger': themeVariant==='danger',
-      'btn-warning': themeVariant==='warning',
-      'btn-info': themeVariant==='info',
-      'btn-light': themeVariant==='light',
-      'btn-dark': themeVariant==='dark',
-      'btn-link': themeVariant==='link',
-      'btn-outline-primary': themeVariant==='outline-primary',
-      'btn-outline-secondary': themeVariant==='outline-secondary',
-      'btn-outline-success': themeVariant==='outline-success',
-      'btn-outline-danger': themeVariant==='outline-danger',
-      'btn-outline-warning': themeVariant==='outline-warning',
-      'btn-outline-info': themeVariant==='outline-info',
-      'btn-outline-light': themeVariant==='outline-light',
-      'btn-outline-dark': themeVariant==='outline-dark',
-      'btn-outline-link': themeVariant==='outline-link',
       'btn-lg': btnSize==='large',
       'btn-sm': btnSize==='small',
       'btn-block':btnSize==='block'
