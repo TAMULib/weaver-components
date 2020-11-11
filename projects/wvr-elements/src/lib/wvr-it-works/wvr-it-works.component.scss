@@ -1,13 +1,18 @@
 @import "../shared/styles/wvr-variables.scss";
-
-div.container {
-  overflow: hidden;
-}
-
-.it-works {
-  color: var(--wvr-primary);
-}
+@import "../shared/styles/variables";
 
 :host {
+  
+  @extend .variables;
+
   font-family: var(--wvr-font-family-sans-serif);
+
+  div.container {
+    overflow: hidden;
+  }
+  
+  .it-works {
+    color: var(--wvr-primary);
+  }
+
 }

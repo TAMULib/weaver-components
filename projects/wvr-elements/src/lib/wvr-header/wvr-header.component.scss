@@ -1,6 +1,10 @@
 @import "../shared/styles/wvr-variables.scss";
+@import "../shared/styles/variables";
 
 :host {
+  
+  @extend .variables;
+
   --bottom-nav-background: var(--wvr-gray);
   --bottom-nav-height: var(--wvr-navbar-height);
   --bottom-nav-padding: var(--wvr-navbar-padding);

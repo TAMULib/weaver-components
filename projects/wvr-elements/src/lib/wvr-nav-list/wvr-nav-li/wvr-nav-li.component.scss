@@ -1,4 +1,10 @@
+@import "../../shared/styles/wvr-variables.scss";
+@import "../../shared/styles/variables";
+
 :host {
+  
+  @extend .variables;
+
   --wvr-nav-li-cursor: pointer;
   --wvr-nav-li-height: 100%;
   --wvr-nav-li-width: 140px;
