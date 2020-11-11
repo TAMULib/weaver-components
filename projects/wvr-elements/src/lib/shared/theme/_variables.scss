@@ -2,12 +2,12 @@
 @import "~bootstrap/scss/variables";
 
 $theme-colors: (
-  "primary":    $primary,
-  "secondary":  $secondary,
-  "success":    $success,
-  "info":       $info,
-  "warning":    $warning,
-  "danger":     $danger,
-  "light":      $light,
-  "dark":       $dark
-) !default;
+    "primary": #500000,
+    "secondary": #6c757d,
+    "success": #198754,
+    "danger": #dc3545,
+    "warning": #ffc107,
+    "info": #0dcaf0,
+    "light": #f8f9fa,
+    "dark": #212529
+);

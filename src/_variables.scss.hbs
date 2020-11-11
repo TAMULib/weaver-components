@@ -1,0 +1,8 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+
+$theme-colors: (
+  {{#each themeVariants}}
+    "{{@key}}": {{this.baseColor}}{{#if @last}}{{else}},{{/if}}
+  {{/each}}
+) !default;
