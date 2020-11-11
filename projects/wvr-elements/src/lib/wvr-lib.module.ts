@@ -135,6 +135,9 @@ const registerCustomElements = (injector: Injector) => {
 export class WvrLibModule {
   constructor(injector: Injector) {
     registerCustomElements(injector);
+    setTimeout(() => {
+      document.querySelector('body').style.display = 'block';
+    });
   }
 
 }
