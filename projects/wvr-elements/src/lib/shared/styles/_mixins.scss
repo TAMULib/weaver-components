@@ -54,6 +54,8 @@
 
   &:focus,
   &.focus {
+    color: $hover-color;
+    background-color: $hover-background;
     // Avoid using mixin so we can pass custom focus shadow properly
     @if $enable-shadows {
       box-shadow: $btn-box-shadow, 0 0 0 $btn-focus-width $box-shadow-color;
