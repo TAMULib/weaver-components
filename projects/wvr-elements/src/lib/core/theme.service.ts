@@ -1,5 +1,4 @@
 import { ElementRef, Inject, Injectable } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
 import { AppConfig, APP_CONFIG } from '../shared/config';
 import { ThemeVariants } from '../shared/theme';
 import { colorThemes } from '../shared/theme/color-themes';
@@ -11,14 +10,14 @@ import { hexToRgb, luminance, mix, yiq } from '../shared/utility/color.utlity';
 })
 export class ThemeService {
 
-  constructor(@Inject(APP_CONFIG) private appConfig: AppConfig, private sanitizer: DomSanitizer) {
+  constructor(@Inject(APP_CONFIG) private readonly appConfig: AppConfig) {
+
   }
 
   applyThemeStyle(colorThemeName: string, themeableComponent: WvrThemeableComponent): void {
     let styles = '';
     styles += this.processThemeVariants(colorThemes[colorThemeName].default, themeableComponent._eRef);
-
-    themeableComponent.style = this.sanitizer.bypassSecurityTrustStyle(styles);
+    themeableComponent.style = styles;
   }
 
   // tslint:disable-next-line:prefer-function-over-method
