@@ -384,9 +384,9 @@ $button-outline-variations: map-merge(
   --font-family-monospace:#{inspect($font-family-monospace)};
 }
 
-:root {
-  @extend .variables;
-}
+// :root {
+//   @extend .variables;
+// }
 
 // @each $variable, $value in $wvr-elements-theme {
 //   $wvr-elements-theme: map-merge($wvr-elements-theme, ($variable: var(--#{$variable})));

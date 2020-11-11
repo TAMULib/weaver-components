@@ -8,6 +8,7 @@ interface AppConfig {
 
   /** A reference to the location from which Weaver Component's Assets are currently being served. */
   assetsUrl?: string;
+
 }
 
 /** An injection token for the AppConfig */

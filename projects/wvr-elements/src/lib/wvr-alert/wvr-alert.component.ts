@@ -41,6 +41,7 @@ export class WvrAlertComponent extends WvrBaseComponent implements OnInit {
 
   /** Initializes the closing timer for a self closing alert. */
   ngOnInit(): void {
+    super.ngOnInit();
     if (this.alertType === 'self-closing') {
       setTimeout(() => {
         this.alertClosed = true;

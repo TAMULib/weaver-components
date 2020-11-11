@@ -14,6 +14,7 @@ import { MobileService } from './core/mobile.service';
 import { RestEffects } from './core/rest/rest.effects';
 import { metaReducers, ROOT_REDUCER } from './core/store';
 import { TemplateService } from './core/template.service';
+import { ThemeService } from './core/theme.service';
 import { WvrAnimationService } from './core/wvr-animation.service';
 import { DefaultPipe } from './shared/pipes/default.pipe';
 import { SafePipe } from './shared/pipes/safe.pipe';
@@ -120,7 +121,8 @@ const registerCustomElements = (injector: Injector) => {
     IconService,
     MobileService,
     WvrAnimationService,
-    TemplateService
+    TemplateService,
+    ThemeService
   ],
   declarations: [
     ...components,

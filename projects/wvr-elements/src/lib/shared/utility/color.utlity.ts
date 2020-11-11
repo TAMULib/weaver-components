@@ -175,7 +175,7 @@ const normalizeColor = (color: string): string => {
     }
   }
 
-  return value.replace(/#/g, '');
+  return !!value ? value.replace(/#/g, '') : 'ffffff';
 };
 
 const hexToRgb = (hex: string): any => {

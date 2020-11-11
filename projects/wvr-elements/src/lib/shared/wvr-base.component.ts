@@ -1,5 +1,5 @@
 import { Directive, ElementRef, EventEmitter, HostBinding, Injector, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 import { select, Store } from '@ngrx/store';
 import * as JSON5 from 'json5';
 import { Observable } from 'rxjs';
@@ -13,13 +13,18 @@ import { TemplateService } from '../core/template.service';
 import { WvrAnimationComponent } from '../core/wvr-animation-component';
 import { WvrAnimationService } from '../core/wvr-animation.service';
 import { WvrDataComponent } from '../core/wvr-data-component';
+import { ThemeService } from '../core/theme.service';
+import { WvrThemeableComponent } from '../shared/theme/wvr-themeable.component';
 
 @Directive()
 // tslint:disable-next-line:directive-class-suffix
-export abstract class WvrBaseComponent implements OnInit, OnDestroy, WvrAnimationComponent, WvrDataComponent {
+export abstract class WvrBaseComponent implements OnInit, OnDestroy, WvrAnimationComponent, WvrDataComponent, WvrThemeableComponent {
 
   /** A generated unique identifier for this comonent. */
   readonly id: number;
+
+  /** A reference to the  ElementRef */
+  readonly _eRef: ElementRef;
 
   data: {[as: string]: Observable<any>} = {};
 
@@ -27,6 +32,8 @@ export abstract class WvrBaseComponent implements OnInit, OnDestroy, WvrAnimatio
 
   /** A host binding used to ensure the presense of the `wvr-bootstrap` class. */
   @HostBinding('class.wvr-bootstrap') wvrBootstrap = true;
+
+  @HostBinding('style') style;
 
   /** An object representation of the animation instructions for this component. */
   private _animationSettings: any = {};
@@ -78,14 +85,13 @@ export abstract class WvrBaseComponent implements OnInit, OnDestroy, WvrAnimatio
   /** A reference to the  DomSanitizer */
   protected readonly _domSanitizer: DomSanitizer;
 
-  /** A reference to the  ElementRef */
-  protected readonly _eRef: ElementRef;
-
   /** A reference to the  MobileService */
   protected readonly mobileService: MobileService;
 
   /** A reference to the  MobileService */
   protected readonly templateService: TemplateService<WvrBaseComponent>;
+
+  protected readonly themeService: ThemeService;
 
   /** A host bound accessor which applies the wvr-hidden class if both isMobileLayout and hiddenInMobile evaluate to true.  */
   @HostBinding('class.wvr-hidden') private get _hiddenInMobile(): boolean {
@@ -105,6 +111,7 @@ export abstract class WvrBaseComponent implements OnInit, OnDestroy, WvrAnimatio
     this._eRef = injector.get(ElementRef);
     this.mobileService = injector.get(MobileService);
     this.templateService = injector.get(TemplateService);
+    this.themeService = injector.get(ThemeService);
     this.store = injector.get<Store<RootState>>(Store);
     this.id = this.componentRegistry.register(this);
 
@@ -115,6 +122,13 @@ export abstract class WvrBaseComponent implements OnInit, OnDestroy, WvrAnimatio
 
   /** Used to setup this component for animating. */
   ngOnInit(): void {
+
+    this.themeService.applyThemeStyle('Default', this);
+
+    setTimeout(() => {
+      this.themeService.applyThemeStyle('DefaultDark', this);
+    }, 5000);
+
     // this.processAnimations();
     this.processData();
     // this.initializeAnimationRegistration();

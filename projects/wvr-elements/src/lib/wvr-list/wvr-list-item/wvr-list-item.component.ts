@@ -39,6 +39,7 @@ export class WvrListItemComponent extends WvrBaseComponent implements OnInit, Af
 
   /** Registers this list item with the parent list. */
   ngOnInit(): void {
+    super.ngOnInit()
     const parent = this._eRef.nativeElement.parentNode.parentNode.parentNode;
     this.listType = parent.listType;
     this.themeVariant = this.themeVariant ? this.themeVariant : parent.themeVariant ? parent.themeVariant : undefined;
