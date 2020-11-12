@@ -7,4 +7,4 @@ const variablesTemplate = fs.readFileSync('src/_variables.scss.hbs');
 
 const templateFn = handlebars.compile(variablesTemplate.toString(), { strict: true });
 
-fs.writeFileSync('projects/wvr-elements/src/lib/shared/theme/_variables.scss', templateFn({themeVariants}));
+fs.writeFileSync('projects/wvr-elements/src/lib/shared/styles/_variables.scss', templateFn({themeVariants}));

@@ -1,13 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 
 .wvr-bootstrap {
-  // @import "../projects/wvr-elements/src/lib/shared/theme/variables";
-
   @import '../projects/wvr-elements/src/lib/shared/styles/variables';
   @import "~bootstrap/scss/bootstrap";
   @import '../projects/wvr-elements/src/lib/shared/styles/mixins';
   @import '../projects/wvr-elements/src/lib/shared/styles/overrides';
-
 }
 
 .wvr-hidden {

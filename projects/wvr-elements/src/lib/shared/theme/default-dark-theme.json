@@ -22,5 +22,8 @@
   },
   "dark": {
     "baseColor": "#212529"
+  },
+  "accent": {
+    "baseColor": "#ff6347"
   }
 }

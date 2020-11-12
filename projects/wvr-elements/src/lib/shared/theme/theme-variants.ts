@@ -9,4 +9,5 @@ export interface ThemeVariants {
   info: ThemeVariant;
   light: ThemeVariant;
   dark: ThemeVariant;
+  accent: ThemeVariant;
 }
