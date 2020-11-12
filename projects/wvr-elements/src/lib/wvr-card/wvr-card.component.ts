@@ -57,7 +57,7 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit 
   /** Element reference to the root html elment in the template. */
   @ViewChild('animationRoot') rootElem: ElementRef<HTMLElement>;
 
-  varientTypes = ['border'];
+  variantTypes = ['border'];
 
   /** Convenience referece this components ElementReference's nativeElement. */
   private readonly elem: HTMLElement;

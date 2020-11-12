@@ -56,6 +56,12 @@ export class ThemeService {
 
     let styles = '';
 
+    const appendStyle = (customProperty: string, value: string): void => {
+      styles += themeableComponent.themeOverrides[customProperty]
+        ? `${customProperty}: ${themeableComponent.themeOverrides[customProperty]};`
+        : `${customProperty}: ${value};`;
+    };
+
     // update variant variables
     for (const k of Object.keys(themeVariants)) {
       const key = `--${k}`;
@@ -64,95 +70,89 @@ export class ThemeService {
       // update theme variable
       styles += `${key}: ${value};`;
 
-      themeableComponent.varientTypes.forEach(varientType => {
+      themeableComponent.variantTypes.forEach(variantType => {
 
-        switch (varientType) {
+        switch (variantType) {
           case 'alert':
-            // update alert varients
+            // update alert variants
             const alertBgValue = mix(constrast(alertBackgroundLevel), value, Math.abs(alertBackgroundLevel) * themeColorInterval);
-            styles += `${key}-alert-bg: ${alertBgValue};`;
+            appendStyle(`${key}-alert-bg`, alertBgValue);
 
             const alertBorderValue = mix(constrast(alertBorderLevel), value, Math.abs(alertBorderLevel) * themeColorInterval);
-            styles += `${key}-alert-border: ${alertBorderValue};`;
+            appendStyle(`${key}-alert-border`, alertBorderValue);
 
             const alertColorValue = mix(constrast(alertColorLevel), value, Math.abs(alertColorLevel) * themeColorInterval);
-            styles += `${key}-alert-color: ${alertColorValue};`;
+            appendStyle(`${key}-alert-color`, alertColorValue);
             break;
           case 'badge':
-            // update badge varients
+            // update badge variants
             const badgeBgValue = value;
-            styles += `${key}-badge-bg: ${badgeBgValue};`;
+            appendStyle(`${key}-badge-bg`, badgeBgValue);
 
             const badgeColorValue = yiqConstrast(yiq(value));
-            styles += `${key}-badge-color: ${badgeColorValue};`;
+            appendStyle(`${key}-badge-color`, badgeColorValue);
             break;
           case 'button':
-            // update button outline varients
+            // update button outline variants
             const buttonOutlineColorValue = value;
-            styles += `${key}-button-outline-color: ${buttonOutlineColorValue};`;
+            appendStyle(`${key}-button-outline-color`, buttonOutlineColorValue);
 
             const buttonOutlineColorHoverValue = yiqConstrast(yiq(value));
-            styles += `${key}-button-outline-color-hover: ${buttonOutlineColorHoverValue};`;
+            appendStyle(`${key}-button-outline-color-hover`, buttonOutlineColorHoverValue);
 
             const bobsrgba = hexToRgb(value);
             const buttonOutlineBoxShadowColorValue = `rgba(${bobsrgba.r}, ${bobsrgba.g}, ${bobsrgba.b}, .5)`;
-            styles += `${key}-button-outline-box-shadow-color: ${buttonOutlineBoxShadowColorValue};`;
+            appendStyle(`${key}-button-outline-box-shadow-color`, buttonOutlineBoxShadowColorValue);
 
-            // update button varients
+            // update button variants
             const buttonColorValue = yiqConstrast(yiq(value));
-            styles += `${key}-button-color: ${buttonColorValue};`;
+            appendStyle(`${key}-button-color`, buttonColorValue);
 
             const buttonBgValue = value;
-            styles += themeableComponent.overrides[`${key}-button-bg`]
-              ? `${key}-button-bg: ${themeableComponent.overrides[`${key}-button-bg`]};`
-              : `${key}-button-bg: ${buttonBgValue};`;
+            appendStyle(`${key}-button-bg`, buttonBgValue);
 
             const buttonBorderValue = value;
-            styles += `${key}-button-border: ${buttonBorderValue};`;
+            appendStyle(`${key}-button-border`, buttonBorderValue);
 
             const buttonHoverColorValue = yiqConstrast(yiq(luminance(value, -0.1165)));
-            styles += themeableComponent.overrides[`${key}-button-hover-color`]
-              ? `${key}-button-hover-color: ${themeableComponent.overrides[`${key}-button-hover-color`]};`
-              : `${key}-button-hover-color: ${buttonHoverColorValue};`;
+            appendStyle(`${key}-button-hover-color`, buttonHoverColorValue);
 
             const buttonHoverBgValue = luminance(value, -0.1165);
-            styles += themeableComponent.overrides[`${key}-button-hover-bg`]
-              ? `${key}-button-hover-bg: ${themeableComponent.overrides[`${key}-button-hover-bg`]};`
-              : `${key}-button-hover-bg: ${buttonHoverBgValue};`;
+            appendStyle(`${key}-button-hover-bg`, buttonHoverBgValue);
 
             const buttonHoverBorderValue = luminance(value, -0.1415);
-            styles += `${key}-button-hover-border: ${buttonHoverBorderValue};`;
+            appendStyle(`${key}-button-hover-border`, buttonHoverBorderValue);
 
             const buttonActiveColorValue = yiqConstrast(yiq(luminance(value, -0.1415)));
-            styles += `${key}-button-active-color: ${buttonActiveColorValue};`;
+            appendStyle(`${key}-button-active-color`, buttonActiveColorValue);
 
             const buttonActiveBgValue = luminance(value, -0.1415);
-            styles += `${key}-button-active-bg: ${buttonActiveBgValue};`;
+            appendStyle(`${key}-button-active-bg`, buttonActiveBgValue);
 
             const buttonActiveBorderValue = luminance(value, -0.17);
-            styles += `${key}-button-active-border: ${buttonActiveBorderValue};`;
+            appendStyle(`${key}-button-active-border`, buttonActiveBorderValue);
 
             const bbsrgba = hexToRgb(mix(yiqConstrast(yiq(luminance(buttonBgValue, -0.1165))), buttonBorderValue, 15));
             const buttonBoxShadowColorValue = `rgba(${bbsrgba.r}, ${bbsrgba.g}, ${bbsrgba.b}, .5)`;
-            styles += `${key}-button-box-shadow-color: ${buttonBoxShadowColorValue};`;
+            appendStyle(`${key}-button-box-shadow-color`, buttonBoxShadowColorValue);
             break;
           case 'list-group-item':
-            // update list item group varients
+            // update list item group variants
             // tslint:disable-next-line:max-line-length
             const listGroupItemBgValue = mix(constrast(listGroupItemBackgroundLevel), value, Math.abs(listGroupItemBackgroundLevel) * themeColorInterval);
-            styles += `${key}-list-group-item-bg: ${listGroupItemBgValue};`;
+            appendStyle(`${key}-list-group-item-bg`, listGroupItemBgValue);
 
             // tslint:disable-next-line:max-line-length
             const listGroupItemColorValue = mix(constrast(listGroupItemColorLevel), value, Math.abs(listGroupItemColorLevel) * themeColorInterval);
-            styles += `${key}-list-group-item-color: ${listGroupItemColorValue};`;
+            appendStyle(`${key}-list-group-item-color`, listGroupItemColorValue);
             break;
           case 'table':
-            // update table varients
+            // update table variants
             const tableBgValue = mix(constrast(tableBackgroundLevel), value, Math.abs(tableBackgroundLevel) * themeColorInterval);
-            styles += `${key}-table-bg: ${tableBgValue};`;
+            appendStyle(`${key}-table-bg`, tableBgValue);
 
             const tableBorderValue = mix(constrast(tableBorderLevel), value, Math.abs(tableBorderLevel) * themeColorInterval);
-            styles += `${key}-table-border: ${tableBorderValue};`;
+            appendStyle(`${key}-table-border`, tableBorderValue);
             break;
           default: break;
         }

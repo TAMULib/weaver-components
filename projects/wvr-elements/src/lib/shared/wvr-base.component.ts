@@ -24,11 +24,11 @@ export abstract class WvrBaseComponent implements OnInit, OnDestroy, WvrAnimatio
   readonly id: number;
 
   /** A reference to the  ElementRef */
-  readonly _eRef: ElementRef;
+  readonly _eRef: ElementRef<HTMLElement>;
 
   data: { [as: string]: Observable<any> } = {};
 
-  overrides = {};
+  themeOverrides = {};
 
   // tslint:disable-next-line: prefer-readonly
   @Input() private wvrData: string;
@@ -42,7 +42,7 @@ export abstract class WvrBaseComponent implements OnInit, OnDestroy, WvrAnimatio
 
   @HostBinding('style') style;
 
-  varientTypes = [];
+  variantTypes = [];
 
   /** An object representation of the animation instructions for this component. */
   private _animationSettings: any = {};
@@ -156,6 +156,11 @@ export abstract class WvrBaseComponent implements OnInit, OnDestroy, WvrAnimatio
   /** Handles the the unregistering of this component with the component registry. */
   ngOnDestroy(): void {
     this.componentRegistry.unRegisterComponent(this.id);
+  }
+
+  applyThemeOverride(customProperty: string, value: string): void {
+    this.themeOverrides[customProperty] = value;
+    this._eRef.nativeElement.style.setProperty(customProperty, value);
   }
 
   /** Plays the animation specified by the incoming animation trigger.  */

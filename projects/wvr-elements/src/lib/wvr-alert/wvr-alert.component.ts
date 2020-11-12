@@ -27,7 +27,7 @@ export class WvrAlertComponent extends WvrBaseComponent implements OnInit {
   /** Setting the delay timer for the self closing alert message */
   @Input() closeTimer = 5000;
 
-  varientTypes = ['alert'];
+  variantTypes = ['alert'];
 
   constructor(injector: Injector) {
     super(injector);
