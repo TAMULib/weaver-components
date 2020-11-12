@@ -31,7 +31,7 @@ export class TemplateService<T extends WvrDataComponent> {
         .filter((s: WvrDataSelect) => !!s.manifest && !!s.entry && !!s.as)
         .forEach((s: WvrDataSelect) => {
           component.data[s.as].subscribe(d => {
-            this.compile(d, s, elem, projectedContentElem);
+            this.compile(d, s, elem, projectedContentElem as HTMLElement);
           });
         });
     });

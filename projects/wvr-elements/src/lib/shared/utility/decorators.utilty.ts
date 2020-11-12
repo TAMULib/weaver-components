@@ -10,7 +10,7 @@ function debounce(delay = 300): MethodDecorator {
     const timeoutKey = Symbol();
     const original = descriptor.value;
     // tslint:disable-next-line:typedef
-    descriptor.value = (...args) => {
+    descriptor.value = function(...args) {
       // tslint:disable-next-line:no-invalid-this
       clearTimeout(this[timeoutKey]);
       // tslint:disable-next-line:no-invalid-this
