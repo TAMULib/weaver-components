@@ -33,6 +33,8 @@ export class WvrListItemComponent extends WvrBaseComponent implements OnInit, Af
   /** A contructed identifier dervied from this comonents id and the prefix `wvr-li` */
   htmlId = `wvr-li-${this.id}`;
 
+  varientTypes = ['list-group-item'];
+
   constructor(injector: Injector) {
     super(injector);
   }

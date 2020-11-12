@@ -369,6 +369,8 @@ export class WvrButtonComponent extends WvrBaseComponent {
   // tslint:disable-next-line:max-line-length
   // @WvrSelect({ selector: rootStore.selectManifestEntryResponse('Directory App', 'All Sorted') }) private sampleTestResponse: Observable<any>;
 
+  varientTypes = ['button'];
+
   constructor(injector: Injector) {
     super(injector);
   }

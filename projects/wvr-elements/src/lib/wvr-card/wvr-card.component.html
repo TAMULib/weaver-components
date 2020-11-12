@@ -91,8 +91,8 @@
 <!-- cardListTop -->
 <ng-template #cardListTop>
   <ng-content [ngClass]="{'wvr-hidden': !hasCardListTop,
-    'bg-primary': true
-  }"
+      'bg-primary': true
+    }"
     select="wvre-list[top]"></ng-content>
 </ng-template>
 
@@ -103,8 +103,7 @@
 
 <!-- cardFooter -->
 <ng-template #cardFooter>
-  <div class="card-footer"
-    [ngClass]="{'text-muted': footerTextMuted, 'wvr-hidden': !hasCardFooter}">
+  <div class="card-footer" [ngClass]="{'text-muted': footerTextMuted, 'wvr-hidden': !hasCardFooter}">
     <ng-content select="wvre-card-footer"></ng-content>
   </div>
 </ng-template>

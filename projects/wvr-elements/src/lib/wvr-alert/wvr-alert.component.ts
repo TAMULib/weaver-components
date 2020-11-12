@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, HostListener, Injector, Input, OnInit } from '@angular/core';
+import { Component, Injector, Input, OnInit } from '@angular/core';
 import { ThemeVariantName } from '../shared/theme';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
@@ -26,6 +26,8 @@ export class WvrAlertComponent extends WvrBaseComponent implements OnInit {
 
   /** Setting the delay timer for the self closing alert message */
   @Input() closeTimer = 5000;
+
+  varientTypes = ['alert'];
 
   constructor(injector: Injector) {
     super(injector);

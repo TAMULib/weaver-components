@@ -1,19 +1,19 @@
 import { Directive, ElementRef, EventEmitter, HostBinding, Injector, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
-import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
 import { select, Store } from '@ngrx/store';
 import * as JSON5 from 'json5';
 import { Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
+import { AnimationService } from '../core/animation.service';
 import { ComponentRegistryService } from '../core/component-registry.service';
 import { WvrDataSelect } from '../core/data-select';
 import * as ManifestActions from '../core/manifest/manifest.actions';
 import { MobileService } from '../core/mobile.service';
 import { RootState, selectManifestEntryResponse } from '../core/store';
 import { TemplateService } from '../core/template.service';
-import { WvrAnimationComponent } from './wvr-animation.component';
-import { AnimationService } from '../core/animation.service';
-import { WvrDataComponent } from './wvr-data.component';
 import { ThemeService } from '../core/theme.service';
+import { WvrAnimationComponent } from './wvr-animation.component';
+import { WvrDataComponent } from './wvr-data.component';
 import { WvrThemeableComponent } from './wvr-themeable.component';
 
 @Directive()
@@ -26,7 +26,7 @@ export abstract class WvrBaseComponent implements OnInit, OnDestroy, WvrAnimatio
   /** A reference to the  ElementRef */
   readonly _eRef: ElementRef;
 
-  data: {[as: string]: Observable<any>} = {};
+  data: { [as: string]: Observable<any> } = {};
 
   @Input() private wvrData: string;
 
@@ -38,6 +38,8 @@ export abstract class WvrBaseComponent implements OnInit, OnDestroy, WvrAnimatio
   @HostBinding('class.wvr-bootstrap') wvrBootstrap = true;
 
   @HostBinding('style') style;
+
+  varientTypes = [];
 
   /** An object representation of the animation instructions for this component. */
   private _animationSettings: any = {};

@@ -1,9 +1,9 @@
-import { ElementRef, Inject, Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { AppConfig, APP_CONFIG } from '../shared/config';
 import { ThemeVariants } from '../shared/theme';
 import { colorThemes } from '../shared/theme/color-themes';
-import { WvrThemeableComponent } from '../shared/wvr-themeable.component';
 import { hexToRgb, luminance, mix, yiq } from '../shared/utility/color.utlity';
+import { WvrThemeableComponent } from '../shared/wvr-themeable.component';
 
 @Injectable({
   providedIn: 'root'
@@ -16,13 +16,13 @@ export class ThemeService {
 
   applyThemeStyle(colorThemeName: string, themeableComponent: WvrThemeableComponent): void {
     let styles = '';
-    styles += this.processThemeVariants(colorThemes[colorThemeName].default, themeableComponent._eRef);
+    styles += this.processThemeVariants(colorThemes[colorThemeName].default, themeableComponent);
     themeableComponent.style = styles;
   }
 
   // tslint:disable-next-line:prefer-function-over-method
-  private processThemeVariants(themeVariants: ThemeVariants, elementRef: ElementRef<HTMLElement>): string {
-    const computedStyle = getComputedStyle(elementRef.nativeElement);
+  private processThemeVariants(themeVariants: ThemeVariants, themeableComponent: WvrThemeableComponent): string {
+    const computedStyle = getComputedStyle(themeableComponent._eRef.nativeElement);
 
     const yiqContrastedThreshold = Number(computedStyle.getPropertyValue('--yiq-contrasted-threshold')
       .trim());
@@ -69,82 +69,94 @@ export class ThemeService {
       // update theme variable
       styles += `${key}: ${value};`;
 
-      // update alert varients
-      const alertBgValue = mix(constrast(alertBackgroundLevel), value, Math.abs(alertBackgroundLevel) * themeColorInterval);
-      styles += `${key}-alert-bg: ${alertBgValue};`;
+      themeableComponent.varientTypes.forEach(varientType => {
 
-      const alertBorderValue = mix(constrast(alertBorderLevel), value, Math.abs(alertBorderLevel) * themeColorInterval);
-      styles += `${key}-alert-border: ${alertBorderValue};`;
+        switch (varientType) {
+          case 'alert':
+            // update alert varients
+            const alertBgValue = mix(constrast(alertBackgroundLevel), value, Math.abs(alertBackgroundLevel) * themeColorInterval);
+            styles += `${key}-alert-bg: ${alertBgValue};`;
 
-      const alertColorValue = mix(constrast(alertColorLevel), value, Math.abs(alertColorLevel) * themeColorInterval);
-      styles += `${key}-alert-color: ${alertColorValue};`;
+            const alertBorderValue = mix(constrast(alertBorderLevel), value, Math.abs(alertBorderLevel) * themeColorInterval);
+            styles += `${key}-alert-border: ${alertBorderValue};`;
 
-      // update badge varients
-      const badgeBgValue = value;
-      styles += `${key}-badge-bg: ${badgeBgValue};`;
+            const alertColorValue = mix(constrast(alertColorLevel), value, Math.abs(alertColorLevel) * themeColorInterval);
+            styles += `${key}-alert-color: ${alertColorValue};`;
+            break;
+          case 'badge':
+            // update badge varients
+            const badgeBgValue = value;
+            styles += `${key}-badge-bg: ${badgeBgValue};`;
 
-      const badgeColorValue = yiqConstrast(yiq(value));
-      styles += `${key}-badge-color: ${badgeColorValue};`;
+            const badgeColorValue = yiqConstrast(yiq(value));
+            styles += `${key}-badge-color: ${badgeColorValue};`;
+            break;
+          case 'button':
+            // update button outline varients
+            const buttonOutlineColorValue = value;
+            styles += `${key}-button-outline-color: ${buttonOutlineColorValue};`;
 
-      // update list item group varients
-      // tslint:disable-next-line:max-line-length
-      const listGroupItemBgValue = mix(constrast(listGroupItemBackgroundLevel), value, Math.abs(listGroupItemBackgroundLevel) * themeColorInterval);
-      styles += `${key}-list-group-item-bg: ${listGroupItemBgValue};`;
+            const buttonOutlineColorHoverValue = yiqConstrast(yiq(value));
+            styles += `${key}-button-outline-color-hover: ${buttonOutlineColorHoverValue};`;
 
-      // tslint:disable-next-line:max-line-length
-      const listGroupItemColorValue = mix(constrast(listGroupItemColorLevel), value, Math.abs(listGroupItemColorLevel) * themeColorInterval);
-      styles += `${key}-list-group-item-color: ${listGroupItemColorValue};`;
+            const bobsrgba = hexToRgb(value);
+            const buttonOutlineBoxShadowColorValue = `rgba(${bobsrgba.r}, ${bobsrgba.g}, ${bobsrgba.b}, .5)`;
+            styles += `${key}-button-outline-box-shadow-color: ${buttonOutlineBoxShadowColorValue};`;
 
-      // update table varients
-      const tableBgValue = mix(constrast(tableBackgroundLevel), value, Math.abs(tableBackgroundLevel) * themeColorInterval);
-      styles += `${key}-table-bg: ${tableBgValue};`;
+            // update button varients
+            const buttonColorValue = yiqConstrast(yiq(value));
+            styles += `${key}-button-color: ${buttonColorValue};`;
 
-      const tableBorderValue = mix(constrast(tableBorderLevel), value, Math.abs(tableBorderLevel) * themeColorInterval);
-      styles += `${key}-table-border: ${tableBorderValue};`;
+            const buttonBgValue = value;
+            styles += `${key}-button-bg: ${buttonBgValue};`;
 
-      // update button outline varients
-      const buttonOutlineColorValue = value;
-      styles += `${key}-button-outline-color: ${buttonOutlineColorValue};`;
+            const buttonBorderValue = value;
+            styles += `${key}-button-border: ${buttonBorderValue};`;
 
-      const buttonOutlineColorHoverValue = yiqConstrast(yiq(value));
-      styles += `${key}-button-outline-color-hover: ${buttonOutlineColorHoverValue};`;
+            const buttonHoverColorValue = yiqConstrast(yiq(luminance(value, -0.1165)));
+            styles += `${key}-button-hover-color: ${buttonHoverColorValue};`;
 
-      const bobsrgba = hexToRgb(value);
-      const buttonOutlineBoxShadowColorValue = `rgba(${bobsrgba.r}, ${bobsrgba.g}, ${bobsrgba.b}, .5)`;
-      styles += `${key}-button-outline-box-shadow-color: ${buttonOutlineBoxShadowColorValue};`;
+            const buttonHoverBgValue = luminance(value, -0.1165);
+            styles += `${key}-button-hover-bg: ${buttonHoverBgValue};`;
 
-      // update button varients
-      const buttonColorValue = yiqConstrast(yiq(value));
-      styles += `${key}-button-color: ${buttonColorValue};`;
+            const buttonHoverBorderValue = luminance(value, -0.1415);
+            styles += `${key}-button-hover-border: ${buttonHoverBorderValue};`;
 
-      const buttonBgValue = value;
-      styles += `${key}-button-bg: ${buttonBgValue};`;
+            const buttonActiveColorValue = yiqConstrast(yiq(luminance(value, -0.1415)));
+            styles += `${key}-button-active-color: ${buttonActiveColorValue};`;
 
-      const buttonBorderValue = value;
-      styles += `${key}-button-border: ${buttonBorderValue};`;
+            const buttonActiveBgValue = luminance(value, -0.1415);
+            styles += `${key}-button-active-bg: ${buttonActiveBgValue};`;
 
-      const buttonHoverColorValue = yiqConstrast(yiq(luminance(value, -0.1165)));
-      styles += `${key}-button-hover-color: ${buttonHoverColorValue};`;
+            const buttonActiveBorderValue = luminance(value, -0.17);
+            styles += `${key}-button-active-border: ${buttonActiveBorderValue};`;
 
-      const buttonHoverBgValue = luminance(value, -0.1165);
-      styles += `${key}-button-hover-bg: ${buttonHoverBgValue};`;
+            const bbsrgba = hexToRgb(mix(yiqConstrast(yiq(luminance(buttonBgValue, -0.1165))), buttonBorderValue, 15));
+            const buttonBoxShadowColorValue = `rgba(${bbsrgba.r}, ${bbsrgba.g}, ${bbsrgba.b}, .5)`;
+            styles += `${key}-button-box-shadow-color: ${buttonBoxShadowColorValue};`;
+            break;
+          case 'list-group-item':
+            // update list item group varients
+            // tslint:disable-next-line:max-line-length
+            const listGroupItemBgValue = mix(constrast(listGroupItemBackgroundLevel), value, Math.abs(listGroupItemBackgroundLevel) * themeColorInterval);
+            styles += `${key}-list-group-item-bg: ${listGroupItemBgValue};`;
 
-      const buttonHoverBorderValue = luminance(value, -0.1415);
-      styles += `${key}-button-hover-border: ${buttonHoverBorderValue};`;
+            // tslint:disable-next-line:max-line-length
+            const listGroupItemColorValue = mix(constrast(listGroupItemColorLevel), value, Math.abs(listGroupItemColorLevel) * themeColorInterval);
+            styles += `${key}-list-group-item-color: ${listGroupItemColorValue};`;
+            break;
+          case 'table':
+            // update table varients
+            const tableBgValue = mix(constrast(tableBackgroundLevel), value, Math.abs(tableBackgroundLevel) * themeColorInterval);
+            styles += `${key}-table-bg: ${tableBgValue};`;
 
-      const buttonActiveColorValue = yiqConstrast(yiq(luminance(value, -0.1415)));
-      styles += `${key}-button-active-color: ${buttonActiveColorValue};`;
+            const tableBorderValue = mix(constrast(tableBorderLevel), value, Math.abs(tableBorderLevel) * themeColorInterval);
+            styles += `${key}-table-border: ${tableBorderValue};`;
+            break;
+          default: break;
+        }
 
-      const buttonActiveBgValue = luminance(value, -0.1415);
-      styles += `${key}-button-active-bg: ${buttonActiveBgValue};`;
-
-      const buttonActiveBorderValue = luminance(value, -0.17);
-      styles += `${key}-button-active-border: ${buttonActiveBorderValue};`;
-
-      const bbsrgba = hexToRgb(mix(yiqConstrast(yiq(luminance(buttonBgValue, -0.1165))), buttonBorderValue, 15));
-      const buttonBoxShadowColorValue = `rgba(${bbsrgba.r}, ${bbsrgba.g}, ${bbsrgba.b}, .5)`;
-      styles += `${key}-button-box-shadow-color: ${buttonBoxShadowColorValue};`;
-
+      });
     }
 
     return styles;
