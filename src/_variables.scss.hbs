@@ -1,16 +1,15 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+
 {{#each themeVariants}}
 ${{@key}}: {{this.baseColor}};
 {{/each}}
 
-
 $theme-colors: (
-  {{#each themeVariants}}
-    "{{@key}}": ${{@key}}{{#if @last}}{{else}},{{/if}}
-  {{/each}}
-) !default;
-
-@import "~bootstrap/scss/functions";
-@import "~bootstrap/scss/variables";
+{{#each themeVariants}}
+  "{{@key}}": ${{@key}}{{#if @last}}{{else}},{{/if}}
+{{/each}}
+);
 
 // Bootstrap Alert Variants
 
