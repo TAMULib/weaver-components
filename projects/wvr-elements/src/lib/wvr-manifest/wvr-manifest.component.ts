@@ -20,22 +20,26 @@ import { WvrManifestEntryComponent } from './wvr-manifest-entry/wvr-manifest-ent
 export class WvrManifestComponent extends WvrBaseComponent {
 
   /** The name by which this manifest can be referenced */
+  // tslint:disable-next-line: prefer-readonly
   @Input() private name: string;
 
   /** The base URL to be prepended to all paths expressed on ManifestEntries */
+  // tslint:disable-next-line: prefer-readonly
   @Input() private baseUrl: string;
 
   /** A human description of this manifes */
+  // tslint:disable-next-line: prefer-readonly
   @Input() private description: string;
 
   /** The strategy to be employed to unwrao response data */
+  // tslint:disable-next-line: prefer-readonly
   @Input() private mappingStrategy;
 
   /** A collection of the child WvrManifestEntryComponent */
   private readonly manifestEntries = new Array<WvrManifestEntryComponent>();
 
   // tslint:disable-next-line:no-empty
-  constructor(private injector: Injector) {
+  constructor(private readonly injector: Injector) {
     super(injector);
    }
 

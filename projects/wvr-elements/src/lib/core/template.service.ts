@@ -20,7 +20,7 @@ export class TemplateService<T extends WvrDataComponent> {
     }
 
     setTimeout(() => {
-      const projectedContentElem = elem.querySelector('template[wvr-compile]') as HTMLTemplateElement;
+      const projectedContentElem = elem.querySelector('template[wvr-compile]');
       if (!projectedContentElem) {
         return;
       }
@@ -30,7 +30,9 @@ export class TemplateService<T extends WvrDataComponent> {
       wvrDataSelects
         .filter((s: WvrDataSelect) => !!s.manifest && !!s.entry && !!s.as)
         .forEach((s: WvrDataSelect) => {
-          component.data[s.as].subscribe(d => this.compile(d, s, elem, projectedContentElem));
+          component.data[s.as].subscribe(d => {
+            this.compile(d, s, elem, projectedContentElem);
+          });
         });
     });
   }

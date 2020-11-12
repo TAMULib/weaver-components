@@ -28,6 +28,7 @@ export abstract class WvrBaseComponent implements OnInit, OnDestroy, WvrAnimatio
 
   data: { [as: string]: Observable<any> } = {};
 
+  // tslint:disable-next-line: prefer-readonly
   @Input() private wvrData: string;
 
   @Input() set wvrTheme(value) {

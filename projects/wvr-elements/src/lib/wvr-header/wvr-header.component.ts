@@ -83,6 +83,7 @@ export class WvrHeaderComponent extends WvrBaseComponent implements OnInit, Afte
 
   mobileMenuClosed = true;
 
+  // tslint:disable-next-line: prefer-readonly
   @WvrSelect({ selector: rootStore.selectManifestEntryResponse('sample', 'one') }) private sampleTestResponse: Observable<string>;
 
   /**

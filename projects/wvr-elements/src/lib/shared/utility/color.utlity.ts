@@ -153,7 +153,7 @@ const expandHexShorthand = (hex: string): string => {
   // expand shorthand form (e.g. "03f") to full form (e.g. "0033ff")
   const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
 
-  return hex.replace(shorthandRegex, (m, r, g, b) => r + r + g + g + b + b);
+  return hex.replace(shorthandRegex, (m, r: string, g: string, b: string) => r + r + g + g + b + b);
 };
 
 const colorToHex = (rgb: string): string => {
@@ -215,17 +215,18 @@ const mix = (baseColor: string, color: string, weight: number): string => {
 
 // TODO: replace with closer match to sass darken and lighten
 const luminance = (color: string, lum: number): string => {
-  const l = lum || 0;
+  const l = lum || Number(0);
   // convert to decimal and change luminosity
   let rgb = '#';
-  let c;
-  let i;
+  let c: number;
+  let i: number;
+  let cs: string;
   for (i = 0; i < 3; i++) {
     c = parseInt(normalizeColor(color)
       .substr(i * 2, 2), 16);
-    c = Math.round(Math.min(Math.max(0, c + c * l), 255))
+    cs = Math.round(Math.min(Math.max(0, c + c * l), 255))
       .toString(16);
-    rgb += (`00${c}`).substr(c.length);
+    rgb += (`00${cs}`).substr(cs.length);
   }
 
   return rgb;

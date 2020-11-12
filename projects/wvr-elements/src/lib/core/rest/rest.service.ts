@@ -9,7 +9,7 @@ import { Request } from './request';
 })
 export class RestService {
 
-  constructor(private http: HttpClient) {
+  constructor(private readonly http: HttpClient) {
 
   }
 

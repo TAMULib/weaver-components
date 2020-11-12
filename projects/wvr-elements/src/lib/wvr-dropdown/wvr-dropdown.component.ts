@@ -363,6 +363,7 @@ export class WvrDropdownComponent extends WvrBaseComponent {
   /**
    * Indicates that the dropdown is in the process of closing.
    */
+  // tslint:disable-next-line: prefer-readonly
   private closing = false;
 
   @Input() dropdownMenuDisplay = 'dynamic';
