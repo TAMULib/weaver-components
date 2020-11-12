@@ -1,10 +1,10 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { metaReducers, ROOT_REDUCER } from '../core/store';
-
 import { WvrCardComponent } from './wvr-card.component';
+
 
 @Component({
   selector: 'wvr-card-test-component',
@@ -33,7 +33,7 @@ describe('WvrCardComponent', () => {
   let hostComponent: WvrCardHostComponent;
   let hostFixture: ComponentFixture<WvrCardHostComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule,

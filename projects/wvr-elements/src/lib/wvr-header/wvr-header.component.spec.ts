@@ -1,5 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { metaReducers, ROOT_REDUCER } from '../core/store';
@@ -11,7 +11,7 @@ describe('WvrHeaderComponent', () => {
   let component: WvrHeaderComponent;
   let fixture: ComponentFixture<WvrHeaderComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [ BrowserAnimationsModule, StoreModule.forRoot(ROOT_REDUCER, { metaReducers }) ],
       declarations: [

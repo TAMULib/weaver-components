@@ -1,5 +1,4 @@
-import { Inject, Injectable } from '@angular/core';
-import { AppConfig, APP_CONFIG } from '../shared/config';
+import { Injectable } from '@angular/core';
 import { ThemeVariants } from '../shared/theme';
 import { colorThemes } from '../shared/theme/color-themes';
 import { hexToRgb, luminance, mix, yiq } from '../shared/utility/color.utlity';
@@ -9,10 +8,6 @@ import { WvrThemeableComponent } from '../shared/wvr-themeable.component';
   providedIn: 'root'
 })
 export class ThemeService {
-
-  constructor(@Inject(APP_CONFIG) private readonly appConfig: AppConfig) {
-
-  }
 
   applyThemeStyle(colorThemeName: string, themeableComponent: WvrThemeableComponent): void {
     let styles = '';
