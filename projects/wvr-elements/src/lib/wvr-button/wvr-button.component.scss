@@ -6,7 +6,6 @@
   @extend .variables;
 
   --wvr-btn-cursor-default: pointer;
-  --wvr-btn-border-radius-default: 5px; //.25rem;
   --wvr-btn-font-family-sans-serif-default: var(--wvr-font-family-sans-serif);
   --wvr-btn-font-size-default: 1rem;
   --wvr-btn-font-weight-default: normal;
@@ -14,9 +13,7 @@
   --wvr-btn-padding-default: .375rem .75rem;
   --wvr-btn-text-align-default: center;
   --wvr-btn-vertical-align-default: middle;
-  --wvr-btn-border: 1px solid transparent;
 
-  --wvr-btn-border-radius: var(--wvr-btn-border-radius-default);
   --wvr-btn-cursor: var(--wvr-btn-cursor-default);
   --wvr-btn-font-family-sans-serif: var(--wvr-btn-font-family-sans-serif-default);
   --wvr-btn-font-size: var(--wvr-btn-font-size-default);
@@ -32,7 +29,7 @@
   }
 
   .wvr-button.btn {
-    border-radius: var(--wvr-btn-border-radius);
+    cursor: var(--wvr-btn-cursor-default);
     font-family: var(--wvr-btn-font-family-sans-serif);
     font-size: var(--wvr-btn-font-size);
     font-weight: var(--wvr-btn-font-weight);
@@ -40,7 +37,6 @@
     padding: var(--wvr-btn-padding);
     text-align: var(--wvr-btn-text-align);
     vertical-align: var(--wvr-btn-vertical-align);
-    border: var(--wvr-btn-border)
   }
 
   .wvr-button.btn:not(:disabled):not(.disabled) {

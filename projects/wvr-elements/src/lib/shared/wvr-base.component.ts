@@ -24,7 +24,7 @@ export abstract class WvrBaseComponent implements OnInit, OnDestroy, WvrAnimatio
   readonly id: number;
 
   /** A reference to the  ElementRef */
-  readonly _eRef: ElementRef<HTMLElement>;
+  readonly _eRef: ElementRef;
 
   data: { [as: string]: Observable<any> } = {};
 
