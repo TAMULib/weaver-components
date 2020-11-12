@@ -26,7 +26,7 @@ export class ThemeService {
   }
 
   // tslint:disable-next-line:prefer-function-over-method
-  private processThemeVariants(themeVariants: ThemeVariants, themeableComponent: WvrThemeableComponent): string {
+  private processThemeVariants(theme: ThemeVariants, themeableComponent: WvrThemeableComponent): string {
     const computedStyle = getComputedStyle(themeableComponent._eRef.nativeElement);
 
     const yiqContrastedThreshold = Number(computedStyle.getPropertyValue('--yiq-contrasted-threshold')
@@ -73,9 +73,9 @@ export class ThemeService {
     };
 
     // update variant variables
-    for (const k of Object.keys(themeVariants)) {
+    for (const k of Object.keys(theme)) {
       const key = `--${k}`;
-      const value = themeVariants[k].baseColor;
+      const value = theme[k].baseColor;
 
       // update theme variable
       styles += `${key}: ${value};`;

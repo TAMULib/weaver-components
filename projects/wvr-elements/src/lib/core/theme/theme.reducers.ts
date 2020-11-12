@@ -1,8 +1,11 @@
 import { createReducer, on } from '@ngrx/store';
 import { ThemeVariants } from '../../shared/theme';
-import * as defaultDarkTheme from '../../shared/theme/default-dark-theme.json';
-import * as defaultTheme from '../../shared/theme/default-theme.json';
+import * as DefaultDarkTheme from '../../shared/theme/default-dark-theme.json';
+import * as DefaultTheme from '../../shared/theme/default-theme.json';
 import * as ThemeActions from './theme.actions';
+
+const defaultTheme: ThemeVariants = DefaultTheme;
+const defaultDarkTheme: ThemeVariants = DefaultDarkTheme;
 
 const unwrap = (theme: any): ThemeVariants => theme.default;
 
