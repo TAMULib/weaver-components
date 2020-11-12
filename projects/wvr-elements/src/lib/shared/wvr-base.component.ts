@@ -137,6 +137,8 @@ export abstract class WvrBaseComponent implements OnInit, OnDestroy, WvrAnimatio
 
   /** Used to setup this component for animating. */
   ngOnInit(): void {
+    this.themeService.applyThemeStyle(this.appConfig.theme, this);
+
     // setTimeout(() => {
     //   this.themeService.applyThemeStyle('defaultDark', this);
     // }, 5000);

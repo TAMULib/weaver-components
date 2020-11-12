@@ -3,6 +3,9 @@ import { InjectionToken } from '@angular/core';
 /** Describes the application configuration values. */
 interface AppConfig {
 
+  /** Theme to apply to all Weaver Components. */
+  theme: string;
+
   /** A reference to the location from which Weaver Components is currently being served. */
   baseUrl: string;
 
