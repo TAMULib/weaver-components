@@ -5,10 +5,10 @@ import { StoreModule } from '@ngrx/store';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 import { WvrItWorksComponent } from '../wvr-it-works/wvr-it-works.component';
 import { metaReducers, ROOT_REDUCER } from './store';
-import { WvrAnimationService } from './wvr-animation.service';
+import { AnimationService } from './animation.service';
 
-describe('WvrAnimationService', () => {
-  let service: WvrAnimationService<WvrBaseComponent>;
+describe('AnimationService', () => {
+  let service: AnimationService<WvrBaseComponent>;
   let componentOne: WvrItWorksComponent;
   let componentTwo: WvrItWorksComponent;
   let fixtureOne: ComponentFixture<WvrItWorksComponent>;
@@ -24,7 +24,7 @@ describe('WvrAnimationService', () => {
   });
 
   beforeEach(() => {
-    service = TestBed.inject(WvrAnimationService);
+    service = TestBed.inject(AnimationService);
 
     fixtureOne = TestBed.createComponent(WvrItWorksComponent);
     componentOne = fixtureOne.componentInstance;

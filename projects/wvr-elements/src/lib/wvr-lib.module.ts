@@ -8,6 +8,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { AnimationService } from './core/animation.service';
 import { IconService } from './core/icon.service';
 import { ManifestEffects } from './core/manifest/manifest.effects';
 import { MobileService } from './core/mobile.service';
@@ -15,7 +16,6 @@ import { RestEffects } from './core/rest/rest.effects';
 import { metaReducers, ROOT_REDUCER } from './core/store';
 import { TemplateService } from './core/template.service';
 import { ThemeService } from './core/theme.service';
-import { WvrAnimationService } from './core/wvr-animation.service';
 import { DefaultPipe } from './shared/pipes/default.pipe';
 import { SafePipe } from './shared/pipes/safe.pipe';
 import { WvrAlertComponent } from './wvr-alert/wvr-alert.component';
@@ -118,11 +118,11 @@ const registerCustomElements = (injector: Injector) => {
     ...pipes
   ],
   providers: [
+    AnimationService,
     IconService,
     MobileService,
-    WvrAnimationService,
-    TemplateService,
-    ThemeService
+    ThemeService,
+    TemplateService
   ],
   declarations: [
     ...components,

@@ -2,7 +2,7 @@ import { ElementRef, Inject, Injectable } from '@angular/core';
 import { AppConfig, APP_CONFIG } from '../shared/config';
 import { ThemeVariants } from '../shared/theme';
 import { colorThemes } from '../shared/theme/color-themes';
-import { WvrThemeableComponent } from '../shared/theme/wvr-themeable.component';
+import { WvrThemeableComponent } from '../shared/wvr-themeable.component';
 import { hexToRgb, luminance, mix, yiq } from '../shared/utility/color.utlity';
 
 @Injectable({

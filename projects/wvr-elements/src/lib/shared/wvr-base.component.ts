@@ -10,11 +10,11 @@ import * as ManifestActions from '../core/manifest/manifest.actions';
 import { MobileService } from '../core/mobile.service';
 import { RootState, selectManifestEntryResponse } from '../core/store';
 import { TemplateService } from '../core/template.service';
-import { WvrAnimationComponent } from '../core/wvr-animation-component';
-import { WvrAnimationService } from '../core/wvr-animation.service';
-import { WvrDataComponent } from '../core/wvr-data-component';
+import { WvrAnimationComponent } from './wvr-animation.component';
+import { AnimationService } from '../core/animation.service';
+import { WvrDataComponent } from './wvr-data.component';
 import { ThemeService } from '../core/theme.service';
-import { WvrThemeableComponent } from '../shared/theme/wvr-themeable.component';
+import { WvrThemeableComponent } from './wvr-themeable.component';
 
 @Directive()
 // tslint:disable-next-line:directive-class-suffix
@@ -83,8 +83,8 @@ export abstract class WvrBaseComponent implements OnInit, OnDestroy, WvrAnimatio
   /** A reference to the  ComponentRegistryService */
   protected readonly componentRegistry: ComponentRegistryService<WvrBaseComponent>;
 
-  /** A reference to the  WvrAnimationService */
-  protected readonly _animationService: WvrAnimationService<WvrBaseComponent>;
+  /** A reference to the  AnimationService */
+  protected readonly _animationService: AnimationService<WvrBaseComponent>;
 
   /** A reference to the  DomSanitizer */
   protected readonly _domSanitizer: DomSanitizer;
@@ -110,7 +110,7 @@ export abstract class WvrBaseComponent implements OnInit, OnDestroy, WvrAnimatio
 
   constructor(injector: Injector) {
     this.componentRegistry = injector.get(ComponentRegistryService);
-    this._animationService = injector.get(WvrAnimationService);
+    this._animationService = injector.get(AnimationService);
     this._domSanitizer = injector.get(DomSanitizer);
     this._eRef = injector.get(ElementRef);
     this.mobileService = injector.get(MobileService);

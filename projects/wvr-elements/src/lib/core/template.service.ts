@@ -3,7 +3,7 @@ import Handlebars from 'handlebars/dist/cjs/handlebars';
 import * as JSON5 from 'json5';
 import { WvrDataSelect } from './data-select';
 import { initializeHandlebarHelpers } from './handlebars-helpers';
-import { WvrDataComponent } from './wvr-data-component';
+import { WvrDataComponent } from '../shared/wvr-data.component';
 
 @Injectable({
   providedIn: 'root'
