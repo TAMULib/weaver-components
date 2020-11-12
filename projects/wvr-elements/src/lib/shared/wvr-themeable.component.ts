@@ -5,6 +5,7 @@ export type VarientType = 'alert' | 'badge' | 'border' | 'button' | 'list-group-
 
 export interface WvrThemeableComponent {
   style: SafeStyle;
+  overrides: { [key: string]: string };
   readonly varientTypes: Array<VarientType>;
   readonly _eRef: ElementRef<HTMLElement>;
 }

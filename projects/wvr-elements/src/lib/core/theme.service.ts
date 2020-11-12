@@ -103,16 +103,22 @@ export class ThemeService {
             styles += `${key}-button-color: ${buttonColorValue};`;
 
             const buttonBgValue = value;
-            styles += `${key}-button-bg: ${buttonBgValue};`;
+            styles += themeableComponent.overrides[`${key}-button-bg`]
+              ? `${key}-button-bg: ${themeableComponent.overrides[`${key}-button-bg`]};`
+              : `${key}-button-bg: ${buttonBgValue};`;
 
             const buttonBorderValue = value;
             styles += `${key}-button-border: ${buttonBorderValue};`;
 
             const buttonHoverColorValue = yiqConstrast(yiq(luminance(value, -0.1165)));
-            styles += `${key}-button-hover-color: ${buttonHoverColorValue};`;
+            styles += themeableComponent.overrides[`${key}-button-hover-color`]
+              ? `${key}-button-hover-color: ${themeableComponent.overrides[`${key}-button-hover-color`]};`
+              : `${key}-button-hover-color: ${buttonHoverColorValue};`;
 
             const buttonHoverBgValue = luminance(value, -0.1165);
-            styles += `${key}-button-hover-bg: ${buttonHoverBgValue};`;
+            styles += themeableComponent.overrides[`${key}-button-hover-bg`]
+              ? `${key}-button-hover-bg: ${themeableComponent.overrides[`${key}-button-hover-bg`]};`
+              : `${key}-button-hover-bg: ${buttonHoverBgValue};`;
 
             const buttonHoverBorderValue = luminance(value, -0.1415);
             styles += `${key}-button-hover-border: ${buttonHoverBorderValue};`;

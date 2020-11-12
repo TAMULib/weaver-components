@@ -1,10 +1,6 @@
 import { Component, HostBinding, Injector, Input } from '@angular/core';
-import { Observable } from 'rxjs';
-import * as ManifestActions from '../core/manifest/manifest.actions';
-import * as rootStore from '../core/store';
-import { WvrSelect } from '../shared/utility/decorators.utilty';
-import { WvrBaseComponent } from '../shared/wvr-base.component';
 import { ThemeVariantName } from '../shared/theme';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 @Component({
   selector: 'wvr-button-component',
@@ -27,78 +23,74 @@ export class WvrButtonComponent extends WvrBaseComponent {
 
   /** Allows for the override of background */
   @Input() set background(value: string) {
-    (this._eRef.nativeElement as HTMLElement).style.setProperty(`--btn-${this.themeVariant}-background`, value);
+    this.overrides[`--${this.themeVariant}-button-bg`] = value;
   }
 
   /** Allows for the override of active background */
   @Input() set backgroundActive(value: string) {
-    (this._eRef.nativeElement as HTMLElement).style.setProperty(`--btn-${this.themeVariant}-active-background`, value);
+    this.overrides[`--${this.themeVariant}-button-active-bg`] = value;
   }
 
   /** Allows for the override of hover background */
   @Input() set backgroundHover(value: string) {
-    (this._eRef.nativeElement as HTMLElement).style.setProperty(`--btn-${this.themeVariant}-hover-background`, value);
+    this.overrides[`--${this.themeVariant}-button-hover-bg`] = value;
   }
 
   /** Allows for the override of border */
   @Input() set borderColor(value: string) {
-    (this._eRef.nativeElement as HTMLElement).style.setProperty(`--btn-${this.themeVariant}-border`, value);
+    this.overrides[`--${this.themeVariant}-button-border`] = value;
   }
 
   /** Allows for the override of active border */
   @Input() set borderActive(value: string) {
-    (this._eRef.nativeElement as HTMLElement).style.setProperty(`--btn-${this.themeVariant}-active-border`, value);
+    this.overrides[`--${this.themeVariant}-button-active-border`] = value;
   }
 
   /** Allows for the override of hover border */
   @Input() set borderHover(value: string) {
-    (this._eRef.nativeElement as HTMLElement).style.setProperty(`--btn-${this.themeVariant}-hover-border`, value);
+    this.overrides[`--${this.themeVariant}-button-hover-border`] = value;
   }
 
   /** Allows for the override of button border in focus state */
   @Input() set borderFocus(value: string) {
-    (this._eRef.nativeElement as HTMLElement).style.setProperty(`--btn-${this.themeVariant}-focus-border`, value);
+    this.overrides[`--${this.themeVariant}-button-focus-border`] = value;
   }
 
   /** Allows for override of box-shadow propery when the button is in focus state */
   @Input() set boxShadowFocus(value: string) {
-    (this._eRef.nativeElement as HTMLElement).style.setProperty(`--btn-${this.themeVariant}-focus-box-shadow`, value);
+    this.overrides[`--${this.themeVariant}-button-focus-box-shadow`] = value;
   }
 
   /** Allows for the override of color */
   @Input() set color(value: string) {
-    (this._eRef.nativeElement as HTMLElement).style.setProperty(`--btn-${this.themeVariant}-color`, value);
+    this.overrides[`--${this.themeVariant}-button-color`] = value;
   }
 
   /** Allows for the override of active color */
   @Input() set colorActive(value: string) {
-    (this._eRef.nativeElement as HTMLElement).style.setProperty(`--btn-${this.themeVariant}-active-color`, value);
+    this.overrides[`--${this.themeVariant}-button-active-color`] = value;
   }
 
   /** Allows for the override of hover color */
   @Input() set colorHover(value: string) {
-    (this._eRef.nativeElement as HTMLElement).style.setProperty(`--btn-${this.themeVariant}-hover-color`, value);
+    this.overrides[`--${this.themeVariant}-button-hover-color`] = value;
   }
 
-  /** Allows for the override of button text-decoration property */
-  @Input() set textDecoration(value: string) {
-    (this._eRef.nativeElement as HTMLElement).style.setProperty(`--btn-${this.themeVariant}-text-decoration`, value);
-  }
+  // /** Allows for the override of button text-decoration property */
+  // @Input() set textDecoration(value: string) {
+  // }
 
-  /** Allows for the override of button active text-decoration property */
-  @Input() set textDecorationActive(value: string) {
-    (this._eRef.nativeElement as HTMLElement).style.setProperty(`--btn-${this.themeVariant}-active-text-decoration`, value);
-  }
+  // /** Allows for the override of button active text-decoration property */
+  // @Input() set textDecorationActive(value: string) {
+  // }
 
-  /** Allows for the override of button hover text-decoration property */
-  @Input() set textDecorationHover(value: string) {
-    (this._eRef.nativeElement as HTMLElement).style.setProperty(`--btn-${this.themeVariant}-hover-text-decoration`, value);
-  }
+  // /** Allows for the override of button hover text-decoration property */
+  // @Input() set textDecorationHover(value: string) {
+  // }
 
-  /** Allows for the override of button focus text-decoration property */
-  @Input() set textDecorationFocus(value: string) {
-    (this._eRef.nativeElement as HTMLElement).style.setProperty(`--btn-${this.themeVariant}-focus-text-decoration`, value);
-  }
+  // /** Allows for the override of button focus text-decoration property */
+  // @Input() set textDecorationFocus(value: string) {
+  // }
 
   /** Allows for the override of button border radius */
   @HostBinding('style.--wvr-btn-border-radius') @Input() borderRadius;
