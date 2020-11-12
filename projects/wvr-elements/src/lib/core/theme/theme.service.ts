@@ -1,18 +1,28 @@
 import { Injectable } from '@angular/core';
-import { ThemeVariants } from '../shared/theme';
-import { colorThemes } from '../shared/theme/color-themes';
-import { hexToRgb, luminance, mix, yiq } from '../shared/utility/color.utlity';
-import { WvrThemeableComponent } from '../shared/wvr-themeable.component';
+import { Store } from '@ngrx/store';
+import { filter } from 'rxjs/operators';
+import { ThemeVariants } from '../../shared/theme';
+import { hexToRgb, luminance, mix, yiq } from '../../shared/utility/color.utlity';
+import { WvrThemeableComponent } from '../../shared/wvr-themeable.component';
+import { RootState, selectTheme } from '../store';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ThemeService {
 
+  constructor(private readonly store: Store<RootState>) {
+
+  }
+
   applyThemeStyle(colorThemeName: string, themeableComponent: WvrThemeableComponent): void {
-    let styles = '';
-    styles += this.processThemeVariants(colorThemes[colorThemeName].default, themeableComponent);
-    themeableComponent.style = styles;
+    this.store.select(selectTheme(colorThemeName))
+      .pipe(filter(theme => !!theme))
+      .subscribe(theme => {
+        let styles = '';
+        styles += this.processThemeVariants(theme, themeableComponent);
+        themeableComponent.style = styles;
+      });
   }
 
   // tslint:disable-next-line:prefer-function-over-method

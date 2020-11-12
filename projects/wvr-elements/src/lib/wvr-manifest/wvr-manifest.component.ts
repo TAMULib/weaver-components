@@ -41,9 +41,9 @@ export class WvrManifestComponent extends WvrBaseComponent {
   // tslint:disable-next-line:no-empty
   constructor(private readonly injector: Injector) {
     super(injector);
-   }
+  }
 
-  addEntry(manifestEntry: WvrManifestEntryComponent): void  {
+  addEntry(manifestEntry: WvrManifestEntryComponent): void {
     this.manifestEntries.push(manifestEntry);
     this.buildEntries();
   }
@@ -54,14 +54,14 @@ export class WvrManifestComponent extends WvrBaseComponent {
   @debounce() private buildEntries(): void {
 
     let ms = mappingStrategies[this.mappingStrategy] ?
-               mappingStrategies[this.mappingStrategy] :
-               mappingStrategies.none;
+      mappingStrategies[this.mappingStrategy] :
+      mappingStrategies.none;
 
     const entries: Array<ManifestEntry> = this.manifestEntries.map(e => {
       const eMS = e.mappingStrategy;
       ms = mappingStrategies[eMS] ?
-           mappingStrategies[eMS] :
-           ms;
+        mappingStrategies[eMS] :
+        ms;
 
       return {
         name: e.name,
@@ -75,12 +75,12 @@ export class WvrManifestComponent extends WvrBaseComponent {
     });
 
     const manifest: Manifest = {
-        name: this.name,
-        description: this.description,
-        baseUrl: this.baseUrl,
-        entries,
-        authorization: undefined
-      };
+      name: this.name,
+      description: this.description,
+      baseUrl: this.baseUrl,
+      entries,
+      authorization: undefined
+    };
 
     this.store.dispatch(ManifestActions.addManifest({
       manifest

@@ -524,7 +524,37 @@
     <wvre-button theme-variant="link" wvr-btn-type="button" href="www.google.com">
       <wvre-text value="Link"></wvre-text>
     </wvre-button>
+  </div>
 
+  <div class="container index-container">
+    <wvre-text value="Themed Button List" text-decoration="underline"></wvre-text><br /><br />
+    <wvre-button wvr-theme="test" theme-variant="primary">
+      <wvre-text value="Primary"></wvre-text>
+    </wvre-button>
+    <wvre-button wvr-theme="test" theme-variant="secondary">
+      <wvre-text value="Secondary"></wvre-text>
+    </wvre-button>
+    <wvre-button wvr-theme="test" theme-variant="success">
+      <wvre-text value="Success"></wvre-text>
+    </wvre-button>
+    <wvre-button wvr-theme="test" theme-variant="danger">
+      <wvre-text value="Danger"></wvre-text>
+    </wvre-button>
+    <wvre-button wvr-theme="test" theme-variant="warning">
+      <wvre-text value="Warning"></wvre-text>
+    </wvre-button>
+    <wvre-button wvr-theme="test" theme-variant="info">
+      <wvre-text value="Info"></wvre-text>
+    </wvre-button>
+    <wvre-button wvr-theme="test" theme-variant="light">
+      <wvre-text value="Light"></wvre-text>
+    </wvre-button>
+    <wvre-button wvr-theme="test" theme-variant="dark">
+      <wvre-text value="Dark"></wvre-text>
+    </wvre-button>
+    <wvre-button wvr-theme="test" theme-variant="link" wvr-btn-type="button" href="www.google.com">
+      <wvre-text value="Link"></wvre-text>
+    </wvre-button>
   </div>
 
   <div class="container index-container">
@@ -815,6 +845,36 @@
     <wvre-manifest-entry name="All Sorted" path="/ldap/all-sorted" methods="GET"></wvre-manifest-entry>
     <wvre-manifest-entry name="Departments" path="/ldap/departments" methods="GET" mapping-strategy="none"></wvre-manifest-entry>
   </wvre-manifest>
+
+  <wvre-theme name="test" map="{
+    primary: {
+      baseColor: 'green'
+    },
+    secondary: {
+      baseColor: 'orange'
+    },
+    success: {
+      baseColor: 'tomato'
+    },
+    danger: {
+      baseColor: 'yellow'
+    },
+    warning: {
+      baseColor: 'blue'
+    },
+    info: {
+      baseColor: 'purple'
+    },
+    light: {
+      baseColor: 'gray'
+    },
+    dark: {
+      baseColor: 'black'
+    },
+    accent: {
+      baseColor: 'magenta'
+    }
+  }"></wvre-theme>
 
   <script defer src="weaver-components.js"></script>
 

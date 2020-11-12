@@ -11,7 +11,8 @@ import * as ManifestActions from '../core/manifest/manifest.actions';
 import { MobileService } from '../core/mobile.service';
 import { RootState, selectManifestEntryResponse } from '../core/store';
 import { TemplateService } from '../core/template.service';
-import { ThemeService } from '../core/theme.service';
+import { ThemeService } from '../core/theme/theme.service';
+import { AppConfig, APP_CONFIG } from './config';
 import { WvrAnimationComponent } from './wvr-animation.component';
 import { WvrDataComponent } from './wvr-data.component';
 import { WvrThemeableComponent } from './wvr-themeable.component';
@@ -28,10 +29,10 @@ export abstract class WvrBaseComponent implements OnInit, OnDestroy, WvrAnimatio
 
   data: { [as: string]: Observable<any> } = {};
 
-  themeOverrides = {};
-
   // tslint:disable-next-line: prefer-readonly
   @Input() private wvrData: string;
+
+  themeOverrides = {};
 
   @Input() set wvrTheme(value) {
     this.themeService.applyThemeStyle(value, this);
@@ -91,16 +92,20 @@ export abstract class WvrBaseComponent implements OnInit, OnDestroy, WvrAnimatio
   /** A reference to the  AnimationService */
   protected readonly _animationService: AnimationService<WvrBaseComponent>;
 
-  /** A reference to the  DomSanitizer */
+  /** A reference to the DomSanitizer */
   protected readonly _domSanitizer: DomSanitizer;
 
-  /** A reference to the  MobileService */
+  /** A reference to the MobileService */
   protected readonly mobileService: MobileService;
 
-  /** A reference to the  MobileService */
+  /** A reference to the TemplateService */
   protected readonly templateService: TemplateService<WvrBaseComponent>;
 
+  /** A reference to the ThemeService */
   protected readonly themeService: ThemeService;
+
+  /** A reference to the AppConfig */
+  protected readonly appConfig: AppConfig;
 
   /** A host bound accessor which applies the wvr-hidden class if both isMobileLayout and hiddenInMobile evaluate to true.  */
   @HostBinding('class.wvr-hidden') private get _hiddenInMobile(): boolean {
@@ -121,6 +126,7 @@ export abstract class WvrBaseComponent implements OnInit, OnDestroy, WvrAnimatio
     this.mobileService = injector.get(MobileService);
     this.templateService = injector.get(TemplateService);
     this.themeService = injector.get(ThemeService);
+    this.appConfig = injector.get(APP_CONFIG);
     this.store = injector.get<Store<RootState>>(Store);
     this.id = this.componentRegistry.register(this);
 
@@ -131,12 +137,9 @@ export abstract class WvrBaseComponent implements OnInit, OnDestroy, WvrAnimatio
 
   /** Used to setup this component for animating. */
   ngOnInit(): void {
-
-    this.themeService.applyThemeStyle('Default', this);
-
-    setTimeout(() => {
-      this.themeService.applyThemeStyle('DefaultDark', this);
-    }, 5000);
+    // setTimeout(() => {
+    //   this.themeService.applyThemeStyle('defaultDark', this);
+    // }, 5000);
 
     // this.processAnimations();
     this.processData();
