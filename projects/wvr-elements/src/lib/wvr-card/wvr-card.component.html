@@ -1,25 +1,8 @@
 <div
   #animationRoot
-  class="wvr-components wvr-card card"
+  class="wvr-components wvr-card card {{additionalClasses()}}"
   [ngClass]="{
-    'text-center': cardTextCenter,
-    'border-primary': isOutLined('primary'),
-    'border-secondary': isOutLined('secondary'),
-    'border-success': isOutLined('success'),
-    'border-danger': isOutLined('danger'),
-    'border-warning': isOutLined('warning'),
-    'border-info': isOutLined('info'),
-    'border-light': isOutLined('light'),
-    'border-dark': isOutLined('dark'),
-
-    'bg-primary': isSolid('primary'),
-    'bg-secondary': isSolid('secondary'),
-    'bg-success': isSolid('success'),
-    'bg-danger': isSolid('danger'),
-    'bg-warning': isSolid('warning'),
-    'bg-info': isSolid('info'),
-    'bg-light': isSolid('light'),
-    'bg-dark': isSolid('dark')
+    'text-center': cardTextCenter
   }"
   style="width: 18rem;">
   <ng-container *ngTemplateOutlet="cardHeader"></ng-container>
@@ -35,17 +18,9 @@
 <!-- cardHeader -->
 
 <ng-template #cardHeader>
-  <div class="card-header"
+  <div class="card-header {{additionalClasses()}}"
   [ngClass]="{
-    'wvr-hidden': !hasCardHeader,
-    'bg-primary': isMixed('primary'),
-    'bg-secondary': isMixed('secondary'),
-    'bg-success': isMixed('success'),
-    'bg-danger': isMixed('danger'),
-    'bg-warning': isMixed('warning'),
-    'bg-info': isMixed('info'),
-    'bg-light': isMixed('light'),
-    'bg-dark': isMixed('dark')
+    'wvr-hidden': !hasCardHeader
   }">
     <ng-content select="wvre-card-header"></ng-content>
   </div>

@@ -98,6 +98,16 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit 
     return this.themeVariant === themeVariant && (!this.panelFormat || this.panelFormat === 'mixed');
   }
 
+  additionalClasses(): string {
+    let additionalClasses = '';
+    additionalClasses +=  ((!this.panelFormat || this.panelFormat === 'mixed') || this.panelFormat === 'outlined') ?
+                          ` border-${this.themeVariant} ` : '';
+
+    additionalClasses +=  this.panelFormat === 'solid' ? ` bg-${this.themeVariant} ` : '';
+
+    return additionalClasses;
+  }
+
   /** Prepares the card for display */
   private renderCard(): void {
     if (this.textCenter !== undefined && this.textCenter !== 'false') {
