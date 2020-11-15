@@ -29,114 +29,53 @@ export class WvrDropdownComponent extends WvrBaseComponent {
   }
 
   /** Allows for override of button background value. */
-  private _btnBackground: string;
-
   @Input() set btnBackground(value: string) {
-    this._btnBackground = value;
-  }
-
-  /** An accessor for the assigned background of this dropdowns button. */
-  get btnBackground(): string {
-    return this._btnBackground ? this._btnBackground : `var(--wvr-btn-${this.themeVariant}-background-default)`;
+    this.applyThemeOverride(`--${this.themeVariant}-button-bg`, value);
   }
 
   /** Allows for override of button background value in active state. */
-  private _btnBackgroundActive: string;
-
   @Input() set btnBackgroundActive(value: string) {
-    this._btnBackgroundActive = value;
-  }
-
-  get btnBackgroundActive(): string {
-    return this._btnBackgroundActive ? this._btnBackgroundActive : `var(--wvr-btn-${this.themeVariant}-active-background-default)`;
+    this.applyThemeOverride(`--${this.themeVariant}-button-active-bg`, value);
   }
 
   /** Allows for override of button background value in hover state. */
-  private _btnBackgroundHover: string;
-
   @Input() set btnBackgroundHover(value: string) {
-    this._btnBackgroundHover = value;
-  }
-
-  get btnBackgroundHover(): string {
-    return this._btnBackgroundHover ? this._btnBackgroundHover : `var(--wvr-btn-${this.themeVariant}-hover-background-default)`;
+    this.applyThemeOverride(`--${this.themeVariant}-button-hover-bg`, value);
   }
 
   /** Allows for override of button border value in active state. */
-  private _btnBorderActive: string;
-
   @Input() set btnBorderActive(value: string) {
-    this._btnBorderActive = value;
-  }
-
-  get btnBorderActive(): string {
-    return this._btnBorderActive ? this._btnBorderActive : `var(--wvr-btn-${this.themeVariant}-active-border-default)`;
+    this.applyThemeOverride(`--${this.themeVariant}-button-active-border`, value);
   }
 
   /** Allows for override of button border color. */
-  private _btnBorderColor: string;
-
   @Input() set btnBorderColor(value: string) {
-    this._btnBorderColor = value;
-  }
-
-  get btnBorderColor(): string {
-    return this._btnBorderColor ? this._btnBorderColor : `var(--wvr-btn-${this.themeVariant}-border-default)`;
+    this.applyThemeOverride(`--${this.themeVariant}-button-border`, value);
   }
 
   /** Allows for override of button border value in focus state. */
-  private _btnBorderFocus: string;
-
   @Input() set btnBorderFocus(value: string) {
-    this._btnBorderFocus = value;
-  }
-
-  get btnBorderFocus(): string {
-    return this._btnBorderFocus ? this._btnBorderFocus : `var(--wvr-btn-${this.themeVariant}-focus-border-default)`;
+    this.applyThemeOverride(`--${this.themeVariant}-button-focus-border`, value);
   }
 
   /** Allows for override of button border value in hover state. */
-  private _btnBorderHover: string;
-
   @Input() set btnBorderHover(value: string) {
-    this._btnBorderHover = value;
-  }
-
-  get btnBorderHover(): string {
-    return this._btnBorderHover ? this._btnBorderHover : `var(--wvr-btn-${this.themeVariant}-hover-border-default)`;
+    this.applyThemeOverride(`--${this.themeVariant}-button-hover-border`, value);
   }
 
   /** Allows for override the button color. */
-  private _btnColor: string;
-
   @Input() set btnColor(value: string) {
-    this._btnColor = value;
-  }
-
-  get btnColor(): string {
-    return this._btnColor ? this._btnColor : `var(--wvr-btn-${this.themeVariant}-color-default)`;
+    this.applyThemeOverride(`--${this.themeVariant}-button-color`, value);
   }
 
   /** Allows for override the button color in active state. */
-  private _btnColorActive: string;
-
   @Input() set btnColorActive(value: string) {
-    this._btnColorActive = value;
-  }
-
-  get btnColorActive(): string {
-    return this._btnColorActive ? this._btnColorActive : `var(--wvr-btn-${this.themeVariant}-active-color-default)`;
+    this.applyThemeOverride(`--${this.themeVariant}-button-active-color`, value);
   }
 
   /** Allows for override the button color in hover state. */
-  private _btnColorHover: string;
-
   @Input() set btnColorHover(value: string) {
-    this._btnColorHover = value;
-  }
-
-  get btnColorHover(): string {
-    return this._btnColorHover ? this._btnColorHover : `var(--wvr-btn-${this.themeVariant}-hover-color-default)`;
+    this.applyThemeOverride(`--${this.themeVariant}-button-hover-color`, value);
   }
 
   /** Allows for override the button radius. */
@@ -151,14 +90,8 @@ export class WvrDropdownComponent extends WvrBaseComponent {
   }
 
   /** Allows for override the button box shadow in focus state. */
-  private _btnBoxShadowFocus: string;
-
   @Input() set btnBoxShadowFocus(value: string) {
-    this._btnBoxShadowFocus = value;
-  }
-
-  get btnBoxShadowFocus(): string {
-    return this._btnBoxShadowFocus ? this._btnBoxShadowFocus : `var(--wvr-btn-${this.themeVariant}-focus-box-shadow-default)`;
+    this.applyThemeOverride(`--${this.themeVariant}-button-focus-box-shadow`, value);
   }
 
   /** Allows for override the button cursor. */
@@ -367,6 +300,8 @@ export class WvrDropdownComponent extends WvrBaseComponent {
   private closing = false;
 
   @Input() dropdownMenuDisplay = 'dynamic';
+
+  variantTypes = ['dropdown'];
 
   constructor(injector: Injector, config: NgbDropdownConfig) {
     super(injector);
