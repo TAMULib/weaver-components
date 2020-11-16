@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { metaReducers, ROOT_REDUCER } from '../core/store';
+import { APP_CONFIG, testAppConfig } from '../shared/config';
 import { WvrTabComponent } from './wvr-tab/wvr-tab.component';
 import { WvrTabsComponent } from './wvr-tabs.component';
 
@@ -16,6 +17,10 @@ describe('WvrTabsComponent', () => {
     await TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, StoreModule.forRoot(ROOT_REDUCER, { metaReducers })],
       declarations: [WvrTabsComponent],
+      providers: [{
+        provide: APP_CONFIG,
+        useValue: testAppConfig
+      }],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
       .compileComponents();

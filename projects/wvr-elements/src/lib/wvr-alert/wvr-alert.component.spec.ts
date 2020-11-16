@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { metaReducers, ROOT_REDUCER } from '../core/store';
+import { APP_CONFIG, testAppConfig } from '../shared/config';
 import { WvrAlertComponent } from './wvr-alert.component';
 
 @Component({
@@ -28,6 +29,10 @@ describe('WvrAlertComponent', () => {
         BrowserAnimationsModule,
         StoreModule.forRoot(ROOT_REDUCER, { metaReducers })
       ],
+      providers: [{
+        provide: APP_CONFIG,
+        useValue: testAppConfig
+      }],
       declarations: [
         WvrAlertHostComponent,
         WvrAlertComponent

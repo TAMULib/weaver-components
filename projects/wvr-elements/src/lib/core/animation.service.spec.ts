@@ -6,6 +6,7 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
 import { WvrItWorksComponent } from '../wvr-it-works/wvr-it-works.component';
 import { metaReducers, ROOT_REDUCER } from './store';
 import { AnimationService } from './animation.service';
+import { APP_CONFIG, testAppConfig } from '../shared/config';
 
 describe('AnimationService', () => {
   let service: AnimationService<WvrBaseComponent>;
@@ -18,6 +19,10 @@ describe('AnimationService', () => {
     await TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, StoreModule.forRoot(ROOT_REDUCER, { metaReducers })],
       declarations: [WvrItWorksComponent],
+      providers: [{
+        provide: APP_CONFIG,
+        useValue: testAppConfig
+      }],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
       .compileComponents();

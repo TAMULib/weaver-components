@@ -4,6 +4,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { metaReducers, ROOT_REDUCER } from '../core/store';
+import { APP_CONFIG, testAppConfig } from '../shared/config';
 import { WvrManifestEntryComponent } from './wvr-manifest-entry/wvr-manifest-entry.component';
 
 import { WvrManifestComponent } from './wvr-manifest.component';
@@ -38,7 +39,11 @@ describe('WvrManifestComponent', () => {
         WvrManifestHostComponent,
         WvrManifestComponent,
         WvrManifestEntryComponent
-      ]
+      ],
+      providers: [{
+        provide: APP_CONFIG,
+        useValue: testAppConfig
+      }]
     })
     .compileComponents();
   });

@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { metaReducers, ROOT_REDUCER } from '../core/store';
+import { APP_CONFIG, testAppConfig } from '../shared/config';
 import { WvrButtonComponent } from './wvr-button.component';
 
 describe('WvrButtonComponent', () => {
@@ -13,6 +14,10 @@ describe('WvrButtonComponent', () => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, StoreModule.forRoot(ROOT_REDUCER, { metaReducers })],
       declarations: [WvrButtonComponent],
+      providers: [{
+        provide: APP_CONFIG,
+        useValue: testAppConfig
+      }],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
     .compileComponents();
@@ -35,7 +40,7 @@ describe('WvrButtonComponent', () => {
   });
 
   it("should have as themeVariant as 'button'", () => {
-    expect(component.wvrBtnType)
+    expect(component.btnType)
       .toEqual('button');
   });
 

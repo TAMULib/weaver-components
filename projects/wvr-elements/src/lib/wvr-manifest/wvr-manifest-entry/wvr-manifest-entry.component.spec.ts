@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { metaReducers, ROOT_REDUCER } from '../../core/store';
+import { APP_CONFIG, testAppConfig } from '../../shared/config';
 import { WvrManifestComponent } from '../wvr-manifest.component';
 
 import { WvrManifestEntryComponent } from './wvr-manifest-entry.component';
@@ -29,7 +30,11 @@ describe('WvrManifestEntryComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, StoreModule.forRoot(ROOT_REDUCER, { metaReducers })],
-      declarations: [ WvrManifestTestComponent, WvrManifestComponent, WvrManifestEntryComponent ]
+      declarations: [ WvrManifestTestComponent, WvrManifestComponent, WvrManifestEntryComponent ],
+      providers: [{
+        provide: APP_CONFIG,
+        useValue: testAppConfig
+      }]
     })
     .compileComponents();
   });

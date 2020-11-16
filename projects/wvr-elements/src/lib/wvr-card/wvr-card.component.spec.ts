@@ -3,8 +3,8 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { metaReducers, ROOT_REDUCER } from '../core/store';
+import { APP_CONFIG, testAppConfig } from '../shared/config';
 import { WvrCardComponent } from './wvr-card.component';
-
 
 @Component({
   selector: 'wvr-card-test-component',
@@ -43,6 +43,10 @@ describe('WvrCardComponent', () => {
         WvrCardHostComponent,
         WvrCardComponent
       ],
+      providers: [{
+        provide: APP_CONFIG,
+        useValue: testAppConfig
+      }],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
     .compileComponents();
