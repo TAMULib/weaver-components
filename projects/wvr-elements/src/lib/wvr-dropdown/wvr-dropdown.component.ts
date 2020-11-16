@@ -29,158 +29,64 @@ export class WvrDropdownComponent extends WvrBaseComponent {
   }
 
   /** Allows for override of button background value. */
-  @Input() set btnBackground(value: string) {
-    this.applyThemeOverride(`--${this.themeVariant}-button-bg`, value);
-  }
+  @Input() btnBackground: string;
 
   /** Allows for override of button background value in active state. */
-  @Input() set btnBackgroundActive(value: string) {
-    this.applyThemeOverride(`--${this.themeVariant}-button-active-bg`, value);
-  }
+  @Input() btnBackgroundActive: string;
 
   /** Allows for override of button background value in hover state. */
-  @Input() set btnBackgroundHover(value: string) {
-    this.applyThemeOverride(`--${this.themeVariant}-button-hover-bg`, value);
-  }
+  @Input() btnBackgroundHover: string;
 
   /** Allows for override of button border value in active state. */
-  @Input() set btnBorderActive(value: string) {
-    this.applyThemeOverride(`--${this.themeVariant}-button-active-border`, value);
-  }
+  @Input() btnBorderActive: string;
 
   /** Allows for override of button border color. */
-  @Input() set btnBorderColor(value: string) {
-    this.applyThemeOverride(`--${this.themeVariant}-button-border`, value);
-  }
+  @Input() btnBorderColor: string;
 
   /** Allows for override of button border value in focus state. */
-  @Input() set btnBorderFocus(value: string) {
-    this.applyThemeOverride(`--${this.themeVariant}-button-focus-border`, value);
-  }
+  @Input() btnBorderFocus: string;
 
   /** Allows for override of button border value in hover state. */
-  @Input() set btnBorderHover(value: string) {
-    this.applyThemeOverride(`--${this.themeVariant}-button-hover-border`, value);
-  }
+  @Input() btnBorderHover: string;
 
   /** Allows for override the button color. */
-  @Input() set btnColor(value: string) {
-    this.applyThemeOverride(`--${this.themeVariant}-button-color`, value);
-  }
+  @Input() btnColor: string;
 
   /** Allows for override the button color in active state. */
-  @Input() set btnColorActive(value: string) {
-    this.applyThemeOverride(`--${this.themeVariant}-button-active-color`, value);
-  }
+  @Input() btnColorActive: string;
 
   /** Allows for override the button color in hover state. */
-  @Input() set btnColorHover(value: string) {
-    this.applyThemeOverride(`--${this.themeVariant}-button-hover-color`, value);
-  }
+  @Input() btnColorHover: string;
 
   /** Allows for override the button radius. */
-  private _btnBorderRadius: string;
-
-  @Input() set btnBorderRadius(value: string) {
-    this._btnBorderRadius = value;
-  }
-
-  get btnBorderRadius(): string {
-    return this._btnBorderRadius ? this._btnBorderRadius : 'var(--wvr-btn-border-radius)';
-  }
+  @Input() btnBorderRadius: string;
 
   /** Allows for override the button box shadow in focus state. */
-  @Input() set btnBoxShadowFocus(value: string) {
-    this.applyThemeOverride(`--${this.themeVariant}-button-focus-box-shadow`, value);
-  }
+  @Input() btnBoxShadowFocus: string;
 
   /** Allows for override the button cursor. */
-  private _btnCursor: string;
-
-  @Input() set btnCursor(value: string) {
-    this._btnCursor = value;
-  }
-
-  get btnCursor(): string {
-    return this._btnCursor ? this._btnCursor : 'var(--wvr-btn-cursor-default)';
-  }
+  @Input() btnCursor: string;
 
   /** Allows for override the button font family. */
-  private _btnFontFamily: string;
-
-  @Input() set btnFontFamily(value: string) {
-    this._btnFontFamily = value;
-  }
-
-  get btnFontFamily(): string {
-    return this._btnFontFamily ? this._btnFontFamily : 'var(--wvr-btn-font-family-sans-serif-default)';
-  }
+  @Input() btnFontFamily: string;
 
   /** Allows for override the button font size. */
-  private _btnFontSize: string;
-
-  @Input() set btnFontSize(value: string) {
-    this._btnFontSize = value;
-  }
-
-  get btnFontSize(): string {
-    return this._btnFontSize ? this._btnFontSize : 'var(--wvr-btn-font-size-default)';
-  }
+  @Input() btnFontSize: string;
 
   /** Allows for override the button font weight. */
-  private _btnFontWeight: string;
-
-  @Input() set btnFontWeight(value: string) {
-    this._btnFontWeight = value;
-  }
-
-  get btnFontWeight(): string {
-    return this._btnFontWeight ? this._btnFontWeight : 'var(--wvr-btn-font-weight-default)';
-  }
+  @Input() btnFontWeight: string;
 
   /** Allows for override the button line height. */
-  private _btnLineHeight: string;
-
-  @Input() set btnLineHeight(value: string) {
-    this._btnLineHeight = value;
-  }
-
-  get btnLineHeight(): string {
-    return this._btnLineHeight ? this._btnLineHeight : 'var(--wvr-btn-line-height-default)';
-  }
+  @Input() btnLineHeight: string;
 
   /** Allows for override the button line height. */
-  private _btnPadding: string;
-
-  @Input() set btnPadding(value: string) {
-    this._btnPadding = value;
-  }
-
-  get btnPadding(): string {
-    return this._btnPadding ? this._btnPadding : 'var(--wvr-btn-padding-default)';
-  }
+  @Input() btnPadding: string;
 
   /** Allows for override the button line height. */
-  private _btnTextAlign: string;
-
-  @Input() set btnTextAlign(value: string) {
-    this._btnTextAlign = value;
-  }
-
-  get btnTextAlign(): string {
-    return this._btnTextAlign ? this._btnTextAlign : 'var(--wvr-btn-text-align-default)';
-  }
+  @Input() btnTextAlign: string;
 
   /** Allows for override the button line height. */
-  private _btnVerticalAlign: string;
-
-  @Input() set btnVerticalAlign(value: string) {
-    this._btnVerticalAlign = value;
-  }
-
-  get btnVerticalAlign(): string {
-    return this._btnVerticalAlign ? this._btnVerticalAlign : 'var(--wvr-btn-vertical-align-default)';
-  }
+  @Input() btnVerticalAlign: string;
 
   /** Allows for override of button href value. */
   @Input() btnHref = '';
