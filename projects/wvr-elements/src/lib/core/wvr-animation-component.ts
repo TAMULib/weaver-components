@@ -5,6 +5,5 @@ export interface WvrAnimationComponent {
   initializeAnimationElement(): void;
   initializeAnimationRegistration(): void;
   onAnimationEvent($event: Event): void;
-  processAnimations(): void;
   triggerAnimations(animationTriggerType: string): void;
 }
