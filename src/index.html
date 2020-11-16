@@ -520,7 +520,7 @@
     <wvre-button theme-variant="dark">
       <wvre-text value="Dark"></wvre-text>
     </wvre-button>
-    <wvre-button theme-variant="link" wvr-btn-type="button" href="www.google.com">
+    <wvre-button btn-type="link" href="www.google.com">
       <wvre-text value="Link"></wvre-text>
     </wvre-button>
   </div>
@@ -551,7 +551,7 @@
     <wvre-button wvr-theme="test" theme-variant="dark">
       <wvre-text value="Dark"></wvre-text>
     </wvre-button>
-    <wvre-button wvr-theme="test" theme-variant="link" wvr-btn-type="button" href="www.google.com">
+    <wvre-button wvr-theme="test" btn-type="link" href="www.google.com">
       <wvre-text value="Link"></wvre-text>
     </wvre-button>
   </div>
@@ -568,7 +568,7 @@
                 }"
                 theme-variant="primary"
                 btn-size="large"
-                wvr-btn-type="button"
+                btn-type="button"
                 background="tomato"
                 border-color="var(--wvr-btn-outline-warning-hover-color)"
                 color="var(--wvr-btn-outline-warning-hover-color)"
@@ -596,28 +596,28 @@
 
   <div class="container index-container">
     <wvre-text value="Outline Button List" text-decoration="underline"></wvre-text><br />
-    <wvre-button theme-variant="outline-primary" wvr-btn-type="button" hidden-in-mobile="true">
+    <wvre-button theme-variant="outline-primary" btn-type="button" hidden-in-mobile="true">
       <wvre-text value="Outline Primary (Hidden in MV)"></wvre-text>
     </wvre-button>
-    <wvre-button theme-variant="outline-secondary" wvr-btn-type="button">
+    <wvre-button theme-variant="outline-secondary" btn-type="button">
       <wvre-text value="Outline Secondary"></wvre-text>
     </wvre-button>
-    <wvre-button theme-variant="outline-success" wvr-btn-type="button">
+    <wvre-button theme-variant="outline-success" btn-type="button">
       <wvre-text value="Outline Success"></wvre-text>
     </wvre-button>
-    <wvre-button theme-variant="outline-danger" wvr-btn-type="button">
+    <wvre-button theme-variant="outline-danger" btn-type="button">
       <wvre-text value="Outline Danger"></wvre-text>
     </wvre-button>
-    <wvre-button theme-variant="outline-warning" wvr-btn-type="button">
+    <wvre-button theme-variant="outline-warning" btn-type="button">
       <wvre-text value="Outline Warning"></wvre-text>
     </wvre-button>
-    <wvre-button theme-variant="outline-info" wvr-btn-type="button">
+    <wvre-button theme-variant="outline-info" btn-type="button">
       <wvre-text value="Outline Info"></wvre-text>
     </wvre-button>
-    <wvre-button theme-variant="outline-light" wvr-btn-type="button">
+    <wvre-button theme-variant="outline-light" btn-type="button">
       <wvre-text value="Outline Light"></wvre-text>
     </wvre-button>
-    <wvre-button theme-variant="outline-dark" wvr-btn-type="button">
+    <wvre-button theme-variant="outline-dark" btn-type="button">
       <wvre-text value="Outline Dark"></wvre-text>
     </wvre-button>
   </div>
@@ -626,11 +626,11 @@
     <wvre-text value="Weaver Icon List" text-decoration="underline"></wvre-text><br />
     <wvre-icon set="custom" name="weaver-w"></wvre-icon>
     <wvre-icon set="custom" name="weaver-w" color="#500000" size="64px" hidden-in-mobile="true"></wvre-icon>
-    <wvre-button theme-variant="primary" wvr-btn-type="button" animate="{click: 'rotateToggle'}">
+    <wvre-button theme-variant="primary" btn-type="button" animate="{click: 'rotateToggle'}">
       <wvre-icon set="custom" name="weaver-w" color="#500000"></wvre-icon>
       <wvre-text value="Icon Btn"></wvre-text>
     </wvre-button>
-    <wvre-button theme-variant="info" wvr-btn-type="button" animate="{click: 'animationTrigger'}" animate-target="elem1" hidden-in-mobile="true">
+    <wvre-button theme-variant="info" btn-type="button" animate="{click: 'animationTrigger'}" animate-target="elem1" hidden-in-mobile="true">
       <wvre-text value="Icon Btn to Be Hidden in Mobile View"></wvre-text>
       <wvre-icon set="feather" name="chevron-right" color="#500000" animate="{animationTrigger: 'rotateToggle'}" animate-id="elem1"></wvre-icon>
     </wvre-button>

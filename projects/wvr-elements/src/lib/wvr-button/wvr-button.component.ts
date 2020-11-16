@@ -16,7 +16,7 @@ export class WvrButtonComponent extends WvrBaseComponent {
   @Input() btnSize: 'large' | 'small' | 'block';
 
   /** Used to define the type of a button.  */
-  @Input() wvrBtnType: 'button' | 'checkbox' | 'radio' | 'reset' | 'submit' = 'button';
+  @Input() btnType: 'button' | 'checkbox' | 'radio' | 'reset' | 'submit' | 'link' = 'button';
 
   /** Allows for the button component to be an anchor tag component if href property present. */
   @Input() href: string;

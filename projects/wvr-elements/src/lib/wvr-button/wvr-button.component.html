@@ -1,24 +1,25 @@
 <button-wrapper #animationRoot>
   <button *ngIf="!href"
-  class="wvr-components wvr-button btn btn-{{themeVariant}}"
-  [type]="wvrBtnType"
+  class="wvr-components wvr-button btn {{btnType!=='link' ? 'btn-'+themeVariant : ''}}"
+  [type]="btnType"
   [ngClass]="{
     'btn-lg': btnSize==='large',
     'btn-sm': btnSize==='small',
-    'btn-block':btnSize==='block'
+    'btn-block': btnSize==='block',
+    'btn-link': btnType === 'link'
   }"
   role="button"
   >
     <ng-container *ngTemplateOutlet="content"></ng-container>
   </button>
-
   <a *ngIf="href"
-    class="wvr-components wvr-button btn btn-{{themeVariant}}"
+    class="wvr-components wvr-button btn {{btnType!=='link' ? 'btn-'+themeVariant : ''}}"
     [href]="href"
     [ngClass]="{
       'btn-lg': btnSize==='large',
       'btn-sm': btnSize==='small',
-      'btn-block':btnSize==='block'
+      'btn-block':btnSize==='block',
+      'btn-link': btnType === 'link'
     }"
     role="button" aria-label="button">
     <ng-container *ngTemplateOutlet="content"></ng-container>

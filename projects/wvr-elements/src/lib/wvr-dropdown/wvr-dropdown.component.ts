@@ -85,6 +85,9 @@ export class WvrDropdownComponent extends WvrBaseComponent {
   /** Allows for override the button line height. */
   @Input() btnTextAlign: string;
 
+  /** Allows for override the button type. */
+  @Input() btnType: string;
+
   /** Allows for override the button line height. */
   @Input() btnVerticalAlign: string;
 
