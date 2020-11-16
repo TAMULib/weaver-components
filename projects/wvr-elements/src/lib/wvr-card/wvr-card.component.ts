@@ -98,12 +98,22 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit 
     return this.themeVariant === themeVariant && (!this.panelFormat || this.panelFormat === 'mixed');
   }
 
-  additionalClasses(): string {
+  additionalCardClasses(): string {
     let additionalClasses = '';
     additionalClasses +=  ((!this.panelFormat || this.panelFormat === 'mixed') || this.panelFormat === 'outlined') ?
                           ` border-${this.themeVariant} ` : '';
 
     additionalClasses +=  this.panelFormat === 'solid' ? ` bg-${this.themeVariant} ` : '';
+
+    return additionalClasses;
+  }
+
+  additionalHeaderClasses(): string {
+    let additionalClasses = '';
+    additionalClasses +=  ((!this.panelFormat || this.panelFormat === 'mixed') || this.panelFormat === 'outlined') ?
+                          ` border-${this.themeVariant} ` : '';
+
+    additionalClasses +=  (this.panelFormat === 'solid' || this.panelFormat === 'mixed') ? ` bg-${this.themeVariant} ` : '';
 
     return additionalClasses;
   }
