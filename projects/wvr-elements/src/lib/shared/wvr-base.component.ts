@@ -1,4 +1,4 @@
-import { Directive, ElementRef, EventEmitter, HostBinding, Injector, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
+import { AfterContentInit, Directive, ElementRef, EventEmitter, HostBinding, Injector, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { select, Store } from '@ngrx/store';
 import * as JSON5 from 'json5';
@@ -19,7 +19,7 @@ import { WvrThemeableComponent } from './wvr-themeable.component';
 
 @Directive()
 // tslint:disable-next-line:directive-class-suffix
-export abstract class WvrBaseComponent implements OnInit, OnDestroy, WvrAnimationComponent, WvrDataComponent, WvrThemeableComponent {
+export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDestroy, WvrAnimationComponent, WvrDataComponent, WvrThemeableComponent {
 
   /** A generated unique identifier for this comonent. */
   readonly id: number;
@@ -138,25 +138,19 @@ export abstract class WvrBaseComponent implements OnInit, OnDestroy, WvrAnimatio
   /** Used to setup this component for animating. */
   ngOnInit(): void {
     this.themeService.applyThemeStyle(this.appConfig.theme, this);
-
-    // setTimeout(() => {
-    //   this.themeService.applyThemeStyle('defaultDark', this);
-    // }, 5000);
-
-    // this.processAnimations();
     this.processData();
-    // this.initializeAnimationRegistration();
+    this.initializeAnimationRegistration();
     this.templateService.parseProjectedContent(this, this._eRef.nativeElement);
   }
 
   // TODO: fix this
   /** Used for post content initialization animation setup. */
-  // ngAfterContentInit(): void {
-  //   setTimeout(() => {
-  //     this._animationService
-  //       .initializeAnimationElement(this.animationStateId, this._animationConfig, this.animationRootElem);
-  //   }, 1);
-  // }
+  ngAfterContentInit(): void {
+    setTimeout(() => {
+      this._animationService
+        .initializeAnimationElement(this.animationStateId, this._animationConfig, this.animationRootElem);
+    }, 1);
+  }
 
   /** Handles the the unregistering of this component with the component registry. */
   ngOnDestroy(): void {
@@ -220,22 +214,6 @@ export abstract class WvrBaseComponent implements OnInit, OnDestroy, WvrAnimatio
   /* istanbul ignore next */
   onAnimationEvent($event: Event): void {
     this.triggerAnimations($event.type);
-  }
-
-  /* istanbul ignore next */
-  processAnimations(): void {
-    const animationEvents = Object.keys(this._animationSettings);
-    if (animationEvents.length) {
-      if (this.animateId) {
-        this._animationService.registerAnimationTargets(this.animateId, this);
-      }
-      this.animationStateId = this._animationService.registerAnimationStates();
-      animationEvents.forEach(eventName => {
-        if (eventName !== 'animationTrigger') {
-          (this._eRef.nativeElement as HTMLElement).addEventListener(eventName, this.onAnimationEvent.bind(this));
-        }
-      });
-    }
   }
 
   /* istanbul ignore next */
