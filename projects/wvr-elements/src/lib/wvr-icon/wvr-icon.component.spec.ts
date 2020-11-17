@@ -1,5 +1,5 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild } from '@angular/core';
 import { ComponentFixture, inject, TestBed, waitForAsync } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
@@ -8,18 +8,37 @@ import { APP_CONFIG } from '../shared/config/app-config';
 import { testAppConfig } from '../shared/config/test-app-config';
 import { WvrIconComponent } from './wvr-icon.component';
 
+@Component({
+  selector: 'wvr-icon-test-component',
+  // tslint:disable-next-line:component-max-inline-declarations
+  template: '<wvr-icon-component></wvr-icon-component>'
+})
+class WvrIconHostComponent {
+  @ViewChild(WvrIconComponent) icon: WvrIconComponent;
+}
+
 describe('WvrIconComponent', () => {
   let component: WvrIconComponent;
   let fixture: ComponentFixture<WvrIconComponent>;
 
+  let hostComponent: WvrIconHostComponent;
+  let hostFixture: ComponentFixture<WvrIconHostComponent>;
+
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, BrowserAnimationsModule, StoreModule.forRoot(ROOT_REDUCER, { metaReducers })],
-      declarations: [WvrIconComponent],
+      imports: [
+        HttpClientTestingModule,
+        BrowserAnimationsModule,
+        StoreModule.forRoot(ROOT_REDUCER, { metaReducers })
+      ],
       providers: [{
         provide: APP_CONFIG,
         useValue: testAppConfig
       }],
+      declarations: [
+        WvrIconComponent,
+        WvrIconHostComponent
+      ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
     .compileComponents();
@@ -28,6 +47,11 @@ describe('WvrIconComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WvrIconComponent);
     component = fixture.componentInstance;
+
+    hostFixture = TestBed.createComponent(WvrIconHostComponent);
+    hostComponent = hostFixture.componentInstance;
+
+    hostFixture.detectChanges();
     fixture.detectChanges();
   });
 

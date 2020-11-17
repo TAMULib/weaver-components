@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
@@ -7,21 +7,36 @@ import { metaReducers, ROOT_REDUCER } from '../core/store';
 import { APP_CONFIG, testAppConfig } from '../shared/config';
 import { WvrDropdownComponent } from './wvr-dropdown.component';
 
+@Component({
+  selector: 'wvr-dropdown-component',
+  // tslint:disable-next-line:component-max-inline-declarations
+  template: `<wvr-dropdown-component></wvr-dropdown-component>`
+})
+class WvrDropdownHostComponent {
+  @ViewChild(WvrDropdownComponent) dropDown: WvrDropdownComponent;
+}
 describe('WvrDropdownComponent', () => {
   let component: WvrDropdownComponent;
   let fixture: ComponentFixture<WvrDropdownComponent>;
 
+  let hostComponent: WvrDropdownHostComponent;
+  let hostFixture: ComponentFixture<WvrDropdownHostComponent>;
+
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, StoreModule.forRoot(ROOT_REDUCER, { metaReducers })],
-      declarations: [
-        WvrDropdownComponent,
-        NgbDropdown
+      imports: [
+        BrowserAnimationsModule,
+        StoreModule.forRoot(ROOT_REDUCER, { metaReducers })
       ],
       providers: [{
         provide: APP_CONFIG,
         useValue: testAppConfig
       }],
+      declarations: [
+        WvrDropdownHostComponent,
+        WvrDropdownComponent,
+        NgbDropdown
+      ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
       .compileComponents();
@@ -30,6 +45,11 @@ describe('WvrDropdownComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WvrDropdownComponent);
     component = fixture.componentInstance;
+
+    hostFixture = TestBed.createComponent(WvrDropdownHostComponent);
+    hostComponent = hostFixture.componentInstance;
+
+    hostFixture.detectChanges();
     fixture.detectChanges();
   });
 
