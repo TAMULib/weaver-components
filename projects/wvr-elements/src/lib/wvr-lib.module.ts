@@ -19,6 +19,7 @@ import { ThemeEffects } from './core/theme/theme.effects';
 import { ThemeService } from './core/theme/theme.service';
 import { DefaultPipe } from './shared/pipes/default.pipe';
 import { SafePipe } from './shared/pipes/safe.pipe';
+import { wvrTimeout } from './shared/utility';
 import { WvrAlertComponent } from './wvr-alert/wvr-alert.component';
 import { WvrButtonComponent } from './wvr-button/wvr-button.component';
 import { WvrCardComponent } from './wvr-card/wvr-card.component';
@@ -142,7 +143,7 @@ const registerCustomElements = (injector: Injector) => {
 export class WvrLibModule {
   constructor(injector: Injector) {
     registerCustomElements(injector);
-    setTimeout(() => {
+    wvrTimeout(() => {
       document.querySelector('body').style.display = 'block';
     });
   }

@@ -4,6 +4,7 @@ import * as JSON5 from 'json5';
 import { WvrDataSelect } from './data-select';
 import { initializeHandlebarHelpers } from './handlebars-helpers';
 import { WvrDataComponent } from '../shared/wvr-data.component';
+import { wvrTimeout } from '../shared/utility';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,7 @@ export class TemplateService<T extends WvrDataComponent> {
       return;
     }
 
-    setTimeout(() => {
+    wvrTimeout(() => {
       const projectedContentElem = elem.querySelector('template[wvr-compile]');
       if (!projectedContentElem) {
         return;
