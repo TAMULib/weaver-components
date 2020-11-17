@@ -8,5 +8,6 @@ if (environment.production) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  weaverBootstrap(AppModule)('/config.json');
+  weaverBootstrap(AppModule)('/config.json')
+    .catch();
 });

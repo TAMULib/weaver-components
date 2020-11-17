@@ -1,26 +1,46 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { StoreModule } from '@ngrx/store';
-import { metaReducers, ROOT_REDUCER } from '../core/store';
+import { provideMockStore } from '@ngrx/store/testing';
 import { APP_CONFIG } from '../shared/config/app-config';
 import { testAppConfig } from '../shared/config/test-app-config';
 import { WvrHeaderComponent } from './wvr-header.component';
 
+@Component({
+  selector: 'wvr-header-host-component',
+  // tslint:disable-next-line:component-max-inline-declarations
+  template: '<wvr-header-component></wvr-header-component>'
+})
+class WvrHeaderHostComponent {
+  @ViewChild(WvrHeaderComponent) header: WvrHeaderComponent;
+}
+
 describe('WvrHeaderComponent', () => {
+  const initialState = { theme: {
+    themes: {}
+  }};
   let component: WvrHeaderComponent;
   let fixture: ComponentFixture<WvrHeaderComponent>;
 
-  beforeEach(async(() => {
+  let hostComponent: WvrHeaderHostComponent;
+  let hostFixture: ComponentFixture<WvrHeaderHostComponent>;
+
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [ BrowserAnimationsModule, StoreModule.forRoot(ROOT_REDUCER, { metaReducers }) ],
+      imports: [
+        BrowserAnimationsModule
+      ],
+      providers: [
+        {
+          provide: APP_CONFIG,
+          useValue: testAppConfig
+        },
+        provideMockStore({initialState})
+      ],
       declarations: [
+        WvrHeaderHostComponent,
         WvrHeaderComponent
       ],
-      providers: [{
-        provide: APP_CONFIG,
-        useValue: testAppConfig
-      }],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
       .compileComponents()
@@ -30,6 +50,11 @@ describe('WvrHeaderComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WvrHeaderComponent);
     component = fixture.componentInstance;
+
+    hostFixture = TestBed.createComponent(WvrHeaderHostComponent);
+    hostComponent = hostFixture.componentInstance;
+
+    hostFixture.detectChanges();
     fixture.detectChanges();
   });
 

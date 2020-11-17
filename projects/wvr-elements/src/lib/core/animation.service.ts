@@ -2,7 +2,7 @@ import { animation, AnimationBuilder, AnimationMetadata, AnimationPlayer, Animat
 import { Injectable } from '@angular/core';
 import { wvrAnimationDefaults } from '../shared/animation/wvr-animation-defaults';
 import { wvrAnimationInitialization, wvrAnimations } from '../shared/animation/wvr-animations';
-import { WvrAnimationComponent } from './wvr-animation-component';
+import { WvrAnimationComponent } from '../shared/wvr-animation.component';
 
 /**
  * A centralized utility for handeling animation tasks.
@@ -11,7 +11,7 @@ import { WvrAnimationComponent } from './wvr-animation-component';
   providedIn: 'root',
   deps: [AnimationBuilder]
 })
-export class WvrAnimationService<T extends WvrAnimationComponent> {
+export class AnimationService<T extends WvrAnimationComponent> {
 
   /** A registry of WvrBaseComponent which are participating in animations. */
   private readonly _animationTargetsRegistry = new Map<string, Array<T>>();

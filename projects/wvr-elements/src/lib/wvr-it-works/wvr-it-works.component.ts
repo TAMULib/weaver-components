@@ -1,6 +1,7 @@
 import { Component, HostBinding, Injector, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { selectManifestEntryResponse } from '../core/store';
+import { ThemeVariantName } from '../shared/theme';
 import { WvrSelect } from '../shared/utility/decorators.utilty';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
@@ -13,6 +14,9 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
   styleUrls: ['./wvr-it-works.component.scss']
 })
 export class WvrItWorksComponent extends WvrBaseComponent {
+
+  /** Used to define the class type for button component.  */
+  @Input() themeVariant: ThemeVariantName = 'primary';
 
   /** The text value to be displayed in the title. */
   title = 'it-works-component';

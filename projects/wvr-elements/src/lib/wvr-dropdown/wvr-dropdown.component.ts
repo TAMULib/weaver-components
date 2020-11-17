@@ -1,5 +1,6 @@
 import { Component, HostBinding, HostListener, Injector, Input, ViewChild } from '@angular/core';
 import { NgbDropdown, NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
+import { ThemeVariantName } from '../shared/theme';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 /**
@@ -28,225 +29,67 @@ export class WvrDropdownComponent extends WvrBaseComponent {
   }
 
   /** Allows for override of button background value. */
-  private _btnBackground: string;
-
-  @Input() set btnBackground(value: string) {
-    this._btnBackground = value;
-  }
-
-  /** An accessor for the assigned background of this dropdowns button. */
-  get btnBackground(): string {
-    return this._btnBackground ? this._btnBackground : `var(--wvr-btn-${this.btnType}-background-default)`;
-  }
+  @Input() btnBackground: string;
 
   /** Allows for override of button background value in active state. */
-  private _btnBackgroundActive: string;
-
-  @Input() set btnBackgroundActive(value: string) {
-    this._btnBackgroundActive = value;
-  }
-
-  get btnBackgroundActive(): string {
-    return this._btnBackgroundActive ? this._btnBackgroundActive : `var(--wvr-btn-${this.btnType}-active-background-default)`;
-  }
+  @Input() btnBackgroundActive: string;
 
   /** Allows for override of button background value in hover state. */
-  private _btnBackgroundHover: string;
-
-  @Input() set btnBackgroundHover(value: string) {
-    this._btnBackgroundHover = value;
-  }
-
-  get btnBackgroundHover(): string {
-    return this._btnBackgroundHover ? this._btnBackgroundHover : `var(--wvr-btn-${this.btnType}-hover-background-default)`;
-  }
+  @Input() btnBackgroundHover: string;
 
   /** Allows for override of button border value in active state. */
-  private _btnBorderActive: string;
-
-  @Input() set btnBorderActive(value: string) {
-    this._btnBorderActive = value;
-  }
-
-  get btnBorderActive(): string {
-    return this._btnBorderActive ? this._btnBorderActive : `var(--wvr-btn-${this.btnType}-active-border-default)`;
-  }
+  @Input() btnBorderActive: string;
 
   /** Allows for override of button border color. */
-  private _btnBorderColor: string;
-
-  @Input() set btnBorderColor(value: string) {
-    this._btnBorderColor = value;
-  }
-
-  get btnBorderColor(): string {
-    return this._btnBorderColor ? this._btnBorderColor : `var(--wvr-btn-${this.btnType}-border-default)`;
-  }
+  @Input() btnBorderColor: string;
 
   /** Allows for override of button border value in focus state. */
-  private _btnBorderFocus: string;
-
-  @Input() set btnBorderFocus(value: string) {
-    this._btnBorderFocus = value;
-  }
-
-  get btnBorderFocus(): string {
-    return this._btnBorderFocus ? this._btnBorderFocus : `var(--wvr-btn-${this.btnType}-focus-border-default)`;
-  }
+  @Input() btnBorderFocus: string;
 
   /** Allows for override of button border value in hover state. */
-  private _btnBorderHover: string;
-
-  @Input() set btnBorderHover(value: string) {
-    this._btnBorderHover = value;
-  }
-
-  get btnBorderHover(): string {
-    return this._btnBorderHover ? this._btnBorderHover : `var(--wvr-btn-${this.btnType}-hover-border-default)`;
-  }
+  @Input() btnBorderHover: string;
 
   /** Allows for override the button color. */
-  private _btnColor: string;
-
-  @Input() set btnColor(value: string) {
-    this._btnColor = value;
-  }
-
-  get btnColor(): string {
-    return this._btnColor ? this._btnColor : `var(--wvr-btn-${this.btnType}-color-default)`;
-  }
+  @Input() btnColor: string;
 
   /** Allows for override the button color in active state. */
-  private _btnColorActive: string;
-
-  @Input() set btnColorActive(value: string) {
-    this._btnColorActive = value;
-  }
-
-  get btnColorActive(): string {
-    return this._btnColorActive ? this._btnColorActive : `var(--wvr-btn-${this.btnType}-active-color-default)`;
-  }
+  @Input() btnColorActive: string;
 
   /** Allows for override the button color in hover state. */
-  private _btnColorHover: string;
-
-  @Input() set btnColorHover(value: string) {
-    this._btnColorHover = value;
-  }
-
-  get btnColorHover(): string {
-    return this._btnColorHover ? this._btnColorHover : `var(--wvr-btn-${this.btnType}-hover-color-default)`;
-  }
+  @Input() btnColorHover: string;
 
   /** Allows for override the button radius. */
-  private _btnBorderRadius: string;
-
-  @Input() set btnBorderRadius(value: string) {
-    this._btnBorderRadius = value;
-  }
-
-  get btnBorderRadius(): string {
-    return this._btnBorderRadius ? this._btnBorderRadius : 'var(--wvr-btn-border-radius)';
-  }
+  @Input() btnBorderRadius: string;
 
   /** Allows for override the button box shadow in focus state. */
-  private _btnBoxShadowFocus: string;
-
-  @Input() set btnBoxShadowFocus(value: string) {
-    this._btnBoxShadowFocus = value;
-  }
-
-  get btnBoxShadowFocus(): string {
-    return this._btnBoxShadowFocus ? this._btnBoxShadowFocus : `var(--wvr-btn-${this.btnType}-focus-box-shadow-default)`;
-  }
+  @Input() btnBoxShadowFocus: string;
 
   /** Allows for override the button cursor. */
-  private _btnCursor: string;
-
-  @Input() set btnCursor(value: string) {
-    this._btnCursor = value;
-  }
-
-  get btnCursor(): string {
-    return this._btnCursor ? this._btnCursor : 'var(--wvr-btn-cursor-default)';
-  }
+  @Input() btnCursor: string;
 
   /** Allows for override the button font family. */
-  private _btnFontFamily: string;
-
-  @Input() set btnFontFamily(value: string) {
-    this._btnFontFamily = value;
-  }
-
-  get btnFontFamily(): string {
-    return this._btnFontFamily ? this._btnFontFamily : 'var(--wvr-btn-font-family-sans-serif-default)';
-  }
+  @Input() btnFontFamily: string;
 
   /** Allows for override the button font size. */
-  private _btnFontSize: string;
-
-  @Input() set btnFontSize(value: string) {
-    this._btnFontSize = value;
-  }
-
-  get btnFontSize(): string {
-    return this._btnFontSize ? this._btnFontSize : 'var(--wvr-btn-font-size-default)';
-  }
+  @Input() btnFontSize: string;
 
   /** Allows for override the button font weight. */
-  private _btnFontWeight: string;
-
-  @Input() set btnFontWeight(value: string) {
-    this._btnFontWeight = value;
-  }
-
-  get btnFontWeight(): string {
-    return this._btnFontWeight ? this._btnFontWeight : 'var(--wvr-btn-font-weight-default)';
-  }
+  @Input() btnFontWeight: string;
 
   /** Allows for override the button line height. */
-  private _btnLineHeight: string;
-
-  @Input() set btnLineHeight(value: string) {
-    this._btnLineHeight = value;
-  }
-
-  get btnLineHeight(): string {
-    return this._btnLineHeight ? this._btnLineHeight : 'var(--wvr-btn-line-height-default)';
-  }
+  @Input() btnLineHeight: string;
 
   /** Allows for override the button line height. */
-  private _btnPadding: string;
-
-  @Input() set btnPadding(value: string) {
-    this._btnPadding = value;
-  }
-
-  get btnPadding(): string {
-    return this._btnPadding ? this._btnPadding : 'var(--wvr-btn-padding-default)';
-  }
+  @Input() btnPadding: string;
 
   /** Allows for override the button line height. */
-  private _btnTextAlign: string;
+  @Input() btnTextAlign: string;
 
-  @Input() set btnTextAlign(value: string) {
-    this._btnTextAlign = value;
-  }
-
-  get btnTextAlign(): string {
-    return this._btnTextAlign ? this._btnTextAlign : 'var(--wvr-btn-text-align-default)';
-  }
+  /** Allows for override the button type. */
+  @Input() btnType: string;
 
   /** Allows for override the button line height. */
-  private _btnVerticalAlign: string;
-
-  @Input() set btnVerticalAlign(value: string) {
-    this._btnVerticalAlign = value;
-  }
-
-  get btnVerticalAlign(): string {
-    return this._btnVerticalAlign ? this._btnVerticalAlign : 'var(--wvr-btn-vertical-align-default)';
-  }
+  @Input() btnVerticalAlign: string;
 
   /** Allows for override of button href value. */
   @Input() btnHref = '';
@@ -255,7 +98,7 @@ export class WvrDropdownComponent extends WvrBaseComponent {
   @Input() btnSize = '';
 
   /** Allows for the visual customization of the dropdown menu activation button.  */
-  @Input() btnType: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark' | 'link' | 'plain' = 'plain';
+  @Input() themeVariant: ThemeVariantName = 'secondary';
 
   /** Binds the input from `menuBackground` to the css variable `--wvr-dropdown-menu-background` */
   @HostBinding('style.--wvr-dropdown-menu-background') @Input() menuBackground;
@@ -308,7 +151,9 @@ export class WvrDropdownComponent extends WvrBaseComponent {
   }
 
   get btnTextDecoration(): string {
-    return this._btnTextDecoration ? this._btnTextDecoration : `var(--wvr-btn-${this.btnType}-text-decoration-default)`;
+    return this._btnTextDecoration ?
+    this._btnTextDecoration :
+    `var(--wvr-btn-${this.themeVariant}-text-decoration-default)`;
   }
 
   /** Allows for override the button text decoration. */
@@ -319,7 +164,9 @@ export class WvrDropdownComponent extends WvrBaseComponent {
   }
 
   get btnTextDecorationActive(): string {
-    return this._btnTextDecorationActive ? this._btnTextDecorationActive : `var(--wvr-btn-${this.btnType}-active-text-decoration-default)`;
+    return this._btnTextDecorationActive ?
+    this._btnTextDecorationActive :
+    `var(--wvr-btn-${this.themeVariant}-active-text-decoration-default)`;
   }
 
   // text-decoration-focus
@@ -330,7 +177,9 @@ export class WvrDropdownComponent extends WvrBaseComponent {
   }
 
   get btnTextDecorationFocus(): string {
-    return this._btnTextDecorationFocus ? this._btnTextDecorationFocus : `var(--wvr-btn-${this.btnType}-focus-text-decoration-default)`;
+    return this._btnTextDecorationFocus ?
+      this._btnTextDecorationFocus :
+      `var(--wvr-btn-${this.themeVariant}-focus-text-decoration-default)`;
   }
 
   private _btnTextDecorationHover: string;
@@ -340,7 +189,9 @@ export class WvrDropdownComponent extends WvrBaseComponent {
   }
 
   get btnTextDecorationHover(): string {
-    return this._btnTextDecorationHover ? this._btnTextDecorationHover : `var(--wvr-btn-${this.btnType}-hover-text-decoration-default)`;
+    return this._btnTextDecorationHover ?
+    this._btnTextDecorationHover :
+    `var(--wvr-btn-${this.themeVariant}-hover-text-decoration-default)`;
   }
 
   @Input() placement = 'top-right';
@@ -354,9 +205,12 @@ export class WvrDropdownComponent extends WvrBaseComponent {
   /**
    * Indicates that the dropdown is in the process of closing.
    */
+  // tslint:disable-next-line: prefer-readonly
   private closing = false;
 
   @Input() dropdownMenuDisplay = 'dynamic';
+
+  variantTypes = ['dropdown'];
 
   constructor(injector: Injector, config: NgbDropdownConfig) {
     super(injector);

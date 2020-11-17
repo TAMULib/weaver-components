@@ -1,62 +1,65 @@
 @import "../shared/styles/wvr-variables.scss";
+@import "../shared/styles/variables";
 
 :host {
 
-  // alert-primary
-  --wvr-alert-primary-color-default: #004085;
-  --wvr-alert-primary-background-default: #cce5ff;
-  --wvr-alert-primary-border-default: #b8daff;
+  @extend .variables;
 
-  --wvr-alert-link-primary-color-default: #002752;
+  // // alert-primary
+  // --wvr-alert-primary-color-default: #004085;
+  // --wvr-alert-primary-background-default: #cce5ff;
+  // --wvr-alert-primary-border-default: #b8daff;
 
-  // .alert-secondary
-  --wvr-alert-secondary-color-default: #383d41;
-  --wvr-alert-secondary-background-default: #e2e3e5;
-  --wvr-alert-secondary-border-default: #d6d8db;
+  // --wvr-alert-link-primary-color-default: #002752;
 
-  --wvr-alert-link-secondary-color-default: #202326;
+  // // .alert-secondary
+  // --wvr-alert-secondary-color-default: #383d41;
+  // --wvr-alert-secondary-background-default: #e2e3e5;
+  // --wvr-alert-secondary-border-default: #d6d8db;
 
-  // alert-success
-  --wvr-alert-success-color-default: #155724;
-  --wvr-alert-success-background-default: #d4edda;
-  --wvr-alert-success-border-default: #c3e6cb;
+  // --wvr-alert-link-secondary-color-default: #202326;
 
-  --wvr-alert-link-success-color-default: #0b2e13;
+  // // alert-success
+  // --wvr-alert-success-color-default: #155724;
+  // --wvr-alert-success-background-default: #d4edda;
+  // --wvr-alert-success-border-default: #c3e6cb;
 
-  // alert-danger
-  --wvr-alert-danger-color-default: #721c24;
-  --wvr-alert-danger-background-default: #f8d7da;
-  --wvr-alert-danger-border-default: #f5c6cb;
+  // --wvr-alert-link-success-color-default: #0b2e13;
 
-  --wvr-alert-link-danger-color-default: #491217;
+  // // alert-danger
+  // --wvr-alert-danger-color-default: #721c24;
+  // --wvr-alert-danger-background-default: #f8d7da;
+  // --wvr-alert-danger-border-default: #f5c6cb;
 
-  // alert-warning
-  --wvr-alert-warning-color-default: #856404;
-  --wvr-alert-warning-background-default: #fff3cd;
-  --wvr-alert-warning-border-default: #ffeeba;
+  // --wvr-alert-link-danger-color-default: #491217;
 
-  --wvr-alert-link-warning-color-default: #533f03;
+  // // alert-warning
+  // --wvr-alert-warning-color-default: #856404;
+  // --wvr-alert-warning-background-default: #fff3cd;
+  // --wvr-alert-warning-border-default: #ffeeba;
 
-  // alert-info
-  --wvr-alert-info-color-default: #0c5460;
-  --wvr-alert-info-background-default: #d1ecf1;
-  --wvr-alert-info-border-default: #bee5eb;
+  // --wvr-alert-link-warning-color-default: #533f03;
 
-  --wvr-alert-link-info-color-default: #062c33;
+  // // alert-info
+  // --wvr-alert-info-color-default: #0c5460;
+  // --wvr-alert-info-background-default: #d1ecf1;
+  // --wvr-alert-info-border-default: #bee5eb;
 
-  // alert-light
-  --wvr-alert-light-color-default: #818182;
-  --wvr-alert-light-background-default: #fefefe;
-  --wvr-alert-light-border-default: #fdfdfe;
+  // --wvr-alert-link-info-color-default: #062c33;
 
-  --wvr-alert-light-warning-color-default: #686868;
+  // // alert-light
+  // --wvr-alert-light-color-default: #818182;
+  // --wvr-alert-light-background-default: #fefefe;
+  // --wvr-alert-light-border-default: #fdfdfe;
 
-  // alert-dark
-  --wvr-alert-dark-color-default: #1b1e21;
-  --wvr-alert-dark-background-default: #d6d8d9;
-  --wvr-alert-dark-border-default: #c6c8ca;
+  // --wvr-alert-light-warning-color-default: #686868;
 
-  --wvr-alert-link-dark-color-default : #040505;
+  // // alert-dark
+  // --wvr-alert-dark-color-default: #1b1e21;
+  // --wvr-alert-dark-background-default: #d6d8d9;
+  // --wvr-alert-dark-border-default: #c6c8ca;
+
+  // --wvr-alert-link-dark-color-default : #040505;
 
   font-family: var(--wvr-font-family-sans-serif);
 
@@ -68,121 +71,121 @@
     border-radius: .25rem;
   }
 
-  .alert-dismissible {
-    padding-right: 4rem;
-  }
+  // .alert-dismissible {
+  //   padding-right: 4rem;
+  // }
 
-  .alert-dismissible .close {
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: .75rem 1.25rem;
-    color: inherit;
-  }
+  // .alert-dismissible .close {
+  //   position: absolute;
+  //   top: 0;
+  //   right: 0;
+  //   padding: .75rem 1.25rem;
+  //   color: inherit;
+  // }
 
-  .alert-heading {
-    color: inherit;
-  }
+  // .alert-heading {
+  //   color: inherit;
+  // }
 
-  .btn.btn-primary,
-  .btn.btn-secondary,
-  .btn.btn-success,
-  .btn.btn-danger,
-  .btn.btn-warning,
-  .btn.btn-info,
-  .btn.btn-light,
-  .btn.btn-dark {
-    font-size: 1.2rem;
-    box-shadow: none;
-  }
+  // .btn.btn-primary,
+  // .btn.btn-secondary,
+  // .btn.btn-success,
+  // .btn.btn-danger,
+  // .btn.btn-warning,
+  // .btn.btn-info,
+  // .btn.btn-light,
+  // .btn.btn-dark {
+  //   font-size: 1.2rem;
+  //   box-shadow: none;
+  // }
 
-  a {
-    text-decoration: none;
-    background-color: transparent;
-  }
+  // a {
+  //   text-decoration: none;
+  //   background-color: transparent;
+  // }
 
-  .alert-link {
-    font-weight: 700;
-  }
+  // .alert-link {
+  //   font-weight: 700;
+  // }
 
-  .alert-primary {
-    color: var(--wvr-alert-primary-color-default);
-    background-color: var(--wvr-alert-primary-background-default);
-    border-color: var(--wvr-alert-primary-border-default);
-  }
+  // .alert-primary {
+  //   color: var(--wvr-alert-primary-color-default);
+  //   background-color: var(--wvr-alert-primary-background-default);
+  //   border-color: var(--wvr-alert-primary-border-default);
+  // }
 
-  .alert-primary .alert-link {
-    color: var(--wvr-alert-link-primary-color-default);
-  }
+  // .alert-primary .alert-link {
+  //   color: var(--wvr-alert-link-primary-color-default);
+  // }
 
-  .alert-secondary {
-    color: var(--wvr-alert-secondary-color-default);
-    background-color: var(--wvr-alert-secondary-background-default);
-    border-color: var(--wvr-alert-secondary-border-default);
-  }
+  // .alert-secondary {
+  //   color: var(--wvr-alert-secondary-color-default);
+  //   background-color: var(--wvr-alert-secondary-background-default);
+  //   border-color: var(--wvr-alert-secondary-border-default);
+  // }
 
-  .alert-secondary .alert-link {
-    color: var(--wvr-alert-link-secondary-color-default);
-  }
+  // .alert-secondary .alert-link {
+  //   color: var(--wvr-alert-link-secondary-color-default);
+  // }
 
-  .alert-success {
-    color: var(--wvr-alert-success-color-default);
-    background-color: var(--wvr-alert-success-background-default);
-    border-color: var(--wvr-alert-success-border-default);
-  }
+  // .alert-success {
+  //   color: var(--wvr-alert-success-color-default);
+  //   background-color: var(--wvr-alert-success-background-default);
+  //   border-color: var(--wvr-alert-success-border-default);
+  // }
 
-  .alert-success .alert-link {
-    color: var(--wvr-alert-link-success-color-default);
-  }
+  // .alert-success .alert-link {
+  //   color: var(--wvr-alert-link-success-color-default);
+  // }
 
-  .alert-danger {
-    color: var(--wvr-alert-danger-color-default);
-    background-color: var(--wvr-alert-danger-background-default);
-    border-color: var(--wvr-alert-danger-border-default);
-  }
+  // .alert-danger {
+  //   color: var(--wvr-alert-danger-color-default);
+  //   background-color: var(--wvr-alert-danger-background-default);
+  //   border-color: var(--wvr-alert-danger-border-default);
+  // }
 
-  .alert-danger .alert-link {
-    color: var(--wvr-alert-link-danger-color-default);
-  }
+  // .alert-danger .alert-link {
+  //   color: var(--wvr-alert-link-danger-color-default);
+  // }
 
-  .alert-warning {
-    color: var(--wvr-alert-warning-color-default);
-    background-color: var(--wvr-alert-warning-background-default);
-    border-color: var(--wvr-alert-warning-border-default);
-  }
+  // .alert-warning {
+  //   color: var(--wvr-alert-warning-color-default);
+  //   background-color: var(--wvr-alert-warning-background-default);
+  //   border-color: var(--wvr-alert-warning-border-default);
+  // }
 
-  .alert-warning .alert-link {
-    color: var(--wvr-alert-link-warning-color-default);
-  }
+  // .alert-warning .alert-link {
+  //   color: var(--wvr-alert-link-warning-color-default);
+  // }
 
-  .alert-info {
-    color: var(--wvr-alert-info-color-default);
-    background-color: var(--wvr-alert-info-background-default);
-    border-color: var(--wvr-alert-info-border-default);
-  }
+  // .alert-info {
+  //   color: var(--wvr-alert-info-color-default);
+  //   background-color: var(--wvr-alert-info-background-default);
+  //   border-color: var(--wvr-alert-info-border-default);
+  // }
 
-  .alert-info .alert-link {
-    color: var(--wvr-alert-link-info-color-default);
-  }
+  // .alert-info .alert-link {
+  //   color: var(--wvr-alert-link-info-color-default);
+  // }
 
-  .alert-light {
-    color: var(--wvr-alert-light-color-default);
-    background-color: var(--wvr-alert-light-background-default);
-    border-color: var(--wvr-alert-light-border-default);
-  }
+  // .alert-light {
+  //   color: var(--wvr-alert-light-color-default);
+  //   background-color: var(--wvr-alert-light-background-default);
+  //   border-color: var(--wvr-alert-light-border-default);
+  // }
 
-  .alert-light .alert-link {
-    color: var(--wvr-alert-light-warning-color-default);
-  }
+  // .alert-light .alert-link {
+  //   color: var(--wvr-alert-light-warning-color-default);
+  // }
 
-  .alert-dark {
-    color: var(--wvr-alert-dark-color-default);
-    background-color: var(--wvr-alert-dark-background-default);
-    border-color: var(--wvr-alert-dark-border-default);
-  }
+  // .alert-dark {
+  //   color: var(--wvr-alert-dark-color-default);
+  //   background-color: var(--wvr-alert-dark-background-default);
+  //   border-color: var(--wvr-alert-dark-border-default);
+  // }
 
-  .alert-dark .alert-link {
-    color: var(--wvr-alert-link-dark-color-default);
-  }
+  // .alert-dark .alert-link {
+  //   color: var(--wvr-alert-link-dark-color-default);
+  // }
 
 }

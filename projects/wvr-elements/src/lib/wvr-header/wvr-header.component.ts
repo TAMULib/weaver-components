@@ -1,7 +1,6 @@
-import { AfterContentChecked, Component, HostBinding, Inject, Injector, Input, OnInit } from '@angular/core';
+import { AfterContentChecked, Component, HostBinding, Injector, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import * as rootStore from '../core/store';
-import { AppConfig, APP_CONFIG } from '../shared/config/app-config';
 import { WvrSelect } from '../shared/utility/decorators.utilty';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
@@ -83,21 +82,19 @@ export class WvrHeaderComponent extends WvrBaseComponent implements OnInit, Afte
 
   mobileMenuClosed = true;
 
+  // tslint:disable-next-line: prefer-readonly
   @WvrSelect({ selector: rootStore.selectManifestEntryResponse('sample', 'one') }) private sampleTestResponse: Observable<string>;
 
   /**
    * The weaver header component constructor
    */
-  constructor(injector: Injector,
-              @Inject(APP_CONFIG) private readonly appConfig: AppConfig) {
+  constructor(injector: Injector) {
     super(injector);
   }
 
   ngOnInit(): void {
     super.ngOnInit();
     this.checkBottomNavHasChildren();
-
-    // this.sampleTestResponse.subscribe(console.log);
   }
 
   ngAfterContentChecked(): void {

@@ -1,4 +1,5 @@
-import { AfterContentInit, Component, HostListener, Injector, Input, OnInit } from '@angular/core';
+import { Component, Injector, Input, OnInit } from '@angular/core';
+import { ThemeVariantName } from '../shared/theme';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 /**
@@ -12,7 +13,7 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
 export class WvrAlertComponent extends WvrBaseComponent implements OnInit {
 
   /** Used to define the class type of an alert component.  */
-  @Input() alertClass: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark' = 'primary';
+  @Input() themeVariant: ThemeVariantName = 'primary';
 
   /** Used to define the type of alert. */
   @Input() alertType: 'basic' | 'self-closing' | 'custom' = 'basic';
@@ -25,6 +26,8 @@ export class WvrAlertComponent extends WvrBaseComponent implements OnInit {
 
   /** Setting the delay timer for the self closing alert message */
   @Input() closeTimer = 5000;
+
+  variantTypes = ['alert'];
 
   constructor(injector: Injector) {
     super(injector);
@@ -40,6 +43,7 @@ export class WvrAlertComponent extends WvrBaseComponent implements OnInit {
 
   /** Initializes the closing timer for a self closing alert. */
   ngOnInit(): void {
+    super.ngOnInit();
     if (this.alertType === 'self-closing') {
       setTimeout(() => {
         this.alertClosed = true;

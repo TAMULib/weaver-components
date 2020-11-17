@@ -1,4 +1,9 @@
+@import "../../shared/styles/wvr-variables.scss";
+@import "../../shared/styles/variables";
+
 :host {
+  
+  @extend .variables;
 
   // list-item default colors
   --wvr-list-group-item-primary-color-default: #004085;

@@ -1,13 +1,17 @@
 @import "../shared/styles/wvr-variables.scss";
+@import "../shared/styles/variables";
 
 :host {
+
+  @extend .variables;
+
   --bottom-nav-background: var(--wvr-gray);
   --bottom-nav-height: var(--wvr-navbar-height);
   --bottom-nav-padding: var(--wvr-navbar-padding);
   --logo-img-width: 30px;
   --logo-img-height: 30px;
   --logo-img-margin: 0 0 0 0;
-  --title-row-background: var(--wvr-primary);
+  --title-row-background: var(--primary);
   --title-row-height: var(--wvr-navbar-height);
   --top-nav-background: var(--wvr-secondary);
   --top-nav-height: var(--wvr-navbar-height);
@@ -37,6 +41,14 @@
     margin: var(--logo-img-margin);
   }
 
+  .top-nav-wrapper {
+    ::ng-deep {
+      wvre-nav-list[top-navigation] > ul > wvre-nav-li > li > wvre-dropdown > .wvr-dropdown > .dropdown > wvr-button-component > button-wrapper{
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
 }
 
 .title-row {

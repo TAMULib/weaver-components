@@ -1,17 +1,41 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { StoreModule } from '@ngrx/store';
-import { metaReducers, ROOT_REDUCER } from '../core/store';
+import { provideMockStore } from '@ngrx/store/testing';
+import { APP_CONFIG, testAppConfig } from '../shared/config';
 import { WvrFooterComponent } from './wvr-footer.component';
 
+@Component({
+  selector: 'wvr-footer-host-component',
+  // tslint:disable-next-line:component-max-inline-declarations
+  template: '<wvr-footer-component></wvr-footer-component>'
+})
+class WvrFooterHostComponent {
+  @ViewChild(WvrFooterComponent) footer: WvrFooterComponent;
+}
+
 describe('WvrFooterComponent', () => {
+  const initialState = { theme: {
+    themes: {}
+  }};
   let component: WvrFooterComponent;
   let fixture: ComponentFixture<WvrFooterComponent>;
 
-  beforeEach(async(() => {
+  let hostComponent: WvrFooterHostComponent;
+  let hostFixture: ComponentFixture<WvrFooterHostComponent>;
+
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, StoreModule.forRoot(ROOT_REDUCER, { metaReducers })],
+      imports: [
+        BrowserAnimationsModule
+      ],
+      providers: [
+        {
+          provide: APP_CONFIG,
+          useValue: testAppConfig
+        },
+        provideMockStore({initialState})
+      ],
       declarations: [WvrFooterComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
@@ -21,6 +45,11 @@ describe('WvrFooterComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(WvrFooterComponent);
     component = fixture.componentInstance;
+
+    hostFixture = TestBed.createComponent(WvrFooterHostComponent);
+    hostComponent = hostFixture.componentInstance;
+
+    hostFixture.detectChanges();
     fixture.detectChanges();
   });
 

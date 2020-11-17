@@ -1,6 +1,9 @@
 @import "../shared/styles/wvr-variables.scss";
+@import "../shared/styles/variables";
 
 :host {
+
+  @extend .variables;
 
   --tab-content-display: block;
   --tab-content-padding: 25px 0px;

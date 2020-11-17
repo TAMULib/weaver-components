@@ -1,30 +1,18 @@
-<div *ngIf="!alertClosed"
-  class="wvr-components wvr-alert alert"
-  [ngClass]="{
-    'alert-primary': alertClass==='primary',
-    'alert-secondary': alertClass==='secondary',
-    'alert-success': alertClass==='success',
-    'alert-danger': alertClass==='danger',
-    'alert-warning': alertClass==='warning',
-    'alert-info': alertClass==='info',
-    'alert-light': alertClass==='light',
-    'alert-dark': alertClass==='dark'
-  }"
-  role="alert">
+<div *ngIf="!alertClosed" class="wvr-components wvr-alert alert alert-{{themeVariant}}" role="alert">
 
-    <div *ngIf="alertType==='basic'" class="basic flex-fill align-self-stretch">
-      <ng-container *ngTemplateOutlet="closeButton"></ng-container>
-      <ng-container *ngTemplateOutlet="basic"></ng-container>
-    </div>
+  <div *ngIf="alertType==='basic'" class="basic flex-fill align-self-stretch">
+    <ng-container *ngTemplateOutlet="closeButton"></ng-container>
+    <ng-container *ngTemplateOutlet="basic"></ng-container>
+  </div>
 
-    <div *ngIf="alertType==='self-closing'" class="self-closing flex-fill align-self-stretch">
-      <ng-container *ngTemplateOutlet="selfClosing"></ng-container>
-    </div>
+  <div *ngIf="alertType==='self-closing'" class="self-closing flex-fill align-self-stretch">
+    <ng-container *ngTemplateOutlet="selfClosing"></ng-container>
+  </div>
 
-    <div *ngIf="alertType==='custom'" class="custom flex-fill align-self-stretch">
-      <ng-container *ngTemplateOutlet="closeButton"></ng-container>
-      <ng-container *ngTemplateOutlet="custom"></ng-container>
-    </div>
+  <div *ngIf="alertType==='custom'" class="custom flex-fill align-self-stretch">
+    <ng-container *ngTemplateOutlet="closeButton"></ng-container>
+    <ng-container *ngTemplateOutlet="custom"></ng-container>
+  </div>
 
 </div>
 
@@ -43,10 +31,7 @@
 </ng-template>
 
 <ng-template #closeButton>
-  <button type="button" class="close btn btn-{{alertClass}}" aria-label="Close" (click)="clickClose($event)" *ngIf="closable==='true'">
-       <span aria-hidden="true">×</span>
-     </button>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="clickClose($event)" *ngIf="closable==='true'">
+    <span aria-hidden="true">&times;</span>
+  </button>
 </ng-template>
-
-
-
