@@ -13,6 +13,7 @@ import { RootState, selectManifestEntryResponse } from '../core/store';
 import { TemplateService } from '../core/template.service';
 import { ThemeService } from '../core/theme/theme.service';
 import { AppConfig, APP_CONFIG } from './config';
+import { wvrTimeout } from './utility';
 import { WvrAnimationComponent } from './wvr-animation.component';
 import { WvrDataComponent } from './wvr-data.component';
 import { WvrThemeableComponent } from './wvr-themeable.component';
@@ -146,7 +147,7 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
   // TODO: fix this
   /** Used for post content initialization animation setup. */
   ngAfterContentInit(): void {
-    setTimeout(() => {
+    wvrTimeout(() => {
       this._animationService
         .initializeAnimationElement(this.animationStateId, this._animationConfig, this.animationRootElem);
     }, 1);
@@ -188,7 +189,7 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
 
   /* istanbul ignore next */
   initializeAnimationElement(): void {
-    setTimeout(() => {
+    wvrTimeout(() => {
       this._animationService
         .initializeAnimationElement(this.animationStateId, this._animationConfig, this.animationRootElem);
     }, 1);
