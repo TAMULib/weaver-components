@@ -10,7 +10,7 @@ import { testAppConfig } from '../shared/config/test-app-config';
 import { WvrIconComponent } from './wvr-icon.component';
 
 @Component({
-  selector: 'wvr-icon-test-component',
+  selector: 'wvr-icon-host-component',
   // tslint:disable-next-line:component-max-inline-declarations
   template: '<wvr-icon-component></wvr-icon-component>'
 })

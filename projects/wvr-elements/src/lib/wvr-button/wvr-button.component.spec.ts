@@ -6,8 +6,8 @@ import { APP_CONFIG, testAppConfig } from '../shared/config';
 import { WvrButtonComponent } from './wvr-button.component';
 
 @Component({
-  selector: 'wvr-button-component',
-  template:  `<wvr-button-component class="btn btn-secondary" [btnType]="'button'" [btnSize]="'small'"><wvre-text value="Button"></wvr-button-component>`
+  selector: 'wvr-button-host-component',
+  template:  `<wvr-button-component class="btn btn-secondary" [btnType]="'button'" [btnSize]="'small'"></wvr-button-component>`
 })
 class WvrButtonHostComponent {
   @ViewChild(WvrButtonComponent) wvrButtonComponent: WvrButtonComponent;

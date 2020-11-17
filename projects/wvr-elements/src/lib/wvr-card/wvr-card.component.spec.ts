@@ -6,7 +6,7 @@ import { APP_CONFIG, testAppConfig } from '../shared/config';
 import { WvrCardComponent } from './wvr-card.component';
 
 @Component({
-  selector: 'wvr-card-test-component',
+  selector: 'wvr-card-host-component',
   // tslint:disable-next-line:component-max-inline-declarations
   template: `<wvr-card-component [themeVariant]="primary" [panelFormat]="mixed">
   <wvre-card-header><wvre-text value="Card Header"></wvre-text></wvre-card-header>

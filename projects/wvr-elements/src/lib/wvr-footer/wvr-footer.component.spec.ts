@@ -6,7 +6,7 @@ import { APP_CONFIG, testAppConfig } from '../shared/config';
 import { WvrFooterComponent } from './wvr-footer.component';
 
 @Component({
-  selector: 'wvr-footer-component',
+  selector: 'wvr-footer-host-component',
   // tslint:disable-next-line:component-max-inline-declarations
   template: '<wvr-footer-component></wvr-footer-component>'
 })

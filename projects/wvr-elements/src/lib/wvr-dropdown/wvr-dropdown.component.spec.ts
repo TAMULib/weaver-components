@@ -7,7 +7,7 @@ import { APP_CONFIG, testAppConfig } from '../shared/config';
 import { WvrDropdownComponent } from './wvr-dropdown.component';
 
 @Component({
-  selector: 'wvr-dropdown-component',
+  selector: 'wvr-dropdown-host-component',
   // tslint:disable-next-line:component-max-inline-declarations
   template: '<wvr-dropdown-component></wvr-dropdown-component>'
 })

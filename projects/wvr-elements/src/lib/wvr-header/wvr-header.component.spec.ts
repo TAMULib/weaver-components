@@ -7,7 +7,7 @@ import { testAppConfig } from '../shared/config/test-app-config';
 import { WvrHeaderComponent } from './wvr-header.component';
 
 @Component({
-  selector: 'wvr-header-test-component',
+  selector: 'wvr-header-host-component',
   // tslint:disable-next-line:component-max-inline-declarations
   template: '<wvr-header-component></wvr-header-component>'
 })
