@@ -2,20 +2,22 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
-import { StoreModule } from '@ngrx/store';
-import { metaReducers, ROOT_REDUCER } from '../core/store';
+import { provideMockStore } from '@ngrx/store/testing';
 import { APP_CONFIG, testAppConfig } from '../shared/config';
 import { WvrDropdownComponent } from './wvr-dropdown.component';
 
 @Component({
   selector: 'wvr-dropdown-component',
   // tslint:disable-next-line:component-max-inline-declarations
-  template: `<wvr-dropdown-component></wvr-dropdown-component>`
+  template: '<wvr-dropdown-component></wvr-dropdown-component>'
 })
 class WvrDropdownHostComponent {
   @ViewChild(WvrDropdownComponent) dropDown: WvrDropdownComponent;
 }
 describe('WvrDropdownComponent', () => {
+  const initialState = { theme: {
+    themes: {}
+  }};
   let component: WvrDropdownComponent;
   let fixture: ComponentFixture<WvrDropdownComponent>;
 
@@ -25,13 +27,15 @@ describe('WvrDropdownComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        BrowserAnimationsModule,
-        StoreModule.forRoot(ROOT_REDUCER, { metaReducers })
+        BrowserAnimationsModule
       ],
-      providers: [{
-        provide: APP_CONFIG,
-        useValue: testAppConfig
-      }],
+      providers: [
+        {
+          provide: APP_CONFIG,
+          useValue: testAppConfig
+        },
+        provideMockStore({initialState})
+      ],
       declarations: [
         WvrDropdownHostComponent,
         WvrDropdownComponent,

@@ -1,21 +1,23 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { StoreModule } from '@ngrx/store';
-import { metaReducers, ROOT_REDUCER } from '../core/store';
+import { provideMockStore } from '@ngrx/store/testing';
 import { APP_CONFIG, testAppConfig } from '../shared/config';
 import { WvrFooterComponent } from './wvr-footer.component';
 
 @Component({
   selector: 'wvr-footer-component',
   // tslint:disable-next-line:component-max-inline-declarations
-  template: `<wvr-footer-component></wvr-footer-component>`
+  template: '<wvr-footer-component></wvr-footer-component>'
 })
 class WvrFooterHostComponent {
   @ViewChild(WvrFooterComponent) footer: WvrFooterComponent;
 }
 
 describe('WvrFooterComponent', () => {
+  const initialState = { theme: {
+    themes: {}
+  }};
   let component: WvrFooterComponent;
   let fixture: ComponentFixture<WvrFooterComponent>;
 
@@ -25,13 +27,15 @@ describe('WvrFooterComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        BrowserAnimationsModule,
-        StoreModule.forRoot(ROOT_REDUCER, { metaReducers })
+        BrowserAnimationsModule
       ],
-      providers: [{
-        provide: APP_CONFIG,
-        useValue: testAppConfig
-      }],
+      providers: [
+        {
+          provide: APP_CONFIG,
+          useValue: testAppConfig
+        },
+        provideMockStore({initialState})
+      ],
       declarations: [WvrFooterComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })

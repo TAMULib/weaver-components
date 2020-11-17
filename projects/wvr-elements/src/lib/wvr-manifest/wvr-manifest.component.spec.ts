@@ -1,13 +1,11 @@
-import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Component, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { StoreModule } from '@ngrx/store';
-import { metaReducers, ROOT_REDUCER } from '../core/store';
+import { provideMockStore } from '@ngrx/store/testing';
 import { APP_CONFIG, testAppConfig } from '../shared/config';
 import { WvrManifestEntryComponent } from './wvr-manifest-entry/wvr-manifest-entry.component';
-
 import { WvrManifestComponent } from './wvr-manifest.component';
+
 
 @Component({
   selector: 'wvr-manifest-test-component',
@@ -24,6 +22,9 @@ class WvrManifestHostComponent {
 }
 
 describe('WvrManifestComponent', () => {
+  const initialState = { theme: {
+    themes: {}
+  }};
   let hostComponent: WvrManifestHostComponent;
   let hostFixture: ComponentFixture<WvrManifestHostComponent>;
 
@@ -32,18 +33,20 @@ describe('WvrManifestComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        BrowserAnimationsModule,
-        StoreModule.forRoot(ROOT_REDUCER, { metaReducers })
+        BrowserAnimationsModule
       ],
       declarations: [
         WvrManifestHostComponent,
         WvrManifestComponent,
         WvrManifestEntryComponent
       ],
-      providers: [{
-        provide: APP_CONFIG,
-        useValue: testAppConfig
-      }]
+      providers: [
+        {
+          provide: APP_CONFIG,
+          useValue: testAppConfig
+        },
+        provideMockStore({initialState})
+      ]
     })
     .compileComponents();
   });

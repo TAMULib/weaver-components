@@ -1,8 +1,7 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { StoreModule } from '@ngrx/store';
-import { metaReducers, ROOT_REDUCER } from '../core/store';
+import { provideMockStore } from '@ngrx/store/testing';
 import { APP_CONFIG, testAppConfig } from '../shared/config';
 import { WvrButtonComponent } from './wvr-button.component';
 
@@ -15,6 +14,9 @@ class WvrButtonHostComponent {
 }
 
 describe('WvrButtonComponent', () => {
+  const initialState = { theme: {
+    themes: {}
+  }};
   let component: WvrButtonComponent;
   let fixture: ComponentFixture<WvrButtonComponent>;
 
@@ -23,12 +25,16 @@ describe('WvrButtonComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule,
-                StoreModule.forRoot(ROOT_REDUCER, { metaReducers })],
-      providers: [{
-        provide: APP_CONFIG,
-        useValue: testAppConfig
-      }],
+      imports: [
+        BrowserAnimationsModule
+      ],
+      providers: [
+        {
+          provide: APP_CONFIG,
+          useValue: testAppConfig
+        },
+        provideMockStore({initialState})
+      ],
       declarations: [
         WvrButtonHostComponent,
         WvrButtonComponent

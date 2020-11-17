@@ -1,8 +1,7 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { StoreModule } from '@ngrx/store';
-import { metaReducers, ROOT_REDUCER } from '../core/store';
+import { provideMockStore } from '@ngrx/store/testing';
 import { APP_CONFIG } from '../shared/config/app-config';
 import { testAppConfig } from '../shared/config/test-app-config';
 import { WvrHeaderComponent } from './wvr-header.component';
@@ -17,6 +16,9 @@ class WvrHeaderHostComponent {
 }
 
 describe('WvrHeaderComponent', () => {
+  const initialState = { theme: {
+    themes: {}
+  }};
   let component: WvrHeaderComponent;
   let fixture: ComponentFixture<WvrHeaderComponent>;
 
@@ -26,13 +28,15 @@ describe('WvrHeaderComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        BrowserAnimationsModule,
-        StoreModule.forRoot(ROOT_REDUCER, { metaReducers })
+        BrowserAnimationsModule
       ],
-      providers: [{
-        provide: APP_CONFIG,
-        useValue: testAppConfig
-      }],
+      providers: [
+        {
+          provide: APP_CONFIG,
+          useValue: testAppConfig
+        },
+        provideMockStore({initialState})
+      ],
       declarations: [
         WvrHeaderHostComponent,
         WvrHeaderComponent

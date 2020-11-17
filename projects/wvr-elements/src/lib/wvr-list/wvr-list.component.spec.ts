@@ -1,23 +1,30 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { StoreModule } from '@ngrx/store';
-import { metaReducers, ROOT_REDUCER } from '../core/store';
+import { provideMockStore } from '@ngrx/store/testing';
 import { APP_CONFIG, testAppConfig } from '../shared/config';
 import { WvrListComponent } from './wvr-list.component';
 
 describe('WvrListComponent', () => {
+  const initialState = { theme: {
+    themes: {}
+  }};
   let component: WvrListComponent;
   let fixture: ComponentFixture<WvrListComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, StoreModule.forRoot(ROOT_REDUCER, { metaReducers })],
+      imports: [
+        BrowserAnimationsModule
+      ],
       declarations: [WvrListComponent],
-      providers: [{
-        provide: APP_CONFIG,
-        useValue: testAppConfig
-      }],
+      providers: [
+        {
+          provide: APP_CONFIG,
+          useValue: testAppConfig
+        },
+        provideMockStore({initialState})
+      ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
       .compileComponents();

@@ -1,14 +1,15 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { StoreModule } from '@ngrx/store';
-import { metaReducers, ROOT_REDUCER } from '../../core/store';
+import { provideMockStore } from '@ngrx/store/testing';
 import { APP_CONFIG, testAppConfig } from '../../shared/config';
 import { WvrTabsComponent } from '../wvr-tabs.component';
-
 import { WvrTabComponent } from './wvr-tab.component';
 
 describe('WvrTabComponent', () => {
+  const initialState = { theme: {
+    themes: {}
+  }};
   let component: WvrTabComponent;
   let fixture: ComponentFixture<WvrTabComponent>;
 
@@ -17,12 +18,17 @@ describe('WvrTabComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, StoreModule.forRoot(ROOT_REDUCER, { metaReducers })],
+      imports: [
+        BrowserAnimationsModule
+      ],
       declarations: [WvrTabsComponent, WvrTabComponent],
-      providers: [{
-        provide: APP_CONFIG,
-        useValue: testAppConfig
-      }],
+      providers: [
+        {
+          provide: APP_CONFIG,
+          useValue: testAppConfig
+        },
+        provideMockStore({initialState})
+      ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
       .compileComponents();

@@ -3,6 +3,7 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild } from '@angular/core';
 import { ComponentFixture, inject, TestBed, waitForAsync } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
+import { provideMockStore } from '@ngrx/store/testing';
 import { metaReducers, ROOT_REDUCER } from '../core/store';
 import { APP_CONFIG } from '../shared/config/app-config';
 import { testAppConfig } from '../shared/config/test-app-config';
@@ -18,6 +19,9 @@ class WvrIconHostComponent {
 }
 
 describe('WvrIconComponent', () => {
+  const initialState = { theme: {
+    themes: {}
+  }};
   let component: WvrIconComponent;
   let fixture: ComponentFixture<WvrIconComponent>;
 
@@ -31,10 +35,13 @@ describe('WvrIconComponent', () => {
         BrowserAnimationsModule,
         StoreModule.forRoot(ROOT_REDUCER, { metaReducers })
       ],
-      providers: [{
-        provide: APP_CONFIG,
-        useValue: testAppConfig
-      }],
+      providers: [
+        {
+          provide: APP_CONFIG,
+          useValue: testAppConfig
+        },
+        provideMockStore({initialState})
+      ],
       declarations: [
         WvrIconComponent,
         WvrIconHostComponent
