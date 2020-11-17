@@ -97,3 +97,8 @@ export const selectTheme = (name: string) => createSelector(
   selectThemeState,
   (themeState: fromTheme.State) => themeState.themes[name]
 );
+
+export const selectCurrentTheme = createSelector(
+  selectThemeState,
+  (themeState: fromTheme.State) => themeState.themes[themeState.currentTheme]
+);

@@ -17,6 +17,8 @@ export class WvrThemeComponent implements OnChanges {
   // tslint:disable-next-line: prefer-readonly
   @Input() private name: string;
 
+  @Input() private active = false;
+
   // tslint:disable-next-line: prefer-readonly
   @Input() set map(value: string) {
     this._map = JSON5.parse(value);
@@ -32,6 +34,13 @@ export class WvrThemeComponent implements OnChanges {
         name: this.name,
         theme: this._map
       }));
+
+      if (this.active) {
+        this.store.dispatch(ThemeActions.select({
+          name: this.name
+        }));
+      }
+
     }
   }
 

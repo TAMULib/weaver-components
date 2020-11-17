@@ -11,24 +11,33 @@ const unwrap = (theme: any): ThemeVariants => theme.default;
 
 export interface State {
   themes: { [name: string]: ThemeVariants };
+  currentTheme: string;
 }
 
 export const initialState: State = {
   themes: {
     default: unwrap(defaultTheme),
     defaultDark: unwrap(defaultDarkTheme)
-  }
+  },
+  currentTheme: 'default'
 };
 
 export const reducer = createReducer(
   initialState,
   on(ThemeActions.add, (state, { name, theme }) => {
     const themes = { ...state.themes };
-    themes[name] = theme;
+    themes[name] = {
+      ...themes[name],
+      ...theme
+    };
 
     return {
       ...state,
       themes
     };
-  })
+  }),
+  on(ThemeActions.select, (state, { name }) => ({
+    ...state,
+    currentTheme: name
+  }))
 );

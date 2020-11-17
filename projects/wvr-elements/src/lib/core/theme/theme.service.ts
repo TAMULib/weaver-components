@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { filter } from 'rxjs/operators';
 import { ThemeVariants } from '../../shared/theme';
 import { hexToRgb, luminance, mix, yiq } from '../../shared/utility/color.utlity';
 import { WvrThemeableComponent } from '../../shared/wvr-themeable.component';
-import { RootState, selectTheme } from '../store';
+import { RootState, selectCurrentTheme, selectTheme } from '../store';
+
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +17,8 @@ export class ThemeService {
   }
 
   applyThemeStyle(colorThemeName: string, themeableComponent: WvrThemeableComponent): void {
-    this.store.select(selectTheme(colorThemeName))
-      .pipe(filter(theme => !!theme))
+    this.store
+      .pipe(select(selectCurrentTheme), filter(theme => !!theme))
       .subscribe(theme => {
         let styles = '';
         styles += this.processThemeVariants(theme, themeableComponent);

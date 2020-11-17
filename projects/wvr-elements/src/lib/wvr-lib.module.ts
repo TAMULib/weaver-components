@@ -38,12 +38,14 @@ import { WvrTabComponent } from './wvr-tabs/wvr-tab/wvr-tab.component';
 import { WvrTabsComponent } from './wvr-tabs/wvr-tabs.component';
 import { WvrTextComponent } from './wvr-text/wvr-text.component';
 import { WvrThemeComponent } from './wvr-theme/wvr-theme.component';
+import { WvrColorPreviewComponent } from './wvr-color-preview/wvr-color-preview.component';
 
 /** This property contains a list of components and the selector tags. */
 const elements = [
   { component: WvrAlertComponent, selector: 'wvre-alert' },
   { component: WvrButtonComponent, selector: 'wvre-button' },
   { component: WvrCardComponent, selector: 'wvre-card' },
+  { component: WvrColorPreviewComponent, selector: 'wvre-color-preview' },
   { component: WvrDropdownComponent, selector: 'wvre-dropdown' },
   { component: WvrFooterComponent, selector: 'wvre-footer' },
   { component: WvrHeaderComponent, selector: 'wvre-header' },
@@ -66,6 +68,7 @@ const components = [
   WvrAlertComponent,
   WvrButtonComponent,
   WvrCardComponent,
+  WvrColorPreviewComponent,
   WvrDropdownComponent,
   WvrFooterComponent,
   WvrHeaderComponent,
