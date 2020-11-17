@@ -10,8 +10,8 @@ import { RestService } from './rest.service';
 export class RestEffects {
 
   constructor(
-    private actions: Actions,
-    private rest: RestService
+    private readonly actions: Actions,
+    private readonly rest: RestService
   ) {
 
   }
@@ -124,16 +124,16 @@ export class RestEffects {
     )
   );
 
-  private options = (request: Request): Observable<any> => this.rest.options(request);
+  private readonly options = (request: Request): Observable<any> => this.rest.options(request);
 
-  private get = (request: Request): Observable<any> => this.rest.get(request);
+  private readonly get = (request: Request): Observable<any> => this.rest.get(request);
 
-  private post = (request: Request): Observable<any> => this.rest.post(request);
+  private readonly post = (request: Request): Observable<any> => this.rest.post(request);
 
-  private put = (request: Request): Observable<any> => this.rest.put(request);
+  private readonly put = (request: Request): Observable<any> => this.rest.put(request);
 
-  private patch = (request: Request): Observable<any> => this.rest.patch(request);
+  private readonly patch = (request: Request): Observable<any> => this.rest.patch(request);
 
-  private delete = (request: Request): Observable<any> => this.rest.delete(request);
+  private readonly delete = (request: Request): Observable<any> => this.rest.delete(request);
 
 }

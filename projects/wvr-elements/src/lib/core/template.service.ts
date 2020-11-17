@@ -3,7 +3,7 @@ import Handlebars from 'handlebars/dist/cjs/handlebars';
 import * as JSON5 from 'json5';
 import { WvrDataSelect } from './data-select';
 import { initializeHandlebarHelpers } from './handlebars-helpers';
-import { WvrDataComponent } from './wvr-data-component';
+import { WvrDataComponent } from '../shared/wvr-data.component';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +20,7 @@ export class TemplateService<T extends WvrDataComponent> {
     }
 
     setTimeout(() => {
-      const projectedContentElem = elem.querySelector('template[wvr-compile]') as HTMLTemplateElement;
+      const projectedContentElem = elem.querySelector('template[wvr-compile]');
       if (!projectedContentElem) {
         return;
       }
@@ -30,7 +30,9 @@ export class TemplateService<T extends WvrDataComponent> {
       wvrDataSelects
         .filter((s: WvrDataSelect) => !!s.manifest && !!s.entry && !!s.as)
         .forEach((s: WvrDataSelect) => {
-          component.data[s.as].subscribe(d => this.compile(d, s, elem, projectedContentElem));
+          component.data[s.as].subscribe(d => {
+            this.compile(d, s, elem, projectedContentElem as HTMLElement);
+          });
         });
     });
   }

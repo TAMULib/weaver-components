@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, Injector, Input, OnInit } from '@angular/core';
-import { Theme } from '../../shared/theme.type';
+import { ThemeVariantName } from '../../shared/theme';
 import { WvrBaseComponent } from '../../shared/wvr-base.component';
 
 /**
@@ -19,7 +19,7 @@ export class WvrListItemComponent extends WvrBaseComponent implements OnInit, Af
   @Input() description: string;
 
   /** The visual contextualization for this list item. */
-  @Input() context: Theme;
+  @Input() themeVariant: ThemeVariantName;
 
   /** A heading to be displayed for list items with custom content. */
   @Input() customContentItemHeading: string;
@@ -33,15 +33,18 @@ export class WvrListItemComponent extends WvrBaseComponent implements OnInit, Af
   /** A contructed identifier dervied from this comonents id and the prefix `wvr-li` */
   htmlId = `wvr-li-${this.id}`;
 
+  variantTypes = ['list-group-item'];
+
   constructor(injector: Injector) {
     super(injector);
   }
 
   /** Registers this list item with the parent list. */
   ngOnInit(): void {
+    super.ngOnInit();
     const parent = this._eRef.nativeElement.parentNode.parentNode.parentNode;
     this.listType = parent.listType;
-    this.context = this.context ? this.context : parent.context ? parent.context : undefined;
+    this.themeVariant = this.themeVariant ? this.themeVariant : parent.themeVariant ? parent.themeVariant : undefined;
   }
 
   ngAfterViewInit(): void {

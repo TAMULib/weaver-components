@@ -1,0 +1,29 @@
+{
+  "primary": {
+    "baseColor": "#007bff"
+  },
+  "secondary": {
+    "baseColor": "#6c757d"
+  },
+  "success": {
+    "baseColor": "#198754"
+  },
+  "danger": {
+    "baseColor": "#dc3545"
+  },
+  "warning": {
+    "baseColor": "#ffc107"
+  },
+  "info": {
+    "baseColor": "#0dcaf0"
+  },
+  "light": {
+    "baseColor": "#f8f9fa"
+  },
+  "dark": {
+    "baseColor": "#212529"
+  },
+  "accent": {
+    "baseColor": "tomato"
+  }
+}

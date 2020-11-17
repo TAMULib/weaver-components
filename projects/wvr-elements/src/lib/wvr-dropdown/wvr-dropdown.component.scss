@@ -1,6 +1,10 @@
 @import "../shared/styles/wvr-variables.scss";
+@import "../shared/styles/variables";
 
 :host {
+  
+  @extend .variables;
+
   --wvr-dropdown-menu-animation-speed: 0.25s;
   --wvr-dropdown-menu-background: var(--wvr-white);
   --wvr-dropdown-menu-border: 1px solid var(--wvr-gray-dark);

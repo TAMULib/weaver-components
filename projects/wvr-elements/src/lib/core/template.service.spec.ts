@@ -2,6 +2,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
+import { APP_CONFIG, testAppConfig } from '../shared/config';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 import { WvrItWorksComponent } from '../wvr-it-works/wvr-it-works.component';
 import { WvrDataSelect } from './data-select';
@@ -19,6 +20,10 @@ describe('TemplateService', () => {
     TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, StoreModule.forRoot(ROOT_REDUCER, { metaReducers })],
       declarations: [WvrItWorksComponent],
+      providers: [{
+        provide: APP_CONFIG,
+        useValue: testAppConfig
+      }],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     });
     service = TestBed.inject(TemplateService);

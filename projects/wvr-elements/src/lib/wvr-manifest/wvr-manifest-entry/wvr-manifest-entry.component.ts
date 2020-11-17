@@ -23,9 +23,12 @@ export class WvrManifestEntryComponent implements OnInit {
 
   private parent: WvrManifestComponent;
 
-  // tslint:disable-next-line:no-empty
-  constructor(private readonly eRef: ElementRef<HTMLElement>, 
-              private readonly componentRegistry: ComponentRegistryService<WvrBaseComponent>) {}
+  constructor(
+    private readonly eRef: ElementRef<HTMLElement>,
+    private readonly componentRegistry: ComponentRegistryService<WvrBaseComponent>
+  ) {
+
+  }
 
   ngOnInit(): void {
     const parentElem = this.eRef.nativeElement.closest('wvre-manifest, wvr-manifest-component');

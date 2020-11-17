@@ -8,13 +8,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { AnimationService } from './core/animation.service';
 import { IconService } from './core/icon.service';
 import { ManifestEffects } from './core/manifest/manifest.effects';
 import { MobileService } from './core/mobile.service';
 import { RestEffects } from './core/rest/rest.effects';
 import { metaReducers, ROOT_REDUCER } from './core/store';
 import { TemplateService } from './core/template.service';
-import { WvrAnimationService } from './core/wvr-animation.service';
+import { ThemeEffects } from './core/theme/theme.effects';
+import { ThemeService } from './core/theme/theme.service';
 import { DefaultPipe } from './shared/pipes/default.pipe';
 import { SafePipe } from './shared/pipes/safe.pipe';
 import { WvrAlertComponent } from './wvr-alert/wvr-alert.component';
@@ -34,6 +36,7 @@ import { WvrNavListComponent } from './wvr-nav-list/wvr-nav-list.component';
 import { WvrTabComponent } from './wvr-tabs/wvr-tab/wvr-tab.component';
 import { WvrTabsComponent } from './wvr-tabs/wvr-tabs.component';
 import { WvrTextComponent } from './wvr-text/wvr-text.component';
+import { WvrThemeComponent } from './wvr-theme/wvr-theme.component';
 
 /** This property contains a list of components and the selector tags. */
 const elements = [
@@ -53,7 +56,8 @@ const elements = [
   { component: WvrNavLiComponent, selector: 'wvre-nav-li' },
   { component: WvrTextComponent, selector: 'wvre-text' },
   { component: WvrTabsComponent, selector: 'wvre-tabs' },
-  { component: WvrTabComponent, selector: 'wvre-tab' }
+  { component: WvrTabComponent, selector: 'wvre-tab' },
+  { component: WvrThemeComponent, selector: 'wvre-theme' }
 ];
 
 /** This property contains a list of components classes. */
@@ -74,7 +78,8 @@ const components = [
   WvrManifestComponent,
   WvrManifestEntryComponent,
   WvrTabsComponent,
-  WvrTabComponent
+  WvrTabComponent,
+  WvrThemeComponent
 ];
 
 const pipes = [
@@ -107,8 +112,9 @@ const registerCustomElements = (injector: Injector) => {
     NgbModule,
     StoreModule.forRoot(ROOT_REDUCER, { metaReducers }),
     EffectsModule.forRoot([
+      ManifestEffects,
       RestEffects,
-      ManifestEffects
+      ThemeEffects
     ]),
     StoreDevtoolsModule.instrument()
   ],
@@ -117,9 +123,10 @@ const registerCustomElements = (injector: Injector) => {
     ...pipes
   ],
   providers: [
+    AnimationService,
     IconService,
     MobileService,
-    WvrAnimationService,
+    ThemeService,
     TemplateService
   ],
   declarations: [

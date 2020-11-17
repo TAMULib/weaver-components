@@ -1,0 +1,276 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+
+{{#each themeVariants}}
+${{@key}}: {{this.baseColor}};
+{{/each}}
+
+$theme-colors: (
+{{#each themeVariants}}
+  "{{@key}}": ${{@key}}{{#if @last}}{{else}},{{/if}}
+{{/each}}
+);
+
+// Bootstrap Alert Variants
+
+$alert-variations: ();
+// stylelint-disable-next-line scss/dollar-variable-default
+$alert-variations: map-merge(
+  (
+
+  {{#each themeVariants}}
+    '{{@key}}-alert-bg': theme-color-level("{{@key}}", $alert-bg-level),
+  {{/each}}
+
+  {{#each themeVariants}}
+    '{{@key}}-alert-border': theme-color-level("{{@key}}", $alert-border-level),
+  {{/each}}
+
+  {{#each themeVariants}}
+    '{{@key}}-alert-color': theme-color-level("{{@key}}", $alert-color-level){{#if @last}}{{else}},{{/if}}
+  {{/each}}
+
+  ),
+  $alert-variations
+);
+
+// Bootstrap Badge Variants
+
+$badge-variations: ();
+// stylelint-disable-next-line scss/dollar-variable-default
+$badge-variations: map-merge(
+  (
+
+    {{#each themeVariants}}
+      '{{@key}}-badge-bg': ${{@key}},
+    {{/each}}
+
+    {{#each themeVariants}}
+      '{{@key}}-badge-color': color-yiq(${{@key}}){{#if @last}}{{else}},{{/if}}
+    {{/each}}
+
+  ),
+  $badge-variations
+);
+
+// Bootstrap List Group Item Variants
+
+$list-group-item-variations: ();
+// stylelint-disable-next-line scss/dollar-variable-default
+$list-group-item-variations: map-merge(
+  (
+
+    {{#each themeVariants}}
+      '{{@key}}-list-group-item-bg': theme-color-level("{{@key}}", -9),
+    {{/each}}
+
+    {{#each themeVariants}}
+      '{{@key}}-list-group-item-color': theme-color-level("{{@key}}", 6){{#if @last}}{{else}},{{/if}}
+    {{/each}}
+
+  ),
+  $list-group-item-variations
+);
+
+// Bootstrap Table Variants
+
+$table-variations: ();
+// stylelint-disable-next-line scss/dollar-variable-default
+$table-variations: map-merge(
+  (
+
+    {{#each themeVariants}}
+      '{{@key}}-table-bg': theme-color-level("{{@key}}", $table-bg-level),
+    {{/each}}
+
+    {{#each themeVariants}}
+      '{{@key}}-table-border': theme-color-level("{{@key}}", $table-border-level){{#if @last}}{{else}},{{/if}}
+    {{/each}}
+
+  ),
+  $table-variations
+);
+
+// Bootstrap Button Variants
+
+$button-variations: ();
+// stylelint-disable-next-line scss/dollar-variable-default
+$button-variations: map-merge(
+  (
+
+    {{#each themeVariants}}
+      '{{@key}}-button-color': color-yiq(${{@key}}),
+    {{/each}}
+
+    {{#each themeVariants}}
+      '{{@key}}-button-bg': ${{@key}},
+    {{/each}}
+
+    {{#each themeVariants}}
+      '{{@key}}-button-border': ${{@key}}, 
+    {{/each}}
+
+    {{#each themeVariants}}
+      '{{@key}}-button-hover-color': color-yiq(darken(${{@key}}, 7.5%)),
+    {{/each}}
+
+    {{#each themeVariants}}
+      '{{@key}}-button-hover-bg': darken(${{@key}}, 7.5%),
+    {{/each}}
+
+    {{#each themeVariants}}
+      '{{@key}}-button-hover-border': darken(${{@key}}, 10%),
+    {{/each}}
+
+    {{#each themeVariants}}
+      '{{@key}}-button-active-color': color-yiq(darken(${{@key}}, 10%)),
+    {{/each}}
+
+    {{#each themeVariants}}
+      '{{@key}}-button-active-bg': darken(${{@key}}, 10%),
+    {{/each}}
+
+    {{#each themeVariants}}
+      '{{@key}}-button-active-border': darken(${{@key}}, 12.5%),
+    {{/each}}
+
+    {{#each themeVariants}}
+      '{{@key}}-button-box-shadow-color': rgba(mix(color-yiq(${{@key}}), ${{@key}}, 15%), .5){{#if @last}}{{else}},{{/if}}
+    {{/each}}
+  ),
+  $button-variations
+);
+
+// Bootstrap Button Outline Variants
+
+$button-outline-variations: ();
+// stylelint-disable-next-line scss/dollar-variable-default
+$button-outline-variations: map-merge(
+  (
+
+    {{#each themeVariants}}
+      '{{@key}}-button-outline-color': ${{@key}},
+    {{/each}}
+
+    {{#each themeVariants}}
+      '{{@key}}-button-outline-color-hover': color-yiq(${{@key}}),
+    {{/each}}
+
+    {{#each themeVariants}}
+      '{{@key}}-button-outline-box-shadow-color': rgba(${{@key}}, .5){{#if @last}}{{else}},{{/if}}
+    {{/each}}
+
+  ),
+  $button-outline-variations
+);
+
+.variables {
+
+  --yiq-contrasted-threshold:#{$yiq-contrasted-threshold};
+  --yiq-text-dark:#{$yiq-text-dark};
+  --yiq-text-light:#{$yiq-text-light};
+
+  --theme-color-interval:#{$theme-color-interval};
+
+  --alert-bg-level:#{$alert-bg-level};
+  --alert-border-level:#{$alert-border-level};
+  --alert-color-level:#{$alert-color-level};
+
+  --list-group-item-bg-level:-9;
+  --list-group-item-color-level:6;
+
+  --table-bg-level:#{$table-bg-level};
+  --table-border-level:#{$table-border-level};
+
+  --black:#{$black};
+  --white:#{$white};
+
+  @each $variation, $value in $alert-variations {
+    --#{$variation}:#{$value};
+  }
+
+  @each $variation, $value in $badge-variations {
+    --#{$variation}:#{$value};
+  }
+
+  @each $variation, $value in $list-group-item-variations {
+    --#{$variation}:#{$value};
+  }
+
+  @each $variation, $value in $table-variations {
+    --#{$variation}:#{$value};
+  }
+
+  @each $variation, $value in $button-outline-variations {
+    --#{$variation}:#{$value};
+  }
+
+  @each $variation, $value in $button-variations {
+    --#{$variation}:#{$value};
+  }
+
+  @each $color, $value in $colors {
+    --#{$color}:#{$value};
+  }
+
+  @each $color, $value in $theme-colors {
+    --#{$color}:#{$value};
+  }
+
+  @each $bp, $value in $grid-breakpoints {
+    --breakpoint-#{$bp}:#{$value};
+  }
+
+  // Use `inspect` for lists so that quoted items keep the quotes.
+  // See https://github.com/sass/sass/issues/2383#issuecomment-336349172
+  --font-family-sans-serif:#{inspect($font-family-sans-serif)};
+  --font-family-monospace:#{inspect($font-family-monospace)};
+}
+
+@each $variation, $value in $alert-variations {
+  $alert-variations: map-merge($alert-variations, ($variation: var(--#{$variation})));
+}
+
+@each $variation, $value in $badge-variations {
+  $badge-variations: map-merge($badge-variations, ($variation: var(--#{$variation})));
+}
+
+@each $variation, $value in $list-group-item-variations {
+  $list-group-item-variations: map-merge($list-group-item-variations, ($variation: var(--#{$variation})));
+}
+
+@each $variation, $value in $table-variations {
+  $table-variations: map-merge($table-variations, ($variation: var(--#{$variation})));
+}
+
+@each $variation, $value in $button-outline-variations {
+  $button-outline-variations: map-merge($button-outline-variations, ($variation: var(--#{$variation})));
+}
+
+@each $variation, $value in $button-variations {
+  $button-variations: map-merge($button-variations, ($variation: var(--#{$variation})));
+}
+
+@function alert-variation($color: "primary", $type: "alert-color") {
+  @return map-get($alert-variations, #{$color}-#{$type});
+}
+
+@function badge-variation($color: "primary", $type: "badge-color") {
+  @return map-get($badge-variations, #{$color}-#{$type});
+}
+
+@function list-group-item-variation($color: "primary", $type: "list-group-item-color") {
+  @return map-get($list-group-item-variations, #{$color}-#{$type});
+}
+
+@function table-variation($color: "primary", $type: "table-border") {
+  @return map-get($table-variations, #{$color}-#{$type});
+}
+
+@function button-outline-variation($color: "primary", $type: "button-outline-color") {
+  @return map-get($button-outline-variations, #{$color}-#{$type});
+}
+
+@function button-variation($color: "primary", $type: "button-color") {
+  @return map-get($button-variations, #{$color}-#{$type});
+}
