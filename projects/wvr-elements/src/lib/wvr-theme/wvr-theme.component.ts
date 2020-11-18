@@ -12,7 +12,7 @@ import { ThemeVariants } from '../shared/theme';
 })
 export class WvrThemeComponent implements OnChanges {
 
-  private _map: ThemeVariants;
+  private _variants: ThemeVariants;
 
   // tslint:disable-next-line: prefer-readonly
   @Input() private name: string;
@@ -20,8 +20,8 @@ export class WvrThemeComponent implements OnChanges {
   @Input() private active = false;
 
   // tslint:disable-next-line: prefer-readonly
-  @Input() set map(value: string) {
-    this._map = JSON5.parse(value);
+  @Input() set variants(value: string) {
+    this._variants = JSON5.parse(value);
   }
 
   constructor(private readonly store: Store<RootState>) {
@@ -29,19 +29,19 @@ export class WvrThemeComponent implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (this.name && this._map) {
+    if (this.name && this._variants) {
       this.store.dispatch(ThemeActions.add({
         name: this.name,
-        theme: this._map
+        theme: this._variants
       }));
-
-      if (this.active) {
-        this.store.dispatch(ThemeActions.select({
-          name: this.name
-        }));
-      }
-
     }
+
+    if (this.name && this.active) {
+      this.store.dispatch(ThemeActions.select({
+        name: this.name
+      }));
+    }
+
   }
 
 }
