@@ -21,5 +21,5 @@ Object.keys(defaults.parsed)
   });
 
 fs.writeFile('./dist/bundle/config.json', configTemplate);
-fs.writeFile('./static/weaver-components/docs/usage/config.json', configTemplate);
+fs.writeFile('./static/config.json', configTemplate);
 fs.writeFile('./src/config.json', configTemplate);
