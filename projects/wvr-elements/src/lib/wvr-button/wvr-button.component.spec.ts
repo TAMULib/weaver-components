@@ -10,7 +10,8 @@ import { WvrButtonComponent } from './wvr-button.component';
   // tslint:disable-next-line: component-max-inline-declarations
   template:  `<wvr-button-component [themeVariant]="'primary'" [btnType]="button" [btnSize]="small" [background]="'magenta'"
                 [backgroundActive]="yellow" [backgroundHover]="green" [borderColor]="'black'" [borderActive]="'black'"
-                [borderHover]="'red'" [borderFocus]="'black'" [boxShadowFocus]="teal">
+                [borderHover]="'red'" [borderFocus]="'black'" [boxShadowFocus]="teal"
+                [color]="green" [colorActive]="yellow" [colorHover]="brown">
               </wvr-button-component>
               `})
 class WvrButtonHostComponent {
@@ -138,6 +139,9 @@ describe('WvrButtonComponent', () => {
     component.applyThemeOverride('--primary-button-color', 'green');
     expect(component.themeOverrides[elem.style[0]])
     .toEqual(elem.style.getPropertyValue('--primary-button-color'));
+    hostComponent.wvrButtonComponent.applyThemeOverride('--primary-button-color', 'yellow');
+    expect(hostComponent.wvrButtonComponent.themeOverrides[hostComponent.wvrButtonComponent._eRef.nativeElement.style[0]])
+    .toEqual('magenta');
   });
 
   it('should set button color in active state', () => {
@@ -145,6 +149,9 @@ describe('WvrButtonComponent', () => {
     component.applyThemeOverride('--primary-button-active-color', 'yellow');
     expect(component.themeOverrides[elem.style[0]])
     .toEqual(elem.style.getPropertyValue('--primary-button-active-color'));
+    hostComponent.wvrButtonComponent.applyThemeOverride('--primary-button-active-color', 'green');
+    expect(hostComponent.wvrButtonComponent.themeOverrides[hostComponent.wvrButtonComponent._eRef.nativeElement.style[0]])
+    .toEqual('magenta');
   });
 
   it('should set button color in hover state', () => {
