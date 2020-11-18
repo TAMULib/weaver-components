@@ -826,6 +826,14 @@
 
   </div>
 
+  <div class="container index-container">
+
+    <wvre-text value="Wvr Theme Color Preview" text-decoration="underline"></wvre-text><br /><br />
+
+    <wvre-color-preview></wvre-color-preview>
+
+  </div>
+
   <wvre-footer theme="DefaultColorTheme">
     <wvre-nav-list aligned="CENTER">
       <wvre-nav-li>
@@ -845,33 +853,35 @@
     <wvre-manifest-entry name="Departments" path="/ldap/departments" methods="GET" mapping-strategy="none"></wvre-manifest-entry>
   </wvre-manifest>
 
-  <wvre-theme name="defaultDark" map="{
+  <wvre-theme name="defaultDark"></wvre-theme>
+
+  <wvre-theme name="theme-demo" active="true" variants="{
     primary: {
-      baseColor: 'teal'
+      baseColor: '#375a7f'
     },
     secondary: {
-      baseColor: 'orange'
+      baseColor: '#444'
     },
     success: {
-      baseColor: 'tomato'
+      baseColor: '#00bc8c'
     },
     danger: {
-      baseColor: 'yellow'
+      baseColor: '#e74c3c'
     },
     warning: {
-      baseColor: 'blue'
+      baseColor: '#f39c12'
     },
     info: {
-      baseColor: 'purple'
+      baseColor: '#3498db'
     },
     light: {
-      baseColor: 'gray'
+      baseColor: '#adb5bd'
     },
     dark: {
-      baseColor: 'black'
+      baseColor: '#222'
     },
     accent: {
-      baseColor: 'magenta'
+      baseColor: '#6f42c1'
     }
   }"></wvre-theme>
 

@@ -1,0 +1,12 @@
+<div class="inline-block">
+  <wvr-card-component
+    class="swatches"
+    [panelFormat]="'solid'"
+    [themeVariant]="tv.key"
+    *ngFor="let tv of currentTheme | async | keyvalue : originalOrdering">
+    <wvre-card-header>
+      <h3>{{tv.key}}</h3>
+    </wvre-card-header>
+    {{tv.value.baseColor}}
+  </wvr-card-component>
+</div>
