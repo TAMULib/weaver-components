@@ -5,6 +5,8 @@ import { select } from '@ngrx/store';
 import { selectCurrentTheme } from '../core/store';
 import { Observable } from 'rxjs';
 import * as ThemeActions from '../core/theme/theme.actions';
+import { KeyValue } from '@angular/common';
+import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'constants';
 
 @Component({
   selector: 'wvr-color-preview-component',
@@ -25,6 +27,10 @@ export class WvrColorPreviewComponent extends WvrBaseComponent  implements OnIni
     this.currentTheme = this.store
       .pipe(select(selectCurrentTheme));
 
+  }
+
+  originalOrdering(): number {
+    return 0;
   }
 
 }
