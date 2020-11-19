@@ -12,7 +12,8 @@ import { WvrDropdownComponent } from './wvr-dropdown.component';
   template: `<wvr-dropdown-component
               btnTextDecoration="none"
               btnTextDecorationActive="underline"
-              btnTextDecorationHover="underline">
+              btnTextDecorationHover="underline"
+              btnTextDecorationFocus="none">
             </wvr-dropdown-component>`
 })
 class WvrDropdownHostComponent {
@@ -96,6 +97,11 @@ describe('WvrDropdownComponent', () => {
   it('should have default button text decoration set', () => {
     expect(component.btnTextDecoration)
       .toBe('var(--wvr-btn-secondary-text-decoration-default)');
+  });
+
+  it('should have default button text decoration focus set', () => {
+    expect(component.btnTextDecorationFocus)
+      .toBe('var(--wvr-btn-secondary-focus-text-decoration-default)');
   });
 
   it('should have toggleOn defined', () => {
