@@ -16,6 +16,7 @@ angularCli.default({
     inputStream: process.stdin,
     outputStream: process.stdout
   }).then(c => {
+    fs.copySync('projects/wvr-elements/src/lib/shared/styles', `${elementsPath}/styles`);
     fs.copySync('scripts', "dist/wvr-elements/scripts");
     fs.copySync('.wvr-ud', "dist/wvr-elements/.wvr-ud");
 
