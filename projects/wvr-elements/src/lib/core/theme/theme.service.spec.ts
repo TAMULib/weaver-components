@@ -1,11 +1,10 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { ComponentFixture, TestBed ,waitForAsync } from '@angular/core/testing';
+import { TestBed , waitForAsync } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { metaReducers, ROOT_REDUCER } from '../store';
 import { ThemeService } from './theme.service';
 import { APP_CONFIG, testAppConfig } from '../../shared/config';
-import { WvrThemeableComponent } from '../../shared/wvr-themeable.component';
 
 describe('ThemeService', () => {
   let service: ThemeService;
