@@ -9,7 +9,11 @@ import { WvrDropdownComponent } from './wvr-dropdown.component';
 @Component({
   selector: 'wvr-dropdown-host-component',
   // tslint:disable-next-line:component-max-inline-declarations
-  template: '<wvr-dropdown-component></wvr-dropdown-component>'
+  template: `<wvr-dropdown-component
+              btnTextDecoration="none"
+              btnTextDecorationActive="underline"
+              btnTextDecorationHover="underline">
+            </wvr-dropdown-component>`
 })
 class WvrDropdownHostComponent {
   @ViewChild(WvrDropdownComponent) dropDown: WvrDropdownComponent;
@@ -65,6 +69,33 @@ describe('WvrDropdownComponent', () => {
   it('should have themeVariant defined', () => {
     expect(component.themeVariant)
       .toEqual('secondary');
+    component.themeVariant = 'primary';
+    fixture.detectChanges();
+    expect(component.themeVariant)
+      .toEqual('primary');
+  });
+
+  it('should have button href defined', () => {
+    expect(component.btnHref)
+      .toBe('');
+    component.btnHref = 'linkUrl';
+    fixture.detectChanges();
+    expect(component.btnHref)
+      .toBe('linkUrl');
+  });
+
+  it('should have button size defined', () => {
+    expect(component.btnSize)
+      .toBe('');
+    component.btnSize = 'small';
+    fixture.detectChanges();
+    expect(component.btnSize)
+      .toBe('small');
+  });
+
+  it('should have default button text decoration set', () => {
+    expect(component.btnTextDecoration)
+      .toBe('var(--wvr-btn-secondary-text-decoration-default)');
   });
 
   it('should have toggleOn defined', () => {
