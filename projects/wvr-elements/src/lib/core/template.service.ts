@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import { Injectable } from '@angular/core';
 import Handlebars from 'handlebars/dist/cjs/handlebars';
 import * as JSON5 from 'json5';
