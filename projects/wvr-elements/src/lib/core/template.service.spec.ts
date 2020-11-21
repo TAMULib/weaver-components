@@ -7,7 +7,6 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
 import { WvrItWorksComponent } from '../wvr-it-works/wvr-it-works.component';
 import { WvrDataSelect } from './data-select';
 import { metaReducers, ROOT_REDUCER } from './store';
-
 import { TemplateService } from './template.service';
 
 describe('TemplateService', () => {

@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import { InjectionToken } from '@angular/core';
 import { ActionReducerMap, createFeatureSelector, createSelector, MetaReducer } from '@ngrx/store';
 import { Manifest } from './manifest/manifest';

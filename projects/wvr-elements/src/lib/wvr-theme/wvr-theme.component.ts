@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as JSON5 from 'json5';
