@@ -69,4 +69,9 @@ describe('WvrIconComponent', () => {
     })
   );
 
+  it('should have as size as  "24px"', () => {
+    expect(component.size)
+      .toEqual('24px');
+  });
+
 });

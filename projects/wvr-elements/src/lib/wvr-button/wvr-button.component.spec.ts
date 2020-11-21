@@ -7,8 +7,13 @@ import { WvrButtonComponent } from './wvr-button.component';
 
 @Component({
   selector: 'wvr-button-host-component',
-  template:  `<wvr-button-component class="btn btn-secondary" [btnType]="'button'" [btnSize]="'small'"></wvr-button-component>`
-})
+  // tslint:disable-next-line: component-max-inline-declarations
+  template:  `<wvr-button-component [themeVariant]="'primary'" [btnType]="button" [btnSize]="small" [background]="'magenta'"
+                [backgroundActive]="yellow" [backgroundHover]="green" [borderColor]="'black'" [borderActive]="'black'"
+                [borderHover]="'red'" [borderFocus]="'black'" [boxShadowFocus]="teal"
+                [color]="green" [colorActive]="yellow" [colorHover]="brown">
+              </wvr-button-component>
+              `})
 class WvrButtonHostComponent {
   @ViewChild(WvrButtonComponent) wvrButtonComponent: WvrButtonComponent;
 }
@@ -68,6 +73,92 @@ describe('WvrButtonComponent', () => {
   it("should have as themeVariant as 'button'", () => {
     expect(component.btnType)
       .toEqual('button');
+  });
+
+  it('should set background', () => {
+    const elem = component._eRef.nativeElement;
+    component.applyThemeOverride('--primary-button-bg', 'magenta');
+    expect(component.themeOverrides[elem.style[0]])
+    .toEqual(elem.style.getPropertyValue('--primary-button-bg'));
+    hostComponent.wvrButtonComponent.applyThemeOverride('--primary-button-bg', 'yellow');
+    expect(hostComponent.wvrButtonComponent.themeOverrides[hostComponent.wvrButtonComponent._eRef.nativeElement.style[0]])
+    .toEqual('yellow');
+  });
+
+  it('should set active background', () => {
+    const elem = component._eRef.nativeElement;
+    component.applyThemeOverride('--primary-button-active-bg', 'yellow');
+    expect(component.themeOverrides[elem.style[0]])
+    .toEqual(elem.style.getPropertyValue('--primary-button-active-bg'));
+  });
+
+  it('should set hover background', () => {
+    const elem = component._eRef.nativeElement;
+    component.applyThemeOverride('--primary-button-hover-bg', 'green');
+    expect(component.themeOverrides[elem.style[0]])
+    .toEqual(elem.style.getPropertyValue('--primary-button-hover-bg'));
+  });
+
+  it('should set border color', () => {
+    const elem = component._eRef.nativeElement;
+    component.applyThemeOverride('--primary-button-border', 'black');
+    expect(component.themeOverrides[elem.style[0]])
+    .toEqual(elem.style.getPropertyValue('--primary-button-border'));
+  });
+
+  it('should set border color in active state', () => {
+    const elem = component._eRef.nativeElement;
+    component.applyThemeOverride('--primary-button-active-border', 'black');
+    expect(component.themeOverrides[elem.style[0]])
+    .toEqual(elem.style.getPropertyValue('--primary-button-active-border'));
+  });
+
+  it('should set button border color in hover state', () => {
+    const elem = component._eRef.nativeElement;
+    component.applyThemeOverride('--primary-button-hover-border', 'red');
+    expect(component.themeOverrides[elem.style[0]])
+    .toEqual(elem.style.getPropertyValue('--primary-button-hover-border'));
+  });
+
+  it('should set button border in focus state', () => {
+    const elem = component._eRef.nativeElement;
+    component.applyThemeOverride('--primary-button-focus-border', 'black');
+    expect(component.themeOverrides[elem.style[0]])
+    .toEqual(elem.style.getPropertyValue('--primary-button-focus-border'));
+  });
+
+  it('should set box shadow color in focus state', () => {
+    const elem = component._eRef.nativeElement;
+    component.applyThemeOverride('--primary-button-focus-box-shadow', 'teal');
+    expect(component.themeOverrides[elem.style[0]])
+    .toEqual(elem.style.getPropertyValue('--primary-button-focus-box-shadow'));
+  });
+
+  it('should set button color', () => {
+    const elem = component._eRef.nativeElement;
+    component.applyThemeOverride('--primary-button-color', 'green');
+    expect(component.themeOverrides[elem.style[0]])
+    .toEqual(elem.style.getPropertyValue('--primary-button-color'));
+    hostComponent.wvrButtonComponent.applyThemeOverride('--primary-button-color', 'yellow');
+    expect(hostComponent.wvrButtonComponent.themeOverrides[hostComponent.wvrButtonComponent._eRef.nativeElement.style[0]])
+    .toEqual('magenta');
+  });
+
+  it('should set button color in active state', () => {
+    const elem = component._eRef.nativeElement;
+    component.applyThemeOverride('--primary-button-active-color', 'yellow');
+    expect(component.themeOverrides[elem.style[0]])
+    .toEqual(elem.style.getPropertyValue('--primary-button-active-color'));
+    hostComponent.wvrButtonComponent.applyThemeOverride('--primary-button-active-color', 'green');
+    expect(hostComponent.wvrButtonComponent.themeOverrides[hostComponent.wvrButtonComponent._eRef.nativeElement.style[0]])
+    .toEqual('magenta');
+  });
+
+  it('should set button color in hover state', () => {
+    const elem = component._eRef.nativeElement;
+    component.applyThemeOverride('--primary-button-hover-color', 'yellow');
+    expect(component.themeOverrides[elem.style[0]])
+    .toEqual(elem.style.getPropertyValue('--primary-button-hover-color'));
   });
 
 });
