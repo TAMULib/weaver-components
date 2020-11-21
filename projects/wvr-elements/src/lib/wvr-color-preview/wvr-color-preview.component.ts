@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import { Component, Injector, OnInit } from '@angular/core';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 import { ThemeVariants } from '../shared/theme';

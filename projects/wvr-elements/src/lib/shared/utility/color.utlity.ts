@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 const nameToHex: Map<string, string> = new Map<string, string>([
   ['aliceblue', '#f0f8ff'],
   ['antiquewhite', '#faebd7'],

@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import { createReducer, on } from '@ngrx/store';
 import { ThemeVariants } from '../../shared/theme';
 import * as DefaultDarkTheme from '../../shared/theme/default-dark-theme.json';
