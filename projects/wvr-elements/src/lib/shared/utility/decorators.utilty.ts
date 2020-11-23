@@ -1,6 +1,7 @@
 import { MemoizedSelector, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
+import { wvrTimeout } from './timing.utility';
 
 /** Used to delay the repeated execution of the decorated method until the specified time has elapsed. */
 // tslint:disable-next-line:only-arrow-functions
@@ -10,11 +11,14 @@ function debounce(delay = 300): MethodDecorator {
     const timeoutKey = Symbol();
     const original = descriptor.value;
     // tslint:disable-next-line:typedef
-    descriptor.value = function (...args) {
+    descriptor.value = function(...args) {
       // tslint:disable-next-line:no-invalid-this
-      clearTimeout(this[timeoutKey]);
+      if (this[timeoutKey]) {
+        // tslint:disable-next-line:no-invalid-this
+        this[timeoutKey]();
+      }
       // tslint:disable-next-line:no-invalid-this
-      this[timeoutKey] = setTimeout(() => original.apply(this, args), delay);
+      this[timeoutKey] = wvrTimeout(() => original.apply(this, args), delay);
     };
 
     return descriptor;

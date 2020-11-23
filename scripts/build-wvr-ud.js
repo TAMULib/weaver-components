@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-
 const process = require('process');
 const fs = require('fs-extra');
 const path = require('path');
@@ -9,8 +8,8 @@ const glob = require("glob");
 const concat = require('concat');
 const packageJson = require(`${process.cwd()}/package.json`);
 const chalk = require('chalk');
-require('console-stamp')(console, { 
-  format: ':date(HH:MM:ss)' 
+require('console-stamp')(console, {
+  format: ':date(HH:MM:ss)'
 } );
 const log = console.log;
 
@@ -54,6 +53,7 @@ const exaplestDest = `${CONFIG.output}/examples`;
 fs.ensureDirSync(exaplestDest);
 examples.forEach(e=>{
   const componentPath = e.replace(EXAMPLE_PATTER,'ts');
+  const templatePath = e.replace(EXAMPLE_PATTER, 'html');
   const stylesPath = e.replace(EXAMPLE_PATTER,'scss');
   const pathParts = e.split('/');
   const exampleName = pathParts[pathParts.length-1];
@@ -63,11 +63,15 @@ examples.forEach(e=>{
   let {document} = (new JSDOM(exampleContent)).window;
   let componentSourceElement = document.createElement('component-source');
   componentSourceElement.innerHTML = componentSource;
-  let stylesSource = fs.readFileSync(stylesPath, 'utf8');
+  let templateSource = fs.existsSync(templatePath) ?  fs.readFileSync(templatePath, 'utf8') : 'No Template Found.';
+  let templateElement = document.createElement('component-template');
+  templateElement.innerHTML = templateSource;
+  let stylesSource = fs.existsSync(templatePath) ? fs.readFileSync(stylesPath, 'utf8') : 'No Styles Found.';
   let componentScssElement = document.createElement('component-scss');
   componentScssElement.innerHTML = stylesSource;
   document.querySelectorAll('example').forEach(ex=>{
     ex.appendChild(componentSourceElement.cloneNode(true));
+    ex.appendChild(templateElement.cloneNode(true));
     ex.appendChild(componentScssElement.cloneNode(true));
   });
   fs.writeFileSync(`${exaplestDest}/${exampleName}`, document.body.innerHTML);
@@ -112,7 +116,7 @@ additionalAssets.forEach(a=>{
   } else {
     fs.copyFileSync(a, `${CONFIG.output}/assets/${fileName}`);
   }
-}); 
+});
 log(`    ${chalk.cyanBright('Total Additional Assets')}: ${chalk.blue(additionalAssets.length)}`);
 
 log(`    ${chalk.green('Including Static Content:')}`);
@@ -146,7 +150,7 @@ concat(stlyeFiles, `${WVR_UD_STATIC_ASSETS_DIR}/styles.css`).finally(() => {
   });
 
   log(`    ${chalk.cyanBright('Total content')}: ${chalk.blue(staticAssets.length)}`);
-  
+
   // Prepare Index
   log(`    ${chalk.green('Parsing Index Template:')}`);
   log(`    ${chalk.cyan('- Parsing:     index-base.html')}`);

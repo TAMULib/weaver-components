@@ -1,8 +1,8 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { StoreModule } from '@ngrx/store';
-import { metaReducers, ROOT_REDUCER } from '../core/store';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import { APP_CONFIG, testAppConfig } from '../shared/config';
 import { WvrAlertComponent } from './wvr-alert.component';
 
 @Component({
@@ -15,6 +15,10 @@ class WvrAlertHostComponent {
 }
 
 describe('WvrAlertComponent', () => {
+  const initialState = { theme: {
+    themes: {}
+  }};
+  let store: MockStore;
   let component: WvrAlertComponent;
   let fixture: ComponentFixture<WvrAlertComponent>;
 
@@ -22,11 +26,17 @@ describe('WvrAlertComponent', () => {
   let hostFixture: ComponentFixture<WvrAlertHostComponent>;
 
   // tslint:disable-next-line: deprecation
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        BrowserAnimationsModule,
-        StoreModule.forRoot(ROOT_REDUCER, { metaReducers })
+        BrowserAnimationsModule
+      ],
+      providers: [
+        {
+          provide: APP_CONFIG,
+          useValue: testAppConfig
+        },
+        provideMockStore({initialState})
       ],
       declarations: [
         WvrAlertHostComponent,
@@ -35,6 +45,7 @@ describe('WvrAlertComponent', () => {
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
     .compileComponents();
+    store = TestBed.inject(MockStore);
   }));
 
   beforeEach(() => {
@@ -54,7 +65,7 @@ describe('WvrAlertComponent', () => {
   });
 
   it("should have as alert Class as 'primary'", () => {
-    expect(component.alertClass)
+    expect(component.themeVariant)
       .toEqual('primary');
   });
 

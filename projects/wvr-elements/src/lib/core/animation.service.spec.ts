@@ -2,12 +2,14 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
 import { WvrItWorksComponent } from '../wvr-it-works/wvr-it-works.component';
 import { metaReducers, ROOT_REDUCER } from './store';
-import { WvrAnimationService } from './wvr-animation.service';
+import { AnimationService } from './animation.service';
+import { APP_CONFIG, testAppConfig } from '../shared/config';
 
-describe('WvrAnimationService', () => {
-  let service: WvrAnimationService;
+describe('AnimationService', () => {
+  let service: AnimationService<WvrBaseComponent>;
   let componentOne: WvrItWorksComponent;
   let componentTwo: WvrItWorksComponent;
   let fixtureOne: ComponentFixture<WvrItWorksComponent>;
@@ -17,13 +19,17 @@ describe('WvrAnimationService', () => {
     await TestBed.configureTestingModule({
       imports: [BrowserAnimationsModule, StoreModule.forRoot(ROOT_REDUCER, { metaReducers })],
       declarations: [WvrItWorksComponent],
+      providers: [{
+        provide: APP_CONFIG,
+        useValue: testAppConfig
+      }],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
       .compileComponents();
   });
 
   beforeEach(() => {
-    service = TestBed.inject(WvrAnimationService);
+    service = TestBed.inject(AnimationService);
 
     fixtureOne = TestBed.createComponent(WvrItWorksComponent);
     componentOne = fixtureOne.componentInstance;

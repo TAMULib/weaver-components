@@ -161,18 +161,6 @@
             "tsConfig": "projects/wvr-elements/tsconfig.spec.json",
             "karmaConfig": "projects/wvr-elements/karma.conf.js"
           }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/wvr-elements/tsconfig.lib.json",
-              "projects/wvr-elements/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
         }
       }
     }

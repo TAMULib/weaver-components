@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.7.0] - 11-20-20
+### Resolves
+
+- Wvr animations have regressed and are no longer firing. (#256)
+- SetTimeouts are not performant at load time. (#257)
+- Weaver Usage Documentation should include the component template in tab list. (#260)
+- Wvr Components should support an extensible list of branded colors. (Primary, secondary, danger, warning... etc). (#262)
+- Refactor color usage across wvr components to use branded color list, and include fallback support. (#263)
+- Color preview component. (#264)
+
 ## [1.6.0] - 11-2-20
 ### Resolves
 

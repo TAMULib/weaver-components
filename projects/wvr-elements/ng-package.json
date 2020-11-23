@@ -5,6 +5,7 @@
     "entryFile": "src/public-api.ts"
   },
   "whitelistedNonPeerDependencies": [
-    "css-element-queries"
+    "css-element-queries",
+    "handlebars"
   ]
 }

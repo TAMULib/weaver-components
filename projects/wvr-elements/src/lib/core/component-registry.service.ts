@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import { Injectable } from '@angular/core';
 
 /**
@@ -45,7 +47,7 @@ export class ComponentRegistryService<T> {
     const htmlID = hasNativeId ? element.getAttribute('wvr-id') : element.getAttribute('id');
 
     if (!htmlID) {
-      return;
+      return undefined;
     }
 
     const id = parseInt(htmlID.replace(`${ComponentRegistryService.HTML_ID_BASE}-`, ''), 10);

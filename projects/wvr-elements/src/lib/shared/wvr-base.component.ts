@@ -1,30 +1,52 @@
+/* istanbul ignore file */
+
 import { AfterContentInit, Directive, ElementRef, EventEmitter, HostBinding, Injector, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { select, Store } from '@ngrx/store';
 import * as JSON5 from 'json5';
 import { Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
+import { AnimationService } from '../core/animation.service';
 import { ComponentRegistryService } from '../core/component-registry.service';
 import { WvrDataSelect } from '../core/data-select';
 import * as ManifestActions from '../core/manifest/manifest.actions';
 import { MobileService } from '../core/mobile.service';
 import { RootState, selectManifestEntryResponse } from '../core/store';
 import { TemplateService } from '../core/template.service';
-import { WvrAnimationService } from '../core/wvr-animation.service';
+import { ThemeService } from '../core/theme/theme.service';
+import { AppConfig, APP_CONFIG } from './config';
+import { wvrTimeout } from './utility';
+import { WvrAnimationComponent } from './wvr-animation.component';
+import { WvrDataComponent } from './wvr-data.component';
+import { WvrThemeableComponent } from './wvr-themeable.component';
 
 @Directive()
 // tslint:disable-next-line:directive-class-suffix
-export abstract class WvrBaseComponent implements OnInit, OnDestroy {
+export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDestroy, WvrAnimationComponent, WvrDataComponent, WvrThemeableComponent {
 
   /** A generated unique identifier for this comonent. */
   readonly id: number;
 
-  data: {[as: string]: Observable<any>} = {};
+  /** A reference to the  ElementRef */
+  readonly _eRef: ElementRef;
 
+  data: { [as: string]: Observable<any> } = {};
+
+  // tslint:disable-next-line: prefer-readonly
   @Input() private wvrData: string;
+
+  themeOverrides = {};
+
+  @Input() set wvrTheme(value) {
+    this.themeService.applyThemeStyle(value, this);
+  }
 
   /** A host binding used to ensure the presense of the `wvr-bootstrap` class. */
   @HostBinding('class.wvr-bootstrap') wvrBootstrap = true;
+
+  @HostBinding('style') style;
+
+  variantTypes = [];
 
   /** An object representation of the animation instructions for this component. */
   private _animationSettings: any = {};
@@ -70,20 +92,23 @@ export abstract class WvrBaseComponent implements OnInit, OnDestroy {
   /** A reference to the  ComponentRegistryService */
   protected readonly componentRegistry: ComponentRegistryService<WvrBaseComponent>;
 
-  /** A reference to the  WvrAnimationService */
-  protected readonly _animationService: WvrAnimationService;
+  /** A reference to the  AnimationService */
+  protected readonly _animationService: AnimationService<WvrBaseComponent>;
 
-  /** A reference to the  DomSanitizer */
+  /** A reference to the DomSanitizer */
   protected readonly _domSanitizer: DomSanitizer;
 
-  /** A reference to the  ElementRef */
-  protected readonly _eRef: ElementRef;
+  /** A reference to the MobileService */
+  protected readonly mobileService: MobileService;
 
-  /** A reference to the  MobileService */
-  private readonly mobileService: MobileService;
+  /** A reference to the TemplateService */
+  protected readonly templateService: TemplateService<WvrBaseComponent>;
 
-  /** A reference to the  MobileService */
-  private readonly templateService: TemplateService;
+  /** A reference to the ThemeService */
+  protected readonly themeService: ThemeService;
+
+  /** A reference to the AppConfig */
+  protected readonly appConfig: AppConfig;
 
   /** A host bound accessor which applies the wvr-hidden class if both isMobileLayout and hiddenInMobile evaluate to true.  */
   @HostBinding('class.wvr-hidden') private get _hiddenInMobile(): boolean {
@@ -98,11 +123,13 @@ export abstract class WvrBaseComponent implements OnInit, OnDestroy {
 
   constructor(injector: Injector) {
     this.componentRegistry = injector.get(ComponentRegistryService);
-    this._animationService = injector.get(WvrAnimationService);
+    this._animationService = injector.get(AnimationService);
     this._domSanitizer = injector.get(DomSanitizer);
     this._eRef = injector.get(ElementRef);
     this.mobileService = injector.get(MobileService);
     this.templateService = injector.get(TemplateService);
+    this.themeService = injector.get(ThemeService);
+    this.appConfig = injector.get(APP_CONFIG);
     this.store = injector.get<Store<RootState>>(Store);
     this.id = this.componentRegistry.register(this);
 
@@ -113,24 +140,29 @@ export abstract class WvrBaseComponent implements OnInit, OnDestroy {
 
   /** Used to setup this component for animating. */
   ngOnInit(): void {
-    // this.processAnimations();
+    this.themeService.applyThemeStyle(this.appConfig.theme, this);
     this.processData();
-    // this.initializeAnimationRegistration();
+    this.initializeAnimationRegistration();
     this.templateService.parseProjectedContent(this, this._eRef.nativeElement);
   }
 
   // TODO: fix this
   /** Used for post content initialization animation setup. */
-  // ngAfterContentInit(): void {
-  //   setTimeout(() => {
-  //     this._animationService
-  //       .initializeAnimationElement(this.animationStateId, this._animationConfig, this.animationRootElem);
-  //   }, 1);
-  // }
+  ngAfterContentInit(): void {
+    wvrTimeout(() => {
+      this._animationService
+        .initializeAnimationElement(this.animationStateId, this._animationConfig, this.animationRootElem);
+    }, 1);
+  }
 
   /** Handles the the unregistering of this component with the component registry. */
   ngOnDestroy(): void {
     this.componentRegistry.unRegisterComponent(this.id);
+  }
+
+  applyThemeOverride(customProperty: string, value: string): void {
+    this.themeOverrides[customProperty] = value;
+    this._eRef.nativeElement.style.setProperty(customProperty, value);
   }
 
   /** Plays the animation specified by the incoming animation trigger.  */
@@ -158,37 +190,15 @@ export abstract class WvrBaseComponent implements OnInit, OnDestroy {
   }
 
   /* istanbul ignore next */
-  private initializeAnimationRegistration(): void {
-    const animationEvents = Object.keys(this._animationSettings);
-    if (animationEvents.length) {
-      if (this.animateId) {
-        this._animationService.registerAnimationTargets(this.animateId, this);
-      }
-      this.animationStateId = this._animationService.registerAnimationStates();
-      animationEvents.forEach(eventName => {
-        if (eventName !== 'animationTrigger') {
-          (this._eRef.nativeElement as HTMLElement).addEventListener(eventName, this.onEvent.bind(this));
-        }
-      });
-    }
-  }
-
-  /* istanbul ignore next */
-  private initializeAnimationElement(): void {
-    setTimeout(() => {
+  initializeAnimationElement(): void {
+    wvrTimeout(() => {
       this._animationService
         .initializeAnimationElement(this.animationStateId, this._animationConfig, this.animationRootElem);
     }, 1);
   }
 
-  /** Trigger's the animation specified by the incoming event. */
   /* istanbul ignore next */
-  private onEvent($event): void {
-    this.triggerAnimations($event.type);
-  }
-
-  /* istanbul ignore next */
-  private processAnimations(): void {
+  initializeAnimationRegistration(): void {
     const animationEvents = Object.keys(this._animationSettings);
     if (animationEvents.length) {
       if (this.animateId) {
@@ -197,10 +207,16 @@ export abstract class WvrBaseComponent implements OnInit, OnDestroy {
       this.animationStateId = this._animationService.registerAnimationStates();
       animationEvents.forEach(eventName => {
         if (eventName !== 'animationTrigger') {
-          (this._eRef.nativeElement as HTMLElement).addEventListener(eventName, this.onEvent.bind(this));
+          (this._eRef.nativeElement as HTMLElement).addEventListener(eventName, this.onAnimationEvent.bind(this));
         }
       });
     }
+  }
+
+  /** Trigger's the animation specified by the incoming event. */
+  /* istanbul ignore next */
+  onAnimationEvent($event: Event): void {
+    this.triggerAnimations($event.type);
   }
 
   /* istanbul ignore next */

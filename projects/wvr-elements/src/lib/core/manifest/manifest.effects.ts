@@ -12,7 +12,7 @@ import * as ManifestActions from './manifest.actions';
 @Injectable()
 export class ManifestEffects {
 
-  constructor(private actions: Actions, private store: Store<RootState>) {
+  constructor(private readonly actions: Actions, private readonly store: Store<RootState>) {
 
   }
 
@@ -108,7 +108,7 @@ export class ManifestEffects {
     )
   );
 
-  private requestsByMethod = (method: RequestMethod) => {
+  private readonly requestsByMethod = (method: RequestMethod) => {
     switch (method) {
       case 'OPTIONS': return RestActions.optionsRequest;
       case 'POST': return RestActions.postRequest;
@@ -116,7 +116,7 @@ export class ManifestEffects {
       case 'PATCH': return RestActions.patchRequest;
       case 'DELETE': return RestActions.deleteRequest;
       case 'GET': return RestActions.getRequest;
-      default: return;
+      default: return undefined;
     }
   };
 

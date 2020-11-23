@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, ElementRef, Injector, Input, ViewChild } from '@angular/core';
+import { ThemeVariantName } from '../shared/theme';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 /**
@@ -48,13 +49,15 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit 
   @Input() textCenter;
 
   /** Used to describe the type of card. */
-  @Input() cardType: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark';
+  @Input() themeVariant: ThemeVariantName;
 
   /** Used to describe the format of card. */
   @Input() panelFormat: 'solid' | 'outlined' | 'mixed';
 
   /** Element reference to the root html elment in the template. */
   @ViewChild('animationRoot') rootElem: ElementRef<HTMLElement>;
+
+  variantTypes = ['border'];
 
   /** Convenience referece this components ElementReference's nativeElement. */
   private readonly elem: HTMLElement;
@@ -81,18 +84,24 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit 
     });
   }
 
-  isOutLined(cardType: string): boolean {
-    return this.cardType === cardType &&
-            ((!this.panelFormat || this.panelFormat === 'mixed') ||
-             this.panelFormat === 'outlined');
+  additionalCardClasses(): string {
+    let additionalClasses = '';
+    additionalClasses +=  ((!this.panelFormat || this.panelFormat === 'mixed') || this.panelFormat === 'outlined') ?
+                          ` border-${this.themeVariant} ` : '';
+
+    additionalClasses +=  this.panelFormat === 'solid' ? ` bg-${this.themeVariant} ` : '';
+
+    return additionalClasses;
   }
 
-  isSolid(cardType: string): boolean {
-    return this.cardType === cardType && this.panelFormat === 'solid';
-  }
+  additionalHeaderClasses(): string {
+    let additionalClasses = '';
+    additionalClasses +=  ((!this.panelFormat || this.panelFormat === 'mixed') || this.panelFormat === 'outlined') ?
+                          ` border-${this.themeVariant} ` : '';
 
-  isMixed(cardType: string): boolean {
-    return this.cardType === cardType && (!this.panelFormat || this.panelFormat === 'mixed');
+    additionalClasses +=  (this.panelFormat === 'solid' || this.panelFormat === 'mixed') ? ` bg-${this.themeVariant} ` : '';
+
+    return additionalClasses;
   }
 
   /** Prepares the card for display */

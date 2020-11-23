@@ -14,7 +14,7 @@ import { WvrTabComponent } from './wvr-tab/wvr-tab.component';
 export class WvrTabsComponent extends WvrBaseComponent {
 
   /** The child WvrTabComponent contained within this tabs. */
-  private tabs = new Array<WvrTabComponent>();
+  private readonly tabs = new Array<WvrTabComponent>();
 
   /**  The WvrTabComponent that is currently active (displayed) */
   activeTab: WvrTabComponent;
@@ -45,7 +45,9 @@ export class WvrTabsComponent extends WvrBaseComponent {
 
   /* Deactivates all tabs within the tabs array */
   deactivateTabs(): void {
-    this.tabs.forEach(t => t.deActivate());
+    this.tabs.forEach(t => {
+      t.deActivate();
+    });
   }
 
 }

@@ -58,6 +58,7 @@ export class WvrFooterComponent extends WvrBaseComponent implements OnInit {
    * a call to positionSelf as the callback method.
    */
   ngOnInit(): void {
+    super.ngOnInit();
     // this.parentElement = (this._eRef.nativeElement as HTMLElement).parentElement;
     this.parentElement = document.querySelector(this.parentElementName);
     this.footerElement = (this._eRef.nativeElement as HTMLElement).querySelector('footer.wvr-footer');

@@ -43,6 +43,9 @@
                 <a class="nav-link" id="snippet-tab" data-toggle="tab" href="#snippet" role="tab" aria-controls="snippet" aria-selected="false">Snippet</a>
               </li>
               <li class="nav-item">
+                <a class="nav-link" id="template-tab" data-toggle="tab" href="#template" role="tab" aria-controls="template" aria-selected="false">Template</a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" id="scss-tab" data-toggle="tab" href="#scss" role="tab" aria-controls="scss" aria-selected="false">SCSS</a>
               </li>
               <li class="nav-item">
@@ -59,6 +62,9 @@
                   Copy Snippet
                 </button>
               </div>
+              <div class="tab-pane" id="template" role="tabpanel" aria-labelledby="template-tab">
+                <div id="template-editor"></div>
+              </div>
               <div class="tab-pane" id="scss" role="tabpanel" aria-labelledby="scss-tab">
                 <div id="scss-editor"></div>
               </div>
@@ -69,7 +75,7 @@
           </div>
         </div>
       </main>
-     
+
     </div>
   </div>
 
@@ -111,14 +117,14 @@
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <script src="//cdn.statically.io/gh/zenorocha/clipboard.js/v2.0.4/dist/clipboard.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-throttle-debounce/1.1/jquery.ba-throttle-debounce.min.js" integrity="sha256-+nuEu243+6BveXk5N+Vbr268G+4FHjUOEcfKaBqfPbc=" crossorigin="anonymous"></script>
-  
+
   <!-- WUD Scripts -->
   <script type="application/json" id="expamples-manifest">
     {{EXAMPLE_MANIFEST}}
   </script>
   <script src="{{BASE_PATH}}wud.js"></script>
   <script src="{{BASE_PATH}}additional-scripts.js"></script>
-  
+
 </body>
 
 </html>

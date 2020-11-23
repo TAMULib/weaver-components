@@ -1,18 +1,23 @@
+/* istanbul ignore file */
+
 import { InjectionToken } from '@angular/core';
 import { ActionReducerMap, createFeatureSelector, createSelector, MetaReducer } from '@ngrx/store';
 import { Manifest } from './manifest/manifest';
 import { ManifestEntry } from './manifest/manifest-entry';
 import * as fromManifest from './manifest/manifest.reducers';
 import * as fromRest from './rest/rest.reducers';
+import * as fromTheme from './theme/theme.reducers';
 
 export interface RootState {
-  rest: fromRest.State;
   manifests: fromManifest.State;
+  rest: fromRest.State;
+  theme: fromTheme.State;
 }
 
 export const reducers: ActionReducerMap<RootState> = {
+  manifests: fromManifest.reducer,
   rest: fromRest.reducer,
-  manifests: fromManifest.reducer
+  theme: fromTheme.reducer
 };
 
 export const ROOT_REDUCER = new InjectionToken<ActionReducerMap<RootState>>('Root Reducer', {
@@ -21,11 +26,16 @@ export const ROOT_REDUCER = new InjectionToken<ActionReducerMap<RootState>>('Roo
 
 export const metaReducers: Array<MetaReducer<RootState>> = [];
 
+// manifest selectors
+export const selectManifestState = createFeatureSelector<RootState, fromManifest.State>('manifests');
+
 // rest selectors
 export const selectRestState = createFeatureSelector<RootState, fromRest.State>('rest');
 
-// manifest selectors
-export const selectManifestState = createFeatureSelector<RootState, fromManifest.State>('manifests');
+// theme selectors
+export const selectThemeState = createFeatureSelector<RootState, fromTheme.State>('theme');
+
+const findManifestEntry = (manifest: Manifest, entryName: string): ManifestEntry => manifest.entries.find(e => e.name === entryName);
 
 export const selectManifestNames = createSelector(
   selectManifestState,
@@ -85,4 +95,12 @@ export const selectManifestEntryError = (manifestName: string, entryName: string
   }
 );
 
-const findManifestEntry = (manifest: Manifest, entryName: string): ManifestEntry => manifest.entries.find(e => e.name === entryName);
+export const selectTheme = (name: string) => createSelector(
+  selectThemeState,
+  (themeState: fromTheme.State) => themeState.themes[name]
+);
+
+export const selectCurrentTheme = createSelector(
+  selectThemeState,
+  (themeState: fromTheme.State) => themeState.themes[themeState.currentTheme]
+);

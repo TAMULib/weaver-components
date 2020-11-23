@@ -7,4 +7,7 @@ if (environment.production) {
   enableProdMode();
 }
 
-document.addEventListener('DOMContentLoaded', weaverBootstrap(AppModule));
+document.addEventListener('DOMContentLoaded', () => {
+  weaverBootstrap(AppModule)('/config.json')
+    .catch();
+});
