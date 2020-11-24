@@ -17,7 +17,6 @@ const startTime = new Date();
 
 const NM_WVR_UD_DIR = `${process.cwd()}/node_modules/@wvr/elements/.wvr-ud`;
 const NM_UD_STATIC_ASSETS_DIR = `${NM_WVR_UD_DIR}/static-assets`;
-
 const WVR_UD_DIR = `${process.cwd()}/.wvr-ud`;
 const WVR_UD_STATIC_ASSETS_DIR = `${WVR_UD_DIR}/static-assets`;
 const CONFIG = require(`${WVR_UD_DIR}/config.json`);
@@ -33,14 +32,14 @@ log(`    ${chalk.green('Building Usage Documentation for:')} ${chalk.blue(`${pac
 
 // Get Example Locations
 log(`    ${chalk.green('Identifying Examples')}:`);
-const EXAMPLE_PATTER = "ud-examples.html";
-const SCRIPT_PATTER = ".js";
+const EXAMPLE_PATTERN = "ud-examples.html";
+const SCRIPT_PATTERN = ".js";
 const examples = [];
 CONFIG.includes.forEach(i=>{
   log(`    ${chalk.blue('Inspecting '+i)}:`);
   let files = glob.sync(`${process.cwd()}/${i}`, {});
   files.forEach(f => {
-    if(f.includes(EXAMPLE_PATTER)) {
+    if(f.includes(EXAMPLE_PATTERN)) {
       log(`    ${chalk.cyan('- Including:     '+f)}:`);
       examples.push(f);
     }
@@ -52,9 +51,9 @@ const exampleManifest = {};
 const exaplestDest = `${CONFIG.output}/examples`;
 fs.ensureDirSync(exaplestDest);
 examples.forEach(e=>{
-  const componentPath = e.replace(EXAMPLE_PATTER,'ts');
-  const templatePath = e.replace(EXAMPLE_PATTER, 'html');
-  const stylesPath = e.replace(EXAMPLE_PATTER,'scss');
+  const componentPath = e.replace(EXAMPLE_PATTERN,'ts');
+  const templatePath = e.replace(EXAMPLE_PATTERN, 'html');
+  const stylesPath = e.replace(EXAMPLE_PATTERN,'scss');
   const pathParts = e.split('/');
   const exampleName = pathParts[pathParts.length-1];
   const componentName = pathParts[pathParts.length-2];
@@ -87,7 +86,7 @@ CONFIG.additionalScript.forEach(i=>{
   log(`    ${chalk.blue('Inspecting '+i)}:`);
   let scripts = glob.sync(`${process.cwd()}/${i}`, {});
   scripts.forEach(s => {
-    if(s.includes(SCRIPT_PATTER)) {
+    if(s.includes(SCRIPT_PATTERN)) {
       log(`    ${chalk.cyan('- Including:     '+s)}`);
       additionalScripts.push(s);
     }
@@ -145,7 +144,12 @@ concat(stlyeFiles, `${WVR_UD_STATIC_ASSETS_DIR}/styles.css`).finally(() => {
     if(fs.lstatSync(sa).isDirectory()) {
       copyFolderSync(sa, `${CONFIG.output}/${fileName}`);
     } else {
-      fs.copyFileSync(sa, `${CONFIG.output}/${fileName}`);
+      if( (sa.indexOf('static-assets/wud.js') > -1) && (fs.existsSync(`${NM_WVR_UD_DIR}/static-assets/wud.js`)) ) {
+          fs.copyFileSync(`${NM_WVR_UD_DIR}/static-assets/wud.js`, `${CONFIG.output}/${fileName}`);
+          console.log('\n\n\n Yes exists \n\n\n', sa, '\n\n',`${NM_WVR_UD_DIR}/static-assets/wud.js`, '\n\n\n');
+      } else {
+        fs.copyFileSync(sa, `${CONFIG.output}/${fileName}`);
+      }
     }
   });
 
