@@ -144,9 +144,15 @@ concat(stlyeFiles, `${WVR_UD_STATIC_ASSETS_DIR}/styles.css`).finally(() => {
     if(fs.lstatSync(sa).isDirectory()) {
       copyFolderSync(sa, `${CONFIG.output}/${fileName}`);
     } else {
-      if( (sa.indexOf('static-assets/wud.js') > -1) && (fs.existsSync(`${NM_WVR_UD_DIR}/static-assets/wud.js`)) ) {
-          fs.copyFileSync(`${NM_WVR_UD_DIR}/static-assets/wud.js`, `${CONFIG.output}/${fileName}`);
-          console.log('\n\n\n Yes exists \n\n\n', sa, '\n\n',`${NM_WVR_UD_DIR}/static-assets/wud.js`, '\n\n\n');
+      if (sa.indexOf('static-assets/wud.js') > -1) {
+        const localWud = `${WVR_UD_DIR}/static-assets/wud.js`;
+        const nmWud = `${NM_WVR_UD_DIR}/static-assets/wud.js`;
+
+        if (fs.existsSync(localWud)) {
+          fs.copyFileSync(localWud, `${CONFIG.output}/${fileName}`);
+        } else {
+          fs.copyFileSync(nmWud, `${CONFIG.output}/${fileName}`);
+        }
       } else {
         fs.copyFileSync(sa, `${CONFIG.output}/${fileName}`);
       }
