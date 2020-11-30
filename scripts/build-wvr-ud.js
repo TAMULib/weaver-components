@@ -147,7 +147,6 @@ concat(stlyeFiles, `${WVR_UD_STATIC_ASSETS_DIR}/styles.css`).finally(() => {
     } else {
 
       if (fileName.indexOf('wud.js') > -1 ) {
-        console.log('\n\n sa = ', sa, 'filename = ',fileName, '\n\n');
         localWudExists = true;
       }
       fs.copyFileSync(sa, `${CONFIG.output}/${fileName}`);
@@ -157,7 +156,6 @@ concat(stlyeFiles, `${WVR_UD_STATIC_ASSETS_DIR}/styles.css`).finally(() => {
   if(!localWudExists) {
     const nmWud = `${NM_WVR_UD_DIR}/static-assets/wud.js`;
     fs.copyFileSync(nmWud, `${CONFIG.output}/wud.js`);
-    console.log('\n\n\n nmWud asset found - ', nmWud, '\n\n\n');
   }
 
   log(`    ${chalk.cyanBright('Total content')}: ${chalk.blue(staticAssets.length)}`);
