@@ -4,9 +4,10 @@ import { Type } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppConfig, APP_CONFIG } from '../config';
 
+const componentScript = document.currentScript;
+
 /** Interigates the current script tag for its src and extroplates the configuration path from that location. */
 const obtainConfigPath = (): string => {
-  const componentScript = document.currentScript;
   const componentScriptSrc = componentScript.getAttribute('src');
   const componentScriptSrcPathParts = componentScriptSrc.split('/');
   componentScriptSrcPathParts.pop();
