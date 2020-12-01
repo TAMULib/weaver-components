@@ -1,4 +1,4 @@
-import { Component, Injector } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Injector } from '@angular/core';
 import { SafeHtml } from '@angular/platform-browser';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 import { WvrTabComponent } from './wvr-tab/wvr-tab.component';
@@ -9,7 +9,8 @@ import { WvrTabComponent } from './wvr-tab/wvr-tab.component';
 @Component({
   selector: 'wvr-tabs-component',
   templateUrl: './wvr-tabs.component.html',
-  styleUrls: ['./wvr-tabs.component.scss']
+  styleUrls: ['./wvr-tabs.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export class WvrTabsComponent extends WvrBaseComponent {
 

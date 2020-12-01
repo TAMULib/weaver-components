@@ -1,4 +1,4 @@
-import { Component, HostBinding, Injector, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, Injector, Input } from '@angular/core';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 /**
@@ -7,7 +7,8 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
 @Component({
   selector: 'wvr-text-component',
   templateUrl: './wvr-text.component.html',
-  styleUrls: ['./wvr-text.component.scss']
+  styleUrls: ['./wvr-text.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export class WvrTextComponent extends WvrBaseComponent {
 

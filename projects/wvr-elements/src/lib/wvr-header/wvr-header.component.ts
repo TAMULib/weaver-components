@@ -1,4 +1,4 @@
-import { AfterContentChecked, Component, HostBinding, Injector, Input, OnInit } from '@angular/core';
+import { AfterContentChecked, ChangeDetectionStrategy, Component, HostBinding, Injector, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import * as rootStore from '../core/store';
 import { WvrSelect } from '../shared/utility/decorators.utilty';
@@ -10,7 +10,8 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
 @Component({
   selector: 'wvr-header-component',
   templateUrl: './wvr-header.component.html',
-  styleUrls: ['./wvr-header.component.scss']
+  styleUrls: ['./wvr-header.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export class WvrHeaderComponent extends WvrBaseComponent implements OnInit, AfterContentChecked {
 

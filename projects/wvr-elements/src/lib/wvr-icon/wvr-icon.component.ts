@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, HostBinding, Injector, Input } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, HostBinding, Injector, Input } from '@angular/core';
 import { SafeHtml } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -11,7 +11,8 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
 @Component({
   selector: 'wvr-icon-component',
   templateUrl: './wvr-icon.component.html',
-  styleUrls: ['./wvr-icon.component.scss']
+  styleUrls: ['./wvr-icon.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export class WvrIconComponent extends WvrBaseComponent implements AfterViewInit {
 
@@ -24,7 +25,7 @@ export class WvrIconComponent extends WvrBaseComponent implements AfterViewInit 
   /** An attribute input bound to the css variable `--wvr-icon-color`.  */
   @HostBinding('style.--wvr-icon-color') @Input() color: string;
 
-    /** An attribute input bound to the css variable `--wvr-icon-size`.  */
+  /** An attribute input bound to the css variable `--wvr-icon-size`.  */
   @HostBinding('style.--wvr-icon-size') @Input() size = '24px';
 
   /** An observable SafeHtml representation of the svg to be displayed for this icon. */

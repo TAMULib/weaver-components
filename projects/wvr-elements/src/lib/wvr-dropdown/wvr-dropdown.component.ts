@@ -1,4 +1,4 @@
-import { Component, HostBinding, HostListener, Injector, Input, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, HostListener, Injector, Input, ViewChild } from '@angular/core';
 import { NgbDropdown, NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
 import { ThemeVariantName } from '../shared/theme';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
@@ -9,7 +9,8 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
 @Component({
   selector: 'wvr-dropdown-component',
   templateUrl: './wvr-dropdown.component.html',
-  styleUrls: ['./wvr-dropdown.component.scss']
+  styleUrls: ['./wvr-dropdown.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export class WvrDropdownComponent extends WvrBaseComponent {
 

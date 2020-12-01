@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Injector, Input } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, Injector, Input } from '@angular/core';
 import { SafeHtml } from '@angular/platform-browser';
 import { WvrBaseComponent } from '../../shared/wvr-base.component';
 import { WvrTabsComponent } from '../wvr-tabs.component';
@@ -9,7 +9,8 @@ import { WvrTabsComponent } from '../wvr-tabs.component';
 @Component({
   selector: 'wvr-tab-component',
   templateUrl: './wvr-tab.component.html',
-  styleUrls: ['./wvr-tab.component.scss']
+  styleUrls: ['./wvr-tab.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export class WvrTabComponent extends WvrBaseComponent implements AfterViewInit {
 

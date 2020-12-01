@@ -1,4 +1,4 @@
-import { Component, Injector, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Injector, Input } from '@angular/core';
 import * as JSON5 from 'json5';
 import { Manifest } from '../core/manifest/manifest';
 import { ManifestEntry } from '../core/manifest/manifest-entry';
@@ -15,7 +15,8 @@ import { WvrManifestEntryComponent } from './wvr-manifest-entry/wvr-manifest-ent
  */
 @Component({
   selector: 'wvr-manifest-component',
-  template: '<ng-content></ng-content>'
+  template: '<ng-content></ng-content>',
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export class WvrManifestComponent extends WvrBaseComponent {
 

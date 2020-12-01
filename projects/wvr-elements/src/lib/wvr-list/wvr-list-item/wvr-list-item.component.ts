@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Injector, Input, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, Injector, Input, OnInit } from '@angular/core';
 import { ThemeVariantName } from '../../shared/theme';
 import { WvrBaseComponent } from '../../shared/wvr-base.component';
 
@@ -8,7 +8,8 @@ import { WvrBaseComponent } from '../../shared/wvr-base.component';
 @Component({
   selector: 'wvr-list-item-component',
   templateUrl: './wvr-list-item.component.html',
-  styleUrls: ['./wvr-list-item.component.scss']
+  styleUrls: ['./wvr-list-item.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export class WvrListItemComponent extends WvrBaseComponent implements OnInit, AfterViewInit {
 

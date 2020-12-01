@@ -1,11 +1,12 @@
-import { Component, HostBinding, Injector, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, Injector, Input } from '@angular/core';
 import { ThemeVariantName } from '../shared/theme';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 @Component({
   selector: 'wvr-button-component',
   templateUrl: './wvr-button.component.html',
-  styleUrls: ['./wvr-button.component.scss']
+  styleUrls: ['./wvr-button.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export class WvrButtonComponent extends WvrBaseComponent {
 

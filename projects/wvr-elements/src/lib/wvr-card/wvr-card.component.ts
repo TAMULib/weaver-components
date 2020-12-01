@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Injector, Input, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, Injector, Input, ViewChild } from '@angular/core';
 import { ThemeVariantName } from '../shared/theme';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
@@ -8,7 +8,8 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
 @Component({
   selector: 'wvr-card-component',
   templateUrl: './wvr-card.component.html',
-  styleUrls: ['./wvr-card.component.scss']
+  styleUrls: ['./wvr-card.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit {
 
