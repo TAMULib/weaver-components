@@ -4,7 +4,7 @@ import { CUSTOM_ELEMENTS_SCHEMA, Injector, NgModule } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -99,7 +99,9 @@ const registerCustomElements = (injector: Injector) => {
       // console.warn(e);
     }
   });
+};
 
+const showHiddentContent = (injector: Injector) => {
   const doc = injector.get(DOCUMENT);
   doc.querySelectorAll('[wvr-hide-content]')
     .forEach(elem => {
@@ -113,7 +115,7 @@ const registerCustomElements = (injector: Injector) => {
     BrowserAnimationsModule,
     BrowserModule,
     HttpClientModule,
-    NgbDropdownModule,
+    NgbModule,
     StoreModule.forRoot(ROOT_REDUCER, { metaReducers }),
     EffectsModule.forRoot([
       ManifestEffects,
@@ -150,6 +152,7 @@ export class WvrLibModule {
 
   constructor(injector: Injector) {
     registerCustomElements(injector);
+    showHiddentContent(injector);
     wvrTimeout(() => {
       document.querySelector('body').style.display = 'block';
     });
