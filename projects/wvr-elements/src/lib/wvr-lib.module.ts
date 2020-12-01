@@ -4,7 +4,7 @@ import { CUSTOM_ELEMENTS_SCHEMA, Injector, NgModule } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -115,7 +115,7 @@ const showHiddentContent = (injector: Injector) => {
     BrowserAnimationsModule,
     BrowserModule,
     HttpClientModule,
-    NgbModule,
+    NgbDropdownModule,
     StoreModule.forRoot(ROOT_REDUCER, { metaReducers }),
     EffectsModule.forRoot([
       ManifestEffects,
