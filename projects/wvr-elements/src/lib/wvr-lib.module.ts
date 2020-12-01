@@ -4,7 +4,7 @@ import { CUSTOM_ELEMENTS_SCHEMA, Injector, NgModule } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -23,6 +23,7 @@ import { wvrTimeout } from './shared/utility';
 import { WvrAlertComponent } from './wvr-alert/wvr-alert.component';
 import { WvrButtonComponent } from './wvr-button/wvr-button.component';
 import { WvrCardComponent } from './wvr-card/wvr-card.component';
+import { WvrColorPreviewComponent } from './wvr-color-preview/wvr-color-preview.component';
 import { WvrDropdownComponent } from './wvr-dropdown/wvr-dropdown.component';
 import { WvrFooterComponent } from './wvr-footer/wvr-footer.component';
 import { WvrHeaderComponent } from './wvr-header/wvr-header.component';
@@ -38,7 +39,6 @@ import { WvrTabComponent } from './wvr-tabs/wvr-tab/wvr-tab.component';
 import { WvrTabsComponent } from './wvr-tabs/wvr-tabs.component';
 import { WvrTextComponent } from './wvr-text/wvr-text.component';
 import { WvrThemeComponent } from './wvr-theme/wvr-theme.component';
-import { WvrColorPreviewComponent } from './wvr-color-preview/wvr-color-preview.component';
 
 /** This property contains a list of components and the selector tags. */
 const elements = [
@@ -113,14 +113,17 @@ const registerCustomElements = (injector: Injector) => {
     BrowserAnimationsModule,
     BrowserModule,
     HttpClientModule,
-    NgbModule,
+    NgbDropdownModule,
     StoreModule.forRoot(ROOT_REDUCER, { metaReducers }),
     EffectsModule.forRoot([
       ManifestEffects,
       RestEffects,
       ThemeEffects
     ]),
-    StoreDevtoolsModule.instrument()
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // retains last 25 states
+      logOnly: true, // restrict extension to log-only mode
+    })
   ],
   exports: [
     ...components,
@@ -144,6 +147,7 @@ const registerCustomElements = (injector: Injector) => {
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class WvrLibModule {
+
   constructor(injector: Injector) {
     registerCustomElements(injector);
     wvrTimeout(() => {
