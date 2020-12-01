@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { WvrLibModule } from '../../projects/wvr-elements/src/public-api';
+import { Injector, NgModule } from '@angular/core';
+import { registerCustomElements, showHiddentContent, WvrLibModule, wvrTimeout, WVR_ELEMENTS } from '../../projects/wvr-elements/src/public-api';
 
 @NgModule({
   imports: [
@@ -14,8 +14,16 @@ import { WvrLibModule } from '../../projects/wvr-elements/src/public-api';
 })
 export class AppModule {
 
+  constructor(private readonly injector: Injector) {
+
+  }
+
   ngDoBootstrap(): void {
-    // OVERRIDE
+    registerCustomElements(this.injector, WVR_ELEMENTS);
+    showHiddentContent(this.injector);
+    wvrTimeout(() => {
+      document.querySelector('body').style.display = 'block';
+    });
   }
 
 }

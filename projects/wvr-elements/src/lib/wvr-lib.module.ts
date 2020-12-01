@@ -1,25 +1,13 @@
 import { DOCUMENT } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { CUSTOM_ELEMENTS_SCHEMA, Injector, NgModule } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
-import { EffectsModule } from '@ngrx/effects';
-import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { AnimationService } from './core/animation.service';
-import { IconService } from './core/icon.service';
-import { ManifestEffects } from './core/manifest/manifest.effects';
-import { MobileService } from './core/mobile.service';
-import { RestEffects } from './core/rest/rest.effects';
-import { metaReducers, ROOT_REDUCER } from './core/store';
-import { TemplateService } from './core/template.service';
-import { ThemeEffects } from './core/theme/theme.effects';
-import { ThemeService } from './core/theme/theme.service';
+import { CoreModule } from './core/core.module';
 import { DefaultPipe } from './shared/pipes/default.pipe';
 import { SafePipe } from './shared/pipes/safe.pipe';
-import { wvrTimeout } from './shared/utility';
 import { WvrAlertComponent } from './wvr-alert/wvr-alert.component';
 import { WvrButtonComponent } from './wvr-button/wvr-button.component';
 import { WvrCardComponent } from './wvr-card/wvr-card.component';
@@ -40,31 +28,8 @@ import { WvrTabsComponent } from './wvr-tabs/wvr-tabs.component';
 import { WvrTextComponent } from './wvr-text/wvr-text.component';
 import { WvrThemeComponent } from './wvr-theme/wvr-theme.component';
 
-/** This property contains a list of components and the selector tags. */
-const elements = [
-  { component: WvrAlertComponent, selector: 'wvre-alert' },
-  { component: WvrButtonComponent, selector: 'wvre-button' },
-  { component: WvrCardComponent, selector: 'wvre-card' },
-  { component: WvrColorPreviewComponent, selector: 'wvre-color-preview' },
-  { component: WvrDropdownComponent, selector: 'wvre-dropdown' },
-  { component: WvrFooterComponent, selector: 'wvre-footer' },
-  { component: WvrHeaderComponent, selector: 'wvre-header' },
-  { component: WvrIconComponent, selector: 'wvre-icon' },
-  { component: WvrItWorksComponent, selector: 'wvre-it-works' },
-  { component: WvrListComponent, selector: 'wvre-list' },
-  { component: WvrListItemComponent, selector: 'wvre-list-item' },
-  { component: WvrNavListComponent, selector: 'wvre-nav-list' },
-  { component: WvrManifestComponent, selector: 'wvre-manifest' },
-  { component: WvrManifestEntryComponent, selector: 'wvre-manifest-entry' },
-  { component: WvrNavLiComponent, selector: 'wvre-nav-li' },
-  { component: WvrTextComponent, selector: 'wvre-text' },
-  { component: WvrTabsComponent, selector: 'wvre-tabs' },
-  { component: WvrTabComponent, selector: 'wvre-tab' },
-  { component: WvrThemeComponent, selector: 'wvre-theme' }
-];
-
 /** This property contains a list of components classes. */
-const components = [
+export const WVR_COMPONENTS = [
   WvrAlertComponent,
   WvrButtonComponent,
   WvrCardComponent,
@@ -86,12 +51,35 @@ const components = [
   WvrThemeComponent
 ];
 
-const pipes = [
+export const WVR_PIPES = [
   SafePipe,
   DefaultPipe
 ];
 
-const registerCustomElements = (injector: Injector) => {
+/** This property contains a list of components and the selector tags. */
+export const WVR_ELEMENTS = [
+  { component: WvrAlertComponent, selector: 'wvre-alert' },
+  { component: WvrButtonComponent, selector: 'wvre-button' },
+  { component: WvrCardComponent, selector: 'wvre-card' },
+  { component: WvrColorPreviewComponent, selector: 'wvre-color-preview' },
+  { component: WvrDropdownComponent, selector: 'wvre-dropdown' },
+  { component: WvrFooterComponent, selector: 'wvre-footer' },
+  { component: WvrHeaderComponent, selector: 'wvre-header' },
+  { component: WvrIconComponent, selector: 'wvre-icon' },
+  { component: WvrItWorksComponent, selector: 'wvre-it-works' },
+  { component: WvrListComponent, selector: 'wvre-list' },
+  { component: WvrListItemComponent, selector: 'wvre-list-item' },
+  { component: WvrNavListComponent, selector: 'wvre-nav-list' },
+  { component: WvrManifestComponent, selector: 'wvre-manifest' },
+  { component: WvrManifestEntryComponent, selector: 'wvre-manifest-entry' },
+  { component: WvrNavLiComponent, selector: 'wvre-nav-li' },
+  { component: WvrTextComponent, selector: 'wvre-text' },
+  { component: WvrTabsComponent, selector: 'wvre-tabs' },
+  { component: WvrTabComponent, selector: 'wvre-tab' },
+  { component: WvrThemeComponent, selector: 'wvre-theme' }
+];
+
+export const registerCustomElements = (injector: Injector, elements: Array<{ component: any, selector: string }>) => {
   elements.forEach(element => {
     try {
       customElements.define(element.selector, createCustomElement(element.component, { injector }));
@@ -101,7 +89,7 @@ const registerCustomElements = (injector: Injector) => {
   });
 };
 
-const showHiddentContent = (injector: Injector) => {
+export const showHiddentContent = (injector: Injector) => {
   const doc = injector.get(DOCUMENT);
   doc.querySelectorAll('[wvr-hide-content]')
     .forEach(elem => {
@@ -114,48 +102,26 @@ const showHiddentContent = (injector: Injector) => {
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
-    HttpClientModule,
+    CoreModule,
     NgbDropdownModule,
-    StoreModule.forRoot(ROOT_REDUCER, { metaReducers }),
-    EffectsModule.forRoot([
-      ManifestEffects,
-      RestEffects,
-      ThemeEffects
-    ]),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // retains last 25 states
       logOnly: true, // restrict extension to log-only mode
     })
   ],
   exports: [
-    ...components,
-    ...pipes
+    ...WVR_COMPONENTS,
+    ...WVR_PIPES
   ],
-  providers: [
-    AnimationService,
-    IconService,
-    MobileService,
-    ThemeService,
-    TemplateService
-  ],
+  providers: [],
   declarations: [
-    ...components,
-    ...pipes
+    ...WVR_COMPONENTS,
+    ...WVR_PIPES
   ],
   bootstrap: [],
-  entryComponents: [
-    ...components
-  ],
+  entryComponents: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class WvrLibModule {
-
-  constructor(injector: Injector) {
-    registerCustomElements(injector);
-    showHiddentContent(injector);
-    wvrTimeout(() => {
-      document.querySelector('body').style.display = 'block';
-    });
-  }
 
 }
