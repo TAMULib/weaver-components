@@ -149,10 +149,7 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
   // TODO: fix this
   /** Used for post content initialization animation setup. */
   ngAfterContentInit(): void {
-    wvrTimeout(() => {
-      this._animationService
-        .initializeAnimationElement(this.animationStateId, this._animationConfig, this.animationRootElem);
-    }, 1);
+    this.initializeAnimationElement();
   }
 
   /** Handles the the unregistering of this component with the component registry. */
