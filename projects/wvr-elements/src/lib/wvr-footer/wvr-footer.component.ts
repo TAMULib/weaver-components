@@ -1,5 +1,6 @@
-import { Component, HostBinding, HostListener, Injector, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, HostBinding, HostListener, Injector, Input } from '@angular/core';
 import { ResizeSensor } from 'css-element-queries';
+import { ThemeVariantName } from '../shared/theme';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 /**
@@ -10,7 +11,7 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
   templateUrl: './wvr-footer.component.html',
   styleUrls: ['./wvr-footer.component.scss']
 })
-export class WvrFooterComponent extends WvrBaseComponent implements OnInit {
+export class WvrFooterComponent extends WvrBaseComponent implements AfterViewInit {
 
   /** An internal reference to the body element. */
   private parentElement: HTMLElement;
@@ -20,11 +21,11 @@ export class WvrFooterComponent extends WvrBaseComponent implements OnInit {
   /** An internal reference to the footer element. */
   private footerElement: HTMLElement;
 
+  /** Used to define the class type for footer component.  */
+  @Input() themeVariant: ThemeVariantName = 'success';
+
   /** Used internally to toggle fixed behavior. */
   isSticky = false;
-
-  /** Allows for the override of the --footer-background css variable. */
-  @HostBinding('style.--footer-background') @Input() background;
 
   /** Allows for the override of the --footer-height css variable. */
   @HostBinding('style.--footer-height') @Input() height;
@@ -57,8 +58,7 @@ export class WvrFooterComponent extends WvrBaseComponent implements OnInit {
    * and registers a new ResizeSensor for the parentElement, with
    * a call to positionSelf as the callback method.
    */
-  ngOnInit(): void {
-    super.ngOnInit();
+  ngAfterViewInit(): void {
     // this.parentElement = (this._eRef.nativeElement as HTMLElement).parentElement;
     this.parentElement = document.querySelector(this.parentElementName);
     this.footerElement = (this._eRef.nativeElement as HTMLElement).querySelector('footer.wvr-footer');
