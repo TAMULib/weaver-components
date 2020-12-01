@@ -13,7 +13,9 @@ import { WvrLibModule } from '../../projects/wvr-elements/src/public-api';
   schemas: []
 })
 export class AppModule {
+
   ngDoBootstrap(): void {
     // OVERRIDE
   }
+
 }
