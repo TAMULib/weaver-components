@@ -13,7 +13,7 @@
   --logo-img-margin: 0 0 0 0;
   --title-row-background: var(--primary);
   --title-row-height: var(--wvr-navbar-height);
-  --top-nav-background: var(--wvr-secondary);
+  --top-nav-background: tomato; //var(--wvr-secondary);
   --top-nav-height: var(--wvr-navbar-height);
   --top-nav-padding: var(--wvr-navbar-padding);
 }
@@ -31,7 +31,7 @@
 }
 
 .top-nav {
-  background: var(--top-nav-background);
+  // background: var(--top-nav-background);
   height: var(--top-nav-height);
   padding: var(--top-nav-padding);
 
@@ -52,12 +52,12 @@
 }
 
 .title-row {
-  background: var(--title-row-background);
+  // background: var(--title-row-background);
   height: var(--title-row-height);
 }
 
 .bottom-nav {
-  background: var(--bottom-nav-background);
+  // background: var(--bottom-nav-background);
   height: var(--bottom-nav-height);
   padding: var(--bottom-nav-padding);
 }

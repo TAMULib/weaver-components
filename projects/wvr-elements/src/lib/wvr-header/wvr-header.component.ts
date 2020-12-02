@@ -1,6 +1,7 @@
 import { AfterContentChecked, Component, HostBinding, Injector, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import * as rootStore from '../core/store';
+import { ThemeVariantName } from '../shared/theme';
 import { WvrSelect } from '../shared/utility/decorators.utilty';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
@@ -13,6 +14,9 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
   styleUrls: ['./wvr-header.component.scss']
 })
 export class WvrHeaderComponent extends WvrBaseComponent implements OnInit, AfterContentChecked {
+
+  /** Used to define the class type for header component.  */
+  @Input() themeVariant: ThemeVariantName = 'info';
 
   /** The text value to be displayed beside the logo. */
   @Input() logoText = 'Weaver Components';
@@ -29,9 +33,6 @@ export class WvrHeaderComponent extends WvrBaseComponent implements OnInit, Afte
   /** A resolvable URL to a location linkable from the logo. */
   @Input() logoHref = '#logo';
 
-  /** Allows for the override of the --top-nav-background css variable. Default:  --wvr-secondary */
-  @HostBinding('style.--top-nav-background') @Input() topNavBackground;
-
   /** Allows for the override of the --top-nav-height css variable. Default:  --wvr-navbar-height */
   @HostBinding('style.--top-nav-height') @Input() topNavHeight;
 
@@ -47,14 +48,8 @@ export class WvrHeaderComponent extends WvrBaseComponent implements OnInit, Afte
   /** Allows for the override of the --logo-img-margin css variable. Default:  0 0 0 0 */
   @HostBinding('style.--logo-img-margin') @Input() logoImgMargin;
 
-  /** Allows for the override of the --title-row-background css variable. Default:  --wvr-primary */
-  @HostBinding('style.--title-row-background') @Input() titleRowBackground;
-
   /** Allows for the override of the --title-row-height css variable. Default:  --wvr-navbar-height */
   @HostBinding('style.--title-row-height') @Input() titleRowHeight;
-
-  /** Allows for the override of the --bottom-nav-background css variable. Default:  --wvr-grey */
-  @HostBinding('style.--bottom-nav-background') @Input() bottomNavBackground;
 
   /** Allows for the override of the --bottom-nav-height css variable. Default:  --wvr-navbar-height */
   @HostBinding('style.--bottom-nav-height') @Input() bottomNavHeight;
