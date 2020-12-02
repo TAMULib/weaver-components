@@ -15,7 +15,7 @@ import { RootState, selectManifestEntryResponse } from '../core/store';
 import { TemplateService } from '../core/template.service';
 import { ThemeService } from '../core/theme/theme.service';
 import { AppConfig, APP_CONFIG } from './config';
-import { wvrTimeout } from './utility';
+import { ThemeVariants } from './theme';
 import { WvrAnimationComponent } from './wvr-animation.component';
 import { WvrDataComponent } from './wvr-data.component';
 import { WvrThemeableComponent } from './wvr-themeable.component';
@@ -37,8 +37,8 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
 
   themeOverrides = {};
 
-  @Input() set wvrTheme(value) {
-    this.themeService.applyThemeStyle(value, this);
+  @Input() set wvrTheme(themeName: string) {
+    this.themeService.applyThemeByName(themeName, this);
   }
 
   /** A host binding used to ensure the presense of the `wvr-bootstrap` class. */
@@ -89,6 +89,7 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
   }
 
   protected readonly store: Store<RootState>;
+
   /** A reference to the  ComponentRegistryService */
   protected readonly componentRegistry: ComponentRegistryService<WvrBaseComponent>;
 
@@ -132,7 +133,6 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
     this.appConfig = injector.get(APP_CONFIG);
     this.store = injector.get<Store<RootState>>(Store);
     this.id = this.componentRegistry.register(this);
-
     const element = (this._eRef.nativeElement as HTMLElement);
     const htmlIDAttrName = element.hasAttribute('id') ? 'wvr-id' : 'id';
     element.setAttribute(htmlIDAttrName, `${ComponentRegistryService.HTML_ID_BASE}-${this.id}`);
@@ -140,7 +140,7 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
 
   /** Used to setup this component for animating. */
   ngOnInit(): void {
-    this.themeService.applyThemeStyle(this.appConfig.theme, this);
+    this.themeService.registerComponent(this.id, this);
     this.processData();
     this.initializeAnimationRegistration();
     this.templateService.parseProjectedContent(this, this._eRef.nativeElement);
@@ -155,6 +155,7 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
   /** Handles the the unregistering of this component with the component registry. */
   ngOnDestroy(): void {
     this.componentRegistry.unRegisterComponent(this.id);
+    this.themeService.unRegisterComponent(this.id);
   }
 
   applyThemeOverride(customProperty: string, value: string): void {
@@ -188,10 +189,10 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
 
   /* istanbul ignore next */
   initializeAnimationElement(): void {
-    wvrTimeout(() => {
-      this._animationService
-        .initializeAnimationElement(this.animationStateId, this._animationConfig, this.animationRootElem);
-    }, 1);
+    // wvrTimeout(() => {
+    this._animationService
+      .initializeAnimationElement(this.animationStateId, this._animationConfig, this.animationRootElem);
+    // });
   }
 
   /* istanbul ignore next */

@@ -6,26 +6,53 @@ import { filter } from 'rxjs/operators';
 import { ThemeVariants } from '../../shared/theme';
 import { hexToRgb, luminance, mix, yiq } from '../../shared/utility/color.utlity';
 import { WvrThemeableComponent } from '../../shared/wvr-themeable.component';
-import { RootState, selectCurrentTheme, selectTheme } from '../store';
-
+import { RootState, selectThemeState } from '../store';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ThemeService {
 
-  constructor(private readonly store: Store<RootState>) {
+  currentTheme: ThemeVariants;
 
+  themes: { [name: string]: ThemeVariants };
+
+  themedComponents: Map<number, WvrThemeableComponent>;
+
+  constructor(private readonly store: Store<RootState>) {
+    this.themedComponents = new Map<number, WvrThemeableComponent>();
+    this.store.pipe(
+      select(selectThemeState),
+      filter(themeState => !!themeState)
+    ).subscribe(themeState => {
+      this.themes = themeState.themes;
+      this.currentTheme = this.themes[themeState.currentTheme];
+      this.themedComponents.forEach((themeableComponent: WvrThemeableComponent, id: number) => {
+        this.applyTheme(this.currentTheme, themeableComponent);
+      });
+    });
   }
 
-  applyThemeStyle(colorThemeName: string, themeableComponent: WvrThemeableComponent): void {
-    this.store
-      .pipe(select(selectCurrentTheme), filter(theme => !!theme))
-      .subscribe(theme => {
-        let styles = '';
-        styles += this.processThemeVariants(theme, themeableComponent);
-        themeableComponent.style = styles;
-      });
+  registerComponent(id: number, themeableComponent: WvrThemeableComponent): void {
+    this.themedComponents.set(id, themeableComponent);
+    this.applyTheme(this.currentTheme, themeableComponent);
+  }
+
+  unRegisterComponent(id: number): void {
+    this.themedComponents.delete(id);
+  }
+
+  applyThemeByName(themeName: string, themeableComponent: WvrThemeableComponent): void {
+    const theme = this.themes[themeName];
+    this.applyTheme(theme, themeableComponent);
+  }
+
+  private applyTheme(theme: ThemeVariants, themeableComponent: WvrThemeableComponent): void {
+    if (!!theme) {
+      let styles = '';
+      styles += this.processThemeVariants(theme, themeableComponent);
+      themeableComponent.style = styles;
+    }
   }
 
   // tslint:disable-next-line:prefer-function-over-method
@@ -41,23 +68,6 @@ export class ThemeService {
 
     const themeColorInterval = parseInt(computedStyle.getPropertyValue('--theme-color-interval')
       .trim(), 10);
-
-    const alertBackgroundLevel = Number(computedStyle.getPropertyValue('--alert-bg-level')
-      .trim());
-    const alertBorderLevel = Number(computedStyle.getPropertyValue('--alert-border-level')
-      .trim());
-    const alertColorLevel = Number(computedStyle.getPropertyValue('--alert-color-level')
-      .trim());
-
-    const listGroupItemBackgroundLevel = Number(computedStyle.getPropertyValue('--list-group-item-bg-level')
-      .trim());
-    const listGroupItemColorLevel = Number(computedStyle.getPropertyValue('--list-group-item-color-level')
-      .trim());
-
-    const tableBackgroundLevel = Number(computedStyle.getPropertyValue('--table-bg-level')
-      .trim());
-    const tableBorderLevel = Number(computedStyle.getPropertyValue('--table-border-level')
-      .trim());
 
     const black = computedStyle.getPropertyValue('--black')
       .trim();
@@ -87,6 +97,13 @@ export class ThemeService {
 
         switch (variantType) {
           case 'alert':
+            const alertBackgroundLevel = Number(computedStyle.getPropertyValue('--alert-bg-level')
+              .trim());
+            const alertBorderLevel = Number(computedStyle.getPropertyValue('--alert-border-level')
+              .trim());
+            const alertColorLevel = Number(computedStyle.getPropertyValue('--alert-color-level')
+              .trim());
+
             // update alert variants
             const alertBgValue = mix(constrast(alertBackgroundLevel), value, Math.abs(alertBackgroundLevel) * themeColorInterval);
             appendStyle(`${key}-alert-bg`, alertBgValue);
@@ -150,6 +167,11 @@ export class ThemeService {
             appendStyle(`${key}-button-box-shadow-color`, buttonBoxShadowColorValue);
             break;
           case 'list-group-item':
+            const listGroupItemBackgroundLevel = Number(computedStyle.getPropertyValue('--list-group-item-bg-level')
+              .trim());
+            const listGroupItemColorLevel = Number(computedStyle.getPropertyValue('--list-group-item-color-level')
+              .trim());
+
             // update list item group variants
             // tslint:disable-next-line:max-line-length
             const listGroupItemBgValue = mix(constrast(listGroupItemBackgroundLevel), value, Math.abs(listGroupItemBackgroundLevel) * themeColorInterval);
@@ -160,6 +182,11 @@ export class ThemeService {
             appendStyle(`${key}-list-group-item-color`, listGroupItemColorValue);
             break;
           case 'table':
+            const tableBackgroundLevel = Number(computedStyle.getPropertyValue('--table-bg-level')
+              .trim());
+            const tableBorderLevel = Number(computedStyle.getPropertyValue('--table-border-level')
+              .trim());
+
             // update table variants
             const tableBgValue = mix(constrast(tableBackgroundLevel), value, Math.abs(tableBackgroundLevel) * themeColorInterval);
             appendStyle(`${key}-table-bg`, tableBgValue);
