@@ -4,7 +4,7 @@ import { Manifest } from '../core/manifest/manifest';
 import { ManifestEntry } from '../core/manifest/manifest-entry';
 import * as ManifestActions from '../core/manifest/manifest.actions';
 import { RequestMethod } from '../core/rest/request-method';
-import { debounce } from '../shared/utility';
+import { wvrTimeout } from '../shared/utility';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 import * as mappingStrategies from './mapping-strategies';
 import { WvrManifestEntryComponent } from './wvr-manifest-entry/wvr-manifest-entry.component';
@@ -46,13 +46,15 @@ export class WvrManifestComponent extends WvrBaseComponent {
 
   addEntry(manifestEntry: WvrManifestEntryComponent): void {
     this.manifestEntries.push(manifestEntry);
-    this.buildEntries();
+    wvrTimeout(() => {
+      this.buildEntries();
+    });
   }
 
   /**
    * Converts this manifests WvrManifestEntryComponents into ManifestEntries
    */
-  @debounce() private buildEntries(): void {
+  private buildEntries(): void {
 
     let ms = mappingStrategies[this.mappingStrategy] ?
       mappingStrategies[this.mappingStrategy] :
