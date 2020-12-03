@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, Injector } from '@angular/core';
-import { SafeHtml } from '@angular/platform-browser';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 import { WvrTabComponent } from './wvr-tab/wvr-tab.component';
 
@@ -24,7 +23,7 @@ export class WvrTabsComponent extends WvrBaseComponent {
   tabContentID = `wvr-tab-content-${this.id}`;
 
   /* SafeHtml to be injected into the active tab content. */
-  activeTabContent: SafeHtml = 'Tab Content';
+  activeTabContent = 'Tab Content';
 
   constructor(injector: Injector) {
     super(injector);

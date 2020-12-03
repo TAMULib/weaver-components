@@ -7,7 +7,7 @@ export interface WvrThemeableComponent {
   style: SafeStyle;
   themeOverrides: { [key: string]: string };
   readonly variantTypes: Array<variantType>;
-  readonly _eRef: ElementRef<HTMLElement>;
+  readonly eRef: ElementRef<HTMLElement>;
 
   applyThemeOverride(customProperty: string, value: string): void;
 

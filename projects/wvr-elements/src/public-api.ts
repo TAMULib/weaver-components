@@ -1,8 +1,6 @@
 /*
  * Public API Surface of elements
  */
-
-export * from './lib/core/icon.service';
 export * from './lib/core/mobile.service';
 export * from './lib/core/wvr-core.module';
 export * from './lib/shared/alignment.enum';

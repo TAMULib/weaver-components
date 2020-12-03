@@ -1,8 +1,4 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, HostBinding, Injector, Input } from '@angular/core';
-import { SafeUrl } from '@angular/platform-browser';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { IconService } from '../core/icon.service';
+import { ChangeDetectionStrategy, Component, HostBinding, Injector, Input, OnInit } from '@angular/core';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 /**
@@ -14,7 +10,7 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
   styleUrls: ['./wvr-icon.component.scss'],
   changeDetection: ChangeDetectionStrategy.Default
 })
-export class WvrIconComponent extends WvrBaseComponent implements AfterViewInit {
+export class WvrIconComponent extends WvrBaseComponent implements OnInit {
 
   /** An attribute input describing the icon set to which this icon belongs. */
   @Input() set: string;
@@ -28,20 +24,15 @@ export class WvrIconComponent extends WvrBaseComponent implements AfterViewInit 
   /** An attribute input bound to the css variable `--wvr-icon-size`.  */
   @HostBinding('style.--wvr-icon-size') @Input() size = '24px';
 
-  iconSvgDataUrl: Observable<SafeUrl>;
+  iconSvgUrl: string;
 
-  constructor(injector: Injector, private readonly iconService: IconService) {
+  constructor(injector: Injector) {
     super(injector);
   }
 
-  /** Utilizes the icon service to request the svg specified by this icon. */
-  ngAfterViewInit(): void {
-    super.ngAfterContentInit();
-    this.iconSvgDataUrl = this.iconService.getIcon(this.set, this.name)
-      .pipe(
-        map(svg => `data:image/svg+xml;base64,${btoa(svg)}`),
-        map(dataUrl => this._domSanitizer.bypassSecurityTrustUrl(dataUrl))
-      );
+  ngOnInit(): void {
+    super.ngOnInit();
+    this.iconSvgUrl = `${this.appConfig.assetsUrl}/icons/${this.set}/${this.name}.svg`;
   }
 
 }

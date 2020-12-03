@@ -62,7 +62,7 @@ export class WvrFooterComponent extends WvrBaseComponent implements OnInit {
     super.ngOnInit();
     // this.parentElement = (this._eRef.nativeElement as HTMLElement).parentElement;
     this.parentElement = document.querySelector(this.parentElementName);
-    this.footerElement = (this._eRef.nativeElement as HTMLElement).querySelector('footer.wvr-footer');
+    this.footerElement = (this.eRef.nativeElement as HTMLElement).querySelector('footer.wvr-footer');
     const rs = new ResizeSensor(this.parentElement, () => {
       this.positionSelf();
     });

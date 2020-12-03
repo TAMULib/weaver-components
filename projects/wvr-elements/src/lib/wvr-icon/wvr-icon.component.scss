@@ -2,17 +2,15 @@
 @import "../shared/styles/variables";
 
 :host {
-  
   @extend .variables;
 
   --wvr-icon-color: inherit;
   --wvr-icon-size: inherit;
 
-  wvre-icon-wrapper .icon {
+  img.icon {
     display: inline-block;
     color: var(--wvr-icon-color);
     width: var(--wvr-icon-size);
     height: var(--wvr-icon-size);
   }
-
 }

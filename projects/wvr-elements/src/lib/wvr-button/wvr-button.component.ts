@@ -77,22 +77,6 @@ export class WvrButtonComponent extends WvrBaseComponent {
     this.applyThemeOverride(`--${this.themeVariant}-button-hover-color`, value);
   }
 
-  // /** Allows for the override of button text-decoration property */
-  // @Input() set textDecoration(value: string) {
-  // }
-
-  // /** Allows for the override of button active text-decoration property */
-  // @Input() set textDecorationActive(value: string) {
-  // }
-
-  // /** Allows for the override of button hover text-decoration property */
-  // @Input() set textDecorationHover(value: string) {
-  // }
-
-  // /** Allows for the override of button focus text-decoration property */
-  // @Input() set textDecorationFocus(value: string) {
-  // }
-
   /** Allows for the override of button border radius */
   @HostBinding('style.--wvr-btn-border-radius') @Input() borderRadius;
 
@@ -119,9 +103,6 @@ export class WvrButtonComponent extends WvrBaseComponent {
 
   /** Allows for the override of button vertical align property */
   @HostBinding('style.--wvr-btn-vertical-align') @Input() verticalAlign;
-
-  // tslint:disable-next-line:max-line-length
-  // @WvrSelect({ selector: rootStore.selectManifestEntryResponse('Directory App', 'All Sorted') }) private sampleTestResponse: Observable<any>;
 
   variantTypes = ['button'];
 

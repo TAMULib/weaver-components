@@ -24,7 +24,6 @@ import { WvrTabsComponent } from '../wvr-tabs/wvr-tabs.component';
 import { WvrTextComponent } from '../wvr-text/wvr-text.component';
 import { WvrThemeComponent } from '../wvr-theme/wvr-theme.component';
 import { AnimationService } from './animation.service';
-import { IconService } from './icon.service';
 import { ManifestEffects } from './manifest/manifest.effects';
 import { MobileService } from './mobile.service';
 import { RestEffects } from './rest/rest.effects';
@@ -75,18 +74,17 @@ export const showHiddentContent = (injector: Injector) => {
 };
 
 const MODULES = [
-  HttpClientModule,
-  StoreModule.forRoot(ROOT_REDUCER, { metaReducers }),
   EffectsModule.forRoot([
     ManifestEffects,
     RestEffects,
     ThemeEffects
-  ])
+  ]),
+  HttpClientModule,
+  StoreModule.forRoot(ROOT_REDUCER, { metaReducers })
 ];
 
 const PROVIDERS = [
   AnimationService,
-  IconService,
   MobileService,
   ThemeService,
   TemplateService

@@ -57,7 +57,7 @@ export class ThemeService {
 
   // tslint:disable-next-line:prefer-function-over-method
   private processThemeVariants(theme: ThemeVariants, themeableComponent: WvrThemeableComponent): string {
-    const computedStyle = getComputedStyle(themeableComponent._eRef.nativeElement);
+    const computedStyle = getComputedStyle(themeableComponent.eRef.nativeElement);
 
     const yiqContrastedThreshold = Number(computedStyle.getPropertyValue('--yiq-contrasted-threshold')
       .trim());

@@ -1,7 +1,4 @@
-import { AfterContentChecked, ChangeDetectionStrategy, Component, HostBinding, Injector, Input, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import * as rootStore from '../core/store';
-import { WvrSelect } from '../shared/utility/decorators.utilty';
+import { ChangeDetectionStrategy, Component, HostBinding, Injector, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 /**
@@ -13,7 +10,7 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
   styleUrls: ['./wvr-header.component.scss'],
   changeDetection: ChangeDetectionStrategy.Default
 })
-export class WvrHeaderComponent extends WvrBaseComponent implements OnInit, AfterContentChecked {
+export class WvrHeaderComponent extends WvrBaseComponent implements OnChanges {
 
   /** The text value to be displayed beside the logo. */
   @Input() logoText = 'Weaver Components';
@@ -83,9 +80,6 @@ export class WvrHeaderComponent extends WvrBaseComponent implements OnInit, Afte
 
   mobileMenuClosed = true;
 
-  // tslint:disable-next-line: prefer-readonly
-  @WvrSelect({ selector: rootStore.selectManifestEntryResponse('sample', 'one') }) private sampleTestResponse: Observable<string>;
-
   /**
    * The weaver header component constructor
    */
@@ -93,12 +87,8 @@ export class WvrHeaderComponent extends WvrBaseComponent implements OnInit, Afte
     super(injector);
   }
 
-  ngOnInit(): void {
-    super.ngOnInit();
-    this.checkBottomNavHasChildren();
-  }
-
-  ngAfterContentChecked(): void {
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('here');
     this.checkBottomNavHasChildren();
   }
 
@@ -108,7 +98,7 @@ export class WvrHeaderComponent extends WvrBaseComponent implements OnInit, Afte
 
   /** Determines if the bottom nav list has children in order to display bottom nav section. */
   private checkBottomNavHasChildren(): void {
-    const bottomNavListElement = (this._eRef.nativeElement as HTMLElement).querySelector('.bottom-nav wvre-nav-li, .bottom-nav wvr-nav-li-component');
+    const bottomNavListElement = (this.eRef.nativeElement as HTMLElement).querySelector('.bottom-nav wvre-nav-li, .bottom-nav wvr-nav-li-component');
     this.isBottomNavHidden = !(this.displayBottomNav === 'true' || (this.displayBottomNav === undefined && !!bottomNavListElement));
   }
 
