@@ -1,5 +1,6 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, Injector, Input } from '@angular/core';
 import { ThemeVariantName } from '../shared/theme';
+import { wvrTimeout } from '../shared/utility';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 /**
@@ -69,13 +70,15 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit 
 
   /** Called after the view has been intialized. Handles the rendering of the projected content. */
   ngAfterViewInit(): void {
-    this.renderCardHeader();
-    this.renderCardImg();
-    this.renderCardTitle();
-    this.renderCardLinks();
-    this.renderCardLists();
-    this.renderCardButtons();
-    this.renderCardFooter();
+    wvrTimeout(() => {
+      this.renderCardHeader();
+      this.renderCardImg();
+      this.renderCardTitle();
+      this.renderCardLinks();
+      this.renderCardLists();
+      this.renderCardButtons();
+      this.renderCardFooter();
+    });
   }
 
   additionalCardClasses(): string {

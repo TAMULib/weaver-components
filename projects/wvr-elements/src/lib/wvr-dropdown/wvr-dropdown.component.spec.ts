@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
 import { provideMockStore } from '@ngrx/store/testing';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { APP_CONFIG, testAppConfig } from '../shared/config';
 import { WvrDropdownComponent } from './wvr-dropdown.component';
 
@@ -32,7 +33,8 @@ describe('WvrDropdownComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        LazyLoadImageModule
       ],
       providers: [
         {
@@ -111,9 +113,6 @@ describe('WvrDropdownComponent', () => {
 
   it('should set `_animationSpeedMili` and `_animationSpeedSeconds` when setting `menuAnimationSpeed`', () => {
     component.menuAnimationSpeed = 500;
-    // tslint:disable-next-line:no-string-literal
-    expect(component['_animationSpeedMili'])
-      .toEqual(500);
     // tslint:disable-next-line:no-string-literal
     expect(component['_animationSpeedSeconds'])
       .toEqual('0.5s');

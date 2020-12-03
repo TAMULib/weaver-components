@@ -21,7 +21,7 @@ export class WvrDropdownComponent extends WvrBaseComponent {
   @HostBinding('style.--wvr-dropdown-menu-animation-speed') private _animationSpeedSeconds;
 
 
-  /** A setter which sets the speed to both `_animationSpeedMili` in miliseconds and `_animationSpeedSeconds` in seconds. */
+  /** A setter which sets the speed to `_animationSpeedSeconds` in seconds. */
   @Input() set menuAnimationSpeed(speed: number) {
     this._animationSpeedSeconds = `${speed / 1000}s`;
   }
