@@ -188,10 +188,8 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
 
   /* istanbul ignore next */
   initializeAnimationElement(): void {
-    // wvrTimeout(() => {
     this._animationService
       .initializeAnimationElement(this.animationStateId, this._animationConfig, this.animationRootElem);
-    // });
   }
 
   /* istanbul ignore next */
