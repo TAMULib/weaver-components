@@ -40,7 +40,7 @@ export class WvrManifestComponent extends WvrBaseComponent {
   private readonly manifestEntries = new Array<WvrManifestEntryComponent>();
 
   // tslint:disable-next-line:no-empty
-  constructor(private readonly injector: Injector) {
+  constructor(injector: Injector) {
     super(injector);
   }
 

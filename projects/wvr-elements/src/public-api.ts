@@ -1,10 +1,10 @@
 /*
  * Public API Surface of elements
  */
-export * from './lib/core/mobile.service';
 export * from './lib/core/wvr-core.module';
 export * from './lib/shared/alignment.enum';
 export * from './lib/shared/config';
+export * from './lib/shared/theme';
 export * from './lib/shared/utility';
 export * from './lib/shared/wvr-base.component';
 export * from './lib/shared/wvr-shared.module';
@@ -27,4 +27,3 @@ export * from './lib/wvr-tabs/wvr-tab/wvr-tab.component';
 export * from './lib/wvr-tabs/wvr-tabs.component';
 export * from './lib/wvr-text/wvr-text.component';
 export * from './lib/wvr-theme/wvr-theme.component';
-
