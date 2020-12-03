@@ -88,7 +88,6 @@ export class WvrHeaderComponent extends WvrBaseComponent implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log('here');
     this.checkBottomNavHasChildren();
   }
 
