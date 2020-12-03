@@ -5,7 +5,6 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { APP_CONFIG, testAppConfig } from '../shared/config';
 import { WvrThemeComponent } from './wvr-theme.component';
 
-
 describe('WvrThemeComponent', () => {
   const initialState = { theme: {
     themes: {}
