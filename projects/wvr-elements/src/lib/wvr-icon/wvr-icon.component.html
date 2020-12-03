@@ -1,2 +1,3 @@
-<wvre-icon-wrapper #animationRoot [innerHTML]="iconSvg | async">
+<wvre-icon-wrapper #animationRoot>
+  <img class="icon" [src]="iconSvgDataUrl | async">
 </wvre-icon-wrapper>

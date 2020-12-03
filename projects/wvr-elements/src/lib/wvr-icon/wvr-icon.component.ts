@@ -1,5 +1,5 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, HostBinding, Injector, Input } from '@angular/core';
-import { SafeHtml } from '@angular/platform-browser';
+import { SafeUrl } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { IconService } from '../core/icon.service';
@@ -28,8 +28,7 @@ export class WvrIconComponent extends WvrBaseComponent implements AfterViewInit 
   /** An attribute input bound to the css variable `--wvr-icon-size`.  */
   @HostBinding('style.--wvr-icon-size') @Input() size = '24px';
 
-  /** An observable SafeHtml representation of the svg to be displayed for this icon. */
-  iconSvg: Observable<SafeHtml>;
+  iconSvgDataUrl: Observable<SafeUrl>;
 
   constructor(injector: Injector, private readonly iconService: IconService) {
     super(injector);
@@ -37,8 +36,12 @@ export class WvrIconComponent extends WvrBaseComponent implements AfterViewInit 
 
   /** Utilizes the icon service to request the svg specified by this icon. */
   ngAfterViewInit(): void {
-    this.iconSvg = this.iconService.getIcon(this.set, this.name)
-      .pipe(map(svg => this._domSanitizer.bypassSecurityTrustHtml(svg)));
+    super.ngAfterContentInit();
+    this.iconSvgDataUrl = this.iconService.getIcon(this.set, this.name)
+      .pipe(
+        map(svg => `data:image/svg+xml;base64,${btoa(svg)}`),
+        map(dataUrl => this._domSanitizer.bypassSecurityTrustUrl(dataUrl))
+      );
   }
 
 }

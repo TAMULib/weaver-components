@@ -15,7 +15,6 @@ import { RootState, selectManifestEntryResponse } from '../core/store';
 import { TemplateService } from '../core/template.service';
 import { ThemeService } from '../core/theme/theme.service';
 import { AppConfig, APP_CONFIG } from './config';
-import { ThemeVariants } from './theme';
 import { WvrAnimationComponent } from './wvr-animation.component';
 import { WvrDataComponent } from './wvr-data.component';
 import { WvrThemeableComponent } from './wvr-themeable.component';
