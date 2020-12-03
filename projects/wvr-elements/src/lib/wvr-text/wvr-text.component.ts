@@ -7,7 +7,7 @@ import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular
   selector: 'wvr-text-component',
   templateUrl: './wvr-text.component.html',
   styleUrls: ['./wvr-text.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Default
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class WvrTextComponent {
 

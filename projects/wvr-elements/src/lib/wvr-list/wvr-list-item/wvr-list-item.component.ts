@@ -9,7 +9,7 @@ import { WvrBaseComponent } from '../../shared/wvr-base.component';
   selector: 'wvr-list-item-component',
   templateUrl: './wvr-list-item.component.html',
   styleUrls: ['./wvr-list-item.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Default
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class WvrListItemComponent extends WvrBaseComponent implements OnInit, AfterViewInit {
 

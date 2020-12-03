@@ -8,7 +8,7 @@ import { WvrBaseComponent } from '../../shared/wvr-base.component';
   selector: 'wvr-nav-li-component',
   templateUrl: './wvr-nav-li.component.html',
   styleUrls: ['./wvr-nav-li.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Default
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class WvrNavLiComponent extends WvrBaseComponent {
 
