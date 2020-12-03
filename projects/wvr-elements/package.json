@@ -29,7 +29,7 @@
     "wvr-ud": "./scripts/build-wvr-ud.js"
   },
   "peerDependencies": {
-    "@angular/common": "^11.0.2",
-    "@angular/core": "^11.0.2"
+    "@angular/common": "^11.0.3",
+    "@angular/core": "^11.0.3"
   }
 }

@@ -151,7 +151,7 @@
           }
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "ngx-build-plus:karma",
           "options": {
             "main": "projects/wvr-elements/src/test.ts",
             "tsConfig": "projects/wvr-elements/tsconfig.spec.json",
