@@ -51,6 +51,7 @@ static/
 development/
 .lighthouseci/
 package-lock.json
+yarn.lock
 src/config.json
 src/config-template.json
 

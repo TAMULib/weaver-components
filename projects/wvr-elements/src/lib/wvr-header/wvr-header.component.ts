@@ -1,7 +1,4 @@
-import { AfterContentChecked, Component, HostBinding, Injector, Input, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import * as rootStore from '../core/store';
-import { WvrSelect } from '../shared/utility/decorators.utilty';
+import { AfterContentChecked, ChangeDetectionStrategy, Component, HostBinding, Injector, Input, OnInit } from '@angular/core';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 /**
@@ -10,9 +7,10 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
 @Component({
   selector: 'wvr-header-component',
   templateUrl: './wvr-header.component.html',
-  styleUrls: ['./wvr-header.component.scss']
+  styleUrls: ['./wvr-header.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
 })
-export class WvrHeaderComponent extends WvrBaseComponent implements OnInit, AfterContentChecked {
+export class WvrHeaderComponent extends WvrBaseComponent implements AfterContentChecked, OnInit {
 
   /** The text value to be displayed beside the logo. */
   @Input() logoText = 'Weaver Components';
@@ -62,17 +60,8 @@ export class WvrHeaderComponent extends WvrBaseComponent implements OnInit, Afte
   /** Allows for the override of the --bottom-nav-padding css variable. Default:  --wvr-navbar-padding */
   @HostBinding('style.--bottom-nav-padding') @Input() bottomNavPadding;
 
-  private _displayBottomNav: 'true' | 'false';
-
   /** Used to toggle display of bottom navbar section. */
-  @Input() set displayBottomNav(value: 'true' | 'false') {
-    this._displayBottomNav = value;
-    this.checkBottomNavHasChildren();
-  }
-
-  get displayBottomNav(): 'true' | 'false' {
-    return this._displayBottomNav;
-  }
+  @Input() displayBottomNav: 'true' | 'false';
 
   get logoId(): string {
     return this.logoHref.split('#')[1];
@@ -82,19 +71,11 @@ export class WvrHeaderComponent extends WvrBaseComponent implements OnInit, Afte
 
   mobileMenuClosed = true;
 
-  // tslint:disable-next-line: prefer-readonly
-  @WvrSelect({ selector: rootStore.selectManifestEntryResponse('sample', 'one') }) private sampleTestResponse: Observable<string>;
-
   /**
    * The weaver header component constructor
    */
   constructor(injector: Injector) {
     super(injector);
-  }
-
-  ngOnInit(): void {
-    super.ngOnInit();
-    this.checkBottomNavHasChildren();
   }
 
   ngAfterContentChecked(): void {
@@ -107,7 +88,7 @@ export class WvrHeaderComponent extends WvrBaseComponent implements OnInit, Afte
 
   /** Determines if the bottom nav list has children in order to display bottom nav section. */
   private checkBottomNavHasChildren(): void {
-    const bottomNavListElement = (this._eRef.nativeElement as HTMLElement).querySelector('.bottom-nav wvre-nav-li, .bottom-nav wvr-nav-li-component');
+    const bottomNavListElement = (this.eRef.nativeElement as HTMLElement).querySelector('.bottom-nav wvre-nav-li, .bottom-nav wvr-nav-li-component');
     this.isBottomNavHidden = !(this.displayBottomNav === 'true' || (this.displayBottomNav === undefined && !!bottomNavListElement));
   }
 
