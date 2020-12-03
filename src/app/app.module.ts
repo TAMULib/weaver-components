@@ -10,7 +10,7 @@ import { registerCustomElements, showHiddentContent, WvrCoreModule, WvrSharedMod
     BrowserModule,
     StoreDevtoolsModule.instrument({
       maxAge: 25, // retains last 25 states
-      logOnly: true, // restrict extension to log-only mode
+      logOnly: true // restrict extension to log-only mode
     }),
     WvrSharedModule,
     WvrCoreModule

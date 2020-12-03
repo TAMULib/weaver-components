@@ -62,6 +62,7 @@ export class WvrTabComponent extends WvrBaseComponent implements AfterViewInit {
   getTabContent(): string {
     const elem = (this.eRef.nativeElement as HTMLElement);
     const contentTemplate = elem.querySelectorAll('template')[0];
+
     return contentTemplate.querySelectorAll('.tab-content')[0].innerHTML;
   }
 

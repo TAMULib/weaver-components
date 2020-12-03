@@ -7,7 +7,6 @@ import { RootState } from '../core/store';
 import * as ThemeActions from '../core/theme/theme.actions';
 import { ThemeVariants } from '../shared/theme';
 
-
 @Component({
   selector: 'wvr-theme-component',
   template: '<ng-content></ng-content>',
@@ -20,6 +19,7 @@ export class WvrThemeComponent implements OnChanges {
   // tslint:disable-next-line: prefer-readonly
   @Input() private name: string;
 
+  // tslint:disable-next-line: prefer-readonly
   @Input() private active = false;
 
   // tslint:disable-next-line: prefer-readonly

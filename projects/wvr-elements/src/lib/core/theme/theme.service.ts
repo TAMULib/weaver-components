@@ -24,13 +24,14 @@ export class ThemeService {
     this.store.pipe(
       select(selectThemeState),
       filter(themeState => !!themeState)
-    ).subscribe(themeState => {
-      this.themes = themeState.themes;
-      this.currentTheme = this.themes[themeState.currentTheme];
-      this.themedComponents.forEach((themeableComponent: WvrThemeableComponent, id: number) => {
-        this.applyTheme(this.currentTheme, themeableComponent);
+    )
+      .subscribe(themeState => {
+        this.themes = themeState.themes;
+        this.currentTheme = this.themes[themeState.currentTheme];
+        this.themedComponents.forEach((themeableComponent: WvrThemeableComponent, id: number) => {
+          this.applyTheme(this.currentTheme, themeableComponent);
+        });
       });
-    });
   }
 
   registerComponent(id: number, themeableComponent: WvrThemeableComponent): void {
