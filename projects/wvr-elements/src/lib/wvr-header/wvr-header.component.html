@@ -1,6 +1,6 @@
 <header class="wvr-components wvr-header" #animationRoot>
 
-  <nav class="top-nav navbar navbar-expand-lg bg-{{themeVariant}}">
+  <nav class="top-nav navbar navbar-expand-lg bg-{{topNavThemeVariant}}">
     <div class="container">
       <a class="navbar-brand d-flex" [href]="logoHref" [id]="logoId">
         <img alt="Logo" class="logo-img d-inline-block align-top" [src]='logoSrc' />
@@ -12,14 +12,14 @@
     </div>
   </nav>
 
-  <div class="title-row row m-0 bg-{{themeVariant}}">
+  <div class="title-row row m-0 bg-{{titleRowThemeVariant}}">
     <div class="container d-flex align-items-center">
       <a *ngIf="headerTitleUrl" [href]="headerTitleUrl"><span class="h1 text-white">{{headerTitle}}</span></a>
       <span *ngIf="!headerTitleUrl" class="h1 text-white">{{headerTitle}}</span>
     </div>
   </div>
 
-  <nav *ngIf="!isMobileLayout" class="bottom-nav navbar navbar-expand-lg bg-{{themeVariant}}"
+  <nav *ngIf="!isMobileLayout" class="bottom-nav navbar navbar-expand-lg bg-{{bottomNavThemeVariant}}"
     [hidden]="isBottomNavHidden">
     <div class="container">
       <div class="flex-fill align-self-stretch">

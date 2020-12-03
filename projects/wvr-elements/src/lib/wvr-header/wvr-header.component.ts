@@ -18,6 +18,45 @@ export class WvrHeaderComponent extends WvrBaseComponent implements OnInit, Afte
   /** Used to define the class type for header component.  */
   @Input() themeVariant: ThemeVariantName = 'info';
 
+  /** Used to define the background property for title row in header component. */
+  private _titleRowThemeVariant: ThemeVariantName = this.themeVariant;
+
+  /** This sets the title row theme variant property. */
+  @Input() set titleRowThemeVariant(themeVariantName: ThemeVariantName) {
+    this._titleRowThemeVariant = themeVariantName;
+  }
+
+  /** This returns the title row theme variant. */
+  get titleRowThemeVariant(): ThemeVariantName {
+    return this._titleRowThemeVariant ? this._titleRowThemeVariant : this.themeVariant;
+  }
+
+  /** Used to define the background property for top navigation section in header component. */
+  private _topNavThemeVariant: ThemeVariantName = this.themeVariant;
+
+  /** This sets the top navigation theme variant. */
+  @Input() set topNavThemeVariant(themeVariantName: ThemeVariantName) {
+    this._topNavThemeVariant = themeVariantName;
+  }
+
+  /** This returns the top navigation theme variant. */
+  get topNavThemeVariant(): ThemeVariantName {
+    return this._topNavThemeVariant ? this._topNavThemeVariant : this.themeVariant;
+  }
+
+  /** Used to define the background property for bottom navigation section in header component. */
+  private _bottomNavThemeVariant: ThemeVariantName = this.themeVariant;
+
+  /** This sets the top navigation theme variant property. */
+  @Input() set bottomNavThemeVariant(themeVariantName: ThemeVariantName) {
+    this._bottomNavThemeVariant = themeVariantName;
+  }
+
+  /** This returns the bottom navigation theme variant property. */
+  get bottomNavThemeVariant(): ThemeVariantName {
+    return this._bottomNavThemeVariant ? this._bottomNavThemeVariant : this.themeVariant;
+  }
+
   /** The text value to be displayed beside the logo. */
   @Input() logoText = 'Weaver Components';
 
