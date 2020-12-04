@@ -1,8 +1,5 @@
-import { Component, HostBinding, Injector, Input } from '@angular/core';
-import { Observable } from 'rxjs';
-import { selectManifestEntryResponse } from '../core/store';
+import { Component, Injector, Input } from '@angular/core';
 import { ThemeVariantName } from '../shared/theme';
-import { WvrSelect } from '../shared/utility/decorators.utilty';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 /**
@@ -23,9 +20,6 @@ export class WvrItWorksComponent extends WvrBaseComponent {
 
   /** The text value to be displayed in the title. */
   @Input() text = 'Weaver Components Work';
-
-  /** Allows for the override of the --wvr-primary css variable. */
-  @HostBinding('style.--wvr-primary') @Input() primary;
 
   constructor(injector: Injector) {
     super(injector);
