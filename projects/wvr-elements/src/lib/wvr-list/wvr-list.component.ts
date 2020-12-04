@@ -16,7 +16,7 @@ export class WvrListComponent extends WvrBaseComponent {
   @Input() listType = 'unordered';
 
   /** Specifies the display style of this list.  */
-  @Input() themeVariant: ThemeVariantName;
+  @Input() themeVariant: ThemeVariantName = 'danger';
 
   constructor(injector: Injector) {
     super(injector);

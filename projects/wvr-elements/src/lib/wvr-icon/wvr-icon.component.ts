@@ -25,9 +25,6 @@ export class WvrIconComponent extends WvrBaseComponent implements AfterViewInit 
   /** An attribute input describing the icon name of this icon. */
   @Input() name: string;
 
-  /** An attribute input bound to the css variable `--wvr-icon-color`.  */
-  @HostBinding('style.--wvr-icon-color') @Input() color: string;
-
     /** An attribute input bound to the css variable `--wvr-icon-size`.  */
   @HostBinding('style.--wvr-icon-size') @Input() size = '24px';
 
