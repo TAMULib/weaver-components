@@ -2,52 +2,8 @@
 @import "../../shared/styles/variables";
 
 :host {
-  
+
   @extend .variables;
-
-  // list-item default colors
-  --wvr-list-group-item-primary-color-default: #004085;
-  --wvr-list-group-item-secondary-color-default: #383d41;
-  --wvr-list-group-item-success-color-default: #155724;
-  --wvr-list-group-item-danger-color-default: #721c24;
-  --wvr-list-group-item-warning-color-default: #856404;
-  --wvr-list-group-item-info-color-default: #0c5460;
-  --wvr-list-group-item-light-color-default: #818182;
-  --wvr-list-group-item-dark-color-default: #1b1e21;
-
-  --wvr-list-group-item-primary-background-color-default: #b8daff;
-  --wvr-list-group-item-secondary-background-color-default: #d6d8db;
-  --wvr-list-group-item-success-background-color-default: #c3e6cb;
-  --wvr-list-group-item-danger-background-color-default: #f5c6cb;
-  --wvr-list-group-item-warning-background-color-default: #ffeeba;
-  --wvr-list-group-item-info-background-color-default: #bee5eb;
-  --wvr-list-group-item-light-background-color-default: #fdfdfe;
-  --wvr-list-group-item-dark-background-color-default: #c6c8ca;
-
-  // list-group-item-primary
-  --wvr-list-group-item-primary-color: var(--wvr-list-group-item-primary-color-default);
-  --wvr-list-group-item-primary-background-color: var(--wvr-list-group-item-primary-background-color-default);
-  // list-group-item-secondary
-  --wvr-list-group-item-secondary-color: var(--wvr-list-group-item-secondary-color-default);
-  --wvr-list-group-item-secondary-background-color: var(--wvr-list-group-item-secondary-background-color-default);
-  // list-group-item-success
-  --wvr-list-group-item-success-color: var(--wvr-list-group-item-success-color-default);
-  --wvr-list-group-item-success-background-color: var(--wvr-list-group-item-success-background-color-default);
-  // list-group-item-danger
-  --wvr-list-group-item-danger-color: var(--wvr-list-group-item-danger-color-default);
-  --wvr-list-group-item-danger-background-color: var(--wvr-list-group-item-danger-background-color-default);
-  // list-group-item-warning
-  --wvr-list-group-item-warning-color: var(--wvr-list-group-item-warning-color-default);
-  --wvr-list-group-item-warning-background-color: var(--wvr-list-group-item-warning-background-color-default);
-  // list-group-item-info
-  --wvr-list-group-item-info-color: var(--wvr-list-group-item-info-color-default);
-  --wvr-list-group-item-info-background-color: var(--wvr-list-group-item-info-background-color-default);
-  // list-group-item-light
-  --wvr-list-group-item-light-color: var(--wvr-list-group-item-light-color-default);
-  --wvr-list-group-item-light-background-color: var(--wvr-list-group-item-light-background-color-default);
-  // list-group-item-dark
-  --wvr-list-group-item-dark-color: var(--wvr-list-group-item-dark-color-default);
-  --wvr-list-group-item-dark-background-color: var(--wvr-list-group-item-dark-background-color-default);
 
   wvre-list-wrapper {
     display: inline-block;
@@ -64,8 +20,6 @@
   .list-group-item.active,
   .list-group-item:active {
     z-index: 2;
-    color: var(--wvr-white);
-    background-color: #007bff;
     border-color: #007bff;
   }
 
@@ -84,46 +38,6 @@
     margin-bottom: 0;
     border-bottom-right-radius: .25rem;
     border-bottom-left-radius: .25rem;
-  }
-
-  .list-group-item-primary {
-    color: var(--wvr-list-group-item-primary-color);
-    background-color: var(--wvr-list-group-item-primary-background-color);
-  }
-
-  .list-group-item-secondary {
-    color: var(--wvr-list-group-item-secondary-color);
-    background-color: var(--wvr-list-group-item-secondary-background-color);
-  }
-
-  .list-group-item-success {
-    color: var(--wvr-list-group-item-success-color);
-    background-color: var(--wvr-list-group-item-success-background-color);
-  }
-
-  .list-group-item-danger {
-    color: var(--wvr-list-group-item-danger-color);
-    background-color: var(--wvr-list-group-item-danger-background-color);
-  }
-
-  .list-group-item-warning {
-    color: var(--wvr-list-group-item-warning-color);
-    background-color: var(--wvr-list-group-item-warning-background-color);
-  }
-
-  .list-group-item-info {
-    color: var(--wvr-list-group-item-info-color);
-    background-color: var(--wvr-list-group-item-info-background-color);
-  }
-
-  .list-group-item-light {
-    color: var(--wvr-list-group-item-light-color);
-    background-color: var(--wvr-list-group-item-light-background-color);
-  }
-
-  .list-group-item-dark {
-    color: var(--wvr-list-group-item-dark-color);
-    background-color: var(--wvr-list-group-item-dark-background-color);
   }
 
   ::ng-deep {

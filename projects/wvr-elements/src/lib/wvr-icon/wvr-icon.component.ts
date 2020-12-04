@@ -3,6 +3,7 @@ import { SafeHtml } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { IconService } from '../core/icon.service';
+import { ThemeVariantName } from '../shared/theme';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 /**
@@ -14,6 +15,9 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
   styleUrls: ['./wvr-icon.component.scss']
 })
 export class WvrIconComponent extends WvrBaseComponent implements AfterViewInit {
+
+  /** Used to define the class type for header component.  */
+  @Input() themeVariant: ThemeVariantName = 'info';
 
   /** An attribute input describing the icon set to which this icon belongs. */
   @Input() set: string;
