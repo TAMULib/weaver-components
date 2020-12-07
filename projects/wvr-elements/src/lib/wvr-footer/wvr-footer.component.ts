@@ -68,4 +68,14 @@ export class WvrFooterComponent extends WvrBaseComponent implements AfterViewIni
     });
   }
 
+  additionalFooterClasses(): string {
+
+    let textClass = '';
+    textClass +=  this.themeService
+                  .darkTextColorByContrast(this) ?
+                  'text-dark' : 'text-white';
+
+    return textClass;
+  }
+
 }

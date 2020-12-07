@@ -1,10 +1,4 @@
-<footer
-  class="wvr-components wvr-footer bg-{{themeVariant}}"
-  [ngClass]="{
-    'stick-to-bottom': isSticky,
-    'text-white': themeVariant==='primary' || themeVariant==='secondary' || themeVariant==='danger' || themeVariant==='dark'
-  }"
-  >
+<footer class="wvr-components wvr-footer bg-{{themeVariant}} {{additionalFooterClasses()}}" [ngClass]="{'stick-to-bottom': isSticky}">
   <nav class="navbar navbar-expand-lg">
     <div class="container">
       <div class="flex-fill align-self-stretch">

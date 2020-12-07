@@ -15,6 +15,7 @@
   --wvr-text-line-height: default;
 
   //text rules
+  --wvr-text-color: default;
   --wvr-text-direction:default;
   --wvr-text-letter-spacing:default;
   --wvr-text-text-align: default;
@@ -38,6 +39,7 @@ wvre-text-node {
   line-height: var(--wvr-text-line-height);
 
   //text rules
+  color: var(--wvr-text-color);
   direction: var(--wvr-text-direction);
   letter-spacing: var(--wvr-text-letter-spacing);
   text-align: var(--wvr-text-text-align);
