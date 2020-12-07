@@ -3,7 +3,7 @@
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { filter } from 'rxjs/operators';
-import { ThemeVariants } from '../../shared/theme';
+import { ThemeVariantName, ThemeVariants } from '../../shared/theme';
 import { hexToRgb, luminance, mix, yiq } from '../../shared/utility/color.utlity';
 import { WvrThemeableComponent } from '../../shared/wvr-themeable.component';
 import { RootState, selectThemeState } from '../store';
@@ -18,6 +18,8 @@ export class ThemeService {
   themes: { [name: string]: ThemeVariants };
 
   themedComponents: Map<number, WvrThemeableComponent>;
+
+  private readonly computedStyle;
 
   constructor(private readonly store: Store<RootState>) {
     this.themedComponents = new Map<number, WvrThemeableComponent>();
@@ -48,6 +50,30 @@ export class ThemeService {
     this.applyTheme(theme, themeableComponent);
   }
 
+  getComputedStyles(themeableComponent: WvrThemeableComponent): CSSStyleDeclaration {
+    return getComputedStyle(themeableComponent.eRef.nativeElement);
+  }
+
+  getYiqConstrast(computedStyle: CSSStyleDeclaration, value: number): string {
+    const yiqContrastedThreshold = Number(computedStyle.getPropertyValue('--yiq-contrasted-threshold')
+    .trim());
+    const yiqTextDark = computedStyle.getPropertyValue('--yiq-text-dark')
+      .trim();
+    const yiqTextLight = computedStyle.getPropertyValue('--yiq-text-light')
+      .trim();
+
+    return value >= yiqContrastedThreshold ? yiqTextDark : yiqTextLight;
+  }
+
+  darkTextColorByContrast(themeableComponent: WvrThemeableComponent): boolean {
+    const baseColor = this.currentTheme[themeableComponent.themeVariant].baseColor;
+    const computedStyles = this.getComputedStyles(themeableComponent);
+    const color = this.getYiqConstrast(computedStyles, yiq(baseColor));
+    const yiqTextDark = computedStyles.getPropertyValue('--yiq-text-dark');
+
+    return color === yiqTextDark;
+  }
+
   private applyTheme(theme: ThemeVariants, themeableComponent: WvrThemeableComponent): void {
     if (!!theme) {
       let styles = '';
@@ -58,25 +84,17 @@ export class ThemeService {
 
   // tslint:disable-next-line:prefer-function-over-method
   private processThemeVariants(theme: ThemeVariants, themeableComponent: WvrThemeableComponent): string {
-    const computedStyle = getComputedStyle(themeableComponent.eRef.nativeElement);
+    const computedStyles = this.getComputedStyles(themeableComponent);
 
-    const yiqContrastedThreshold = Number(computedStyle.getPropertyValue('--yiq-contrasted-threshold')
-      .trim());
-    const yiqTextDark = computedStyle.getPropertyValue('--yiq-text-dark')
-      .trim();
-    const yiqTextLight = computedStyle.getPropertyValue('--yiq-text-light')
-      .trim();
-
-    const themeColorInterval = parseInt(computedStyle.getPropertyValue('--theme-color-interval')
+    const themeColorInterval = parseInt(computedStyles.getPropertyValue('--theme-color-interval')
       .trim(), 10);
 
-    const black = computedStyle.getPropertyValue('--black')
+    const black = computedStyles.getPropertyValue('--black')
       .trim();
-    const white = computedStyle.getPropertyValue('--white')
+    const white = computedStyles.getPropertyValue('--white')
       .trim();
 
     const constrast = (level: number) => (level > 0 ? black : white);
-    const yiqConstrast = (value: number) => (value >= yiqContrastedThreshold ? yiqTextDark : yiqTextLight);
 
     let styles = '';
 
@@ -98,11 +116,11 @@ export class ThemeService {
 
         switch (variantType) {
           case 'alert':
-            const alertBackgroundLevel = Number(computedStyle.getPropertyValue('--alert-bg-level')
+            const alertBackgroundLevel = Number(computedStyles.getPropertyValue('--alert-bg-level')
               .trim());
-            const alertBorderLevel = Number(computedStyle.getPropertyValue('--alert-border-level')
+            const alertBorderLevel = Number(computedStyles.getPropertyValue('--alert-border-level')
               .trim());
-            const alertColorLevel = Number(computedStyle.getPropertyValue('--alert-color-level')
+            const alertColorLevel = Number(computedStyles.getPropertyValue('--alert-color-level')
               .trim());
 
             // update alert variants
@@ -120,7 +138,7 @@ export class ThemeService {
             const badgeBgValue = value;
             appendStyle(`${key}-badge-bg`, badgeBgValue);
 
-            const badgeColorValue = yiqConstrast(yiq(value));
+            const badgeColorValue = this.getYiqConstrast(computedStyles, yiq(value));
             appendStyle(`${key}-badge-color`, badgeColorValue);
             break;
           case 'button':
@@ -128,7 +146,7 @@ export class ThemeService {
             const buttonOutlineColorValue = value;
             appendStyle(`${key}-button-outline-color`, buttonOutlineColorValue);
 
-            const buttonOutlineColorHoverValue = yiqConstrast(yiq(value));
+            const buttonOutlineColorHoverValue = this.getYiqConstrast(computedStyles, yiq(value));
             appendStyle(`${key}-button-outline-color-hover`, buttonOutlineColorHoverValue);
 
             const bobsrgba = hexToRgb(value);
@@ -136,7 +154,7 @@ export class ThemeService {
             appendStyle(`${key}-button-outline-box-shadow-color`, buttonOutlineBoxShadowColorValue);
 
             // update button variants
-            const buttonColorValue = yiqConstrast(yiq(value));
+            const buttonColorValue = this.getYiqConstrast(computedStyles, yiq(value));
             appendStyle(`${key}-button-color`, buttonColorValue);
 
             const buttonBgValue = value;
@@ -145,7 +163,7 @@ export class ThemeService {
             const buttonBorderValue = value;
             appendStyle(`${key}-button-border`, buttonBorderValue);
 
-            const buttonHoverColorValue = yiqConstrast(yiq(luminance(value, -0.1165)));
+            const buttonHoverColorValue = this.getYiqConstrast(computedStyles, yiq(luminance(value, -0.1165)));
             appendStyle(`${key}-button-hover-color`, buttonHoverColorValue);
 
             const buttonHoverBgValue = luminance(value, -0.1165);
@@ -154,7 +172,7 @@ export class ThemeService {
             const buttonHoverBorderValue = luminance(value, -0.1415);
             appendStyle(`${key}-button-hover-border`, buttonHoverBorderValue);
 
-            const buttonActiveColorValue = yiqConstrast(yiq(luminance(value, -0.1415)));
+            const buttonActiveColorValue = this.getYiqConstrast(computedStyles, yiq(luminance(value, -0.1415)));
             appendStyle(`${key}-button-active-color`, buttonActiveColorValue);
 
             const buttonActiveBgValue = luminance(value, -0.1415);
@@ -163,14 +181,15 @@ export class ThemeService {
             const buttonActiveBorderValue = luminance(value, -0.17);
             appendStyle(`${key}-button-active-border`, buttonActiveBorderValue);
 
-            const bbsrgba = hexToRgb(mix(yiqConstrast(yiq(luminance(buttonBgValue, -0.1165))), buttonBorderValue, 15));
+            const bbsrgba = hexToRgb(
+              mix(this.getYiqConstrast(computedStyles, yiq(luminance(buttonBgValue, -0.1165))), buttonBorderValue, 15));
             const buttonBoxShadowColorValue = `rgba(${bbsrgba.r}, ${bbsrgba.g}, ${bbsrgba.b}, .5)`;
             appendStyle(`${key}-button-box-shadow-color`, buttonBoxShadowColorValue);
             break;
           case 'list-group-item':
-            const listGroupItemBackgroundLevel = Number(computedStyle.getPropertyValue('--list-group-item-bg-level')
+            const listGroupItemBackgroundLevel = Number(computedStyles.getPropertyValue('--list-group-item-bg-level')
               .trim());
-            const listGroupItemColorLevel = Number(computedStyle.getPropertyValue('--list-group-item-color-level')
+            const listGroupItemColorLevel = Number(computedStyles.getPropertyValue('--list-group-item-color-level')
               .trim());
 
             // update list item group variants
@@ -183,9 +202,9 @@ export class ThemeService {
             appendStyle(`${key}-list-group-item-color`, listGroupItemColorValue);
             break;
           case 'table':
-            const tableBackgroundLevel = Number(computedStyle.getPropertyValue('--table-bg-level')
+            const tableBackgroundLevel = Number(computedStyles.getPropertyValue('--table-bg-level')
               .trim());
-            const tableBorderLevel = Number(computedStyle.getPropertyValue('--table-border-level')
+            const tableBorderLevel = Number(computedStyles.getPropertyValue('--table-border-level')
               .trim());
 
             // update table variants

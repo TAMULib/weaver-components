@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, HostBinding, Injector, Input } from '@angular/core';
 import { ThemeVariantName } from '../../shared/theme';
+import { yiq } from '../../shared/utility/color.utlity';
 import { WvrBaseComponent } from '../../shared/wvr-base.component';
 
 /**
@@ -40,11 +41,9 @@ export class WvrNavLiComponent extends WvrBaseComponent {
 
   additionalNavLiClasses(): string {
     let textClass = '';
-    textClass +=  ((this.themeVariant === 'primary') ||
-                  (this.themeVariant === 'secondary') ||
-                  (this.themeVariant === 'danger') ||
-                   this.themeVariant === 'dark') ?
-                  'text-white' : 'text-dark';
+    textClass +=  this.themeService
+                  .darkTextColorByContrast(this) ?
+                  'text-dark' : 'text-white';
 
     return textClass;
   }
