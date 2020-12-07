@@ -53,8 +53,6 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit 
   /** Used to describe the format of card. */
   @Input() panelFormat: 'solid' | 'outlined' | 'mixed';
 
-  variantTypes = ['border'];
-
   imgSrc: string;
 
   /** Convenience referece this components ElementReference's nativeElement. */
