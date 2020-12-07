@@ -1,4 +1,5 @@
 import { Component, HostBinding, Injector, Input } from '@angular/core';
+import { ThemeVariantName } from '../shared/theme';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 /**
@@ -10,6 +11,9 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
   styleUrls: ['./wvr-text.component.scss']
 })
 export class WvrTextComponent extends WvrBaseComponent {
+
+  /** Used to define the class type for wvr text component. */
+  @Input() themeVariant: ThemeVariantName = 'dark';
 
   /** The text value to be displayed in the text node. */
   @Input() value: string;
@@ -36,9 +40,6 @@ export class WvrTextComponent extends WvrBaseComponent {
   @HostBinding('style.--wvr-text-line-height') @Input() lineHeight;
 
   // text rules
-  /** Allows for the override of color property for wvre-text */
-  @HostBinding('style.--wvr-text-color') @Input() textColor;
-
   /** Allows for the override of text-align property for wvre-text */
   @HostBinding('style.--wvr-text-text-align') @Input() textAlign;
 

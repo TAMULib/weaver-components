@@ -1,5 +1,7 @@
-<li class="nav-item">
-  <a [id]="htmlId" class="nav-link" [ngClass]="{active: active}" href="#" (click)="clickActivation($event)" role="tab" [attr.aria-controls]="parent?.tabContentID">
+<li class="nav-item bg-{{themeVariant}}">
+  <a
+    [id]="htmlId" class="nav-link {{additionalTabClasses()}}"
+    [ngClass]="{active: active}" href="#" (click)="clickActivation($event)" role="tab" [attr.aria-controls]="parent?.tabContentID">
     {{tabText}}
   </a>
 </li>

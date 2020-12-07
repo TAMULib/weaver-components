@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, Injector, Input } from '@angular/core';
 import { SafeHtml } from '@angular/platform-browser';
+import { ThemeVariantName } from '../../shared/theme';
 import { WvrBaseComponent } from '../../shared/wvr-base.component';
 import { WvrTabsComponent } from '../wvr-tabs.component';
 
@@ -12,6 +13,9 @@ import { WvrTabsComponent } from '../wvr-tabs.component';
   styleUrls: ['./wvr-tab.component.scss']
 })
 export class WvrTabComponent extends WvrBaseComponent implements AfterViewInit {
+
+  /** Used to define the class type for wvr tab component. */
+  @Input() themeVariant: ThemeVariantName = 'success';
 
   /* The WvrTabsComponent that contains this tab. */
   parent: WvrTabsComponent;
@@ -53,6 +57,7 @@ export class WvrTabComponent extends WvrBaseComponent implements AfterViewInit {
     if (tabsElements) {
       this.parent = this.componentRegistry.getComponentByElement(tabsElements) as WvrTabsComponent;
       this.parent.addTab(this);
+      this.themeVariant = this.themeVariant ? this.themeVariant : this.parent.themeVariant ? this.parent.themeVariant : undefined;
     } else {
       console.warn('The wvr-tab component must be contained within a wvre-tabs component.');
     }
@@ -65,6 +70,15 @@ export class WvrTabComponent extends WvrBaseComponent implements AfterViewInit {
     const safeHtml = this._domSanitizer.bypassSecurityTrustHtml(contentTemplate.querySelectorAll('.tab-content')[0].innerHTML);
 
     return safeHtml;
+  }
+
+  additionalTabClasses(): string {
+    let textClass = '';
+    textClass +=  ((this.themeVariant === 'primary') || (this.themeVariant === 'secondary') ||
+                  (this.themeVariant === 'danger') || this.themeVariant === 'dark') ?
+                  'text-white' : 'text-dark';
+
+    return textClass;
   }
 
 }

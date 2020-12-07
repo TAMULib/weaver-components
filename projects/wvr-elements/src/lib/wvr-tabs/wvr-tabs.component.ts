@@ -1,5 +1,6 @@
-import { Component, Injector } from '@angular/core';
+import { Component, Injector, Input } from '@angular/core';
 import { SafeHtml } from '@angular/platform-browser';
+import { ThemeVariantName } from '../shared/theme';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 import { WvrTabComponent } from './wvr-tab/wvr-tab.component';
 
@@ -12,6 +13,9 @@ import { WvrTabComponent } from './wvr-tab/wvr-tab.component';
   styleUrls: ['./wvr-tabs.component.scss']
 })
 export class WvrTabsComponent extends WvrBaseComponent {
+
+  /** Used to define the class type for wvr tabs component. */
+  @Input() themeVariant: ThemeVariantName = 'success';
 
   /** The child WvrTabComponent contained within this tabs. */
   private readonly tabs = new Array<WvrTabComponent>();

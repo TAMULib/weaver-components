@@ -37,4 +37,15 @@ export class WvrNavLiComponent extends WvrBaseComponent {
     super(injector);
   }
 
+  additionalNavLiClasses(): string {
+    let textClass = '';
+    textClass +=  ((this.themeVariant === 'primary') ||
+                  (this.themeVariant === 'secondary') ||
+                  (this.themeVariant === 'danger') ||
+                   this.themeVariant === 'dark') ?
+                  'text-white' : 'text-dark';
+
+    return textClass;
+  }
+
 }

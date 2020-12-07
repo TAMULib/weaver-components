@@ -1,10 +1,10 @@
 <li *ngIf="href" class="nav-item bg-{{themeVariant}}">
-  <a class="nav-link d-flex align-items-center justify-content-center" [href]="href">
+  <a class="nav-link d-flex align-items-center justify-content-center {{additionalNavLiClasses()}}" [href]="href">
     <ng-container *ngTemplateOutlet="contentProjection"></ng-container>
   </a>
 </li>
 
-<li *ngIf="!href" class="nav-item d-flex align-items-center justify-content-center bg-{{themeVariant}}">
+<li *ngIf="!href" class="nav-item d-flex align-items-center justify-content-center bg-{{themeVariant}} {{additionalNavLiClasses()}}">
   <ng-container *ngTemplateOutlet="contentProjection"></ng-container>
 </li>
 
