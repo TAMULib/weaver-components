@@ -1,4 +1,5 @@
 import { Component, HostBinding, Injector, Input } from '@angular/core';
+import { ThemeVariantName } from '../../shared/theme';
 import { WvrBaseComponent } from '../../shared/wvr-base.component';
 
 /**
@@ -10,6 +11,9 @@ import { WvrBaseComponent } from '../../shared/wvr-base.component';
   styleUrls: ['./wvr-nav-li.component.scss']
 })
 export class WvrNavLiComponent extends WvrBaseComponent {
+
+  /** Used to define the class type of an wvr nav li component.  */
+  @Input() themeVariant: ThemeVariantName = 'danger';
 
   /** A resolvable URI to to which this li will link, when provided. If no link is provided, the list element will not display as a link. */
   @Input() href: string;
@@ -23,23 +27,11 @@ export class WvrNavLiComponent extends WvrBaseComponent {
   /** Allows for the override of the --wvr-nav-li-width css variable. Default: 140px. */
   @HostBinding('style.--wvr-nav-li-width') @Input() liWidth;
 
-  /** Allows for the override of the --wvr-nav-link-background-hover css variable. Default: --wvr-primary */
-  @HostBinding('style.--wvr-nav-link-background-hover') @Input() linkBackgroundHover;
-
-  /** Allows for the override of the --wvr-nav-link-color-hover css variable. Default: --wvr-primary */
-  @HostBinding('style.--wvr-nav-link-color-hover') @Input() linkColorHover;
-
-  /** Allows for the override of the --wvr-nav-link-color css variable. --wvr-blue */
-  @HostBinding('style.--wvr-nav-link-color') @Input() linkColor;
-
   /** Allows for the override of the --wvr-nav-link-font-size css variable. Defualt: inherit */
   @HostBinding('style.--wvr-nav-link-font-size') @Input() linkFontSize;
 
   /** Allows for the override of the --wvr-nav-link-font-weight css variable. Default: inherit */
   @HostBinding('style.--wvr-nav-link-font-weight') @Input() linkFontWeight;
-
-  /** Allows for the override of the --wvr-nav-link-text-decoration-hover css variable. Default: none */
-  @HostBinding('style.--wvr-nav-link-text-decoration-hover') @Input() linkTextDecorationHover;
 
   constructor(injector: Injector) {
     super(injector);

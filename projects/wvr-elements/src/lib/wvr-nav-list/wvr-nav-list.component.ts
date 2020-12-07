@@ -1,5 +1,6 @@
 import { Component, Injector, Input } from '@angular/core';
 import { Alignment } from '../shared/alignment.enum';
+import { ThemeVariantName } from '../shared/theme';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 /**
@@ -12,6 +13,9 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
   styleUrls: ['./wvr-nav-list.component.scss']
 })
 export class WvrNavListComponent extends WvrBaseComponent {
+
+  /** Used to define the class type for wvr nav list component. */
+  @Input() themeVariant: ThemeVariantName = 'success';
 
   /** The aligned property describing the positioning of the list elements. */
   @Input() aligned = Alignment.LEFT;

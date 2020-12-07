@@ -2,15 +2,12 @@
 @import "../../shared/styles/variables";
 
 :host {
-  
+
   @extend .variables;
 
   --wvr-nav-li-cursor: pointer;
   --wvr-nav-li-height: 100%;
   --wvr-nav-li-width: 140px;
-  --wvr-nav-link-background-hover: var(--wvr-primary);
-  --wvr-nav-link-color-hover: var(--wvr-dark);
-  --wvr-nav-link-color: var(--wvr-blue);
   --wvr-nav-link-font-size: inherit;
   --wvr-nav-link-font-weight: inherit;
   --wvr-nav-link-text-decoration-hover: none;
@@ -29,7 +26,7 @@ li.nav-item {
     justify-content: center;
 
     [ngbdropdown],
-    [ngdropdownanchor], 
+    [ngdropdownanchor],
     wvre-dropdown-btn,
     .wvr-dropdown {
       width: 100%;
@@ -45,16 +42,6 @@ li.nav-item {
 }
 
 a.nav-link {
-  color: var(--wvr-nav-link-color);
   font-size: var(--wvr-nav-link-font-size);
   font-weight: var(--wvr-nav-link-font-weight);
-}
-
-li.nav-item:hover {
-  background: var(--wvr-nav-link-background-hover);
-  text-decoration: var(--wvr-nav-link-text-decoration-hover);
-  a.nav-link {
-    color: var(--wvr-nav-link-color-hover);
-    text-decoration: var(--wvr-nav-link-text-decoration-hover);
-  }
 }
