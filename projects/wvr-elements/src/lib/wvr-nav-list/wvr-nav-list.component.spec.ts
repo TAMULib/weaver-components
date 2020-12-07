@@ -2,6 +2,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideMockStore } from '@ngrx/store/testing';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { Alignment } from '../shared/alignment.enum';
 import { APP_CONFIG, testAppConfig } from '../shared/config';
 import { WvrNavListComponent } from './wvr-nav-list.component';
@@ -16,7 +17,8 @@ describe('WvrNavListComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        LazyLoadImageModule
       ],
       declarations: [WvrNavListComponent],
       providers: [

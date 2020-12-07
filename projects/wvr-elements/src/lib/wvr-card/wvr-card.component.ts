@@ -1,5 +1,6 @@
-import { AfterViewInit, Component, ElementRef, Injector, Input, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, Injector, Input } from '@angular/core';
 import { ThemeVariantName } from '../shared/theme';
+import { wvrTimeout } from '../shared/utility';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 /**
@@ -8,7 +9,8 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
 @Component({
   selector: 'wvr-card-component',
   templateUrl: './wvr-card.component.html',
-  styleUrls: ['./wvr-card.component.scss']
+  styleUrls: ['./wvr-card.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit {
 
@@ -36,9 +38,6 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit 
   /** Indicates the presence of the card footer in the projected content. */
   hasCardFooter: boolean;
 
-  /** The weaver card text center attribute */
-  cardTextCenter: boolean;
-
   /** The weaver card footer text muted attribute */
   footerTextMuted: boolean;
 
@@ -46,7 +45,7 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit 
   @Input() selectorPrefix = 'wvre';
 
   /** Toggles the centering of header and footer texts. */
-  @Input() textCenter;
+  @Input() textCenter = false;
 
   /** Used to describe the type of card. */
   @Input() themeVariant: ThemeVariantName;
@@ -54,10 +53,9 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit 
   /** Used to describe the format of card. */
   @Input() panelFormat: 'solid' | 'outlined' | 'mixed';
 
-  /** Element reference to the root html elment in the template. */
-  @ViewChild('animationRoot') rootElem: ElementRef<HTMLElement>;
-
   variantTypes = ['border'];
+
+  imgSrc: string;
 
   /** Convenience referece this components ElementReference's nativeElement. */
   private readonly elem: HTMLElement;
@@ -67,13 +65,12 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit 
    */
   constructor(injector: Injector) {
     super(injector);
-    this.elem = this._eRef.nativeElement as HTMLElement;
+    this.elem = this.eRef.nativeElement as HTMLElement;
   }
 
   /** Called after the view has been intialized. Handles the rendering of the projected content. */
   ngAfterViewInit(): void {
-    setTimeout(() => {
-      this.renderCard();
+    wvrTimeout(() => {
       this.renderCardHeader();
       this.renderCardImg();
       this.renderCardTitle();
@@ -86,30 +83,22 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit 
 
   additionalCardClasses(): string {
     let additionalClasses = '';
-    additionalClasses +=  ((!this.panelFormat || this.panelFormat === 'mixed') || this.panelFormat === 'outlined') ?
-                          ` border-${this.themeVariant} ` : '';
+    additionalClasses += ((!this.panelFormat || this.panelFormat === 'mixed') || this.panelFormat === 'outlined') ?
+      ` border-${this.themeVariant} ` : '';
 
-    additionalClasses +=  this.panelFormat === 'solid' ? ` bg-${this.themeVariant} ` : '';
+    additionalClasses += this.panelFormat === 'solid' ? ` bg-${this.themeVariant} ` : '';
 
     return additionalClasses;
   }
 
   additionalHeaderClasses(): string {
     let additionalClasses = '';
-    additionalClasses +=  ((!this.panelFormat || this.panelFormat === 'mixed') || this.panelFormat === 'outlined') ?
-                          ` border-${this.themeVariant} ` : '';
+    additionalClasses += ((!this.panelFormat || this.panelFormat === 'mixed') || this.panelFormat === 'outlined') ?
+      ` border-${this.themeVariant} ` : '';
 
-    additionalClasses +=  (this.panelFormat === 'solid' || this.panelFormat === 'mixed') ? ` bg-${this.themeVariant} ` : '';
+    additionalClasses += (this.panelFormat === 'solid' || this.panelFormat === 'mixed') ? ` bg-${this.themeVariant} ` : '';
 
     return additionalClasses;
-  }
-
-  /** Prepares the card for display */
-  private renderCard(): void {
-    if (this.textCenter !== undefined && this.textCenter !== 'false') {
-        const wvrCardElem: HTMLElement = this.rootElem.nativeElement;
-        wvrCardElem.classList.add('text-center');
-    }
   }
 
   /** Prepares the card header for display, and sets it to the DOM */
@@ -117,7 +106,7 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit 
     const wvrCardHeaderElem = this.elem.querySelector(`${this.selectorPrefix}-card-header`);
 
     if (wvrCardHeaderElem) {
-      const classList: DOMTokenList  = wvrCardHeaderElem.classList;
+      const classList: DOMTokenList = wvrCardHeaderElem.classList;
       const headerText = wvrCardHeaderElem.innerHTML;
       wvrCardHeaderElem.outerHTML = headerText;
       // tslint:disable-next-line: no-unbound-method
@@ -142,8 +131,7 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit 
   private renderCardImg(): void {
     const wvrCardImgElem = this.elem.querySelector(`${this.selectorPrefix}-card-img`);
     if (wvrCardImgElem) {
-      const imgSrc = wvrCardImgElem.getAttribute('src');
-      wvrCardImgElem.outerHTML = `<img alt="Card Image Cap" class="card-img-top" src="${imgSrc}" />`;
+      this.imgSrc = wvrCardImgElem.getAttribute('src');
       this.hasCardImg = true;
     }
   }

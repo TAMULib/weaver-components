@@ -1,4 +1,4 @@
-import { Component, HostBinding, Injector, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, Injector, Input } from '@angular/core';
 import { ThemeVariantName } from '../../shared/theme';
 import { WvrBaseComponent } from '../../shared/wvr-base.component';
 
@@ -8,7 +8,8 @@ import { WvrBaseComponent } from '../../shared/wvr-base.component';
 @Component({
   selector: 'wvr-nav-li-component',
   templateUrl: './wvr-nav-li.component.html',
-  styleUrls: ['./wvr-nav-li.component.scss']
+  styleUrls: ['./wvr-nav-li.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class WvrNavLiComponent extends WvrBaseComponent {
 

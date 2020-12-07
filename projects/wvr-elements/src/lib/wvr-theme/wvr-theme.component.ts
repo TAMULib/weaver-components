@@ -1,16 +1,16 @@
 /* istanbul ignore file */
 
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as JSON5 from 'json5';
 import { RootState } from '../core/store';
-
 import * as ThemeActions from '../core/theme/theme.actions';
 import { ThemeVariants } from '../shared/theme';
 
 @Component({
   selector: 'wvr-theme-component',
-  template: '<ng-content></ng-content>'
+  template: '<ng-content></ng-content>',
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export class WvrThemeComponent implements OnChanges {
 
@@ -19,6 +19,7 @@ export class WvrThemeComponent implements OnChanges {
   // tslint:disable-next-line: prefer-readonly
   @Input() private name: string;
 
+  // tslint:disable-next-line: prefer-readonly
   @Input() private active = false;
 
   // tslint:disable-next-line: prefer-readonly

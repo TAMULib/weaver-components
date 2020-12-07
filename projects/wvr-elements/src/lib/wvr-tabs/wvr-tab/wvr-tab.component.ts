@@ -1,5 +1,4 @@
-import { AfterViewInit, Component, Injector, Input } from '@angular/core';
-import { SafeHtml } from '@angular/platform-browser';
+import { AfterViewInit, ChangeDetectionStrategy, Component, Injector, Input } from '@angular/core';
 import { ThemeVariantName } from '../../shared/theme';
 import { WvrBaseComponent } from '../../shared/wvr-base.component';
 import { WvrTabsComponent } from '../wvr-tabs.component';
@@ -10,7 +9,8 @@ import { WvrTabsComponent } from '../wvr-tabs.component';
 @Component({
   selector: 'wvr-tab-component',
   templateUrl: './wvr-tab.component.html',
-  styleUrls: ['./wvr-tab.component.scss']
+  styleUrls: ['./wvr-tab.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export class WvrTabComponent extends WvrBaseComponent implements AfterViewInit {
 
@@ -53,7 +53,7 @@ export class WvrTabComponent extends WvrBaseComponent implements AfterViewInit {
 
   /** Registers this tab with its parent as a child tab. */
   ngAfterViewInit(): void {
-    const tabsElements: HTMLElement = (this._eRef.nativeElement as HTMLElement).closest('wvre-tabs, wvr-tabs-component');
+    const tabsElements: HTMLElement = (this.eRef.nativeElement as HTMLElement).closest('wvre-tabs, wvr-tabs-component');
     if (tabsElements) {
       this.parent = this.componentRegistry.getComponentByElement(tabsElements) as WvrTabsComponent;
       this.parent.addTab(this);
@@ -64,12 +64,11 @@ export class WvrTabComponent extends WvrBaseComponent implements AfterViewInit {
   }
 
   /** Gets the html content for this tab. */
-  getTabContent(): SafeHtml {
-    const elem = (this._eRef.nativeElement as HTMLElement);
+  getTabContent(): string {
+    const elem = (this.eRef.nativeElement as HTMLElement);
     const contentTemplate = elem.querySelectorAll('template')[0];
-    const safeHtml = this._domSanitizer.bypassSecurityTrustHtml(contentTemplate.querySelectorAll('.tab-content')[0].innerHTML);
 
-    return safeHtml;
+    return contentTemplate.querySelectorAll('.tab-content')[0].innerHTML;
   }
 
   additionalTabClasses(): string {

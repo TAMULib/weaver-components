@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, HostBinding, HostListener, Injector, Input } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, HostBinding, HostListener, Injector, Input, OnInit } from '@angular/core';
 import { ResizeSensor } from 'css-element-queries';
 import { ThemeVariantName } from '../shared/theme';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
@@ -9,7 +9,8 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
 @Component({
   selector: 'wvr-footer-component',
   templateUrl: './wvr-footer.component.html',
-  styleUrls: ['./wvr-footer.component.scss']
+  styleUrls: ['./wvr-footer.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export class WvrFooterComponent extends WvrBaseComponent implements AfterViewInit {
 
@@ -61,7 +62,7 @@ export class WvrFooterComponent extends WvrBaseComponent implements AfterViewIni
   ngAfterViewInit(): void {
     // this.parentElement = (this._eRef.nativeElement as HTMLElement).parentElement;
     this.parentElement = document.querySelector(this.parentElementName);
-    this.footerElement = (this._eRef.nativeElement as HTMLElement).querySelector('footer.wvr-footer');
+    this.footerElement = (this.eRef.nativeElement as HTMLElement).querySelector('footer.wvr-footer');
     const rs = new ResizeSensor(this.parentElement, () => {
       this.positionSelf();
     });

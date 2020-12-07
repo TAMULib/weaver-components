@@ -1,4 +1,4 @@
-import { Component, Injector, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Injector, Input } from '@angular/core';
 import { ThemeVariantName } from '../shared/theme';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
@@ -8,7 +8,8 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
 @Component({
   selector: 'wvr-list-component',
   templateUrl: './wvr-list.component.html',
-  styleUrls: ['./wvr-list.component.scss']
+  styleUrls: ['./wvr-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export class WvrListComponent extends WvrBaseComponent {
 

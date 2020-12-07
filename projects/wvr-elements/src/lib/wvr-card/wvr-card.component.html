@@ -1,9 +1,7 @@
 <div
   #animationRoot
   class="wvr-components wvr-card card {{additionalCardClasses()}}"
-  [ngClass]="{
-    'text-center': cardTextCenter
-  }"
+  [ngClass]="{ 'text-center': textCenter }"
   style="width: 18rem;">
   <ng-container *ngTemplateOutlet="cardHeader"></ng-container>
   <ng-container *ngTemplateOutlet="cardImg"></ng-container>
@@ -36,7 +34,7 @@
 <!-- cardImgSrc -->
 <ng-template #cardImg>
   <div class="card-img" [ngClass]="{'wvr-hidden': !hasCardImg}">
-    <ng-content select="wvre-card-img"></ng-content>
+    <img alt="Card Image Cap" class="card-img-top" [lazyLoad]="imgSrc" />
   </div>
 </ng-template>
 

@@ -1,4 +1,4 @@
-import { Component, HostBinding, HostListener, Injector, Input, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, HostListener, Injector, Input, ViewChild } from '@angular/core';
 import { NgbDropdown, NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
 import { ThemeVariantName } from '../shared/theme';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
@@ -9,7 +9,8 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
 @Component({
   selector: 'wvr-dropdown-component',
   templateUrl: './wvr-dropdown.component.html',
-  styleUrls: ['./wvr-dropdown.component.scss']
+  styleUrls: ['./wvr-dropdown.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export class WvrDropdownComponent extends WvrBaseComponent {
 
@@ -19,12 +20,8 @@ export class WvrDropdownComponent extends WvrBaseComponent {
   /** Binds the value of the animationspeed in seconds to the css variable `--wvr-dropdown-menu-animation-speed` */
   @HostBinding('style.--wvr-dropdown-menu-animation-speed') private _animationSpeedSeconds;
 
-  /** A private reference to the animation speen in miliseconds for internal use */
-  private _animationSpeedMili = 250;
-
-  /** A setter which sets the speed to both `_animationSpeedMili` in miliseconds and `_animationSpeedSeconds` in seconds. */
+  /** A setter which sets the speed to `_animationSpeedSeconds` in seconds. */
   @Input() set menuAnimationSpeed(speed: number) {
-    this._animationSpeedMili = speed;
     this._animationSpeedSeconds = `${speed / 1000}s`;
   }
 
@@ -152,8 +149,8 @@ export class WvrDropdownComponent extends WvrBaseComponent {
 
   get btnTextDecoration(): string {
     return this._btnTextDecoration ?
-    this._btnTextDecoration :
-    `var(--wvr-btn-${this.themeVariant}-text-decoration-default)`;
+      this._btnTextDecoration :
+      `var(--wvr-btn-${this.themeVariant}-text-decoration-default)`;
   }
 
   /** Allows for override the button text decoration. */
@@ -165,8 +162,8 @@ export class WvrDropdownComponent extends WvrBaseComponent {
 
   get btnTextDecorationActive(): string {
     return this._btnTextDecorationActive ?
-    this._btnTextDecorationActive :
-    `var(--wvr-btn-${this.themeVariant}-active-text-decoration-default)`;
+      this._btnTextDecorationActive :
+      `var(--wvr-btn-${this.themeVariant}-active-text-decoration-default)`;
   }
 
   // text-decoration-focus
@@ -190,8 +187,8 @@ export class WvrDropdownComponent extends WvrBaseComponent {
 
   get btnTextDecorationHover(): string {
     return this._btnTextDecorationHover ?
-    this._btnTextDecorationHover :
-    `var(--wvr-btn-${this.themeVariant}-hover-text-decoration-default)`;
+      this._btnTextDecorationHover :
+      `var(--wvr-btn-${this.themeVariant}-hover-text-decoration-default)`;
   }
 
   @Input() placement = 'top-right';
@@ -247,8 +244,8 @@ export class WvrDropdownComponent extends WvrBaseComponent {
    */
   @HostListener('document:click', ['$event']) clickout($event): void {
     const path = $event.composedPath();
-    if (!this._eRef.nativeElement.contains(path[0])) {
-     this.closeDropdown();
+    if (!this.eRef.nativeElement.contains(path[0])) {
+      this.closeDropdown();
     }
   }
 
@@ -265,13 +262,6 @@ export class WvrDropdownComponent extends WvrBaseComponent {
   /** Handles the opening of the dropdown, and updating state. */
   private openDropdown(): void {
     if (!this.isMobileLayout) {
-      // document.querySelector('body')
-      // .click();
-      // setTimeout(() => {
-      //   this.open = true;
-      //   this.dropdown.open();
-      // }, this._animationSpeedMili);
-
       this.open = true;
       this.dropdown.open();
     }
@@ -279,13 +269,8 @@ export class WvrDropdownComponent extends WvrBaseComponent {
 
   /** Handles the closing of the dropdown, and updating state. */
   private closeDropdown(): void {
-    // this.closing = true;
     this.open = false;
     this.dropdown.close();
-    // setTimeout(() => {
-    //   this.dropdown.close();
-    //   this.closing = false;
-    // }, this._animationSpeedMili);
   }
 
   // tslint:disable-next-line:max-file-line-count

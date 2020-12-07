@@ -51,7 +51,7 @@ describe('ComponentRegistryService', () => {
 
   it('should retrieve components by component', () => {
     // tslint:disable-next-line:no-string-literal
-    expect(service.getComponentByElement(component['_eRef'].nativeElement as HTMLElement) === component)
+    expect(service.getComponentByElement(component['eRef'].nativeElement as HTMLElement) === component)
       .toBeTruthy();
   });
 

@@ -1,5 +1,4 @@
-import { Component, Injector, Input } from '@angular/core';
-import { SafeHtml } from '@angular/platform-browser';
+import { ChangeDetectionStrategy, Component, Injector, Input } from '@angular/core';
 import { ThemeVariantName } from '../shared/theme';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 import { WvrTabComponent } from './wvr-tab/wvr-tab.component';
@@ -10,7 +9,8 @@ import { WvrTabComponent } from './wvr-tab/wvr-tab.component';
 @Component({
   selector: 'wvr-tabs-component',
   templateUrl: './wvr-tabs.component.html',
-  styleUrls: ['./wvr-tabs.component.scss']
+  styleUrls: ['./wvr-tabs.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export class WvrTabsComponent extends WvrBaseComponent {
 
@@ -27,7 +27,7 @@ export class WvrTabsComponent extends WvrBaseComponent {
   tabContentID = `wvr-tab-content-${this.id}`;
 
   /* SafeHtml to be injected into the active tab content. */
-  activeTabContent: SafeHtml = 'Tab Content';
+  activeTabContent = 'Tab Content';
 
   constructor(injector: Injector) {
     super(injector);
