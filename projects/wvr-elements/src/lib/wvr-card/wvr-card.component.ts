@@ -53,6 +53,8 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit 
   /** Used to describe the format of card. */
   @Input() panelFormat: 'solid' | 'outlined' | 'mixed';
 
+  variantTypes = ['border'];
+
   imgSrc: string;
 
   /** Convenience referece this components ElementReference's nativeElement. */
@@ -81,22 +83,16 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit 
 
   additionalCardClasses(): string {
 
-    let textClass = '';
-    textClass +=  this.themeService.darkTextColorByContrast(this) ? 'text-dark' : 'text-white';
-
     let additionalClasses = '';
     additionalClasses += ((!this.panelFormat || this.panelFormat === 'mixed') || this.panelFormat === 'outlined') ?
       ` border-${this.themeVariant} ` : '';
 
     additionalClasses += this.panelFormat === 'solid' ? ` bg-${this.themeVariant} ` : '';
 
-    return additionalClasses + textClass;
+    return additionalClasses;
   }
 
   additionalHeaderClasses(): string {
-
-    let textClass = '';
-    textClass +=  this.themeService.darkTextColorByContrast(this) ? 'text-dark' : 'text-white';
 
     let additionalClasses = '';
     additionalClasses += ((!this.panelFormat || this.panelFormat === 'mixed') || this.panelFormat === 'outlined') ?
