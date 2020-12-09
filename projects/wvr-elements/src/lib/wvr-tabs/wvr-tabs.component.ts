@@ -15,7 +15,7 @@ import { WvrTabComponent } from './wvr-tab/wvr-tab.component';
 export class WvrTabsComponent extends WvrBaseComponent {
 
   /** Used to define the class type for wvr tabs component. */
-  @Input() themeVariant: ThemeVariantName = 'success';
+  @Input() themeVariant: ThemeVariantName = 'danger';
 
   /** The child WvrTabComponent contained within this tabs. */
   private readonly tabs = new Array<WvrTabComponent>();

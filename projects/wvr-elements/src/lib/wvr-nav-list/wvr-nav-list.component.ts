@@ -16,7 +16,7 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
 export class WvrNavListComponent extends WvrBaseComponent {
 
   /** Used to define the class type for wvr nav list component. */
-  @Input() themeVariant: ThemeVariantName = 'success';
+  @Input() themeVariant: ThemeVariantName;
 
   /** The aligned property describing the positioning of the list elements. */
   @Input() aligned = Alignment.LEFT;

@@ -23,7 +23,7 @@ export class WvrFooterComponent extends WvrBaseComponent implements AfterViewIni
   private footerElement: HTMLElement;
 
   /** Used to define the class type for footer component.  */
-  @Input() themeVariant: ThemeVariantName = 'success';
+  @Input() themeVariant: ThemeVariantName = 'secondary';
 
   /** Used internally to toggle fixed behavior. */
   isSticky = false;
@@ -68,8 +68,8 @@ export class WvrFooterComponent extends WvrBaseComponent implements AfterViewIni
     });
   }
 
+  /* Used to compute the text color for the wvr-footer component based on the theme-variant value. */
   additionalFooterClasses(): string {
-
     let textClass = '';
     textClass +=  this.themeService
                   .darkTextColorByContrast(this) ?

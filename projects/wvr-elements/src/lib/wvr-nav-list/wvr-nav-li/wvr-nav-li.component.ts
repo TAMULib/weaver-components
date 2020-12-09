@@ -15,7 +15,7 @@ import { WvrBaseComponent } from '../../shared/wvr-base.component';
 export class WvrNavLiComponent extends WvrBaseComponent {
 
   /** Used to define the class type of an wvr nav li component.  */
-  @Input() themeVariant: ThemeVariantName = 'danger';
+  @Input() themeVariant: ThemeVariantName = 'secondary';
 
   /** A resolvable URI to to which this li will link, when provided. If no link is provided, the list element will not display as a link. */
   @Input() href: string;
@@ -39,6 +39,7 @@ export class WvrNavLiComponent extends WvrBaseComponent {
     super(injector);
   }
 
+  /* Used to compute the text color for the wvr-nav li component based on the theme-variant value. */
   additionalNavLiClasses(): string {
     let textClass = '';
     textClass +=  this.themeService

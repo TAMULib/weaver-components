@@ -28,7 +28,7 @@
     top-nav-theme-variant="info"
     title-row-theme-variant="success"
     bottom-nav-theme-variant="light">
-    <wvre-nav-list top-navigation>
+    <wvre-nav-list top-navigation theme-variant="success">
       <wvre-nav-li>
         <wvre-dropdown
           btn-type="link"
@@ -66,7 +66,7 @@
           </wvre-dropdown-menu>
         </wvre-dropdown>
       </wvre-nav-li>
-      <wvre-nav-li>
+      <wvre-nav-li theme-variant="success">
         <wvre-dropdown
           btn-href="https://github.com/TAMULib/weaver-components"
           btn-type="link"
@@ -130,7 +130,7 @@
       <wvre-nav-li href="#1" id="1">
         <wvre-text value="Example 1"></wvre-text>
       </wvre-nav-li>
-      <wvre-nav-li href="#2" id="2">
+      <wvre-nav-li href="#2" id="2" theme-variant="info">
         <wvre-text value="Example 2"></wvre-text>
       </wvre-nav-li>
       <wvre-nav-li>
@@ -176,22 +176,15 @@
 
   <div class="container index-container">
     <wvre-text value="Alert Component" text-decoration="underline"></wvre-text><br /><br />
-    <wvre-alert
-      theme-variant="primary"
-      alert-type="basic">
-        <wvre-text value="This is basic primary alert. "></wvre-text>
+    <wvre-alert theme-variant="primary" alert-type="basic">
+        <wvre-text value="This is basic primary alert."></wvre-text>
     </wvre-alert>
 
-    <wvre-alert
-      theme-variant="success"
-      alert-type="self-closing"
-      close-timer="5000">
+    <wvre-alert theme-variant="success" alert-type="self-closing" close-timer="5000">
         <wvre-text value="This is self closing success alert"></wvre-text>
     </wvre-alert>
 
-    <wvre-alert
-      theme-variant="success"
-      alert-type="custom">
+    <wvre-alert theme-variant="dark" alert-type="custom">
         <wvre-custom-alert>
           <h4 class="alert-heading">
             <wvre-text value="Custom Alert Heading"></wvre-text>
@@ -459,20 +452,10 @@
   <div class="container index-container">
     <wvre-text value="Customized Drop Down" text-decoration="underline"></wvre-text><br />
     <wvre-dropdown
-      btn-background="tomato"
-      btn-background-active="yellow"
-      btn-background-hover="red"
-      btn-border-color="black"
-      btn-border-active="teal"
-      btn-border-hover="green"
-      btn-border-focus="blue"
       btn-border-radius="6px"
       btn-box-shadow-focus="var(--wvr-btn-primary-focus-box-shadow)"
       theme-variant="link"
       btn-size="small"
-      btn-color="var(--wvr-btn-primary-color)"
-      btn-color-active="var(--wvr-black)"
-      btn-color-hover="teal"
       btn-cursor="help"
       btn-font-family="cursive"
       btn-href=""
@@ -813,7 +796,7 @@
 
     <wvre-text value="Tabs" text-decoration="underline"></wvre-text><br /><br />
 
-    <wvre-tabs theme-variant="danger">
+    <wvre-tabs theme-variant="light">
       <wvre-tab tab-text="Tab One">
         <div class="jumbotron">
           <h3><wvre-text value="First Tab Header"></wvre-text></h3>
@@ -838,8 +821,8 @@
 
   </div>
 
-  <wvre-footer theme-variant="primary">
-    <wvre-nav-list aligned="CENTER">
+  <wvre-footer>
+    <wvre-nav-list aligned="CENTER" theme-Variant="secondary">
       <wvre-nav-li>
         <wvre-text value="Action 1"></wvre-text>
       </wvre-nav-li>
@@ -857,7 +840,7 @@
     <wvre-manifest-entry name="Departments" path="/ldap/departments" methods="GET" mapping-strategy="none"></wvre-manifest-entry>
   </wvre-manifest>
 
-  <wvre-theme name="defaultDark"></wvre-theme>
+  <wvre-theme name="default"></wvre-theme>
 
   <wvre-theme name="theme-demo" active="true" variants="{
     primary: {

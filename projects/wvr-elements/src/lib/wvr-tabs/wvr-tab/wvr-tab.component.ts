@@ -15,7 +15,7 @@ import { WvrTabsComponent } from '../wvr-tabs.component';
 export class WvrTabComponent extends WvrBaseComponent implements AfterViewInit {
 
   /** Used to define the class type for wvr tab component. */
-  @Input() themeVariant: ThemeVariantName = 'success';
+  @Input() themeVariant: ThemeVariantName = 'warning';
 
   /* The WvrTabsComponent that contains this tab. */
   parent: WvrTabsComponent;
@@ -57,6 +57,7 @@ export class WvrTabComponent extends WvrBaseComponent implements AfterViewInit {
     if (tabsElements) {
       this.parent = this.componentRegistry.getComponentByElement(tabsElements) as WvrTabsComponent;
       this.parent.addTab(this);
+      // TODO should the parent theme variant influence the child theme variant.
       this.themeVariant = this.themeVariant ? this.themeVariant : this.parent.themeVariant ? this.parent.themeVariant : undefined;
     } else {
       console.warn('The wvr-tab component must be contained within a wvre-tabs component.');
@@ -71,11 +72,12 @@ export class WvrTabComponent extends WvrBaseComponent implements AfterViewInit {
     return contentTemplate.querySelectorAll('.tab-content')[0].innerHTML;
   }
 
+  /* Used to compute the text color for the wvr-tab based on the theme-variant value. */
   additionalTabClasses(): string {
     let textClass = '';
-    textClass +=  ((this.themeVariant === 'primary') || (this.themeVariant === 'secondary') ||
-                  (this.themeVariant === 'danger') || this.themeVariant === 'dark') ?
-                  'text-white' : 'text-dark';
+    textClass +=  this.themeService
+                  .darkTextColorByContrast(this) ?
+                  'text-dark' : 'text-white';
 
     return textClass;
   }

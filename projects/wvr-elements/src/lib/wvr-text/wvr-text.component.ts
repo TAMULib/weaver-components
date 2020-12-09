@@ -14,7 +14,7 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
 export class WvrTextComponent extends WvrBaseComponent {
 
   /** Used to define the class type for wvr text component. */
-  @Input() themeVariant: ThemeVariantName = 'dark';
+  @Input() themeVariant: ThemeVariantName = 'warning';
 
   /** The text value to be displayed in the text node. */
   @Input() value: string;
@@ -67,6 +67,16 @@ export class WvrTextComponent extends WvrBaseComponent {
 
   constructor(injector: Injector) {
     super(injector);
+  }
+
+  /* Used to compute the text color based on the theme-variant value. */
+  additionalTextClasses(): string {
+    let textClass = '';
+    textClass +=  this.themeService
+                  .darkTextColorByContrast(this) ?
+                  'text-dark' : 'text-white';
+
+    return textClass;
   }
 
 }
