@@ -22,7 +22,7 @@ export class WvrHeaderComponent extends WvrBaseComponent implements AfterContent
   @Input() headerTitleUrl: string;
 
   /** A resolvable URI to an image to be displayed as the logo. */
-  @Input() logoSrc = `${this.appConfig.assetsUrl}/icons/custom/weaver-w.svg`;
+  @Input() logoSrc = `${this.appConfig.assetsUrl}/icons/custom/custom.svg`;
 
   /** A resolvable URL to a location linkable from the logo. */
   @Input() logoHref = '#logo';
