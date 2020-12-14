@@ -1,2 +1,3 @@
-<wvre-icon-wrapper #animationRoot [innerHTML]="iconSvg | async">
-</wvre-icon-wrapper>
+<svg #animationRoot class="icon">
+  <use [attr.xlink:href]="iconSvgUrl"></use>
+</svg>

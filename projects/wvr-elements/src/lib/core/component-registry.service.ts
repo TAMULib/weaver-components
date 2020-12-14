@@ -21,9 +21,6 @@ export class ComponentRegistryService<T> {
 
   /** Adds a WvrBaseComponent to the registry. */
   register(component: T): number {
-
-    // tslint:disable-next-line:no-string-literal
-    const element = (component['_eRef'].nativeElement as HTMLElement);
     // tslint:disable-next-line:increment-decrement
     this.registry.set(++this.index, component);
 

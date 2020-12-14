@@ -1,9 +1,19 @@
-import { NgModule } from '@angular/core';
-import { WvrLibModule } from '../../projects/wvr-elements/src/public-api';
+import { Injector, NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { registerCustomElements, showHiddentContent, WvrCoreModule, WvrSharedModule, wvrTimeout, WVR_ELEMENTS } from '../../projects/wvr-elements/src/public-api';
 
 @NgModule({
   imports: [
-    WvrLibModule
+    BrowserAnimationsModule,
+    BrowserModule,
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // retains last 25 states
+      logOnly: true // restrict extension to log-only mode
+    }),
+    WvrSharedModule,
+    WvrCoreModule
   ],
   exports: [],
   providers: [],
@@ -13,7 +23,17 @@ import { WvrLibModule } from '../../projects/wvr-elements/src/public-api';
   schemas: []
 })
 export class AppModule {
-  ngDoBootstrap(): void {
-    // OVERRIDE
+
+  constructor(private readonly injector: Injector) {
+
   }
+
+  ngDoBootstrap(): void {
+    registerCustomElements(this.injector, WVR_ELEMENTS);
+    showHiddentContent(this.injector);
+    wvrTimeout(() => {
+      document.querySelector('body').style.display = 'block';
+    });
+  }
+
 }

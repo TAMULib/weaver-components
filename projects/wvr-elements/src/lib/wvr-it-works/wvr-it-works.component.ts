@@ -1,8 +1,5 @@
-import { Component, HostBinding, Injector, Input } from '@angular/core';
-import { Observable } from 'rxjs';
-import { selectManifestEntryResponse } from '../core/store';
+import { ChangeDetectionStrategy, Component, HostBinding, Injector, Input } from '@angular/core';
 import { ThemeVariantName } from '../shared/theme';
-import { WvrSelect } from '../shared/utility/decorators.utilty';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 /**
@@ -11,7 +8,8 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
 @Component({
   selector: 'wvr-it-works-component',
   templateUrl: './wvr-it-works.component.html',
-  styleUrls: ['./wvr-it-works.component.scss']
+  styleUrls: ['./wvr-it-works.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export class WvrItWorksComponent extends WvrBaseComponent {
 

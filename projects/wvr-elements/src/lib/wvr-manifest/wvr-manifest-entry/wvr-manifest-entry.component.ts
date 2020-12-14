@@ -1,11 +1,12 @@
-import { Component, ElementRef, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, Input, OnInit } from '@angular/core';
 import { ComponentRegistryService } from '../../core/component-registry.service';
 import { WvrBaseComponent } from '../../shared/wvr-base.component';
 import { WvrManifestComponent } from '../wvr-manifest.component';
 
 @Component({
   selector: 'wvr-manifest-entry-component',
-  template: ''
+  template: '',
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export class WvrManifestEntryComponent implements OnInit {
 

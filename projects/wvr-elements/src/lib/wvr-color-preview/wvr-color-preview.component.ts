@@ -1,19 +1,17 @@
 /* istanbul ignore file */
 
-import { Component, Injector, OnInit } from '@angular/core';
-import { WvrBaseComponent } from '../shared/wvr-base.component';
-import { ThemeVariants } from '../shared/theme';
+import { ChangeDetectionStrategy, Component, Injector, OnInit } from '@angular/core';
 import { select } from '@ngrx/store';
-import { selectCurrentTheme } from '../core/store';
 import { Observable } from 'rxjs';
-import * as ThemeActions from '../core/theme/theme.actions';
-import { KeyValue } from '@angular/common';
-import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'constants';
+import { selectCurrentTheme } from '../core/store';
+import { ThemeVariants } from '../shared/theme';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 @Component({
   selector: 'wvr-color-preview-component',
   templateUrl: './wvr-color-preview.component.html',
-  styleUrls: ['./wvr-color-preview.component.scss']
+  styleUrls: ['./wvr-color-preview.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export class WvrColorPreviewComponent extends WvrBaseComponent  implements OnInit {
 

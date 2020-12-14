@@ -2,21 +2,15 @@
 @import "../shared/styles/variables";
 
 :host {
-  
   @extend .variables;
 
   --wvr-icon-color: inherit;
   --wvr-icon-size: inherit;
 
-  wvre-icon-wrapper {
-    color: var(--wvr-icon-color);
+  svg.icon {
     display: inline-block;
-    ::ng-deep {
-      svg {
-        width: var(--wvr-icon-size);
-        height: var(--wvr-icon-size);
-      }
-    }
+    color: var(--wvr-icon-color);
+    width: var(--wvr-icon-size);
+    height: var(--wvr-icon-size);
   }
-
 }
