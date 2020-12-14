@@ -1,1 +1,3 @@
-<img #animationRoot class="icon" [lazyLoad]="iconSvgUrl">
+<svg #animationRoot class="icon">
+  <use [attr.xlink:href]="iconSvgUrl"></use>
+</svg>
