@@ -1,5 +1,3 @@
-/* istanbul ignore file */
-
 import { animation, AnimationBuilder, AnimationMetadata, AnimationPlayer, AnimationReferenceMetadata, useAnimation } from '@angular/animations';
 import { Injectable } from '@angular/core';
 import { wvrAnimationDefaults } from '../shared/animation/wvr-animation-defaults';

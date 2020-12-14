@@ -1,5 +1,3 @@
-/* istanbul ignore file */
-
 import { Injectable } from '@angular/core';
 
 /**
