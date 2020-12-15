@@ -4,6 +4,7 @@ import { CUSTOM_ELEMENTS_SCHEMA, Injector, NgModule, Optional, SkipSelf } from '
 import { createCustomElement } from '@angular/elements';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
+import { InlineSVGModule } from 'ng-inline-svg';
 import { WvrAlertComponent } from '../wvr-alert/wvr-alert.component';
 import { WvrButtonComponent } from '../wvr-button/wvr-button.component';
 import { WvrCardComponent } from '../wvr-card/wvr-card.component';
@@ -80,6 +81,10 @@ const MODULES = [
     ThemeEffects
   ]),
   HttpClientModule,
+  InlineSVGModule.forRoot({
+    clientOnly: true,
+    bypassHttpClientInterceptorChain: true
+  }),
   StoreModule.forRoot(ROOT_REDUCER, { metaReducers })
 ];
 
