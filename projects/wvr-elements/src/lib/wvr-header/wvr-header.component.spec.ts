@@ -2,7 +2,6 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideMockStore } from '@ngrx/store/testing';
-import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { APP_CONFIG } from '../shared/config/app-config';
 import { testAppConfig } from '../shared/config/test-app-config';
 import { WvrHeaderComponent } from './wvr-header.component';
@@ -29,8 +28,7 @@ describe('WvrHeaderComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        BrowserAnimationsModule,
-        LazyLoadImageModule
+        BrowserAnimationsModule
       ],
       providers: [
         {
