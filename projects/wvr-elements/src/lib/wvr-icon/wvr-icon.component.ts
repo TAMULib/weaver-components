@@ -32,7 +32,7 @@ export class WvrIconComponent extends WvrBaseComponent implements OnInit {
 
   ngOnInit(): void {
     super.ngOnInit();
-    this.iconSvgUrl =  `${this.appConfig.assetsUrl}/icons/${this.set}/${this.set}.svg#${this.name}`;
+    this.iconSvgUrl = `${this.appConfig.assetsUrl}/icons/${this.set}/${this.name}.svg`;
   }
 
 }
