@@ -2,7 +2,6 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideMockStore } from '@ngrx/store/testing';
-import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { APP_CONFIG, testAppConfig } from '../shared/config';
 import { WvrTextComponent } from './wvr-text.component';
 
@@ -16,8 +15,7 @@ describe('WvrTextComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        BrowserAnimationsModule,
-        LazyLoadImageModule
+        BrowserAnimationsModule
       ],
       declarations: [WvrTextComponent],
       providers: [
