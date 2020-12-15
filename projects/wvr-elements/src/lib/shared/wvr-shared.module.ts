@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
-import { LazyLoadImageDirective, LazyLoadImageModule } from 'ng-lazyload-image';
+import { InlineSVGModule } from 'ng-inline-svg';
 import { WvrAlertComponent } from '../wvr-alert/wvr-alert.component';
 import { WvrButtonComponent } from '../wvr-button/wvr-button.component';
 import { WvrCardComponent } from '../wvr-card/wvr-card.component';
@@ -55,12 +55,12 @@ export const WVR_PIPES = [
 @NgModule({
   imports: [
     CommonModule,
-    LazyLoadImageModule,
+    InlineSVGModule,
     NgbDropdownModule
   ],
   exports: [
     CommonModule,
-    LazyLoadImageDirective,
+    InlineSVGModule,
     ...WVR_COMPONENTS,
     ...WVR_PIPES
   ],

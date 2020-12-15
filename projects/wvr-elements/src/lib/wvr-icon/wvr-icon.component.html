@@ -1,3 +1,9 @@
-<svg #animationRoot class="icon">
-  <use [attr.xlink:href]="iconSvgUrl"></use>
-</svg>
+<span #animationRoot class="icon" 
+  [inlineSVG]="iconSvgUrl"
+  [cacheSVG]="true"
+  [setSVGAttributes]="{
+    width: '100%',
+    height: '100%'
+  }"
+>
+</span>
