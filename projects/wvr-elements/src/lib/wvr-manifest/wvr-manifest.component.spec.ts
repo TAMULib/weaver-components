@@ -2,7 +2,6 @@ import { Component, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideMockStore } from '@ngrx/store/testing';
-import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { APP_CONFIG, testAppConfig } from '../shared/config';
 import { WvrManifestEntryComponent } from './wvr-manifest-entry/wvr-manifest-entry.component';
 import { WvrManifestComponent } from './wvr-manifest.component';
@@ -34,8 +33,7 @@ describe('WvrManifestComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        BrowserAnimationsModule,
-        LazyLoadImageModule
+        BrowserAnimationsModule
       ],
       declarations: [
         WvrManifestHostComponent,

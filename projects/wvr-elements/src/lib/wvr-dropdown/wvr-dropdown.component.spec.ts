@@ -3,7 +3,6 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
 import { provideMockStore } from '@ngrx/store/testing';
-import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { APP_CONFIG, testAppConfig } from '../shared/config';
 import { WvrDropdownComponent } from './wvr-dropdown.component';
 
@@ -33,8 +32,7 @@ describe('WvrDropdownComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        BrowserAnimationsModule,
-        LazyLoadImageModule
+        BrowserAnimationsModule
       ],
       providers: [
         {

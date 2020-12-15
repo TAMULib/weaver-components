@@ -4,7 +4,6 @@ import { ComponentFixture, inject, TestBed, waitForAsync } from '@angular/core/t
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { provideMockStore } from '@ngrx/store/testing';
-import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { metaReducers, ROOT_REDUCER } from '../core/store';
 import { APP_CONFIG } from '../shared/config/app-config';
 import { testAppConfig } from '../shared/config/test-app-config';
@@ -34,7 +33,6 @@ describe('WvrIconComponent', () => {
       imports: [
         HttpClientTestingModule,
         BrowserAnimationsModule,
-        LazyLoadImageModule,
         StoreModule.forRoot(ROOT_REDUCER, { metaReducers })
       ],
       providers: [
