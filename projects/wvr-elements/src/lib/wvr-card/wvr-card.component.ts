@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, Injector, Input } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, HostBinding, Injector, Input } from '@angular/core';
 import { ThemeVariantName } from '../shared/theme';
 import { wvrTimeout } from '../shared/utility';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
@@ -53,6 +53,14 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit 
   /** Used to describe the format of card. */
   @Input() panelFormat: 'solid' | 'outlined' | 'mixed';
 
+  @HostBinding('style.--card-header-color') get cardHeaderColor(): string {
+    return `var(--${this.themeVariant}-button-color)`;
+  }
+
+  @HostBinding('style.--card-body-color') get cardBodyColor(): string {
+    return this.panelFormat === 'solid' ? `var(--${this.themeVariant}-button-color)` : 'var(--light-button-color)';
+  }
+
   variantTypes = ['border'];
 
   imgSrc: string;
@@ -66,6 +74,7 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit 
   constructor(injector: Injector) {
     super(injector);
     this.elem = this.eRef.nativeElement as HTMLElement;
+    this.themeVariant = 'primary';
   }
 
   /** Called after the view has been intialized. Handles the rendering of the projected content. */
