@@ -14,6 +14,7 @@ import { RootState, selectManifestEntryResponse } from '../core/store';
 import { TemplateService } from '../core/template.service';
 import { ThemeService } from '../core/theme/theme.service';
 import { AppConfig, APP_CONFIG } from './config';
+import { ThemeVariantName } from './theme';
 import { WvrAnimationComponent } from './wvr-animation.component';
 import { WvrDataComponent } from './wvr-data.component';
 import { WvrThemeableComponent } from './wvr-themeable.component';
@@ -45,8 +46,10 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
   themeOverrides = {};
 
   @Input() set wvrTheme(themeName: string) {
-    this._themeService.applyThemeByName(themeName, this);
+    this.themeService.applyThemeByName(themeName, this);
   }
+
+  @Input() themeVarient: ThemeVariantName;
 
   /** A host binding used to ensure the presense of the `wvr-bootstrap` class. */
   @HostBinding('class.wvr-bootstrap') wvrBootstrap = true;
@@ -106,7 +109,7 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
   private readonly _templateService: TemplateService<WvrBaseComponent>;
 
   /** A reference to the ThemeService */
-  private readonly _themeService: ThemeService;
+  private readonly themeService: ThemeService;
 
   /** A host bound accessor which applies the wvr-hidden class if both isMobileLayout and hiddenInMobile evaluate to true.  */
   @HostBinding('class.wvr-hidden') private get _hiddenInMobile(): boolean {
@@ -130,7 +133,7 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
     this._animationService = injector.get(AnimationService);
     this._mobileService = injector.get(MobileService);
     this._templateService = injector.get(TemplateService);
-    this._themeService = injector.get(ThemeService);
+    this.themeService = injector.get(ThemeService);
 
     const element = (this.eRef.nativeElement as HTMLElement);
     const htmlIDAttrName = element.hasAttribute('id') ? 'wvr-id' : 'id';
@@ -141,7 +144,7 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
   ngOnInit(): void {
     this.processData();
     this.initializeAnimationRegistration();
-    this._themeService.registerComponent(this.id, this);
+    this.themeService.registerComponent(this.id, this);
     this._templateService.parseProjectedContent(this, this.eRef.nativeElement);
   }
 
@@ -154,7 +157,7 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
   /** Handles the the unregistering of this component with the component registry. */
   ngOnDestroy(): void {
     this.componentRegistry.unRegisterComponent(this.id);
-    this._themeService.unRegisterComponent(this.id);
+    this.themeService.unRegisterComponent(this.id);
   }
 
   applyThemeOverride(customProperty: string, value: string): void {
