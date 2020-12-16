@@ -2,7 +2,6 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideMockStore } from '@ngrx/store/testing';
-import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { APP_CONFIG, testAppConfig } from '../shared/config';
 import { WvrColorPreviewComponent } from './wvr-color-preview.component';
 
@@ -16,8 +15,7 @@ describe('ColorPreviewComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        BrowserAnimationsModule,
-        LazyLoadImageModule
+        BrowserAnimationsModule
       ],
       providers: [
         {

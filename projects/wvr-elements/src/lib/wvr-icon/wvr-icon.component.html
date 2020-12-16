@@ -1,1 +1,9 @@
-<img #animationRoot class="icon text-{{themeVariant}}" [lazyLoad]="iconSvgUrl">
+<span #animationRoot class="icon" 
+  [inlineSVG]="iconSvgUrl"
+  [cacheSVG]="true"
+  [setSVGAttributes]="{
+    width: '100%',
+    height: '100%'
+  }"
+>
+</span>

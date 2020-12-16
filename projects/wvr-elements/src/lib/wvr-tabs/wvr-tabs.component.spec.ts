@@ -2,7 +2,6 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideMockStore } from '@ngrx/store/testing';
-import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { APP_CONFIG, testAppConfig } from '../shared/config';
 import { WvrTabComponent } from './wvr-tab/wvr-tab.component';
 import { WvrTabsComponent } from './wvr-tabs.component';
@@ -19,8 +18,7 @@ describe('WvrTabsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        BrowserAnimationsModule,
-        LazyLoadImageModule
+        BrowserAnimationsModule
       ],
       declarations: [WvrTabsComponent],
       providers: [
