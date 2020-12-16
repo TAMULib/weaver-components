@@ -31,7 +31,7 @@
       [verticalAlign]="btnVerticalAlign" ngbDropdownAnchor>
       <ng-content select="wvre-dropdown-btn" ngProjectAs="wvre-btn-content"></ng-content>
     </wvr-button-component>
-    <div ngbDropdownMenu [ngClass]="{open: open,closed: !open}">
+    <div ngbDropdownMenu [ngClass]="{open: open,closed: !open}" class="bg-{{menuThemeVariant}}">
       <ng-content select="wvre-dropdown-menu"></ng-content>
     </div>
   </div>
