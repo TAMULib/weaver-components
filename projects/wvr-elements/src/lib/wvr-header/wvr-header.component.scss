@@ -5,119 +5,124 @@
 
   @extend .variables;
 
-  --bottom-nav-background: var(--wvr-gray);
   --bottom-nav-height: var(--wvr-navbar-height);
   --bottom-nav-padding: var(--wvr-navbar-padding);
   --logo-img-width: 30px;
   --logo-img-height: 30px;
   --logo-img-margin: 0 0 0 0;
-  --title-row-background: var(--primary);
   --title-row-height: var(--wvr-navbar-height);
-  --top-nav-background: var(--wvr-secondary);
   --top-nav-height: var(--wvr-navbar-height);
   --top-nav-padding: var(--wvr-navbar-padding);
-}
 
-.wvr-header {
-  font-family: var(--wvr-font-family-sans-serif);
-}
+  --top-nav-color: var(--header-color);
+  --title-row-color: var(--header-color);
+  --bottom-nav-color: var(--header-color);
+  
+  color: var(--header-color);
 
-.container {
-  height: 100%;
-  a:hover {
-    text-decoration: none;
-    cursor: pointer;
+  .wvr-header {
+    font-family: var(--wvr-font-family-sans-serif);
   }
-}
-
-.top-nav {
-  background: var(--top-nav-background);
-  height: var(--top-nav-height);
-  padding: var(--top-nav-padding);
-
-  .logo-img {
-    width: var(--logo-img-width);
-    height: var(--logo-img-height);
-    margin: var(--logo-img-margin);
-  }
-
-  .top-nav-wrapper {
-    ::ng-deep {
-      wvre-nav-list[top-navigation] > ul > wvre-nav-li > li > wvre-dropdown > .wvr-dropdown > .dropdown > wvr-button-component > button-wrapper{
-        display: flex;
-        justify-content: center;
-      }
-    }
-  }
-}
-
-.title-row {
-  background: var(--title-row-background);
-  height: var(--title-row-height);
-}
-
-.bottom-nav {
-  background: var(--bottom-nav-background);
-  height: var(--bottom-nav-height);
-  padding: var(--bottom-nav-padding);
-}
-
-.mobile-menu-button,
-.mobile-menu {
-  display: none;
-  overflow: hidden;
-}
-
-@media (max-width: 767px) {
-
-
-  .mobile-menu-button {
-    display: block;
-  }
-
-  .mobile-menu-button:hover {
-    cursor: pointer;
-  }
-
-  .mobile-menu-content {
-    white-space: nowrap !important;
-    ::ng-deep {
-      .section-title {
-        white-space: nowrap !important;
-      }
-      tl-nav-li > a {
-        white-space: nowrap !important;
-      }
-      wvr-dropdown-component,
-      .section-title  {
-        min-width: 200px;
-      }
-    }
-  }
-
-  .mobile-menu.closed {
-    width: 0px;
-    opacity: 0;
-  }
-
-  .mobile-menu-header {
-    display: flex;
-    justify-content: flex-end;
-    background: #000;
-    color: #fff;
-    width: 100%;
-    padding: 12px 10px;
-    .mobile-menu-close:hover {
+  
+  .container {
+    height: 100%;
+    a:hover {
+      text-decoration: none;
       cursor: pointer;
     }
-    li {
-      font-weight: lighter;
-      min-width: auto;
-      border-bottom: none;
+  }
+  
+  .top-nav {
+    color: var(--top-nav-color);
+    height: var(--top-nav-height);
+    padding: var(--top-nav-padding);
+  
+    .logo-img {
+      width: var(--logo-img-width);
+      height: var(--logo-img-height);
+      margin: var(--logo-img-margin);
     }
-    li:hover {
-      background: transparent;
+  
+    .top-nav-wrapper {
+      ::ng-deep {
+        wvre-nav-list[top-navigation] > ul > wvre-nav-li > li > wvre-dropdown > .wvr-dropdown > .dropdown > wvr-button-component > button-wrapper{
+          display: flex;
+          justify-content: center;
+        }
+      }
     }
   }
+  
+  .title-row {
+    color: var(--title-row-color);
+    height: var(--title-row-height);
+  }
+  
+  .bottom-nav {
+    color: var(--bottom-nav-color);
+    height: var(--bottom-nav-height);
+    padding: var(--bottom-nav-padding);
+  }
+  
+  .mobile-menu-button,
+  .mobile-menu {
+    display: none;
+    overflow: hidden;
+  }
+  
+  @media (max-width: 767px) {
+  
+  
+    .mobile-menu-button {
+      display: block;
+    }
+  
+    .mobile-menu-button:hover {
+      cursor: pointer;
+    }
+  
+    .mobile-menu-content {
+      white-space: nowrap !important;
+      ::ng-deep {
+        .section-title {
+          white-space: nowrap !important;
+        }
+        tl-nav-li > a {
+          white-space: nowrap !important;
+        }
+        wvr-dropdown-component,
+        .section-title  {
+          min-width: 200px;
+        }
+      }
+    }
+  
+    .mobile-menu.closed {
+      width: 0px;
+      opacity: 0;
+    }
+  
+    .mobile-menu-header {
+      display: flex;
+      justify-content: flex-end;
+      background: #000;
+      color: #fff;
+      width: 100%;
+      padding: 12px 10px;
+      .mobile-menu-close:hover {
+        cursor: pointer;
+      }
+      li {
+        font-weight: lighter;
+        min-width: auto;
+        border-bottom: none;
+      }
+      li:hover {
+        background: transparent;
+      }
+    }
+  
+  }
+  
 
 }
