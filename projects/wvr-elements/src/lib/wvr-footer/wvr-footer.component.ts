@@ -24,8 +24,9 @@ export class WvrFooterComponent extends WvrBaseComponent implements OnInit {
   /** Used internally to toggle fixed behavior. */
   isSticky = false;
 
-  /** Allows for the override of the --footer-background css variable. */
-  @HostBinding('style.--footer-background') @Input() background;
+  @HostBinding('style.--footer-color') get cardBodyColor(): string {
+    return this.themeVariant ? `var(--${this.themeVariant}-button-color)` : 'var(--light-button-color)';
+  }
 
   /** Allows for the override of the --footer-height css variable. */
   @HostBinding('style.--footer-height') @Input() height;
@@ -38,6 +39,7 @@ export class WvrFooterComponent extends WvrBaseComponent implements OnInit {
    */
   constructor(injector: Injector) {
     super(injector);
+    this.themeVariant = 'light';
   }
 
   /**
