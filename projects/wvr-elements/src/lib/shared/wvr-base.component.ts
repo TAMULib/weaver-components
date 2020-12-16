@@ -45,11 +45,13 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
 
   themeOverrides = {};
 
+  /** Allows for the override of theme for the particular component.  */
   @Input() set wvrTheme(themeName: string) {
     this.themeService.applyThemeByName(themeName, this);
   }
 
-  @Input() themeVarient: ThemeVariantName;
+  /** Used to define the class type of an alert component.  */
+  @Input() themeVariant: ThemeVariantName;
 
   /** A host binding used to ensure the presense of the `wvr-bootstrap` class. */
   @HostBinding('class.wvr-bootstrap') wvrBootstrap = true;
