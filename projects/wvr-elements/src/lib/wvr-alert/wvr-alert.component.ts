@@ -13,9 +13,6 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
 })
 export class WvrAlertComponent extends WvrBaseComponent implements OnInit {
 
-  /** Used to define the class type of an alert component.  */
-  @Input() themeVariant: ThemeVariantName = 'primary';
-
   /** Used to define the type of alert. */
   @Input() alertType: 'basic' | 'self-closing' | 'custom' = 'basic';
 
@@ -40,6 +37,7 @@ export class WvrAlertComponent extends WvrBaseComponent implements OnInit {
    */
   clickClose($event: MouseEvent): void {
       this.alertClosed = true;
+      this.themeVariant = 'primary';
   }
 
   /** Initializes the closing timer for a self closing alert. */
