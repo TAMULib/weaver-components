@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular/core';
+import { ThemeVariantName } from '../shared/theme';
 
 /**
  * The Weaver Text Component allows for a node based textual entry. This will support i18n in the future.
@@ -13,6 +14,8 @@ export class WvrTextComponent {
 
   /** The text value to be displayed in the text node. */
   @Input() value: string;
+
+  @Input() themeVariant: ThemeVariantName;
 
   /** Allows for the override of font-size property for wvre-text */
   @HostBinding('style.--wvr-text-font-size') @Input() fontSize;
@@ -35,9 +38,15 @@ export class WvrTextComponent {
   /** Allows for the override of line-height property for wvre-text */
   @HostBinding('style.--wvr-text-line-height') @Input() lineHeight;
 
-  // text rules
-  /** Allows for the override of color property for wvre-text */
-  @HostBinding('style.--wvr-text-color') @Input() textColor;
+  _textColor;
+
+  set textColor(value: string) {
+    this._textColor = value;
+  }
+
+  @HostBinding('style.--wvr-text-color') get textColor(): string {
+    return this.themeVariant ? `var(--${this.themeVariant}-button-color)` : this._textColor;
+  }
 
   /** Allows for the override of text-align property for wvre-text */
   @HostBinding('style.--wvr-text-text-align') @Input() textAlign;
