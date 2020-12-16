@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Injector, Input, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, Injector, Input, OnInit } from '@angular/core';
 import { ThemeVariantName } from '../../shared/theme';
 import { WvrBaseComponent } from '../../shared/wvr-base.component';
 
@@ -8,7 +8,8 @@ import { WvrBaseComponent } from '../../shared/wvr-base.component';
 @Component({
   selector: 'wvr-list-item-component',
   templateUrl: './wvr-list-item.component.html',
-  styleUrls: ['./wvr-list-item.component.scss']
+  styleUrls: ['./wvr-list-item.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class WvrListItemComponent extends WvrBaseComponent implements OnInit, AfterViewInit {
 
@@ -42,21 +43,21 @@ export class WvrListItemComponent extends WvrBaseComponent implements OnInit, Af
   /** Registers this list item with the parent list. */
   ngOnInit(): void {
     super.ngOnInit();
-    const parent = this._eRef.nativeElement.parentNode.parentNode.parentNode;
+    const parent = this.eRef.nativeElement.parentNode.parentNode.parentNode;
     this.listType = parent.listType;
     this.themeVariant = this.themeVariant ? this.themeVariant : parent.themeVariant ? parent.themeVariant : undefined;
   }
 
   ngAfterViewInit(): void {
     // get the element's parent node
-    const parent = this._eRef.nativeElement.parentNode;
+    const parent = this.eRef.nativeElement.parentNode;
 
     // move all children out of the element
-    while (this._eRef.nativeElement.firstChild) {
-      parent.insertBefore(this._eRef.nativeElement.firstChild, this._eRef.nativeElement);
+    while (this.eRef.nativeElement.firstChild) {
+      parent.insertBefore(this.eRef.nativeElement.firstChild, this.eRef.nativeElement);
     }
     // remove the empty element
-    parent.removeChild(this._eRef.nativeElement);
+    parent.removeChild(this.eRef.nativeElement);
   }
 
 }

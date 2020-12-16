@@ -1,7 +1,5 @@
-import { AfterContentChecked, Component, HostBinding, Injector, Input, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import * as rootStore from '../core/store';
-import { WvrSelect } from '../shared/utility/decorators.utilty';
+import { AfterContentChecked, ChangeDetectionStrategy, Component, HostBinding, Injector, Input, OnInit } from '@angular/core';
+import { ThemeVariantName } from '../shared/theme';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 /**
@@ -10,9 +8,10 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
 @Component({
   selector: 'wvr-header-component',
   templateUrl: './wvr-header.component.html',
-  styleUrls: ['./wvr-header.component.scss']
+  styleUrls: ['./wvr-header.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
 })
-export class WvrHeaderComponent extends WvrBaseComponent implements OnInit, AfterContentChecked {
+export class WvrHeaderComponent extends WvrBaseComponent implements AfterContentChecked, OnInit {
 
   /** The text value to be displayed beside the logo. */
   @Input() logoText = 'Weaver Components';
@@ -29,8 +28,25 @@ export class WvrHeaderComponent extends WvrBaseComponent implements OnInit, Afte
   /** A resolvable URL to a location linkable from the logo. */
   @Input() logoHref = '#logo';
 
-  /** Allows for the override of the --top-nav-background css variable. Default:  --wvr-secondary */
-  @HostBinding('style.--top-nav-background') @Input() topNavBackground;
+  @HostBinding('style.--header-color') headerColor = `var(--${this.themeVariant}-button-color)`;
+
+  /** Allows for the override of the components theme variant in the top nav */
+  @Input() topNavThemeVariant: ThemeVariantName;
+  @HostBinding('style.--top-nav-color') get topNavColor(): string {
+    return this.topNavThemeVariant ? `var(--${this.topNavThemeVariant}-button-color)` : `var(--${this.themeVariant}-button-color)`;
+  }
+
+  /** Allows for the override of the components theme variant in the title row  */
+  @Input() titleRowThemeVariant: ThemeVariantName;
+  @HostBinding('style.--title-row-color') get titleRowColor(): string {
+    return this.titleRowThemeVariant ? `var(--${this.titleRowThemeVariant}-button-color)` : `var(--${this.themeVariant}-button-color)`;
+  }
+
+  /** Allows for the override of the components theme variant in the bottom nav  */
+  @Input() bottomNavThemeVariant: ThemeVariantName;
+  @HostBinding('style.--bottom-nav-color') get bottomNavColor(): string {
+    return this.bottomNavThemeVariant ? `var(--${this.bottomNavThemeVariant}-button-color)` : `var(--${this.themeVariant}-button-color)`;
+  }
 
   /** Allows for the override of the --top-nav-height css variable. Default:  --wvr-navbar-height */
   @HostBinding('style.--top-nav-height') @Input() topNavHeight;
@@ -47,14 +63,8 @@ export class WvrHeaderComponent extends WvrBaseComponent implements OnInit, Afte
   /** Allows for the override of the --logo-img-margin css variable. Default:  0 0 0 0 */
   @HostBinding('style.--logo-img-margin') @Input() logoImgMargin;
 
-  /** Allows for the override of the --title-row-background css variable. Default:  --wvr-primary */
-  @HostBinding('style.--title-row-background') @Input() titleRowBackground;
-
   /** Allows for the override of the --title-row-height css variable. Default:  --wvr-navbar-height */
   @HostBinding('style.--title-row-height') @Input() titleRowHeight;
-
-  /** Allows for the override of the --bottom-nav-background css variable. Default:  --wvr-grey */
-  @HostBinding('style.--bottom-nav-background') @Input() bottomNavBackground;
 
   /** Allows for the override of the --bottom-nav-height css variable. Default:  --wvr-navbar-height */
   @HostBinding('style.--bottom-nav-height') @Input() bottomNavHeight;
@@ -62,17 +72,8 @@ export class WvrHeaderComponent extends WvrBaseComponent implements OnInit, Afte
   /** Allows for the override of the --bottom-nav-padding css variable. Default:  --wvr-navbar-padding */
   @HostBinding('style.--bottom-nav-padding') @Input() bottomNavPadding;
 
-  private _displayBottomNav: 'true' | 'false';
-
   /** Used to toggle display of bottom navbar section. */
-  @Input() set displayBottomNav(value: 'true' | 'false') {
-    this._displayBottomNav = value;
-    this.checkBottomNavHasChildren();
-  }
-
-  get displayBottomNav(): 'true' | 'false' {
-    return this._displayBottomNav;
-  }
+  @Input() displayBottomNav: 'true' | 'false';
 
   get logoId(): string {
     return this.logoHref.split('#')[1];
@@ -82,19 +83,12 @@ export class WvrHeaderComponent extends WvrBaseComponent implements OnInit, Afte
 
   mobileMenuClosed = true;
 
-  // tslint:disable-next-line: prefer-readonly
-  @WvrSelect({ selector: rootStore.selectManifestEntryResponse('sample', 'one') }) private sampleTestResponse: Observable<string>;
-
   /**
    * The weaver header component constructor
    */
   constructor(injector: Injector) {
     super(injector);
-  }
-
-  ngOnInit(): void {
-    super.ngOnInit();
-    this.checkBottomNavHasChildren();
+    this.themeVariant = 'light';
   }
 
   ngAfterContentChecked(): void {
@@ -107,7 +101,7 @@ export class WvrHeaderComponent extends WvrBaseComponent implements OnInit, Afte
 
   /** Determines if the bottom nav list has children in order to display bottom nav section. */
   private checkBottomNavHasChildren(): void {
-    const bottomNavListElement = (this._eRef.nativeElement as HTMLElement).querySelector('.bottom-nav wvre-nav-li, .bottom-nav wvr-nav-li-component');
+    const bottomNavListElement = (this.eRef.nativeElement as HTMLElement).querySelector('.bottom-nav wvre-nav-li, .bottom-nav wvr-nav-li-component');
     this.isBottomNavHidden = !(this.displayBottomNav === 'true' || (this.displayBottomNav === undefined && !!bottomNavListElement));
   }
 

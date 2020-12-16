@@ -51,7 +51,10 @@ static/
 development/
 .lighthouseci/
 package-lock.json
+yarn.lock
 src/config.json
 src/config-template.json
+src/assets/icons/*
+!src/assets/icons/tl
 
 .wvr-ud/static-assets/styles.css

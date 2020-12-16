@@ -13,13 +13,14 @@ const usagePath = 'dist/static/docs/usage';
 cp.fork(__dirname + '/build-wvr-config-template.js');
 
 (async function build() {
+
+  // options: es5 and es2015
+  const esv = 'es2015';
+
   const files = [
-    `${componentsPath}/runtime-es5.js`,
-    `${componentsPath}/polyfills-es5.js`,
-    `${componentsPath}/styles-es5.js`,
-    `${componentsPath}/scripts.js`,
-    // `${componentsPath}/vendor-es5.js`,
-    `${componentsPath}/main-es5.js`
+    `${componentsPath}/polyfills-${esv}.js`,
+    `${componentsPath}/styles-${esv}.js`,
+    `${componentsPath}/main-${esv}.js`
   ];
 
   fs.ensureDir(bundlePath);
@@ -27,6 +28,7 @@ cp.fork(__dirname + '/build-wvr-config-template.js');
   fs.ensureDir(usagePath);
 
   await concat(files, `${bundlePath}/weaver-components.js`);
+
   fs.copy(`${componentsPath}/assets`, `${usagePath}/assets`);
   fs.copy(`${componentsPath}/assets`, `${bundlePath}/assets`);
 

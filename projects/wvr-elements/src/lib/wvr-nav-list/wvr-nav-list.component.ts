@@ -1,4 +1,4 @@
-import { Component, Injector, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Injector, Input } from '@angular/core';
 import { Alignment } from '../shared/alignment.enum';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
@@ -9,7 +9,8 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
 @Component({
   selector: 'wvr-nav-list-component',
   templateUrl: './wvr-nav-list.component.html',
-  styleUrls: ['./wvr-nav-list.component.scss']
+  styleUrls: ['./wvr-nav-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export class WvrNavListComponent extends WvrBaseComponent {
 

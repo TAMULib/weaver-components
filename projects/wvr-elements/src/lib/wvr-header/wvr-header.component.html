@@ -1,10 +1,12 @@
-<header class="wvr-components wvr-header" #animationRoot>
+<header class="wvr-components wvr-header bg-{{themeVariant}}" #animationRoot>
 
-  <nav class="top-nav navbar navbar-expand-lg">
+  <nav class="top-nav navbar navbar-expand-lg bg-{{topNavThemeVariant}}">
     <div class="container">
       <a class="navbar-brand d-flex" [href]="logoHref" [id]="logoId">
         <img alt="Logo" class="logo-img d-inline-block align-top" [src]='logoSrc' />
-        <span class="text-white align-self-center d-inline-block pl-1">{{logoText}}</span>
+        <span class="align-self-center d-inline-block pl-1">
+          <wvr-text-component [themeVariant]="topNavThemeVariant ? topNavThemeVariant : themeVariant" [value]="logoText"></wvr-text-component>
+        </span>
       </a>
       <div>
         <ng-container *ngTemplateOutlet="topNavContent"></ng-container>
@@ -12,14 +14,16 @@
     </div>
   </nav>
 
-  <div class="title-row row m-0">
+  <div class="title-row row m-0 bg-{{titleRowThemeVariant}}">
     <div class="container d-flex align-items-center">
-      <a *ngIf="headerTitleUrl" [href]="headerTitleUrl"><span class="h1 text-white">{{headerTitle}}</span></a>
-      <span *ngIf="!headerTitleUrl" class="h1 text-white">{{headerTitle}}</span>
+      <a *ngIf="headerTitleUrl" [href]="headerTitleUrl"><span class="h1">{{headerTitle}}</span></a>
+      <span *ngIf="!headerTitleUrl" class="h1">
+        <wvr-text-component [themeVariant]="titleRowThemeVariant" [value]="headerTitle"></wvr-text-component>
+      </span>
     </div>
   </div>
 
-  <nav *ngIf="!isMobileLayout" class="bottom-nav navbar navbar-expand-lg"
+  <nav *ngIf="!isMobileLayout" class="bottom-nav navbar navbar-expand-lg bg-{{bottomNavThemeVariant}}"
     [hidden]="isBottomNavHidden">
     <div class="container">
       <div class="flex-fill align-self-stretch">

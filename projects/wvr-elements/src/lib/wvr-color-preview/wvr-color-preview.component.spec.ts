@@ -3,7 +3,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideMockStore } from '@ngrx/store/testing';
 import { APP_CONFIG, testAppConfig } from '../shared/config';
-
 import { WvrColorPreviewComponent } from './wvr-color-preview.component';
 
 describe('ColorPreviewComponent', () => {

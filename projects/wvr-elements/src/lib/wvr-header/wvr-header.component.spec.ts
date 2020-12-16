@@ -107,7 +107,7 @@ describe('WvrHeaderComponent', () => {
     expect(bottomNavElement.hasAttribute('hidden'))
       .toEqual(true);
 
-    // creating mock childres
+    // creating mock children
     const wvrNavList = document.createElement('wvre-nav-list');
     const wvrNavLi = document.createElement('wvre-nav-li');
 

@@ -1,8 +1,4 @@
-import { AfterViewInit, Component, HostBinding, Injector, Input } from '@angular/core';
-import { SafeHtml } from '@angular/platform-browser';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { IconService } from '../core/icon.service';
+import { ChangeDetectionStrategy, Component, HostBinding, Injector, Input, OnInit } from '@angular/core';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 /**
@@ -11,9 +7,10 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
 @Component({
   selector: 'wvr-icon-component',
   templateUrl: './wvr-icon.component.html',
-  styleUrls: ['./wvr-icon.component.scss']
+  styleUrls: ['./wvr-icon.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
 })
-export class WvrIconComponent extends WvrBaseComponent implements AfterViewInit {
+export class WvrIconComponent extends WvrBaseComponent implements OnInit {
 
   /** An attribute input describing the icon set to which this icon belongs. */
   @Input() set: string;
@@ -24,20 +21,18 @@ export class WvrIconComponent extends WvrBaseComponent implements AfterViewInit 
   /** An attribute input bound to the css variable `--wvr-icon-color`.  */
   @HostBinding('style.--wvr-icon-color') @Input() color: string;
 
-    /** An attribute input bound to the css variable `--wvr-icon-size`.  */
+  /** An attribute input bound to the css variable `--wvr-icon-size`.  */
   @HostBinding('style.--wvr-icon-size') @Input() size = '24px';
 
-  /** An observable SafeHtml representation of the svg to be displayed for this icon. */
-  iconSvg: Observable<SafeHtml>;
+  iconSvgUrl: string;
 
-  constructor(injector: Injector, private readonly iconService: IconService) {
+  constructor(injector: Injector) {
     super(injector);
   }
 
-  /** Utilizes the icon service to request the svg specified by this icon. */
-  ngAfterViewInit(): void {
-    this.iconSvg = this.iconService.getIcon(this.set, this.name)
-      .pipe(map(svg => this._domSanitizer.bypassSecurityTrustHtml(svg)));
+  ngOnInit(): void {
+    super.ngOnInit();
+    this.iconSvgUrl = `${this.appConfig.assetsUrl}/icons/${this.set}/${this.name}.svg`;
   }
 
 }

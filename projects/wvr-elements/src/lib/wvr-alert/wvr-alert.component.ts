@@ -1,5 +1,4 @@
-import { Component, Injector, Input, OnInit } from '@angular/core';
-import { ThemeVariantName } from '../shared/theme';
+import { ChangeDetectionStrategy, Component, Injector, Input, OnInit } from '@angular/core';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 /**
@@ -8,12 +7,10 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
 @Component({
   selector: 'wvr-alert-component',
   templateUrl: './wvr-alert.component.html',
-  styleUrls: ['./wvr-alert.component.scss']
+  styleUrls: ['./wvr-alert.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export class WvrAlertComponent extends WvrBaseComponent implements OnInit {
-
-  /** Used to define the class type of an alert component.  */
-  @Input() themeVariant: ThemeVariantName = 'primary';
 
   /** Used to define the type of alert. */
   @Input() alertType: 'basic' | 'self-closing' | 'custom' = 'basic';
@@ -39,6 +36,7 @@ export class WvrAlertComponent extends WvrBaseComponent implements OnInit {
    */
   clickClose($event: MouseEvent): void {
       this.alertClosed = true;
+      this.themeVariant = 'primary';
   }
 
   /** Initializes the closing timer for a self closing alert. */

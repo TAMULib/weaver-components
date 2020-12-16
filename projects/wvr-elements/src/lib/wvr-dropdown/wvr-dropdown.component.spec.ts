@@ -112,9 +112,6 @@ describe('WvrDropdownComponent', () => {
   it('should set `_animationSpeedMili` and `_animationSpeedSeconds` when setting `menuAnimationSpeed`', () => {
     component.menuAnimationSpeed = 500;
     // tslint:disable-next-line:no-string-literal
-    expect(component['_animationSpeedMili'])
-      .toEqual(500);
-    // tslint:disable-next-line:no-string-literal
     expect(component['_animationSpeedSeconds'])
       .toEqual('0.5s');
   });

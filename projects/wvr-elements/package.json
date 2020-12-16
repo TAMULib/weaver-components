@@ -1,6 +1,6 @@
 {
   "name": "@wvr/elements",
-  "version": "1.7.1",
+  "version": "1.8.0-rc4",
   "description": "Collection of angular components for Weaver's Custom Web Component UI",
   "author": "Texas A&M University Libraries",
   "private": false,
@@ -22,14 +22,14 @@
   "license": "MIT",
   "dependencies": {
     "css-element-queries": "^1.2.3",
-    "tslib": "^2.0.0",
+    "tslib": "^2.0.3",
     "handlebars": "^4.7.6"
   },
   "bin": {
     "wvr-ud": "./scripts/build-wvr-ud.js"
   },
   "peerDependencies": {
-    "@angular/common": "^9.0.0",
-    "@angular/core": "^9.0.0"
+    "@angular/common": "^11.0.3",
+    "@angular/core": "^11.0.3"
   }
 }

@@ -6,7 +6,6 @@ import { APP_CONFIG, testAppConfig } from '../shared/config';
 import { WvrManifestEntryComponent } from './wvr-manifest-entry/wvr-manifest-entry.component';
 import { WvrManifestComponent } from './wvr-manifest.component';
 
-
 @Component({
   selector: 'wvr-manifest-test-component',
   // tslint:disable-next-line:component-max-inline-declarations

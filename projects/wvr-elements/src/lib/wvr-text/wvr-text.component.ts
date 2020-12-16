@@ -1,5 +1,5 @@
-import { Component, HostBinding, Injector, Input } from '@angular/core';
-import { WvrBaseComponent } from '../shared/wvr-base.component';
+import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular/core';
+import { ThemeVariantName } from '../shared/theme';
 
 /**
  * The Weaver Text Component allows for a node based textual entry. This will support i18n in the future.
@@ -7,12 +7,15 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
 @Component({
   selector: 'wvr-text-component',
   templateUrl: './wvr-text.component.html',
-  styleUrls: ['./wvr-text.component.scss']
+  styleUrls: ['./wvr-text.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class WvrTextComponent extends WvrBaseComponent {
+export class WvrTextComponent {
 
   /** The text value to be displayed in the text node. */
   @Input() value: string;
+
+  @Input() themeVariant: ThemeVariantName;
 
   /** Allows for the override of font-size property for wvre-text */
   @HostBinding('style.--wvr-text-font-size') @Input() fontSize;
@@ -35,9 +38,15 @@ export class WvrTextComponent extends WvrBaseComponent {
   /** Allows for the override of line-height property for wvre-text */
   @HostBinding('style.--wvr-text-line-height') @Input() lineHeight;
 
-  // text rules
-  /** Allows for the override of color property for wvre-text */
-  @HostBinding('style.--wvr-text-color') @Input() textColor;
+  _textColor;
+
+  set textColor(value: string) {
+    this._textColor = value;
+  }
+
+  @HostBinding('style.--wvr-text-color') get textColor(): string {
+    return this.themeVariant ? `var(--${this.themeVariant}-button-color)` : this._textColor;
+  }
 
   /** Allows for the override of text-align property for wvre-text */
   @HostBinding('style.--wvr-text-text-align') @Input() textAlign;
@@ -62,9 +71,5 @@ export class WvrTextComponent extends WvrBaseComponent {
 
   /** Allows for the override of word-spacing property for wvre-text */
   @HostBinding('style.--wvr-text-word-spacing') @Input() wordSpacing;
-
-  constructor(injector: Injector) {
-    super(injector);
-  }
 
 }
