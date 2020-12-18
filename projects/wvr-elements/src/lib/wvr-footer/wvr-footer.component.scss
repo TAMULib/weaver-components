@@ -5,23 +5,25 @@
   
   @extend .variables;
 
-  --footer-background: var(--wvr-gray);
   --footer-height: var(--wvr-navbar-height);
   --footer-padding: var(--wvr-navbar-padding);
-}
+  --footer-color: var(--light-color);
 
-.wvr-footer {
-  font-family: var(--wvr-font-family-sans-serif);
-  background-color: var(--footer-background);
-  height: var(--footer-height);
-  padding: var(--footer-padding);
-}
+  color: var(--footer-color);
 
-.container, .navbar {
-  height: 100%;
-}
+  .wvr-footer {
+    font-family: var(--wvr-font-family-sans-serif);
+    height: var(--footer-height);
+    padding: var(--footer-padding);
+  }
+  
+  .container, .navbar {
+    height: 100%;
+  }
+  
+  .stick-to-bottom {
+    position: fixed;
+    bottom: 0;
+  }
 
-.stick-to-bottom {
-  position: fixed;
-  bottom: 0;
 }

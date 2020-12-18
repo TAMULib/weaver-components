@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, HostBinding, HostListener, Injector, Input, OnInit } from '@angular/core';
 import { ResizeSensor } from 'css-element-queries';
+import { wvrTimeout } from '../shared/utility';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 /**
@@ -24,8 +25,9 @@ export class WvrFooterComponent extends WvrBaseComponent implements OnInit {
   /** Used internally to toggle fixed behavior. */
   isSticky = false;
 
-  /** Allows for the override of the --footer-background css variable. */
-  @HostBinding('style.--footer-background') @Input() background;
+  @HostBinding('style.--footer-color') get cardBodyColor(): string {
+    return this.themeVariant ? `var(--${this.themeVariant}-button-color)` : 'var(--light-button-color)';
+  }
 
   /** Allows for the override of the --footer-height css variable. */
   @HostBinding('style.--footer-height') @Input() height;
@@ -38,6 +40,7 @@ export class WvrFooterComponent extends WvrBaseComponent implements OnInit {
    */
   constructor(injector: Injector) {
     super(injector);
+    this.themeVariant = 'light';
   }
 
   /**
@@ -45,6 +48,11 @@ export class WvrFooterComponent extends WvrBaseComponent implements OnInit {
    * and calculates height to determine 'stickiness'
    */
   @HostListener('window:resize', ['$event']) positionSelf(): void {
+
+    if (!this.footerElement) {
+      this.footerElement = (this.eRef.nativeElement as HTMLElement).querySelector('footer.wvr-footer');
+    }
+
     this.footerElement.style.width = `${this.parentElement.clientWidth}px`;
     const compareHeight = this.isSticky ? (window.innerHeight - this.footerElement.clientHeight) : window.innerHeight;
     const newIsSticky = this.parentElement.clientHeight <= compareHeight;
@@ -60,9 +68,10 @@ export class WvrFooterComponent extends WvrBaseComponent implements OnInit {
    */
   ngOnInit(): void {
     super.ngOnInit();
-    // this.parentElement = (this._eRef.nativeElement as HTMLElement).parentElement;
-    this.parentElement = document.querySelector(this.parentElementName);
-    this.footerElement = (this.eRef.nativeElement as HTMLElement).querySelector('footer.wvr-footer');
+    this.parentElement = (this.eRef.nativeElement as HTMLElement).parentElement;
+    if (!this.parentElement) {
+      this.parentElement = document.querySelector(this.parentElementName);
+    }
     const rs = new ResizeSensor(this.parentElement, () => {
       this.positionSelf();
     });

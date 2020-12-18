@@ -1,4 +1,5 @@
 import { AfterContentChecked, ChangeDetectionStrategy, Component, HostBinding, Injector, Input, OnInit } from '@angular/core';
+import { ThemeVariantName } from '../shared/theme';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 /**
@@ -22,13 +23,30 @@ export class WvrHeaderComponent extends WvrBaseComponent implements AfterContent
   @Input() headerTitleUrl: string;
 
   /** A resolvable URI to an image to be displayed as the logo. */
-  @Input() logoSrc = `${this.appConfig.assetsUrl}/icons/custom/custom.svg`;
+  @Input() logoSrc = `${this.appConfig.assetsUrl}/icons/custom/weaver-w.svg`;
 
   /** A resolvable URL to a location linkable from the logo. */
   @Input() logoHref = '#logo';
 
-  /** Allows for the override of the --top-nav-background css variable. Default:  --wvr-secondary */
-  @HostBinding('style.--top-nav-background') @Input() topNavBackground;
+  @HostBinding('style.--header-color') headerColor = `var(--${this.themeVariant}-button-color)`;
+
+  /** Allows for the override of the components theme variant in the top nav */
+  @Input() topNavThemeVariant: ThemeVariantName;
+  @HostBinding('style.--top-nav-color') get topNavColor(): string {
+    return this.topNavThemeVariant ? `var(--${this.topNavThemeVariant}-button-color)` : `var(--${this.themeVariant}-button-color)`;
+  }
+
+  /** Allows for the override of the components theme variant in the title row  */
+  @Input() titleRowThemeVariant: ThemeVariantName;
+  @HostBinding('style.--title-row-color') get titleRowColor(): string {
+    return this.titleRowThemeVariant ? `var(--${this.titleRowThemeVariant}-button-color)` : `var(--${this.themeVariant}-button-color)`;
+  }
+
+  /** Allows for the override of the components theme variant in the bottom nav  */
+  @Input() bottomNavThemeVariant: ThemeVariantName;
+  @HostBinding('style.--bottom-nav-color') get bottomNavColor(): string {
+    return this.bottomNavThemeVariant ? `var(--${this.bottomNavThemeVariant}-button-color)` : `var(--${this.themeVariant}-button-color)`;
+  }
 
   /** Allows for the override of the --top-nav-height css variable. Default:  --wvr-navbar-height */
   @HostBinding('style.--top-nav-height') @Input() topNavHeight;
@@ -45,14 +63,8 @@ export class WvrHeaderComponent extends WvrBaseComponent implements AfterContent
   /** Allows for the override of the --logo-img-margin css variable. Default:  0 0 0 0 */
   @HostBinding('style.--logo-img-margin') @Input() logoImgMargin;
 
-  /** Allows for the override of the --title-row-background css variable. Default:  --wvr-primary */
-  @HostBinding('style.--title-row-background') @Input() titleRowBackground;
-
   /** Allows for the override of the --title-row-height css variable. Default:  --wvr-navbar-height */
   @HostBinding('style.--title-row-height') @Input() titleRowHeight;
-
-  /** Allows for the override of the --bottom-nav-background css variable. Default:  --wvr-grey */
-  @HostBinding('style.--bottom-nav-background') @Input() bottomNavBackground;
 
   /** Allows for the override of the --bottom-nav-height css variable. Default:  --wvr-navbar-height */
   @HostBinding('style.--bottom-nav-height') @Input() bottomNavHeight;
@@ -76,6 +88,7 @@ export class WvrHeaderComponent extends WvrBaseComponent implements AfterContent
    */
   constructor(injector: Injector) {
     super(injector);
+    this.themeVariant = 'light';
   }
 
   ngAfterContentChecked(): void {

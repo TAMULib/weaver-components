@@ -98,7 +98,7 @@ export class WvrDropdownComponent extends WvrBaseComponent {
   @Input() themeVariant: ThemeVariantName = 'secondary';
 
   /** Binds the input from `menuBackground` to the css variable `--wvr-dropdown-menu-background` */
-  @HostBinding('style.--wvr-dropdown-menu-background') @Input() menuBackground;
+  @Input() menuThemeVariant: ThemeVariantName;
 
   /** Binds the input from `menu-border` to the css variable `--wvr-dropdown-menu-border` */
   @HostBinding('style.--wvr-dropdown-menu-border') @Input() menuBorder;
