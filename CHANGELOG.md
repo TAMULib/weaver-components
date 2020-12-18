@@ -1,5 +1,31 @@
 # Changelog
 
+## [1.8.0] - 12-18-20
+### Resolves
+
+- Weaver Components should utilize externals to reduce bundle size. (#158)
+- Remove scss, rendered unnecessary by the recent theme features. (#276)
+
+## [1.7.4] - 12-15-20
+### Resolves
+
+- Patch icon bug
+
+## [1.7.3] - 12-15-20
+### Resolves
+
+- Fixed SVG styling and performance.
+
+## [1.7.2] - 12-14-20
+### Resolves
+
+- Performance improvements
+
+## [1.7.1] - 11-20-20
+### Resolves
+
+- Fixes bootstrapping process.
+
 ## [1.7.0] - 11-20-20
 ### Resolves
 
