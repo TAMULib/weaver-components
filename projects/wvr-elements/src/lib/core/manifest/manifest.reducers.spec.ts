@@ -74,7 +74,7 @@ describe('ManifestReducer', () => {
       path: "/ldap/departments",
       methods: ["GET"]
     };
-    const manifest: Manifest = {
+    let manifest: Manifest = {
       name: "Directory App",
       baseUrl: "https://api-dev.library.tamu.edu/directory-service",
       entries: [manifestEntry1, manifestEntry2]
@@ -99,5 +99,32 @@ describe('ManifestReducer', () => {
         });
       });
     });
+
+    const adapter = {
+      selectId: fromManifestReducers.selectManifestByName(manifest)
+    };
+
+    // adapter addOne method
+    it('should have successfully add manifest', () => {
+      expect(JSON.stringify(fromManifestReducers.adapter.addOne(manifest, state).entities[0]) ===
+      JSON.stringify(fromManifestReducers.reducer(state, action).entities[0]) )
+      .toBe(true);
+    });
+
+    // adapter setOne method
+    manifest.name = "New name";
+    const tempObj = fromManifestReducers.adapter.setOne(manifest, state).entities[manifest.name];
+
+    it('should have successfully set one manifest', () => {
+      expect(Object.values(tempObj).includes(manifest.name))
+      .toBe(true);
+    });
+
+    // it('should have the correct primary id of the manifest', () => {
+    //   expect(adapter.selectId)
+    //     .toEqual(manifest.name);
+    // });
+
   });
 });
+
