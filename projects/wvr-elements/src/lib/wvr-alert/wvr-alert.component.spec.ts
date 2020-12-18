@@ -8,7 +8,7 @@ import { WvrAlertComponent } from './wvr-alert.component';
 @Component({
   selector: 'wvr-alert-test-component',
   // tslint:disable-next-line:component-max-inline-declarations
-  template: `<wvr-alert-component [alertType]="'self-closing'" [closeTimer]="1"></wvr-alert-component>`
+  template: `<wvr-alert-component #versionOne [alertType]="'self-closing'" [closeTimer]="1"></wvr-alert-component>`
 })
 class WvrAlertHostComponent {
   @ViewChild(WvrAlertComponent) alert: WvrAlertComponent;
@@ -62,11 +62,6 @@ describe('WvrAlertComponent', () => {
   it('should create', () => {
     expect(component)
     .toBeTruthy();
-  });
-
-  it("should have as alert Class as 'primary'", () => {
-    expect(component.themeVariant)
-      .toEqual('primary');
   });
 
   it("should have as alert type as 'basic'", () => {
