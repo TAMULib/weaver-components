@@ -156,13 +156,11 @@ describe('Manifest Reducer', () => {
       .toBe(true);
     });
 
-    it('should add manifests', () => {
+    it('should upsert manifests', () => {
       expect(JSON.stringify(fromManifestReducers.adapter.upsertMany(manifests, state).entities[0]) ===
       JSON.stringify(fromManifestReducers.reducer(state, upsertManifestsObj).entities[0]) )
       .toBe(true);
     });
-
-    // update manifest
 
 
   });
