@@ -1,3 +1,6 @@
+/* istanbul ignore file */
+
+/* TODO: Issue #292. */
 import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular/core';
 import { ThemeVariantName } from '../shared/theme';
 
