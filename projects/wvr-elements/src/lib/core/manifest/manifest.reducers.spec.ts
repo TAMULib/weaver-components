@@ -1,4 +1,4 @@
-import { EntityMap, EntityMapOne, Predicate, Update } from '@ngrx/entity';
+import { EntityMapOne, Update } from '@ngrx/entity';
 import { Manifest } from './manifest';
 import { ManifestEntry } from './manifest-entry';
 import * as fromManifestReducers from './manifest.reducers';
@@ -132,7 +132,6 @@ describe('Manifest Reducer', () => {
     };
 
     it("should have manifest action type as '[Manifest] Add Manifests'", () => {
-      const setManifestAction = fromManifestActions.addManifests({manifests});
       expect(JSON.stringify(addManifestsObj.type) === JSON.stringify('[Manifest] Add Manifests'))
       .toBe(true);
     });
@@ -187,6 +186,31 @@ describe('Manifest Reducer', () => {
       const updateManifestsAdapter = fromManifestReducers.adapter.updateMany(updates, state);
       const updateManyReducer = fromManifestReducers.reducer(state, updateManifestsAction);
       expect(JSON.stringify(updateManifestsAdapter.entities[0]) === JSON.stringify(updateManyReducer.entities[0]) )
+      .toBe(true);
+    });
+
+    // entity MapOne
+    it('should map one manifest', () => {
+      const entityMap: EntityMapOne<Manifest> = {
+        id: fromManifestReducers.selectManifestByName(manifest),
+        map: undefined
+      };
+      const mapOneAction = fromManifestActions.mapManifest({ entityMap});
+      const mapOneadpater = fromManifestReducers.adapter.mapOne(entityMap, state);
+      const mapOneReducer = fromManifestReducers.reducer(state, mapOneAction);
+      expect(JSON.stringify(mapOneadpater.entities[0]) === JSON.stringify(mapOneReducer.entities[0]) )
+      .toBe(true);
+    });
+
+    // TODO entity MapManifests
+
+    // deleteManifest
+    it('should be able to remove manifest', () => {
+      const id = manifest.name;//JSON.stringify(fromManifestReducers.adapter.selectId);
+      const deleteManifestAction = fromManifestActions.deleteManifest({id: id });
+      const deleteManifestAdapter = fromManifestReducers.adapter.removeOne(id, state) ;
+      const deleteManifestReducer = fromManifestReducers.adapter.removeOne(id, state);
+      expect(JSON.stringify(deleteManifestAdapter) === JSON.stringify(deleteManifestReducer) )
       .toBe(true);
     });
 
