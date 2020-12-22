@@ -1,3 +1,4 @@
+import { EntityMap, EntityMapOne, Predicate, Update } from '@ngrx/entity';
 import { Manifest } from './manifest';
 import { ManifestEntry } from './manifest-entry';
 import * as fromManifestReducers from './manifest.reducers';
@@ -156,12 +157,38 @@ describe('Manifest Reducer', () => {
       .toBe(true);
     });
 
+
+
     it('should upsert manifests', () => {
       expect(JSON.stringify(fromManifestReducers.adapter.upsertMany(manifests, state).entities[0]) ===
       JSON.stringify(fromManifestReducers.reducer(state, upsertManifestsObj).entities[0]) )
       .toBe(true);
     });
 
+    const update: Update<Manifest> = {
+      id: JSON.stringify( fromManifestReducers.adapter.selectId ),
+      changes: {name: JSON.stringify( fromManifestReducers.selectManifestByName(manifest))}
+    };
+
+    // update one manifest
+    it('should update one manifest', () => {
+      const updateOneAction = fromManifestActions.updateManifest( {update} );
+      const updateOneAdpater = fromManifestReducers.adapter.updateOne(
+        {id: JSON.stringify( fromManifestReducers.adapter.selectId ),changes: {name:'Updated Name for Directory'}}, state);
+      const updateOneReducer = fromManifestReducers.reducer(state, updateOneAction);
+      expect(JSON.stringify(updateOneAdpater.entities[0]) === JSON.stringify(updateOneReducer.entities[0]) )
+      .toBe(true);
+    });
+
+    // update many manifests
+    it('should update many manifests', () => {
+      const updates = [update, update ];
+      const updateManifestsAction = fromManifestActions.updateManifests({ updates });
+      const updateManifestsAdapter = fromManifestReducers.adapter.updateMany(updates, state);
+      const updateManyReducer = fromManifestReducers.reducer(state, updateManifestsAction);
+      expect(JSON.stringify(updateManifestsAdapter.entities[0]) === JSON.stringify(updateManyReducer.entities[0]) )
+      .toBe(true);
+    });
 
   });
 
