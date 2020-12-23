@@ -206,11 +206,48 @@ describe('Manifest Reducer', () => {
 
     // deleteManifest
     it('should be able to remove manifest', () => {
-      const id = manifest.name;//JSON.stringify(fromManifestReducers.adapter.selectId);
+      const id = manifest.name;
       const deleteManifestAction = fromManifestActions.deleteManifest({id: id });
       const deleteManifestAdapter = fromManifestReducers.adapter.removeOne(id, state) ;
-      const deleteManifestReducer = fromManifestReducers.adapter.removeOne(id, state);
+      const deleteManifestReducer = fromManifestReducers.reducer(state, deleteManifestAction);
       expect(JSON.stringify(deleteManifestAdapter) === JSON.stringify(deleteManifestReducer) )
+      .toBe(true);
+    });
+
+    const anotherManifest: Manifest = {
+      name: "Subject App",
+      baseUrl: "https://api-dev.library.tamu.edu/directory-service",
+      entries: [manifestEntry1, manifestEntry2]
+    };
+
+    // delete manifests
+    it('should be able to remove manifests', () => {
+      const ids = [manifest.name, anotherManifest.name];
+      const deleteManifestsAction = fromManifestActions.deleteManifests({ids: ids });
+      const deleteManifestsAdapter = fromManifestReducers.adapter.removeMany(ids, state) ;
+      const deleteManifestsReducer = fromManifestReducers.reducer(state, deleteManifestsAction);
+      expect(JSON.stringify(deleteManifestsAdapter) === JSON.stringify(deleteManifestsReducer) )
+      .toBe(true);
+    });
+
+    // TODO delete manifests by predicate
+
+    // load manifests
+    it('should be able to load manifests', () => {
+      const manifests = [manifest, anotherManifest];
+      const loadManifestsAction = fromManifestActions.loadManifests( {manifests});
+      const loadManifestsAdapter = fromManifestReducers.adapter.setAll(manifests, state) ;
+      const loadManifestsReducer = fromManifestReducers.reducer(state, loadManifestsAction);
+      expect(JSON.stringify(loadManifestsAdapter) === JSON.stringify(loadManifestsReducer) )
+      .toBe(true);
+    });
+
+    // clear manifests
+    it('should be able to clear manifests', () => {
+      const clearManifestsAction = fromManifestActions.clearManifests();
+      const clearManifestsAdapter = fromManifestReducers.adapter.removeAll(state ) ;
+      const clearManifestsReducer = fromManifestReducers.reducer(state, clearManifestsAction);
+      expect(JSON.stringify(clearManifestsAdapter) === JSON.stringify(clearManifestsReducer) )
       .toBe(true);
     });
 
