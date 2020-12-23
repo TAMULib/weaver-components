@@ -3,6 +3,7 @@ import { Manifest } from './manifest';
 import { ManifestEntry } from './manifest-entry';
 import * as fromManifestReducers from './manifest.reducers';
 import * as fromManifestActions from './manifest.actions';
+import { ManifestEntryRequest } from './manifest-entry-request';
 
 describe('Manifest Reducer', () => {
 
@@ -156,8 +157,6 @@ describe('Manifest Reducer', () => {
       .toBe(true);
     });
 
-
-
     it('should upsert manifests', () => {
       expect(JSON.stringify(fromManifestReducers.adapter.upsertMany(manifests, state).entities[0]) ===
       JSON.stringify(fromManifestReducers.reducer(state, upsertManifestsObj).entities[0]) )
@@ -170,10 +169,11 @@ describe('Manifest Reducer', () => {
     };
 
     // update one manifest
+    const updateOneAdpater = fromManifestReducers.adapter.updateOne(
+      {id: JSON.stringify( fromManifestReducers.adapter.selectId ),changes: {name: manifest.name}}, state);
+
     it('should update one manifest', () => {
       const updateOneAction = fromManifestActions.updateManifest( {update} );
-      const updateOneAdpater = fromManifestReducers.adapter.updateOne(
-        {id: JSON.stringify( fromManifestReducers.adapter.selectId ),changes: {name:'Updated Name for Directory'}}, state);
       const updateOneReducer = fromManifestReducers.reducer(state, updateOneAction);
       expect(JSON.stringify(updateOneAdpater.entities[0]) === JSON.stringify(updateOneReducer.entities[0]) )
       .toBe(true);
@@ -245,11 +245,67 @@ describe('Manifest Reducer', () => {
     // clear manifests
     it('should be able to clear manifests', () => {
       const clearManifestsAction = fromManifestActions.clearManifests();
-      const clearManifestsAdapter = fromManifestReducers.adapter.removeAll(state ) ;
+      const clearManifestsAdapter = fromManifestReducers.adapter.removeAll(state) ;
       const clearManifestsReducer = fromManifestReducers.reducer(state, clearManifestsAction);
-      expect(JSON.stringify(clearManifestsAdapter) === JSON.stringify(clearManifestsReducer) )
+      expect(JSON.stringify(clearManifestsAdapter) === JSON.stringify(clearManifestsReducer))
       .toBe(true);
     });
+
+    // submit request
+    it('should be able to submit request', () => {
+      const request: ManifestEntryRequest = {
+        manifestName: "Directory App",
+        entryName: "All Sorted Submit Request"
+      };
+      const submitRequestAction = fromManifestActions.submitRequest({request});
+      const submitRequestReducer = fromManifestReducers.reducer(state,submitRequestAction);
+      expect(JSON.stringify(submitRequestAction.request)===JSON.stringify(submitRequestReducer.currentRequest))
+      .toBe(true);
+    });
+
+    // submit request success
+    let request: ManifestEntryRequest = {
+      manifestName: "Directory App",
+      entryName: "All Sorted Submit Request"
+    };
+
+    it('should be able to submit request success', () => {
+      const response = {};
+      let submitRequestAction = fromManifestActions.submitRequestSuccess({manifest, request, response});
+      let submitRequestReducer = fromManifestReducers.reducer(state,submitRequestAction);
+      expect(JSON.stringify(updateOneAdpater)===JSON.stringify(submitRequestReducer))
+      .toBe(true);
+
+      // to check the reducer response when request entry name equals manifest entry name
+      request = {
+        manifestName: "Directory App",
+        entryName: "All Sorted"
+      };
+      submitRequestAction = fromManifestActions.submitRequestSuccess({manifest, request, response});
+      submitRequestReducer = fromManifestReducers.reducer(state,submitRequestAction);
+      expect(JSON.stringify(updateOneAdpater)===JSON.stringify(submitRequestReducer))
+      .toBe(true);
+    });
+
+    // submit request failure
+    it('should have submit request failure', () => {
+      const error = {};
+      let submitRequestAction = fromManifestActions.submitRequestFailure({manifest, request, error});
+      let submitRequestReducer = fromManifestReducers.reducer(state,submitRequestAction);
+      expect(JSON.stringify(updateOneAdpater)===JSON.stringify(submitRequestReducer))
+      .toBe(true);
+      request = {
+        manifestName: "Directory App",
+        entryName: "All Sorted"
+      };
+      submitRequestAction = fromManifestActions.submitRequestFailure({manifest, request, error});
+      submitRequestReducer = fromManifestReducers.reducer(state,submitRequestAction);
+      expect(JSON.stringify(updateOneAdpater)===JSON.stringify(submitRequestReducer))
+      .toBe(true);
+    });
+
+    // queue request
+    // dequeue request
 
   });
 
