@@ -305,7 +305,24 @@ describe('Manifest Reducer', () => {
     });
 
     // queue request
+    it('should be able to queue a request', () => {
+      const request: ManifestEntryRequest = {
+        manifestName: "Directory App",
+        entryName: "All Sorted Queued Request"
+      };
+      const queueRequestAction = fromManifestActions.queueRequest({request});
+      const queueRequestReducer = fromManifestReducers.reducer(state, queueRequestAction);
+      expect(JSON.stringify(queueRequestReducer.pendingRequests[queueRequestReducer.pendingRequests.length -1]) === JSON.stringify(request))
+        .toBe(true);
+    });
+
     // dequeue request
+    it('should be able to dequeue a request', () => {
+      const queueRequestAction = fromManifestActions.dequeueRequest({request});
+      const queueRequestReducer = fromManifestReducers.reducer(state, queueRequestAction);
+      expect( queueRequestReducer.pendingRequests.length  === 0 )
+        .toBe(true);
+    });
 
   });
 
