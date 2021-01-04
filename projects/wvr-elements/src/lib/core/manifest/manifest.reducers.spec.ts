@@ -38,6 +38,7 @@ describe('Manifest Reducer', () => {
       expect(fromManifestReducers.selectManifestByName(manifest))
       .toEqual(manifest.name);
     });
+
     const state =  {currentRequest: undefined,entities: {},ids: [],pendingRequests: []};
     it('should select current request', () => {
       expect(fromManifestReducers.selectCurrentRequest(state))
@@ -62,7 +63,7 @@ describe('Manifest Reducer', () => {
 
     it("should have manifest action type as '[Manifest] Add Manifest'", () => {
       const addManifestAction = fromManifestActions.addManifest({manifest});
-      expect(JSON.stringify(addManifestAction.type) === JSON.stringify('[Manifest] Add Manifest'))
+      expect(addManifestAction.type === '[Manifest] Add Manifest')
       .toBe(true);
     });
 
@@ -87,7 +88,7 @@ describe('Manifest Reducer', () => {
 
     it("should have manifest action type as '[Manifest] Set Manifest'", () => {
       const setManifestAction = fromManifestActions.setManifest({manifest});
-      expect(JSON.stringify(setManifestAction.type) === JSON.stringify('[Manifest] Set Manifest'))
+      expect( setManifestAction.type === '[Manifest] Set Manifest' )
       .toBe(true);
     });
 
@@ -112,7 +113,7 @@ describe('Manifest Reducer', () => {
 
     it("should have manifest action type as '[Manifest] Upsert Manifest'", () => {
       const upsertManifestAction = fromManifestActions.upsertManifest({manifest});
-      expect(JSON.stringify(upsertManifestAction.type) === JSON.stringify('[Manifest] Upsert Manifest'))
+      expect(upsertManifestAction.type === '[Manifest] Upsert Manifest')
       .toBe(true);
     });
 
@@ -133,7 +134,7 @@ describe('Manifest Reducer', () => {
     };
 
     it("should have manifest action type as '[Manifest] Add Manifests'", () => {
-      expect(JSON.stringify(addManifestsObj.type) === JSON.stringify('[Manifest] Add Manifests'))
+      expect( addManifestsObj.type === '[Manifest] Add Manifests')
       .toBe(true);
     });
 
@@ -153,7 +154,7 @@ describe('Manifest Reducer', () => {
     };
     it("should have manifest action type as '[Manifest] Upsert Manifests'", () => {
       const upsertManifestsAction = fromManifestActions.upsertManifests({manifests});
-      expect(JSON.stringify(upsertManifestsAction.type) === JSON.stringify('[Manifest] Upsert Manifests'))
+      expect( upsertManifestsAction.type  === '[Manifest] Upsert Manifests')
       .toBe(true);
     });
 
@@ -203,6 +204,7 @@ describe('Manifest Reducer', () => {
     });
 
     // TODO entity MapManifests
+    /* TODO: Issue #294. */
 
     // deleteManifest
     it('should be able to remove manifest', () => {
@@ -231,6 +233,7 @@ describe('Manifest Reducer', () => {
     });
 
     // TODO delete manifests by predicate
+    /* TODO: Issue #294. */
 
     // load manifests
     it('should be able to load manifests', () => {

@@ -46,8 +46,7 @@ describe(' Theme Reducers', () => {
   });
 
   it(' should select a theme', () => {
-    expect( JSON.stringify( fromThemeActions.select({name}).name ) ===
-    JSON.stringify( fromThemeReducers.reducer(state, fromThemeActions.select({name})).currentTheme ))
+    expect( fromThemeActions.select({name}).name === fromThemeReducers.reducer(state, fromThemeActions.select({name})).currentTheme )
       .toBe(true);
   });
 
