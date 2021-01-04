@@ -38,7 +38,7 @@ describe(' Rest Reducer', () => {
   });
 
   it("should have the request success action type as '[REST] Request Success' ", () => {
-    expect(JSON.stringify( fromRestActions.requestSuccess.type) === JSON.stringify('[REST] Request Success') )
+    expect( fromRestActions.requestSuccess.type === '[REST] Request Success' )
     .toBe(true);
   });
 
