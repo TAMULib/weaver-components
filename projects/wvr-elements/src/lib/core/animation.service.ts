@@ -1,5 +1,6 @@
 /* istanbul ignore file */
 
+/* TODO: Issue #292. */
 import { animation, AnimationBuilder, AnimationMetadata, AnimationPlayer, AnimationReferenceMetadata, useAnimation } from '@angular/animations';
 import { Injectable } from '@angular/core';
 import { wvrAnimationDefaults } from '../shared/animation/wvr-animation-defaults';

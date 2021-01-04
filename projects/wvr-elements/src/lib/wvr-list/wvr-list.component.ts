@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, Injector, Input } from '@angular/core';
-import { ThemeVariantName } from '../shared/theme';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 /**

@@ -1,5 +1,6 @@
 /* istanbul ignore file */
 
+/* TODO: Issue #292. */
 import { ChangeDetectionStrategy, Component, Injector, OnInit } from '@angular/core';
 import { select } from '@ngrx/store';
 import { Observable } from 'rxjs';

@@ -1,5 +1,6 @@
 /* istanbul ignore file */
 
+/* TODO: Issue #292. */
 import { InjectionToken } from '@angular/core';
 import { ActionReducerMap, createFeatureSelector, createSelector, MetaReducer } from '@ngrx/store';
 import { Manifest } from './manifest/manifest';
