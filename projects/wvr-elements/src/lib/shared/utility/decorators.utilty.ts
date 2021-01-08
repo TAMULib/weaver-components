@@ -1,3 +1,6 @@
+/* istanbul ignore file */
+
+/* TODO: Issue #292. */
 import { MemoizedSelector, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';

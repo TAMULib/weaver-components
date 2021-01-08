@@ -1,5 +1,6 @@
 /* istanbul ignore file */
 
+/* TODO: Issue #292. */
 import { Type } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppConfig, APP_CONFIG } from '../config';

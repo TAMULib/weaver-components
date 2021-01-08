@@ -1,3 +1,6 @@
+/* istanbul ignore file */
+
+/* TODO: Issue #292. */
 import { animate, AnimationMetadata, style } from '@angular/animations';
 
 /** Defines an initialization method for each predefined animaiton. */
