@@ -22,7 +22,7 @@ module.exports = function (config) {
       reports: ['html', 'lcovonly', 'text-summary'],
       fixWebpackSourcePaths: true
     },
-    reporters: ['progress', 'kjhtml'],
+    reporters: ['progress', 'kjhtml', 'coverage'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
@@ -30,9 +30,13 @@ module.exports = function (config) {
     browsers: ['ChromeHeadless', 'Chrome'],
     customLaunchers: {
       ChromeHeadlessNoSandbox: {
-          base: "ChromeHeadless",
-          flags: ["--no-sandbox"]
+          base: 'ChromeHeadless',
+          flags: ['--no-sandbox']
       }
+    },
+    coverageReporter: {
+      type: 'lcov',
+      dir: './static/weaver-components/reports/coverage/weaver-components'
     },
     singleRun: false,
     restartOnFileChange: true,
