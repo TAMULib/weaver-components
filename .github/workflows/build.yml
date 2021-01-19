@@ -32,7 +32,7 @@ jobs:
       - name: "Node Tests"
         run: |
           npm run build
-          npm run test
+          npm run build:static
           npm run test:ci
           npm run test:report
           npm run build:static-production
