@@ -29,6 +29,12 @@ jobs:
       - name: "Install Node"
         run: npm install
 
+      - name: "Node Service"
+        run: |
+         npm start > /dev/null &
+         npm run update-webdriver
+         sleep 1 # give server time to start
+
       - name: "Node Tests"
         run: |
           npm run build
