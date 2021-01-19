@@ -34,6 +34,9 @@ module.exports = function (config) {
           flags: ['--no-sandbox']
       }
     },
+    flags: [
+      '--no-sandbox'
+    ],
     coverageReporter: {
       type: 'lcov',
       dir: './static/weaver-components/reports/coverage/weaver-components'
