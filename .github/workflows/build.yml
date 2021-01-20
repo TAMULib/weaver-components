@@ -40,11 +40,19 @@ jobs:
       - name: "Node Tests"
         run: |
           npm run build
-          sudo apt-get -yqq install chromium-chromedriver
-          sudo apt-get install chrome-browser
           npm run test:ci
           npm run test:report
           npm run build:static-production
+
+      - name: setup
+        run: |
+          sudo apt-get -yqq install chromium-chromedriver
+          google-chrome --version
+          sudo pip3 install selenium
+          export DISPLAY=:99
+          chromedriver --url-base=/wd/hub &
+          sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 & # disable headless mode
+          python3 $GITHUB_WORKSPACE/__tests__/chromedriver.py
 
       - name: "Send to Coveralls (build node-${{ github.run_number }})"
         uses: MikeEdgar/github-action@raw_coverage_file
