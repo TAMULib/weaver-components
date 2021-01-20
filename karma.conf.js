@@ -28,6 +28,13 @@ module.exports = function (config) {
       reports: ['html', 'lcovonly', 'text-summary'],
       fixWebpackSourcePaths: true
     },
+    customLaunchers: {
+      ChromeHeadlessNoSandbox: {
+          base: 'ChromeHeadless',
+          flags: ['--disable-translate', '--disable-extensions','--no-sandbox']
+      }
+    },
+
     reporters: ['progress', 'kjhtml', 'coverage'],
     port: 9876,
     colors: true,
