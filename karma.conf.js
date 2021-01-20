@@ -17,6 +17,7 @@ module.exports = function (config) {
     client: {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
+
     coverageIstanbulReporter: {
       dir: require('path').join(__dirname, './static/weaver-components/reports/coverage/weaver-components'),
       reports: ['html', 'lcovonly', 'text-summary'],
@@ -34,13 +35,12 @@ module.exports = function (config) {
           flags: ['--no-sandbox']
       }
     },
-    flags: [
-      '--no-sandbox'
-    ],
+
     coverageReporter: {
       type: 'lcov',
       dir: './static/weaver-components/reports/coverage/weaver-components'
     },
+
     singleRun: true,
     restartOnFileChange: true,
     failOnEmptyTestSuite: false
