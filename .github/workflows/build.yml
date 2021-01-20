@@ -23,7 +23,7 @@ jobs:
 
       - name: "Set up chrome browser"
         # uses: actions/checkout@master
-        uses: nanasess/setup-chromedriver@master
+        # uses: nanasess/setup-chromedriver@master
         run: |
           export DISPLAY=:99
           chromedriver --url-base=/wd/hub &
