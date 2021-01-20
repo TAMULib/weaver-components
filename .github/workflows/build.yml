@@ -32,8 +32,8 @@ jobs:
       - name: "Node Tests"
         run: |
           npm run build
-          sudo apt-get -yqq install chromium-chromedriver
-          # sudo apt-get install chrome-browser
+          apt-get -yqq install chromium-chromedriver
+          apt-get install chrome-browser
           npm run test:ci
           npm run test:report
           npm run build:static-production
