@@ -10,13 +10,18 @@ module.exports = function (config) {
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
       require('karma-jasmine-html-reporter'),
-      require('karma-coverage-istanbul-reporter'),
+      // require('karma-coverage-istanbul-reporter'),
       require('@angular-devkit/build-angular/plugins/karma')
     ],
+    preprocessors: {
+      "./!(node_modules)/**/*.js": "coverage"
+    },
+
     client: {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
-    coverageIstanbulReporter: {
+    coverageReporter: {
+      type: "lcov",
       dir: require('path').join(__dirname, './static/weaver-components/reports/coverage/weaver-components'),
       reports: ['html', 'lcovonly', 'text-summary'],
       fixWebpackSourcePaths: true
