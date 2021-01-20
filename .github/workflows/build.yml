@@ -27,14 +27,13 @@ jobs:
           node-version: 10
 
       - name: "Install Node"
-        run: |
-          sudo apt-get -yqq install chromium-chromedriver
-          # sudo apt-get install chrome-browser
-          npm install
+        run: npm install
 
       - name: "Node Tests"
         run: |
           npm run build
+          sudo apt-get -yqq install chromium-chromedriver
+          # sudo apt-get install chrome-browser
           npm run test:ci
           npm run test:report
           npm run build:static-production
