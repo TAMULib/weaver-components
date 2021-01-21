@@ -43,7 +43,7 @@ jobs:
         run: |
           npm run build
           xvfb-run --auto-servernum npm run test
-          npm run test:ci
+          xvfb-run --auto-servernum npm run test:ci
           cat ./static/weaver-components/reports/coverage/wvr-elements/lcov.info
           npm run build:static-production
 
