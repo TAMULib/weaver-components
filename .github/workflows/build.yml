@@ -41,6 +41,8 @@ jobs:
 
       - name: "Node Tests"
         run: |
+          echo $GITHUB_WORKSPACE
+          echo env
           npm run build
           xvfb-run --auto-servernum npm run test:ci
           xvfb-run --auto-servernum npm run test:report
