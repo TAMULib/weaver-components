@@ -89,26 +89,27 @@ describe('WvrHeaderComponent', () => {
   });
 
   it('should have bottom navigation toggle display', () => {
-
+    /* TODO: Issue #298. */
+    /*
     const bottomNavElement = fixture.nativeElement.querySelector('.bottom-nav') as HTMLElement;
 
     component.displayBottomNav = 'true';
     fixture.detectChanges();
-    /* TODO: Issue #298. */
-    // expect(bottomNavElement.hasAttribute('hidden'))
-    //   .toEqual(false);
+
+    expect(bottomNavElement.hasAttribute('hidden'))
+      .toEqual(false);
 
     component.displayBottomNav = 'false';
     fixture.detectChanges();
-    /* TODO: Issue #298. */
-    // expect(bottomNavElement.hasAttribute('hidden'))
-    //   .toEqual(true);
+
+    expect(bottomNavElement.hasAttribute('hidden'))
+      .toEqual(true);
 
     component.displayBottomNav = undefined;
     fixture.detectChanges();
-    /* TODO: Issue #298. */
-    // expect(bottomNavElement.hasAttribute('hidden'))
-    //   .toEqual(true);
+
+    expect(bottomNavElement.hasAttribute('hidden'))
+      .toEqual(true);
 
     // creating mock children
     const wvrNavList = document.createElement('wvre-nav-list');
@@ -118,15 +119,16 @@ describe('WvrHeaderComponent', () => {
     wvrNavList.appendChild(wvrNavLi);
     bottomNavElement.appendChild(wvrNavList);
     fixture.detectChanges();
-    // expect(bottomNavElement.hasAttribute('hidden'))
-    //   .toEqual(false);
+    expect(bottomNavElement.hasAttribute('hidden'))
+      .toEqual(false);
 
     // removing/replacing the children
     const wvrNavLiElement = document.createElement('wvr-nav-li-component');
     wvrNavList.replaceChild(wvrNavLiElement, wvrNavLi);
     fixture.detectChanges();
-    // expect(bottomNavElement.hasAttribute('hidden'))
-    //   .toEqual(false);
+    expect(bottomNavElement.hasAttribute('hidden'))
+      .toEqual(false);
+    */
 
   });
 
