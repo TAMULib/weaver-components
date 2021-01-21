@@ -11,8 +11,7 @@ jobs:
 
       - name: Set up chromedriver
         uses: nanasess/setup-chromedriver@master
-        with:
-          chromedriver-version: '77.0.3865.40'
+
       - run: |
          sudo apt-get install xvfb
          export DISPLAY=:99
