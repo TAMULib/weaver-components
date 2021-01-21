@@ -51,7 +51,6 @@ jobs:
 
       - name: Audit and Reporting
         run: |
-          xvfb-run --auto-servernum npm run build:static
           xvfb-run --auto-servernum npm run test:report
           xvfb-run --auto-servernum npm run build:static-production
 
