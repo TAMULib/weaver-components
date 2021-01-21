@@ -18,13 +18,12 @@ jobs:
          chromedriver --url-base=/wd/hub &
          sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 & # optional
 
-      - name: Audit URLs using Lighthouse
-        uses: treosh/lighthouse-ci-action@v3
-        with:
-          urls: ''
-          uploadArtifacts: false
-          temporaryPublicStorage: false
-
+      # - name: Audit URLs using Lighthouse
+      #   uses: treosh/lighthouse-ci-action@v3
+      #   with:
+      #     urls: ''
+      #     uploadArtifacts: false
+      #     temporaryPublicStorage: false
 
       - name: "Node Cache"
         uses: actions/cache@v2
