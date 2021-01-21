@@ -41,10 +41,6 @@ jobs:
       - name: "Node Tests"
         run: |
           npm run build
+          npm run test:ci
 
-      - name: "Send to Coveralls (build node-${{ github.run_number }})"
-        uses: MikeEdgar/github-action@raw_coverage_file
-        with:
-          github-token: ${{ secrets.github_token }}
-          path-to-file: './coverage/coveralls.json'
-          coverage-format: raw
+
