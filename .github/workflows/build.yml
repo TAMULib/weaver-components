@@ -9,6 +9,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Set up chromedriver
+        uses: nanasess/setup-chromedriver@master
+
       - run: |
          sudo apt-get install xvfb
          export DISPLAY=:99
