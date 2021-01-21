@@ -14,16 +14,10 @@ jobs:
         with:
           chromedriver-version: '77.0.3865.40'
       - run: |
+         sudo apt-get install xvfb
          export DISPLAY=:99
          chromedriver --url-base=/wd/hub &
          sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 & # optional
-
-      # - name: Audit URLs using Lighthouse
-      #   uses: treosh/lighthouse-ci-action@v3
-      #   with:
-      #     urls: ''
-      #     uploadArtifacts: false
-      #     temporaryPublicStorage: false
 
       - name: "Node Cache"
         uses: actions/cache@v2
@@ -49,6 +43,23 @@ jobs:
       - name: "Node Tests"
         run: |
           npm run build
-          npm run build:static
+          xvfb-run --auto-servernum npm run test:ci
+          npm run test:report
+          npm run build:static-production
 
+      - name: "Send to Coveralls (build node-${{ github.run_number }})"
+        uses: MikeEdgar/github-action@raw_coverage_file
+        with:
+          github-token: ${{ secrets.github_token }}
+          path-to-file: './coverage/coveralls.json'
+          coverage-format: raw
 
+      - name: cleanup xvfb
+        run: |
+          xvfb_pids=`ps aux | grep tmp/xvfb-run | grep -v grep | awk '{print $2}'`
+          if [ "$xvfb_pids" != "" ]; then
+            echo "Killing the following xvfb processes: $xvfb_pids"
+            sudo kill $xvfb_pids
+          else
+            echo "No xvfb processes to kill"
+          fi
