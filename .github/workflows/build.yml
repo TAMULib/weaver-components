@@ -8,6 +8,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - uses: nanasess/setup-chromedriver@master
 
       - name: "Node Cache"
         uses: actions/cache@v2
@@ -40,12 +41,9 @@ jobs:
 
       - name: setup
         run: |
-          google-chrome --version
-          sudo pip3 install selenium
           export DISPLAY=:99
           chromedriver --url-base=/wd/hub &
-          sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 & # disable headless mode
-          python3 $GITHUB_WORKSPACE/__tests__/chromedriver.py
+          sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 & # optional
           echo ${{ env}}
 
       - name: "Send to Coveralls (build node-${{ github.run_number }})"
