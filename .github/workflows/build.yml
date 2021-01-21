@@ -45,11 +45,10 @@ jobs:
       - name: "Install Node"
         run: |
           npm install
-          npm run build
 
       - name: "Node Tests"
         run: |
+          npm run build
           npm run build:static
-          npm run test:ci
 
 
