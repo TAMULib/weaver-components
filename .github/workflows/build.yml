@@ -47,11 +47,11 @@ jobs:
           xvfb-run --auto-servernum npm run build:static-production
 
       - name: "Send to Coveralls (build node-${{ github.run_number }})"
-        uses: MikeEdgar/github-action@raw_coverage_file
+        uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.github_token }}
-          path-to-file: './coverage/coveralls.json'
-          coverage-format: raw
+          # path-to-lcov: ${{ github.workspace }}/coverage/lcov.info
+          path-to-lcov: ./static/weaver-components/reports/coverage/wvr-elements/lcov.info
 
       - name: cleanup xvfb
         run: |
