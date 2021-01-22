@@ -61,10 +61,13 @@ jobs:
           coveralls-repo-token: ${{ secrets.coveralls_repo_token }}
           files: "${{ github.workspace }}/static/weaver-components/reports/coverage/wvr-elements/lcov.info, ${{ github.workspace }}/node_modules/coveralls/bin/coveralls.js"
 
+         # xvfb-run --auto-servernum npm run build:static-production
       - name: Auditing if files exists
         run: |
           xvfb-run --auto-servernum cat ${{ github.workspace }}/static/weaver-components/reports/coverage/wvr-elements/lcov.info | ${{ github.workspace }}/node_modules/coveralls/bin/coveralls.js
-          xvfb-run --auto-servernum npm run build:static-production
+          xvfb-run --auto-servernum npm run build:static
+          node scripts/build-wvr-components-configuration.js defaults-ci-overrides.env && ls -A | grep -v static
+          mv ${{ github.workspace }}/static/weaver-components/* .
 
       - name: "Send to Coveralls (build node-${{ github.run_number }})"
         uses: MikeEdgar/github-action@raw_coverage_file
