@@ -52,8 +52,6 @@ jobs:
 
       # xvfb-run --auto-servernum npm run build:static-production
       - name: Audit and Reporting
-        with:
-            github-token: ${{ secrets.github_token }}
         run: |
           xvfb-run --auto-servernum npm run test:coverage
           xvfb-run --auto-servernum cat ${{ github.workspace }}/static/weaver-components/reports/coverage/wvr-elements/lcov.info | ${{ github.workspace }}/node_modules/coveralls/bin/coveralls.js
