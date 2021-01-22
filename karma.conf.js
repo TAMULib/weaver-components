@@ -17,10 +17,6 @@ module.exports = function (config) {
       require('@angular-devkit/build-angular/plugins/karma'),
       require('karma-ng-html2js-preprocessor')
     ],
-    preprocessors: {
-      "./!(node_modules)/**/*.js": "coverage",
-      '**/*.html': ['ng-html2js']
-    },
 
     client: {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
@@ -39,7 +35,6 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-
 
     singleRun: false,
     restartOnFileChange: true,
