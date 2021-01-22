@@ -44,21 +44,19 @@ jobs:
           npm run build
           xvfb-run --auto-servernum npm run test:ci
 
+      - name: Coveralls GitHub Action
+        uses: coverallsapp/github-action@v1.1.2
+        with:
+            github-token: ${{ secrets.github_token }}
+            path-to-lcov: ${{ github.workspace }}/static/weaver-components/reports/coverage/wvr-elements/lcov.info
+
       - name: Check file existence
         id: check_files
         uses: andstor/file-existence-action@v1
         with:
           files: "${{ github.workspace }}/static/weaver-components/reports/coverage/wvr-elements/lcov.info, ${{ github.workspace }}/node_modules/coveralls/bin/coveralls.js"
 
-      - name: File exists
-        if: steps.check_files.outputs.files_exists == 'true'
-        run: echo Both files exists!
-
-      - name: Coveralls GitHub Action
-        uses: coverallsapp/github-action@v1.1.2
-        with:
-            github-token: ${{ secrets.github_token }}
-            path-to-lcov: ${{ github.workspace }}/static/weaver-components/reports/coverage/wvr-elements/lcov.info
+      - name: Auditing if files exists
         if: steps.check_files.outputs.files_exists == 'true'
         run: |
           xvfb-run --auto-servernum cat ${{ github.workspace }}/static/weaver-components/reports/coverage/wvr-elements/lcov.info | ${{ github.workspace }}/node_modules/coveralls/bin/coveralls.js
