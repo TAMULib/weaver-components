@@ -46,21 +46,6 @@ jobs:
           npm run build
           xvfb-run --auto-servernum npm run test:ci
 
-      # - name: Coveralls GitHub Action
-      #   uses: coverallsapp/github-action@v1.1.2
-      #   with:
-      #       github-token: ${{ secrets.GITHUB_TOKEN }}
-      #       coveralls-repo-token: ${{ secrets.COVERALLS_REPO_TOKEN }}
-      #       path-to-lcov: ${{ github.workspace }}/static/weaver-components/reports/coverage/wvr-elements/lcov.info
-
-      # - name: Check file existence
-      #   id: check_files
-      #   uses: andstor/file-existence-action@v1
-      #   with:
-      #     github-token: ${{ secrets.coveralls_repo_token }}
-      #     coveralls-repo-token: ${{ secrets.coveralls_repo_token }}
-      #     files: "${{ github.workspace }}/static/weaver-components/reports/coverage/wvr-elements/lcov.info, ${{ github.workspace }}/node_modules/coveralls/bin/coveralls.js"
-
       - name: Reporting
         run: |
           xvfb-run --auto-servernum cat ${{ github.workspace }}/static/weaver-components/reports/coverage/wvr-elements/lcov.info | ${{ github.workspace }}/node_modules/coveralls/bin/coveralls.js
@@ -69,7 +54,8 @@ jobs:
       - name: "Send to Coveralls (build node-${{ github.run_number }})"
         uses: coverallsapp/github-action@v1.1.2
         with:
-          github-token: ${{ secrets.coveralls_repo_token }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          coveralls-repo-token: ${{ secrets.coveralls_repo_token }}
           path-to-lcov: ${{ github.workspace }}/static/weaver-components/reports/coverage/wvr-elements/lcov.info
 
       - name: cleanup xvfb
