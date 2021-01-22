@@ -46,24 +46,23 @@ jobs:
           npm run build
           xvfb-run --auto-servernum npm run test:ci
 
-      - name: Coveralls GitHub Action
-        uses: coverallsapp/github-action@v1.1.2
-        with:
-            github-token: ${{ secrets.GITHUB_TOKEN }}
-            coveralls-repo-token: ${{ secrets.COVERALLS_REPO_TOKEN }}
-            path-to-lcov: ${{ github.workspace }}/static/weaver-components/reports/coverage/wvr-elements/lcov.info
+      # - name: Coveralls GitHub Action
+      #   uses: coverallsapp/github-action@v1.1.2
+      #   with:
+      #       github-token: ${{ secrets.GITHUB_TOKEN }}
+      #       coveralls-repo-token: ${{ secrets.COVERALLS_REPO_TOKEN }}
+      #       path-to-lcov: ${{ github.workspace }}/static/weaver-components/reports/coverage/wvr-elements/lcov.info
 
-      - name: Check file existence
-        id: check_files
-        uses: andstor/file-existence-action@v1
-        with:
-          github-token: ${{ secrets.coveralls_repo_token }}
-          coveralls-repo-token: ${{ secrets.coveralls_repo_token }}
-          files: "${{ github.workspace }}/static/weaver-components/reports/coverage/wvr-elements/lcov.info, ${{ github.workspace }}/node_modules/coveralls/bin/coveralls.js"
+      # - name: Check file existence
+      #   id: check_files
+      #   uses: andstor/file-existence-action@v1
+      #   with:
+      #     github-token: ${{ secrets.coveralls_repo_token }}
+      #     coveralls-repo-token: ${{ secrets.coveralls_repo_token }}
+      #     files: "${{ github.workspace }}/static/weaver-components/reports/coverage/wvr-elements/lcov.info, ${{ github.workspace }}/node_modules/coveralls/bin/coveralls.js"
 
-      - name: Auditing if files exists
+      - name: Reporting
         run: |
-          npm install -g rimraf
           xvfb-run --auto-servernum cat ${{ github.workspace }}/static/weaver-components/reports/coverage/wvr-elements/lcov.info | ${{ github.workspace }}/node_modules/coveralls/bin/coveralls.js
           xvfb-run --auto-servernum npm run build:static-production
 
@@ -82,3 +81,13 @@ jobs:
           else
             echo "No xvfb processes to kill"
           fi
+
+      - name: "Deploy GH-Pages"
+        if: ${{ github.ref == ‘ref/head/master’ }}
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          github_token: ${{ secrets.github_token }}
+          branch: gh-pages
+          folder: static
+          clean: true
+          single_commit: true
