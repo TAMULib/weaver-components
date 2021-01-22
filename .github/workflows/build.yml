@@ -1,0 +1,79 @@
+name: Build
+
+on: [ push, pull_request, workflow_dispatch ]
+
+jobs:
+  node:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up chromedriver
+        uses: nanasess/setup-chromedriver@master
+
+      - run: |
+         sudo apt-get install xvfb
+         export DISPLAY=:99
+         chromedriver --url-base=/wd/hub &
+         sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 & # optional
+
+      - name: "Node Cache"
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-cache-node-${{ hashFiles('**/package.json', '**/package-lock.json') }}
+
+      - name: "Node Cache Modules"
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-cache-node_modules-${{ hashFiles('**/package.json', '**/package-lock.json') }}
+
+      - name: "Setup Node"
+        uses: actions/setup-node@v2
+        with:
+          node-version: 10
+
+      - name: "Install Node"
+        run: npm install
+
+      - name: "Node Tests"
+        run: |
+          npm run build
+          xvfb-run --auto-servernum npm run test:ci
+
+      - name: Reporting
+        run: |
+          xvfb-run --auto-servernum cat ${{ github.workspace }}/static/weaver-components/reports/coverage/wvr-elements/lcov.info | ${{ github.workspace }}/node_modules/coveralls/bin/coveralls.js
+          xvfb-run --auto-servernum npm run build:static-production
+
+      - name: "Send to Coveralls (build node-${{ github.run_number }})"
+        uses: coverallsapp/github-action@v1.1.2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          coveralls-repo-token: ${{ secrets.COVERALLS_REPO_TOKEN }}
+          path-to-lcov: ${{ github.workspace }}/static/weaver-components/reports/coverage/wvr-elements/lcov.info
+
+      - name: cleanup xvfb
+        run: |
+          xvfb_pids=`ps aux | grep tmp/xvfb-run | grep -v grep | awk '{print $2}'`
+          if [ "$xvfb_pids" != "" ]; then
+            echo "Killing the following xvfb processes: $xvfb_pids"
+            sudo kill $xvfb_pids
+          else
+            echo "No xvfb processes to kill"
+          fi
+
+      - name: "Deploy GH-Pages"
+        if: github.ref == 'ref/head/master' && github.event_name == 'push'
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          github_token: ${{ secrets.github_token }}
+          branch: gh-pages
+          folder: static
+          clean: true
+          single_commit: true
