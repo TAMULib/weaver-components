@@ -12,9 +12,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Set up chromedriver
-        uses: nanasess/setup-chromedriver@master
-
       - run: |
          sudo apt-get install xvfb
          export DISPLAY=:99
@@ -27,7 +24,7 @@ jobs:
           path: ~/.npm
           key: ${{ runner.os }}-cache-node-${{ hashFiles('**/package.json', '**/package-lock.json') }}
 
-      - name: "Node Cache Modules"
+      - name: "Node Modules Cache"
         uses: actions/cache@v2
         with:
           path: node_modules
