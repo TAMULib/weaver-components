@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/TAMULib/weaver-components.svg?branch=master)](https://travis-ci.org/TAMULib/weaver-components) 
+[![Build Status](https://github.com/TAMULib/weaver-components/workflows/Build/badge.svg)](https://github.com/TAMULib/weaver-components/actions?query=workflow%3ABuild)
 [![Coverage Status](https://coveralls.io/repos/github/TAMULib/weaver-components/badge.svg?branch=master)](https://coveralls.io/github/TAMULib/weaver-components?branch=master) [![Compodoc Coverage](https://tamulib.github.io/weaver-components/docs/development/images/coverage-badge-documentation.svg)](https://tamulib.github.io/weaver-components/docs/development/coverage.html)
 
 # Lighthouse Badges
