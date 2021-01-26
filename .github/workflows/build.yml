@@ -12,9 +12,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Set up chromedriver
-        uses: nanasess/setup-chromedriver@master
-
       - run: |
          sudo apt-get install xvfb
          export DISPLAY=:99
@@ -27,7 +24,7 @@ jobs:
           path: ~/.npm
           key: ${{ runner.os }}-cache-node-${{ hashFiles('**/package.json', '**/package-lock.json') }}
 
-      - name: "Node Cache Modules"
+      - name: "Node Modules Cache"
         uses: actions/cache@v2
         with:
           path: node_modules
@@ -51,12 +48,17 @@ jobs:
           xvfb-run --auto-servernum cat ${{ github.workspace }}/static/weaver-components/reports/coverage/wvr-elements/lcov.info | ${{ github.workspace }}/node_modules/coveralls/bin/coveralls.js
           xvfb-run --auto-servernum npm run build:static-production
 
+      # - name: "Send to Coveralls (build node-${{ github.run_number }})"
+      #   uses: coverallsapp/github-action@v1.1.2
+      #   with:
+      #     github-token: ${{ secrets.GITHUB_TOKEN }}
+      #     coveralls-repo-token: ${{ secrets.COVERALLS_REPO_TOKEN }}
+      #     path-to-lcov: ${{ github.workspace }}/static/weaver-components/reports/coverage/wvr-elements/lcov.info
+
       - name: "Send to Coveralls (build node-${{ github.run_number }})"
-        uses: coverallsapp/github-action@v1.1.2
+        uses: MikeEdgar/github-action@raw_coverage_file
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          coveralls-repo-token: ${{ secrets.COVERALLS_REPO_TOKEN }}
-          path-to-lcov: ${{ github.workspace }}/static/weaver-components/reports/coverage/wvr-elements/lcov.info
+          github-token: ${{ secrets.github_token }}
 
       - name: cleanup xvfb
         run: |
