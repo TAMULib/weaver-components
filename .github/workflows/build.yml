@@ -52,7 +52,7 @@ jobs:
         uses: MikeEdgar/github-action@raw_coverage_file
         with:
           github-token: ${{ secrets.github_token }}
-          path-to-lcov: ${{ github.workspace }}/weaver-components/reports/coverage/wvr-elements/lcov.info
+          path-to-lcov: ${{ github.workspace }}/reports/coverage/wvr-elements/lcov.info
 
       - name: cleanup xvfb
         run: |
