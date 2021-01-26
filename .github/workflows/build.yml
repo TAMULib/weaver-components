@@ -52,17 +52,7 @@ jobs:
         uses: MikeEdgar/github-action@raw_coverage_file
         with:
           github-token: ${{ secrets.github_token }}
-          path-to-lcov: ${{ github.workspace }}/weaver-components/reports/coverage/wvr-elements/lcov.info
-
-      - name: cleanup xvfb
-        run: |
-          xvfb_pids=`ps aux | grep tmp/xvfb-run | grep -v grep | awk '{print $2}'`
-          if [ "$xvfb_pids" != "" ]; then
-            echo "Killing the following xvfb processes: $xvfb_pids"
-            sudo kill $xvfb_pids
-          else
-            echo "No xvfb processes to kill"
-          fi
+          path-to-lcov: ${{ github.workspace }}/static/weaver-components/reports/coverage/wvr-elements/lcov.info
 
       - name: "Deploy GH-Pages"
         # if: github.ref == 'ref/head/master' && github.event_name == 'push'
@@ -73,3 +63,13 @@ jobs:
           folder: static
           clean: true
           single_commit: true
+
+      - name: cleanup xvfb
+        run: |
+          xvfb_pids=`ps aux | grep tmp/xvfb-run | grep -v grep | awk '{print $2}'`
+          if [ "$xvfb_pids" != "" ]; then
+            echo "Killing the following xvfb processes: $xvfb_pids"
+            sudo kill $xvfb_pids
+          else
+            echo "No xvfb processes to kill"
+          fi
