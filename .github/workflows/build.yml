@@ -53,14 +53,21 @@ jobs:
         run: |
           xvfb-run --auto-servernum cat ${{ github.workspace }}/static/weaver-components/reports/coverage/wvr-elements/lcov.info | ${{ github.workspace }}/node_modules/coveralls/bin/coveralls.js
           xvfb-run --auto-servernum npm run build:static-production
+          path=`pwd`
+          echo $path
 
-      - name: files exists
-        run: |
-          '(test -f docs/development/images/coverage-badge-documentation.svg && echo coverage-badge-documentation.svg exists) || echo coverage-badge-documentation.svg does not exist'
-          '(test -f docs/development/coverage.html && echo covergae html exists) || echo covergae html does not exist'
-          '(test -f reports/audit/assets/performance.svg && echo report svg file exists) || echo performance.svgdoes not exist'
-          '(test -f reports/audit/index.html && echo reports html file exists) || echo reports html file does not exist'
-          path=`pwd` echo $path
+      - name: coverage-badge-documentation.svg file exists
+        run: '(test -f docs/development/images/coverage-badge-documentation.svg && echo exists) || echo does not exist'
+
+      - name: coverage html file exists
+        run: '(test -f docs/development/coverage.html && echo covergae html exists) || echo does not exist'
+
+      - name: reports svg
+        run: '(test -f reports/audit/assets/performance.svg && echo report svg file exists) || echo does not exist'
+
+      - name: reports html
+        run: '(test -f reports/audit/index.html && echo reports html file exists) || echo does not exist'
+
 
       - name: "Deploy GH-Pages"
         # if: github.ref == 'ref/head/master' && github.event_name == 'push'
