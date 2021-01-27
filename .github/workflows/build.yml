@@ -60,7 +60,7 @@ jobs:
         with:
           github_token: ${{ secrets.github_token }}
           branch: gh-pages
-          folder: weaver-components
+          folder: static
           clean: true
           single_commit: true
 
