@@ -53,6 +53,8 @@ jobs:
         run: |
           xvfb-run --auto-servernum cat ${{ github.workspace }}/static/weaver-components/reports/coverage/wvr-elements/lcov.info | ${{ github.workspace }}/node_modules/coveralls/bin/coveralls.js
           xvfb-run --auto-servernum npm run build:static-production
+          output=`ls -altr`
+          echo '\n-----------start---------\n',$output,'\n-----------end---------\n'
           path=`pwd`
           echo $path
 
