@@ -49,13 +49,13 @@ jobs:
           github-token: ${{ secrets.github_token }}
           path-to-lcov: ${{ github.workspace }}/static/weaver-components/reports/coverage/wvr-elements/lcov.info
 
+      # find / -type d -name "static"
       - name: Reporting
         run: |
           xvfb-run --auto-servernum cat ${{ github.workspace }}/static/weaver-components/reports/coverage/wvr-elements/lcov.info | ${{ github.workspace }}/node_modules/coveralls/bin/coveralls.js
           xvfb-run --auto-servernum npm run build:static-production
           output=`ls -altr`
           echo "\n-----------start---------\n",$output,"\n-----------end---------\n"
-          find / -type d -name "static"
           xvfb-run --auto-servernum npm run build:static-test
           op=`ls -altr`
           echo "\n-----------start---------\n",$op,"\n-----------end---------\n"
