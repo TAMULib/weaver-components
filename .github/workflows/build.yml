@@ -54,15 +54,14 @@ jobs:
         run: |
           xvfb-run --auto-servernum cat ${{ github.workspace }}/static/weaver-components/reports/coverage/wvr-elements/lcov.info | ${{ github.workspace }}/node_modules/coveralls/bin/coveralls.js
           xvfb-run --auto-servernum npm run build:static-production
-          xvfb-run --auto-servernum npm run build:static-test
 
       - name: "Deploy GH-Pages"
-        # if: github.ref == 'ref/head/master' && github.event_name == 'push'
+        if: github.ref == 'ref/head/sprint-action-staging' && github.event_name == 'push'
         uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
           github_token: ${{ secrets.github_token }}
           branch: gh-pages
-          folder: ${{ github.workspace }}
+          folder: static/weaver-components
           clean: true
           single_commit: true
 
