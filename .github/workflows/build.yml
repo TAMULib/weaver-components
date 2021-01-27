@@ -54,34 +54,17 @@ jobs:
         run: |
           xvfb-run --auto-servernum cat ${{ github.workspace }}/static/weaver-components/reports/coverage/wvr-elements/lcov.info | ${{ github.workspace }}/node_modules/coveralls/bin/coveralls.js
           xvfb-run --auto-servernum npm run build:static-production
-          output=`ls -altr`
-          echo "\n-----------start---------\n",$output,"\n-----------end---------\n"
           xvfb-run --auto-servernum npm run build:static-test
-          op=`ls -altr`
-          echo "\n-----------start---------\n",$op,"\n-----------end---------\n"
 
-      - name: coverage-badge-documentation.svg file exists
-        run: '(test -f docs/development/images/coverage-badge-documentation.svg && echo exists) || echo false'
-
-      - name: coverage html file exists
-        run: '(test -f docs/development/coverage.html && echo covergae html exists) || echo does not exist'
-
-      - name: reports svg
-        run: '(test -f reports/audit/assets/performance.svg && echo report svg file exists) || echo does not exist'
-
-      - name: reports html
-        run: '(test -f reports/audit/index.html && echo reports html file exists) || echo does not exist'
-
-
-      # - name: "Deploy GH-Pages"
-      #   # if: github.ref == 'ref/head/master' && github.event_name == 'push'
-      #   uses: JamesIves/github-pages-deploy-action@3.7.1
-      #   with:
-      #     github_token: ${{ secrets.github_token }}
-      #     branch: gh-pages
-      #     folder: ${{ github.workspace }}
-      #     clean: true
-      #     single_commit: true
+      - name: "Deploy GH-Pages"
+        # if: github.ref == 'ref/head/master' && github.event_name == 'push'
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          github_token: ${{ secrets.github_token }}
+          branch: gh-pages
+          folder: ${{ github.workspace }}
+          clean: true
+          single_commit: true
 
       - name: cleanup xvfb
         run: |
