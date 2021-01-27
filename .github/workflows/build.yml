@@ -71,12 +71,6 @@ jobs:
           echo "branch==${{github.ref}} event.name==${{github.event_name}} "
           echo ${{github.ref}}
 
-      - name: "Deploy GH-Pages Test 2"
-        if: github.ref == ref/heads/sprint-action-295-yaml && github.event_name == push
-        run: |
-          echo "branch==${{github.ref}} event.name==${{github.event_name}} "
-          echo ${{github.ref}}
-
       - name: "Deploy GH-Pages Test 3"
         if: github.ref == 'ref/heads/sprint-action-295-yaml'
         run: |
