@@ -46,6 +46,13 @@ if(fs.existsSync('./static')) {
     if (err) return console.error('Could not copy config file to static/weaver-components/docs/usage/assets path', err);
     console.log('Copied config file to static/weaver-components/docs/usage/assets successfully');
   });
+
+  //TODO copying the assets from docs/usage to rooth path
+  fs.copy('./static/weaver-components/docs/usage/assets', './static/weaver-components/assets', err => {
+    if (err) return console.error('Could not copy docs/usage/assets dir to static/weaver-components path', err);
+    console.log('Copied docs/usage/assets dir to static/weaver-components path');
+  });
+
 }
 
 fs.writeFile('./src/config.json', configTemplate);
