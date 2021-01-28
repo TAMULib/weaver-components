@@ -30,12 +30,12 @@ if(fs.existsSync('./static')) { console.log(' \n\n\n config file copied to stati
   fs.writeFile('./static/config.json', configTemplate);
 }
 
-if(fs.existsSync('./static/weaver-components')) { console.log(' \n\n\n config file copied to static/weaver-components path', configTemplate,  '\n\n\n');
-  fs.writeFile('./static/weaver-components/config.json', configTemplate);
+if(fs.existsSync('./weaver-components/docs')) { console.log(' \n\n\n config file copied to weaver-components docs path', configTemplate,  '\n\n\n');
+  fs.writeFile('./weaver-components/docs/config.json', configTemplate);
 }
 
-if(fs.existsSync('./weaver-components')) { console.log(' \n\n\n config file copied to weaver-components path', configTemplate,  '\n\n\n');
-  fs.writeFile('./weaver-components/config.json', configTemplate);
+if(fs.existsSync('./weaver-components/docs/assets')) { console.log(' \n\n\n config file copied to weaver-components docs assets path', configTemplate,  '\n\n\n');
+  fs.writeFile('./weaver-components/docs/assets/config.json', configTemplate);
 }
 
 fs.writeFile('./src/config.json', configTemplate);
