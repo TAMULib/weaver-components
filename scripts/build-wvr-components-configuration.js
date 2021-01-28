@@ -7,8 +7,6 @@ let defaults = dotEnv.config({
   path: `${process.cwd()}/defaults.env`
 });
 
-console.log('\n\n\n default config = ', defaults, '\n\n\n');
-
 if(process.argv[2]) {
   defaults = dotEnv.config({
     path: `${process.cwd()}/${process.argv[2]}`
@@ -28,18 +26,17 @@ if(fs.existsSync('./dist')) {
 
 if(fs.existsSync('./static')) { console.log(' \n\n\n config file copied to static path', configTemplate, '\n\n\n');
   fs.writeFile('./static/config.json', configTemplate);
+  fs.writeFile('./static/weaver-components/config.json', configTemplate);
 }
 
-if(fs.existsSync('./weaver-components/docs')) { console.log(' \n\n\n config file copied to weaver-components docs path', configTemplate,  '\n\n\n');
+if(fs.existsSync('./weaver-components')) {
+  console.log(' \n\n\n config file copied to weaver comp path \n\n\n');
+  fs.writeFile('./weaver-components/config.json', configTemplate);
+  console.log(' \n\n\n config file copied to weaver docs path \n\n\n');
   fs.writeFile('./weaver-components/docs/config.json', configTemplate);
-}
-
-
-if(fs.existsSync('./weaver-components/docs/usage')) { console.log(' \n\n\n config file copied to weaver-components docs usage path', configTemplate,  '\n\n\n');
+  console.log(' \n\n\n config file copied to weaver docs usage path \n\n\n');
   fs.writeFile('./weaver-components/docs/usage/config.json', configTemplate);
-}
-
-if(fs.existsSync('./weaver-components/docs/assets')) { console.log(' \n\n\n config file copied to weaver-components docs assets path', configTemplate,  '\n\n\n');
+  console.log(' \n\n\n config file copied to weaver docs assets path \n\n\n');
   fs.writeFile('./weaver-components/docs/assets/config.json', configTemplate);
 }
 
