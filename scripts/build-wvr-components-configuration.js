@@ -34,4 +34,8 @@ if(fs.existsSync('./static/weaver-components')) { console.log(' \n\n\n config fi
   fs.writeFile('./static/weaver-components/config.json', configTemplate);
 }
 
+if(fs.existsSync('./weaver-components')) { console.log(' \n\n\n config file copied to weaver-components path', configTemplate,  '\n\n\n');
+  fs.writeFile('./weaver-components/config.json', configTemplate);
+}
+
 fs.writeFile('./src/config.json', configTemplate);
