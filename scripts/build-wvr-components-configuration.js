@@ -34,6 +34,11 @@ if(fs.existsSync('./weaver-components/docs')) { console.log(' \n\n\n config file
   fs.writeFile('./weaver-components/docs/config.json', configTemplate);
 }
 
+
+if(fs.existsSync('./weaver-components/docs/usage')) { console.log(' \n\n\n config file copied to weaver-components docs usage path', configTemplate,  '\n\n\n');
+  fs.writeFile('./weaver-components/docs/usage/config.json', configTemplate);
+}
+
 if(fs.existsSync('./weaver-components/docs/assets')) { console.log(' \n\n\n config file copied to weaver-components docs assets path', configTemplate,  '\n\n\n');
   fs.writeFile('./weaver-components/docs/assets/config.json', configTemplate);
 }
