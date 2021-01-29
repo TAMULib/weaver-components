@@ -89,8 +89,6 @@ describe('WvrHeaderComponent', () => {
   });
 
   it('should have bottom navigation toggle display', () => {
-    /* TODO: Issue #298. */
-    /*
     const bottomNavElement = fixture.nativeElement.querySelector('.bottom-nav') as HTMLElement;
 
     component.displayBottomNav = 'true';
@@ -128,7 +126,6 @@ describe('WvrHeaderComponent', () => {
     fixture.detectChanges();
     expect(bottomNavElement.hasAttribute('hidden'))
       .toEqual(false);
-    */
 
   });
 
