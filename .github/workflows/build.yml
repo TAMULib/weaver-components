@@ -24,7 +24,7 @@ jobs:
           path: ~/.npm
           key: ${{ runner.os }}-cache-node-${{ hashFiles('**/package.json', '**/package-lock.json') }}
 
-      - name: "Node Modules Cache"
+      - name: "Node Cache Modules"
         uses: actions/cache@v2
         with:
           path: node_modules
@@ -43,16 +43,26 @@ jobs:
           npm run build
           xvfb-run --auto-servernum npm run test:ci
 
+      - name: "Send to Coveralls (build node-${{ github.run_number }})"
+        uses: MikeEdgar/github-action@raw_coverage_file
+        with:
+          github-token: ${{ secrets.github_token }}
+          path-to-lcov: ${{ github.workspace }}/static/weaver-components/reports/coverage/wvr-elements/lcov.info
+
       - name: Reporting
         run: |
           xvfb-run --auto-servernum cat ${{ github.workspace }}/static/weaver-components/reports/coverage/wvr-elements/lcov.info | ${{ github.workspace }}/node_modules/coveralls/bin/coveralls.js
           xvfb-run --auto-servernum npm run build:static-production
 
-      - name: "Send to Coveralls (build node-${{ github.run_number }})"
-        uses: MikeEdgar/github-action@raw_coverage_file
+      - name: "Deploy GH-Pages"
+        if: github.ref == 'refs/heads/sprint-action-295-yaml' && github.event_name == 'push'
+        uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          path-to-lcov: ${{ github.workspace }}/static/weaver-components/reports/coverage/wvr-elements/lcov.info
+          github_token: ${{ secrets.github_token }}
+          branch: gh-pages
+          folder: static/weaver-components
+          clean: true
+          single_commit: true
 
       - name: cleanup xvfb
         run: |
@@ -63,13 +73,3 @@ jobs:
           else
             echo "No xvfb processes to kill"
           fi
-
-      - name: "Deploy GH-Pages"
-        #if: github.ref == 'ref/head/master' && github.event_name == 'push'
-        uses: JamesIves/github-pages-deploy-action@3.7.1
-        with:
-          github_token: ${{ secrets.github_token }}
-          branch: gh-pages
-          folder: static
-          clean: true
-          single_commit: true
