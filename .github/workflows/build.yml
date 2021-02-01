@@ -39,7 +39,7 @@ jobs:
         run: xvfb-run --auto-servernum npm run test:ci
 
       - name: "Coveralls Coverage Report"
-        uses: coverallsapp/github-action@master
+        uses: MikeEdgar/github-action@raw_coverage_file
         with:
           github-token: ${{ secrets.github_token }}
           path-to-lcov: ${{ github.workspace }}/static/weaver-components/reports/coverage/wvr-elements/lcov.info
@@ -56,3 +56,13 @@ jobs:
           folder: static/weaver-components
           clean: true
           single_commit: true
+
+      - name: Cleanup xvfb
+        run: |
+          xvfb_pids=`ps aux | grep tmp/xvfb-run | grep -v grep | awk '{print $2}'`
+          if [ "$xvfb_pids" != "" ]; then
+            echo "Killing the following xvfb processes: $xvfb_pids"
+            sudo kill $xvfb_pids
+          else
+            echo "No xvfb processes to kill"
+          fi
