@@ -23,8 +23,30 @@ Object.keys(defaults.parsed)
 if(fs.existsSync('./dist')) {
   fs.writeFile('./dist/bundle/config.json', configTemplate);
 }
+
 if(fs.existsSync('./static')) {
   fs.writeFile('./static/config.json', configTemplate);
+
+  fs.copy('./static/config.json', './static/weaver-components/config.json', err => {
+    if (err) return console.error('Could not copy config file to static/weaver-components', err);
+    console.log('Copied config file to static/weaver-components successfully');
+  });
+
+  fs.copy('./static/config.json', './static/weaver-components/docs/config.json', err => {
+    if (err) return console.error('Could not copy config file to static/weaver-components/docs', err);
+    console.log('Copied config file to static/weaver-components/docs successfully');
+  });
+
+  fs.copy('./static/config.json', './static/weaver-components/docs/usage/config.json', err => {
+    if (err) return console.error('Could not copy config file to static/weaver-components/docs/usage path', err);
+    console.log('Copied config file to static/weaver-components/docs/usage successfully');
+  });
+
+  fs.copy('./static/config.json', './static/weaver-components/docs/usage/assets/config.json', err => {
+    if (err) return console.error('Could not copy config file to static/weaver-components/docs/usage/assets path', err);
+    console.log('Copied config file to static/weaver-components/docs/usage/assets successfully');
+  });
+
 }
 
 fs.writeFile('./src/config.json', configTemplate);
