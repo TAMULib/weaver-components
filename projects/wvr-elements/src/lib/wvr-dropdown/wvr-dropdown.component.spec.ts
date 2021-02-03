@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
 import { provideMockStore } from '@ngrx/store/testing';
+import { MobileService } from '../core/mobile.service';
 import { APP_CONFIG, testAppConfig } from '../shared/config';
 import { WvrDropdownComponent } from './wvr-dropdown.component';
 
@@ -19,6 +20,11 @@ import { WvrDropdownComponent } from './wvr-dropdown.component';
 class WvrDropdownHostComponent {
   @ViewChild(WvrDropdownComponent) dropDown: WvrDropdownComponent;
 }
+
+class MockMobileService {
+  isMobileLayout = false;
+}
+
 describe('WvrDropdownComponent', () => {
   const initialState = { theme: {
     themes: {}
@@ -29,7 +35,12 @@ describe('WvrDropdownComponent', () => {
   let hostComponent: WvrDropdownHostComponent;
   let hostFixture: ComponentFixture<WvrDropdownHostComponent>;
 
+  let mockMobileService: MockMobileService;
+
   beforeEach(waitForAsync(() => {
+    mockMobileService = new MockMobileService();
+    TestBed.overrideProvider(MobileService, { useValue: mockMobileService });
+
     TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule
