@@ -46,6 +46,8 @@ jobs:
 
       - name: "Build Static Production"
         run: xvfb-run --auto-servernum npm run build:static-production
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
 
       - name: "Deploy GH-Pages"
         if: github.ref == 'refs/heads/master' && github.event_name == 'push'
