@@ -1,1 +1,44 @@
-<p>wvr-modal works!</p>
+<!-- TODO unable to add the modal class-->
+<div
+  #animationRoot
+  class="wvr-components wvr-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <ng-container *ngTemplateOutlet="modalHeader"></ng-container>
+      <ng-container *ngTemplateOutlet="modalBody"></ng-container>
+      <ng-container *ngTemplateOutlet="modalFooter"></ng-container>
+    </div>
+  </div>
+</div>
+
+<!-- modalHeader -->
+<ng-template #modalHeader>
+  <div class="modal-header" [ngClass]="{'wvr-hidden': !hasModalHeader}">
+    <ng-content select="wvre-modal-header"></ng-content>
+    <ng-container *ngTemplateOutlet="modalTitle"></ng-container>
+  </div>
+</ng-template>
+
+<!-- modalTitle -->
+<ng-template #modalTitle>
+  <h5 class="modal-title" [ngClass]="{'wvr-hidden': !hasModalTitle}">
+    <ng-content select="wvre-modal-title"></ng-content>
+  </h5>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</ng-template>
+
+<!-- modalBody -->
+<ng-template #modalBody>
+  <div class="modal-body">
+    <ng-content select="wvre-modal-body"></ng-content>
+  </div>
+</ng-template>
+
+<!-- modal Footer -->
+<ng-template #modalFooter>
+  <div class="modal-footer" [ngClass]="{'text-muted': footerTextMuted, 'wvr-hidden': !hasModalFooter}">
+    <ng-content select="wvre-modal-footer"></ng-content>
+  </div>
+</ng-template>
