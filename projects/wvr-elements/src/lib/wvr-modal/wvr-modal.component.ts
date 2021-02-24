@@ -35,6 +35,12 @@ export class WvrModalComponent extends WvrBaseComponent implements AfterViewInit
   /** Used to define the size for modal component. */
   @Input() modalSize: 'lg' | 'sm' = 'lg';
 
+  /** Used to close the modal component. */
+  modalClosed = false;
+
+  /** Used to display the Close button. */
+  @Input() closable: 'true' | 'false' = 'true';
+
   constructor(injector: Injector) {
     super(injector);
   }
@@ -45,6 +51,11 @@ export class WvrModalComponent extends WvrBaseComponent implements AfterViewInit
       this.renderModalHeader();
       this.renderModalFooter();
     });
+  }
+
+  /** Closes the modal once the `X` is clicked. */
+  clickClose($event: MouseEvent): void {
+    this.modalClosed = true;
   }
 
   /** Used to render the modal header section if present */

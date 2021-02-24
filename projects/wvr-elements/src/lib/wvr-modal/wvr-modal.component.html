@@ -1,7 +1,10 @@
 <!-- TODO unable to add the modal class-->
 <div
   #animationRoot
-  class="wvr-components wvr-modal" tabindex="-1" role="dialog">
+  class="wvr-components wvr-modal"
+  [ngClass]="{'wvr-hidden': modalClosed}"
+  tabindex="-1"
+  role="dialog">
   <div class="modal-dialog modal-{{modalSize}}" role="document">
     <div class="modal-content">
       <ng-container *ngTemplateOutlet="modalHeader"></ng-container>
@@ -25,7 +28,12 @@
   <h5 class="modal-title" [ngClass]="{'wvr-hidden': !hasModalTitle}">
     <ng-content select="wvre-modal-title"></ng-content>
   </h5>
-  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+  <ng-container *ngTemplateOutlet="closeModal"></ng-container>
+</ng-template>
+
+<!-- *ngIf="closable==='true'" -->
+<ng-template #closeModal>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="clickClose($event)" *ngIf="closable==='true'">
     <span aria-hidden="true">&times;</span>
   </button>
 </ng-template>
@@ -34,6 +42,7 @@
 <ng-template #modalBody>
   <div class="modal-body {{additionalModalBodyClasses()}}">
     <ng-content select="wvre-modal-body"></ng-content>
+    <ng-content></ng-content>
   </div>
 </ng-template>
 

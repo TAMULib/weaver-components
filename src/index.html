@@ -171,7 +171,7 @@
   <wvre-it-works animate="{animationTrigger: 'fadeToggle'}" animate-id="elem1" hidden-in-mobile="true"></wvre-it-works>
 
   <div class="container index-container">
-    <wvre-text value="Modal Component" text-decoration="underline"></wvre-text><br /><br />
+    <wvre-text value="Modal Component with Customized Body" text-decoration="underline"></wvre-text><br /><br />
     <wvre-modal theme-variant='secondary' modal-size='lg'>
       <wvre-modal-header modal-header-theme-variant="success">
         <wvre-modal-title>
@@ -179,7 +179,26 @@
         </wvre-modal-title>
       </wvre-modal-header>
       <wvre-modal-body modal-body-theme-variant="info">
-        <wvre-text value="Modal Body"></wvre-text>
+        <wvre-alert theme-variant="primary" alert-type="basic">
+          <wvre-text value="This is basic primary alert. "></wvre-text>
+        </wvre-alert>
+        <wvre-card text-center>
+        <wvre-card-header>
+          <wvre-text value="Featured"></wvre-text>
+        </wvre-card-header>
+        <wvre-card-title>
+          <wvre-text value="Special title treatment"></wvre-text>
+        </wvre-card-title>
+        <wvre-card-text>
+          <wvre-text value="With supporting text below as a natural lead-in to additional content."></wvre-text>
+        </wvre-card-text>
+        <wvre-button theme-variant="secondary">
+          <wvre-text value="Go somewhere"></wvre-text>
+        </wvre-button>
+        <wvre-card-footer text-muted>
+          <wvre-text value="Card Footer2"></wvre-text>
+        </wvre-card-footer>
+      </wvre-card>
       </wvre-modal-body>
       <wvre-modal-footer modal-footer-theme-variant="warning">
         <button type="button" class="btn btn-primary">Save changes</button>
