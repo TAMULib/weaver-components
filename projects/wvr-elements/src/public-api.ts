@@ -13,6 +13,7 @@ export * from './lib/wvr-button/wvr-button.component';
 export * from './lib/wvr-card/wvr-card.component';
 export * from './lib/wvr-color-preview/wvr-color-preview.component';
 export * from './lib/wvr-dropdown/wvr-dropdown.component';
+export * from './lib/wvr-editor/wvr-editor.component';
 export * from './lib/wvr-footer/wvr-footer.component';
 export * from './lib/wvr-header/wvr-header.component';
 export * from './lib/wvr-icon/wvr-icon.component';

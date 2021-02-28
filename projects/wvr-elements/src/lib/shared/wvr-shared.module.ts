@@ -1,12 +1,14 @@
 import { CommonModule } from '@angular/common';
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
 import { InlineSVGModule } from 'ng-inline-svg';
 import { WvrAlertComponent } from '../wvr-alert/wvr-alert.component';
 import { WvrButtonComponent } from '../wvr-button/wvr-button.component';
 import { WvrCardComponent } from '../wvr-card/wvr-card.component';
 import { WvrColorPreviewComponent } from '../wvr-color-preview/wvr-color-preview.component';
 import { WvrDropdownComponent } from '../wvr-dropdown/wvr-dropdown.component';
+import { WvrEditorComponent } from '../wvr-editor/wvr-editor.component';
 import { WvrFooterComponent } from '../wvr-footer/wvr-footer.component';
 import { WvrHeaderComponent } from '../wvr-header/wvr-header.component';
 import { WvrIconComponent } from '../wvr-icon/wvr-icon.component';
@@ -31,6 +33,7 @@ export const WVR_COMPONENTS = [
   WvrCardComponent,
   WvrColorPreviewComponent,
   WvrDropdownComponent,
+  WvrEditorComponent,
   WvrFooterComponent,
   WvrHeaderComponent,
   WvrIconComponent,
@@ -56,7 +59,8 @@ export const WVR_PIPES = [
   imports: [
     CommonModule,
     InlineSVGModule,
-    NgbDropdownModule
+    NgbDropdownModule,
+    EditorModule
   ],
   exports: [
     CommonModule,
@@ -68,9 +72,14 @@ export const WVR_PIPES = [
     ...WVR_COMPONENTS,
     ...WVR_PIPES
   ],
-  providers: [],
+  providers: [
+    { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }
+  ],
   entryComponents: [],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA,
+    NO_ERRORS_SCHEMA
+  ]
 })
 export class WvrSharedModule {
 

@@ -10,6 +10,7 @@ import { WvrButtonComponent } from '../wvr-button/wvr-button.component';
 import { WvrCardComponent } from '../wvr-card/wvr-card.component';
 import { WvrColorPreviewComponent } from '../wvr-color-preview/wvr-color-preview.component';
 import { WvrDropdownComponent } from '../wvr-dropdown/wvr-dropdown.component';
+import { WvrEditorComponent } from '../wvr-editor/wvr-editor.component';
 import { WvrFooterComponent } from '../wvr-footer/wvr-footer.component';
 import { WvrHeaderComponent } from '../wvr-header/wvr-header.component';
 import { WvrIconComponent } from '../wvr-icon/wvr-icon.component';
@@ -40,6 +41,7 @@ export const WVR_ELEMENTS = [
   { component: WvrCardComponent, selector: 'wvre-card' },
   { component: WvrColorPreviewComponent, selector: 'wvre-color-preview' },
   { component: WvrDropdownComponent, selector: 'wvre-dropdown' },
+  { component: WvrEditorComponent, selector: 'wvre-editor' },
   { component: WvrFooterComponent, selector: 'wvre-footer' },
   { component: WvrHeaderComponent, selector: 'wvre-header' },
   { component: WvrIconComponent, selector: 'wvre-icon' },

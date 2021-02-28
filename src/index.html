@@ -171,6 +171,10 @@
   <wvre-it-works animate="{animationTrigger: 'fadeToggle'}" animate-id="elem1" hidden-in-mobile="true"></wvre-it-works>
 
   <div class="container index-container">
+    <wvre-text value="Editor Component" text-decoration="underline"></wvre-text><br /><br />
+    <wvre-editor></wvre-editor>
+  </div>
+  <div class="container index-container">
     <wvre-text value="Alert Component" text-decoration="underline"></wvre-text><br /><br />
     <wvre-alert
       theme-variant="primary"
@@ -885,6 +889,7 @@
     }
   }"></wvre-theme>
 
+  <script src="node_modules/tinymce/tinymce.min.js"></script>
   <script defer src="weaver-components.js"></script>
 
 </body>
