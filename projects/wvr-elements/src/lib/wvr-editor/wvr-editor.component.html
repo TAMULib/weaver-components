@@ -1,12 +1,18 @@
-<wvr-editor-wrapper>
-  <p>wvr-editor text area</p>
+<wvr-editor-wrapper
+  #animationRoot
+  class="wvr-components wvr-editor">
   <editor
-    apiKey="fjr9s2w6a1i1emfkg0r2pxsvagkzfp9n0a1seplcjr931brp"
-    [init]="{
-      base_url: '/tinymce',
-      suffix: '.min'
-    }">
-    <p>wvr-editor text area</p>
+  id="{{htmlId}}"
+  initialValue={{initialValue}}
+  outputFormat={{outputFormat}}
+  [init]="{
+    base_url: '/tinymce',
+    plugins: editorPlugings,
+    skin_url: skinUrl,
+    menu: menu,
+    mobile: mobileMenu,
+    resize: resize
+  }">
   </editor>
 </wvr-editor-wrapper>
 
