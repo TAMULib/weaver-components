@@ -2,6 +2,8 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, ViewChild } from '
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { APP_CONFIG, testAppConfig } from '../shared/config';
 
 import { WvrEditorComponent } from './wvr-editor.component';
@@ -16,12 +18,15 @@ class WvrEditorHostComponent {
 }
 
 describe('WvrEditorComponent', () => {
+  const initialState = {};
+
   let component: WvrEditorComponent;
   let fixture: ComponentFixture<WvrEditorComponent>;
 
   let hostComponent: WvrEditorHostComponent;
   let hostFixture: ComponentFixture<WvrEditorHostComponent>;
 
+  let store: MockStore;
     // tslint:disable-next-line: deprecation
     beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
@@ -32,13 +37,14 @@ describe('WvrEditorComponent', () => {
           {
             provide: APP_CONFIG,
             useValue: testAppConfig
-          }
+          },
+          provideMockStore({initialState})
         ],
         declarations: [
           WvrEditorHostComponent,
           WvrEditorComponent
         ],
-        schemas: [CUSTOM_ELEMENTS_SCHEMA]
+        schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
       })
       .compileComponents();
     }));
