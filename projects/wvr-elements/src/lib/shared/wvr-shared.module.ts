@@ -23,6 +23,7 @@ import { WvrTextComponent } from '../wvr-text/wvr-text.component';
 import { WvrThemeComponent } from '../wvr-theme/wvr-theme.component';
 import { DefaultPipe } from './pipes/default.pipe';
 import { SafePipe } from './pipes/safe.pipe';
+import { WvrModalComponent } from '../wvr-modal/wvr-modal.component';
 
 /** This property contains a list of components classes. */
 export const WVR_COMPONENTS = [
@@ -39,6 +40,7 @@ export const WVR_COMPONENTS = [
   WvrItWorksComponent,
   WvrNavListComponent,
   WvrNavLiComponent,
+  WvrModalComponent,
   WvrTextComponent,
   WvrManifestComponent,
   WvrManifestEntryComponent,
@@ -66,7 +68,8 @@ export const WVR_PIPES = [
   ],
   declarations: [
     ...WVR_COMPONENTS,
-    ...WVR_PIPES
+    ...WVR_PIPES,
+    WvrModalComponent
   ],
   providers: [],
   entryComponents: [],
