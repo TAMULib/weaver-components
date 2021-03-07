@@ -142,6 +142,7 @@ concat(stlyeFiles, `${WVR_UD_STATIC_ASSETS_DIR}/styles.css`).finally(() => {
     log(`    ${chalk.cyan('- Including:     '+sa)}`);
     let saPathParts = sa.split('/');
     let fileName = saPathParts[saPathParts.length-1];
+    console.log('\n\n static asset ', sa, ' \n  filename = ', fileName);
     if(fs.lstatSync(sa).isDirectory()) {
       copyFolderSync(sa, `${CONFIG.output}/${fileName}`);
     } else {
@@ -185,13 +186,19 @@ concat(stlyeFiles, `${WVR_UD_STATIC_ASSETS_DIR}/styles.css`).finally(() => {
 
 function copyFolderSync(from, to) {
   if(fs.existsSync(to)) {
+    console.log('/n 1. existsSync to =', to, '\n from  = ', from, '\n');
     fs.rmdirSync(to, {recursive: true});
+    console.log('/n 2. existsSync to =', to, '\n from  = ', from, '\n');
   }
   fs.mkdirSync(to);
+  console.log('\n mkdirSync to =', to);
   fs.readdirSync(from).forEach(element => {
+    console.log('\n readdirSync element =', element);
       if (fs.lstatSync(path.join(from, element)).isFile()) {
+        console.log('\n lstatSync if is file element =\n', path.join(from, element), '\n', path.join(to, element));
           fs.copyFileSync(path.join(from, element), path.join(to, element));
       } else {
+        console.log(' \n !lstatSync element =', path.join(from, element), '\n', path.join(to, element));
           copyFolderSync(path.join(from, element), path.join(to, element));
       }
   });
