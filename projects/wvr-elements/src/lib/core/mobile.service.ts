@@ -29,6 +29,6 @@ export class MobileService {
   }
 
   /** A mapping method to map resize events to boolean.  */
-  private readonly checkScreenSize = () => window.innerWidth < 767;
+  private readonly checkScreenSize = () => window.innerWidth < 992;
 
 }
