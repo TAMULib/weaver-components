@@ -1,18 +1,15 @@
 <wvr-editor-wrapper
   #animationRoot
   class="wvr-components wvr-editor">
+  <!-- <textarea id="{{htmlId}}"></textarea> -->
   <editor
-  id="{{htmlId}}"
-  initialValue={{initialValue}}
-  outputFormat={{outputFormat}}
-  [init]="{
-    base_url: '/tinymce',
-    plugins: editorPlugings,
-    skin_url: skinUrl,
-    menu: menu,
-    mobile: mobileMenu,
-    resize: resize
-  }">
-  </editor>
+    id="{{htmlId}}"
+    initialValue={{initialValue}}
+    [init]="{
+      plugins: editorPlugings,
+      skin_url: skinUrl,
+      menu: menu
+    }">
+</editor>
 </wvr-editor-wrapper>
 

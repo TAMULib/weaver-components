@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Injector, Input, Output } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Injector, Input, Output } from '@angular/core';
+import tinymce from 'tinymce';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 @Component({
@@ -6,7 +7,7 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
   templateUrl: './wvr-editor.component.html',
   styleUrls: ['./wvr-editor.component.scss']
 })
-export class WvrEditorComponent extends WvrBaseComponent {
+export class WvrEditorComponent extends WvrBaseComponent implements AfterViewInit {
 
   htmlId = `wvr-editor-${this.id}`;
 
@@ -56,6 +57,36 @@ export class WvrEditorComponent extends WvrBaseComponent {
 
   constructor(injector: Injector) {
     super(injector);
+  }
+
+  ngAfterViewInit(): void {
+    tinymce.init({
+      selector: `textarea#${this.htmlId}`,
+      initialValue: this.initialValue,
+      plugins: this.editorPlugings,
+      skin_url: this.skinUrl,
+      menubar: this.menuBar,
+      toolbar: this.toolBar
+      /* enable title field in the Image dialog*/
+      // image_title: true,
+      /* enable automatic uploads of images represented by blob or data URIs*/
+      // automatic_uploads: true,
+
+    });
+
+    tinymce.init({
+      selector: `${this.htmlId}`,
+      initialValue: this.initialValue,
+      plugins: this.editorPlugings,
+      skin_url: this.skinUrl,
+      menubar: this.menuBar,
+      toolbar: this.toolBar
+      /* enable title field in the Image dialog*/
+      // image_title: true,
+      /* enable automatic uploads of images represented by blob or data URIs*/
+      // automatic_uploads: true,
+
+    });
   }
 
 }
