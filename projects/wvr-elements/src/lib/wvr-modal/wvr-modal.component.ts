@@ -1,9 +1,10 @@
-import { Component, Injector, Input, OnInit } from '@angular/core';
-import { WvrBaseComponent } from '../shared/wvr-base.component';
-import * as ModalActions from '../core/modal/modal.actions';
-import { select, Store } from '@ngrx/store';
+import { Component, Injector, Input, OnInit, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
+import { NgbActiveModal, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { select } from '@ngrx/store';
 import { filter } from 'rxjs/operators';
-import { RootState, selectModalState } from '../core/store';
+import * as ModalActions from '../core/modal/modal.actions';
+import { selectModalState } from '../core/store';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 @Component({
   selector: 'wvr-modal',
@@ -12,9 +13,13 @@ import { RootState, selectModalState } from '../core/store';
 })
 export class WvrModalComponent extends WvrBaseComponent implements OnInit {
 
-  @Input() name: string;
+  @ViewChild('modal') modalTemplate: any;
 
-  constructor(injector: Injector) {
+  @Input() name = `${this.id}`;
+
+  private closeResult: string;
+
+  constructor(injector: Injector, private modalService: NgbModal) {
     super(injector);
   }
 
@@ -31,18 +36,31 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit {
     )
     .subscribe(modalState => {
       if (modalState.modal.open) {
-        //open modal
+        this.modalService.open(this.modalTemplate, {
+          ariaLabelledBy: 'modal-basic-title',
+          container: this.eRef.nativeElement,
+          beforeDismiss: () => !modalState.modal.open
+        });
       } else {
-        //clode modal
+        console.log('trying to close');
       }
     });
   }
 
-  openModal() : void {
+  openModal(): void {
     this.store.dispatch(ModalActions.openModal({
       modal: {
         name: this.name,
         open: true
+      }
+    }));
+  }
+
+  closeModal(): void {
+    this.store.dispatch(ModalActions.closeModal({
+      modal: {
+        name: this.name,
+        open: false
       }
     }));
   }

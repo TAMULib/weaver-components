@@ -1,0 +1,6 @@
+@import "../shared/styles/wvr-variables.scss";
+@import "../shared/styles/variables";
+
+:host {
+  @extend .variables;
+}

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
-import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDropdownModule, NgbModal, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { InlineSVGModule } from 'ng-inline-svg';
 import { WvrAlertComponent } from '../wvr-alert/wvr-alert.component';
 import { WvrButtonComponent } from '../wvr-button/wvr-button.component';
@@ -58,7 +58,8 @@ export const WVR_PIPES = [
   imports: [
     CommonModule,
     InlineSVGModule,
-    NgbDropdownModule
+    NgbDropdownModule,
+    NgbModalModule
   ],
   exports: [
     CommonModule,
