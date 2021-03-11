@@ -18,9 +18,11 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit {
 
   modalRef: NgbModalRef;
 
-  @Input() name = `${this.id}`;
+  @Input() name = 'Weaver Modal';
 
-  private closeResult: string;
+  private  modalId = `${this.name
+    .split(' ')
+    .join('')}-${this.id}`;
 
   constructor(injector: Injector, private modalService: NgbModal) {
     super(injector);
@@ -29,7 +31,7 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit {
   ngOnInit(): void {
     super.ngOnInit();
     this.store.dispatch(ModalActions.addModal({modal: {
-      name: this.name,
+      name: this.modalId,
       open: false
     }}));
     this.store.pipe(
@@ -37,13 +39,13 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit {
       filter(modalState => !!modalState)
     )
     .subscribe(modalState => {
-      const modal = modalState.entities[this.name];
+      const modal = modalState.entities[this.modalId];
       if (modal.open) {
        this.modalRef =  this.modalService.open(this.modalTemplate, {
           ariaLabelledBy: 'modal-basic-title',
           container: this.eRef.nativeElement,
           beforeDismiss: () => {
-            this.store.dispatch(ModalActions.closeModal({id: 'testModal'}));
+            this.store.dispatch(ModalActions.closeModal({id: this.modalId}));
 
             return false;
           }
@@ -55,7 +57,7 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit {
   }
 
   openModal(): void {
-    this.store.dispatch(ModalActions.openModal({id: 'testModal'}));
+    this.store.dispatch(ModalActions.openModal({id: this.modalId}));
   }
 
 }
