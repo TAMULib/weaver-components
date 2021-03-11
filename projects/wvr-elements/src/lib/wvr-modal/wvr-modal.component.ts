@@ -1,6 +1,6 @@
 import { ThisReceiver } from '@angular/compiler';
-import { Component, Injector, Input, OnInit, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
-import { NgbActiveModal, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { Component, HostListener, Injector, Input, OnInit, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ModalDismissReasons, NgbActiveModal, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { select } from '@ngrx/store';
 import { filter } from 'rxjs/operators';
 import * as ModalActions from '../core/modal/modal.actions';
@@ -20,20 +20,38 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit {
 
   @Input() name = 'Weaver Modal';
 
-  private  modalId = `${this.name
-    .split(' ')
-    .join('')}-${this.id}`;
+  private  modalId: string;
 
   constructor(injector: Injector, private modalService: NgbModal) {
     super(injector);
   }
 
+  @HostListener('click', ['$event']) click($event: MouseEvent): void {
+    const clickedElem = $event.target as HTMLElement;
+    const actionAttr = clickedElem.attributes.getNamedItem('modal-action');
+    if (actionAttr) {
+      switch (actionAttr.value) {
+        case 'DISMISS':
+          this.modalRef.dismiss();
+          break;
+        default:
+      }
+    }
+
+  }
+
   ngOnInit(): void {
     super.ngOnInit();
+
+    this.modalId = `${this.name
+      .split(' ')
+      .join('')}-${this.id}`;
+
     this.store.dispatch(ModalActions.addModal({modal: {
       name: this.modalId,
       open: false
     }}));
+
     this.store.pipe(
       select(selectModalState),
       filter(modalState => !!modalState)
