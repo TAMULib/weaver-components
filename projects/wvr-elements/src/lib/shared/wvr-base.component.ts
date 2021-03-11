@@ -1,4 +1,4 @@
-import { AfterContentInit, Directive, ElementRef, EventEmitter, HostBinding, Injector, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
+import { AfterContentInit, Directive, ElementRef, EventEmitter, HostBinding, HostListener, Injector, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import * as JSON5 from 'json5';
 import { Observable } from 'rxjs';
@@ -138,6 +138,10 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
     const element = (this.eRef.nativeElement as HTMLElement);
     const htmlIDAttrName = element.hasAttribute('id') ? 'wvr-id' : 'id';
     element.setAttribute(htmlIDAttrName, `${ComponentRegistryService.HTML_ID_BASE}-${this.id}`);
+  }
+
+  @HostListener('wvrBtnClick', ['$event']) clickEvent($event: CustomEvent): void {
+    this.store.dispatch()
   }
 
   /** Used to setup this component for animating. */

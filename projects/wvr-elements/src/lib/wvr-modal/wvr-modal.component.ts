@@ -26,19 +26,18 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit {
     super(injector);
   }
 
-  @HostListener('click', ['$event']) click($event: MouseEvent): void {
-    const clickedElem = $event.target as HTMLElement;
-    const actionAttr = clickedElem.attributes.getNamedItem('modal-action');
-    if (actionAttr) {
-      switch (actionAttr.value) {
-        case 'DISMISS':
-          this.modalRef.dismiss();
-          break;
-        default:
-      }
-    }
-
-  }
+  // @HostListener('click', ['$event']) click($event: MouseEvent): void {
+  //   const clickedElem = $event.target as HTMLElement;
+  //   const actionAttr = clickedElem.attributes.getNamedItem('modal-action');
+  //   if (actionAttr) {
+  //     switch (actionAttr.value) {
+  //       case 'DISMISS':
+  //         this.modalRef.dismiss();
+  //         break;
+  //       default:
+  //     }
+  //   }
+  // }
 
   ngOnInit(): void {
     super.ngOnInit();

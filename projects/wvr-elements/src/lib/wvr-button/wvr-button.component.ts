@@ -1,6 +1,9 @@
-import { ChangeDetectionStrategy, Component, HostBinding, Injector, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, HostListener, Injector, Input, Output } from '@angular/core';
 import { ThemeVariantName } from '../shared/theme';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
+import * as JSON5 from 'json5';
+
+import { actions } from '../core/actions';
 
 @Component({
   selector: 'wvr-button-component',
@@ -103,6 +106,21 @@ export class WvrButtonComponent extends WvrBaseComponent {
 
   /** Allows for the override of button vertical align property */
   @HostBinding('style.--wvr-btn-vertical-align') @Input() verticalAlign;
+
+  @Input() actionType: string;
+
+  @Input() actionName: string;
+
+  @Input() actionProps: string;
+
+  @HostListener('click', ['$event']) click($event: MouseEvent): void {
+    if (this.actionType && this.actionName) {
+      this.store.dispatch(actions[this.actionType][this.actionName](
+        JSON5.parse(this.actionProps)
+      ));
+    }
+
+  }
 
   variantTypes = ['button'];
 
