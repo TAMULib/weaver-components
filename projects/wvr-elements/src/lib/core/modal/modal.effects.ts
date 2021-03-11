@@ -15,28 +15,4 @@ export class ModalEffects {
 
  }
 
-  openModal = createEffect(
-    () => this.actions.pipe(
-      ofType(ModalActions.openModal),
-      map(action => ModalActions.openModal({
-        modal: {
-          name: action.modal.name,
-          open: true
-        }
-      }))
-    )
-  );
-
-  closeModal = createEffect(
-    () => this.actions.pipe(
-      ofType(ModalActions.openModal),
-      map(action => ModalActions.openModal({
-        modal: {
-          name: action.modal.name,
-          open: false
-        }
-      }))
-    )
-  );
-
 }

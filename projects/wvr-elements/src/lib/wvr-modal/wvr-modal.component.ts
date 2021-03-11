@@ -1,3 +1,4 @@
+import { ThisReceiver } from '@angular/compiler';
 import { Component, Injector, Input, OnInit, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import { NgbActiveModal, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { select } from '@ngrx/store';
@@ -15,6 +16,8 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit {
 
   @ViewChild('modal') modalTemplate: any;
 
+  modalRef: NgbModalRef;
+
   @Input() name = `${this.id}`;
 
   private closeResult: string;
@@ -31,38 +34,28 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit {
     }}));
     this.store.pipe(
       select(selectModalState),
-      filter(modalState => !!modalState),
-      filter(modalState => modalState.modal.name === this.name)
+      filter(modalState => !!modalState)
     )
     .subscribe(modalState => {
-      if (modalState.modal.open) {
-        this.modalService.open(this.modalTemplate, {
+      const modal = modalState.entities[this.name];
+      if (modal.open) {
+       this.modalRef =  this.modalService.open(this.modalTemplate, {
           ariaLabelledBy: 'modal-basic-title',
           container: this.eRef.nativeElement,
-          beforeDismiss: () => !modalState.modal.open
+          beforeDismiss: () => {
+            this.store.dispatch(ModalActions.closeModal({id: 'testModal'}));
+
+            return false;
+          }
         });
-      } else {
-        console.log('trying to close');
+      } else if (this.modalRef) {
+        this.modalRef.close();
       }
     });
   }
 
   openModal(): void {
-    this.store.dispatch(ModalActions.openModal({
-      modal: {
-        name: this.name,
-        open: true
-      }
-    }));
-  }
-
-  closeModal(): void {
-    this.store.dispatch(ModalActions.closeModal({
-      modal: {
-        name: this.name,
-        open: false
-      }
-    }));
+    this.store.dispatch(ModalActions.openModal({id: 'testModal'}));
   }
 
 }
