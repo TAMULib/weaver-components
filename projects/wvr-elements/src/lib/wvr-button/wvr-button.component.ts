@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, HostList
 import { ThemeVariantName } from '../shared/theme';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 import * as JSON5 from 'json5';
-
 import { actions } from '../core/actions';
 
 @Component({
@@ -112,6 +111,8 @@ export class WvrButtonComponent extends WvrBaseComponent {
   @Input() actionName: string;
 
   @Input() actionProps: string;
+
+  @Input() btnTxt: string;
 
   @HostListener('click', ['$event']) click($event: MouseEvent): void {
     if (this.actionType && this.actionName) {

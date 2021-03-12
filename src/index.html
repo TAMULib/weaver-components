@@ -185,9 +185,10 @@
         <wvre-text value="Modal Message in the Body"></wvre-text>
       </wvre-modal-body>
       <wvre-modal-footer>
-        <button type="button" class="btn btn-outline-dark" modal-action="DISMISS">
-          <wvre-text value="Close"></wvre-text>
-        </button>
+        <wvre-button btn-txt="ok" theme-variant="success" action-type="Modal" action-name="closeModal" action-props="{id: 'TestModal-130'}">
+        </wvre-button>
+        <wvre-button btn-txt="cancel" theme-variant="secondary" action-type="Modal" action-name="closeModal" action-props="{id: 'TestModal-130'}">
+        </wvre-button>
       </wvre-modal-footer>
     </wvre-modal>
   </div>
@@ -288,8 +289,8 @@
         </wvre-list-item>
       </wvre-list>
 
-      <wvre-button theme-variant="secondary" action-type="Modal" action-name="openModal" action-props="{id: 'TestModal-128'}">
-        <wvre-text value="Open ME"></wvre-text>
+      <wvre-button theme-variant="secondary" action-type="Modal" action-name="openModal" action-props="{id: 'TestModal-129'}">
+        <wvre-text value="Open Me!"></wvre-text>
       </wvre-button>
 
       <wvre-card-footer text-muted>
