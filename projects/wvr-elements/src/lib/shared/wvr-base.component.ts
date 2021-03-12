@@ -140,10 +140,6 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
     element.setAttribute(htmlIDAttrName, `${ComponentRegistryService.HTML_ID_BASE}-${this.id}`);
   }
 
-  @HostListener('wvrBtnClick', ['$event']) clickEvent($event: CustomEvent): void {
-    this.store.dispatch()
-  }
-
   /** Used to setup this component for animating. */
   ngOnInit(): void {
     this.processData();

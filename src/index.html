@@ -24,18 +24,6 @@
 </head>
 
 <body style="display: none;">
-  
-  <wvre-modal name="Test Modal" theme-variant="primary">
-   <h1>test</h1>
-  </wvre-modal>
-
- 
-
-  <script>
-    document.querySelector('#foo').on('wvrBtnClick', e => {
-      console.log(e);
-    });
-  </script>
 
   <wvre-header title-row-theme-variant="primary">
     <wvre-nav-list top-navigation>
@@ -182,6 +170,27 @@
   <br />
 
   <wvre-it-works animate="{animationTrigger: 'fadeToggle'}" animate-id="elem1" hidden-in-mobile="true"></wvre-it-works>
+
+  <div class="container index-container">
+    <wvre-text value="Modal Component" text-decoration="underline"></wvre-text><br /><br />
+
+    <wvre-modal
+      name="Test Modal"
+      theme-variant="info"
+      modal-header-theme-variant="success"
+      modal-footer-theme-variant="danger">
+      <wvre-modal-header>
+      </wvre-modal-header>
+      <wvre-modal-body>
+        <wvre-text value="Modal Message in the Body"></wvre-text>
+      </wvre-modal-body>
+      <wvre-modal-footer>
+        <button type="button" class="btn btn-outline-dark" modal-action="DISMISS">
+          <wvre-text value="Close"></wvre-text>
+        </button>
+      </wvre-modal-footer>
+    </wvre-modal>
+  </div>
 
   <div class="container index-container">
     <wvre-text value="Alert Component" text-decoration="underline"></wvre-text><br /><br />
