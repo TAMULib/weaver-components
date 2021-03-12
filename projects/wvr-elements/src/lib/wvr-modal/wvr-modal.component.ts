@@ -22,7 +22,7 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit {
 
   modalRef: NgbModalRef;
 
-  @Input() name = 'Weaver Modal';
+  @Input() name;
 
   modalId: string;
 
@@ -37,9 +37,12 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit {
   ngOnInit(): void {
     super.ngOnInit();
 
-    this.modalId = `${this.name
+    const defaultName = 'Weaver Modal';
+    this.modalId = !this.name ? `${defaultName
       .split(' ')
-      .join('')}-${this.id}`;
+      .join('')}-${this.id}` : this.name;
+
+    this.name = !this.name ? defaultName : this.name;
 
     this.store.dispatch(ModalActions.addModal({modal: {
       name: this.modalId,

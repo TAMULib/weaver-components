@@ -120,7 +120,6 @@ export class WvrButtonComponent extends WvrBaseComponent {
         JSON5.parse(this.actionProps)
       ));
     }
-
   }
 
   variantTypes = ['button'];
