@@ -5,6 +5,8 @@ import { select } from '@ngrx/store';
 import { filter } from 'rxjs/operators';
 import * as ModalActions from '../core/modal/modal.actions';
 import { selectModalState } from '../core/store';
+import { add } from '../core/theme/theme.actions';
+import { ThemeVariantName } from '../shared/theme';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 @Component({
@@ -21,6 +23,10 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit {
   @Input() name = 'Weaver Modal';
 
   private  modalId: string;
+
+  @Input() themeVariant: ThemeVariantName;
+  @Input() modalHeaderThemeVariant: ThemeVariantName;
+  @Input() modalFooterThemeVariant: ThemeVariantName;
 
   constructor(injector: Injector, private modalService: NgbModal) {
     super(injector);
@@ -76,6 +82,27 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit {
 
   openModal(): void {
     this.store.dispatch(ModalActions.openModal({id: this.modalId}));
+  }
+
+  additionalClasses(value): string {
+    let additionalClasses = '';
+    switch(value) {
+      case 'header':
+        additionalClasses = this.modalHeaderThemeVariant ? ` bg-${this.modalHeaderThemeVariant} border-${this.modalHeaderThemeVariant} ` + this.getTextColor(this.modalHeaderThemeVariant)
+                            : this.themeVariant ? ` bg-${this.themeVariant} border-${this.themeVariant} `+ this.getTextColor(this.themeVariant) : ' bg-light text-dark '
+        break;
+      case 'footer':
+        additionalClasses = this.modalFooterThemeVariant ? ` bg-${this.modalFooterThemeVariant} border-${this.modalFooterThemeVariant} ` + this.getTextColor(this.modalFooterThemeVariant)
+                            : this.themeVariant ? ` bg-${this.themeVariant} border-${this.themeVariant} `+ this.getTextColor(this.themeVariant) : ' bg-light text-dark '
+        break;
+      default:
+    }
+    return additionalClasses;
+  }
+
+  getTextColor(themeVariant): string {
+    console.log(themeVariant);
+    return ( (themeVariant === 'warning') || (themeVariant === 'light') ) ? ' text-dark ' : ' text-white ';
   }
 
 }
