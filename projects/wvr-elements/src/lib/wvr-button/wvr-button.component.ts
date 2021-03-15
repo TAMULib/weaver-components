@@ -3,6 +3,7 @@ import { ThemeVariantName } from '../shared/theme';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 import * as JSON5 from 'json5';
 import { actions } from '../core/actions';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'wvr-button-component',
@@ -112,6 +113,8 @@ export class WvrButtonComponent extends WvrBaseComponent {
 
   @Input() actionProps: string;
 
+  @Input() emitEvent: string;
+
   @Input() btnTxt: string;
 
   @HostListener('click', ['$event']) click($event: MouseEvent): void {
@@ -120,6 +123,14 @@ export class WvrButtonComponent extends WvrBaseComponent {
         JSON5.parse(this.actionProps)
       ));
     }
+
+    if (this.emitEvent) {
+      this.eRef.nativeElement.dispatchEvent(new CustomEvent(this.emitEvent, {
+        bubbles: true,
+        detail: this
+      }));
+    }
+
   }
 
   variantTypes = ['button'];

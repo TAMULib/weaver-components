@@ -1,13 +1,32 @@
-import { ThisReceiver } from '@angular/compiler';
-import { Component, ElementRef, HostListener, Injector, Input, OnInit, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
-import { ModalDismissReasons, NgbActiveModal, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { AfterViewInit, Component, ElementRef, Injector, Input, OnInit, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
+import { NgbActiveModal, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { select } from '@ngrx/store';
-import { filter } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
 import * as ModalActions from '../core/modal/modal.actions';
 import { selectModalState } from '../core/store';
-import { add } from '../core/theme/theme.actions';
 import { ThemeVariantName } from '../shared/theme';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
+
+
+@Component({
+  selector: 'wvr-modal-content-component',
+  template: '<div #anchorElement></div>'
+})
+export class WvrModalContentComponent implements AfterViewInit {
+  @Input() modalTemplate;
+  @ViewChild('anchorElement', {read: ViewContainerRef}) anchor: ViewContainerRef;
+
+  constructor(public activeModal: NgbActiveModal) {}
+
+  ngAfterViewInit(): void {
+    
+  }
+
+  renderContent() {
+    this.anchor.createEmbeddedView(this.modalTemplate);
+  }
+}
 
 @Component({
   selector: 'wvr-modal-component',
@@ -18,7 +37,7 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit {
 
   @ViewChild('modalContent') modalContent: ElementRef<HTMLElement>;
 
-  @ViewChild('modalTemplate') modalTemplate: any;
+  @ViewChild('modalTemplate') modalTemplate: TemplateRef<any>;
 
   modalRef: NgbModalRef;
 
@@ -29,6 +48,8 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit {
   @Input() themeVariant: ThemeVariantName;
   @Input() modalHeaderThemeVariant: ThemeVariantName;
   @Input() modalFooterThemeVariant: ThemeVariantName;
+
+  modalShown: Observable<boolean>;
 
   constructor(injector: Injector, private modalService: NgbModal) {
     super(injector);
@@ -69,8 +90,13 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit {
 
         const modelContentContainer = (this.eRef.nativeElement as HTMLElement).querySelector('modal-content');
         modelContentContainer.outerHTML = this.modalContent.nativeElement.innerHTML;
+        this.modalContent.nativeElement.innerHTML = '';
 
       } else if (this.modalRef) {
+
+        const modelContentContainer = (this.eRef.nativeElement as HTMLElement).querySelector('.modal-content');
+        this.modalContent.nativeElement.innerHTML = modelContentContainer.innerHTML;
+
         this.modalRef.close();
        }
     });

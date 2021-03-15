@@ -21,6 +21,7 @@
     }
 
   </style>
+
 </head>
 
 <body style="display: none;">
@@ -306,7 +307,7 @@
       <wvre-card-text>
         <wvre-text value="With supporting text below as a natural lead-in to additional content."></wvre-text>
       </wvre-card-text>
-      <wvre-button theme-variant="secondary">
+      <wvre-button theme-variant="secondary" id="my-button" emit-event="myEvent">
         <wvre-text value="Go somewhere"></wvre-text>
       </wvre-button>
       <wvre-card-footer text-muted>
@@ -906,6 +907,13 @@
   }"></wvre-theme>
 
   <script defer src="weaver-components.js"></script>
+
+  <script>
+    let myBtnElem = document.querySelector('#my-button');
+    console.log('myBtnElem', myBtnElem);
+    myBtnElem.addEventListener('myEvent', console.log);
+    window.addEventListener('myEvent', console.log);
+  </script>
 
 </body>
 
