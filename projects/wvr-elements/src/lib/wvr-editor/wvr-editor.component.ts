@@ -1,10 +1,8 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, EventEmitter, Injector, Input, Output } from '@angular/core';
-import tinymce from 'tinymce';
+import { ChangeDetectionStrategy, Component, Injector, Input } from '@angular/core';
+import * as JSON5 from 'json5';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 import { WvrEditorMenu } from './wvr-editor-menu';
-import { WvrEditorSubMenu } from './wvr-editor-sub-menu';
-import * as WvrEditor from './wvr-editor.json';
-import * as JSON5 from 'json5';
+import * as wvrEditor from './wvr-editor.json';
 
 @Component({
   selector: 'wvr-editor-component',
@@ -14,44 +12,36 @@ import * as JSON5 from 'json5';
 })
 export class WvrEditorComponent extends WvrBaseComponent {
 
+  private _menu: WvrEditorMenu = (wvrEditor as any).default;
+
   htmlId = `wvr-editor-${this.id}`;
-
-  @Input() apiKey = 'no-api-key';
-
-  @Input() cloudChannel = '5-stable';
-
-  @Input() skinUrl =  `${this.appConfig.assetsUrl}/skins/ui/oxide-dark`;
 
   @Input() initialValue = '';
 
+  @Input() baseUrl = '/tinymce';
+
+  @Input() skin = 'oxide-dark';
+
   @Input() disabled: 'true' | 'false' = 'false';
 
-  @Input() menuBar = 'file edit view insert format table tools help';
+  @Input() plugins = [
+    'advlist autolink lists link image charmap print',
+    'preview anchor searchreplace visualblocks code',
+    'fullscreen insertdatetime media table paste',
+    'help wordcount print preview'
+  ];
 
-  @Input() editorPlugings = ['advlist autolink lists link image charmap print',
-                            'preview anchor searchreplace visualblocks code',
-                            'fullscreen insertdatetime media table paste',
-                            'help wordcount print preview spellchecker'
-                          ];
-
-  @Input() outputFormat: "html"|"text" = "text";
+  @Input() outputFormat: "html" | "text" = "text";
 
   @Input() referrerPolicy = 'strict-origin-when-cross-origin';
 
-  @Input() toolBar = ['undo redo | formatselect | bold italic underline code | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | help | print preview | media spellchecker' ];
-
-  private _menu: WvrEditorMenu;
-
-  @Input() set menu(editorMenu: string) {
+  @Input() set menu(editorMenu: any) {
     this._menu = JSON5.parse(editorMenu) as WvrEditorMenu;
-    console.log(this._menu);
   }
 
-  @Input() mobileMenu: Object = `{
-                                  menubar: true,
-                                  plugins: [ 'autosave', 'lists', 'autolink' ],
-                                  toolbar: [ 'undo', 'bold', 'italic', 'styleselect' ]
-                                }`;
+  get menu(): any {
+    return this._menu;
+  }
 
   /* Allows enabling both vertical and horizontal resize. */
   @Input() resize: 'true' | 'false' | 'both' = 'both';

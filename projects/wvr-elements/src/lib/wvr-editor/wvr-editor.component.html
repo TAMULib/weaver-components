@@ -1,13 +1,11 @@
-<wvr-editor-wrapper
-  #animationRoot
-  class="wvr-components wvr-editor">
-  <!-- <textarea id="{{htmlId}}"></textarea> -->
+<wvr-editor-wrapper #animationRoot class="wvr-components wvr-editor">
   <editor
     id="{{htmlId}}"
     initialValue={{initialValue}}
     [init]="{
-      plugins: editorPlugings,
-      skin_url: skinUrl,
+      base_url: baseUrl,
+      skin: skin,
+      plugins: plugins,
       menu: menu
     }">
 </editor>

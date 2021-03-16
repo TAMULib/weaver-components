@@ -1,7 +1,7 @@
 {
   "file": {
     "title": "File",
-    "items": "newdocument | preview | print "
+    "items": "newdocument | preview | print"
   },
   "edit": {
     "title": "Edit",
@@ -9,7 +9,7 @@
   },
   "view": {
     "title": "View",
-    "items": "code | visualaid visualchars visualblocks | spellchecker | preview fullscreen"
+    "items": "code | visualaid visualchars visualblocks | preview fullscreen"
   },
   "insert": {
     "title": "Insert",
@@ -21,7 +21,7 @@
   },
   "tools": {
     "title": "Tools",
-    "items": "spellchecker spellcheckerlanguage | code wordcount"
+    "items": "code wordcount"
   },
   "table": {
     "title": "Table",
