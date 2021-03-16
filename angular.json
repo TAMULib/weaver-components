@@ -34,9 +34,7 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": [
-              "node_modules/tinymce/tinymce.min.js"
-            ],
+            "scripts": [],
             "allowedCommonJsDependencies": [
               "css-element-queries",
               "handlebars"
