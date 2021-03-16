@@ -12,42 +12,59 @@ import * as wvrEditor from './wvr-editor.json';
 })
 export class WvrEditorComponent extends WvrBaseComponent {
 
-  private _menu: WvrEditorMenu = (wvrEditor as any).default;
+  @Input() initialValue: string;
+
+  @Input() outputFormat: 'text' | 'html' = 'html';
+
+  @Input() set baseUrl(baseUrl: string) { this.config.base_url = baseUrl; }
+  get baseUrl(): string { return this.config.base_url; }
+
+  @Input() set skin(skin: string) { this.config.skin = skin; }
+  get skin(): string { return this.config.skin; }
+
+  @Input() set plugins(plugins: Array<string>) { this.config.plugins = plugins; }
+  get plugins(): Array<string> { return this.config.plugins; }
+
+  @Input() set toolbar(toolbar: string) { this.config.toolbar = toolbar; }
+  get toolbar(): string { return this.config.toolbar; }
+
+  @Input() set menu(editorMenu: any) { this.config.menu = JSON5.parse(editorMenu) as WvrEditorMenu; }
+  get menu(): any { return this.config.menu; }
+
+  config = {
+    base_url: '/tinymce',
+    skin: 'oxide',
+    plugins: [
+      'advlist autolink lists link image charmap print',
+      'preview anchor searchreplace visualblocks code',
+      'fullscreen insertdatetime media table paste',
+      'help wordcount print preview save'
+    ],
+    toolbar: 'undo redo | formatselect | bold italic forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table pagebreak | charmap codesample image | removeformat | help | cancel save',
+    menu: (wvrEditor as any).default,
+    // save_oncancelcallback: this.onCancel,
+    save_onsavecallback: this.onSave
+  };
 
   htmlId = `wvr-editor-${this.id}`;
 
-  @Input() initialValue = '';
-
-  @Input() baseUrl = '/tinymce';
-
-  @Input() skin = 'oxide-dark';
-
-  @Input() disabled: 'true' | 'false' = 'false';
-
-  @Input() plugins = [
-    'advlist autolink lists link image charmap print',
-    'preview anchor searchreplace visualblocks code',
-    'fullscreen insertdatetime media table paste',
-    'help wordcount print preview'
-  ];
-
-  @Input() outputFormat: "html" | "text" = "text";
-
-  @Input() referrerPolicy = 'strict-origin-when-cross-origin';
-
-  @Input() set menu(editorMenu: any) {
-    this._menu = JSON5.parse(editorMenu) as WvrEditorMenu;
-  }
-
-  get menu(): any {
-    return this._menu;
-  }
-
-  /* Allows enabling both vertical and horizontal resize. */
-  @Input() resize: 'true' | 'false' | 'both' = 'both';
-
   constructor(injector: Injector) {
     super(injector);
+  }
+
+  onChange($event): void {
+    console.log($event);
+    console.log(this.initialValue);
+  }
+
+  onCancel($event): void {
+    console.log('cancel', $event);
+    console.log(this.initialValue);
+  }
+
+  onSave($event): void {
+    console.log('save', $event);
+    console.log(this.initialValue);
   }
 
 }

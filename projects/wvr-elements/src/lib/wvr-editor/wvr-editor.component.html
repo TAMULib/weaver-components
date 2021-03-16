@@ -1,13 +1,9 @@
 <wvr-editor-wrapper #animationRoot class="wvr-components wvr-editor">
   <editor
     id="{{htmlId}}"
-    initialValue={{initialValue}}
-    [init]="{
-      base_url: baseUrl,
-      skin: skin,
-      plugins: plugins,
-      menu: menu
-    }">
-</editor>
+    [init]="config"
+    [outputFormat]="outputFormat"
+    [initialValue]="initialValue"
+    (onSelectionChange)="onChange($event)">
+  </editor>
 </wvr-editor-wrapper>
-

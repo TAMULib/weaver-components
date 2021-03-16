@@ -21,7 +21,7 @@
   },
   "tools": {
     "title": "Tools",
-    "items": "code wordcount"
+    "items": "code wordcount | cancel save"
   },
   "table": {
     "title": "Table",
