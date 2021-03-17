@@ -22,5 +22,4 @@ const reportPath = `${weaverComponentsPath}/reports`;
   fs.copy("src/index-reports.html", `${reportPath}/index.html`);
   fs.copy("src/assets", `${reportPath}/assets`);
 
-  fs.copy('node_modules/tinymce/', `${docPath}/tinymce/`);
 })();

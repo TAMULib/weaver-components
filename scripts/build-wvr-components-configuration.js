@@ -47,13 +47,13 @@ if(fs.existsSync('./static')) {
     console.log('Copied config file to static/weaver-components/docs/usage/assets successfully');
   });
 
-  // const tinyMcePath = `${process.cwd()}/node_modules/tinymce/`;
-  // if( fs.existsSync(`${tinyMcePath}`)) {
-  //   fs.copy(`${tinyMcePath}/`,'./static/tinymce/' , err => {
-  //     if (err) return console.error('Could not tinymce', err);
-  //     console.log('Copied tinymce successfully');
-  //   });
-  // }
+  const tinyMcePath = `${process.cwd()}/node_modules/tinymce/`;
+  if( fs.existsSync(`${tinyMcePath}`)) {
+    fs.copy(`${tinyMcePath}/`,'./static/tinymce/' , err => {
+      if (err) return console.error('Could not tinymce', err);
+      console.log('Copied tinymce successfully');
+    });
+  }
 
 }
 

@@ -38,9 +38,7 @@
             "styles": [
               "src/styles.scss",
               {
-                "glob": "**/*",
-                "input": "node_modules/tinymce",
-                "output": "/tinymce/"
+                "input": "node_modules/tinymce"
               }
             ],
             "scripts": [],
@@ -70,7 +68,7 @@
                 {
                   "type": "initial",
                   "maximumWarning": "1.5mb",
-                  "maximumError": "2.1mb"
+                  "maximumError": "2mb"
                 },
                 {
                   "type": "anyComponentStyle",
