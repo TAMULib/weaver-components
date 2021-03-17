@@ -11,7 +11,7 @@ import { WvrEditorComponent } from './wvr-editor.component';
 @Component({
   selector: 'wvr-editor-test-component',
   // tslint:disable-next-line:component-max-inline-declarations
-  template: `<wvr-editor-component></wvr-editor-component>`
+  template: `<wvr-editor-component skin="oxide-dark" initial-value="Hello, World!"></wvr-editor-component>`
 })
 class WvrEditorHostComponent {
   @ViewChild(WvrEditorComponent) alert: WvrEditorComponent;
@@ -62,5 +62,31 @@ describe('WvrEditorComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should have output format defined', () => {
+    expect(component.outputFormat)
+      .toEqual('html');
+    component.outputFormat = 'text';
+    fixture.detectChanges();
+    expect(component.outputFormat)
+      .toEqual('text');
+  });
+
+  it('should have config property defined', () => {
+    expect(component.config.base_url)
+      .toEqual(component.baseUrl);
+
+    expect(component.config.menu)
+    .toEqual(component.menu);
+
+    expect(component.config.plugins)
+    .toEqual(component.plugins);
+
+    expect(component.config.skin)
+    .toEqual(component.skin);
+
+    expect(component.config.toolbar)
+    .toEqual(component.toolbar);
   });
 });
