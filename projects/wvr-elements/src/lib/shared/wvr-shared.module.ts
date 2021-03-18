@@ -73,7 +73,7 @@ export const WVR_PIPES = [
     ...WVR_PIPES
   ],
   providers: [
-    { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }
+    { provide: TINYMCE_SCRIPT_SRC, useValue: 'assets/tinymce/tinymce.min.js' }
   ],
   entryComponents: [],
   schemas: [

@@ -76,6 +76,11 @@ describe('WvrEditorComponent', () => {
   it('should have config property defined', () => {
     expect(component.config.base_url)
       .toEqual(component.baseUrl);
+    component.baseUrl = 'assets/tinymce';
+    fixture.detectChanges();
+
+    expect(component.config.base_url)
+      .toEqual('assets/tinymce');
 
     expect(component.config.menu)
     .toEqual(component.menu);
@@ -83,10 +88,25 @@ describe('WvrEditorComponent', () => {
     expect(component.config.plugins)
     .toEqual(component.plugins);
 
+    const plugins = ['preview anchor searchreplace visualblocks code', 'fullscreen insertdatetime media table paste', 'help wordcount print preview save'];
+    component.plugins = plugins;
+    fixture.detectChanges();
+
+    expect(component.config.plugins)
+      .toEqual(plugins);
+
     expect(component.config.skin)
     .toEqual(component.skin);
 
     expect(component.config.toolbar)
     .toEqual(component.toolbar);
+
+    const toolbar = 'undo redo | formatselect | bold italic forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table pagebreak | charmap codesample image | removeformat | help | cancel save';
+    component.toolbar = toolbar;
+    fixture.detectChanges();
+
+    expect(component.config.toolbar)
+      .toEqual(toolbar);
+
   });
 });

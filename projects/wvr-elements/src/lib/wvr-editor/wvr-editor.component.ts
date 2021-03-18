@@ -32,7 +32,7 @@ export class WvrEditorComponent extends WvrBaseComponent {
   get menu(): any { return this.config.menu; }
 
   config = {
-    base_url: '/tinymce',
+    base_url: '/assets/tinymce',
     skin: 'oxide',
     plugins: [
       'advlist autolink lists link image charmap print',
@@ -41,9 +41,10 @@ export class WvrEditorComponent extends WvrBaseComponent {
       'help wordcount print preview save'
     ],
     toolbar: 'undo redo | formatselect | bold italic forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table pagebreak | charmap codesample image | removeformat | help | cancel save',
-    menu: (wvrEditor as any).default,
+    menu: (wvrEditor as any).default
+    /* TODO: Issue #316. */
     // save_oncancelcallback: this.onCancel,
-    save_onsavecallback: this.onSave
+    // save_onsavecallback: this.onSave
   };
 
   htmlId = `wvr-editor-${this.id}`;
@@ -52,19 +53,20 @@ export class WvrEditorComponent extends WvrBaseComponent {
     super(injector);
   }
 
-  onChange($event): void {
-    console.log($event);
-    console.log(this.initialValue);
-  }
+  /* TODO: Issue #316. */
+  // onChange($event): void {
+  //   console.log($event);
+  //   console.log(this.initialValue);
+  // }
 
-  onCancel($event): void {
-    console.log('cancel', $event);
-    console.log(this.initialValue);
-  }
+  // onCancel($event): void {
+  //   console.log('cancel', $event);
+  //   console.log(this.initialValue);
+  // }
 
-  onSave($event): void {
-    console.log('save', $event);
-    console.log(this.initialValue);
-  }
+  // onSave($event): void {
+  //   console.log('save', $event);
+  //   console.log(this.initialValue);
+  // }
 
 }
