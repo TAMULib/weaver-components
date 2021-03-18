@@ -54,10 +54,10 @@ export class WvrEditorComponent extends WvrBaseComponent {
   }
 
   /* TODO: Issue #316. */
-  // onChange($event): void {
-  //   console.log($event);
-  //   console.log(this.initialValue);
-  // }
+  onChange($event): void {
+    console.log($event);
+    console.log(this.initialValue);
+  }
 
   // onCancel($event): void {
   //   console.log('cancel', $event);
