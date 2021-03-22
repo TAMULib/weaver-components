@@ -32,7 +32,7 @@ export class WvrEditorComponent extends WvrBaseComponent {
   get menu(): any { return this.config.menu; }
 
   config = {
-    base_url: '/assets/tinymce',
+    base_url: 'tinymce',
     skin: 'oxide',
     plugins: [
       'advlist autolink lists link image charmap print',
@@ -51,6 +51,8 @@ export class WvrEditorComponent extends WvrBaseComponent {
 
   constructor(injector: Injector) {
     super(injector);
+
+    this.config.base_url = `${this.appConfig.assetsUrl}/tinymce`;
   }
 
   /* TODO: Issue #316. */
