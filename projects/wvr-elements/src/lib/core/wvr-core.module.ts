@@ -10,7 +10,6 @@ import { WvrButtonComponent } from '../wvr-button/wvr-button.component';
 import { WvrCardComponent } from '../wvr-card/wvr-card.component';
 import { WvrColorPreviewComponent } from '../wvr-color-preview/wvr-color-preview.component';
 import { WvrDropdownComponent } from '../wvr-dropdown/wvr-dropdown.component';
-import { WvrEditorComponent } from '../wvr-editor/wvr-editor.component';
 import { WvrFooterComponent } from '../wvr-footer/wvr-footer.component';
 import { WvrHeaderComponent } from '../wvr-header/wvr-header.component';
 import { WvrIconComponent } from '../wvr-icon/wvr-icon.component';
@@ -25,6 +24,7 @@ import { WvrTabComponent } from '../wvr-tabs/wvr-tab/wvr-tab.component';
 import { WvrTabsComponent } from '../wvr-tabs/wvr-tabs.component';
 import { WvrTextComponent } from '../wvr-text/wvr-text.component';
 import { WvrThemeComponent } from '../wvr-theme/wvr-theme.component';
+import { WvrWysiwygComponent } from '../wvr-wysiwyg/wvr-wysiwyg.component';
 import { AnimationService } from './animation.service';
 import { ManifestEffects } from './manifest/manifest.effects';
 import { MobileService } from './mobile.service';
@@ -41,7 +41,6 @@ export const WVR_ELEMENTS = [
   { component: WvrCardComponent, selector: 'wvre-card' },
   { component: WvrColorPreviewComponent, selector: 'wvre-color-preview' },
   { component: WvrDropdownComponent, selector: 'wvre-dropdown' },
-  { component: WvrEditorComponent, selector: 'wvre-editor' },
   { component: WvrFooterComponent, selector: 'wvre-footer' },
   { component: WvrHeaderComponent, selector: 'wvre-header' },
   { component: WvrIconComponent, selector: 'wvre-icon' },
@@ -55,7 +54,8 @@ export const WVR_ELEMENTS = [
   { component: WvrTextComponent, selector: 'wvre-text' },
   { component: WvrTabsComponent, selector: 'wvre-tabs' },
   { component: WvrTabComponent, selector: 'wvre-tab' },
-  { component: WvrThemeComponent, selector: 'wvre-theme' }
+  { component: WvrThemeComponent, selector: 'wvre-theme' },
+  { component: WvrWysiwygComponent, selector: 'wvre-wysiwyg' }
 ];
 
 export const registerCustomElements = (injector: Injector, elements: Array<{ component: any, selector: string }>) => {

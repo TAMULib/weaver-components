@@ -1,16 +1,16 @@
 import { ChangeDetectionStrategy, Component, Injector, Input } from '@angular/core';
 import * as JSON5 from 'json5';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
-import { WvrEditorMenu } from './wvr-editor-menu';
-import * as wvrEditor from './wvr-editor.json';
+import { WvrWysiwygMenu } from './wvr-wysiwyg-menu';
+import * as wvrEditor from './wvr-wysiwyg.json';
 
 @Component({
-  selector: 'wvr-editor-component',
-  templateUrl: './wvr-editor.component.html',
-  styleUrls: ['./wvr-editor.component.scss'],
+  selector: 'wvr-wysiwyg-component',
+  templateUrl: './wvr-wysiwyg.component.html',
+  styleUrls: ['./wvr-wysiwyg.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class WvrEditorComponent extends WvrBaseComponent {
+export class WvrWysiwygComponent extends WvrBaseComponent {
 
   @Input() initialValue: string;
 
@@ -28,7 +28,7 @@ export class WvrEditorComponent extends WvrBaseComponent {
   @Input() set toolbar(toolbar: string) { this.config.toolbar = toolbar; }
   get toolbar(): string { return this.config.toolbar; }
 
-  @Input() set menu(editorMenu: any) { this.config.menu = JSON5.parse(editorMenu) as WvrEditorMenu; }
+  @Input() set menu(editorMenu: any) { this.config.menu = JSON5.parse(editorMenu) as WvrWysiwygMenu; }
   get menu(): any { return this.config.menu; }
 
   config = {
@@ -47,7 +47,7 @@ export class WvrEditorComponent extends WvrBaseComponent {
     // save_onsavecallback: this.onSave
   };
 
-  htmlId = `wvr-editor-${this.id}`;
+  htmlId = `wvr-wysiwyg-${this.id}`;
 
   constructor(injector: Injector) {
     super(injector);

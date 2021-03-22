@@ -6,25 +6,25 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { APP_CONFIG, testAppConfig } from '../shared/config';
 
-import { WvrEditorComponent } from './wvr-editor.component';
+import { WvrWysiwygComponent } from './wvr-wysiwyg.component';
 
 @Component({
-  selector: 'wvr-editor-test-component',
+  selector: 'wvr-wysiwyg-test-component',
   // tslint:disable-next-line:component-max-inline-declarations
-  template: `<wvr-editor-component skin="oxide-dark" initial-value="Hello, World!"></wvr-editor-component>`
+  template: `<wvr-wysiwyg-component skin="oxide-dark" initial-value="Hello, World!"></wvr-wysiwyg-component>`
 })
-class WvrEditorHostComponent {
-  @ViewChild(WvrEditorComponent) alert: WvrEditorComponent;
+class WvrWysiwygHostComponent {
+  @ViewChild(WvrWysiwygComponent) alert: WvrWysiwygComponent;
 }
 
-describe('WvrEditorComponent', () => {
+describe('WvrWysiwygComponent', () => {
   const initialState = {};
 
-  let component: WvrEditorComponent;
-  let fixture: ComponentFixture<WvrEditorComponent>;
+  let component: WvrWysiwygComponent;
+  let fixture: ComponentFixture<WvrWysiwygComponent>;
 
-  let hostComponent: WvrEditorHostComponent;
-  let hostFixture: ComponentFixture<WvrEditorHostComponent>;
+  let hostComponent: WvrWysiwygHostComponent;
+  let hostFixture: ComponentFixture<WvrWysiwygHostComponent>;
 
   let store: MockStore;
     // tslint:disable-next-line: deprecation
@@ -41,8 +41,8 @@ describe('WvrEditorComponent', () => {
           provideMockStore({initialState})
         ],
         declarations: [
-          WvrEditorHostComponent,
-          WvrEditorComponent
+          WvrWysiwygHostComponent,
+          WvrWysiwygComponent
         ],
         schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
       })
@@ -50,10 +50,10 @@ describe('WvrEditorComponent', () => {
     }));
 
     beforeEach(() => {
-      fixture = TestBed.createComponent(WvrEditorComponent);
+      fixture = TestBed.createComponent(WvrWysiwygComponent);
       component = fixture.componentInstance;
 
-      hostFixture = TestBed.createComponent(WvrEditorHostComponent);
+      hostFixture = TestBed.createComponent(WvrWysiwygHostComponent);
       hostComponent = hostFixture.componentInstance;
 
       hostFixture.detectChanges();
