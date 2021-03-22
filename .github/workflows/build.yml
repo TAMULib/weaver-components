@@ -54,7 +54,7 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
           github_token: ${{ secrets.github_token }}
-          branch: gh-pages  
+          branch: gh-pages
           folder: static/weaver-components
           clean: true
           single_commit: true

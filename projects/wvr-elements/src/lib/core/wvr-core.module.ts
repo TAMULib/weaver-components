@@ -24,6 +24,7 @@ import { WvrTabComponent } from '../wvr-tabs/wvr-tab/wvr-tab.component';
 import { WvrTabsComponent } from '../wvr-tabs/wvr-tabs.component';
 import { WvrTextComponent } from '../wvr-text/wvr-text.component';
 import { WvrThemeComponent } from '../wvr-theme/wvr-theme.component';
+import { WvrWysiwygComponent } from '../wvr-wysiwyg/wvr-wysiwyg.component';
 import { AnimationService } from './animation.service';
 import { ManifestEffects } from './manifest/manifest.effects';
 import { MobileService } from './mobile.service';
@@ -53,7 +54,8 @@ export const WVR_ELEMENTS = [
   { component: WvrTextComponent, selector: 'wvre-text' },
   { component: WvrTabsComponent, selector: 'wvre-tabs' },
   { component: WvrTabComponent, selector: 'wvre-tab' },
-  { component: WvrThemeComponent, selector: 'wvre-theme' }
+  { component: WvrThemeComponent, selector: 'wvre-theme' },
+  { component: WvrWysiwygComponent, selector: 'wvre-wysiwyg' }
 ];
 
 export const registerCustomElements = (injector: Injector, elements: Array<{ component: any, selector: string }>) => {
