@@ -1,12 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { NgbDropdownModule, NgbModal, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
 import { InlineSVGModule } from 'ng-inline-svg';
 import { WvrAlertComponent } from '../wvr-alert/wvr-alert.component';
 import { WvrButtonComponent } from '../wvr-button/wvr-button.component';
 import { WvrCardComponent } from '../wvr-card/wvr-card.component';
 import { WvrColorPreviewComponent } from '../wvr-color-preview/wvr-color-preview.component';
 import { WvrDropdownComponent } from '../wvr-dropdown/wvr-dropdown.component';
+import { WvrWysiwygComponent } from '../wvr-wysiwyg/wvr-wysiwyg.component';
 import { WvrFooterComponent } from '../wvr-footer/wvr-footer.component';
 import { WvrHeaderComponent } from '../wvr-header/wvr-header.component';
 import { WvrIconComponent } from '../wvr-icon/wvr-icon.component';
@@ -21,6 +23,7 @@ import { WvrTabComponent } from '../wvr-tabs/wvr-tab/wvr-tab.component';
 import { WvrTabsComponent } from '../wvr-tabs/wvr-tabs.component';
 import { WvrTextComponent } from '../wvr-text/wvr-text.component';
 import { WvrThemeComponent } from '../wvr-theme/wvr-theme.component';
+import { AppConfig, APP_CONFIG } from './config';
 import { DefaultPipe } from './pipes/default.pipe';
 import { SafePipe } from './pipes/safe.pipe';
 import { WvrModalComponent } from '../wvr-modal/wvr-modal.component';
@@ -46,7 +49,8 @@ export const WVR_COMPONENTS = [
   WvrManifestEntryComponent,
   WvrTabsComponent,
   WvrTabComponent,
-  WvrThemeComponent
+  WvrThemeComponent,
+  WvrWysiwygComponent
 ];
 
 export const WVR_PIPES = [
@@ -54,12 +58,15 @@ export const WVR_PIPES = [
   DefaultPipe
 ];
 
+const getTinyMCEScript = (appConfig: AppConfig): string => `${appConfig.assetsUrl}/tinymce/tinymce.min.js`;
+
 @NgModule({
   imports: [
     CommonModule,
     InlineSVGModule,
     NgbDropdownModule,
-    NgbModalModule
+    NgbModalModule,
+    EditorModule
   ],
   exports: [
     CommonModule,
@@ -72,9 +79,17 @@ export const WVR_PIPES = [
     ...WVR_PIPES,
     WvrModalComponent
   ],
-  providers: [],
+  providers: [
+    {
+      provide: TINYMCE_SCRIPT_SRC,
+      useFactory: getTinyMCEScript,
+      deps: [ APP_CONFIG ]
+    }
+  ],
   entryComponents: [],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+  ]
 })
 export class WvrSharedModule {
 

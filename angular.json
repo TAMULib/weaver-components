@@ -28,7 +28,12 @@
               "src/favicon.ico",
               "src/assets",
               "src/config.json",
-              "src/weaver-components.js"
+              "src/weaver-components.js",
+              {
+                "glob": "**/*",
+                "input": "node_modules/tinymce",
+                "output": "/assets/tinymce/"
+              }
             ],
             "styles": [
               "src/styles.scss"
