@@ -32,7 +32,9 @@ export class AppModule {
     registerCustomElements(this.injector, WVR_ELEMENTS);
     showHiddentContent(this.injector);
     wvrTimeout(() => {
-      document.querySelector('body').style.display = 'block';
+      const bodyElm = document.querySelector('body');
+      bodyElm.style.display = 'block';
+      bodyElm.classList.remove('wvr-hidden');
     });
   }
 
