@@ -107,21 +107,84 @@ export class WvrButtonComponent extends WvrBaseComponent {
   /** Allows for the override of button vertical align property */
   @HostBinding('style.--wvr-btn-vertical-align') @Input() verticalAlign;
 
-  @Input() actionType: string;
+  private _action: any;
+  @Input() set dispatchAction(value: string) {
+    const parts = value.split('.');
+    let valid = true;
 
-  @Input() actionName: string;
+    valid = parts.length === 2;
+    if (!valid) {
+      console.warn(`'${value}' is not a valid value for 'dispatch-action'. Must in form '[ActionType].[ActionName]'`);
 
-  @Input() actionProps: string;
+      return;
+    }
+
+    valid = !!actions[parts[0]];
+    if (!valid) {
+      console.warn(`'${parts[0]}' is not a known action type. (${Object.keys(actions)
+        .join(',')})`);
+
+      return;
+    }
+
+    valid = !!actions[parts[0]][parts[1]];
+    if (!valid) {
+      console.warn(`'${parts[1]}' is not a known action of ${parts[0]}. (${Object.keys(actions[parts[0]])
+        .join(',')})`);
+
+      return;
+    }
+
+    this._action = actions[parts[0]][parts[1]];
+
+  }
+
+  get dispatchAction(): string {
+    return this._action;
+  }
+
+  private _actionProps: any;
+  @Input() set dispatchActionProps(value: string) {
+    this._actionProps = JSON5.parse(value);
+  }
+
+  get dispatchActionProps(): string {
+    return JSON5.stringify(this._actionProps);
+  }
+
+  private _dispatchActions: Array<Action>;
+  @Input() set dispatchActions(value: string) {
+    JSON5.parse(value);
+    this._dispatchActions = ;
+  }
+
+  get dispatchActions(): string {
+    return JSON5.stringify(this._dispatchActions);
+  }
 
   @Input() emitEvent: string;
 
   @Input() btnTxt: string;
 
+  @Input() testInput: boolean;
+
+  variantTypes = ['button'];
+
+  constructor(injector: Injector) {
+    super(injector);
+  }
+
   @HostListener('click', ['$event']) click($event: MouseEvent): void {
-    if (this.actionType && this.actionName) {
-      this.store.dispatch(actions[this.actionType][this.actionName](
-        JSON5.parse(this.actionProps)
-      ));
+    if (this._dispatchActions) {
+      this._dispatchActions.forEach(action => {
+
+      });
+    } else if (this._action) {
+      this._actionProps ?
+      this.store.dispatch(this._action(
+        this._actionProps
+      )) :
+      this.store.dispatch(this._action());
     }
 
     if (this.emitEvent) {
@@ -130,13 +193,17 @@ export class WvrButtonComponent extends WvrBaseComponent {
         detail: this
       }));
     }
-
   }
 
-  variantTypes = ['button'];
+}
 
-  constructor(injector: Injector) {
-    super(injector);
-  }
+interface ActionInput {
+  typeAndName: string;
+  props: Object;
+}
 
+interface Action {
+  type: string;
+  name: string;
+  props: Object;
 }

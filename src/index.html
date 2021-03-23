@@ -186,10 +186,38 @@
         <wvre-text value="Modal Message in the Body"></wvre-text>
       </wvre-modal-body>
       <wvre-modal-footer>
-        <wvre-button btn-txt="cancel" theme-variant="secondary" action-type="Modal" action-name="closeModal" action-props="{id: 'Test Modal'}">
+        <wvre-button btn-txt="cancel" theme-variant="secondary" dispatch-action="Modal.closeModal" dispatch-action-props="{id: 'Test Modal'}">
         </wvre-button>
       </wvre-modal-footer>
     </wvre-modal>
+
+    <wvre-button id="myButton" btn-txt="Event" theme-variant="primary" emit-event="myCusomEvent" test-input="'true'"></wvre-button>
+
+    <wvre-button btn-txt="cancel" theme-variant="secondary" dispatch-action="Modal.openModal" dispatch-action-props="{id: 'Test Modal'}"></wvre-button>
+
+    <script>
+
+      myObj = {
+        value: false
+      }
+
+      window.addEventListener('myCusomEvent', e => {
+
+        if(e.type === 'myCusomEvent') {
+          console.log('my button was clicked', e.detail);
+          const originalText = e.detail.btnTxt;
+          e.detail.btnTxt="working...";
+          e.detail.themeVariant = "secondary";
+          setTimeout(() => {
+            e.detail.btnTxt="failed!";
+            e.detail.themeVariant = "danger";
+          }, 2000);
+        }
+
+      });
+
+    </script>
+
   </div>
   <div class="container index-container">
     <wvre-text value="Alert Component" text-decoration="underline"></wvre-text><br /><br />

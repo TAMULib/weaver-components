@@ -8,22 +8,17 @@ import { selectModalState } from '../core/store';
 import { ThemeVariantName } from '../shared/theme';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
-
 @Component({
   selector: 'wvr-modal-content-component',
   template: '<div #anchorElement></div>'
 })
-export class WvrModalContentComponent implements AfterViewInit {
+export class WvrModalContentComponent {
   @Input() modalTemplate;
   @ViewChild('anchorElement', {read: ViewContainerRef}) anchor: ViewContainerRef;
 
   constructor(public activeModal: NgbActiveModal) {}
 
-  ngAfterViewInit(): void {
-    
-  }
-
-  renderContent() {
+  renderContent(): void {
     this.anchor.createEmbeddedView(this.modalTemplate);
   }
 }
