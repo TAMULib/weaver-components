@@ -1,10 +1,8 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, HostBinding, HostListener, Injector, Input, Output } from '@angular/core';
-import { ThemeVariantName } from '../shared/theme';
-import { WvrBaseComponent } from '../shared/wvr-base.component';
+import { ChangeDetectionStrategy, Component, HostBinding, HostListener, Injector, Input } from '@angular/core';
 import * as JSON5 from 'json5';
 import { actions } from '../core/actions';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { createThis } from 'typescript';
+import { ThemeVariantName } from '../shared/theme';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 @Component({
   selector: 'wvr-button-component',

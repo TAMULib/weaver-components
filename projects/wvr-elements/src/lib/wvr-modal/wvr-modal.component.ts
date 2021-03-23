@@ -9,21 +9,6 @@ import { ThemeVariantName } from '../shared/theme';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 @Component({
-  selector: 'wvr-modal-content-component',
-  template: '<div #anchorElement></div>'
-})
-export class WvrModalContentComponent {
-  @Input() modalTemplate;
-  @ViewChild('anchorElement', {read: ViewContainerRef}) anchor: ViewContainerRef;
-
-  constructor(public activeModal: NgbActiveModal) {}
-
-  renderContent(): void {
-    this.anchor.createEmbeddedView(this.modalTemplate);
-  }
-}
-
-@Component({
   selector: 'wvr-modal-component',
   templateUrl: './wvr-modal.component.html',
   styleUrls: ['./wvr-modal.component.scss']
@@ -43,8 +28,6 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit {
   @Input() themeVariant: ThemeVariantName;
   @Input() modalHeaderThemeVariant: ThemeVariantName;
   @Input() modalFooterThemeVariant: ThemeVariantName;
-
-  modalShown: Observable<boolean>;
 
   constructor(injector: Injector, private modalService: NgbModal) {
     super(injector);
