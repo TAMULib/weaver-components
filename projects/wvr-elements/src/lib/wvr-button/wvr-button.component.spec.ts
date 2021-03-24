@@ -5,6 +5,10 @@ import { provideMockStore } from '@ngrx/store/testing';
 import { APP_CONFIG, testAppConfig } from '../shared/config';
 import { WvrButtonComponent } from './wvr-button.component';
 import { actions } from '../core/actions';
+import { doesNotMatch } from 'assert';
+import { select } from '@ngrx/store';
+import { filter } from 'rxjs/operators';
+import { selectThemeState } from '../core/store';
 
 @Component({
   selector: 'wvr-button-host-component',
@@ -221,6 +225,40 @@ describe('WvrButtonComponent', () => {
     // tslint:disable-next-line:no-string-literal
     expect(component.dispatchActions)
       .toBeUndefined();
+  });
+
+  it('should emit event on click', () => {
+
+    const EVENT_NAME = 'MyEvent';
+    component.emitEvent = EVENT_NAME;
+
+    (component.eRef.nativeElement as HTMLElement).addEventListener(EVENT_NAME, e => {
+      expect(e.type)
+      .toEqual(EVENT_NAME);
+    });
+
+    component.eRef.nativeElement.click();
+
+  });
+
+  it('should dispatch an action on click', () => {
+
+    component.dispatchAction = 'Theme.select';
+    const actionsInput = `[
+      {action: 'Theme.select', props: {name: 'dark'}}
+    ]`;
+
+    component.store.pipe(
+      select(selectThemeState),
+      filter(themeState => !!themeState)
+    )
+    .subscribe(themeState => {
+      expect(themeState)
+        .toBeDefined();
+    });
+
+    component.eRef.nativeElement.click();
+
   });
 
 });
