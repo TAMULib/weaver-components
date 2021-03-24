@@ -193,12 +193,34 @@ describe('WvrButtonComponent', () => {
       .toBeUndefined();
   });
 
+  it('should return undefined for distpatch-action', () => {
+    component.dispatchAction = 'Theme.select';
+    expect(component.dispatchAction)
+      .toBeUndefined();
+  });
+
   it('should set distpatch-action-props', () => {
-    const dispatchActionPropsValue = '{name: "dark"}';
-    component.dispatchActionProps = dispatchActionPropsValue;
+    component.dispatchActionProps = '{name: "dark"}';
     // tslint:disable-next-line:no-string-literal
     expect(component['_actionProps'])
       .toBeDefined();
+  });
+
+  it('should return undefined for distpatch-action-props', () => {
+    component.dispatchActionProps = '{name: "dark"}';
+    // tslint:disable-next-line:no-string-literal
+    expect(component.dispatchActionProps)
+      .toBeUndefined();
+  });
+
+  it('should set distpatch-actions', () => {
+    const actionsInput = `[
+      {action: 'Theme.select', props: {name: 'dark'}}
+    ]`;
+    component.dispatchActions = actionsInput;
+    // tslint:disable-next-line:no-string-literal
+    expect(component.dispatchActions)
+      .toBeUndefined();
   });
 
 });

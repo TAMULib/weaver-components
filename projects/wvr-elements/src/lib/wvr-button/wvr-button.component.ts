@@ -111,17 +111,9 @@ export class WvrButtonComponent extends WvrBaseComponent {
     this._action = this.parseActionNameAndType(value);
   }
 
-  get dispatchAction(): string {
-    return this._action;
-  }
-
   private _actionProps: any;
   @Input() set dispatchActionProps(value: string) {
     this._actionProps = JSON5.parse(value);
-  }
-
-  get dispatchActionProps(): string {
-    return JSON5.stringify(this._actionProps);
   }
 
   private _dispatchActions: Array<ActionAndProps>;
@@ -132,10 +124,6 @@ export class WvrButtonComponent extends WvrBaseComponent {
         action: this.parseActionNameAndType(ai.action),
         props: ai.props
       }));
-  }
-
-  get dispatchActions(): string {
-    return JSON5.stringify(this._dispatchActions);
   }
 
   @Input() emitEvent: string;
