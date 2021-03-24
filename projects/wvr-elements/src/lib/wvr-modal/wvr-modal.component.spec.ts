@@ -37,4 +37,5 @@ describe('WvrModalComponent', () => {
     expect(component)
     .toBeTruthy();
   });
+
 });

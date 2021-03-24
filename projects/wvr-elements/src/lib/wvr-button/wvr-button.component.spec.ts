@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideMockStore } from '@ngrx/store/testing';
 import { APP_CONFIG, testAppConfig } from '../shared/config';
 import { WvrButtonComponent } from './wvr-button.component';
+import { actions } from '../core/actions';
 
 @Component({
   selector: 'wvr-button-host-component',
@@ -159,6 +160,45 @@ describe('WvrButtonComponent', () => {
     component.applyThemeOverride('--primary-button-hover-color', 'yellow');
     expect(component.themeOverrides[elem.style[0]])
     .toEqual(elem.style.getPropertyValue('--primary-button-hover-color'));
+  });
+
+  it('should set distpatch-action', () => {
+    component.dispatchAction = 'Theme.select';
+    // tslint:disable-next-line:no-string-literal
+    expect(component['_action'])
+      .toEqual(actions.Theme.select);
+  });
+
+  it('should set distpatch-action only when in proper form', () => {
+    const dispatchActionValue = 'Themeselect';
+    component.dispatchAction = dispatchActionValue;
+    // tslint:disable-next-line:no-string-literal
+    expect(component['_action'])
+      .toBeUndefined();
+  });
+
+  it('should set distpatch-action only when action exists', () => {
+    const dispatchActionValue = 'Foo.select';
+    component.dispatchAction = dispatchActionValue;
+    // tslint:disable-next-line:no-string-literal
+    expect(component['_action'])
+      .toBeUndefined();
+  });
+
+  it('should set distpatch-action only when name exists', () => {
+    const dispatchActionValue = 'Theme.foo';
+    component.dispatchAction = dispatchActionValue;
+    // tslint:disable-next-line:no-string-literal
+    expect(component['_action'])
+      .toBeUndefined();
+  });
+
+  it('should set distpatch-action-props', () => {
+    const dispatchActionPropsValue = '{name: "dark"}';
+    component.dispatchActionProps = dispatchActionPropsValue;
+    // tslint:disable-next-line:no-string-literal
+    expect(component['_actionProps'])
+      .toBeDefined();
   });
 
 });
