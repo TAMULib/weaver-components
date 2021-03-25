@@ -8,17 +8,21 @@ import { ManifestEntry } from './manifest/manifest-entry';
 import * as fromManifest from './manifest/manifest.reducers';
 import * as fromRest from './rest/rest.reducers';
 import * as fromTheme from './theme/theme.reducers';
+import { saveWysiwyg } from './wysiwyg/wysiwyg.actions';
+import * as fromWysiwyg from './wysiwyg/wysiwyg.reducers';
 
 export interface RootState {
   manifests: fromManifest.State;
   rest: fromRest.State;
   theme: fromTheme.State;
+  wysiwyg: fromWysiwyg.State;
 }
 
 export const reducers: ActionReducerMap<RootState> = {
   manifests: fromManifest.reducer,
   rest: fromRest.reducer,
-  theme: fromTheme.reducer
+  theme: fromTheme.reducer,
+  wysiwyg: fromWysiwyg.reducer
 };
 
 export const ROOT_REDUCER = new InjectionToken<ActionReducerMap<RootState>>('Root Reducer', {
@@ -104,4 +108,12 @@ export const selectTheme = (name: string) => createSelector(
 export const selectCurrentTheme = createSelector(
   selectThemeState,
   (themeState: fromTheme.State) => themeState.themes[themeState.currentTheme]
+);
+
+// wysiwyg selectors
+export const wysiwygState = createFeatureSelector<RootState, fromWysiwyg.State>('wysiwyg');
+
+export const selectWysiwygById = (id: string) => createSelector(
+  wysiwygState,
+  wysiwygs => wysiwygs[id]
 );

@@ -1,8 +1,13 @@
 import { ChangeDetectionStrategy, Component, Injector, Input } from '@angular/core';
 import * as JSON5 from 'json5';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
-import { WvrWysiwygMenu } from './wvr-wysiwyg-menu';
+import { Wysiwyg } from '../core/wysiwyg/wysiwyg';
 import * as wvrEditor from './wvr-wysiwyg.json';
+import { WvrWysiwygMenu } from './wvr-wysiwyg-menu';
+import * as WysiwygActions from '../core/wysiwyg/wysiwyg.actions';
+import { Store } from '@ngrx/store';
+import { RootState } from '../core/store';
+
 
 @Component({
   selector: 'wvr-wysiwyg-component',
@@ -10,7 +15,7 @@ import * as wvrEditor from './wvr-wysiwyg.json';
   styleUrls: ['./wvr-wysiwyg.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class WvrWysiwygComponent extends WvrBaseComponent {
+export class WvrWysiwygComponent extends WvrBaseComponent { // implements OnInit
 
   @Input() initialValue: string;
 
@@ -41,34 +46,45 @@ export class WvrWysiwygComponent extends WvrBaseComponent {
       'help wordcount print preview save'
     ],
     toolbar: 'undo redo | formatselect | bold italic forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table pagebreak | charmap codesample image | removeformat | help | cancel save',
-    menu: (wvrEditor as any).default
+    menu: (wvrEditor as any).default,
     /* TODO: Issue #316. */
-    // save_oncancelcallback: this.onCancel,
-    // save_onsavecallback: this.onSave
+    save_oncancelcallback: this.onCancel,
+    save_onsavecallback: this.onSave
   };
 
   htmlId = `wvr-wysiwyg-${this.id}`;
 
-  constructor(injector: Injector) {
+  private editorElement: HTMLElement;
+
+  constructor(injector: Injector, store: Store<RootState> ) {
     super(injector);
 
     this.config.base_url = `${this.appConfig.assetsUrl}/tinymce`;
   }
 
+  // ngOnInit(): void {
+  //   super.ngOnInit();
+  //   console.log('HERE');
+  // }
+
   /* TODO: Issue #316. */
   onChange($event): void {
-    console.log($event);
-    console.log(this.initialValue);
+    const iFrameElem = (this.eRef.nativeElement as HTMLElement).querySelector('iframe');
+    // console.log(iFrameElem.contentDocument.body.innerHTML);
   }
 
-  // onCancel($event): void {
-  //   console.log('cancel', $event);
-  //   console.log(this.initialValue);
-  // }
+  onCancel($event): void {
+    console.log('cancel', $event);
+    // console.log(this.initialValue);
+  }
 
-  // onSave($event): void {
-  //   console.log('save', $event);
-  //   console.log(this.initialValue);
-  // }
+  onSave($event): void {
+    console.log('save', $event);
+    const editorContent = $event.contentDocument.body.innerHTML;
+    // this.store.dispatch(WysiwygActions.saveWysiwyg({
+    //   // data: editorContent
+    // }
+    // ));
+  }
 
 }
