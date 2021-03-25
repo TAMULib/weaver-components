@@ -3,5 +3,3 @@ export interface Wysiwyg {
   initialContent: string;
   content: string;
 }
-
-
