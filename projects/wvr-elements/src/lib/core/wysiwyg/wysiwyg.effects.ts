@@ -1,15 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Actions } from '@ngrx/effects';
-import { WysiwygService } from './wysiwyg.service';
+import { Store } from '@ngrx/store';
+import { RootState } from '../store';
 
 @Injectable()
-export class ModalEffects {
+export class WysiwygEffects {
 
-  constructor(
-    private readonly actions: Actions,
-    private readonly wysiwygService: WysiwygService
-  ) {
+  constructor(private readonly actions: Actions, private readonly store: Store<RootState>) {
 
- }
+  }
 
 }

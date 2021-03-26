@@ -111,9 +111,9 @@ export const selectCurrentTheme = createSelector(
 );
 
 // wysiwyg selectors
-export const wysiwygState = createFeatureSelector<RootState, fromWysiwyg.State>('wysiwyg');
+export const selectWysiwygState = createFeatureSelector<RootState, fromWysiwyg.State>('wysiwyg');
 
 export const selectWysiwygById = (id: string) => createSelector(
-  wysiwygState,
+  selectWysiwygState,
   wysiwygs => wysiwygs[id]
 );

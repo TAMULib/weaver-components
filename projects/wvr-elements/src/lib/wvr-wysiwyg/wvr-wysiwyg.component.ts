@@ -1,12 +1,15 @@
-import { ChangeDetectionStrategy, Component, Injector, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Injector, Input, OnInit } from '@angular/core';
 import * as JSON5 from 'json5';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 import { Wysiwyg } from '../core/wysiwyg/wysiwyg';
 import * as wvrEditor from './wvr-wysiwyg.json';
 import { WvrWysiwygMenu } from './wvr-wysiwyg-menu';
 import * as WysiwygActions from '../core/wysiwyg/wysiwyg.actions';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { RootState } from '../core/store';
+import { filter } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { selectWysiwygState } from '../core/store';
 
 
 @Component({
@@ -15,7 +18,7 @@ import { RootState } from '../core/store';
   styleUrls: ['./wvr-wysiwyg.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class WvrWysiwygComponent extends WvrBaseComponent { // implements OnInit
+export class WvrWysiwygComponent extends WvrBaseComponent implements OnInit {
 
   @Input() initialValue: string;
 
@@ -56,16 +59,22 @@ export class WvrWysiwygComponent extends WvrBaseComponent { // implements OnInit
 
   private editorElement: HTMLElement;
 
-  constructor(injector: Injector, store: Store<RootState> ) {
+  constructor(injector: Injector, readonly store: Store<RootState>) {
     super(injector);
-
     this.config.base_url = `${this.appConfig.assetsUrl}/tinymce`;
   }
 
-  // ngOnInit(): void {
-  //   super.ngOnInit();
-  //   console.log('HERE');
-  // }
+  ngOnInit(): void {
+    super.ngOnInit();
+    this.store.dispatch(WysiwygActions.addWysiwyg({ wysiwyg: {
+      id: this.htmlId,
+      initialContent: 'Test Editor',
+      content: this.initialValue
+    }}));
+    this.store.pipe(
+      select(selectWysiwygState)
+    )
+  }
 
   /* TODO: Issue #316. */
   onChange($event): void {
@@ -81,10 +90,11 @@ export class WvrWysiwygComponent extends WvrBaseComponent { // implements OnInit
   onSave($event): void {
     console.log('save', $event);
     const editorContent = $event.contentDocument.body.innerHTML;
-    // this.store.dispatch(WysiwygActions.saveWysiwyg({
-    //   // data: editorContent
-    // }
-    // ));
+    this.store.dispatch(WysiwygActions.saveWysiwyg({
+      id: this.htmlId,
+      content: editorContent
+    }
+    ));
   }
 
 }
