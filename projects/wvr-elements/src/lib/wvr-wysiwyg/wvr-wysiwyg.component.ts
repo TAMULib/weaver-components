@@ -1,13 +1,12 @@
 import { Component, Injector, Input, OnInit } from '@angular/core';
+import { select } from '@ngrx/store';
 import * as JSON5 from 'json5';
-import { WvrBaseComponent } from '../shared/wvr-base.component';
-import * as wvrEditor from './wvr-wysiwyg.json';
-import { WvrWysiwygMenu } from './wvr-wysiwyg-menu';
-import * as WysiwygActions from '../core/wysiwyg/wysiwyg.actions';
-import { select } from '@ngrx/core';
-import { selectWysiwygById } from '../core/wysiwyg/wysiwyg.reducers';
-import { selectWysiwygState } from '../core/store';
 import { filter } from 'rxjs/operators';
+import { selectWysiwygState } from '../core/store';
+import * as WysiwygActions from '../core/wysiwyg/wysiwyg.actions';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
+import { WvrWysiwygMenu } from './wvr-wysiwyg-menu';
+import * as wvrEditor from './wvr-wysiwyg.json';
 
 @Component({
   selector: 'wvr-wysiwyg-component',
@@ -68,9 +67,10 @@ export class WvrWysiwygComponent extends WvrBaseComponent implements OnInit {
     this.store.pipe(
       select(selectWysiwygState),
       filter(wysiwygState => !!wysiwygState)
-    ).subscribe(wysiwygState => {
-      // const wysiwygContent = wysiwygState.entities[`${this.id}`]
-    })
+    )
+    .subscribe(wysiwygState => {
+      const wysiwygContent = wysiwygState.entities[`${this.id}`];
+    });
   }
 
   onCancel($event): void {
