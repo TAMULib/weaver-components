@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
 import { InlineSVGModule } from 'ng-inline-svg';
@@ -8,7 +9,6 @@ import { WvrButtonComponent } from '../wvr-button/wvr-button.component';
 import { WvrCardComponent } from '../wvr-card/wvr-card.component';
 import { WvrColorPreviewComponent } from '../wvr-color-preview/wvr-color-preview.component';
 import { WvrDropdownComponent } from '../wvr-dropdown/wvr-dropdown.component';
-import { WvrWysiwygComponent } from '../wvr-wysiwyg/wvr-wysiwyg.component';
 import { WvrFooterComponent } from '../wvr-footer/wvr-footer.component';
 import { WvrHeaderComponent } from '../wvr-header/wvr-header.component';
 import { WvrIconComponent } from '../wvr-icon/wvr-icon.component';
@@ -23,6 +23,7 @@ import { WvrTabComponent } from '../wvr-tabs/wvr-tab/wvr-tab.component';
 import { WvrTabsComponent } from '../wvr-tabs/wvr-tabs.component';
 import { WvrTextComponent } from '../wvr-text/wvr-text.component';
 import { WvrThemeComponent } from '../wvr-theme/wvr-theme.component';
+import { WvrWysiwygComponent } from '../wvr-wysiwyg/wvr-wysiwyg.component';
 import { AppConfig, APP_CONFIG } from './config';
 import { DefaultPipe } from './pipes/default.pipe';
 import { SafePipe } from './pipes/safe.pipe';
@@ -65,7 +66,9 @@ const getTinyMCEScript = (appConfig: AppConfig): string => {
     CommonModule,
     InlineSVGModule,
     NgbDropdownModule,
-    EditorModule
+    EditorModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     CommonModule,
