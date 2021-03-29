@@ -113,10 +113,6 @@ export const selectCurrentTheme = createSelector(
 export const selectWysiwygState = createFeatureSelector<RootState, fromWysiwyg.State>('wysiwyg');
 
 export const selectWysiwygById = (id: string) => {
-  console.log('id = ', id, typeof id);
-  return createSelector(
-  selectWysiwygState,
-  (wysiwygState: fromWysiwyg.State) => wysiwygState[id]
-)
+  return createSelector(selectWysiwygState, (wysiwygState: fromWysiwyg.State) => wysiwygState.entities[id])
 };
 
