@@ -1,8 +1,9 @@
-import { Component, Injector, Input, OnInit } from '@angular/core';
+import { Component, Injector, Input, OnInit, ViewChild } from '@angular/core';
 import { select } from '@ngrx/store';
 import * as JSON5 from 'json5';
 import { filter } from 'rxjs/operators';
-import { selectWysiwygState } from '../core/store';
+import { Editor } from 'tinymce';
+import { selectWysiwygById } from '../core/store';
 import * as WysiwygActions from '../core/wysiwyg/wysiwyg.actions';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 import { WvrWysiwygMenu } from './wvr-wysiwyg-menu';
@@ -14,6 +15,8 @@ import * as wvrEditor from './wvr-wysiwyg.json';
   styleUrls: ['./wvr-wysiwyg.component.scss']
 })
 export class WvrWysiwygComponent extends WvrBaseComponent implements OnInit {
+
+  @ViewChild('editor') editor: Editor;
 
   @Input() initialValue: string;
 
@@ -65,25 +68,29 @@ export class WvrWysiwygComponent extends WvrBaseComponent implements OnInit {
       content: this.initialValue
     }}));
     this.store.pipe(
-      select(selectWysiwygState),
-      filter(wysiwygState => !!wysiwygState)
+      select(selectWysiwygById(`${this.id}`)) //,
+      // filter(wysiwygState => !!wysiwygState)
     )
     .subscribe(wysiwygState => {
-      const wysiwygContent = wysiwygState.entities[`${this.id}`];
+      // const wysiwygContent = wysiwygState.entities[`${this.id}`].content;
+      console.log('wysiwygState', wysiwygState);
+      // this.editor.setContent(wysiwygContent);
     });
   }
 
   onCancel($event): void {
+    console.log('cancel', $event);
     this.store.dispatch(WysiwygActions.resetWysiwyg({
-      id: this.htmlId
+      id: `${this.id}`
     }));
   }
 
   onSave($event): void {
+    // console.log('save', $event);
     const editorContent = $event.contentDocument.body.innerText;
     this.store.dispatch(WysiwygActions.saveWysiwyg({
       content: editorContent,
-      id: this.htmlId
+      id: `${this.id}`
     }));
   }
 

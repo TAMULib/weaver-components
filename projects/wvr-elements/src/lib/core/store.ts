@@ -8,7 +8,6 @@ import { ManifestEntry } from './manifest/manifest-entry';
 import * as fromManifest from './manifest/manifest.reducers';
 import * as fromRest from './rest/rest.reducers';
 import * as fromTheme from './theme/theme.reducers';
-import { saveWysiwyg } from './wysiwyg/wysiwyg.actions';
 import * as fromWysiwyg from './wysiwyg/wysiwyg.reducers';
 
 export interface RootState {
@@ -113,7 +112,11 @@ export const selectCurrentTheme = createSelector(
 // wysiwyg selectors
 export const selectWysiwygState = createFeatureSelector<RootState, fromWysiwyg.State>('wysiwyg');
 
-export const selectWysiwygById = (id: string) => createSelector(
+export const selectWysiwygById = (id: string) => {
+  console.log('id = ', id, typeof id);
+  return createSelector(
   selectWysiwygState,
-  wysiwygs => wysiwygs[id]
-);
+  (wysiwygState: fromWysiwyg.State) => wysiwygState[id]
+)
+};
+
