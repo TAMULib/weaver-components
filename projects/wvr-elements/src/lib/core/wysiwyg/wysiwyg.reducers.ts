@@ -4,7 +4,7 @@ import { createReducer, on } from '@ngrx/store';
 import { Wysiwyg } from './wysiwyg';
 import * as WysiwygActions from './wysiwyg.actions';
 
-export interface State extends EntityState<Wysiwyg> {}
+export interface State extends EntityState<Wysiwyg> { }
 
 export function selectWysiwygById(wysiwyg: Wysiwyg): string {
   return wysiwyg.id;
@@ -26,12 +26,12 @@ export const reducer = createReducer(
       content
     }
   },
-  {...state})),
-  on(WysiwygActions.resetWysiwyg, (state, {id}) =>  adapter.updateOne({
+    { ...state })),
+  on(WysiwygActions.resetWysiwyg, (state, { id }) => adapter.updateOne({
     id,
     changes: {
       content: state.entities[id].initialContent
     }
   },
-  {...state}))
+    { ...state }))
 );
