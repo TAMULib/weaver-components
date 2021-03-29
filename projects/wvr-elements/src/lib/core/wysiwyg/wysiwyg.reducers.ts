@@ -22,6 +22,7 @@ export const reducer = createReducer(
   on(WysiwygActions.saveWysiwyg, (state, { id, content }) => adapter.updateOne({
     id,
     changes: {
+      initialContent: content,
       content
     }
   },
