@@ -1,9 +1,12 @@
-import { Component, Injector, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Injector, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { select } from '@ngrx/store';
+import { EditorComponent } from '@tinymce/tinymce-angular';
 import * as JSON5 from 'json5';
+import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
-import { Editor } from 'tinymce';
+import tinymce from 'tinymce';
 import { selectWysiwygById } from '../core/store';
+import { Wysiwyg } from '../core/wysiwyg/wysiwyg';
 import * as WysiwygActions from '../core/wysiwyg/wysiwyg.actions';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 import { WvrWysiwygMenu } from './wvr-wysiwyg-menu';
@@ -14,9 +17,11 @@ import * as wvrEditor from './wvr-wysiwyg.json';
   templateUrl: './wvr-wysiwyg.component.html',
   styleUrls: ['./wvr-wysiwyg.component.scss']
 })
-export class WvrWysiwygComponent extends WvrBaseComponent implements OnInit {
+export class WvrWysiwygComponent extends WvrBaseComponent implements OnInit, OnDestroy {
 
-  @ViewChild('editor') editor: Editor;
+  content: string;
+
+  @ViewChild(EditorComponent) editor;
 
   @Input() initialValue: string;
 
@@ -37,6 +42,8 @@ export class WvrWysiwygComponent extends WvrBaseComponent implements OnInit {
   @Input() set menu(editorMenu: any) { this.config.menu = JSON5.parse(editorMenu) as WvrWysiwygMenu; }
   get menu(): any { return this.config.menu; }
 
+  subscription: Subscription;
+
   config = {
     base_url: 'tinymce',
     skin: 'oxide',
@@ -49,7 +56,7 @@ export class WvrWysiwygComponent extends WvrBaseComponent implements OnInit {
     toolbar: 'undo redo | formatselect | bold italic forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table pagebreak | charmap codesample image | removeformat | help | cancel save',
     menu: (wvrEditor as any).default,
     /* TODO: Issue #316. */
-    save_oncancelcallback: $event => this.onCancel($event),
+    save_oncancelcallback: $event => this.onReset($event),
     save_onsavecallback: $event => this.onSave($event)
   };
 
@@ -62,34 +69,41 @@ export class WvrWysiwygComponent extends WvrBaseComponent implements OnInit {
 
   ngOnInit(): void {
     super.ngOnInit();
-    this.store.dispatch(WysiwygActions.addWysiwyg({ wysiwyg: {
-      id: `${this.id}`,
-      initialContent: `${this.initialValue}`,
-      content: this.initialValue
-    }}));
-    this.store.pipe(
-      select(selectWysiwygById(`${this.id}`)) //,
-      // filter(wysiwygState => !!wysiwygState)
-    )
-    .subscribe(wysiwygState => {
-      // const wysiwygContent = wysiwygState.entities[`${this.id}`].content;
-      console.log('wysiwygState', wysiwygState);
-      // this.editor.setContent(wysiwygContent);
+    this.store.dispatch(WysiwygActions.addWysiwyg({
+      wysiwyg: {
+        id: `${this.id}`,
+        initialContent: `${this.initialValue}`,
+        content: this.initialValue
+      }
+    }));
+
+    this.subscription = this.store.pipe(
+      select(selectWysiwygById(`${this.id}`)),
+      filter(wysiwygState => !!wysiwygState)
+    ).subscribe((wysiwyg: Wysiwyg) => {
+      this.content = wysiwyg.content;
     });
   }
 
-  onCancel($event): void {
-    console.log('cancel', $event);
+  ngOnDestroy(): void {
+    super.ngOnDestroy();
+    if (!!this.editor) {
+      tinymce.remove(this.editor);
+    }
+    if (!!this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
+
+  onReset($event): void {
     this.store.dispatch(WysiwygActions.resetWysiwyg({
       id: `${this.id}`
     }));
   }
 
   onSave($event): void {
-    // console.log('save', $event);
-    const editorContent = $event.contentDocument.body.innerText;
     this.store.dispatch(WysiwygActions.saveWysiwyg({
-      content: editorContent,
+      content: this.content,
       id: `${this.id}`
     }));
   }
