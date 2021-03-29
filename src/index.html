@@ -172,7 +172,15 @@
 
   <div class="container index-container">
     <wvre-text value="Editor Component" text-decoration="underline"></wvre-text><br /><br />
-    <wvre-wysiwyg skin="oxide-dark" initial-value="Hello, World!"></wvre-wysiwyg>
+    <wvre-wysiwyg id="wysiwygSaveEditor" skin="oxide-dark" initial-value="Hello, World!" emit-save-event="wysiwygsave"></wvre-wysiwyg>
+    <script>
+      const wysiwyg = document.querySelector('#wysiwygSaveEditor');
+      wysiwyg.addEventListener('wysiwygsave', e => {
+        console.log(e);
+        e.detail.wysiwyg.content = '<h1>Saved</h1>';
+      });
+
+    </script>
   </div>
   <div class="container index-container">
     <wvre-text value="Alert Component" text-decoration="underline"></wvre-text><br /><br />

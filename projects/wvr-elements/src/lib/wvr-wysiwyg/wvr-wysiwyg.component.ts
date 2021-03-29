@@ -42,6 +42,8 @@ export class WvrWysiwygComponent extends WvrBaseComponent implements OnInit, OnD
   @Input() set menu(editorMenu: any) { this.config.menu = JSON5.parse(editorMenu) as WvrWysiwygMenu; }
   get menu(): any { return this.config.menu; }
 
+  @Input() emitSaveEvent: string;
+
   subscription: Subscription;
 
   config = {
@@ -106,6 +108,15 @@ export class WvrWysiwygComponent extends WvrBaseComponent implements OnInit, OnD
       content: this.content,
       id: `${this.id}`
     }));
+    if (this.emitSaveEvent) {
+      this.eRef.nativeElement.dispatchEvent(new CustomEvent(this.emitSaveEvent, {
+        bubbles: true,
+        detail: {
+          data: this.content,
+          wysiwyg: this
+        }
+      }));
+    }
   }
 
 }
