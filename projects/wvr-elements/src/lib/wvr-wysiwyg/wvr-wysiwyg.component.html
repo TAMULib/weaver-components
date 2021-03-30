@@ -4,6 +4,6 @@
     [init]="config"
     [outputFormat]="outputFormat"
     [initialValue]="initialValue"
-    (onSelectionChange)="onChange($event)">
+    [(ngModel)]="content">
   </editor>
 </wvr-wysiwyg-wrapper>
