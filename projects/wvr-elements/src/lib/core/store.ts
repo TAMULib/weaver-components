@@ -112,7 +112,8 @@ export const selectCurrentTheme = createSelector(
 // wysiwyg selectors
 export const selectWysiwygState = createFeatureSelector<RootState, fromWysiwyg.State>('wysiwyg');
 
+// TODO - states not to be undefined during testing.
 export const selectWysiwygById = (id: string) => {
-  return createSelector(selectWysiwygState, (wysiwygState: fromWysiwyg.State) => wysiwygState.entities[id])
+  return createSelector(selectWysiwygState, (wysiwygState: fromWysiwyg.State) => wysiwygState ? wysiwygState.entities[id]: undefined);
 };
 
