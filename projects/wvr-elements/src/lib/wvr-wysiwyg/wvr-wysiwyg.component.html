@@ -1,0 +1,9 @@
+<wvr-wysiwyg-wrapper #animationRoot class="wvr-components wvr-wysiwyg">
+  <editor
+    id="{{htmlId}}"
+    [init]="config"
+    [outputFormat]="outputFormat"
+    [initialValue]="initialValue"
+    (onSelectionChange)="onChange($event)">
+  </editor>
+</wvr-wysiwyg-wrapper>

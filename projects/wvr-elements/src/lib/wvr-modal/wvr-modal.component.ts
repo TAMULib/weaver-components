@@ -39,12 +39,20 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit {
     super.ngOnInit();
 
     const defaultName = 'Weaver Modal';
+<<<<<<< HEAD
     this.modalId = !this.title ? `${defaultName
       .split(' ')
       .join('')}-${this.id}` : this.title;
 
     this.title = !this.title ? defaultName : this.title;
     this.btnText = this.btnText ? this.btnText : this.title;
+=======
+    this.modalId = !this.name ? `${defaultName
+      .split(' ')
+      .join('')}-${this.id}` : this.name;
+
+    this.name = !this.name ? defaultName : this.name;
+>>>>>>> sprint15-319-button-click-event
 
     this.store.dispatch(ModalActions.addModal({modal: {
       name: this.modalId,

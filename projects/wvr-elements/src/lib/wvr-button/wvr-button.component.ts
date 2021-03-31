@@ -1,4 +1,6 @@
-import { ChangeDetectionStrategy, Component, HostBinding, Injector, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, HostListener, Injector, Input } from '@angular/core';
+import * as JSON5 from 'json5';
+import { actions } from '../core/actions';
 import { ThemeVariantName } from '../shared/theme';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
@@ -104,10 +106,98 @@ export class WvrButtonComponent extends WvrBaseComponent {
   /** Allows for the override of button vertical align property */
   @HostBinding('style.--wvr-btn-vertical-align') @Input() verticalAlign;
 
+  private _action: any;
+  @Input() set dispatchAction(value: string) {
+    this._action = this.parseActionNameAndType(value);
+  }
+
+  private _actionProps: any;
+  @Input() set dispatchActionProps(value: string) {
+    this._actionProps = JSON5.parse(value);
+  }
+
+  private _dispatchActions: Array<ActionAndProps>;
+  @Input() set dispatchActions(value: string) {
+    const actionInputs = JSON5.parse(value);
+    this._dispatchActions = actionInputs.map(ai =>
+      ({
+        action: this.parseActionNameAndType(ai.action),
+        props: ai.props
+      }));
+  }
+
+  @Input() emitEvent: string;
+
+  @Input() btnTxt: string;
+
+  @Input() testInput: boolean;
+
   variantTypes = ['button'];
 
   constructor(injector: Injector) {
     super(injector);
   }
 
+  @HostListener('click', ['$event']) click($event: MouseEvent): void {
+    if (this._dispatchActions) {
+      this._dispatchActions.forEach(actionAndProp => {
+        this.store.dispatch(actionAndProp.action(
+          actionAndProp.props
+        ));
+      });
+    } else if (this._action) {
+      this._actionProps ?
+      this.store.dispatch(this._action(
+        this._actionProps
+      )) :
+      this.store.dispatch(this._action());
+    }
+
+    if (this.emitEvent) {
+      this.eRef.nativeElement.dispatchEvent(new CustomEvent(this.emitEvent, {
+        bubbles: true,
+        detail: {
+          data: (this.eRef.nativeElement as HTMLElement).dataset,
+          button: this
+        }
+      }));
+    }
+  }
+
+  // tslint:disable-next-line:prefer-function-over-method
+  private parseActionNameAndType(nameAndType: string): any {
+    const parts = nameAndType.split('.');
+    let valid = true;
+
+    valid = parts.length === 2;
+    if (!valid) {
+      console.warn(`'${nameAndType}' is not a valid value for 'dispatch-action'. Must in form '[ActionType].[ActionName]'`);
+
+      return;
+    }
+
+    valid = !!actions[parts[0]];
+    if (!valid) {
+      console.warn(`'${parts[0]}' is not a known action type. (${Object.keys(actions)
+        .join(',')})`);
+
+      return;
+    }
+
+    valid = !!actions[parts[0]][parts[1]];
+    if (!valid) {
+      console.warn(`'${parts[1]}' is not a known action of ${parts[0]}. (${Object.keys(actions[parts[0]])
+        .join(',')})`);
+
+      return;
+    }
+
+    return actions[parts[0]][parts[1]];
+  }
+
+}
+
+export interface ActionAndProps {
+  action: any;
+  props: Object;
 }

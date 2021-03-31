@@ -21,9 +21,11 @@
     }
 
   </style>
+
 </head>
 
 <body style="display: none;">
+
   <wvre-header title-row-theme-variant="primary">
     <wvre-nav-list top-navigation>
       <wvre-nav-li>
@@ -279,8 +281,8 @@
         </wvre-list-item>
       </wvre-list>
 
-      <wvre-button theme-variant="secondary">
-        <wvre-text value="Card Button Text"></wvre-text>
+      <wvre-button theme-variant="secondary" action-type="Modal" action-name="openModal" action-props="{id: 'Test Modal'}">
+        <wvre-text value="Open Me!"></wvre-text>
       </wvre-button>
 
       <wvre-card-footer text-muted>
@@ -299,7 +301,7 @@
       <wvre-card-text>
         <wvre-text value="With supporting text below as a natural lead-in to additional content."></wvre-text>
       </wvre-card-text>
-      <wvre-button theme-variant="secondary">
+      <wvre-button theme-variant="secondary" id="my-button" emit-event="myEvent">
         <wvre-text value="Go somewhere"></wvre-text>
       </wvre-button>
       <wvre-card-footer text-muted>
@@ -899,6 +901,13 @@
   }"></wvre-theme>
 
   <script defer src="weaver-components.js"></script>
+
+  <script>
+    let myBtnElem = document.querySelector('#my-button');
+    console.log('myBtnElem', myBtnElem);
+    myBtnElem.addEventListener('myEvent', console.log);
+    window.addEventListener('myEvent', console.log);
+  </script>
 
 </body>
 
