@@ -2,12 +2,5 @@
 @import "../shared/styles/variables";
 
 :host {
-
   @extend .variables;
-
-  .modal-backdrop {
-    display: none;
-  }
-
-
 }

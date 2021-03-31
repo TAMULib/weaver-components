@@ -1,117 +1,114 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, Injector, Input } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Injector, Input, OnInit, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
+import { NgbActiveModal, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { select } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
+import * as ModalActions from '../core/modal/modal.actions';
+import { selectModalState } from '../core/store';
 import { ThemeVariantName } from '../shared/theme';
-import { wvrTimeout } from '../shared/utility';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 @Component({
   selector: 'wvr-modal-component',
   templateUrl: './wvr-modal.component.html',
-  styleUrls: ['./wvr-modal.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Default
+  styleUrls: ['./wvr-modal.component.scss']
 })
-export class WvrModalComponent extends WvrBaseComponent implements AfterViewInit {
+export class WvrModalComponent extends WvrBaseComponent implements OnInit {
 
-  /** Indicates the presence of the modal header in the projected content. */
-  hasModalHeader: boolean;
+  @ViewChild('modalContent') modalContent: ElementRef<HTMLElement>;
 
-  /** Indicates the presence of the modal tile in the projected content. */
-  hasModalTitle: boolean;
+  @ViewChild('modalTemplate') modalTemplate: TemplateRef<any>;
 
-  /** Indicates the presence of the modal footer in the projected content. */
-  hasModalFooter: boolean;
+  modalRef: NgbModalRef;
 
-  /** Used to define the theme type for modal component. */
-  @Input() themeVariant: ThemeVariantName = 'primary';
+  @Input() name;
 
-  /** Used to define the class type for modal header section. */
-  @Input() modalHeaderThemeVariant: ThemeVariantName = 'success';
+  modalId: string;
 
-  /** Used to define the class type for modal body section. */
-  @Input() modalBodyThemeVariant: ThemeVariantName = 'info';
+  @Input() themeVariant: ThemeVariantName;
+  @Input() modalHeaderThemeVariant: ThemeVariantName;
+  @Input() modalFooterThemeVariant: ThemeVariantName;
 
-  /** Used to define the class type for modal footer section. */
-  @Input() modalFooterThemeVariant: ThemeVariantName = 'warning';
-
-  /** Used to define the size for modal component. */
-  @Input() modalSize: 'lg' | 'sm' = 'lg';
-
-  /** Used to close the modal component. */
-  modalClosed = false;
-
-  /** Used to display the Close button. */
-  @Input() closable: 'true' | 'false' = 'true';
-
-  constructor(injector: Injector) {
+  constructor(injector: Injector, private modalService: NgbModal) {
     super(injector);
   }
 
-  /** Called after the view has been intialized. Handles the rendering of the projected content. */
-  ngAfterViewInit(): void {
-    wvrTimeout(() => {
-      this.renderModalHeader();
-      this.renderModalFooter();
+  ngOnInit(): void {
+    super.ngOnInit();
+
+    const defaultName = 'Weaver Modal';
+    this.modalId = !this.name ? `${defaultName
+      .split(' ')
+      .join('')}-${this.id}` : this.name;
+
+    this.name = !this.name ? defaultName : this.name;
+
+    this.store.dispatch(ModalActions.addModal({modal: {
+      name: this.modalId,
+      open: false
+    }}));
+
+    this.store.pipe(
+      select(selectModalState),
+      filter(modalState => !!modalState)
+    )
+    .subscribe(modalState => {
+      const modal = modalState.entities[this.modalId];
+      if (modal.open) {
+
+        this.modalRef =  this.modalService.open(this.modalTemplate, {
+          ariaLabelledBy: 'modal-basic-title',
+          container: this.eRef.nativeElement,
+          beforeDismiss: () => {
+            this.store.dispatch(ModalActions.closeModal({id: this.modalId}));
+
+            return false;
+          }
+        });
+
+        const modelContentContainer = (this.eRef.nativeElement as HTMLElement).querySelector('modal-content');
+        modelContentContainer.outerHTML = this.modalContent.nativeElement.innerHTML;
+        this.modalContent.nativeElement.innerHTML = '';
+
+      } else if (this.modalRef) {
+
+        const modelContentContainer = (this.eRef.nativeElement as HTMLElement).querySelector('.modal-content');
+        this.modalContent.nativeElement.innerHTML = modelContentContainer.innerHTML;
+
+        this.modalRef.close();
+       }
     });
   }
 
-  /** Closes the modal once the `X` is clicked. */
-  clickClose($event: MouseEvent): void {
-    this.modalClosed = true;
+  openModal(): void {
+    this.store.dispatch(ModalActions.openModal({id: this.modalId}));
   }
 
-  /** Used to render the modal header section if present */
-  private renderModalHeader(): void {
-    const wvrModalHeaderElem = this.eRef.nativeElement.querySelector('wvre-modal-header');
-    if (wvrModalHeaderElem) {
-      const wvrModalTitleElem = this.eRef.nativeElement.querySelector('wvre-modal-title');
-      this.hasModalTitle = (wvrModalTitleElem) ? true: false;
-      this.hasModalHeader = true;
+  additionalClasses(value): string {
+    let additionalClasses = '';
+    switch (value) {
+      case 'header':
+        additionalClasses = this.modalHeaderThemeVariant ?
+                            ` bg-${this.modalHeaderThemeVariant} border-${this.modalHeaderThemeVariant} ${this.getTextColor(this.modalHeaderThemeVariant)}` :
+                            this.themeVariant ?
+                            ` bg-${this.themeVariant} border-${this.themeVariant} ${this.getTextColor(this.themeVariant)}` :
+                            ' bg-light text-dark ';
+        break;
+      case 'footer':
+        additionalClasses = this.modalFooterThemeVariant ?
+                            ` bg-${this.modalFooterThemeVariant} border-${this.modalFooterThemeVariant} ${this.getTextColor(this.modalFooterThemeVariant)}` :
+                            this.themeVariant ?
+                            ` bg-${this.themeVariant} border-${this.themeVariant} ${this.getTextColor(this.themeVariant)}` :
+                            ' bg-light text-dark ';
+        break;
+      default:
     }
-  }
 
-  /** Used to render the modal footer section if present */
-  private renderModalFooter(): void {
-    const wvrModalFooterElem = this.eRef.nativeElement.querySelector('wvre-modal-footer');
-    if(wvrModalFooterElem) {
-      this.hasModalFooter=true;
-    }
-  }
-
-  /** Used to customize the css properties for modal header based on theme variant. */
-  additionalModalHeaderClasses(): string {
-    let additionalClasses = '';
-    additionalClasses += this.modalHeaderThemeVariant ?
-                        ` border-${this.modalHeaderThemeVariant} bg-${this.modalHeaderThemeVariant} `
-                        : ` border-${this.themeVariant} bg-${this.themeVariant} `;
-    additionalClasses += this.getTextColorByThemeVariant(this.modalHeaderThemeVariant, this.themeVariant);
     return additionalClasses;
   }
 
-  /** Used to customize the css properties for modal body based on theme variant. */
-  additionalModalBodyClasses(): string {
-    let additionalClasses = '';
-    additionalClasses += this.modalBodyThemeVariant ?
-                        ` border-${this.modalBodyThemeVariant} bg-${this.modalBodyThemeVariant} `
-                        : ` border-${this.themeVariant} bg-${this.themeVariant} `;
-    additionalClasses += this.getTextColorByThemeVariant(this.modalBodyThemeVariant, this.themeVariant);
-    return additionalClasses;
-  }
-
-  /** Used to customize the css properties for modal footer based on theme variant. */
-  additionalModalFooterClasses(): string {
-    let additionalClasses = '';
-    additionalClasses += this.modalFooterThemeVariant ?
-                        ` border-${this.modalFooterThemeVariant} bg-${this.modalFooterThemeVariant} `
-                        : ` border-${this.themeVariant} bg-${this.themeVariant} `;
-    additionalClasses += this.getTextColorByThemeVariant(this.modalFooterThemeVariant, this.themeVariant);
-    return additionalClasses;
-  }
-
-  /** Used to customize the text color property for the modal based on theme variant. */
-  getTextColorByThemeVariant(providedTheme, defaultTheme): string {
-    let textClass = '';
-    let themeClass = ( !(typeof providedTheme === undefined) && (providedTheme)) ? providedTheme : defaultTheme ;
-    textClass += ( (themeClass == 'warning') || (themeClass == 'light')) ? 'text-dark' : 'text-white';
-    return textClass;
+  getTextColor(themeVariant): string {
+    return ((themeVariant === 'warning') || (themeVariant === 'light')) ? ' text-dark ' : ' text-white ';
   }
 
 }
