@@ -18,6 +18,7 @@ import { WvrListItemComponent } from '../wvr-list/wvr-list-item/wvr-list-item.co
 import { WvrListComponent } from '../wvr-list/wvr-list.component';
 import { WvrManifestEntryComponent } from '../wvr-manifest/wvr-manifest-entry/wvr-manifest-entry.component';
 import { WvrManifestComponent } from '../wvr-manifest/wvr-manifest.component';
+import { WvrModalComponent } from '../wvr-modal/wvr-modal.component';
 import { WvrNavLiComponent } from '../wvr-nav-list/wvr-nav-li/wvr-nav-li.component';
 import { WvrNavListComponent } from '../wvr-nav-list/wvr-nav-list.component';
 import { WvrTabComponent } from '../wvr-tabs/wvr-tab/wvr-tab.component';
@@ -51,6 +52,7 @@ export const WVR_ELEMENTS = [
   { component: WvrNavListComponent, selector: 'wvre-nav-list' },
   { component: WvrManifestComponent, selector: 'wvre-manifest' },
   { component: WvrManifestEntryComponent, selector: 'wvre-manifest-entry' },
+  { component: WvrModalComponent, selector: 'wvre-modal' },
   { component: WvrNavLiComponent, selector: 'wvre-nav-li' },
   { component: WvrTextComponent, selector: 'wvre-text' },
   { component: WvrTabsComponent, selector: 'wvre-tabs' },

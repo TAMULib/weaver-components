@@ -4,6 +4,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideMockStore } from '@ngrx/store/testing';
 import { APP_CONFIG, testAppConfig } from '../shared/config';
 import { WvrButtonComponent } from './wvr-button.component';
+import { actions } from '../core/actions';
+import { doesNotMatch } from 'assert';
+import { select } from '@ngrx/store';
+import { filter } from 'rxjs/operators';
+import { selectThemeState } from '../core/store';
 
 @Component({
   selector: 'wvr-button-host-component',
@@ -159,6 +164,101 @@ describe('WvrButtonComponent', () => {
     component.applyThemeOverride('--primary-button-hover-color', 'yellow');
     expect(component.themeOverrides[elem.style[0]])
     .toEqual(elem.style.getPropertyValue('--primary-button-hover-color'));
+  });
+
+  it('should set distpatch-action', () => {
+    component.dispatchAction = 'Theme.select';
+    // tslint:disable-next-line:no-string-literal
+    expect(component['_action'])
+      .toEqual(actions.Theme.select);
+  });
+
+  it('should set distpatch-action only when in proper form', () => {
+    const dispatchActionValue = 'Themeselect';
+    component.dispatchAction = dispatchActionValue;
+    // tslint:disable-next-line:no-string-literal
+    expect(component['_action'])
+      .toBeUndefined();
+  });
+
+  it('should set distpatch-action only when action exists', () => {
+    const dispatchActionValue = 'Foo.select';
+    component.dispatchAction = dispatchActionValue;
+    // tslint:disable-next-line:no-string-literal
+    expect(component['_action'])
+      .toBeUndefined();
+  });
+
+  it('should set distpatch-action only when name exists', () => {
+    const dispatchActionValue = 'Theme.foo';
+    component.dispatchAction = dispatchActionValue;
+    // tslint:disable-next-line:no-string-literal
+    expect(component['_action'])
+      .toBeUndefined();
+  });
+
+  it('should return undefined for distpatch-action', () => {
+    component.dispatchAction = 'Theme.select';
+    expect(component.dispatchAction)
+      .toBeUndefined();
+  });
+
+  it('should set distpatch-action-props', () => {
+    component.dispatchActionProps = '{name: "dark"}';
+    // tslint:disable-next-line:no-string-literal
+    expect(component['_actionProps'])
+      .toBeDefined();
+  });
+
+  it('should return undefined for distpatch-action-props', () => {
+    component.dispatchActionProps = '{name: "dark"}';
+    // tslint:disable-next-line:no-string-literal
+    expect(component.dispatchActionProps)
+      .toBeUndefined();
+  });
+
+  it('should set distpatch-actions', () => {
+    const actionsInput = `[
+      {action: 'Theme.select', props: {name: 'dark'}}
+    ]`;
+    component.dispatchActions = actionsInput;
+    // tslint:disable-next-line:no-string-literal
+    expect(component.dispatchActions)
+      .toBeUndefined();
+  });
+
+  it('should emit event on click', () => {
+
+    const EVENT_NAME = 'MyEvent';
+    component.emitEvent = EVENT_NAME;
+
+    (component.eRef.nativeElement as HTMLElement).addEventListener(EVENT_NAME, e => {
+      expect(e.type)
+      .toEqual(EVENT_NAME);
+    });
+
+    component.eRef.nativeElement.click();
+
+  });
+
+  it('should dispatch an action on click', () => {
+
+    component.dispatchAction = 'Theme.select';
+    const actionsInput = `[
+      {action: 'Theme.select', props: {name: 'dark'}}
+    ]`;
+
+    component.store.pipe(
+      select(selectThemeState),
+      filter(themeState => !!themeState)
+    )
+    .subscribe(themeState => {
+      expect(themeState)
+        .toBeDefined();
+    });
+
+    component.eRef.nativeElement.click();
+
   });
 
 });

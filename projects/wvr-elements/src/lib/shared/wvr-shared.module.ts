@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDropdownModule, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
 import { InlineSVGModule } from 'ng-inline-svg';
 import { WvrAlertComponent } from '../wvr-alert/wvr-alert.component';
@@ -17,6 +17,7 @@ import { WvrListItemComponent } from '../wvr-list/wvr-list-item/wvr-list-item.co
 import { WvrListComponent } from '../wvr-list/wvr-list.component';
 import { WvrManifestEntryComponent } from '../wvr-manifest/wvr-manifest-entry/wvr-manifest-entry.component';
 import { WvrManifestComponent } from '../wvr-manifest/wvr-manifest.component';
+import { WvrModalComponent } from '../wvr-modal/wvr-modal.component';
 import { WvrNavLiComponent } from '../wvr-nav-list/wvr-nav-li/wvr-nav-li.component';
 import { WvrNavListComponent } from '../wvr-nav-list/wvr-nav-list.component';
 import { WvrTabComponent } from '../wvr-tabs/wvr-tab/wvr-tab.component';
@@ -43,9 +44,11 @@ export const WVR_COMPONENTS = [
   WvrItWorksComponent,
   WvrNavListComponent,
   WvrNavLiComponent,
+  WvrModalComponent,
   WvrTextComponent,
   WvrManifestComponent,
   WvrManifestEntryComponent,
+  WvrModalComponent,
   WvrTabsComponent,
   WvrTabComponent,
   WvrThemeComponent,
@@ -57,15 +60,14 @@ export const WVR_PIPES = [
   DefaultPipe
 ];
 
-const getTinyMCEScript = (appConfig: AppConfig): string => {
-  return `${appConfig.assetsUrl}/tinymce/tinymce.min.js`;
-};
+const getTinyMCEScript = (appConfig: AppConfig): string => `${appConfig.assetsUrl}/tinymce/tinymce.min.js`;
 
 @NgModule({
   imports: [
     CommonModule,
     InlineSVGModule,
     NgbDropdownModule,
+    NgbModalModule,
     EditorModule,
     FormsModule,
     ReactiveFormsModule
@@ -78,7 +80,8 @@ const getTinyMCEScript = (appConfig: AppConfig): string => {
   ],
   declarations: [
     ...WVR_COMPONENTS,
-    ...WVR_PIPES
+    ...WVR_PIPES,
+    WvrModalComponent
   ],
   providers: [
     {

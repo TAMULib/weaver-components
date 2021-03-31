@@ -8,12 +8,14 @@ import { ManifestEntry } from './manifest/manifest-entry';
 import * as fromManifest from './manifest/manifest.reducers';
 import * as fromRest from './rest/rest.reducers';
 import * as fromTheme from './theme/theme.reducers';
+import * as fromModal from './modal/modal.reducers';
 import * as fromWysiwyg from './wysiwyg/wysiwyg.reducers';
 
 export interface RootState {
   manifests: fromManifest.State;
   rest: fromRest.State;
   theme: fromTheme.State;
+  modals: fromModal.State;
   wysiwyg: fromWysiwyg.State;
 }
 
@@ -21,6 +23,7 @@ export const reducers: ActionReducerMap<RootState> = {
   manifests: fromManifest.reducer,
   rest: fromRest.reducer,
   theme: fromTheme.reducer,
+  modals: fromModal.reducer,
   wysiwyg: fromWysiwyg.reducer
 };
 
@@ -109,11 +112,15 @@ export const selectCurrentTheme = createSelector(
   (themeState: fromTheme.State) => themeState.themes[themeState.currentTheme]
 );
 
+export const selectModalState = createFeatureSelector<RootState, fromModal.State>('modals');
+
+export const selectModalByName = (modalName: string) => createSelector(
+  selectModalState,
+  modals => modals[modalName]
+);
 // wysiwyg selectors
 export const selectWysiwygState = createFeatureSelector<RootState, fromWysiwyg.State>('wysiwyg');
 
 // TODO - states not to be undefined during testing.
-export const selectWysiwygById = (id: string) => {
-  return createSelector(selectWysiwygState, (wysiwygState: fromWysiwyg.State) => wysiwygState ? wysiwygState.entities[id]: undefined);
-};
-
+export const selectWysiwygById = (id: string) =>
+  createSelector(selectWysiwygState, (wysiwygState: fromWysiwyg.State) => wysiwygState ? wysiwygState.entities[id]: undefined);
