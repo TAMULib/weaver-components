@@ -17,7 +17,6 @@ import { WvrListItemComponent } from '../wvr-list/wvr-list-item/wvr-list-item.co
 import { WvrListComponent } from '../wvr-list/wvr-list.component';
 import { WvrManifestEntryComponent } from '../wvr-manifest/wvr-manifest-entry/wvr-manifest-entry.component';
 import { WvrManifestComponent } from '../wvr-manifest/wvr-manifest.component';
-import { WvrModalComponent } from '../wvr-modal/wvr-modal.component';
 import { WvrNavLiComponent } from '../wvr-nav-list/wvr-nav-li/wvr-nav-li.component';
 import { WvrNavListComponent } from '../wvr-nav-list/wvr-nav-list.component';
 import { WvrTabComponent } from '../wvr-tabs/wvr-tab/wvr-tab.component';

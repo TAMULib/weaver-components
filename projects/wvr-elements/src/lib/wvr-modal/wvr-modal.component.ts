@@ -1,8 +1,7 @@
-import { AfterViewInit, Component, ElementRef, Injector, Input, OnInit, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
-import { NgbActiveModal, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { Component, ElementRef, Injector, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { select } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
+import { filter } from 'rxjs/operators';
 import * as ModalActions from '../core/modal/modal.actions';
 import { selectModalState } from '../core/store';
 import { ThemeVariantName } from '../shared/theme';
@@ -31,6 +30,10 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit {
   @Input() modalHeaderThemeVariant: ThemeVariantName;
   @Input() modalFooterThemeVariant: ThemeVariantName = 'light';
 
+  get openProps(): string {
+    return `{ id: '${this.modalId}'}`;
+  }
+
   constructor(injector: Injector, private modalService: NgbModal) {
     super(injector);
   }
@@ -39,20 +42,12 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit {
     super.ngOnInit();
 
     const defaultName = 'Weaver Modal';
-<<<<<<< HEAD
     this.modalId = !this.title ? `${defaultName
       .split(' ')
       .join('')}-${this.id}` : this.title;
 
     this.title = !this.title ? defaultName : this.title;
     this.btnText = this.btnText ? this.btnText : this.title;
-=======
-    this.modalId = !this.name ? `${defaultName
-      .split(' ')
-      .join('')}-${this.id}` : this.name;
-
-    this.name = !this.name ? defaultName : this.name;
->>>>>>> sprint15-319-button-click-event
 
     this.store.dispatch(ModalActions.addModal({modal: {
       name: this.modalId,
@@ -70,6 +65,7 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit {
         this.modalRef =  this.modalService.open(this.modalTemplate, {
           ariaLabelledBy: 'modal-basic-title',
           container: this.eRef.nativeElement,
+          backdrop: false,
           beforeDismiss: () => {
             this.store.dispatch(ModalActions.closeModal({id: this.modalId}));
 

@@ -139,6 +139,7 @@ export class WvrButtonComponent extends WvrBaseComponent {
   }
 
   @HostListener('click', ['$event']) click($event: MouseEvent): void {
+
     if (this._dispatchActions) {
       this._dispatchActions.forEach(actionAndProp => {
         this.store.dispatch(actionAndProp.action(

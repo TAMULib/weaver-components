@@ -3,13 +3,15 @@
 
 :host {
   @extend .variables;
-  
+
+  font-family: var(--wvr-font-family-sans-serif);
+
   ::ng-deep {
     .modal-dialog {
-      @import '../shared/styles/variables';
-      @import '~bootstrap/scss/bootstrap';
-      @import '../shared/styles/mixins';
-      @import '../shared/styles/overrides';
+      font-family: var(--wvr-font-family-sans-serif);
+      .modal-footer {
+        padding: 4px 10px  0px 10px;
+      }
     }
   }
 

@@ -1,7 +1,9 @@
 <wvr-maodal-wrapper #animationRoot>
-  <!-- <button class="btn btn-{{themeVariant}}" type="button" (click)="openModal()">{{btnText}}</button> -->
-  <wvre-button theme-variant="primary" btn-size="large" hidden-in-mobile="true">
-    <wvre-text value="Large Size Primary Button"></wvre-text>
+
+  <wvre-button
+    [btnTxt]="'open'"
+    [dispatchAction]="'Modal.openModal'"
+    [dispatchActionProps]="openProps">
   </wvre-button>
   
   <ng-template #modalTemplate let-modal>
