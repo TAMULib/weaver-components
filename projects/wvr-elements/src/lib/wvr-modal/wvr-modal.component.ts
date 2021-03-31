@@ -21,13 +21,15 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit {
 
   modalRef: NgbModalRef;
 
-  @Input() name;
+  @Input() title: string;
+
+  @Input() btnText: string;
 
   modalId: string;
 
-  @Input() themeVariant: ThemeVariantName;
+  @Input() themeVariant: ThemeVariantName = 'primary';
   @Input() modalHeaderThemeVariant: ThemeVariantName;
-  @Input() modalFooterThemeVariant: ThemeVariantName;
+  @Input() modalFooterThemeVariant: ThemeVariantName = 'light';
 
   constructor(injector: Injector, private modalService: NgbModal) {
     super(injector);
@@ -37,11 +39,12 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit {
     super.ngOnInit();
 
     const defaultName = 'Weaver Modal';
-    this.modalId = !this.name ? `${defaultName
+    this.modalId = !this.title ? `${defaultName
       .split(' ')
-      .join('')}-${this.id}` : this.name;
+      .join('')}-${this.id}` : this.title;
 
-    this.name = !this.name ? defaultName : this.name;
+    this.title = !this.title ? defaultName : this.title;
+    this.btnText = this.btnText ? this.btnText : this.title;
 
     this.store.dispatch(ModalActions.addModal({modal: {
       name: this.modalId,

@@ -3,4 +3,14 @@
 
 :host {
   @extend .variables;
+  
+  ::ng-deep {
+    .modal-dialog {
+      @import '../shared/styles/variables';
+      @import '~bootstrap/scss/bootstrap';
+      @import '../shared/styles/mixins';
+      @import '../shared/styles/overrides';
+    }
+  }
+
 }
