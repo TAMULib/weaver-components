@@ -1,9 +1,10 @@
-<wvr-maodal-wrapper #animationRoot>
+<wvr-modal-wrapper #animationRoot>
 
   <wvre-button
-    [btnTxt]="'open'"
+    [btnTxt]="btnText"
     [dispatchAction]="'Modal.openModal'"
-    [dispatchActionProps]="openProps">
+    [dispatchActionProps]="openProps"
+    [themeVariant]="btnThemeVariant">
   </wvre-button>
   
   <ng-template #modalTemplate let-modal>
@@ -36,4 +37,4 @@
       <ng-content select="wvre-modal-footer"></ng-content>
     </div>
   </ng-template>  
-</wvr-maodal-wrapper>
+</wvr-modal-wrapper>

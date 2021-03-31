@@ -174,7 +174,7 @@
 
   <div class="container index-container">
     <wvre-text value="Modal Component with Customized Body" text-decoration="underline"></wvre-text><br /><br />
-    <wvre-modal title="Weaver Modal">
+    <wvre-modal title="Weaver Modal" btn-text="Launch Modal">
       <wvre-modal-body>
         <wvre-text value="Modal Message in the Body"></wvre-text>
       </wvre-modal-body>
@@ -184,10 +184,30 @@
       </wvre-modal-footer>
     </wvre-modal>
   </div>
+
+  <wvre-button id="my-button" btn-txt="cancel" theme-variant="secondary" emit-event="myEvent" data-somevalue="HELLOOOOO">
+  </wvre-button>
+
+  <script>
+    // let myBtnElem = document.querySelector('#my-button');
+    // myBtnElem.addEventListener('myEvent', console.log);
+    // window.addEventListener('myEvent', console.log);
+  </script>
+
   <div class="container index-container">
     <wvre-text value="Editor Component" text-decoration="underline"></wvre-text><br /><br />
-    <wvre-wysiwyg id="wysiwygSaveEditor" skin="oxide-dark" initial-value="Hello, World!" emit-save-event="wysiwygsave"></wvre-wysiwyg>
+    <wvre-wysiwyg id="wysiwygEditor" skin="oxide-dark" initial-value="Hello, World!" emit-save-event="wysiwygsave"></wvre-wysiwyg>
   </div>
+
+  
+  <script>
+    // const wysiwyg = document.querySelector('#wysiwygEditor');
+    // wysiwyg.addEventListener('wysiwygsave', e => {
+    //   console.log(e);
+    //   e.detail.wysiwyg.content = '<h1>Saved</h1>';
+    // });
+  </script>
+
 
   <div class="container index-container">
     <wvre-text value="Alert Component" text-decoration="underline"></wvre-text><br /><br />
@@ -905,18 +925,6 @@
   }"></wvre-theme>
 
   <script defer src="weaver-components.js"></script>
-
-  <script>
-    // let myBtnElem = document.querySelector('#my-button');
-    // myBtnElem.addEventListener('myEvent', console.log);
-    // window.addEventListener('myEvent', console.log);
-
-    // const wysiwyg = document.querySelector('#wysiwygSaveEditor');
-    //   wysiwyg.addEventListener('wysiwygsave', e => {
-    //     console.log(e);
-    //     e.detail.wysiwyg.content = '<h1>Saved</h1>';
-    //   });
-  </script>
 
 </body>
 

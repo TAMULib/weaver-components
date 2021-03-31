@@ -1,4 +1,4 @@
-import { Component, ElementRef, Injector, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { AfterContentInit, Component, ElementRef, Injector, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { select } from '@ngrx/store';
 import { filter } from 'rxjs/operators';
@@ -12,7 +12,7 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
   templateUrl: './wvr-modal.component.html',
   styleUrls: ['./wvr-modal.component.scss']
 })
-export class WvrModalComponent extends WvrBaseComponent implements OnInit {
+export class WvrModalComponent extends WvrBaseComponent implements OnInit, AfterContentInit {
 
   @ViewChild('modalContent') modalContent: ElementRef<HTMLElement>;
 
@@ -27,6 +27,7 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit {
   modalId: string;
 
   @Input() themeVariant: ThemeVariantName = 'primary';
+  @Input() btnThemeVariant: ThemeVariantName;
   @Input() modalHeaderThemeVariant: ThemeVariantName;
   @Input() modalFooterThemeVariant: ThemeVariantName = 'light';
 
@@ -47,7 +48,10 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit {
       .join('')}-${this.id}` : this.title;
 
     this.title = !this.title ? defaultName : this.title;
+
     this.btnText = this.btnText ? this.btnText : this.title;
+
+    this.btnThemeVariant = this.btnThemeVariant ? this.btnThemeVariant : this.themeVariant;
 
     this.store.dispatch(ModalActions.addModal({modal: {
       name: this.modalId,
