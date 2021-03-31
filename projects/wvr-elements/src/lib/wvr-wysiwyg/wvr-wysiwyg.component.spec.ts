@@ -18,7 +18,12 @@ class WvrWysiwygHostComponent {
 }
 
 describe('WvrWysiwygComponent', () => {
-  const initialState = {};
+  const initialState = {
+    wysiwygs: {
+      id: [],
+      entities: {}
+    }
+  };
 
   let component: WvrWysiwygComponent;
   let fixture: ComponentFixture<WvrWysiwygComponent>;
@@ -74,30 +79,33 @@ describe('WvrWysiwygComponent', () => {
   });
 
   it('should have config property defined', () => {
+    // base_url
     expect(component.config.base_url)
       .toEqual(component.baseUrl);
-    component.baseUrl = 'assets/tinymce';
+    component.baseUrl = 'tinymce';
     fixture.detectChanges();
 
     expect(component.config.base_url)
-      .toEqual('assets/tinymce');
-
+      .toEqual('tinymce');
     expect(component.config.menu)
     .toEqual(component.menu);
 
     expect(component.config.plugins)
     .toEqual(component.plugins);
 
-    const plugins = ['preview anchor searchreplace visualblocks code', 'fullscreen insertdatetime media table paste', 'help wordcount print preview save'];
+    const plugins = ['preview anchor searchreplace visualblocks code',
+                    'fullscreen insertdatetime media table paste', 'help wordcount print preview save'];
     component.plugins = plugins;
     fixture.detectChanges();
 
     expect(component.config.plugins)
       .toEqual(plugins);
 
+    //skin
     expect(component.config.skin)
     .toEqual(component.skin);
 
+    //toolbar
     expect(component.config.toolbar)
     .toEqual(component.toolbar);
 
@@ -107,6 +115,5 @@ describe('WvrWysiwygComponent', () => {
 
     expect(component.config.toolbar)
       .toEqual(toolbar);
-
   });
 });

@@ -184,6 +184,10 @@
       </wvre-modal-footer>
     </wvre-modal>
   </div>
+  <div class="container index-container">
+    <wvre-text value="Editor Component" text-decoration="underline"></wvre-text><br /><br />
+    <wvre-wysiwyg id="wysiwygSaveEditor" skin="oxide-dark" initial-value="Hello, World!" emit-save-event="wysiwygsave"></wvre-wysiwyg>
+  </div>
 
   <div class="container index-container">
     <wvre-text value="Alert Component" text-decoration="underline"></wvre-text><br /><br />
@@ -906,6 +910,12 @@
     // let myBtnElem = document.querySelector('#my-button');
     // myBtnElem.addEventListener('myEvent', console.log);
     // window.addEventListener('myEvent', console.log);
+
+    // const wysiwyg = document.querySelector('#wysiwygSaveEditor');
+    //   wysiwyg.addEventListener('wysiwygsave', e => {
+    //     console.log(e);
+    //     e.detail.wysiwyg.content = '<h1>Saved</h1>';
+    //   });
   </script>
 
 </body>

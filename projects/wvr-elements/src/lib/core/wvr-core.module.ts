@@ -34,6 +34,7 @@ import { metaReducers, ROOT_REDUCER } from './store';
 import { TemplateService } from './template.service';
 import { ThemeEffects } from './theme/theme.effects';
 import { ThemeService } from './theme/theme.service';
+import { WysiwygEffects } from './wysiwyg/wysiwyg.effects';
 
 /** This property contains a list of components and the selector tags. */
 export const WVR_ELEMENTS = [
@@ -82,7 +83,8 @@ const MODULES = [
   EffectsModule.forRoot([
     ManifestEffects,
     RestEffects,
-    ThemeEffects
+    ThemeEffects,
+    WysiwygEffects
   ]),
   HttpClientModule,
   InlineSVGModule.forRoot({
