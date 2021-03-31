@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.9.0] - 03-31-21
+### Resolves
+
+- Weaver Components should provide a modal component. (#314)
+- Weaver Components should offer a WYSIWYG component. (#315)
+- Weaver Button should be able to trigger actions on a parent component. (#319)
+- Weaver WYSIWYG should maintain state using NgRX (#322)
+
 ## [1.8.0] - 12-18-20
 ### Resolves
 
