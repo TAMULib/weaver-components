@@ -55,6 +55,7 @@ yarn.lock
 src/config.json
 src/config-template.json
 src/assets/icons/*
+src/assets/tinymce/
 !src/assets/icons/custom/weaver-w.svg
 !src/assets/icons/feather/chevron-right.svg
 

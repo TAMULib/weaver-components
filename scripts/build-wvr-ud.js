@@ -184,6 +184,9 @@ concat(stlyeFiles, `${WVR_UD_STATIC_ASSETS_DIR}/styles.css`).finally(() => {
 });
 
 function copyFolderSync(from, to) {
+  if(fs.existsSync(to)) {
+    fs.rmdirSync(to, {recursive: true});
+  }
   fs.mkdirSync(to);
   fs.readdirSync(from).forEach(element => {
       if (fs.lstatSync(path.join(from, element)).isFile()) {

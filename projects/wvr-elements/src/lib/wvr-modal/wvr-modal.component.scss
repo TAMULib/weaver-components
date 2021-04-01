@@ -1,0 +1,18 @@
+@import "../shared/styles/wvr-variables.scss";
+@import "../shared/styles/variables";
+
+:host {
+  @extend .variables;
+
+  font-family: var(--wvr-font-family-sans-serif);
+
+  ::ng-deep {
+    .modal-dialog {
+      font-family: var(--wvr-font-family-sans-serif);
+      .modal-footer {
+        padding: 4px 10px  0px 10px;
+      }
+    }
+  }
+
+}

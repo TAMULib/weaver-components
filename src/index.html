@@ -21,9 +21,11 @@
     }
 
   </style>
+
 </head>
 
 <body style="display: none;">
+
   <wvre-header title-row-theme-variant="primary">
     <wvre-nav-list top-navigation>
       <wvre-nav-li>
@@ -171,6 +173,43 @@
   <wvre-it-works animate="{animationTrigger: 'fadeToggle'}" animate-id="elem1" hidden-in-mobile="true"></wvre-it-works>
 
   <div class="container index-container">
+    <wvre-text value="Modal Component with Customized Body" text-decoration="underline"></wvre-text><br /><br />
+    <wvre-modal title="Weaver Modal" btn-text="Launch Modal">
+      <wvre-modal-body>
+        <wvre-text value="Modal Message in the Body"></wvre-text>
+      </wvre-modal-body>
+      <wvre-modal-footer>
+        <wvre-button btn-txt="cancel" theme-variant="secondary" dispatch-action="Modal.closeModal" dispatch-action-props="{id: 'Weaver Modal'}">
+        </wvre-button>
+      </wvre-modal-footer>
+    </wvre-modal>
+  </div>
+
+  <wvre-button id="my-button" btn-txt="cancel" theme-variant="secondary" emit-event="myEvent" data-somevalue="HELLOOOOO">
+  </wvre-button>
+
+  <script>
+    // let myBtnElem = document.querySelector('#my-button');
+    // myBtnElem.addEventListener('myEvent', console.log);
+    // window.addEventListener('myEvent', console.log);
+  </script>
+
+  <div class="container index-container">
+    <wvre-text value="Editor Component" text-decoration="underline"></wvre-text><br /><br />
+    <wvre-wysiwyg id="wysiwygEditor" skin="oxide-dark" initial-value="Hello, World!" emit-save-event="wysiwygsave"></wvre-wysiwyg>
+  </div>
+
+  
+  <script>
+    // const wysiwyg = document.querySelector('#wysiwygEditor');
+    // wysiwyg.addEventListener('wysiwygsave', e => {
+    //   console.log(e);
+    //   e.detail.wysiwyg.content = '<h1>Saved</h1>';
+    // });
+  </script>
+
+
+  <div class="container index-container">
     <wvre-text value="Alert Component" text-decoration="underline"></wvre-text><br /><br />
     <wvre-alert
       theme-variant="primary"
@@ -266,8 +305,8 @@
         </wvre-list-item>
       </wvre-list>
 
-      <wvre-button theme-variant="secondary">
-        <wvre-text value="Card Button Text"></wvre-text>
+      <wvre-button theme-variant="secondary" action-type="Modal" action-name="openModal" action-props="{id: 'Test Modal'}">
+        <wvre-text value="Open Me!"></wvre-text>
       </wvre-button>
 
       <wvre-card-footer text-muted>
@@ -286,7 +325,7 @@
       <wvre-card-text>
         <wvre-text value="With supporting text below as a natural lead-in to additional content."></wvre-text>
       </wvre-card-text>
-      <wvre-button theme-variant="secondary">
+      <wvre-button theme-variant="secondary" id="my-button" emit-event="myEvent">
         <wvre-text value="Go somewhere"></wvre-text>
       </wvre-button>
       <wvre-card-footer text-muted>
