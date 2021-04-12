@@ -1,40 +1,41 @@
 <wvr-modal-wrapper #animationRoot>
 
-  <wvre-button
+  <wvr-button-component
+    *ngIf="btnVisible === 'true'"
     [btnTxt]="btnText"
     [dispatchAction]="'Modal.openModal'"
     [dispatchActionProps]="openProps"
     [themeVariant]="btnThemeVariant">
-  </wvre-button>
-  
+  </wvr-button-component>
+
   <ng-template #modalTemplate let-modal>
     <modal-content></modal-content>
   </ng-template>
-  
+
   <modal-container #modalContent class="wvr-hidden wvr-bootstrap">
     <ng-container *ngTemplateOutlet="modalHeader"></ng-container>
     <ng-container *ngTemplateOutlet="modalBody"></ng-container>
     <ng-container *ngTemplateOutlet="modalFooter"></ng-container>
   </modal-container>
-  
+
   <!-- modalHeader -->
   <ng-template #modalHeader>
     <div class="modal-header {{additionalClasses('header')}}">
       <h4 class="modal-title" id="modal-basic-title">{{title}}</h4>
     </div>
   </ng-template>
-  
+
   <!-- modalBody -->
   <ng-template #modalBody>
     <div class="modal-body">
       <ng-content select="wvre-modal-body"></ng-content>
     </div>
   </ng-template>
-  
+
   <!-- modalFooter -->
   <ng-template #modalFooter>
     <div class="modal-footer {{additionalClasses('footer')}}">
       <ng-content select="wvre-modal-footer"></ng-content>
     </div>
-  </ng-template>  
+  </ng-template>
 </wvr-modal-wrapper>
