@@ -1,6 +1,7 @@
 <wvr-modal-wrapper #animationRoot>
 
   <wvr-button-component
+    *ngIf="btnVisible === 'true'"
     [btnTxt]="btnText"
     [dispatchAction]="'Modal.openModal'"
     [dispatchActionProps]="openProps"
