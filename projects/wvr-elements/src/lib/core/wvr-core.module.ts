@@ -4,6 +4,7 @@ import { CUSTOM_ELEMENTS_SCHEMA, Injector, NgModule, Optional, SkipSelf } from '
 import { createCustomElement } from '@angular/elements';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { InlineSVGModule } from 'ng-inline-svg';
 import { WvrAlertComponent } from '../wvr-alert/wvr-alert.component';
 import { WvrButtonComponent } from '../wvr-button/wvr-button.component';
@@ -91,7 +92,8 @@ const MODULES = [
     clientOnly: true,
     bypassHttpClientInterceptorChain: true
   }),
-  StoreModule.forRoot(ROOT_REDUCER, { metaReducers })
+  StoreModule.forRoot(ROOT_REDUCER, { metaReducers }),
+  StoreDevtoolsModule.instrument()
 ];
 
 const PROVIDERS = [

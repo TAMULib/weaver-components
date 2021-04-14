@@ -2,8 +2,20 @@
   "primary": {
     "baseColor": "#007bff"
   },
+  "primaryAccent": {
+    "baseColor": "#007bff"
+  },
+  "primaryNeutral": {
+    "baseColor": "#007bff"
+  },
   "secondary": {
     "baseColor": "#6c757d"
+  },
+  "secondaryAccent": {
+    "baseColor": "#007bff"
+  },
+  "secondaryNeutral": {
+    "baseColor": "#007bff"
   },
   "success": {
     "baseColor": "#198754"
@@ -22,8 +34,5 @@
   },
   "dark": {
     "baseColor": "#212529"
-  },
-  "accent": {
-    "baseColor": "tomato"
   }
 }
