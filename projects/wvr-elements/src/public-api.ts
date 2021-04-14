@@ -29,3 +29,4 @@ export * from './lib/wvr-tabs/wvr-tabs.component';
 export * from './lib/wvr-text/wvr-text.component';
 export * from './lib/wvr-theme/wvr-theme.component';
 export * from './lib/wvr-wysiwyg/wvr-wysiwyg.component';
+export * from './lib/core/actions';
