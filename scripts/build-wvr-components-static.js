@@ -22,4 +22,8 @@ const reportPath = `${weaverComponentsPath}/reports`;
   fs.copy("src/index-reports.html", `${reportPath}/index.html`);
   fs.copy("src/assets", `${reportPath}/assets`);
 
+  if( fs.existsSync("dist/bundle/assets/tinymce") ) {
+    fs.copy("dist/bundle/assets/tinymce", `${docPath}/usage/assets/tinymce`);
+  }
+
 })();
