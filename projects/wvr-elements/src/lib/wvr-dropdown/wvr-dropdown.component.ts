@@ -20,6 +20,11 @@ export class WvrDropdownComponent extends WvrBaseComponent {
   /** Binds the value of the animationspeed in seconds to the css variable `--wvr-dropdown-menu-animation-speed` */
   @HostBinding('style.--wvr-dropdown-menu-animation-speed') private _animationSpeedSeconds;
 
+  /** This establishes a delay in milliseconds before the dropdown is displayed. */
+  @Input() openDelay: number = 500;
+
+  private _openDelayTimer: NodeJS.Timeout;
+
   /** A setter which sets the speed to `_animationSpeedSeconds` in seconds. */
   @Input() set menuAnimationSpeed(speed: number) {
     this._animationSpeedSeconds = `${speed / 1000}s`;
@@ -222,8 +227,11 @@ export class WvrDropdownComponent extends WvrBaseComponent {
    * Opens the dropdown if `toggleOn` is set to `mouseover`.
    */
   @HostListener('mouseenter', ['$event']) hoverOpen($event: Event): void {
-    if (this.toggleOn === 'mouseover' && !this.closing) {
-      this.openDropdown();
+    if (this.toggleOn === 'mouseover' && !this.closing && !this._openDelayTimer) {
+      this._openDelayTimer = setTimeout(() => {
+        this.openDropdown();
+        this._openDelayTimer = undefined;
+      }, this.openDelay);
     }
   }
 
@@ -234,6 +242,10 @@ export class WvrDropdownComponent extends WvrBaseComponent {
   @HostListener('mouseleave', ['$event']) hoverClose($event: Event): void {
     if (this.toggleOn === 'mouseover') {
       this.closeDropdown();
+    }
+    if (this._openDelayTimer) {
+      clearTimeout(this._openDelayTimer);
+      this._openDelayTimer = undefined;
     }
   }
 
