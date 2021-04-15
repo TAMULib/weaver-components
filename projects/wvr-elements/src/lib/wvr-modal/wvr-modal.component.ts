@@ -20,15 +20,28 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit, After
 
   modalRef: NgbModalRef;
 
+  /** This allows for the modal button to be toggle able. */
+  @Input() btnVisible: 'true' | 'false' = 'true';
+
+  /** The header title value to be displayed as a modal title. */
   @Input() title: string;
 
+  /** The text value to be displayed for the button launching the modal. */
   @Input() btnText: string;
 
+  /** This defines the modal id. */
   modalId: string;
 
+  /** Allows for the override of theme variant for modal component. */
   @Input() themeVariant: ThemeVariantName = 'primary';
+
+  /** Allows for the override of theme variant for the button launching the modal component. */
   @Input() btnThemeVariant: ThemeVariantName;
+
+  /** Allows for the override of theme variant for modal header. */
   @Input() modalHeaderThemeVariant: ThemeVariantName;
+
+  /** Allows for the override of theme variant for modal footer. */
   @Input() modalFooterThemeVariant: ThemeVariantName = 'light';
 
   get openProps(): string {
@@ -95,6 +108,7 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit, After
     this.store.dispatch(ModalActions.openModal({id: this.modalId}));
   }
 
+  /** This provides background, border and text color properties based on the them variant provided . */
   additionalClasses(value): string {
     let additionalClasses = '';
     switch (value) {
