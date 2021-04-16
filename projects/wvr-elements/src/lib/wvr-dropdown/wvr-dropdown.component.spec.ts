@@ -155,7 +155,7 @@ describe('WvrDropdownComponent', () => {
       expect(component.open)
         .toBeTrue();
       done();
-    }, 251);
+    }, 500);
   });
 
   it('should close the dropdown on mouseleave event', () => {
