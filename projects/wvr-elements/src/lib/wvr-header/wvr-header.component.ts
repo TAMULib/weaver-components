@@ -11,7 +11,7 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
   styleUrls: ['./wvr-header.component.scss'],
   changeDetection: ChangeDetectionStrategy.Default
 })
-export class WvrHeaderComponent extends WvrBaseComponent implements AfterContentChecked, OnInit {
+export class WvrHeaderComponent extends WvrBaseComponent implements AfterContentChecked {
 
   /** The text value to be displayed beside the logo. */
   @Input() logoText = 'Weaver Components';
@@ -83,12 +83,13 @@ export class WvrHeaderComponent extends WvrBaseComponent implements AfterContent
 
   mobileMenuClosed = true;
 
+  variantTypes = ['button'];
+
   /**
    * The weaver header component constructor
    */
   constructor(injector: Injector) {
     super(injector);
-    this.themeVariant = 'light';
   }
 
   ngAfterContentChecked(): void {

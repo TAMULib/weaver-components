@@ -123,4 +123,4 @@ export const selectWysiwygState = createFeatureSelector<RootState, fromWysiwyg.S
 
 // TODO - states not to be undefined during testing.
 export const selectWysiwygById = (id: string) =>
-  createSelector(selectWysiwygState, (wysiwygState: fromWysiwyg.State) => wysiwygState ? wysiwygState.entities[id]: undefined);
+  createSelector(selectWysiwygState, (wysiwygState: fromWysiwyg.State) => wysiwygState ? wysiwygState.entities[id] : undefined);
