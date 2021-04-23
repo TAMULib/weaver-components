@@ -26,7 +26,7 @@
 
 <body style="display: none;">
 
-  <wvre-header title-row-theme-variant="primary">
+  <wvre-header title-row-theme-variant="primary" top-nav-theme-variant="primaryNeutral" bottom-nav-theme-variant="primaryNeutral">
     <wvre-nav-list top-navigation>
       <wvre-nav-li>
         <wvre-dropdown
@@ -184,7 +184,7 @@
       </wvre-modal-footer>
     </wvre-modal>
 
-    <wvre-modal title="Weaver Modal2" btn-text="Launch Modal2" btn-visible="false">
+    <wvre-modal title="Weaver Modal2" btn-visible="false">
       <wvre-modal-body>
         <wvre-text value="Message in the Body"></wvre-text>
       </wvre-modal-body>
@@ -193,10 +193,11 @@
         </wvre-button>
       </wvre-modal-footer>
     </wvre-modal>
-  </div>
 
-  <wvre-button id="my-button" btn-txt="cancel" theme-variant="secondary" emit-event="myEvent" data-somevalue="HELLOOOOO">
-  </wvre-button>
+    <wvre-button id="my-button" btn-txt="Launch Second Modal" theme-variant="secondary" dispatch-action="Modal.openModal" dispatch-action-props="{id: 'Weaver Modal2'}">
+    </wvre-button>
+
+  </div>
 
   <script>
     // let myBtnElem = document.querySelector('#my-button');
@@ -908,8 +909,20 @@
     primary: {
       baseColor: '#375a7f'
     },
+    primaryAccent: {
+      baseColor: '#7f3749'
+    },
+    primaryNeutral: {
+      baseColor: '#617c99'
+    },
     secondary: {
-      baseColor: '#444'
+      baseColor: '#444444'
+    },
+    secondaryAccent: {
+      baseColor: '#5e4b4b'
+    },
+    secondaryNeutral: {
+      baseColor: '#5e544b'
     },
     success: {
       baseColor: '#00bc8c'
@@ -927,10 +940,7 @@
       baseColor: '#adb5bd'
     },
     dark: {
-      baseColor: '#222'
-    },
-    accent: {
-      baseColor: '#6f42c1'
+      baseColor: '#222222'
     }
   }"></wvre-theme>
 
