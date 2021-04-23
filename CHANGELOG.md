@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.10.0] - 04-23-21
+### Resolves
+- Weaver Modal button should be toggle-able. (#329 )
+- WVRWYSIWYG is not appearing in the usage documentation. (#330 )
+- WVR Theme Variants should be expanded to include all needed variant names. (#334)
+- Weaver Component's Modal Component should utilize the wvr-button-component intead of the wvre-button. ( #341)
+- Weaver component should provide additional theme variants. ( #342)
+- Weaver drop down menu should have a delay on hover prior to displaying the dropdown menu. ( #344)
+
 ## [1.9.0] - 03-31-21
 ### Resolves
 

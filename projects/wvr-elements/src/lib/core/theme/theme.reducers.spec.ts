@@ -7,14 +7,16 @@ describe(' Theme Reducers', () => {
   const state =  {
     "themes":{
       "appleTheme":{
-        "primary":{"baseColor":"red"}, "secondary":{"baseColor":"maroon"}, "success":{"baseColor":"apple"},
-        "danger":{"baseColor":"grey"},"warning":{"baseColor":"pumpkin"}, "info":{"baseColor":"apple"},
-        "light":{"baseColor":"tomato"}, "dark":{"baseColor":"yellow"}, "accent":{"baseColor":"tomato"}
+        "primary":{"baseColor":"yellow"}, "primaryAccent":{"baseColor":"yellow"}, "primaryNeutral":{"baseColor":"yellow"},
+        "secondary":{"baseColor":"yellow"}, "secondaryAccent":{"baseColor":"yellow"}, "secondaryNeutral":{"baseColor":"yellow"},
+        "success":{"baseColor":"yellow"}, "danger":{"baseColor":"yellow"},"warning":{"baseColor":"yellow"}, "info":{"baseColor":"yellow"},
+        "light":{"baseColor":"yellow"}, "dark":{"baseColor":"yellow"}
       },
       "ballTheme":{
-        "primary":{"baseColor":"blue"}, "secondary":{"baseColor":"blue"}, "success":{"baseColor":"blue"},
-        "danger":{"baseColor":"blue"},"warning":{"baseColor":"blue"}, "info":{"baseColor":"blue"},
-        "light":{"baseColor":"blue"}, "dark":{"baseColor":"blue"}, "accent":{"baseColor":"blue"}
+        "primary":{"baseColor":"yellow"}, "primaryAccent":{"baseColor":"yellow"}, "primaryNeutral":{"baseColor":"yellow"},
+        "secondary":{"baseColor":"yellow"}, "secondaryAccent":{"baseColor":"yellow"}, "secondaryNeutral":{"baseColor":"yellow"},
+        "success":{"baseColor":"yellow"}, "danger":{"baseColor":"yellow"},"warning":{"baseColor":"yellow"}, "info":{"baseColor":"yellow"},
+        "light":{"baseColor":"yellow"}, "dark":{"baseColor":"yellow"}
       }
     },
     "currentTheme":"ballTheme"
@@ -29,9 +31,10 @@ describe(' Theme Reducers', () => {
 
   const name = 'appleTheme';
   const theme: ThemeVariants = {
-    "primary":{"baseColor":"yellow"}, "secondary":{"baseColor":"yellow"}, "success":{"baseColor":"yellow"},
-    "danger":{"baseColor":"yellow"},"warning":{"baseColor":"yellow"}, "info":{"baseColor":"yellow"},
-    "light":{"baseColor":"yellow"}, "dark":{"baseColor":"yellow"}, "accent":{"baseColor":"yellow"}
+    "primary":{"baseColor":"yellow"}, "primaryAccent":{"baseColor":"yellow"}, "primaryNeutral":{"baseColor":"yellow"},
+    "secondary":{"baseColor":"yellow"}, "secondaryAccent":{"baseColor":"yellow"}, "secondaryNeutral":{"baseColor":"yellow"},
+    "success":{"baseColor":"yellow"}, "danger":{"baseColor":"yellow"},"warning":{"baseColor":"yellow"}, "info":{"baseColor":"yellow"},
+    "light":{"baseColor":"yellow"}, "dark":{"baseColor":"yellow"}
   };
 
   it('should add theme', () => {

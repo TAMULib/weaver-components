@@ -1,8 +1,5 @@
 [![Build Status](https://github.com/TAMULib/weaver-components/workflows/Build/badge.svg)](https://github.com/TAMULib/weaver-components/actions?query=workflow%3ABuild)
 [![Coverage Status](https://coveralls.io/repos/github/TAMULib/weaver-components/badge.svg?branch=master)](https://coveralls.io/github/TAMULib/weaver-components?branch=master) [![Compodoc Coverage](https://tamulib.github.io/weaver-components/docs/development/images/coverage-badge-documentation.svg)](https://tamulib.github.io/weaver-components/docs/development/coverage.html)
-
-# Lighthouse Badges
-
 [![Performance](https://tamulib.github.io/weaver-components/reports/audit/assets/performance.svg)](https://tamulib.github.io/weaver-components/reports/audit/#performance)
 [![Accessibility](https://tamulib.github.io/weaver-components/reports/audit/assets/accessibility.svg)](https://tamulib.github.io/weaver-components/reports/audit/#accessibility)
 [![Best Practices](https://tamulib.github.io/weaver-components/reports/audit/assets/best-practices.svg)](https://tamulib.github.io/weaver-components/reports/audit/#best-practices)

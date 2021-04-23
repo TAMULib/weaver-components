@@ -35,6 +35,8 @@ export class WvrFooterComponent extends WvrBaseComponent implements OnInit {
   /** Allows for the override of the --footer-padding css variable. */
   @HostBinding('style.--footer-padding') @Input() padding;
 
+  variantTypes = ['button'];
+
   /**
    * The weaver footer component constructor
    */
