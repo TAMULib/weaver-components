@@ -223,18 +223,18 @@ $button-variations: map-merge(
       'light-button-bg': $light,
       'dark-button-bg': $dark,
 
-      'primary-button-border': $primary, 
-      'primaryAccent-button-border': $primaryAccent, 
-      'primaryNeutral-button-border': $primaryNeutral, 
-      'secondary-button-border': $secondary, 
-      'secondaryAccent-button-border': $secondaryAccent, 
-      'secondaryNeutral-button-border': $secondaryNeutral, 
-      'success-button-border': $success, 
-      'danger-button-border': $danger, 
-      'warning-button-border': $warning, 
-      'info-button-border': $info, 
-      'light-button-border': $light, 
-      'dark-button-border': $dark, 
+      'primary-button-border': $primary,
+      'primaryAccent-button-border': $primaryAccent,
+      'primaryNeutral-button-border': $primaryNeutral,
+      'secondary-button-border': $secondary,
+      'secondaryAccent-button-border': $secondaryAccent,
+      'secondaryNeutral-button-border': $secondaryNeutral,
+      'success-button-border': $success,
+      'danger-button-border': $danger,
+      'warning-button-border': $warning,
+      'info-button-border': $info,
+      'light-button-border': $light,
+      'dark-button-border': $dark,
 
       'primary-button-hover-color': color-yiq(darken($primary, 7.5%)),
       'primaryAccent-button-hover-color': color-yiq(darken($primaryAccent, 7.5%)),
@@ -380,6 +380,196 @@ $button-outline-variations: map-merge(
   $button-outline-variations
 );
 
+// Default Variants
+
+$default-variations: ();
+// stylelint-disable-next-line scss/dollar-variable-default
+$default-variations: map-merge(
+  (
+
+      'primary-default-color': color-yiq($primary),
+      'primaryAccent-default-color': color-yiq($primaryAccent),
+      'primaryNeutral-default-color': color-yiq($primaryNeutral),
+      'secondary-default-color': color-yiq($secondary),
+      'secondaryAccent-default-color': color-yiq($secondaryAccent),
+      'secondaryNeutral-default-color': color-yiq($secondaryNeutral),
+      'success-default-color': color-yiq($success),
+      'danger-default-color': color-yiq($danger),
+      'warning-default-color': color-yiq($warning),
+      'info-default-color': color-yiq($info),
+      'light-default-color': color-yiq($light),
+      'dark-default-color': color-yiq($dark),
+
+      'primary-default-bg': $primary,
+      'primaryAccent-default-bg': $primaryAccent,
+      'primaryNeutral-default-bg': $primaryNeutral,
+      'secondary-default-bg': $secondary,
+      'secondaryAccent-default-bg': $secondaryAccent,
+      'secondaryNeutral-default-bg': $secondaryNeutral,
+      'success-default-bg': $success,
+      'danger-default-bg': $danger,
+      'warning-default-bg': $warning,
+      'info-default-bg': $info,
+      'light-default-bg': $light,
+      'dark-default-bg': $dark,
+
+      'primary-default-border': $primary,
+      'primaryAccent-default-border': $primaryAccent,
+      'primaryNeutral-default-border': $primaryNeutral,
+      'secondary-default-border': $secondary,
+      'secondaryAccent-default-border': $secondaryAccent,
+      'secondaryNeutral-default-border': $secondaryNeutral,
+      'success-default-border': $success,
+      'danger-default-border': $danger,
+      'warning-default-border': $warning,
+      'info-default-border': $info,
+      'light-default-border': $light,
+      'dark-default-border': $dark,
+
+      'primary-default-hover-color': color-yiq(darken($primary, 7.5%)),
+      'primaryAccent-default-hover-color': color-yiq(darken($primaryAccent, 7.5%)),
+      'primaryNeutral-default-hover-color': color-yiq(darken($primaryNeutral, 7.5%)),
+      'secondary-default-hover-color': color-yiq(darken($secondary, 7.5%)),
+      'secondaryAccent-default-hover-color': color-yiq(darken($secondaryAccent, 7.5%)),
+      'secondaryNeutral-default-hover-color': color-yiq(darken($secondaryNeutral, 7.5%)),
+      'success-default-hover-color': color-yiq(darken($success, 7.5%)),
+      'danger-default-hover-color': color-yiq(darken($danger, 7.5%)),
+      'warning-default-hover-color': color-yiq(darken($warning, 7.5%)),
+      'info-default-hover-color': color-yiq(darken($info, 7.5%)),
+      'light-default-hover-color': color-yiq(darken($light, 7.5%)),
+      'dark-default-hover-color': color-yiq(darken($dark, 7.5%)),
+
+      'primary-default-hover-bg': darken($primary, 7.5%),
+      'primaryAccent-default-hover-bg': darken($primaryAccent, 7.5%),
+      'primaryNeutral-default-hover-bg': darken($primaryNeutral, 7.5%),
+      'secondary-default-hover-bg': darken($secondary, 7.5%),
+      'secondaryAccent-default-hover-bg': darken($secondaryAccent, 7.5%),
+      'secondaryNeutral-default-hover-bg': darken($secondaryNeutral, 7.5%),
+      'success-default-hover-bg': darken($success, 7.5%),
+      'danger-default-hover-bg': darken($danger, 7.5%),
+      'warning-default-hover-bg': darken($warning, 7.5%),
+      'info-default-hover-bg': darken($info, 7.5%),
+      'light-default-hover-bg': darken($light, 7.5%),
+      'dark-default-hover-bg': darken($dark, 7.5%),
+
+      'primary-default-hover-border': darken($primary, 10%),
+      'primaryAccent-default-hover-border': darken($primaryAccent, 10%),
+      'primaryNeutral-default-hover-border': darken($primaryNeutral, 10%),
+      'secondary-default-hover-border': darken($secondary, 10%),
+      'secondaryAccent-default-hover-border': darken($secondaryAccent, 10%),
+      'secondaryNeutral-default-hover-border': darken($secondaryNeutral, 10%),
+      'success-default-hover-border': darken($success, 10%),
+      'danger-default-hover-border': darken($danger, 10%),
+      'warning-default-hover-border': darken($warning, 10%),
+      'info-default-hover-border': darken($info, 10%),
+      'light-default-hover-border': darken($light, 10%),
+      'dark-default-hover-border': darken($dark, 10%),
+
+      'primary-default-active-color': color-yiq(darken($primary, 10%)),
+      'primaryAccent-default-active-color': color-yiq(darken($primaryAccent, 10%)),
+      'primaryNeutral-default-active-color': color-yiq(darken($primaryNeutral, 10%)),
+      'secondary-default-active-color': color-yiq(darken($secondary, 10%)),
+      'secondaryAccent-default-active-color': color-yiq(darken($secondaryAccent, 10%)),
+      'secondaryNeutral-default-active-color': color-yiq(darken($secondaryNeutral, 10%)),
+      'success-default-active-color': color-yiq(darken($success, 10%)),
+      'danger-default-active-color': color-yiq(darken($danger, 10%)),
+      'warning-default-active-color': color-yiq(darken($warning, 10%)),
+      'info-default-active-color': color-yiq(darken($info, 10%)),
+      'light-default-active-color': color-yiq(darken($light, 10%)),
+      'dark-default-active-color': color-yiq(darken($dark, 10%)),
+
+      'primary-default-active-bg': darken($primary, 10%),
+      'primaryAccent-default-active-bg': darken($primaryAccent, 10%),
+      'primaryNeutral-default-active-bg': darken($primaryNeutral, 10%),
+      'secondary-default-active-bg': darken($secondary, 10%),
+      'secondaryAccent-default-active-bg': darken($secondaryAccent, 10%),
+      'secondaryNeutral-default-active-bg': darken($secondaryNeutral, 10%),
+      'success-default-active-bg': darken($success, 10%),
+      'danger-default-active-bg': darken($danger, 10%),
+      'warning-default-active-bg': darken($warning, 10%),
+      'info-default-active-bg': darken($info, 10%),
+      'light-default-active-bg': darken($light, 10%),
+      'dark-default-active-bg': darken($dark, 10%),
+
+      'primary-default-active-border': darken($primary, 12.5%),
+      'primaryAccent-default-active-border': darken($primaryAccent, 12.5%),
+      'primaryNeutral-default-active-border': darken($primaryNeutral, 12.5%),
+      'secondary-default-active-border': darken($secondary, 12.5%),
+      'secondaryAccent-default-active-border': darken($secondaryAccent, 12.5%),
+      'secondaryNeutral-default-active-border': darken($secondaryNeutral, 12.5%),
+      'success-default-active-border': darken($success, 12.5%),
+      'danger-default-active-border': darken($danger, 12.5%),
+      'warning-default-active-border': darken($warning, 12.5%),
+      'info-default-active-border': darken($info, 12.5%),
+      'light-default-active-border': darken($light, 12.5%),
+      'dark-default-active-border': darken($dark, 12.5%),
+
+      'primary-default-box-shadow-color': rgba(mix(color-yiq($primary), $primary, 15%), .5),
+      'primaryAccent-default-box-shadow-color': rgba(mix(color-yiq($primaryAccent), $primaryAccent, 15%), .5),
+      'primaryNeutral-default-box-shadow-color': rgba(mix(color-yiq($primaryNeutral), $primaryNeutral, 15%), .5),
+      'secondary-default-box-shadow-color': rgba(mix(color-yiq($secondary), $secondary, 15%), .5),
+      'secondaryAccent-default-box-shadow-color': rgba(mix(color-yiq($secondaryAccent), $secondaryAccent, 15%), .5),
+      'secondaryNeutral-default-box-shadow-color': rgba(mix(color-yiq($secondaryNeutral), $secondaryNeutral, 15%), .5),
+      'success-default-box-shadow-color': rgba(mix(color-yiq($success), $success, 15%), .5),
+      'danger-default-box-shadow-color': rgba(mix(color-yiq($danger), $danger, 15%), .5),
+      'warning-default-box-shadow-color': rgba(mix(color-yiq($warning), $warning, 15%), .5),
+      'info-default-box-shadow-color': rgba(mix(color-yiq($info), $info, 15%), .5),
+      'light-default-box-shadow-color': rgba(mix(color-yiq($light), $light, 15%), .5),
+      'dark-default-box-shadow-color': rgba(mix(color-yiq($dark), $dark, 15%), .5)
+  ),
+  $default-variations
+);
+
+// Bootstrap Button Outline Variants
+
+$default-outline-variations: ();
+// stylelint-disable-next-line scss/dollar-variable-default
+$default-outline-variations: map-merge(
+  (
+
+      'primary-default-outline-color': $primary,
+      'primaryAccent-default-outline-color': $primaryAccent,
+      'primaryNeutral-default-outline-color': $primaryNeutral,
+      'secondary-default-outline-color': $secondary,
+      'secondaryAccent-default-outline-color': $secondaryAccent,
+      'secondaryNeutral-default-outline-color': $secondaryNeutral,
+      'success-default-outline-color': $success,
+      'danger-default-outline-color': $danger,
+      'warning-default-outline-color': $warning,
+      'info-default-outline-color': $info,
+      'light-default-outline-color': $light,
+      'dark-default-outline-color': $dark,
+
+      'primary-default-outline-color-hover': color-yiq($primary),
+      'primaryAccent-default-outline-color-hover': color-yiq($primaryAccent),
+      'primaryNeutral-default-outline-color-hover': color-yiq($primaryNeutral),
+      'secondary-default-outline-color-hover': color-yiq($secondary),
+      'secondaryAccent-default-outline-color-hover': color-yiq($secondaryAccent),
+      'secondaryNeutral-default-outline-color-hover': color-yiq($secondaryNeutral),
+      'success-default-outline-color-hover': color-yiq($success),
+      'danger-default-outline-color-hover': color-yiq($danger),
+      'warning-default-outline-color-hover': color-yiq($warning),
+      'info-default-outline-color-hover': color-yiq($info),
+      'light-default-outline-color-hover': color-yiq($light),
+      'dark-default-outline-color-hover': color-yiq($dark),
+
+      'primary-default-outline-box-shadow-color': rgba($primary, .5),
+      'primaryAccent-default-outline-box-shadow-color': rgba($primaryAccent, .5),
+      'primaryNeutral-default-outline-box-shadow-color': rgba($primaryNeutral, .5),
+      'secondary-default-outline-box-shadow-color': rgba($secondary, .5),
+      'secondaryAccent-default-outline-box-shadow-color': rgba($secondaryAccent, .5),
+      'secondaryNeutral-default-outline-box-shadow-color': rgba($secondaryNeutral, .5),
+      'success-default-outline-box-shadow-color': rgba($success, .5),
+      'danger-default-outline-box-shadow-color': rgba($danger, .5),
+      'warning-default-outline-box-shadow-color': rgba($warning, .5),
+      'info-default-outline-box-shadow-color': rgba($info, .5),
+      'light-default-outline-box-shadow-color': rgba($light, .5),
+      'dark-default-outline-box-shadow-color': rgba($dark, .5)
+
+  ),
+  $default-outline-variations
+);
+
 .variables {
 
   --yiq-contrasted-threshold:#{$yiq-contrasted-threshold};
@@ -425,6 +615,14 @@ $button-outline-variations: map-merge(
     --#{$variation}:#{$value};
   }
 
+  @each $variation, $value in $default-outline-variations {
+    --#{$variation}:#{$value};
+  }
+
+  @each $variation, $value in $default-variations {
+    --#{$variation}:#{$value};
+  }
+
   @each $color, $value in $colors {
     --#{$color}:#{$value};
   }
@@ -467,6 +665,14 @@ $button-outline-variations: map-merge(
   $button-variations: map-merge($button-variations, ($variation: var(--#{$variation})));
 }
 
+@each $variation, $value in $default-outline-variations {
+  $default-outline-variations: map-merge($default-outline-variations, ($variation: var(--#{$variation})));
+}
+
+@each $variation, $value in $default-variations {
+  $default-variations: map-merge($default-variations, ($variation: var(--#{$variation})));
+}
+
 @function alert-variation($color: "primary", $type: "alert-color") {
   @return map-get($alert-variations, #{$color}-#{$type});
 }
@@ -489,4 +695,12 @@ $button-outline-variations: map-merge(
 
 @function button-variation($color: "primary", $type: "button-color") {
   @return map-get($button-variations, #{$color}-#{$type});
+}
+
+@function default-outline-variation($color: "primary", $type: "default-outline-color") {
+  @return map-get($default-outline-variations, #{$color}-#{$type});
+}
+
+@function default-variation($color: "primary", $type: "default-color") {
+  @return map-get($default-variations, #{$color}-#{$type});
 }
