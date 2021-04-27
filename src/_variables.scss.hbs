@@ -107,7 +107,7 @@ $button-variations: map-merge(
     {{/each}}
 
     {{#each themeVariants}}
-      '{{@key}}-button-border': ${{@key}}, 
+      '{{@key}}-button-border': ${{@key}},
     {{/each}}
 
     {{#each themeVariants}}
@@ -164,6 +164,79 @@ $button-outline-variations: map-merge(
   $button-outline-variations
 );
 
+// Default Variants
+
+$default-variations: ();
+// stylelint-disable-next-line scss/dollar-variable-default
+$default-variations: map-merge(
+  (
+
+    {{#each themeVariants}}
+      '{{@key}}-default-color': color-yiq(${{@key}}),
+    {{/each}}
+
+    {{#each themeVariants}}
+      '{{@key}}-default-bg': ${{@key}},
+    {{/each}}
+
+    {{#each themeVariants}}
+      '{{@key}}-default-border': ${{@key}},
+    {{/each}}
+
+    {{#each themeVariants}}
+      '{{@key}}-default-hover-color': color-yiq(darken(${{@key}}, 7.5%)),
+    {{/each}}
+
+    {{#each themeVariants}}
+      '{{@key}}-default-hover-bg': darken(${{@key}}, 7.5%),
+    {{/each}}
+
+    {{#each themeVariants}}
+      '{{@key}}-default-hover-border': darken(${{@key}}, 10%),
+    {{/each}}
+
+    {{#each themeVariants}}
+      '{{@key}}-default-active-color': color-yiq(darken(${{@key}}, 10%)),
+    {{/each}}
+
+    {{#each themeVariants}}
+      '{{@key}}-default-active-bg': darken(${{@key}}, 10%),
+    {{/each}}
+
+    {{#each themeVariants}}
+      '{{@key}}-default-active-border': darken(${{@key}}, 12.5%),
+    {{/each}}
+
+    {{#each themeVariants}}
+      '{{@key}}-default-box-shadow-color': rgba(mix(color-yiq(${{@key}}), ${{@key}}, 15%), .5){{#if @last}}{{else}},{{/if}}
+    {{/each}}
+  ),
+  $default-variations
+);
+
+// Bootstrap Button Outline Variants
+
+$default-outline-variations: ();
+// stylelint-disable-next-line scss/dollar-variable-default
+$default-outline-variations: map-merge(
+  (
+
+    {{#each themeVariants}}
+      '{{@key}}-default-outline-color': ${{@key}},
+    {{/each}}
+
+    {{#each themeVariants}}
+      '{{@key}}-default-outline-color-hover': color-yiq(${{@key}}),
+    {{/each}}
+
+    {{#each themeVariants}}
+      '{{@key}}-default-outline-box-shadow-color': rgba(${{@key}}, .5){{#if @last}}{{else}},{{/if}}
+    {{/each}}
+
+  ),
+  $default-outline-variations
+);
+
 .variables {
 
   --yiq-contrasted-threshold:#{$yiq-contrasted-threshold};
@@ -209,6 +282,14 @@ $button-outline-variations: map-merge(
     --#{$variation}:#{$value};
   }
 
+  @each $variation, $value in $default-outline-variations {
+    --#{$variation}:#{$value};
+  }
+
+  @each $variation, $value in $default-variations {
+    --#{$variation}:#{$value};
+  }
+
   @each $color, $value in $colors {
     --#{$color}:#{$value};
   }
@@ -251,6 +332,14 @@ $button-outline-variations: map-merge(
   $button-variations: map-merge($button-variations, ($variation: var(--#{$variation})));
 }
 
+@each $variation, $value in $default-outline-variations {
+  $default-outline-variations: map-merge($default-outline-variations, ($variation: var(--#{$variation})));
+}
+
+@each $variation, $value in $default-variations {
+  $default-variations: map-merge($default-variations, ($variation: var(--#{$variation})));
+}
+
 @function alert-variation($color: "primary", $type: "alert-color") {
   @return map-get($alert-variations, #{$color}-#{$type});
 }
@@ -273,4 +362,12 @@ $button-outline-variations: map-merge(
 
 @function button-variation($color: "primary", $type: "button-color") {
   @return map-get($button-variations, #{$color}-#{$type});
+}
+
+@function default-outline-variation($color: "primary", $type: "default-outline-color") {
+  @return map-get($default-outline-variations, #{$color}-#{$type});
+}
+
+@function default-variation($color: "primary", $type: "default-color") {
+  @return map-get($default-variations, #{$color}-#{$type});
 }
