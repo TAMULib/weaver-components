@@ -2,7 +2,10 @@ import { Injector, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { registerCustomElements, showHiddentContent, WvrCoreModule, WvrSharedModule, wvrTimeout, WVR_ELEMENTS } from '../../projects/wvr-elements/src/public-api';
+import { TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
+import { AppConfig, APP_CONFIG, registerCustomElements, showHiddentContent, WvrCoreModule, WvrSharedModule, wvrTimeout, WVR_ELEMENTS } from '../../projects/wvr-elements/src/public-api';
+
+const getTinyMCEScript = (appConfig: AppConfig): string => `${appConfig.assetsUrl}/tinymce/tinymce.min.js`;
 
 @NgModule({
   imports: [
@@ -16,7 +19,13 @@ import { registerCustomElements, showHiddentContent, WvrCoreModule, WvrSharedMod
     WvrCoreModule
   ],
   exports: [],
-  providers: [],
+  providers: [
+    {
+      provide: TINYMCE_SCRIPT_SRC,
+      useFactory: getTinyMCEScript,
+      deps: [ APP_CONFIG ]
+    }
+  ],
   declarations: [],
   bootstrap: [],
   entryComponents: [],

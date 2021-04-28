@@ -48,7 +48,6 @@ export const WVR_COMPONENTS = [
   WvrTextComponent,
   WvrManifestComponent,
   WvrManifestEntryComponent,
-  WvrModalComponent,
   WvrTabsComponent,
   WvrTabComponent,
   WvrThemeComponent,
@@ -59,8 +58,6 @@ export const WVR_PIPES = [
   SafePipe,
   DefaultPipe
 ];
-
-const getTinyMCEScript = (appConfig: AppConfig): string => `${appConfig.assetsUrl}/tinymce/tinymce.min.js`;
 
 @NgModule({
   imports: [
@@ -80,16 +77,9 @@ const getTinyMCEScript = (appConfig: AppConfig): string => `${appConfig.assetsUr
   ],
   declarations: [
     ...WVR_COMPONENTS,
-    ...WVR_PIPES,
-    WvrModalComponent
+    ...WVR_PIPES
   ],
-  providers: [
-    {
-      provide: TINYMCE_SCRIPT_SRC,
-      useFactory: getTinyMCEScript,
-      deps: [ APP_CONFIG ]
-    }
-  ],
+  providers: [],
   entryComponents: [],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
