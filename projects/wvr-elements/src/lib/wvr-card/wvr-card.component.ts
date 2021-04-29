@@ -41,6 +41,8 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit 
   /** The weaver card footer text muted attribute */
   footerTextMuted: boolean;
 
+  variantTypes = ['default'];
+
   /** Allows for the override of the default 'wvre' sufix for psudo components. */
   @Input() selectorPrefix = 'wvre';
 
@@ -54,14 +56,12 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit 
   @Input() panelFormat: 'solid' | 'outlined' | 'mixed';
 
   @HostBinding('style.--card-header-color') get cardHeaderColor(): string {
-    return `var(--${this.themeVariant}-button-color)`;
+    return `var(--${this.themeVariant}-${this.variantTypes[0]}-color)`;
   }
 
   @HostBinding('style.--card-body-color') get cardBodyColor(): string {
-    return this.panelFormat === 'solid' ? `var(--${this.themeVariant}-button-color)` : 'var(--light-button-color)';
+    return this.panelFormat === 'solid' ? `var(--${this.themeVariant}-${this.variantTypes[0]}-color)` : `var(--light-${this.variantTypes[0]}-color)`;
   }
-
-  variantTypes = ['border'];
 
   imgSrc: string;
 
@@ -95,7 +95,7 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit 
     additionalClasses += ((!this.panelFormat || this.panelFormat === 'mixed') || this.panelFormat === 'outlined') ?
       ` border-${this.themeVariant} ` : '';
 
-    additionalClasses += this.panelFormat === 'solid' ? ` bg-${this.themeVariant} ` : '';
+    additionalClasses += this.panelFormat === 'solid' ? ` bg-${this.themeVariant} ${this.getTextColor(this.themeVariant)}` : '';
 
     return additionalClasses;
   }
@@ -105,9 +105,13 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit 
     additionalClasses += ((!this.panelFormat || this.panelFormat === 'mixed') || this.panelFormat === 'outlined') ?
       ` border-${this.themeVariant} ` : '';
 
-    additionalClasses += (this.panelFormat === 'solid' || this.panelFormat === 'mixed') ? ` bg-${this.themeVariant} ` : '';
+    additionalClasses += (this.panelFormat === 'solid' || this.panelFormat === 'mixed') ? ` bg-${this.themeVariant} ${this.getTextColor(this.themeVariant)}` : '';
 
     return additionalClasses;
+  }
+
+  getTextColor(themeVariant): string {
+    return ((themeVariant === 'warning') || (themeVariant === 'light')) ? ' text-dark ' : ' text-white ';
   }
 
   /** Prepares the card header for display, and sets it to the DOM */
