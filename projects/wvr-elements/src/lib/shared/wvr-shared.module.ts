@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbDropdownModule, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
-import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
+import { EditorModule } from '@tinymce/tinymce-angular';
 import { InlineSVGModule } from 'ng-inline-svg';
 import { WvrAlertComponent } from '../wvr-alert/wvr-alert.component';
 import { WvrButtonComponent } from '../wvr-button/wvr-button.component';
@@ -25,7 +25,6 @@ import { WvrTabsComponent } from '../wvr-tabs/wvr-tabs.component';
 import { WvrTextComponent } from '../wvr-text/wvr-text.component';
 import { WvrThemeComponent } from '../wvr-theme/wvr-theme.component';
 import { WvrWysiwygComponent } from '../wvr-wysiwyg/wvr-wysiwyg.component';
-import { AppConfig, APP_CONFIG } from './config';
 import { DefaultPipe } from './pipes/default.pipe';
 import { SafePipe } from './pipes/safe.pipe';
 
@@ -48,7 +47,6 @@ export const WVR_COMPONENTS = [
   WvrTextComponent,
   WvrManifestComponent,
   WvrManifestEntryComponent,
-  WvrModalComponent,
   WvrTabsComponent,
   WvrTabComponent,
   WvrThemeComponent,
@@ -60,36 +58,29 @@ export const WVR_PIPES = [
   DefaultPipe
 ];
 
-const getTinyMCEScript = (appConfig: AppConfig): string => `${appConfig.assetsUrl}/tinymce/tinymce.min.js`;
+const MODULES = [
+  CommonModule,
+  InlineSVGModule,
+  NgbDropdownModule,
+  NgbModalModule,
+  EditorModule,
+  FormsModule,
+  ReactiveFormsModule
+];
 
 @NgModule({
   imports: [
-    CommonModule,
-    InlineSVGModule,
-    NgbDropdownModule,
-    NgbModalModule,
-    EditorModule,
-    FormsModule,
-    ReactiveFormsModule
+    ...MODULES
   ],
   exports: [
-    CommonModule,
-    InlineSVGModule,
     ...WVR_COMPONENTS,
     ...WVR_PIPES
   ],
   declarations: [
     ...WVR_COMPONENTS,
-    ...WVR_PIPES,
-    WvrModalComponent
+    ...WVR_PIPES
   ],
-  providers: [
-    {
-      provide: TINYMCE_SCRIPT_SRC,
-      useFactory: getTinyMCEScript,
-      deps: [ APP_CONFIG ]
-    }
-  ],
+  providers: [],
   entryComponents: [],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

@@ -168,6 +168,50 @@ export class ThemeService {
             const buttonBoxShadowColorValue = `rgba(${bbsrgba.r}, ${bbsrgba.g}, ${bbsrgba.b}, .5)`;
             appendStyle(`${key}-button-box-shadow-color`, buttonBoxShadowColorValue);
             break;
+          case 'default':
+              // update default outline variants
+              const defaultOutlineColorValue = value;
+              appendStyle(`${key}-default-outline-color`, defaultOutlineColorValue);
+
+              const defaultOutlineColorHoverValue = yiqConstrast(yiq(value));
+              appendStyle(`${key}-default-outline-color-hover`, defaultOutlineColorHoverValue);
+
+              const dvobsrgba = hexToRgb(value);
+              const defaultOutlineBoxShadowColorValue = `rgba(${dvobsrgba.r}, ${dvobsrgba.g}, ${dvobsrgba.b}, .5)`;
+              appendStyle(`${key}-default-outline-box-shadow-color`, defaultOutlineBoxShadowColorValue);
+
+              // update default variants
+              const defaultColorValue = yiqConstrast(yiq(value));
+              appendStyle(`${key}-default-color`, defaultColorValue);
+
+              const defaultBgValue = value;
+              appendStyle(`${key}-default-bg`, defaultBgValue);
+
+              const defaultBorderValue = value;
+              appendStyle(`${key}-default-border`, defaultBorderValue);
+
+              const defaultHoverColorValue = yiqConstrast(yiq(luminance(value, -0.1165)));
+              appendStyle(`${key}-default-hover-color`, defaultHoverColorValue);
+
+              const defaultHoverBgValue = luminance(value, -0.1165);
+              appendStyle(`${key}-default-hover-bg`, defaultHoverBgValue);
+
+              const defaultHoverBorderValue = luminance(value, -0.1415);
+              appendStyle(`${key}-default-hover-border`, defaultHoverBorderValue);
+
+              const defaultActiveColorValue = yiqConstrast(yiq(luminance(value, -0.1415)));
+              appendStyle(`${key}-default-active-color`, defaultActiveColorValue);
+
+              const defaultActiveBgValue = luminance(value, -0.1415);
+              appendStyle(`${key}-default-active-bg`, defaultActiveBgValue);
+
+              const defaultActiveBorderValue = luminance(value, -0.17);
+              appendStyle(`${key}-default-active-border`, defaultActiveBorderValue);
+
+              const dbsrgba = hexToRgb(mix(yiqConstrast(yiq(luminance(defaultBgValue, -0.1165))), defaultBorderValue, 15));
+              const defaultBoxShadowColorValue = `rgba(${dbsrgba.r}, ${dbsrgba.g}, ${dbsrgba.b}, .5)`;
+              appendStyle(`${key}-default-box-shadow-color`, defaultBoxShadowColorValue);
+              break;
           case 'list-group-item':
             const listGroupItemBackgroundLevel = Number(computedStyle.getPropertyValue('--list-group-item-bg-level')
               .trim());
