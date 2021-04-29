@@ -95,7 +95,7 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit 
     additionalClasses += ((!this.panelFormat || this.panelFormat === 'mixed') || this.panelFormat === 'outlined') ?
       ` border-${this.themeVariant} ` : '';
 
-    additionalClasses += this.panelFormat === 'solid' ? ` bg-${this.themeVariant} ${this.getTextColor(this.themeVariant)}` : '';
+    additionalClasses += this.panelFormat === 'solid' ? ` bg-${this.themeVariant} ` : '';
 
     return additionalClasses;
   }
@@ -105,13 +105,9 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit 
     additionalClasses += ((!this.panelFormat || this.panelFormat === 'mixed') || this.panelFormat === 'outlined') ?
       ` border-${this.themeVariant} ` : '';
 
-    additionalClasses += (this.panelFormat === 'solid' || this.panelFormat === 'mixed') ? ` bg-${this.themeVariant} ${this.getTextColor(this.themeVariant)}` : '';
+    additionalClasses += (this.panelFormat === 'solid' || this.panelFormat === 'mixed') ? ` bg-${this.themeVariant} ` : '';
 
     return additionalClasses;
-  }
-
-  getTextColor(themeVariant): string {
-    return ((themeVariant === 'warning') || (themeVariant === 'light')) ? ' text-dark ' : ' text-white ';
   }
 
   /** Prepares the card header for display, and sets it to the DOM */
