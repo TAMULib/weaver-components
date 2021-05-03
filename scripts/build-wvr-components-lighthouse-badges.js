@@ -49,7 +49,7 @@ const logSoreList = scoreList => {
     console.info(s.title, s.score);
   });
 }
-
+console.log('\n\n lighthouseCiPath = ', lighthouseCiPath, '\n\n lighthousePath = ', `${lighthousePath}`, '', glob.sync(`${lighthouseCiPath}/lhr-*.html`, {})[0]);
 if(fs.existsSync(lighthouseCiPath)) {
   fs.ensureDir(`${lighthousePath}`);
   const htmlReportPath = glob.sync(`${lighthouseCiPath}/lhr-*.html`, {})[0];
