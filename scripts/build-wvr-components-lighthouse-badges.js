@@ -8,8 +8,6 @@ const basePath = 'static/weaver-components/reports';
 const lighthousePath = `${basePath}/audit`;
 const lighthouseAssetsPath = `${lighthousePath}/assets`;
 const lighthouseCiPath = './.lighthouseci';
-console.log('\n\n basePath = ', basePath, '\n\n\n lighthousePath ',lighthousePath ,
-'\n\n\n lighthouseAssetsPath ',lighthouseAssetsPath, ' \n\n\n lighthouseCiPath = ', lighthouseCiPath );
 const createScoreList = report => {
   const lhrScoreList = [];
   Object.keys(report.categories).forEach(key => {
@@ -50,7 +48,7 @@ const logSoreList = scoreList => {
     console.info(s.title, s.score);
   });
 }
-console.log('\n\n lighthouseCiPath = ', lighthouseCiPath, '\n\n lighthousePath = ', `${lighthousePath}`, '', glob.sync(`${lighthouseCiPath}/lhr-*.html`, {})[0]);
+
 if(fs.existsSync(lighthouseCiPath)) {
   fs.ensureDir(`${lighthousePath}`);
   const htmlReportPath = glob.sync(`${lighthouseCiPath}/lhr-*.html`, {})[0];
