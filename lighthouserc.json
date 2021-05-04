@@ -3,8 +3,8 @@
   "siteTitle": "Lighthouse Report",
   "ci": {
     "collect": {
-      "numberOfRuns": 1,
-      "url": ["http://localhost:8080/"],
+      "numberOfRuns": 4,
+      "url": ["http://localhost:8081/"],
       "startServerCommand": "npm run start:dist"
     },
     "assert": {
