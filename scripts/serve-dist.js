@@ -3,7 +3,6 @@
 const fs = require('fs');
 const process = require('process');
 const StaticServer = require('static-server');
-
 const fsPromises = fs.promises;
 const basePath = 'dist/bundle';
 
@@ -18,6 +17,7 @@ server.start(function () {
   console.log('Server listening to', server.port);
   fsPromises.copyFile('src/index.html', `${basePath}/index.html`);
 });
+console.log('\n\n static server = ', server);
 
 process.on('exit', function () {
   fs.unlink(`${basePath}/index.html`, err => {
