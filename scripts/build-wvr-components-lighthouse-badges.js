@@ -3,7 +3,7 @@
 const https = require('https');
 const fs = require('fs-extra');
 const glob = require("glob");
-console.log(' \n\n in build-wvr-components-lighthouse-badges \n\n');
+
 const basePath = 'static/weaver-components/reports';
 const lighthousePath = `${basePath}/audit`;
 const lighthouseAssetsPath = `${lighthousePath}/assets`;
