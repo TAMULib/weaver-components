@@ -80,7 +80,7 @@ export const showHiddentContent = (injector: Injector) => {
     });
 };
 
-const MODULES = [
+const MODULES: Array<any> = [
   EffectsModule.forRoot([
     ManifestEffects,
     RestEffects,
