@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-console.log('\n\n IN wvr component configuration \n\n');
 const dotEnv = require('dotenv-override-true');
 const fs = require('fs-extra');
 
@@ -50,4 +49,3 @@ if(fs.existsSync('./static')) {
 }
 
 fs.writeFile('./src/config.json', configTemplate);
-

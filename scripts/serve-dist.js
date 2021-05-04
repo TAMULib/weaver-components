@@ -17,7 +17,6 @@ server.start(function () {
   console.log('Server listening to', server.port);
   fsPromises.copyFile('src/index.html', `${basePath}/index.html`);
 });
-console.log('\n\n static server = ', server);
 
 process.on('exit', function () {
   fs.unlink(`${basePath}/index.html`, err => {
