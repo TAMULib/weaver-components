@@ -1,5 +1,5 @@
 {
-  "extends": "lighthouse:default",
+  "extends": "lighthouse:default|undefined",
   "siteTitle": "Lighthouse Report",
   "ci": {
     "collect": {
