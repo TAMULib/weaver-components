@@ -43,7 +43,7 @@
     "start:static": "node scripts/build-wvr-components-style.js && node scripts/build-wvr-components-configuration.js defaults-static-overrides.env && static-server static -p 8081",
     "start:docker": "node scripts/build-wvr-components-style.js && node scripts/start-docker.js",
     "test": "npm run test:unit && npm run test:e2e",
-    "test:audit": "rimraf .lighthouseci && lhci autorun --upload.target=temporary-public-storage --config=./lighthouserc.json && node scripts/build-wvr-components-lighthouse-badges.js",
+    "test:audit": "rimraf .lighthouseci && lhci autorun --collect.settings.chromeFlags='--no-sandbox' --upload.target=temporary-public-storage --config=./lighthouserc.json && node scripts/build-wvr-components-lighthouse-badges.js",
     "test:e2e": "ng e2e",
     "test:unit": "ng test --no-watch",
     "test:watch": "ng test",
