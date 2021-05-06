@@ -81,11 +81,7 @@
     "tinymce": "^5.7.0",
     "tslib": "^2.0.3",
     "web-animations-js": "^2.3.2",
-    "zone.js": "~0.11.4",
-    "lighthouse": "6.5.0",
-    "@lhci/cli": "^0.6.1",
-    "rimraf": "^3.0.2",
-    "lighthouse-badges": "^1.0.37"
+    "zone.js": "~0.11.4"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.1102.10",
