@@ -10,7 +10,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: "Install Chrome Drivers"
-        run: sudo apt-get install xvfb --headless
+        run: sudo apt-get install xvfb
 
       - name: "Node Cache"
         uses: actions/cache@v2
