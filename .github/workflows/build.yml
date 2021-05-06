@@ -34,11 +34,11 @@ jobs:
       - name: "Node Build"
         run:  npm run build
 
+        # xvfb-run --auto-servernum npm run test:coverage
       - name: "Node Tests"
         run: |
-          xvfb-run --auto-servernum npm run test:coverage
           ls -altr
-          rimraf .lighthouseci
+          xvfb-run --auto-servernum npm run test:audit
           echo '\n\n\n lhci autorun starting ... \n\n\n '
           lhci autorun --upload.target=temporary-public-storage --config=./lighthouserc.json
           echo pwd
