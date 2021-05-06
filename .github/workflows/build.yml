@@ -39,11 +39,6 @@ jobs:
         run: |
           ls -altr
           xvfb-run --auto-servernum npm run test:audit
-          echo '\n\n\n lhci autorun starting ... \n\n\n '
-          lhci autorun --upload.target=temporary-public-storage --config=./lighthouserc.json
-          echo pwd
-          echo '\n\n\n lhci autorun complete'
-          node scripts/build-wvr-components-lighthouse-badges.js
 
 
 
