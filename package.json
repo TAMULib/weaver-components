@@ -43,13 +43,13 @@
     "start:static": "node scripts/build-wvr-components-style.js && node scripts/build-wvr-components-configuration.js defaults-static-overrides.env && static-server static -p 8081",
     "start:docker": "node scripts/build-wvr-components-style.js && node scripts/start-docker.js",
     "test": "npm run test:unit && npm run test:e2e",
-    "test:audit": "rimraf .lighthouseci && lhci autorun",
+    "test:audit": "rimraf .lighthouseci && lhci autorun --upload.target=temporary-public-storage --config=./lighthouserc.json && node scripts/build-wvr-components-lighthouse-badges.js",
     "test:e2e": "ng e2e",
     "test:unit": "ng test --no-watch",
     "test:watch": "ng test",
     "test:report": "cat ./static/weaver-components/reports/coverage/wvr-elements/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "test:coverage": "ng test --no-watch --code-coverage",
-    "test:ci": "npm run test:coverage && npm run test:audit"
+    "test:ci": "npm run test:coverage && npm run test:audit --browsers=ChromeHeadless"
   },
   "dependencies": {
     "@angular/animations": "^11.2.12",
