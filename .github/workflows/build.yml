@@ -34,11 +34,11 @@ jobs:
       - name: "Node Build"
         run:  npm run build
 
-        # xvfb-run --auto-servernum npm run test:coverage
       - name: "Node Tests"
         run: |
           ls -altr
           xvfb-run --auto-servernum npm run test:audit
+          xvfb-run --auto-servernum npm run test:coverage
 
       - name: "Coveralls Coverage Report"
         uses: coverallsapp/github-action@master
