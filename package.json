@@ -84,7 +84,7 @@
     "zone.js": "~0.11.4",
     "lighthouse": "next",
     "@lhci/cli": "next",
-    "lighthouse-badges": "next"
+    "lighthouse-badges": "^1.1.4"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.1102.10",
