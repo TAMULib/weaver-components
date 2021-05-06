@@ -11,7 +11,6 @@ jobs:
 
       - name: "Install Chrome Drivers"
         run: sudo apt-get install xvfb
-
       - name: "Node Cache"
         uses: actions/cache@v2
         with:
@@ -36,8 +35,7 @@ jobs:
         run:  npm run build
 
       - name: "Node Tests"
-        run: npm install chrome-launcher
-             xvfb-run --auto-servernum npm run test:ci
+        run: xvfb-run --auto-servernum npm run test:ci
 
       - name: "Coveralls Coverage Report"
         uses: coverallsapp/github-action@master
