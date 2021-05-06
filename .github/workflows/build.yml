@@ -35,25 +35,35 @@ jobs:
         run:  npm run build
 
       - name: "Node Tests"
-        run: xvfb-run --auto-servernum npm run test:ci
+        run: |
+          xvfb-run --auto-servernum npm run test:coverage
+          ls -altr
+          rimraf .lighthouseci
+          echo '\n\n\n lhci autorun starting ... \n\n\n '
+          lhci autorun --upload.target=temporary-public-storage --config=./lighthouserc.json
+          echo pwd
+          echo '\n\n\n lhci autorun complete'
+          node scripts/build-wvr-components-lighthouse-badges.js
 
-      - name: "Coveralls Coverage Report"
-        uses: coverallsapp/github-action@master
-        with:
-          github-token: ${{ secrets.github_token }}
-          path-to-lcov: ${{ github.workspace }}/static/weaver-components/reports/coverage/wvr-elements/lcov.info
 
-      - name: "Build Static Production"
-        run: xvfb-run --auto-servernum npm run build:static-production
-        env:
-          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
 
-      - name: "Deploy GH-Pages"
-        if: github.ref == 'refs/heads/master' && github.event_name == 'push'
-        uses: JamesIves/github-pages-deploy-action@3.7.1
-        with:
-          github_token: ${{ secrets.github_token }}
-          branch: gh-pages
-          folder: static/weaver-components
-          clean: true
-          single_commit: true
+      # - name: "Coveralls Coverage Report"
+      #   uses: coverallsapp/github-action@master
+      #   with:
+      #     github-token: ${{ secrets.github_token }}
+      #     path-to-lcov: ${{ github.workspace }}/static/weaver-components/reports/coverage/wvr-elements/lcov.info
+
+      # - name: "Build Static Production"
+      #   run: xvfb-run --auto-servernum npm run build:static-production
+      #   env:
+      #     LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+
+      # - name: "Deploy GH-Pages"
+      #   if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+      #   uses: JamesIves/github-pages-deploy-action@3.7.1
+      #   with:
+      #     github_token: ${{ secrets.github_token }}
+      #     branch: gh-pages
+      #     folder: static/weaver-components
+      #     clean: true
+      #     single_commit: true
