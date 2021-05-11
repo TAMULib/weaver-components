@@ -8,34 +8,24 @@
     [themeVariant]="btnThemeVariant">
   </wvr-button-component>
 
-  <ng-template #modalTemplate let-modal>
-    <modal-content></modal-content>
-  </ng-template>
-
-  <modal-container #modalContent class="wvr-hidden wvr-bootstrap">
-    <ng-container *ngTemplateOutlet="modalHeader"></ng-container>
-    <ng-container *ngTemplateOutlet="modalBody"></ng-container>
-    <ng-container *ngTemplateOutlet="modalFooter"></ng-container>
-  </modal-container>
-
-  <!-- modalHeader -->
-  <ng-template #modalHeader>
+  <ng-template #modalTemplateContent>
     <div class="modal-header {{additionalClasses('header')}}">
       <h4 class="modal-title" id="modal-basic-title">{{title}}</h4>
     </div>
-  </ng-template>
-
-  <!-- modalBody -->
-  <ng-template #modalBody>
-    <div class="modal-body">
-      <ng-content select="wvre-modal-body"></ng-content>
+    <div class="modal-body" #modalBody>
+      <div [innerHtml]="bodySafeHtml"></div>
+    </div>
+    <div class="modal-footer {{additionalClasses('footer')}}" #modalFooter>
+      <div [innerHtml]="footerSafeHtml"></div>
     </div>
   </ng-template>
 
-  <!-- modalFooter -->
-  <ng-template #modalFooter>
-    <div class="modal-footer {{additionalClasses('footer')}}">
-      <ng-content select="wvre-modal-footer"></ng-content>
-    </div>
-  </ng-template>
+  <template #bodyInitialContent>
+    <ng-content select="template[body]"></ng-content>
+  </template>
+
+  <template #footerInitialContent>
+    <ng-content select="template[footer]"></ng-content>
+  </template>
+
 </wvr-modal-wrapper>
