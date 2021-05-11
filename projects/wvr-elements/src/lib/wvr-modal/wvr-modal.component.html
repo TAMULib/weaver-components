@@ -12,7 +12,8 @@
     <div class="modal-header {{additionalClasses('header')}}">
       <h4 class="modal-title" id="modal-basic-title">{{title}}</h4>
     </div>
-    <div class="modal-body" #modalBody [innerHtml]="bodySafeHtml">
+    <div class="modal-body" #modalBody>
+      <div [innerHtml]="bodySafeHtml"></div>
     </div>
     <div class="modal-footer {{additionalClasses('footer')}}" #modalFooter>
       <div [innerHtml]="footerSafeHtml"></div>

@@ -62,8 +62,8 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit, After
   }
 
   ngAfterViewInit(): void {
-    const bodyHtml = this.bodyInitialContent.nativeElement.querySelector('template[body]').innerHTML;
-    const fotterHtml = this.footerInitialContent.nativeElement.querySelector('template[footer]').innerHTML;
+    const bodyHtml = this.bodyInitialContent.nativeElement.querySelector('template[body]')?.innerHTML;
+    const fotterHtml = this.footerInitialContent.nativeElement.querySelector('template[footer]')?.innerHTML;
     this.bodySafeHtml =  this._sanitizer.bypassSecurityTrustHtml(`${bodyHtml}`);
     this.footerSafeHtml =  this._sanitizer.bypassSecurityTrustHtml(`${fotterHtml}`);
   }
