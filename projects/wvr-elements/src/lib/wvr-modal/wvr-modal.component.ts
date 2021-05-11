@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ElementRef, Injector, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { NgbActiveModal, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { select } from '@ngrx/store';
 import { filter } from 'rxjs/operators';
 import * as ModalActions from '../core/modal/modal.actions';
@@ -14,8 +14,6 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
   styleUrls: ['./wvr-modal.component.scss']
 })
 export class WvrModalComponent extends WvrBaseComponent implements OnInit, AfterViewInit {
-
-  @ViewChild('modalContent') modalContent: ElementRef<HTMLElement>;
 
   @ViewChild('modalTemplateContent') modalTemplateContent: TemplateRef<any>;
 
