@@ -1,4 +1,5 @@
-import { AfterContentInit, Component, ElementRef, Injector, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Injector, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { select } from '@ngrx/store';
 import { filter } from 'rxjs/operators';
@@ -12,11 +13,13 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
   templateUrl: './wvr-modal.component.html',
   styleUrls: ['./wvr-modal.component.scss']
 })
-export class WvrModalComponent extends WvrBaseComponent implements OnInit, AfterContentInit {
+export class WvrModalComponent extends WvrBaseComponent implements OnInit, AfterViewInit {
 
-  @ViewChild('modalContent') modalContent: ElementRef<HTMLElement>;
+  @ViewChild('modalTemplateContent') modalTemplateContent: TemplateRef<any>;
 
-  @ViewChild('modalTemplate') modalTemplate: TemplateRef<any>;
+  @ViewChild('bodyInitialContent') bodyInitialContent: ElementRef<HTMLElement>;
+
+  @ViewChild('footerInitialContent') footerInitialContent: ElementRef<HTMLElement>;
 
   modalRef: NgbModalRef;
 
@@ -44,12 +47,23 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit, After
   /** Allows for the override of theme variant for modal footer. */
   @Input() modalFooterThemeVariant: ThemeVariantName = 'light';
 
+  bodySafeHtml: SafeHtml;
+
+  footerSafeHtml: SafeHtml;
+
   get openProps(): string {
     return `{ id: '${this.modalId}'}`;
   }
 
-  constructor(injector: Injector, private modalService: NgbModal) {
+  constructor(injector: Injector, private modalService: NgbModal, private readonly _sanitizer: DomSanitizer) {
     super(injector);
+  }
+
+  ngAfterViewInit(): void {
+    const bodyHtml = this.bodyInitialContent.nativeElement.querySelector('template[body]')?.innerHTML;
+    const fotterHtml = this.footerInitialContent.nativeElement.querySelector('template[footer]')?.innerHTML;
+    this.bodySafeHtml =  this._sanitizer.bypassSecurityTrustHtml(`${bodyHtml}`);
+    this.footerSafeHtml =  this._sanitizer.bypassSecurityTrustHtml(`${fotterHtml}`);
   }
 
   ngOnInit(): void {
@@ -78,11 +92,12 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit, After
     .subscribe(modalState => {
       const modal = modalState.entities[this.modalId];
       if (modal.open) {
-
-        this.modalRef =  this.modalService.open(this.modalTemplate, {
+        this.modalRef =  this.modalService.open(this.modalTemplateContent, {
           ariaLabelledBy: 'modal-basic-title',
           container: this.eRef.nativeElement,
-          backdrop: false,
+          backdrop: 'static',
+          animation: false,
+          modalDialogClass: 'modal-dialog',
           beforeDismiss: () => {
             this.store.dispatch(ModalActions.closeModal({id: this.modalId}));
 
@@ -90,15 +105,7 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit, After
           }
         });
 
-        const modelContentContainer = (this.eRef.nativeElement as HTMLElement).querySelector('modal-content');
-        modelContentContainer.outerHTML = this.modalContent.nativeElement.innerHTML;
-        this.modalContent.nativeElement.innerHTML = '';
-
       } else if (this.modalRef) {
-
-        const modelContentContainer = (this.eRef.nativeElement as HTMLElement).querySelector('.modal-content');
-        this.modalContent.nativeElement.innerHTML = modelContentContainer.innerHTML;
-
         this.modalRef.close();
        }
     });
