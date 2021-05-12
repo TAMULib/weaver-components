@@ -3,10 +3,9 @@ import { select } from '@ngrx/store';
 import { EditorComponent } from '@tinymce/tinymce-angular';
 import * as JSON5 from 'json5';
 import { Subscription } from 'rxjs';
-import { filter } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
 import tinymce from 'tinymce';
 import { selectWysiwygById } from '../core/store';
-import { Wysiwyg } from '../core/wysiwyg/wysiwyg';
 import * as WysiwygActions from '../core/wysiwyg/wysiwyg.actions';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 import { WvrWysiwygMenu } from './wvr-wysiwyg-menu';
@@ -81,9 +80,10 @@ export class WvrWysiwygComponent extends WvrBaseComponent implements OnInit, OnD
 
     this.subscription = this.store.pipe(
       select(selectWysiwygById(`${this.id}`)),
-      filter(wysiwygState => !!wysiwygState)
-    ).subscribe((wysiwyg: Wysiwyg) => {
-      this.content = wysiwyg.content;
+      filter(wysiwyg => !!wysiwyg),
+      map(wysiwyg => wysiwyg.content)
+    ).subscribe((content: string) => {
+      this.content = content;
     });
   }
 
