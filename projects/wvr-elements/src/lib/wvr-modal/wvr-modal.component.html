@@ -16,11 +16,11 @@
     <div class="modal-footer {{additionalClasses('footer')}}" [innerHtml]="footerSafeHtml"></div>
   </ng-template>
 
-  <template #bodyInitialContent>
+  <template #bodyInitialTemplate>
     <ng-content select="template[body]"></ng-content>
   </template>
 
-  <template #footerInitialContent>
+  <template #footerInitialTemplate>
     <ng-content select="template[footer]"></ng-content>
   </template>
 

@@ -17,9 +17,9 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit, After
 
   @ViewChild('modalTemplateContent') modalTemplateContent: TemplateRef<any>;
 
-  @ViewChild('bodyInitialContent') bodyInitialContent: ElementRef<HTMLElement>;
+  @ViewChild('bodyInitialTemplate') bodyInitialTemplate: ElementRef<HTMLTemplateElement>;
 
-  @ViewChild('footerInitialContent') footerInitialContent: ElementRef<HTMLElement>;
+  @ViewChild('footerInitialTemplate') footerInitialTemplate: ElementRef<HTMLTemplateElement>;
 
   modalRef: NgbModalRef;
 
@@ -60,10 +60,33 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit, After
   }
 
   ngAfterViewInit(): void {
-    const bodyHtml = this.bodyInitialContent.nativeElement.querySelector('template[body]')?.innerHTML;
-    const fotterHtml = this.footerInitialContent.nativeElement.querySelector('template[footer]')?.innerHTML;
+
+    const bodyTemplate = (this.eRef.nativeElement as HTMLElement).querySelector('template[body]') as HTMLTemplateElement;
+    let bodyHtml = '';
+    const bodyNodeList = bodyTemplate?.querySelectorAll('template[body] > *');
+
+    if (bodyNodeList && bodyNodeList.length) {
+      bodyNodeList.forEach(n => {
+        bodyHtml += n.outerHTML || n.nodeValue;
+      });
+    } else {
+      bodyHtml = bodyTemplate?.innerHTML;
+    }
+
+    const footerTemplate = (this.eRef.nativeElement as HTMLElement).querySelector('template[footer]') as HTMLTemplateElement;
+    let footerHtml = '';
+    const footerNodeList = footerTemplate?.querySelectorAll('template[footer] > *');
+
+    if (footerNodeList && footerNodeList.length) {
+      footerNodeList.forEach(n => {
+        footerHtml += n.outerHTML || n.nodeValue;
+      });
+    } else {
+      footerHtml = footerTemplate?.innerHTML;
+    }
+
     this.bodySafeHtml =  this._sanitizer.bypassSecurityTrustHtml(`${bodyHtml}`);
-    this.footerSafeHtml =  this._sanitizer.bypassSecurityTrustHtml(`${fotterHtml}`);
+    this.footerSafeHtml =  this._sanitizer.bypassSecurityTrustHtml(`${footerHtml}`);
   }
 
   ngOnInit(): void {
