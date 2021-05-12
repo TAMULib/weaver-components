@@ -116,4 +116,64 @@ describe('WvrWysiwygComponent', () => {
     expect(component.config.toolbar)
       .toEqual(toolbar);
   });
+
+  it('should be able to set `baseUrl` ', () => {
+    expect(component.baseUrl)
+      // tslint:disable-next-line:no-string-literal
+      .toEqual(`${component['appConfig'].assetsUrl}/tinymce`);
+  });
+
+  it('should be able to set skin', () => {
+    expect(component.skin)
+      .toEqual('oxide');
+    component.skin = 'oxide-dark';
+    fixture.detectChanges();
+    expect(component.skin)
+      .toEqual('oxide-dark');
+  });
+
+  it('should be able to set `menu`', () => {
+
+    const editorMenu =
+    {
+      file: {
+        title: 'File',
+        items: 'newdocument | preview | print'
+      },
+      edit: {
+        title: 'Edit',
+        items: 'undo redo | cut copy paste | selectall | searchreplace'
+      },
+      view: {
+        title: 'View',
+        items: 'code | visualaid visualchars visualblocks | preview fullscreen'
+      },
+      insert: {
+        title: 'Insert',
+        items: 'image link media template codesample inserttable | charmap emoticons hr | pagebreak nonbreaking anchor toc | insertdatetime'
+      },
+      format: {
+        title: 'Format',
+        items: 'bold italic underline strikethrough superscript subscript codeformat | formats blockformats fontformats fontsizes align lineheight | forecolor backcolor | removeformat'
+      },
+      tools: {
+        title: 'Tools',
+        items: 'code wordcount | cancel save'
+      },
+      table: {
+        title: 'Table',
+        items: 'inserttable | cell row column | tableprops deletetable'
+      }
+    };
+
+    Object.keys(editorMenu).forEach(editorMenuKey => {
+      Object.keys(component.menu).forEach(menuKey => {
+        if(editorMenuKey === menuKey) {
+          expect(JSON.stringify(editorMenu[editorMenuKey]) === JSON.stringify(component.menu[menuKey]) )
+            .toBe(true);
+        }
+      });
+    });
+
+  });
 });

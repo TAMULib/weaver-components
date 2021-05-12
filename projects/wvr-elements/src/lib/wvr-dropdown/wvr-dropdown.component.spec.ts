@@ -120,6 +120,15 @@ describe('WvrDropdownComponent', () => {
       .toEqual('click');
   });
 
+  it('should have `openDelay` defined for dropdown menu', () => {
+    expect(component.openDelay)
+      .toEqual(500);
+    component.openDelay = 1500;
+    fixture.detectChanges();
+    expect(component.openDelay)
+      .toEqual(1500);
+  });
+
   it('should set `_animationSpeedMili` and `_animationSpeedSeconds` when setting `menuAnimationSpeed`', () => {
     component.menuAnimationSpeed = 500;
     // tslint:disable-next-line:no-string-literal

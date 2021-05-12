@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Injector, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, Injector, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { select } from '@ngrx/store';
 import { EditorComponent } from '@tinymce/tinymce-angular';
 import * as JSON5 from 'json5';
