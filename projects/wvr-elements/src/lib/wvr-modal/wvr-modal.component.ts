@@ -63,9 +63,9 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit, After
 
     const bodyTemplate = (this.eRef.nativeElement as HTMLElement).querySelector('template[body]') as HTMLTemplateElement;
     let bodyHtml = '';
-    const bodyNodeList = bodyTemplate.querySelectorAll('template[body] > *');
+    const bodyNodeList = bodyTemplate?.querySelectorAll('template[body] > *');
 
-    if (bodyNodeList.length) {
+    if (bodyNodeList && bodyNodeList.length) {
       bodyNodeList.forEach(n => {
         bodyHtml += n.outerHTML || n.nodeValue;
       });
@@ -75,9 +75,9 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit, After
 
     const footerTemplate = (this.eRef.nativeElement as HTMLElement).querySelector('template[footer]') as HTMLTemplateElement;
     let footerHtml = '';
-    const footerNodeList = footerTemplate.querySelectorAll('template[footer] > *');
+    const footerNodeList = footerTemplate?.querySelectorAll('template[footer] > *');
 
-    if (footerNodeList.length) {
+    if (footerNodeList && footerNodeList.length) {
       footerNodeList.forEach(n => {
         footerHtml += n.outerHTML || n.nodeValue;
       });
