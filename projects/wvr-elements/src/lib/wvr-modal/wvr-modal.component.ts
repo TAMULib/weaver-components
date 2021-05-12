@@ -70,7 +70,7 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit, After
         bodyHtml += n.outerHTML || n.nodeValue;
       });
     } else {
-      bodyHtml = bodyTemplate.innerHTML;
+      bodyHtml = bodyTemplate?.innerHTML;
     }
 
     const footerTemplate = (this.eRef.nativeElement as HTMLElement).querySelector('template[footer]') as HTMLTemplateElement;
@@ -82,7 +82,7 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit, After
         footerHtml += n.outerHTML || n.nodeValue;
       });
     } else {
-      footerHtml = footerTemplate.innerHTML;
+      footerHtml = footerTemplate?.innerHTML;
     }
 
     this.bodySafeHtml =  this._sanitizer.bypassSecurityTrustHtml(`${bodyHtml}`);
