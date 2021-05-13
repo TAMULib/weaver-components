@@ -72,7 +72,6 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit {
               : template.cloneNode(true);
             Array.from(clone.children)
               .forEach((elem: Element) => {
-                console.log(content, elem);
                 element.appendChild(elem);
               });
           });
@@ -156,9 +155,5 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit {
   getTextColor(themeVariant): string {
     return ((themeVariant === 'warning') || (themeVariant === 'light')) ? 'text-dark' : 'text-white';
   }
-
-  // @HostListener('click', ['$event']) click($event: MouseEvent): void {
-  //   console.log('modal click', $event.target);
-  // }
 
 }
