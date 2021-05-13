@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, HostBinding, HostListener, Injector, Input } from '@angular/core';
 import * as JSON5 from 'json5';
+import { ActionRegistryService } from '../core/action-registry.service';
 import { actions } from '../core/actions';
 import { ThemeVariantName } from '../shared/theme';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
@@ -136,8 +137,11 @@ export class WvrButtonComponent extends WvrBaseComponent {
 
   variantTypes = ['button'];
 
+  actionRegistry?: ActionRegistryService;
+
   constructor(injector: Injector) {
     super(injector);
+    this.actionRegistry = injector.get(ActionRegistryService);
   }
 
   @HostListener('document:click', ['$event']) click($event: MouseEvent): void {
@@ -180,7 +184,9 @@ export class WvrButtonComponent extends WvrBaseComponent {
       return;
     }
 
-    valid = !!actions[parts[0]];
+    const actions = this.actionRegistry.getActions(parts[0]);
+
+    valid = !!actions;
     if (!valid) {
       console.warn(`'${parts[0]}' is not a known action type. (${Object.keys(actions)
         .join(',')})`);
@@ -188,7 +194,7 @@ export class WvrButtonComponent extends WvrBaseComponent {
       return;
     }
 
-    valid = !!actions[parts[0]][parts[1]];
+    valid = !!actions[parts[1]];
     if (!valid) {
       console.warn(`'${parts[1]}' is not a known action of ${parts[0]}. (${Object.keys(actions[parts[0]])
         .join(',')})`);
@@ -196,7 +202,7 @@ export class WvrButtonComponent extends WvrBaseComponent {
       return;
     }
 
-    return actions[parts[0]][parts[1]];
+    return actions[parts[1]];
   }
 
 }
