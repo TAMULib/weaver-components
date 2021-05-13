@@ -37,4 +37,9 @@ describe('Modal Reducer', () => {
       .toBe(true);
   });
 
+  // close modal
+  // it(' should ');
+
+
+
 });
