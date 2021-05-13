@@ -12,16 +12,12 @@
     <div class="modal-header {{additionalClasses('header')}}">
       <h4 class="modal-title" id="modal-basic-title">{{title}}</h4>
     </div>
-    <div class="modal-body" [innerHtml]="bodySafeHtml"></div>
-    <div class="modal-footer {{additionalClasses('footer')}}" [innerHtml]="footerSafeHtml"></div>
+    <div class="modal-body">
+      <ng-content select="wvr-modal-body"></ng-content>
+    </div>
+    <div class="modal-footer {{additionalClasses('footer')}}">
+      <ng-content select="wvr-modal-footer" wvrModalFooter></ng-content>
+    </div>
   </ng-template>
-
-  <template #bodyInitialTemplate>
-    <ng-content select="template[body]"></ng-content>
-  </template>
-
-  <template #footerInitialTemplate>
-    <ng-content select="template[footer]"></ng-content>
-  </template>
 
 </wvr-modal-wrapper>

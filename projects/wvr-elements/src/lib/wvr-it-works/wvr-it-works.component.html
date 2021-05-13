@@ -3,3 +3,15 @@
     <h1 class="it-works text-{{themeVariant}}">{{text}}!!!</h1>
   </div>
 </div>
+
+<wvr-modal-component title="Weaver Modal3" btn-visible="false">
+  <wvr-modal-body>
+    <wvre-text value="Message in the Body"></wvre-text>
+  </wvr-modal-body>
+  <wvr-modal-footer>
+    <wvr-button-component id="my-event-button2" btnTxt="Emit Event" themeVariant="success" emitEvent="buttonTest">
+    </wvr-button-component>
+    <wvr-lazy-loader component="wvre-button" btn-txt="cancel" theme-variant="success" dispatch-action="Modal.closeModal" dispatch-action-props="{id: 'Weaver Modal3'}">
+    </wvr-lazy-loader>
+  </wvr-modal-footer>
+</wvr-modal-component>

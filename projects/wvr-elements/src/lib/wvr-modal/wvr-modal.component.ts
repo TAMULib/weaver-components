@@ -1,6 +1,6 @@
-import { AfterViewInit, Component, ElementRef, Injector, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { AfterContentInit, Component, ContentChild, ContentChildren, Directive, ElementRef, HostListener, Injector, Input, OnInit, QueryList, TemplateRef, ViewChild } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { select } from '@ngrx/store';
 import { filter } from 'rxjs/operators';
 import * as ModalActions from '../core/modal/modal.actions';
@@ -13,13 +13,13 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
   templateUrl: './wvr-modal.component.html',
   styleUrls: ['./wvr-modal.component.scss']
 })
-export class WvrModalComponent extends WvrBaseComponent implements OnInit, AfterViewInit {
+export class WvrModalComponent extends WvrBaseComponent implements OnInit, AfterContentInit {
 
   @ViewChild('modalTemplateContent') modalTemplateContent: TemplateRef<any>;
 
-  @ViewChild('bodyInitialTemplate') bodyInitialTemplate: ElementRef<HTMLTemplateElement>;
+  // @ContentChild(WvrModalFooterDirective) private modalFooter: WvrModalFooterDirective;
 
-  @ViewChild('footerInitialTemplate') footerInitialTemplate: ElementRef<HTMLTemplateElement>;
+  // @ViewChild('footerInitialTemplate') footerInitialTemplate: ElementRef<HTMLTemplateElement>;
 
   modalRef: NgbModalRef;
 
@@ -55,38 +55,51 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit, After
     return `{ id: '${this.modalId}'}`;
   }
 
-  constructor(injector: Injector, private modalService: NgbModal, private readonly _sanitizer: DomSanitizer) {
+  constructor(
+    injector: Injector,
+    private modalService: NgbModal,
+    private readonly _sanitizer: DomSanitizer
+  ) {
     super(injector);
   }
 
-  ngAfterViewInit(): void {
+  ngAfterContentInit(): void {
 
-    const bodyTemplate = (this.eRef.nativeElement as HTMLElement).querySelector('template[body]') as HTMLTemplateElement;
-    let bodyHtml = '';
-    const bodyNodeList = bodyTemplate?.querySelectorAll('template[body] > *');
+    const lazyNode = (this.eRef.nativeElement as HTMLElement).querySelector('wvr-lazy-loader');
 
-    if (bodyNodeList && bodyNodeList.length) {
-      bodyNodeList.forEach(n => {
-        bodyHtml += n.outerHTML || n.nodeValue;
-      });
-    } else {
-      bodyHtml = bodyTemplate?.innerHTML;
-    }
+    // const nodeName = lazyNode.nodeName;
+    // const newNodeName = nodeName.replace('-lazy', '');
 
-    const footerTemplate = (this.eRef.nativeElement as HTMLElement).querySelector('template[footer]') as HTMLTemplateElement;
-    let footerHtml = '';
-    const footerNodeList = footerTemplate?.querySelectorAll('template[footer] > *');
+    // lazyNode.replaceWith(() => {
 
-    if (footerNodeList && footerNodeList.length) {
-      footerNodeList.forEach(n => {
-        footerHtml += n.outerHTML || n.nodeValue;
-      });
-    } else {
-      footerHtml = footerTemplate?.innerHTML;
-    }
+    // });
 
-    this.bodySafeHtml =  this._sanitizer.bypassSecurityTrustHtml(`${bodyHtml}`);
-    this.footerSafeHtml =  this._sanitizer.bypassSecurityTrustHtml(`${footerHtml}`);
+    // const bodyTemplate = (this.eRef.nativeElement as HTMLElement).querySelector('template[body]') as HTMLTemplateElement;
+    // let bodyHtml = '';
+    // const bodyNodeList = bodyTemplate?.querySelectorAll('template[body] > *');
+
+    // if (bodyNodeList && bodyNodeList.length) {
+    //   bodyNodeList.forEach(n => {
+    //     bodyHtml += n.outerHTML || n.nodeValue;
+    //   });
+    // } else {
+    //   bodyHtml = bodyTemplate?.innerHTML;
+    // }
+
+    // const footerTemplate = (this.eRef.nativeElement as HTMLElement).querySelector('template[footer]') as HTMLTemplateElement;
+    // let footerHtml = '';
+    // const footerNodeList = footerTemplate?.querySelectorAll('template[footer] > *');
+
+    // if (footerNodeList && footerNodeList.length) {
+    //   footerNodeList.forEach(n => {
+    //     footerHtml += n.outerHTML || n.nodeValue;
+    //   });
+    // } else {
+    //   footerHtml = footerTemplate?.innerHTML;
+    // }
+
+    // this.bodySafeHtml =  this._sanitizer.bypassSecurityTrustHtml(`${bodyHtml}`);
+    // this.footerSafeHtml =  this._sanitizer.bypassSecurityTrustHtml(`${footerHtml}`);
   }
 
   ngOnInit(): void {
@@ -128,6 +141,11 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit, After
           }
         });
 
+        Array.from(this.eRef.nativeElement.querySelectorAll('wvr-lazy-loader'))
+          .forEach((lazyElement: Element) => {
+            lazyElement.outerHTML = lazyElement.outerHTML.replace('wvr-lazy-loader', lazyElement.getAttribute('component'));
+          });
+
       } else if (this.modalRef) {
         this.modalRef.close();
        }
@@ -165,5 +183,9 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit, After
   getTextColor(themeVariant): string {
     return ((themeVariant === 'warning') || (themeVariant === 'light')) ? ' text-dark ' : ' text-white ';
   }
+
+  // @HostListener('click', ['$event']) click($event: MouseEvent): void {
+  //   console.log('modal click', $event.target);
+  // }
 
 }

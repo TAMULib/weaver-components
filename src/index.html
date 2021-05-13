@@ -175,31 +175,37 @@
   <div class="container index-container">
     <wvre-text value="Modal Component with Customized Body" text-decoration="underline"></wvre-text><br /><br />
     <wvre-modal title="Weaver Modal" btn-text="Launch Modal">
-      <template body>
+      <wvr-modal-body>
         <wvre-text value="Modal Message in the Body"></wvre-text>
-      </template>
-      <template footer>
-        <wvre-button btn-txt="cancel" theme-variant="secondary" dispatch-action="Modal.closeModal" dispatch-action-props="{id: 'Weaver Modal'}">
-        </wvre-button>
-      </template>
+      </wvr-modal-body>
+      <wvr-modal-footer>
+        <wvr-lazy-loader component="wvre-button" btn-txt="cancel" theme-variant="secondary" dispatch-action="Modal.closeModal" dispatch-action-props="{id: 'Weaver Modal'}">
+        </wvr-lazy-loader>
+      </wvr-modal-footer>
     </wvre-modal>
 
     <wvre-modal title="Weaver Modal2" btn-visible="false">
-      <template body>
+      <wvr-modal-body>
         <wvre-text value="Message in the Body"></wvre-text>
-      </template>
-      <template footer>
-        <wvre-button btn-txt="cancel" theme-variant="success" dispatch-action="Modal.closeModal" dispatch-action-props="{id: 'Weaver Modal2'}">
-        </wvre-button>
-      </template>
+      </wvr-modal-body>
+      <wvr-modal-footer>
+        <wvr-lazy-loader component="wvre-button" btn-txt="cancel" theme-variant="success" dispatch-action="Modal.closeModal" dispatch-action-props="{id: 'Weaver Modal2'}">
+        </wvr-lazy-loader>
+      </wvr-modal-footer>
     </wvre-modal>
 
     <wvre-button id="my-button" btn-txt="Launch Second Modal" theme-variant="secondary" dispatch-action="Modal.openModal" dispatch-action-props="{id: 'Weaver Modal2'}">
     </wvre-button>
 
+    <wvre-button id="my-event-button" btn-txt="Emit Event" theme-variant="success" emit-event="buttonTest">
+    </wvre-button>
+
   </div>
 
   <script>
+    const myEventButton = document.querySelector('#my-event-button');
+    window.addEventListener('buttonTest', console.log);
+
     // let myBtnElem = document.querySelector('#my-button');
     // myBtnElem.addEventListener('myEvent', console.log);
     // window.addEventListener('myEvent', console.log);
