@@ -1,5 +1,4 @@
 import { Component, Injector, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { SafeHtml } from '@angular/platform-browser';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { select } from '@ngrx/store';
 import { filter } from 'rxjs/operators';
@@ -43,10 +42,6 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit {
   /** Allows for the override of theme variant for modal footer. */
   @Input() modalFooterThemeVariant: ThemeVariantName = 'light';
 
-  bodySafeHtml: SafeHtml;
-
-  footerSafeHtml: SafeHtml;
-
   get openProps(): string {
     return `{ id: '${this.modalId}'}`;
   }
@@ -68,8 +63,8 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit {
             const template = this.eRef.nativeElement.querySelector(`template[modal-${content}]`);
             const element: Element = this.eRef.nativeElement.querySelector(`div[modal-${content}]`);
             const clone = template.content.children.length
-              ? template.content.cloneNode(true)
-              : template.cloneNode(true);
+              ? template.content
+              : template
             Array.from(clone.children)
               .forEach((elem: Element) => {
                 element.appendChild(elem);
@@ -118,6 +113,15 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit {
           });
 
         } else if (this.modalRef) {
+          ['body', 'footer'].forEach(content => {
+            const template = this.eRef.nativeElement.querySelector(`template[modal-${content}]`);
+            const element: Element = this.eRef.nativeElement.querySelector(`div[modal-${content}]`);
+            Array.from(element.children)
+              .filter((elem: Element) => elem.nodeName !== 'TEMPLATE')
+              .forEach((elem: Element) => {
+                template.appendChild(elem);
+              });
+          });
           this.modalRef.close();
           delete this.modalRef;
         }

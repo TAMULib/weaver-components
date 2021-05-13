@@ -25,6 +25,10 @@ export class WvrItWorksComponent extends WvrBaseComponent {
   /** Allows for the override of the --wvr-primary css variable. */
   @HostBinding('style.--wvr-primary') @Input() primary;
 
+  username = '';
+
+  password = '';
+
   constructor(injector: Injector) {
     super(injector);
   }

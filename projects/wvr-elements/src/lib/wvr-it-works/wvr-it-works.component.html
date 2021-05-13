@@ -1,15 +1,33 @@
 <div role="main" class="container" #animationRoot>
   <div class="jumbotron">
     <h1 class="it-works text-{{themeVariant}}">{{text}}!!!</h1>
+
+    <wvr-modal-component title="Weaver Modal3" btn-visible="false">
+      <template modal-body>
+        <wvr-text-component value="Message in the Body"></wvr-text-component>
+        <form novalidate>
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="username" class="form-control" name="username" placeholder="Enter username" [(ngModel)]="username">
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" name="password" placeholder="Enter password" [(ngModel)]="password">
+          </div>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Remember me</label>
+          </div>
+        
+          <p>Username: {{username}}</p>
+          <p>Password: {{password}}</p>
+        </form>
+      </template>
+      <template modal-footer>
+        <wvr-button-component id="my-event-button2" btnTxt="Emit Event" themeVariant="success" emitEvent="buttonTest"></wvr-button-component>
+        <wvr-button-component id="my-cancel-button2" btnTxt="cancel" themeVariant="success" dispatchAction="Modal.closeModal" dispatchActionProps="{id: 'Weaver Modal3'}"></wvr-button-component>
+      </template>
+    </wvr-modal-component>
+
   </div>
 </div>
-
-<wvr-modal-component title="Weaver Modal3" btn-visible="false">
-  <template modal-body>
-    <wvr-text-component value="Message in the Body"></wvr-text-component>
-  </template>
-  <template modal-footer>
-    <wvr-button-component id="my-event-button2" btnTxt="Emit Event" themeVariant="success" emitEvent="buttonTest"></wvr-button-component>
-    <wvr-button-component id="my-cancel-button2" btnTxt="cancel" themeVariant="success" dispatchAction="Modal.closeModal" dispatchActionProps="{id: 'Weaver Modal3'}"></wvr-button-component>
-  </template>
-</wvr-modal-component>
