@@ -61,14 +61,16 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit {
         if (!!this.modalRef && modalRefs.length > 0) {
           ['body', 'footer'].forEach(content => {
             const template = this.eRef.nativeElement.querySelector(`template[modal-${content}]`);
-            const element: Element = this.eRef.nativeElement.querySelector(`div[modal-${content}]`);
-            const clone = template.content.children.length
-              ? template.content
-              : template
-            Array.from(clone.children)
-              .forEach((elem: Element) => {
-                element.appendChild(elem);
-              });
+            if (!!template) {
+              const element: Element = this.eRef.nativeElement.querySelector(`div[modal-${content}]`);
+              const clone = template.content.children.length
+                ? template.content
+                : template
+              Array.from(clone.children)
+                .forEach((elem: Element) => {
+                  element.appendChild(elem);
+                });
+            }
           });
         }
       });
@@ -115,12 +117,14 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit {
         } else if (this.modalRef) {
           ['body', 'footer'].forEach(content => {
             const template = this.eRef.nativeElement.querySelector(`template[modal-${content}]`);
-            const element: Element = this.eRef.nativeElement.querySelector(`div[modal-${content}]`);
-            Array.from(element.children)
-              .filter((elem: Element) => elem.nodeName !== 'TEMPLATE')
-              .forEach((elem: Element) => {
-                template.appendChild(elem);
-              });
+            if (!!template) {
+              const element: Element = this.eRef.nativeElement.querySelector(`div[modal-${content}]`);
+              Array.from(element.children)
+                .filter((elem: Element) => elem.nodeName !== 'TEMPLATE')
+                .forEach((elem: Element) => {
+                  template.appendChild(elem);
+                });
+            }
           });
           this.modalRef.close();
           delete this.modalRef;
