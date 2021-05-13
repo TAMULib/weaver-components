@@ -22,19 +22,19 @@ export class WvrManifestComponent extends WvrBaseComponent {
 
   /** The name by which this manifest can be referenced */
   // tslint:disable-next-line: prefer-readonly
-  @Input() private name: string;
+  @Input() name: string;
 
   /** The base URL to be prepended to all paths expressed on ManifestEntries */
   // tslint:disable-next-line: prefer-readonly
-  @Input() private baseUrl: string;
+  @Input() baseUrl: string;
 
   /** A human description of this manifes */
   // tslint:disable-next-line: prefer-readonly
-  @Input() private description: string;
+  @Input() description: string;
 
   /** The strategy to be employed to unwrao response data */
   // tslint:disable-next-line: prefer-readonly
-  @Input() private mappingStrategy;
+  @Input() mappingStrategy;
 
   /** A collection of the child WvrManifestEntryComponent */
   private readonly manifestEntries = new Array<WvrManifestEntryComponent>();
