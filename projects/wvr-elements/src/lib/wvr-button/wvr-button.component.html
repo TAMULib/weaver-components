@@ -1,5 +1,6 @@
 <button-wrapper #animationRoot>
   <button *ngIf="!href"
+    [attr.id]="htmlId"
     class="wvr-components wvr-button btn {{btnType!=='link' ? 'btn-'+themeVariant : ''}}"
     [type]="btnType"
     [ngClass]="{
@@ -12,6 +13,7 @@
     <ng-container *ngTemplateOutlet="content"></ng-container>
   </button>
   <a *ngIf="href"
+    [attr.id]="htmlId"
     class="wvr-components wvr-button btn {{btnType!=='link' ? 'btn-'+themeVariant : ''}}"
     [href]="href"
     [ngClass]="{

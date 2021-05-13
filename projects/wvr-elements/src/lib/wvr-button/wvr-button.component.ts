@@ -12,6 +12,8 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
 })
 export class WvrButtonComponent extends WvrBaseComponent {
 
+  htmlId = `wvr-button-${this.id}`;
+
   /** Used to define the class type for button component.  */
   @Input() themeVariant: ThemeVariantName = 'primary';
 
@@ -138,30 +140,31 @@ export class WvrButtonComponent extends WvrBaseComponent {
     super(injector);
   }
 
-  @HostListener('click', ['$event']) click($event: MouseEvent): void {
+  @HostListener('document:click', ['$event']) click($event: MouseEvent): void {
+    if (($event.target as HTMLElement).id === this.htmlId) {
+      if (this._dispatchActions) {
+        this._dispatchActions.forEach(actionAndProp => {
+          this.store.dispatch(actionAndProp.action(
+            actionAndProp.props
+          ));
+        });
+      } else if (this._action) {
+        this._actionProps ?
+        this.store.dispatch(this._action(
+          this._actionProps
+        )) :
+        this.store.dispatch(this._action());
+      }
 
-    if (this._dispatchActions) {
-      this._dispatchActions.forEach(actionAndProp => {
-        this.store.dispatch(actionAndProp.action(
-          actionAndProp.props
-        ));
-      });
-    } else if (this._action) {
-      this._actionProps ?
-      this.store.dispatch(this._action(
-        this._actionProps
-      )) :
-      this.store.dispatch(this._action());
-    }
-
-    if (this.emitEvent) {
-      this.eRef.nativeElement.dispatchEvent(new CustomEvent(this.emitEvent, {
-        bubbles: true,
-        detail: {
-          data: (this.eRef.nativeElement as HTMLElement).dataset,
-          button: this
-        }
-      }));
+      if (this.emitEvent) {
+        this.eRef.nativeElement.dispatchEvent(new CustomEvent(this.emitEvent, {
+          bubbles: true,
+          detail: {
+            data: (this.eRef.nativeElement as HTMLElement).dataset,
+            button: this
+          }
+        }));
+      }
     }
   }
 
