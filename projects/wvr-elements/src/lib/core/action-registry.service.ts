@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { actions } from './actions';
 
 /**
- * A registry for each WvrBaseComponent currently present on the page.
+ * A registry for actions that can be dispatched.
  */
 @Injectable({
   providedIn: 'root'
