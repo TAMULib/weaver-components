@@ -12,11 +12,11 @@
     <div class="modal-header {{additionalClasses('header')}}">
       <h4 class="modal-title" id="modal-basic-title">{{title}}</h4>
     </div>
-    <div class="modal-body">
-      <ng-content select="wvr-modal-body"></ng-content>
+    <div class="modal-body" modal-body>
+      <ng-content select="template[modal-body]"></ng-content>
     </div>
-    <div class="modal-footer {{additionalClasses('footer')}}">
-      <ng-content select="wvr-modal-footer" wvrModalFooter></ng-content>
+    <div class="modal-footer {{additionalClasses('footer')}}" modal-footer>
+      <ng-content select="template[modal-footer]"></ng-content>
     </div>
   </ng-template>
 

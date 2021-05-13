@@ -174,24 +174,23 @@
 
   <div class="container index-container">
     <wvre-text value="Modal Component with Customized Body" text-decoration="underline"></wvre-text><br /><br />
+
     <wvre-modal title="Weaver Modal" btn-text="Launch Modal">
-      <wvr-modal-body>
+      <template modal-body>
         <wvre-text value="Modal Message in the Body"></wvre-text>
-      </wvr-modal-body>
-      <wvr-modal-footer>
-        <wvr-lazy-loader component="wvre-button" btn-txt="cancel" theme-variant="secondary" dispatch-action="Modal.closeModal" dispatch-action-props="{id: 'Weaver Modal'}">
-        </wvr-lazy-loader>
-      </wvr-modal-footer>
+      </template>
+      <template modal-footer>
+        <wvre-button btn-txt="cancel" theme-variant="secondary" dispatch-action="Modal.closeModal" dispatch-action-props="{id: 'Weaver Modal'}"></wvre-button>
+      </template>
     </wvre-modal>
 
     <wvre-modal title="Weaver Modal2" btn-visible="false">
-      <wvr-modal-body>
+      <template modal-body>
         <wvre-text value="Message in the Body"></wvre-text>
-      </wvr-modal-body>
-      <wvr-modal-footer>
-        <wvr-lazy-loader component="wvre-button" btn-txt="cancel" theme-variant="success" dispatch-action="Modal.closeModal" dispatch-action-props="{id: 'Weaver Modal2'}">
-        </wvr-lazy-loader>
-      </wvr-modal-footer>
+      </template>
+      <template modal-footer>
+        <wvre-button btn-txt="cancel" theme-variant="secondary" theme-variant="success" dispatch-action="Modal.closeModal" dispatch-action-props="{id: 'Weaver Modal2'}"></wvre-button>
+      </template>
     </wvre-modal>
 
     <wvre-button id="my-button" btn-txt="Launch Second Modal" theme-variant="secondary" dispatch-action="Modal.openModal" dispatch-action-props="{id: 'Weaver Modal2'}">

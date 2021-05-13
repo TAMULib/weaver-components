@@ -5,13 +5,11 @@
 </div>
 
 <wvr-modal-component title="Weaver Modal3" btn-visible="false">
-  <wvr-modal-body>
-    <wvre-text value="Message in the Body"></wvre-text>
-  </wvr-modal-body>
-  <wvr-modal-footer>
-    <wvr-button-component id="my-event-button2" btnTxt="Emit Event" themeVariant="success" emitEvent="buttonTest">
-    </wvr-button-component>
-    <wvr-lazy-loader component="wvre-button" btn-txt="cancel" theme-variant="success" dispatch-action="Modal.closeModal" dispatch-action-props="{id: 'Weaver Modal3'}">
-    </wvr-lazy-loader>
-  </wvr-modal-footer>
+  <template modal-body>
+    <wvr-text-component value="Message in the Body"></wvr-text-component>
+  </template>
+  <template modal-footer>
+    <wvr-button-component id="my-event-button2" btnTxt="Emit Event" themeVariant="success" emitEvent="buttonTest"></wvr-button-component>
+    <wvr-button-component id="my-cancel-button2" btnTxt="cancel" themeVariant="success" dispatchAction="Modal.closeModal" dispatchActionProps="{id: 'Weaver Modal3'}"></wvr-button-component>
+  </template>
 </wvr-modal-component>

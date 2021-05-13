@@ -1,6 +1,6 @@
-import { AfterContentInit, Component, ContentChild, ContentChildren, Directive, ElementRef, HostListener, Injector, Input, OnInit, QueryList, TemplateRef, ViewChild } from '@angular/core';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { NgbActiveModal, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { Component, Injector, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { SafeHtml } from '@angular/platform-browser';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { select } from '@ngrx/store';
 import { filter } from 'rxjs/operators';
 import * as ModalActions from '../core/modal/modal.actions';
@@ -13,13 +13,9 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
   templateUrl: './wvr-modal.component.html',
   styleUrls: ['./wvr-modal.component.scss']
 })
-export class WvrModalComponent extends WvrBaseComponent implements OnInit, AfterContentInit {
+export class WvrModalComponent extends WvrBaseComponent implements OnInit {
 
-  @ViewChild('modalTemplateContent') modalTemplateContent: TemplateRef<any>;
-
-  // @ContentChild(WvrModalFooterDirective) private modalFooter: WvrModalFooterDirective;
-
-  // @ViewChild('footerInitialTemplate') footerInitialTemplate: ElementRef<HTMLTemplateElement>;
+  @ViewChild('modalTemplateContent') modalTemplateContent: TemplateRef<Element>;
 
   modalRef: NgbModalRef;
 
@@ -57,53 +53,32 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit, After
 
   constructor(
     injector: Injector,
-    private modalService: NgbModal,
-    private readonly _sanitizer: DomSanitizer
+    private modalService: NgbModal
   ) {
     super(injector);
   }
 
-  ngAfterContentInit(): void {
-
-    const lazyNode = (this.eRef.nativeElement as HTMLElement).querySelector('wvr-lazy-loader');
-
-    // const nodeName = lazyNode.nodeName;
-    // const newNodeName = nodeName.replace('-lazy', '');
-
-    // lazyNode.replaceWith(() => {
-
-    // });
-
-    // const bodyTemplate = (this.eRef.nativeElement as HTMLElement).querySelector('template[body]') as HTMLTemplateElement;
-    // let bodyHtml = '';
-    // const bodyNodeList = bodyTemplate?.querySelectorAll('template[body] > *');
-
-    // if (bodyNodeList && bodyNodeList.length) {
-    //   bodyNodeList.forEach(n => {
-    //     bodyHtml += n.outerHTML || n.nodeValue;
-    //   });
-    // } else {
-    //   bodyHtml = bodyTemplate?.innerHTML;
-    // }
-
-    // const footerTemplate = (this.eRef.nativeElement as HTMLElement).querySelector('template[footer]') as HTMLTemplateElement;
-    // let footerHtml = '';
-    // const footerNodeList = footerTemplate?.querySelectorAll('template[footer] > *');
-
-    // if (footerNodeList && footerNodeList.length) {
-    //   footerNodeList.forEach(n => {
-    //     footerHtml += n.outerHTML || n.nodeValue;
-    //   });
-    // } else {
-    //   footerHtml = footerTemplate?.innerHTML;
-    // }
-
-    // this.bodySafeHtml =  this._sanitizer.bypassSecurityTrustHtml(`${bodyHtml}`);
-    // this.footerSafeHtml =  this._sanitizer.bypassSecurityTrustHtml(`${footerHtml}`);
-  }
-
   ngOnInit(): void {
     super.ngOnInit();
+
+    this.modalService.activeInstances.subscribe((modalRefs: NgbModalRef[]) => {
+      setTimeout(() => {
+        if (!!this.modalRef && modalRefs.length > 0) {
+          ['body', 'footer'].forEach(content => {
+            const template = this.eRef.nativeElement.querySelector(`template[modal-${content}]`);
+            const element: Element = this.eRef.nativeElement.querySelector(`div[modal-${content}]`);
+            const clone = template.content.children.length
+              ? template.content.cloneNode(true)
+              : template.cloneNode(true);
+            Array.from(clone.children)
+              .forEach((elem: Element) => {
+                console.log(content, elem);
+                element.appendChild(elem);
+              });
+          });
+        }
+      });
+    });
 
     const defaultName = 'Weaver Modal';
     this.modalId = !this.title ? `${defaultName
@@ -116,44 +91,42 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit, After
 
     this.btnThemeVariant = this.btnThemeVariant ? this.btnThemeVariant : this.themeVariant;
 
-    this.store.dispatch(ModalActions.addModal({modal: {
-      name: this.modalId,
-      open: false
-    }}));
+    this.store.dispatch(ModalActions.addModal({
+      modal: {
+        name: this.modalId,
+        open: false
+      }
+    }));
 
     this.store.pipe(
       select(selectModalState),
       filter(modalState => !!modalState)
     )
-    .subscribe(modalState => {
-      const modal = modalState.entities[this.modalId];
-      if (modal.open) {
-        this.modalRef =  this.modalService.open(this.modalTemplateContent, {
-          ariaLabelledBy: 'modal-basic-title',
-          container: this.eRef.nativeElement,
-          backdrop: 'static',
-          animation: false,
-          modalDialogClass: 'modal-dialog',
-          beforeDismiss: () => {
-            this.store.dispatch(ModalActions.closeModal({id: this.modalId}));
+      .subscribe(modalState => {
+        const modal = modalState.entities[this.modalId];
+        if (modal.open) {
+          this.modalRef = this.modalService.open(this.modalTemplateContent, {
+            ariaLabelledBy: 'modal-basic-title',
+            container: this.eRef.nativeElement,
+            backdrop: 'static',
+            animation: false,
+            modalDialogClass: 'modal-dialog',
+            beforeDismiss: () => {
+              this.store.dispatch(ModalActions.closeModal({ id: this.modalId }));
 
-            return false;
-          }
-        });
-
-        Array.from(this.eRef.nativeElement.querySelectorAll('wvr-lazy-loader'))
-          .forEach((lazyElement: Element) => {
-            lazyElement.outerHTML = lazyElement.outerHTML.replace('wvr-lazy-loader', lazyElement.getAttribute('component'));
+              return false;
+            }
           });
 
-      } else if (this.modalRef) {
-        this.modalRef.close();
-       }
-    });
+        } else if (this.modalRef) {
+          this.modalRef.close();
+          delete this.modalRef;
+        }
+      });
   }
 
   openModal(): void {
-    this.store.dispatch(ModalActions.openModal({id: this.modalId}));
+    this.store.dispatch(ModalActions.openModal({ id: this.modalId }));
   }
 
   /** This provides background, border and text color properties based on the them variant provided . */
@@ -162,17 +135,17 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit, After
     switch (value) {
       case 'header':
         additionalClasses = this.modalHeaderThemeVariant ?
-                            ` bg-${this.modalHeaderThemeVariant} border-${this.modalHeaderThemeVariant} ${this.getTextColor(this.modalHeaderThemeVariant)}` :
-                            this.themeVariant ?
-                            ` bg-${this.themeVariant} border-${this.themeVariant} ${this.getTextColor(this.themeVariant)}` :
-                            ' bg-light text-dark ';
+          `bg-${this.modalHeaderThemeVariant} border-${this.modalHeaderThemeVariant} ${this.getTextColor(this.modalHeaderThemeVariant)}` :
+          this.themeVariant ?
+            `bg-${this.themeVariant} border-${this.themeVariant} ${this.getTextColor(this.themeVariant)}` :
+            'bg-light text-dark';
         break;
       case 'footer':
         additionalClasses = this.modalFooterThemeVariant ?
-                            ` bg-${this.modalFooterThemeVariant} border-${this.modalFooterThemeVariant} ${this.getTextColor(this.modalFooterThemeVariant)}` :
-                            this.themeVariant ?
-                            ` bg-${this.themeVariant} border-${this.themeVariant} ${this.getTextColor(this.themeVariant)}` :
-                            ' bg-light text-dark ';
+          `bg-${this.modalFooterThemeVariant} border-${this.modalFooterThemeVariant} ${this.getTextColor(this.modalFooterThemeVariant)}` :
+          this.themeVariant ?
+            `bg-${this.themeVariant} border-${this.themeVariant} ${this.getTextColor(this.themeVariant)}` :
+            'bg-light text-dark';
         break;
       default:
     }
@@ -181,7 +154,7 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit, After
   }
 
   getTextColor(themeVariant): string {
-    return ((themeVariant === 'warning') || (themeVariant === 'light')) ? ' text-dark ' : ' text-white ';
+    return ((themeVariant === 'warning') || (themeVariant === 'light')) ? 'text-dark' : 'text-white';
   }
 
   // @HostListener('click', ['$event']) click($event: MouseEvent): void {
