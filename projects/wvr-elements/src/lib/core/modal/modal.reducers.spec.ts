@@ -1,4 +1,5 @@
 import { EntityMapOne, Update } from '@ngrx/entity';
+import { Action } from '@ngrx/store';
 import { actions } from '../actions';
 import { Modal } from './modal';
 import * as fromModalActions from  './modal.actions';
@@ -37,9 +38,22 @@ describe('Modal Reducer', () => {
       .toBe(true);
   });
 
-  // close modal
-  // it(' should ');
+  const openState = {
+    ids: ['OpenModal'],
+    entities: {
+      'OpenModal': {
+        name: 'OpenModal',open: false
+      }
+    }
+  };
 
-
-
+  const openModalReducerObj = fromModalReducers.reducer(openState, fromModalActions.openModal({ id: 'OpenModal' }) );
+  Object.keys( openModalReducerObj['entities']['OpenModal']).forEach( key => {
+    if(key === 'open') {
+      it(' should be able to open modal', () => {
+        expect((JSON.stringify(openModalReducerObj['entities']['OpenModal']['open']) === "true"))
+          .toBeTrue();
+      });
+    }
+  });
 });
