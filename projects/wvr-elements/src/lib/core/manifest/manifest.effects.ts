@@ -53,6 +53,7 @@ export class ManifestEffects {
             url,
             method,
             options,
+            bodyHttpParams: request.bodyHttpParams,
             map: entry.map
           },
           success: response => onSuccess.concat(ManifestActions.submitRequestSuccess({ manifest, request, response })),
