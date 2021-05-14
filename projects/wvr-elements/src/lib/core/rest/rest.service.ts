@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { mergeMap, switchMap } from 'rxjs/operators';
+import { mergeMap } from 'rxjs/operators';
 import { Request } from './request';
 
 @Injectable({
