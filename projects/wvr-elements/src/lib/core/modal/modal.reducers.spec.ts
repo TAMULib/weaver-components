@@ -47,11 +47,24 @@ describe('Modal Reducer', () => {
     }
   };
 
+  // open modal
   const openModalReducerObj = fromModalReducers.reducer(openState, fromModalActions.openModal({ id: 'OpenModal' }) );
+
   Object.keys( openModalReducerObj['entities']['OpenModal']).forEach( key => {
     if(key === 'open') {
       it(' should be able to open modal', () => {
         expect((JSON.stringify(openModalReducerObj['entities']['OpenModal']['open']) === "true"))
+          .toBeTrue();
+      });
+    }
+  });
+
+  // close Modal
+  const closeModalReducerObj = fromModalReducers.reducer(openState, fromModalActions.closeModal({ id: 'OpenModal' }) );
+  Object.keys( closeModalReducerObj['entities']['OpenModal']).forEach( key => {
+    if(key === 'open') {
+      it(' should be able to close modal', () => {
+        expect((JSON.stringify(closeModalReducerObj['entities']['OpenModal']['open']) === "false"))
           .toBeTrue();
       });
     }
