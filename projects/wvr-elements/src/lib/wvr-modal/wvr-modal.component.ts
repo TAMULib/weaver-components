@@ -73,8 +73,8 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit {
             const template = this.eRef.nativeElement.querySelector(`template[modal-${content}]`);
             if (!!template) {
               const element: Element = this.eRef.nativeElement.querySelector(`div[modal-${content}]`);
-              const clone = template.content.children.length
-                ? template.content
+              const clone = template.content.children.length > 0
+                ? template.content.cloneNode(true)
                 : template
               Array.from(clone.children)
                 .forEach((elem: Element) => {
