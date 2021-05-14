@@ -53,7 +53,7 @@ export class RestService {
           body = new HttpParams(params);
         }
 
-        return callback(request.url, request.body, options);
+        return callback(request.url, body, options);
       }));
   }
 
