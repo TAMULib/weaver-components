@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpParamsOptions } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
@@ -22,15 +22,15 @@ export class RestService {
   }
 
   post(request: Request): Observable<any> {
-    return this.processRequestWithData(request, (url: string, body: any, options: any): any => this.http.post(url, body, options));
+    return this.processRequestWithData(request, (url: string, body: any | HttpParams, options: any): any => this.http.post(url, body, options));
   }
 
   put(request: Request): Observable<any> {
-    return this.processRequestWithData(request, (url: string, body: any, options: any): any => this.http.put(url, body, options));
+    return this.processRequestWithData(request, (url: string, body: any | HttpParams, options: any): any => this.http.put(url, body, options));
   }
 
   patch(request: Request): Observable<any> {
-    return this.processRequestWithData(request, (url: string, body: any, options: any): any => this.http.patch(url, body, options));
+    return this.processRequestWithData(request, (url: string, body: any | HttpParams, options: any): any => this.http.patch(url, body, options));
   }
 
   delete(request: Request): Observable<any> {
@@ -46,15 +46,17 @@ export class RestService {
   private processRequestWithData(request: Request, callback: (url: string, body: any, options: any) => Observable<any>): Observable<any> {
     return this.preprocessOptions(request)
       .pipe(mergeMap(options => {
-        let body = { ...request.body };
-        if (options.bodyHttpParams) {
-          const params = {};
-          params[options.bodyHttpParams] = body;
-          body = new HttpParams(params);
-          delete options.bodyHttpParams;
+        if (request.bodyHttpParams) {
+          const options: HttpParamsOptions = {};
+          options[request.bodyHttpParams] = request.body;
+          console.log(options);
+          const body = new HttpParams(options);
+          console.log(body);
+
+          return callback(request.url, body, options);
         }
 
-        return callback(request.url, body, options);
+        return callback(request.url, request.body, options);
       }));
   }
 

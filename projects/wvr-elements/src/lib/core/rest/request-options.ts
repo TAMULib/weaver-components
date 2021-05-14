@@ -7,5 +7,4 @@ export interface RequestOptions {
   reportProgress?: boolean;
   responseType?: 'arraybuffer' | 'blob' | 'text' | 'json';
   withCredentials?: boolean;
-  bodyHttpParams?: 'fromObject' | 'fromString';
 }
