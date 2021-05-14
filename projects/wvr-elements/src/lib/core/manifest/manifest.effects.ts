@@ -53,6 +53,7 @@ export class ManifestEffects {
             url,
             method,
             options,
+            body: request.body,
             bodyHttpParams: request.bodyHttpParams,
             map: entry.map
           },
