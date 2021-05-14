@@ -6,7 +6,7 @@ import { Request } from './request';
 // TODO: remove to centralized export
 type method = (request: Request) => Observable<any>;
 type success = (response: any) => Array<Action>;
-type failure = (error: any) => Array<Action>;
+type failure = (response: any) => Array<Action>;
 
 export const request = createAction(
   '[REST] Request',
@@ -34,7 +34,7 @@ export const requestSuccess = createAction(
 export const requestFailure = createAction(
   '[REST] Request Failure',
   props<{
-    error: HttpErrorResponse,
+    response: HttpErrorResponse,
     failure: failure
     retry: Action
   }>()

@@ -39,6 +39,16 @@ export const selectManifestState = createFeatureSelector<RootState, fromManifest
 // rest selectors
 export const selectRestState = createFeatureSelector<RootState, fromRest.State>('rest');
 
+export const selectRestRequest = createSelector(
+  selectRestState,
+  fromRest.selectRequest
+);
+
+export const selectRestResponse = createSelector(
+  selectRestState,
+  fromRest.selectResponse
+);
+
 // theme selectors
 export const selectThemeState = createFeatureSelector<RootState, fromTheme.State>('theme');
 
