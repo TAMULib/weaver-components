@@ -1,5 +1,3 @@
-import { EntityMapOne, Update } from '@ngrx/entity';
-import { actions } from '../actions';
 import { Modal } from './modal';
 import * as fromModalActions from  './modal.actions';
 import * as fromModalReducers from './modal.reducers';
@@ -37,9 +35,35 @@ describe('Modal Reducer', () => {
       .toBe(true);
   });
 
-  // close modal
-  // it(' should ');
+  const openState = {
+    ids: ['OpenModal'],
+    entities: {
+      'OpenModal': {
+        name: 'OpenModal',open: false
+      }
+    }
+  };
 
+  // open modal
+  const openModalReducerObj = fromModalReducers.reducer(openState, fromModalActions.openModal({ id: 'OpenModal' }) );
 
+  Object.keys( openModalReducerObj['entities']['OpenModal']).forEach( key => {
+    if(key === 'open') {
+      it(' should be able to open modal', () => {
+        expect((JSON.stringify(openModalReducerObj['entities']['OpenModal']['open']) === "true"))
+          .toBeTrue();
+      });
+    }
+  });
 
+  // close Modal
+  const closeModalReducerObj = fromModalReducers.reducer(openState, fromModalActions.closeModal({ id: 'OpenModal' }) );
+  Object.keys( closeModalReducerObj['entities']['OpenModal']).forEach( key => {
+    if(key === 'open') {
+      it(' should be able to close modal', () => {
+        expect((JSON.stringify(closeModalReducerObj['entities']['OpenModal']['open']) === "false"))
+          .toBeTrue();
+      });
+    }
+  });
 });
