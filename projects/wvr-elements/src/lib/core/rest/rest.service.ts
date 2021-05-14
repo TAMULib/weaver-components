@@ -46,15 +46,22 @@ export class RestService {
   private processRequestWithData(request: Request, callback: (url: string, body: any, options: any) => Observable<any>): Observable<any> {
     return this.preprocessOptions(request)
       .pipe(mergeMap(options => {
-        if (request.bodyHttpParams) {
-          const options: HttpParamsOptions = {};
-          options[request.bodyHttpParams] = request.body;
-          const body = new HttpParams(options);
 
-          return callback(request.url, body, options);
+        let body = { ...request.body };
+
+        if (request.decode) {
+          request.decode.forEach(prop => {
+            body[prop] = atob(body[prop]);
+          });
         }
 
-        return callback(request.url, request.body, options);
+        if (request.bodyHttpParams) {
+          const options: HttpParamsOptions = {};
+          options[request.bodyHttpParams] = body;
+          body = new HttpParams(options);
+        }
+
+        return callback(request.url, body, options);
       }));
   }
 

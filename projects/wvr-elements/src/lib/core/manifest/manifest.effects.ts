@@ -54,6 +54,7 @@ export class ManifestEffects {
             method,
             options,
             body: request.body,
+            decode: request.decode,
             bodyHttpParams: request.bodyHttpParams,
             map: entry.map
           },
