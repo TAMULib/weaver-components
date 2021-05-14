@@ -51,6 +51,7 @@ export class RestService {
           const params = {};
           params[options.bodyHttpParams] = body;
           body = new HttpParams(params);
+          delete options.bodyHttpParams;
         }
 
         return callback(request.url, body, options);
