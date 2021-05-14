@@ -1,6 +1,3 @@
-import { EntityMapOne, Update } from '@ngrx/entity';
-import { Action } from '@ngrx/store';
-import { actions } from '../actions';
 import { Modal } from './modal';
 import * as fromModalActions from  './modal.actions';
 import * as fromModalReducers from './modal.reducers';
