@@ -22,15 +22,15 @@ export class RestService {
   }
 
   post(request: Request): Observable<any> {
-    return this.processRequestWithData(request, (url: string, body: any | HttpParams, options: any): any => this.http.post(url, body, options));
+    return this.processRequestWithData(request, (url: string, body: any, options: any): any => this.http.post(url, body, options));
   }
 
   put(request: Request): Observable<any> {
-    return this.processRequestWithData(request, (url: string, body: any | HttpParams, options: any): any => this.http.put(url, body, options));
+    return this.processRequestWithData(request, (url: string, body: any, options: any): any => this.http.put(url, body, options));
   }
 
   patch(request: Request): Observable<any> {
-    return this.processRequestWithData(request, (url: string, body: any | HttpParams, options: any): any => this.http.patch(url, body, options));
+    return this.processRequestWithData(request, (url: string, body: any, options: any): any => this.http.patch(url, body, options));
   }
 
   delete(request: Request): Observable<any> {
@@ -49,9 +49,7 @@ export class RestService {
         if (request.bodyHttpParams) {
           const options: HttpParamsOptions = {};
           options[request.bodyHttpParams] = request.body;
-          console.log(options);
           const body = new HttpParams(options);
-          console.log(body);
 
           return callback(request.url, body, options);
         }
