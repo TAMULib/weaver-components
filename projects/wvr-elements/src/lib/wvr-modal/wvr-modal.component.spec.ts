@@ -38,4 +38,13 @@ describe('WvrModalComponent', () => {
     .toBeTruthy();
   });
 
+  it('should have `btnVisible` defined', () => {
+    expect(component.btnVisible)
+      .toEqual('true');
+    component.btnVisible = 'false';
+    fixture.detectChanges();
+    expect(component.btnVisible)
+      .toEqual('false');
+  });
+
 });
