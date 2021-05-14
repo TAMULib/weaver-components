@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, HostBinding, HostListener, Injector, Input } from '@angular/core';
 import * as JSON5 from 'json5';
 import { ActionRegistryService } from '../core/action-registry.service';
-import { actions } from '../core/actions';
 import { ThemeVariantName } from '../shared/theme';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
@@ -184,25 +183,35 @@ export class WvrButtonComponent extends WvrBaseComponent {
       return;
     }
 
-    const actions = this.actionRegistry.getActions(parts[0]);
+    const registeredActions = this.actionRegistry.getActions(parts[0]);
 
-    valid = !!actions;
-    if (!valid) {
-      console.warn(`'${parts[0]}' is not a known action type. (${Object.keys(actions)
-        .join(',')})`);
+    if (!registeredActions || !parts[1] || !registeredActions[parts[1]]) {
+      console.warn('somthing went wrong parsing the action input.');
 
       return;
     }
 
-    valid = !!actions[parts[1]];
-    if (!valid) {
-      console.warn(`'${parts[1]}' is not a known action of ${parts[0]}. (${Object.keys(actions[parts[0]])
-        .join(',')})`);
+    if (registeredActions && registeredActions[parts[0]]) {
+      valid = !!registeredActions;
+      if (!valid) {
+        console.warn(`'${parts[0]}' is not a known action type. (${Object.keys(registeredActions)
+          .join(',')})`);
+      }
 
       return;
     }
 
-    return actions[parts[1]];
+    if (registeredActions && registeredActions[parts[0]]) {
+      valid = !!registeredActions[parts[1]];
+      if (!valid) {
+        console.warn(`'${parts[1]}' is not a known action of ${parts[0]}. (${Object.keys(registeredActions[parts[0]])
+          .join(',')})`);
+      }
+
+      return;
+    }
+
+    return registeredActions[parts[1]];
   }
 
 }

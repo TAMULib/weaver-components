@@ -15,12 +15,12 @@ export class ActionRegistryService {
     this.actions = { ...actions };
   }
 
-  public getActions(key: string): any {
+  getActions(key: string): any {
     return this.actions[key];
   }
 
-  public putActions(key: string, action: any): any {
-    this.actions[key] = action;
+  putActions(key: string, action: any): any {
+    this.actions[key] = action ;
   }
 
 }
