@@ -42,6 +42,16 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit {
   /** Allows for the override of theme variant for modal footer. */
   @Input() modalFooterThemeVariant: ThemeVariantName = 'light';
 
+  @Input() size: 'sm' | 'lg' | 'xl' = 'lg';
+
+  @Input() backdrop: 'static' | boolean = 'static';
+
+  @Input() centered = false;
+
+  @Input() animation = true;
+
+  @Input() keyboard = false;
+
   get openProps(): string {
     return `{ id: '${this.modalId}'}`;
   }
@@ -104,8 +114,11 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit {
           this.modalRef = this.modalService.open(this.modalTemplateContent, {
             ariaLabelledBy: 'modal-basic-title',
             container: this.eRef.nativeElement,
-            backdrop: 'static',
-            animation: false,
+            size: this.size,
+            backdrop: this.backdrop,
+            centered: this.centered,
+            animation: this.animation,
+            keyboard: this.keyboard,
             modalDialogClass: 'modal-dialog',
             beforeDismiss: () => {
               this.store.dispatch(ModalActions.closeModal({ id: this.modalId }));
