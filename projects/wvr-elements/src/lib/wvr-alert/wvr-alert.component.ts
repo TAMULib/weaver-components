@@ -19,7 +19,7 @@ export class WvrAlertComponent extends WvrBaseComponent implements OnInit {
   alertClosed = false;
 
   /** Used to display the Close button. */
-  @Input() closable: 'true' | 'false' = 'true';
+  @Input() closeable: 'true' | 'false' = 'true';
 
   /** Setting the delay timer for the self closing alert message */
   @Input() closeTimer = 5000;
