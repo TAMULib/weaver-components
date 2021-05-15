@@ -126,7 +126,7 @@ export const selectModalState = createFeatureSelector<RootState, fromModal.State
 
 export const selectModalByName = (modalName: string) => createSelector(
   selectModalState,
-  modals => modals[modalName]
+  modals => modals.entities[modalName]
 );
 // wysiwyg selectors
 export const selectWysiwygState = createFeatureSelector<RootState, fromWysiwyg.State>('wysiwyg');

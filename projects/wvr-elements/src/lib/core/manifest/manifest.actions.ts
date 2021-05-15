@@ -41,7 +41,7 @@ export const submitRequestFailure = createAction(
   props<{
     manifest: Manifest,
     request: ManifestEntryRequest,
-    error: any
+    response: any
   }>()
 );
 

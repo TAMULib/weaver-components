@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Injector, Input, OnInit } from '@angular/core';
+import { Component, Injector, Input, OnInit } from '@angular/core';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 /**
@@ -7,8 +7,7 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
 @Component({
   selector: 'wvr-alert-component',
   templateUrl: './wvr-alert.component.html',
-  styleUrls: ['./wvr-alert.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Default
+  styleUrls: ['./wvr-alert.component.scss']
 })
 export class WvrAlertComponent extends WvrBaseComponent implements OnInit {
 
