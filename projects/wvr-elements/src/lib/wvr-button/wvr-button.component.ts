@@ -26,6 +26,8 @@ export class WvrButtonComponent extends WvrBaseComponent {
   /** Allows for the button component to be an anchor tag component if href property present. */
   @Input() href: string;
 
+  @Input() disabled = false;
+
   /** Allows for the override of background */
   @Input() set background(value: string) {
     this.applyThemeOverride(`--${this.themeVariant}-button-bg`, value);
@@ -143,31 +145,29 @@ export class WvrButtonComponent extends WvrBaseComponent {
     this.actionRegistry = injector.get(ActionRegistryService);
   }
 
-  @HostListener('document:click', ['$event']) click($event: MouseEvent): void {
-    if (($event.target as HTMLElement).id === this.htmlId) {
-      if (this._dispatchActions) {
-        this._dispatchActions.forEach(actionAndProp => {
-          this.store.dispatch(actionAndProp.action(
-            actionAndProp.props
-          ));
-        });
-      } else if (this._action) {
-        this._actionProps ?
-        this.store.dispatch(this._action(
-          this._actionProps
-        )) :
-        this.store.dispatch(this._action());
-      }
+  onClick(): void {
+    if (this._dispatchActions) {
+      this._dispatchActions.forEach(actionAndProp => {
+        this.store.dispatch(actionAndProp.action(
+          actionAndProp.props
+        ));
+      });
+    } else if (this._action) {
+      this._actionProps ?
+      this.store.dispatch(this._action(
+        this._actionProps
+      )) :
+      this.store.dispatch(this._action());
+    }
 
-      if (this.emitEvent) {
-        this.eRef.nativeElement.dispatchEvent(new CustomEvent(this.emitEvent, {
-          bubbles: true,
-          detail: {
-            data: (this.eRef.nativeElement as HTMLElement).dataset,
-            button: this
-          }
-        }));
-      }
+    if (this.emitEvent) {
+      this.eRef.nativeElement.dispatchEvent(new CustomEvent(this.emitEvent, {
+        bubbles: true,
+        detail: {
+          data: (this.eRef.nativeElement as HTMLElement).dataset,
+          button: this
+        }
+      }));
     }
   }
 
@@ -194,8 +194,9 @@ export class WvrButtonComponent extends WvrBaseComponent {
     if (registeredActions && registeredActions[parts[0]]) {
       valid = !!registeredActions;
       if (!valid) {
-        console.warn(`'${parts[0]}' is not a known action type. (${Object.keys(registeredActions)
-          .join(',')})`);
+        const types = Object.keys(registeredActions)
+          .join(',');
+        console.warn(`'${parts[0]}' is not a known action type. (${types})`);
       }
 
       return;
@@ -204,8 +205,9 @@ export class WvrButtonComponent extends WvrBaseComponent {
     if (registeredActions && registeredActions[parts[0]]) {
       valid = !!registeredActions[parts[1]];
       if (!valid) {
-        console.warn(`'${parts[1]}' is not a known action of ${parts[0]}. (${Object.keys(registeredActions[parts[0]])
-          .join(',')})`);
+        const actions = Object.keys(registeredActions[parts[0]])
+          .join(',')
+        console.warn(`'${parts[1]}' is not a known action of ${parts[0]}. (${actions})`);
       }
 
       return;

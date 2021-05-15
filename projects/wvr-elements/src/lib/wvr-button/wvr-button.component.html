@@ -1,28 +1,32 @@
 <button-wrapper #animationRoot>
   <button *ngIf="!href"
     [attr.id]="htmlId"
-    class="wvr-components wvr-button btn {{btnType!=='link' ? 'btn-'+themeVariant : ''}}"
     [type]="btnType"
     [ngClass]="{
-      'btn-lg': btnSize==='large',
-      'btn-sm': btnSize==='small',
-      'btn-block': btnSize==='block',
+      'btn-lg': btnSize === 'large',
+      'btn-sm': btnSize === 'small',
+      'btn-block': btnSize === 'block',
       'btn-link': btnType === 'link'
     }"
-    role="button">
+    [disabled]="disabled"
+    (click)="onClick()"
+    role="button"
+    class="wvr-components wvr-button btn {{btnType!=='link' ? 'btn-' + themeVariant : ''}}">
     <ng-container *ngTemplateOutlet="content"></ng-container>
   </button>
   <a *ngIf="href"
     [attr.id]="htmlId"
-    class="wvr-components wvr-button btn {{btnType!=='link' ? 'btn-'+themeVariant : ''}}"
-    [href]="href"
+    [attr.href]="disabled ? undefined : href"
     [ngClass]="{
-      'btn-lg': btnSize==='large',
-      'btn-sm': btnSize==='small',
-      'btn-block':btnSize==='block',
-      'btn-link': btnType === 'link'
+      'btn-lg': btnSize === 'large',
+      'btn-sm': btnSize === 'small',
+      'btn-block': btnSize === 'block',
+      'btn-link': btnType === 'link',
+      'disabled': disabled
     }"
-    role="button" aria-label="button">
+    role="button"
+    aria-label="button"
+    class="wvr-components wvr-button btn {{btnType!=='link' ? 'btn-' + themeVariant : ''}}">
     <ng-container *ngTemplateOutlet="content"></ng-container>
   </a>
 </button-wrapper>

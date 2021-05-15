@@ -184,30 +184,24 @@
       </template>
     </wvre-modal>
 
-    <wvre-modal title="Weaver Modal2" btn-visible="false">
+    <wvre-modal title="Another Weaver Modal" btn-visible="false">
       <template modal-body>
         <wvre-text value="Message in the Body"></wvre-text>
       </template>
       <template modal-footer>
-        <wvre-button btn-txt="cancel" theme-variant="secondary" theme-variant="success" dispatch-action="Modal.closeModal" dispatch-action-props="{id: 'Weaver Modal2'}"></wvre-button>
+        <wvre-button btn-txt="cancel" theme-variant="secondary" theme-variant="success" dispatch-action="Modal.closeModal" dispatch-action-props="{id: 'Another Weaver Modal'}"></wvre-button>
       </template>
     </wvre-modal>
 
-    <wvre-button id="my-button" btn-txt="Launch Second Modal" theme-variant="secondary" dispatch-action="Modal.openModal" dispatch-action-props="{id: 'Weaver Modal2'}">
-    </wvre-button>
+    <wvre-button id="my-button" btn-txt="Launch Second Modal" theme-variant="secondary" dispatch-action="Modal.openModal" dispatch-action-props="{id: 'Another Weaver Modal'}"></wvre-button>
 
-    <wvre-button id="my-event-button" btn-txt="Emit Event" theme-variant="success" emit-event="buttonTest">
-    </wvre-button>
+    <wvre-button id="my-event-button" btn-txt="Emit Event" theme-variant="success" emit-event="buttonTest"></wvre-button>
 
   </div>
 
   <script>
     const myEventButton = document.querySelector('#my-event-button');
     window.addEventListener('buttonTest', console.log);
-
-    // let myBtnElem = document.querySelector('#my-button');
-    // myBtnElem.addEventListener('myEvent', console.log);
-    // window.addEventListener('myEvent', console.log);
   </script>
 
   <div class="container index-container">
@@ -215,64 +209,44 @@
     <wvre-wysiwyg id="wysiwygEditor" skin="oxide-dark" initial-value="Hello, World!" emit-save-event="wysiwygsave"></wvre-wysiwyg>
   </div>
 
-
-  <script>
-    // const wysiwyg = document.querySelector('#wysiwygEditor');
-    // wysiwyg.addEventListener('wysiwygsave', e => {
-    //   console.log(e);
-    //   e.detail.wysiwyg.content = '<h1>Saved</h1>';
-    // });
-  </script>
-
-
   <div class="container index-container">
     <wvre-text value="Alert Component" text-decoration="underline"></wvre-text><br /><br />
-    <wvre-alert
-      theme-variant="primary"
-      alert-type="basic">
-        <wvre-text value="This is basic primary alert. "></wvre-text>
+    <wvre-alert theme-variant="primary" alert-type="basic">
+      <wvre-text value="This is basic primary alert. "></wvre-text>
     </wvre-alert>
 
-    <wvre-alert
-      theme-variant="success"
-      alert-type="self-closing"
-      close-timer="5000">
-        <wvre-text value="This is self closing success alert"></wvre-text>
+    <wvre-alert theme-variant="success" alert-type="self-closing" close-timer="5000">
+      <wvre-text value="This is self closing success alert"></wvre-text>
     </wvre-alert>
 
-    <wvre-alert
-      theme-variant="success"
-      alert-type="custom">
-        <wvre-custom-alert>
-          <h4 class="alert-heading">
-            <wvre-text value="Custom Alert Heading"></wvre-text>
-          </h4>
-          <p>
-            <wvre-text value="Custom Alert Body"></wvre-text>
-          </p>
-          <hr>
-          <p class="mb-0">
-            <wvre-text value="Custom Alert footer section."></wvre-text>
-          </p>
-        </wvre-custom-alert>
+    <wvre-alert theme-variant="success" alert-type="custom">
+      <wvre-custom-alert>
+        <h4 class="alert-heading">
+          <wvre-text value="Custom Alert Heading"></wvre-text>
+        </h4>
+        <p>
+          <wvre-text value="Custom Alert Body"></wvre-text>
+        </p>
+        <hr>
+        <p class="mb-0">
+          <wvre-text value="Custom Alert footer section."></wvre-text>
+        </p>
+      </wvre-custom-alert>
     </wvre-alert>
 
-    <wvre-alert
-      theme-variant="danger"
-      alert-type="custom"
-      closable="false">
-        <wvre-custom-alert>
-          <h4 class="alert-heading">
-            <wvre-text value="Custom Alert Heading"></wvre-text>
-          </h4>
-          <p>
-            <wvre-text value="Custom Alert Body with no closable button"></wvre-text>
-          </p>
-          <hr>
-          <p class="mb-0">
-            <wvre-text value="Custom Alert footer section."></wvre-text>
-          </p>
-        </wvre-custom-alert>
+    <wvre-alert theme-variant="danger" alert-type="custom" closable="false">
+      <wvre-custom-alert>
+        <h4 class="alert-heading">
+          <wvre-text value="Custom Alert Heading"></wvre-text>
+        </h4>
+        <p>
+          <wvre-text value="Custom Alert Body with no closable button"></wvre-text>
+        </p>
+        <hr>
+        <p class="mb-0">
+          <wvre-text value="Custom Alert footer section."></wvre-text>
+        </p>
+      </wvre-custom-alert>
     </wvre-alert>
 
   </div>
@@ -291,10 +265,10 @@
 
       <wvre-card-img src="assets/lighthouse.svg"></wvre-card-img>
 
-      <wvre-card-link href="www.google.com">
+      <wvre-card-link href="http://www.google.com">
         <wvre-text value="Google"></wvre-text>
       </wvre-card-link>
-      <wvre-card-link href="www.gmail.com">
+      <wvre-card-link href="http://www.gmail.com">
         <wvre-text value="Gmail"></wvre-text>
       </wvre-card-link>
 
@@ -321,7 +295,7 @@
         </wvre-list-item>
       </wvre-list>
 
-      <wvre-button theme-variant="secondary" action-type="Modal" action-name="openModal" action-props="{id: 'Test Modal'}">
+      <wvre-button theme-variant="secondary" dispatch-action="Modal.openModal" dispatch-action-props="{id: 'Weaver Modal'}">
         <wvre-text value="Open Me!"></wvre-text>
       </wvre-button>
 
@@ -341,13 +315,19 @@
       <wvre-card-text>
         <wvre-text value="With supporting text below as a natural lead-in to additional content."></wvre-text>
       </wvre-card-text>
-      <wvre-button theme-variant="secondary" id="my-button" emit-event="myEvent">
+      <wvre-button id="another-event-button" theme-variant="secondary" id="my-button" emit-event="anotherButtonTest">
         <wvre-text value="Go somewhere"></wvre-text>
       </wvre-button>
       <wvre-card-footer text-muted>
         <wvre-text value="Solid Card Footer"></wvre-text>
       </wvre-card-footer>
     </wvre-card>
+
+    <script>
+      const anotherEventButton = document.querySelector('#another-event-button');
+      window.addEventListener('anotherButtonTest', console.log);
+    </script>
+
     <br>
     <wvre-card text-center panel-format="outlined" theme-variant="warning">
       <wvre-card-header>
@@ -590,7 +570,7 @@
     <wvre-button theme-variant="dark">
       <wvre-text value="Dark"></wvre-text>
     </wvre-button>
-    <wvre-button btn-type="link" href="www.google.com">
+    <wvre-button btn-type="link" href="http://www.google.com">
       <wvre-text value="Link"></wvre-text>
     </wvre-button>
   </div>
@@ -621,45 +601,45 @@
     <wvre-button wvr-theme="test" theme-variant="dark">
       <wvre-text value="Dark"></wvre-text>
     </wvre-button>
-    <wvre-button wvr-theme="test" btn-type="link" href="www.google.com">
+    <wvre-button wvr-theme="test" btn-type="link" href="http://www.google.com">
       <wvre-text value="Link"></wvre-text>
     </wvre-button>
   </div>
 
   <div class="container index-container">
     <wvre-text value="Customized" text-decoration="underline"></wvre-text><br />
-    <wvre-button animate="{click: 'rotateToggle'}"
-                animate-config="{
-                  rotateToggle: {
-                    timing: '1000ms ease-in',
-                    to: 180,
-                    from: 0
-                  }
-                }"
-                theme-variant="primary"
-                btn-size="large"
-                btn-type="button"
-                background="tomato"
-                border-color="var(--wvr-btn-outline-warning-hover-color)"
-                color="var(--wvr-btn-outline-warning-hover-color)"
-                text-decoration="none"
-                background-active="yellow"
-                border-active="green"
-                color-active="teal"
-                text-decoration-active="underline"
-                background-hover="green"
-                border-hover="blue"
-                color-hover="var(--wvr-black)"
-                text-decoration-hover="none"
-                border-radius="5px"
-                cursor="help"
-                font-family="cursive"
-                font-size="18px"
-                line-height="1"
-                padding="1.5rem 1.5rem"
-                text-align="center"
-                vertical-align="var(--wvr-btn-vertical-align)"
-                >
+    <wvre-button
+      animate="{click: 'rotateToggle'}"
+      animate-config="{
+        rotateToggle: {
+          timing: '1000ms ease-in',
+          to: 180,
+          from: 0
+        }
+      }"
+      theme-variant="primary"
+      btn-size="large"
+      btn-type="button"
+      background="tomato"
+      border-color="var(--wvr-btn-outline-warning-hover-color)"
+      color="var(--wvr-btn-outline-warning-hover-color)"
+      text-decoration="none"
+      background-active="yellow"
+      border-active="green"
+      color-active="teal"
+      text-decoration-active="underline"
+      background-hover="green"
+      border-hover="blue"
+      color-hover="var(--wvr-black)"
+      text-decoration-hover="none"
+      border-radius="5px"
+      cursor="help"
+      font-family="cursive"
+      font-size="18px"
+      line-height="1"
+      padding="1.5rem 1.5rem"
+      text-align="center"
+      vertical-align="var(--wvr-btn-vertical-align)">
       <wvre-text value=" Customized Button "></wvre-text>
     </wvre-button>
   </div>
@@ -834,21 +814,21 @@
     <wvre-text value="Group List - Custom Content" text-decoration="underline"></wvre-text><br />
     <wvre-list list-type="group-custom-content" hidden-in-mobile="true">
       <wvre-list-item
-          custom-content-item-heading="Custom Content Item Heading"
-          cusom-content-heading-small-text="Custom Content Heading Small Text"
-          custom-content-small-text="Custom Content Small Text">
+        custom-content-item-heading="Custom Content Item Heading"
+        cusom-content-heading-small-text="Custom Content Heading Small Text"
+        custom-content-small-text="Custom Content Small Text">
         <wvre-text value="Custom Content Description 1"></wvre-text>
       </wvre-list-item>
       <wvre-list-item
-          custom-content-item-heading="Custom Content Item Heading2"
-          cusom-content-heading-small-text="Custom Content Heading Small Text2"
-          custom-content-small-text="Custom Content Small Text2">
+        custom-content-item-heading="Custom Content Item Heading2"
+        cusom-content-heading-small-text="Custom Content Heading Small Text2"
+        custom-content-small-text="Custom Content Small Text2">
         <wvre-text value="Custom Content Description 2"></wvre-text>
       </wvre-list-item>
       <wvre-list-item
-          custom-content-item-heading="Custom Content Item Heading3"
-          cusom-content-heading-small-text="Custom Content Heading Small Text3"
-          custom-content-small-text="Custom Content Small Text3">
+        custom-content-item-heading="Custom Content Item Heading3"
+        cusom-content-heading-small-text="Custom Content Heading Small Text3"
+        custom-content-small-text="Custom Content Small Text3">
         <wvre-text value="Custom Content Description 3"></wvre-text>
       </wvre-list-item>
     </wvre-list>
@@ -859,13 +839,11 @@
 
     <wvre-text value="Wvr Store, and Communication" text-decoration="underline"></wvre-text><br /><br />
 
-    <wvre-list list-type="unstyled" hidden-in-mobile="true" wvr-data="[
-      {
-        manifest: 'Directory App',
-        entry: 'All Sorted',
-        as: 'allSorted'
-      }
-    ]">
+    <wvre-list list-type="unstyled" hidden-in-mobile="true" wvr-data="[{
+      manifest: 'Directory App',
+      entry: 'All Sorted',
+      as: 'allSorted'
+    }]">
       <template wvr-compile>
         {{#each allSorted}}
           <wvre-list-item>{{fullName}}</wvre-list-item>
