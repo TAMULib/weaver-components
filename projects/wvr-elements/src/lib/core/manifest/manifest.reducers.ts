@@ -67,13 +67,13 @@ const manifestReducer = createReducer(
     });
   }),
   // tslint:disable-next-line:arrow-return-shorthand
-  on(ManifestActions.submitRequestFailure, (state, { request, error, manifest }) => {
+  on(ManifestActions.submitRequestFailure, (state, { request, response, manifest }) => {
     return adapter.updateOne({
       id: manifest.name,
       changes: {
         entries: manifest.entries.map(entry => {
           if (entry.name === request.entryName) {
-            return { ...entry, request, error };
+            return { ...entry, request, response };
           }
 
           return entry;
