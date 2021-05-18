@@ -33,14 +33,14 @@ export class AppModule {
     showHiddentContent(this.injector);
 
     wvrTimeout(() => {
-      const elements = document.querySelectorAll('.wvr-components-display:not(body)');
+      const elements = document.querySelectorAll('.wvr-components-loading:not(body)');
       elements.forEach(function(element) {
-        element.classList.remove('wvr-components-display');
+        element.classList.remove('wvr-components-loading');
       });
 
       const bodyElem = document.querySelector('body');
       if (bodyElem) {
-        bodyElem.classList.remove('wvr-components-display');
+        bodyElem.classList.remove('wvr-components-loading');
         bodyElem.classList.remove('wvr-hidden');
       }
     });
