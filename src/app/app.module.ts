@@ -31,10 +31,18 @@ export class AppModule {
   ngDoBootstrap(): void {
     registerCustomElements(this.injector, WVR_ELEMENTS);
     showHiddentContent(this.injector);
+
     wvrTimeout(() => {
+      const elements = document.querySelectorAll('.wvr-components-display:not(body)');
+      elements.forEach(function(element) {
+        element.classList.remove('wvr-components-display');
+      });
+
       const bodyElem = document.querySelector('body');
-      bodyElem.style.display = 'block';
-      bodyElem.classList.remove('wvr-hidden');
+      if (bodyElem) {
+        bodyElem.classList.remove('wvr-components-display');
+        bodyElem.classList.remove('wvr-hidden');
+      }
     });
   }
 
