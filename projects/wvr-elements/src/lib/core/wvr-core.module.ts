@@ -27,7 +27,9 @@ import { WvrTabsComponent } from '../wvr-tabs/wvr-tabs.component';
 import { WvrTextComponent } from '../wvr-text/wvr-text.component';
 import { WvrThemeComponent } from '../wvr-theme/wvr-theme.component';
 import { WvrWysiwygComponent } from '../wvr-wysiwyg/wvr-wysiwyg.component';
+import { ActionRegistryService } from './action-registry.service';
 import { AnimationService } from './animation.service';
+import { ComponentRegistryService } from './component-registry.service';
 import { ManifestEffects } from './manifest/manifest.effects';
 import { MobileService } from './mobile.service';
 import { RestEffects } from './rest/rest.effects';
@@ -80,7 +82,7 @@ export const showHiddentContent = (injector: Injector) => {
     });
 };
 
-const MODULES = [
+const MODULES: Array<any> = [
   EffectsModule.forRoot([
     ManifestEffects,
     RestEffects,
@@ -98,6 +100,8 @@ const MODULES = [
 
 const PROVIDERS = [
   AnimationService,
+  ActionRegistryService,
+  ComponentRegistryService,
   MobileService,
   ThemeService,
   TemplateService

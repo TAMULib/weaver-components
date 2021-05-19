@@ -25,8 +25,8 @@ export class RestEffects {
             response: action.request.map ? action.request.map(response) : response,
             success: action.success
           })),
-          catchError(error => of(RestActions.requestFailure({
-            error,
+          catchError(response => of(RestActions.requestFailure({
+            response,
             failure: action.failure,
             retry: action
           })))
@@ -47,7 +47,7 @@ export class RestEffects {
       // tslint:disable-next-line:arrow-return-shorthand
       switchMap(action => {
         // TODO: handle error, refresh token, retry
-        return action.failure(action.error);
+        return action.failure(action.response);
       })
     )
   );

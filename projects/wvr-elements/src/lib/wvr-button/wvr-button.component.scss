@@ -26,6 +26,12 @@
   button-wrapper {
     display: inline-block;
     overflow: hidden;
+
+    a.disabled {
+      color: gray;
+      cursor: not-allowed;
+      text-decoration: underline;
+    }
   }
 
   .wvr-button.btn {

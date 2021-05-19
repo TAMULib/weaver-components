@@ -3,7 +3,6 @@
 const fs = require('fs');
 const process = require('process');
 const StaticServer = require('static-server');
-
 const fsPromises = fs.promises;
 const basePath = 'dist/bundle';
 

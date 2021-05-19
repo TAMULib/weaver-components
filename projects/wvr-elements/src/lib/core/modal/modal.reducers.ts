@@ -1,6 +1,5 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
-import { WvrModalComponent } from '../../wvr-modal/wvr-modal.component';
 import { Modal } from './modal';
 import * as ModalActions from './modal.actions';
 

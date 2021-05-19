@@ -8,7 +8,6 @@ const basePath = 'static/weaver-components/reports';
 const lighthousePath = `${basePath}/audit`;
 const lighthouseAssetsPath = `${lighthousePath}/assets`;
 const lighthouseCiPath = './.lighthouseci';
-
 const createScoreList = report => {
   const lhrScoreList = [];
   Object.keys(report.categories).forEach(key => {

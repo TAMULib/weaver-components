@@ -39,6 +39,16 @@ export const selectManifestState = createFeatureSelector<RootState, fromManifest
 // rest selectors
 export const selectRestState = createFeatureSelector<RootState, fromRest.State>('rest');
 
+export const selectRestRequest = createSelector(
+  selectRestState,
+  fromRest.selectRequest
+);
+
+export const selectRestResponse = createSelector(
+  selectRestState,
+  fromRest.selectResponse
+);
+
 // theme selectors
 export const selectThemeState = createFeatureSelector<RootState, fromTheme.State>('theme');
 
@@ -116,7 +126,7 @@ export const selectModalState = createFeatureSelector<RootState, fromModal.State
 
 export const selectModalByName = (modalName: string) => createSelector(
   selectModalState,
-  modals => modals[modalName]
+  modals => modals.entities[modalName]
 );
 // wysiwyg selectors
 export const selectWysiwygState = createFeatureSelector<RootState, fromWysiwyg.State>('wysiwyg');

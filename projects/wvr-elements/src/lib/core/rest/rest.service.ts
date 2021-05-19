@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpParamsOptions } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { mergeMap, switchMap } from 'rxjs/operators';
+import { mergeMap } from 'rxjs/operators';
 import { Request } from './request';
 
 @Injectable({
@@ -45,7 +45,24 @@ export class RestService {
   // tslint:disable-next-line:max-line-length
   private processRequestWithData(request: Request, callback: (url: string, body: any, options: any) => Observable<any>): Observable<any> {
     return this.preprocessOptions(request)
-      .pipe(mergeMap(options => callback(request.url, request.body, options)));
+      .pipe(mergeMap(options => {
+
+        let body = { ...request.body };
+
+        if (request.decode) {
+          request.decode.forEach(prop => {
+            body[prop] = atob(body[prop]);
+          });
+        }
+
+        if (request.bodyHttpParams) {
+          const options: HttpParamsOptions = {};
+          options[request.bodyHttpParams] = body;
+          body = new HttpParams(options);
+        }
+
+        return callback(request.url, body, options);
+      }));
   }
 
   // tslint:disable-next-line:prefer-function-over-method

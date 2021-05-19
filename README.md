@@ -6,7 +6,7 @@
 [![SEO](https://tamulib.github.io/weaver-components/reports/audit/assets/seo.svg)](https://tamulib.github.io/weaver-components/reports/audit/#seo)
 [![Progressive Web App](https://tamulib.github.io/weaver-components/reports/audit/assets/pwa.svg)](https://tamulib.github.io/weaver-components/reports/audit/#pwa)
 
-# WeaverComponents
+# Weaver Components
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.21.
 

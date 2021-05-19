@@ -83,7 +83,7 @@ export class WvrHeaderComponent extends WvrBaseComponent implements AfterContent
 
   mobileMenuClosed = true;
 
-  variantTypes = ['button'];
+  variantTypes = ['default'];
 
   /**
    * The weaver header component constructor

@@ -292,8 +292,8 @@ describe('Manifest Reducer', () => {
 
     // submit request failure
     it('should have submit request failure', () => {
-      const error = {};
-      let submitRequestAction = fromManifestActions.submitRequestFailure({manifest, request, error});
+      const response = {};
+      let submitRequestAction = fromManifestActions.submitRequestFailure({manifest, request, response});
       let submitRequestReducer = fromManifestReducers.reducer(state,submitRequestAction);
       expect(JSON.stringify(updateOneAdpater)===JSON.stringify(submitRequestReducer))
       .toBe(true);
@@ -301,7 +301,7 @@ describe('Manifest Reducer', () => {
         manifestName: "Directory App",
         entryName: "All Sorted"
       };
-      submitRequestAction = fromManifestActions.submitRequestFailure({manifest, request, error});
+      submitRequestAction = fromManifestActions.submitRequestFailure({manifest, request, response});
       submitRequestReducer = fromManifestReducers.reducer(state,submitRequestAction);
       expect(JSON.stringify(updateOneAdpater)===JSON.stringify(submitRequestReducer))
       .toBe(true);

@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, ElementRef, Injector, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, Injector, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { select } from '@ngrx/store';
 import { filter } from 'rxjs/operators';
@@ -12,11 +12,9 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
   templateUrl: './wvr-modal.component.html',
   styleUrls: ['./wvr-modal.component.scss']
 })
-export class WvrModalComponent extends WvrBaseComponent implements OnInit, AfterContentInit {
+export class WvrModalComponent extends WvrBaseComponent implements OnInit {
 
-  @ViewChild('modalContent') modalContent: ElementRef<HTMLElement>;
-
-  @ViewChild('modalTemplate') modalTemplate: TemplateRef<any>;
+  @ViewChild('modalTemplateContent') modalTemplateContent: TemplateRef<Element>;
 
   modalRef: NgbModalRef;
 
@@ -44,16 +42,49 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit, After
   /** Allows for the override of theme variant for modal footer. */
   @Input() modalFooterThemeVariant: ThemeVariantName = 'light';
 
+  @Input() size: 'sm' | 'lg' | 'xl' = 'lg';
+
+  @Input() backdrop: 'static' | boolean = 'static';
+
+  @Input() centered = false;
+
+  @Input() animation = true;
+
+  @Input() keyboard = false;
+
   get openProps(): string {
     return `{ id: '${this.modalId}'}`;
   }
 
-  constructor(injector: Injector, private modalService: NgbModal) {
+  constructor(
+    injector: Injector,
+    private modalService: NgbModal
+  ) {
     super(injector);
   }
 
   ngOnInit(): void {
     super.ngOnInit();
+
+    this.modalService.activeInstances.subscribe((modalRefs: NgbModalRef[]) => {
+      setTimeout(() => {
+        if (!!this.modalRef && modalRefs.length > 0) {
+          ['body', 'footer'].forEach(content => {
+            const template = this.eRef.nativeElement.querySelector(`template[modal-${content}]`);
+            if (!!template) {
+              const element: Element = this.eRef.nativeElement.querySelector(`div[modal-${content}]`);
+              const clone = template.content.children.length > 0
+                ? template.content.cloneNode(true)
+                : template
+              Array.from(clone.children)
+                .forEach((elem: Element) => {
+                  element.appendChild(elem);
+                });
+            }
+          });
+        }
+      });
+    });
 
     const defaultName = 'Weaver Modal';
     this.modalId = !this.title ? `${defaultName
@@ -66,46 +97,56 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit, After
 
     this.btnThemeVariant = this.btnThemeVariant ? this.btnThemeVariant : this.themeVariant;
 
-    this.store.dispatch(ModalActions.addModal({modal: {
-      name: this.modalId,
-      open: false
-    }}));
+    this.store.dispatch(ModalActions.addModal({
+      modal: {
+        name: this.modalId,
+        open: false
+      }
+    }));
 
     this.store.pipe(
       select(selectModalState),
       filter(modalState => !!modalState)
     )
-    .subscribe(modalState => {
-      const modal = modalState.entities[this.modalId];
-      if (modal.open) {
+      .subscribe(modalState => {
+        const modal = modalState.entities[this.modalId];
+        if (modal.open) {
+          this.modalRef = this.modalService.open(this.modalTemplateContent, {
+            ariaLabelledBy: 'modal-basic-title',
+            container: this.eRef.nativeElement,
+            size: this.size,
+            backdrop: this.backdrop,
+            centered: this.centered,
+            animation: this.animation,
+            keyboard: this.keyboard,
+            modalDialogClass: 'modal-dialog',
+            beforeDismiss: () => {
+              this.store.dispatch(ModalActions.closeModal({ id: this.modalId }));
 
-        this.modalRef =  this.modalService.open(this.modalTemplate, {
-          ariaLabelledBy: 'modal-basic-title',
-          container: this.eRef.nativeElement,
-          backdrop: false,
-          beforeDismiss: () => {
-            this.store.dispatch(ModalActions.closeModal({id: this.modalId}));
+              return false;
+            }
+          });
 
-            return false;
-          }
-        });
-
-        const modelContentContainer = (this.eRef.nativeElement as HTMLElement).querySelector('modal-content');
-        modelContentContainer.outerHTML = this.modalContent.nativeElement.innerHTML;
-        this.modalContent.nativeElement.innerHTML = '';
-
-      } else if (this.modalRef) {
-
-        const modelContentContainer = (this.eRef.nativeElement as HTMLElement).querySelector('.modal-content');
-        this.modalContent.nativeElement.innerHTML = modelContentContainer.innerHTML;
-
-        this.modalRef.close();
-       }
-    });
+        } else if (this.modalRef) {
+          ['body', 'footer'].forEach(content => {
+            const template = this.eRef.nativeElement.querySelector(`template[modal-${content}]`);
+            if (!!template) {
+              const element: Element = this.eRef.nativeElement.querySelector(`div[modal-${content}]`);
+              Array.from(element.children)
+                .filter((elem: Element) => elem.nodeName !== 'TEMPLATE')
+                .forEach((elem: Element) => {
+                  template.appendChild(elem);
+                });
+            }
+          });
+          this.modalRef.close();
+          delete this.modalRef;
+        }
+      });
   }
 
   openModal(): void {
-    this.store.dispatch(ModalActions.openModal({id: this.modalId}));
+    this.store.dispatch(ModalActions.openModal({ id: this.modalId }));
   }
 
   /** This provides background, border and text color properties based on the them variant provided . */
@@ -114,17 +155,17 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit, After
     switch (value) {
       case 'header':
         additionalClasses = this.modalHeaderThemeVariant ?
-                            ` bg-${this.modalHeaderThemeVariant} border-${this.modalHeaderThemeVariant} ${this.getTextColor(this.modalHeaderThemeVariant)}` :
-                            this.themeVariant ?
-                            ` bg-${this.themeVariant} border-${this.themeVariant} ${this.getTextColor(this.themeVariant)}` :
-                            ' bg-light text-dark ';
+          `bg-${this.modalHeaderThemeVariant} border-${this.modalHeaderThemeVariant} ${this.getTextColor(this.modalHeaderThemeVariant)}` :
+          this.themeVariant ?
+            `bg-${this.themeVariant} border-${this.themeVariant} ${this.getTextColor(this.themeVariant)}` :
+            'bg-light text-dark';
         break;
       case 'footer':
         additionalClasses = this.modalFooterThemeVariant ?
-                            ` bg-${this.modalFooterThemeVariant} border-${this.modalFooterThemeVariant} ${this.getTextColor(this.modalFooterThemeVariant)}` :
-                            this.themeVariant ?
-                            ` bg-${this.themeVariant} border-${this.themeVariant} ${this.getTextColor(this.themeVariant)}` :
-                            ' bg-light text-dark ';
+          `bg-${this.modalFooterThemeVariant} border-${this.modalFooterThemeVariant} ${this.getTextColor(this.modalFooterThemeVariant)}` :
+          this.themeVariant ?
+            `bg-${this.themeVariant} border-${this.themeVariant} ${this.getTextColor(this.themeVariant)}` :
+            'bg-light text-dark';
         break;
       default:
     }
@@ -133,7 +174,7 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit, After
   }
 
   getTextColor(themeVariant): string {
-    return ((themeVariant === 'warning') || (themeVariant === 'light')) ? ' text-dark ' : ' text-white ';
+    return ((themeVariant === 'warning') || (themeVariant === 'light')) ? 'text-dark' : 'text-white';
   }
 
 }

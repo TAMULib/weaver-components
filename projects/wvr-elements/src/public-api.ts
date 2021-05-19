@@ -1,6 +1,14 @@
 /*
  * Public API Surface of elements
  */
+export * from './lib/core/action-registry.service';
+export * from './lib/core/actions';
+export * from './lib/core/animation.service';
+export * from './lib/core/component-registry.service';
+export * from './lib/core/effects';
+export * from './lib/core/mobile.service';
+export * from './lib/core/store';
+export * from './lib/core/template.service';
 export * from './lib/core/wvr-core.module';
 export * from './lib/shared/alignment.enum';
 export * from './lib/shared/config';
@@ -29,5 +37,4 @@ export * from './lib/wvr-tabs/wvr-tabs.component';
 export * from './lib/wvr-text/wvr-text.component';
 export * from './lib/wvr-theme/wvr-theme.component';
 export * from './lib/wvr-wysiwyg/wvr-wysiwyg.component';
-export * from './lib/core/actions';
-export * from './lib/core/store';
+

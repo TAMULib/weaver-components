@@ -9,4 +9,6 @@ export interface Request {
   body?: any;
   options?: RequestOptions;
   map?: map;
+  decode?: string[];
+  bodyHttpParams?: 'fromObject' | 'fromString';
 }

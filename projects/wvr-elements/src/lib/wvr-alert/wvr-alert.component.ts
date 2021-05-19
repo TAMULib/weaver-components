@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Injector, Input, OnInit } from '@angular/core';
+import { Component, Injector, Input, OnInit } from '@angular/core';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 /**
@@ -7,8 +7,7 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
 @Component({
   selector: 'wvr-alert-component',
   templateUrl: './wvr-alert.component.html',
-  styleUrls: ['./wvr-alert.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Default
+  styleUrls: ['./wvr-alert.component.scss']
 })
 export class WvrAlertComponent extends WvrBaseComponent implements OnInit {
 
@@ -19,7 +18,7 @@ export class WvrAlertComponent extends WvrBaseComponent implements OnInit {
   alertClosed = false;
 
   /** Used to display the Close button. */
-  @Input() closable: 'true' | 'false' = 'true';
+  @Input() closeable: 'true' | 'false' = 'true';
 
   /** Setting the delay timer for the self closing alert message */
   @Input() closeTimer = 5000;

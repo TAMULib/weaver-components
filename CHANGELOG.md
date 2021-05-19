@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.11.0] - 05-12-21
+### Resolves
+
+- The weaver modal bg should be displayed (and NOT flicker). (#328)
+- Weaver modal only opens when a single modal is used.. (#346)
+- Weaver components should offer a default theme group (modeled after btn). (#347)
+- The Card Component should support theming.. (#350)
+- Lighthouse build failing for weaver components. (#356)
+
 ## [1.10.0] - 04-23-21
 ### Resolves
 - Weaver Modal button should be toggle-able. (#329 )

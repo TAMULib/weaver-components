@@ -5,13 +5,11 @@ import { Request } from './request';
 export interface State {
   request: Request;
   response: any;
-  error: any;
 }
 ​
 export const initialState: State = {
   request: undefined,
-  response: undefined,
-  error: undefined
+  response: undefined
 };
 ​
 export const reducer = createReducer(
@@ -26,8 +24,12 @@ export const reducer = createReducer(
     ...state,
     response
   })),
-  on(RestActions.requestFailure, (state, { error }) => ({
+  on(RestActions.requestFailure, (state, { response }) => ({
     ...state,
-    error
+    response
   }))
 );
+
+export const selectRequest = (state: State) => state.request;
+
+export const selectResponse = (state: State) => state.response;

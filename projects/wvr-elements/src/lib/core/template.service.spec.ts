@@ -33,7 +33,7 @@ describe('TemplateService', () => {
     component = fixture.componentInstance;
     projectedContent = document.createElement('template');
     projectedContent.setAttribute('wvr-compile', 'true');
-    projectedContent.innerHTML = '<p>{{data.test}}</p>';
+    projectedContent.innerHTML = '<p class="projected-content">{{data.test}}</p>';
 
     fixture.detectChanges();
   });
@@ -53,8 +53,9 @@ describe('TemplateService', () => {
     const elem = fixture.elementRef.nativeElement as HTMLElement;
     elem.appendChild(projectedContent);
     service.compile(testData, testSelect, elem, projectedContent);
-    expect(elem.querySelector('p').innerHTML)
-      .toEqual('foo');
+
+    expect(elem.querySelector('p.projected-content').innerHTML)
+      .toEqual(testData.test);
   });
 
 });

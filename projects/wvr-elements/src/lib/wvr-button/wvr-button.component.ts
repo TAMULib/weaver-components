@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, HostBinding, HostListener, Injector, Input } from '@angular/core';
 import * as JSON5 from 'json5';
-import { actions } from '../core/actions';
+import { ActionRegistryService } from '../core/action-registry.service';
 import { ThemeVariantName } from '../shared/theme';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
@@ -11,6 +11,8 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
   changeDetection: ChangeDetectionStrategy.Default
 })
 export class WvrButtonComponent extends WvrBaseComponent {
+
+  htmlId = `wvr-button-${this.id}`;
 
   /** Used to define the class type for button component.  */
   @Input() themeVariant: ThemeVariantName = 'primary';
@@ -23,6 +25,8 @@ export class WvrButtonComponent extends WvrBaseComponent {
 
   /** Allows for the button component to be an anchor tag component if href property present. */
   @Input() href: string;
+
+  @Input() disabled = false;
 
   /** Allows for the override of background */
   @Input() set background(value: string) {
@@ -134,12 +138,14 @@ export class WvrButtonComponent extends WvrBaseComponent {
 
   variantTypes = ['button'];
 
+  actionRegistry?: ActionRegistryService;
+
   constructor(injector: Injector) {
     super(injector);
+    this.actionRegistry = injector.get(ActionRegistryService);
   }
 
-  @HostListener('click', ['$event']) click($event: MouseEvent): void {
-
+  onClick(): void {
     if (this._dispatchActions) {
       this._dispatchActions.forEach(actionAndProp => {
         this.store.dispatch(actionAndProp.action(
@@ -177,23 +183,37 @@ export class WvrButtonComponent extends WvrBaseComponent {
       return;
     }
 
-    valid = !!actions[parts[0]];
-    if (!valid) {
-      console.warn(`'${parts[0]}' is not a known action type. (${Object.keys(actions)
-        .join(',')})`);
+    const registeredActions = this.actionRegistry.getActions(parts[0]);
+
+    if (!registeredActions || !parts[1] || !registeredActions[parts[1]]) {
+      console.warn('somthing went wrong parsing the action input.');
 
       return;
     }
 
-    valid = !!actions[parts[0]][parts[1]];
-    if (!valid) {
-      console.warn(`'${parts[1]}' is not a known action of ${parts[0]}. (${Object.keys(actions[parts[0]])
-        .join(',')})`);
+    if (registeredActions && registeredActions[parts[0]]) {
+      valid = !!registeredActions;
+      if (!valid) {
+        const types = Object.keys(registeredActions)
+          .join(',');
+        console.warn(`'${parts[0]}' is not a known action type. (${types})`);
+      }
 
       return;
     }
 
-    return actions[parts[0]][parts[1]];
+    if (registeredActions && registeredActions[parts[0]]) {
+      valid = !!registeredActions[parts[1]];
+      if (!valid) {
+        const actions = Object.keys(registeredActions[parts[0]])
+          .join(',')
+        console.warn(`'${parts[1]}' is not a known action of ${parts[0]}. (${actions})`);
+      }
+
+      return;
+    }
+
+    return registeredActions[parts[1]];
   }
 
 }

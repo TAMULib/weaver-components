@@ -53,10 +53,13 @@ export class ManifestEffects {
             url,
             method,
             options,
+            body: request.body,
+            decode: request.decode,
+            bodyHttpParams: request.bodyHttpParams,
             map: entry.map
           },
           success: response => onSuccess.concat(ManifestActions.submitRequestSuccess({ manifest, request, response })),
-          failure: error => onFailure.concat(ManifestActions.submitRequestFailure({ manifest, request, error }))
+          failure: response => onFailure.concat(ManifestActions.submitRequestFailure({ manifest, request, response }))
         });
       })
     ));

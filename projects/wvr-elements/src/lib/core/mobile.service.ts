@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { fromEvent, Observable } from 'rxjs';
-import { delay, map, throttleTime } from 'rxjs/operators';
+import { map, throttleTime } from 'rxjs/operators';
 
 /**
  * A centralized uitlity for logic conerning mobile layout.
