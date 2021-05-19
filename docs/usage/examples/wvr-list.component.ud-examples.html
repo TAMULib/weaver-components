@@ -1,0 +1,1051 @@
+<example name="Weaver List - Unordered">
+  <desciption>
+    Unordered <code>wvre-list</code> component.
+  </desciption>
+  <snippet>
+    <wvre-list list-type="unordered">
+      <wvre-list-item>
+        <wvre-text value="Item 1"></wvre-text>
+      </wvre-list-item>
+      <wvre-list-item>
+        <wvre-text value="Item 2"></wvre-text>
+      </wvre-list-item>
+      <wvre-list-item>
+        <wvre-text value="Item 3"></wvre-text>
+      </wvre-list-item>
+    </wvre-list>
+  </snippet>
+<component-source>import { ChangeDetectionStrategy, Component, Injector, Input } from '@angular/core';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
+
+/**
+ * A stylable list.
+ */
+@Component({
+  selector: 'wvr-list-component',
+  templateUrl: './wvr-list.component.html',
+  styleUrls: ['./wvr-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
+})
+export class WvrListComponent extends WvrBaseComponent {
+
+  /** Specifies the display format of this list.  */
+  @Input() listType = 'unordered';
+
+  constructor(injector: Injector) {
+    super(injector);
+  }
+
+}
+</component-source><component-template><wvre-list-wrapper #animationroot="" [ngswitch]="true">
+  <ul *ngswitchcase="listType === 'unordered'">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </ul>
+
+  <ul *ngswitchcase="listType === 'unstyled'" class="list-unstyled">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </ul>
+
+  <ol *ngswitchcase="listType === 'ordered'">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </ol>
+
+  <dl *ngswitchcase="listType === 'described'">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </dl>
+
+  <ul *ngswitchcase="listType === 'group-ul' || listType === 'group'" class="list-group">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </ul>
+
+  <div *ngswitchcase="listType === 'group-div'" class="list-group">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </div>
+
+  <ul *ngswitchcase="listType === 'group-flush'" class="list-group list-group-flush">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </ul>
+
+  <div *ngswitchcase="listType === 'group-custom-content'" class="list-group">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </div>
+
+  <div *ngswitchdefault=""></div>
+
+</wvre-list-wrapper>
+
+<ng-template #selection="">
+  <ng-content select="wvre-list-item, wvr-list-item-component, template[wvr-compile]"></ng-content>
+</ng-template>
+</component-template><component-scss>@import "../shared/styles/wvr-variables.scss";
+@import "../shared/styles/variables";
+
+:host {
+  
+  @extend .variables;
+  
+  font-family: var(--wvr-font-family-sans-serif);
+
+  wvre-list-wrapper {
+    display: block;
+    overflow: hidden;
+  }
+
+  ::ng-deep {
+
+    .list-group-flush &gt; wvre-list-item &gt; wvre-list-item-wrapper &gt; .list-group-item {
+      border-right: 0;
+      border-left: 0;
+      border-radius: 0;
+    }
+
+    .list-group-flush &gt; wvre-list-item:first-child &gt; wvre-list-item-wrapper &gt; .list-group-item {
+      border-top: 0;
+    }
+
+    .list-group-flush &gt; wvre-list-item:last-child &gt; wvre-list-item-wrapper &gt; .list-group-item {
+      border-bottom: 0;
+    }
+
+  }
+}
+</component-scss></example>
+
+<example name="Weaver List - Ordered">
+  <desciption>
+    Ordered <code>wvre-list</code> component.
+  </desciption>
+  <snippet>
+    <wvre-list list-type="ordered">
+      <wvre-list-item>
+        <wvre-text value="Item 1"></wvre-text>
+      </wvre-list-item>
+      <wvre-list-item>
+        <wvre-text value="Item 2"></wvre-text>
+      </wvre-list-item>
+      <wvre-list-item>
+        <wvre-text value="Item 3"></wvre-text>
+      </wvre-list-item>
+    </wvre-list>
+  </snippet>
+<component-source>import { ChangeDetectionStrategy, Component, Injector, Input } from '@angular/core';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
+
+/**
+ * A stylable list.
+ */
+@Component({
+  selector: 'wvr-list-component',
+  templateUrl: './wvr-list.component.html',
+  styleUrls: ['./wvr-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
+})
+export class WvrListComponent extends WvrBaseComponent {
+
+  /** Specifies the display format of this list.  */
+  @Input() listType = 'unordered';
+
+  constructor(injector: Injector) {
+    super(injector);
+  }
+
+}
+</component-source><component-template><wvre-list-wrapper #animationroot="" [ngswitch]="true">
+  <ul *ngswitchcase="listType === 'unordered'">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </ul>
+
+  <ul *ngswitchcase="listType === 'unstyled'" class="list-unstyled">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </ul>
+
+  <ol *ngswitchcase="listType === 'ordered'">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </ol>
+
+  <dl *ngswitchcase="listType === 'described'">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </dl>
+
+  <ul *ngswitchcase="listType === 'group-ul' || listType === 'group'" class="list-group">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </ul>
+
+  <div *ngswitchcase="listType === 'group-div'" class="list-group">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </div>
+
+  <ul *ngswitchcase="listType === 'group-flush'" class="list-group list-group-flush">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </ul>
+
+  <div *ngswitchcase="listType === 'group-custom-content'" class="list-group">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </div>
+
+  <div *ngswitchdefault=""></div>
+
+</wvre-list-wrapper>
+
+<ng-template #selection="">
+  <ng-content select="wvre-list-item, wvr-list-item-component, template[wvr-compile]"></ng-content>
+</ng-template>
+</component-template><component-scss>@import "../shared/styles/wvr-variables.scss";
+@import "../shared/styles/variables";
+
+:host {
+  
+  @extend .variables;
+  
+  font-family: var(--wvr-font-family-sans-serif);
+
+  wvre-list-wrapper {
+    display: block;
+    overflow: hidden;
+  }
+
+  ::ng-deep {
+
+    .list-group-flush &gt; wvre-list-item &gt; wvre-list-item-wrapper &gt; .list-group-item {
+      border-right: 0;
+      border-left: 0;
+      border-radius: 0;
+    }
+
+    .list-group-flush &gt; wvre-list-item:first-child &gt; wvre-list-item-wrapper &gt; .list-group-item {
+      border-top: 0;
+    }
+
+    .list-group-flush &gt; wvre-list-item:last-child &gt; wvre-list-item-wrapper &gt; .list-group-item {
+      border-bottom: 0;
+    }
+
+  }
+}
+</component-scss></example>
+
+<example name="Weaver List - Unstyled">
+  <desciption>
+    Unstyled <code>wvre-list</code> component.
+  </desciption>
+  <snippet>
+    <wvre-list list-type="unstyled">
+      <wvre-list-item>
+        <wvre-text value="Item 1"></wvre-text>
+      </wvre-list-item>
+      <wvre-list-item>
+        <wvre-text value="Item 2"></wvre-text>
+      </wvre-list-item>
+      <wvre-list-item>
+        <wvre-text value="Item 3"></wvre-text>
+      </wvre-list-item>
+    </wvre-list>
+  </snippet>
+<component-source>import { ChangeDetectionStrategy, Component, Injector, Input } from '@angular/core';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
+
+/**
+ * A stylable list.
+ */
+@Component({
+  selector: 'wvr-list-component',
+  templateUrl: './wvr-list.component.html',
+  styleUrls: ['./wvr-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
+})
+export class WvrListComponent extends WvrBaseComponent {
+
+  /** Specifies the display format of this list.  */
+  @Input() listType = 'unordered';
+
+  constructor(injector: Injector) {
+    super(injector);
+  }
+
+}
+</component-source><component-template><wvre-list-wrapper #animationroot="" [ngswitch]="true">
+  <ul *ngswitchcase="listType === 'unordered'">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </ul>
+
+  <ul *ngswitchcase="listType === 'unstyled'" class="list-unstyled">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </ul>
+
+  <ol *ngswitchcase="listType === 'ordered'">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </ol>
+
+  <dl *ngswitchcase="listType === 'described'">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </dl>
+
+  <ul *ngswitchcase="listType === 'group-ul' || listType === 'group'" class="list-group">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </ul>
+
+  <div *ngswitchcase="listType === 'group-div'" class="list-group">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </div>
+
+  <ul *ngswitchcase="listType === 'group-flush'" class="list-group list-group-flush">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </ul>
+
+  <div *ngswitchcase="listType === 'group-custom-content'" class="list-group">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </div>
+
+  <div *ngswitchdefault=""></div>
+
+</wvre-list-wrapper>
+
+<ng-template #selection="">
+  <ng-content select="wvre-list-item, wvr-list-item-component, template[wvr-compile]"></ng-content>
+</ng-template>
+</component-template><component-scss>@import "../shared/styles/wvr-variables.scss";
+@import "../shared/styles/variables";
+
+:host {
+  
+  @extend .variables;
+  
+  font-family: var(--wvr-font-family-sans-serif);
+
+  wvre-list-wrapper {
+    display: block;
+    overflow: hidden;
+  }
+
+  ::ng-deep {
+
+    .list-group-flush &gt; wvre-list-item &gt; wvre-list-item-wrapper &gt; .list-group-item {
+      border-right: 0;
+      border-left: 0;
+      border-radius: 0;
+    }
+
+    .list-group-flush &gt; wvre-list-item:first-child &gt; wvre-list-item-wrapper &gt; .list-group-item {
+      border-top: 0;
+    }
+
+    .list-group-flush &gt; wvre-list-item:last-child &gt; wvre-list-item-wrapper &gt; .list-group-item {
+      border-bottom: 0;
+    }
+
+  }
+}
+</component-scss></example>
+
+<example name="Weaver List - Described">
+  <desciption>
+    Described <code>wvre-list</code> component.
+  </desciption>
+  <snippet>
+    <wvre-list list-type="described">
+      <wvre-list-item description="Description 1">
+        <wvre-text value="Item 1"></wvre-text>
+      </wvre-list-item>
+      <wvre-list-item description="Description 2">
+        <wvre-text value="Item 2"></wvre-text>
+      </wvre-list-item>
+      <wvre-list-item description="Description 3">
+        <wvre-text value="Item 3"></wvre-text>
+      </wvre-list-item>
+    </wvre-list>
+  </snippet>
+<component-source>import { ChangeDetectionStrategy, Component, Injector, Input } from '@angular/core';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
+
+/**
+ * A stylable list.
+ */
+@Component({
+  selector: 'wvr-list-component',
+  templateUrl: './wvr-list.component.html',
+  styleUrls: ['./wvr-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
+})
+export class WvrListComponent extends WvrBaseComponent {
+
+  /** Specifies the display format of this list.  */
+  @Input() listType = 'unordered';
+
+  constructor(injector: Injector) {
+    super(injector);
+  }
+
+}
+</component-source><component-template><wvre-list-wrapper #animationroot="" [ngswitch]="true">
+  <ul *ngswitchcase="listType === 'unordered'">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </ul>
+
+  <ul *ngswitchcase="listType === 'unstyled'" class="list-unstyled">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </ul>
+
+  <ol *ngswitchcase="listType === 'ordered'">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </ol>
+
+  <dl *ngswitchcase="listType === 'described'">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </dl>
+
+  <ul *ngswitchcase="listType === 'group-ul' || listType === 'group'" class="list-group">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </ul>
+
+  <div *ngswitchcase="listType === 'group-div'" class="list-group">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </div>
+
+  <ul *ngswitchcase="listType === 'group-flush'" class="list-group list-group-flush">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </ul>
+
+  <div *ngswitchcase="listType === 'group-custom-content'" class="list-group">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </div>
+
+  <div *ngswitchdefault=""></div>
+
+</wvre-list-wrapper>
+
+<ng-template #selection="">
+  <ng-content select="wvre-list-item, wvr-list-item-component, template[wvr-compile]"></ng-content>
+</ng-template>
+</component-template><component-scss>@import "../shared/styles/wvr-variables.scss";
+@import "../shared/styles/variables";
+
+:host {
+  
+  @extend .variables;
+  
+  font-family: var(--wvr-font-family-sans-serif);
+
+  wvre-list-wrapper {
+    display: block;
+    overflow: hidden;
+  }
+
+  ::ng-deep {
+
+    .list-group-flush &gt; wvre-list-item &gt; wvre-list-item-wrapper &gt; .list-group-item {
+      border-right: 0;
+      border-left: 0;
+      border-radius: 0;
+    }
+
+    .list-group-flush &gt; wvre-list-item:first-child &gt; wvre-list-item-wrapper &gt; .list-group-item {
+      border-top: 0;
+    }
+
+    .list-group-flush &gt; wvre-list-item:last-child &gt; wvre-list-item-wrapper &gt; .list-group-item {
+      border-bottom: 0;
+    }
+
+  }
+}
+</component-scss></example>
+
+<example name="Weaver List - Group">
+  <desciption>
+    Group <code>wvre-list</code> component.
+  </desciption>
+  <snippet>
+    <wvre-list list-type="group">
+      <wvre-list-item>
+        <wvre-text value="Item 1"></wvre-text>
+      </wvre-list-item>
+      <wvre-list-item>
+        <wvre-text value="Item 2"></wvre-text>
+      </wvre-list-item>
+      <wvre-list-item>
+        <wvre-text value="Item 3"></wvre-text>
+      </wvre-list-item>
+    </wvre-list>
+  </snippet>
+<component-source>import { ChangeDetectionStrategy, Component, Injector, Input } from '@angular/core';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
+
+/**
+ * A stylable list.
+ */
+@Component({
+  selector: 'wvr-list-component',
+  templateUrl: './wvr-list.component.html',
+  styleUrls: ['./wvr-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
+})
+export class WvrListComponent extends WvrBaseComponent {
+
+  /** Specifies the display format of this list.  */
+  @Input() listType = 'unordered';
+
+  constructor(injector: Injector) {
+    super(injector);
+  }
+
+}
+</component-source><component-template><wvre-list-wrapper #animationroot="" [ngswitch]="true">
+  <ul *ngswitchcase="listType === 'unordered'">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </ul>
+
+  <ul *ngswitchcase="listType === 'unstyled'" class="list-unstyled">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </ul>
+
+  <ol *ngswitchcase="listType === 'ordered'">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </ol>
+
+  <dl *ngswitchcase="listType === 'described'">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </dl>
+
+  <ul *ngswitchcase="listType === 'group-ul' || listType === 'group'" class="list-group">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </ul>
+
+  <div *ngswitchcase="listType === 'group-div'" class="list-group">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </div>
+
+  <ul *ngswitchcase="listType === 'group-flush'" class="list-group list-group-flush">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </ul>
+
+  <div *ngswitchcase="listType === 'group-custom-content'" class="list-group">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </div>
+
+  <div *ngswitchdefault=""></div>
+
+</wvre-list-wrapper>
+
+<ng-template #selection="">
+  <ng-content select="wvre-list-item, wvr-list-item-component, template[wvr-compile]"></ng-content>
+</ng-template>
+</component-template><component-scss>@import "../shared/styles/wvr-variables.scss";
+@import "../shared/styles/variables";
+
+:host {
+  
+  @extend .variables;
+  
+  font-family: var(--wvr-font-family-sans-serif);
+
+  wvre-list-wrapper {
+    display: block;
+    overflow: hidden;
+  }
+
+  ::ng-deep {
+
+    .list-group-flush &gt; wvre-list-item &gt; wvre-list-item-wrapper &gt; .list-group-item {
+      border-right: 0;
+      border-left: 0;
+      border-radius: 0;
+    }
+
+    .list-group-flush &gt; wvre-list-item:first-child &gt; wvre-list-item-wrapper &gt; .list-group-item {
+      border-top: 0;
+    }
+
+    .list-group-flush &gt; wvre-list-item:last-child &gt; wvre-list-item-wrapper &gt; .list-group-item {
+      border-bottom: 0;
+    }
+
+  }
+}
+</component-scss></example>
+
+<example name="Weaver List - Group - Flush">
+  <desciption>
+    Group - Flush <code>wvre-list</code> component.
+  </desciption>
+  <snippet>
+    <wvre-list list-type="group-flush" theme-variant="info">
+      <wvre-list-item>
+        <wvre-text value="Item 1"></wvre-text>
+      </wvre-list-item>
+      <wvre-list-item theme-variant="warning">
+        <wvre-text value="Item 2"></wvre-text>
+      </wvre-list-item>
+      <wvre-list-item theme-variant="success">
+        <wvre-text value="Item 3"></wvre-text>
+      </wvre-list-item>
+    </wvre-list>
+  </snippet>
+<component-source>import { ChangeDetectionStrategy, Component, Injector, Input } from '@angular/core';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
+
+/**
+ * A stylable list.
+ */
+@Component({
+  selector: 'wvr-list-component',
+  templateUrl: './wvr-list.component.html',
+  styleUrls: ['./wvr-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
+})
+export class WvrListComponent extends WvrBaseComponent {
+
+  /** Specifies the display format of this list.  */
+  @Input() listType = 'unordered';
+
+  constructor(injector: Injector) {
+    super(injector);
+  }
+
+}
+</component-source><component-template><wvre-list-wrapper #animationroot="" [ngswitch]="true">
+  <ul *ngswitchcase="listType === 'unordered'">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </ul>
+
+  <ul *ngswitchcase="listType === 'unstyled'" class="list-unstyled">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </ul>
+
+  <ol *ngswitchcase="listType === 'ordered'">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </ol>
+
+  <dl *ngswitchcase="listType === 'described'">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </dl>
+
+  <ul *ngswitchcase="listType === 'group-ul' || listType === 'group'" class="list-group">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </ul>
+
+  <div *ngswitchcase="listType === 'group-div'" class="list-group">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </div>
+
+  <ul *ngswitchcase="listType === 'group-flush'" class="list-group list-group-flush">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </ul>
+
+  <div *ngswitchcase="listType === 'group-custom-content'" class="list-group">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </div>
+
+  <div *ngswitchdefault=""></div>
+
+</wvre-list-wrapper>
+
+<ng-template #selection="">
+  <ng-content select="wvre-list-item, wvr-list-item-component, template[wvr-compile]"></ng-content>
+</ng-template>
+</component-template><component-scss>@import "../shared/styles/wvr-variables.scss";
+@import "../shared/styles/variables";
+
+:host {
+  
+  @extend .variables;
+  
+  font-family: var(--wvr-font-family-sans-serif);
+
+  wvre-list-wrapper {
+    display: block;
+    overflow: hidden;
+  }
+
+  ::ng-deep {
+
+    .list-group-flush &gt; wvre-list-item &gt; wvre-list-item-wrapper &gt; .list-group-item {
+      border-right: 0;
+      border-left: 0;
+      border-radius: 0;
+    }
+
+    .list-group-flush &gt; wvre-list-item:first-child &gt; wvre-list-item-wrapper &gt; .list-group-item {
+      border-top: 0;
+    }
+
+    .list-group-flush &gt; wvre-list-item:last-child &gt; wvre-list-item-wrapper &gt; .list-group-item {
+      border-bottom: 0;
+    }
+
+  }
+}
+</component-scss></example>
+
+<example name="Weaver List - Group - Contextual Classes">
+  <desciption>
+    Contextual Classes <code>wvre-list</code> component.
+  </desciption>
+  <snippet>
+    <wvre-list list-type="group-ul" theme-variant="info">
+      <wvre-list-item>
+        <wvre-text value="Item 1"></wvre-text>
+        <span class="badge badge-primary badge-pill">
+          <wvre-text value="14"></wvre-text>
+        </span>
+      </wvre-list-item>
+      <wvre-list-item theme-variant="warning">
+        <wvre-text value="Item 2"></wvre-text>
+        <span class="badge badge-secondary badge-pill">
+          <wvre-text value="28"></wvre-text>
+        </span>
+      </wvre-list-item>
+      <wvre-list-item theme-variant="success">
+        <wvre-text value="Item 3"></wvre-text>
+        <span class="badge badge-success badge-pill">
+          <wvre-text value="46"></wvre-text>
+        </span>
+      </wvre-list-item>
+    </wvre-list>
+  </snippet>
+<component-source>import { ChangeDetectionStrategy, Component, Injector, Input } from '@angular/core';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
+
+/**
+ * A stylable list.
+ */
+@Component({
+  selector: 'wvr-list-component',
+  templateUrl: './wvr-list.component.html',
+  styleUrls: ['./wvr-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
+})
+export class WvrListComponent extends WvrBaseComponent {
+
+  /** Specifies the display format of this list.  */
+  @Input() listType = 'unordered';
+
+  constructor(injector: Injector) {
+    super(injector);
+  }
+
+}
+</component-source><component-template><wvre-list-wrapper #animationroot="" [ngswitch]="true">
+  <ul *ngswitchcase="listType === 'unordered'">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </ul>
+
+  <ul *ngswitchcase="listType === 'unstyled'" class="list-unstyled">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </ul>
+
+  <ol *ngswitchcase="listType === 'ordered'">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </ol>
+
+  <dl *ngswitchcase="listType === 'described'">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </dl>
+
+  <ul *ngswitchcase="listType === 'group-ul' || listType === 'group'" class="list-group">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </ul>
+
+  <div *ngswitchcase="listType === 'group-div'" class="list-group">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </div>
+
+  <ul *ngswitchcase="listType === 'group-flush'" class="list-group list-group-flush">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </ul>
+
+  <div *ngswitchcase="listType === 'group-custom-content'" class="list-group">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </div>
+
+  <div *ngswitchdefault=""></div>
+
+</wvre-list-wrapper>
+
+<ng-template #selection="">
+  <ng-content select="wvre-list-item, wvr-list-item-component, template[wvr-compile]"></ng-content>
+</ng-template>
+</component-template><component-scss>@import "../shared/styles/wvr-variables.scss";
+@import "../shared/styles/variables";
+
+:host {
+  
+  @extend .variables;
+  
+  font-family: var(--wvr-font-family-sans-serif);
+
+  wvre-list-wrapper {
+    display: block;
+    overflow: hidden;
+  }
+
+  ::ng-deep {
+
+    .list-group-flush &gt; wvre-list-item &gt; wvre-list-item-wrapper &gt; .list-group-item {
+      border-right: 0;
+      border-left: 0;
+      border-radius: 0;
+    }
+
+    .list-group-flush &gt; wvre-list-item:first-child &gt; wvre-list-item-wrapper &gt; .list-group-item {
+      border-top: 0;
+    }
+
+    .list-group-flush &gt; wvre-list-item:last-child &gt; wvre-list-item-wrapper &gt; .list-group-item {
+      border-bottom: 0;
+    }
+
+  }
+}
+</component-scss></example>
+
+<example name="Weaver List - Group - Custom Content">
+  <desciption>
+    Group - Custom Content <code>wvre-list</code> component.
+  </desciption>
+  <snippet>
+    <wvre-list list-type="group-custom-content">
+      <wvre-list-item custom-content-item-heading="Custom Content Item Heading" cusom-content-heading-small-text="Custom Content Heading Small Text" custom-content-small-text="Custom Content Small Text">
+        <wvre-text value="Custom Content Description 1"></wvre-text>
+      </wvre-list-item>
+      <wvre-list-item custom-content-item-heading="Custom Content Item Heading2" cusom-content-heading-small-text="Custom Content Heading Small Text2" custom-content-small-text="Custom Content Small Text2">
+        <wvre-text value="Custom Content Description 2"></wvre-text>
+      </wvre-list-item>
+      <wvre-list-item custom-content-item-heading="Custom Content Item Heading3" cusom-content-heading-small-text="Custom Content Heading Small Text3" custom-content-small-text="Custom Content Small Text3">
+        <wvre-text value="Custom Content Description 3"></wvre-text>
+      </wvre-list-item>
+    </wvre-list>
+  </snippet>
+<component-source>import { ChangeDetectionStrategy, Component, Injector, Input } from '@angular/core';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
+
+/**
+ * A stylable list.
+ */
+@Component({
+  selector: 'wvr-list-component',
+  templateUrl: './wvr-list.component.html',
+  styleUrls: ['./wvr-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
+})
+export class WvrListComponent extends WvrBaseComponent {
+
+  /** Specifies the display format of this list.  */
+  @Input() listType = 'unordered';
+
+  constructor(injector: Injector) {
+    super(injector);
+  }
+
+}
+</component-source><component-template><wvre-list-wrapper #animationroot="" [ngswitch]="true">
+  <ul *ngswitchcase="listType === 'unordered'">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </ul>
+
+  <ul *ngswitchcase="listType === 'unstyled'" class="list-unstyled">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </ul>
+
+  <ol *ngswitchcase="listType === 'ordered'">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </ol>
+
+  <dl *ngswitchcase="listType === 'described'">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </dl>
+
+  <ul *ngswitchcase="listType === 'group-ul' || listType === 'group'" class="list-group">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </ul>
+
+  <div *ngswitchcase="listType === 'group-div'" class="list-group">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </div>
+
+  <ul *ngswitchcase="listType === 'group-flush'" class="list-group list-group-flush">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </ul>
+
+  <div *ngswitchcase="listType === 'group-custom-content'" class="list-group">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </div>
+
+  <div *ngswitchdefault=""></div>
+
+</wvre-list-wrapper>
+
+<ng-template #selection="">
+  <ng-content select="wvre-list-item, wvr-list-item-component, template[wvr-compile]"></ng-content>
+</ng-template>
+</component-template><component-scss>@import "../shared/styles/wvr-variables.scss";
+@import "../shared/styles/variables";
+
+:host {
+  
+  @extend .variables;
+  
+  font-family: var(--wvr-font-family-sans-serif);
+
+  wvre-list-wrapper {
+    display: block;
+    overflow: hidden;
+  }
+
+  ::ng-deep {
+
+    .list-group-flush &gt; wvre-list-item &gt; wvre-list-item-wrapper &gt; .list-group-item {
+      border-right: 0;
+      border-left: 0;
+      border-radius: 0;
+    }
+
+    .list-group-flush &gt; wvre-list-item:first-child &gt; wvre-list-item-wrapper &gt; .list-group-item {
+      border-top: 0;
+    }
+
+    .list-group-flush &gt; wvre-list-item:last-child &gt; wvre-list-item-wrapper &gt; .list-group-item {
+      border-bottom: 0;
+    }
+
+  }
+}
+</component-scss></example>
+
+<example name="Weaver List - Expand/Collapse">
+  <desciption>
+    Unstyled <code>wvre-list</code> with expand/collapse animations.
+  </desciption>
+  <snippet>
+    <wvre-list list-type="unstyled">
+      <wvre-list-item>
+        <wvre-button theme-variant="link" animate="{click: 'animationTrigger'}" animate-target="list1">
+          <wvre-text value="Item One"></wvre-text>
+          <wvre-icon set="feather" name="chevron-right" animate="{animationTrigger: 'rotateToggle'}" animate-id="list1"></wvre-icon>
+        </wvre-button>
+        <wvre-list list-type="unordered" animate="{animationTrigger: 'expandCollapseToggle'}" animate-id="list1" animate-config="{
+          expandCollapseToggle: {
+            timing: '250ms ease-in',
+            to: '100px',
+            from: '0px'
+          }
+        }">
+          <wvre-list-item>
+            <wvre-text value="Item One.One"></wvre-text>
+          </wvre-list-item>
+          <wvre-list-item>
+            <wvre-text value="Item One.Two"></wvre-text>
+          </wvre-list-item>
+          <wvre-list-item>
+            <wvre-text value="Item One.Three"></wvre-text>
+          </wvre-list-item>
+        </wvre-list>
+      </wvre-list-item>
+      <wvre-list-item>
+        <wvre-button theme-variant="link">
+          <wvre-text value="Item Two"></wvre-text>
+          <wvre-icon set="feather" name="chevron-right"></wvre-icon>
+        </wvre-button>
+      </wvre-list-item>
+      <wvre-list-item>
+        <wvre-button theme-variant="link">
+          <wvre-text value="Item Three"></wvre-text>
+          <wvre-icon set="feather" name="chevron-right"></wvre-icon>
+        </wvre-button>
+      </wvre-list-item>
+    </wvre-list>
+  </snippet>
+<component-source>import { ChangeDetectionStrategy, Component, Injector, Input } from '@angular/core';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
+
+/**
+ * A stylable list.
+ */
+@Component({
+  selector: 'wvr-list-component',
+  templateUrl: './wvr-list.component.html',
+  styleUrls: ['./wvr-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
+})
+export class WvrListComponent extends WvrBaseComponent {
+
+  /** Specifies the display format of this list.  */
+  @Input() listType = 'unordered';
+
+  constructor(injector: Injector) {
+    super(injector);
+  }
+
+}
+</component-source><component-template><wvre-list-wrapper #animationroot="" [ngswitch]="true">
+  <ul *ngswitchcase="listType === 'unordered'">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </ul>
+
+  <ul *ngswitchcase="listType === 'unstyled'" class="list-unstyled">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </ul>
+
+  <ol *ngswitchcase="listType === 'ordered'">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </ol>
+
+  <dl *ngswitchcase="listType === 'described'">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </dl>
+
+  <ul *ngswitchcase="listType === 'group-ul' || listType === 'group'" class="list-group">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </ul>
+
+  <div *ngswitchcase="listType === 'group-div'" class="list-group">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </div>
+
+  <ul *ngswitchcase="listType === 'group-flush'" class="list-group list-group-flush">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </ul>
+
+  <div *ngswitchcase="listType === 'group-custom-content'" class="list-group">
+    <ng-container *ngtemplateoutlet="selection"></ng-container>
+  </div>
+
+  <div *ngswitchdefault=""></div>
+
+</wvre-list-wrapper>
+
+<ng-template #selection="">
+  <ng-content select="wvre-list-item, wvr-list-item-component, template[wvr-compile]"></ng-content>
+</ng-template>
+</component-template><component-scss>@import "../shared/styles/wvr-variables.scss";
+@import "../shared/styles/variables";
+
+:host {
+  
+  @extend .variables;
+  
+  font-family: var(--wvr-font-family-sans-serif);
+
+  wvre-list-wrapper {
+    display: block;
+    overflow: hidden;
+  }
+
+  ::ng-deep {
+
+    .list-group-flush &gt; wvre-list-item &gt; wvre-list-item-wrapper &gt; .list-group-item {
+      border-right: 0;
+      border-left: 0;
+      border-radius: 0;
+    }
+
+    .list-group-flush &gt; wvre-list-item:first-child &gt; wvre-list-item-wrapper &gt; .list-group-item {
+      border-top: 0;
+    }
+
+    .list-group-flush &gt; wvre-list-item:last-child &gt; wvre-list-item-wrapper &gt; .list-group-item {
+      border-bottom: 0;
+    }
+
+  }
+}
+</component-scss></example>

@@ -1,0 +1,1308 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>weaver-components documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">weaver-components documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>WvrModalComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>projects/wvr-elements/src/lib/wvr-modal/wvr-modal.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Extends</h3>
+    </p>
+    <p class="comment">
+            <code>WvrBaseComponent</code>
+    </p>
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>wvr-modal-component</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./wvr-modal.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./wvr-modal.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#modalId">modalId</a>
+                            </li>
+                            <li>
+                                <a href="#modalRef">modalRef</a>
+                            </li>
+                            <li>
+                                <a href="#modalTemplateContent">modalTemplateContent</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#additionalClasses">additionalClasses</a>
+                            </li>
+                            <li>
+                                <a href="#getTextColor">getTextColor</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#openModal">openModal</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#animation">animation</a>
+                            </li>
+                            <li>
+                                <a href="#backdrop">backdrop</a>
+                            </li>
+                            <li>
+                                <a href="#btnText">btnText</a>
+                            </li>
+                            <li>
+                                <a href="#btnThemeVariant">btnThemeVariant</a>
+                            </li>
+                            <li>
+                                <a href="#btnVisible">btnVisible</a>
+                            </li>
+                            <li>
+                                <a href="#centered">centered</a>
+                            </li>
+                            <li>
+                                <a href="#keyboard">keyboard</a>
+                            </li>
+                            <li>
+                                <a href="#modalFooterThemeVariant">modalFooterThemeVariant</a>
+                            </li>
+                            <li>
+                                <a href="#modalHeaderThemeVariant">modalHeaderThemeVariant</a>
+                            </li>
+                            <li>
+                                <a href="#size">size</a>
+                            </li>
+                            <li>
+                                <a href="#themeVariant">themeVariant</a>
+                            </li>
+                            <li>
+                                <a href="#title">title</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#openProps">openProps</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(injector: <a href="https://angular.io/api/core/Injector" target="_blank">Injector</a>, modalService: <a href="../interfaces/Modal.html">NgbModal</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">projects/wvr-elements/src/lib/wvr-modal/wvr-modal.component.ts:57</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>injector</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/core/Injector" target="_blank" >Injector</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>modalService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../interfaces/Modal.html" target="_self" >NgbModal</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="animation"></a>
+                        <b>animation</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">projects/wvr-elements/src/lib/wvr-modal/wvr-modal.component.ts:51</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="backdrop"></a>
+                        <b>backdrop</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>&quot;static&quot; | boolean</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;static&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">projects/wvr-elements/src/lib/wvr-modal/wvr-modal.component.ts:47</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="btnText"></a>
+                        <b>btnText</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">projects/wvr-elements/src/lib/wvr-modal/wvr-modal.component.ts:28</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>The text value to be displayed for the button launching the modal. </p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="btnThemeVariant"></a>
+                        <b>btnThemeVariant</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/ThemeVariant.html" target="_self" >ThemeVariantName</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">projects/wvr-elements/src/lib/wvr-modal/wvr-modal.component.ts:37</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Allows for the override of theme variant for the button launching the modal component. </p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="btnVisible"></a>
+                        <b>btnVisible</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>&quot;true&quot; | &quot;false&quot;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;true&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">projects/wvr-elements/src/lib/wvr-modal/wvr-modal.component.ts:22</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>This allows for the modal button to be toggle able. </p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="centered"></a>
+                        <b>centered</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">projects/wvr-elements/src/lib/wvr-modal/wvr-modal.component.ts:49</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="keyboard"></a>
+                        <b>keyboard</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">projects/wvr-elements/src/lib/wvr-modal/wvr-modal.component.ts:53</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="modalFooterThemeVariant"></a>
+                        <b>modalFooterThemeVariant</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/ThemeVariant.html" target="_self" >ThemeVariantName</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;light&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">projects/wvr-elements/src/lib/wvr-modal/wvr-modal.component.ts:43</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Allows for the override of theme variant for modal footer. </p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="modalHeaderThemeVariant"></a>
+                        <b>modalHeaderThemeVariant</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/ThemeVariant.html" target="_self" >ThemeVariantName</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">projects/wvr-elements/src/lib/wvr-modal/wvr-modal.component.ts:40</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Allows for the override of theme variant for modal header. </p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="size"></a>
+                        <b>size</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>&quot;sm&quot; | &quot;lg&quot; | &quot;xl&quot;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;lg&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">projects/wvr-elements/src/lib/wvr-modal/wvr-modal.component.ts:45</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="themeVariant"></a>
+                        <b>themeVariant</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/ThemeVariant.html" target="_self" >ThemeVariantName</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;primary&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">projects/wvr-elements/src/lib/wvr-modal/wvr-modal.component.ts:34</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Allows for the override of theme variant for modal component. </p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="title"></a>
+                        <b>title</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">projects/wvr-elements/src/lib/wvr-modal/wvr-modal.component.ts:25</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>The header title value to be displayed as a modal title. </p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="additionalClasses"></a>
+                    <span class="name">
+                        <b>
+                            additionalClasses
+                        </b>
+                        <a href="#additionalClasses"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>additionalClasses(value)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="153"
+                            class="link-to-prism">projects/wvr-elements/src/lib/wvr-modal/wvr-modal.component.ts:153</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>This provides background, border and text color properties based on the them variant provided . </p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>value</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getTextColor"></a>
+                    <span class="name">
+                        <b>
+                            getTextColor
+                        </b>
+                        <a href="#getTextColor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getTextColor(themeVariant)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="176"
+                            class="link-to-prism">projects/wvr-elements/src/lib/wvr-modal/wvr-modal.component.ts:176</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>themeVariant</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <b>
+                            ngOnInit
+                        </b>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="66"
+                            class="link-to-prism">projects/wvr-elements/src/lib/wvr-modal/wvr-modal.component.ts:66</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openModal"></a>
+                    <span class="name">
+                        <b>
+                            openModal
+                        </b>
+                        <a href="#openModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openModal()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="148"
+                            class="link-to-prism">projects/wvr-elements/src/lib/wvr-modal/wvr-modal.component.ts:148</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="modalId"></a>
+                        <span class="name">
+                            <b>
+                            modalId</b>
+                            <a href="#modalId"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">projects/wvr-elements/src/lib/wvr-modal/wvr-modal.component.ts:31</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>This defines the modal id. </p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="modalRef"></a>
+                        <span class="name">
+                            <b>
+                            modalRef</b>
+                            <a href="#modalRef"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../interfaces/Modal.html" target="_self" >NgbModalRef</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">projects/wvr-elements/src/lib/wvr-modal/wvr-modal.component.ts:19</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="modalTemplateContent"></a>
+                        <span class="name">
+                            <b>
+                            modalTemplateContent</b>
+                            <a href="#modalTemplateContent"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>TemplateRef&lt;Element&gt;</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @ViewChild(&#x27;modalTemplateContent&#x27;)<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">projects/wvr-elements/src/lib/wvr-modal/wvr-modal.component.ts:17</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="openProps"></a>
+                        <span class="name"><b>openProps</b><a href="#openProps"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>openProps()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">projects/wvr-elements/src/lib/wvr-modal/wvr-modal.component.ts:55</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, Injector, Input, OnInit, TemplateRef, ViewChild } from &#x27;@angular/core&#x27;;
+import { NgbModal, NgbModalRef } from &#x27;@ng-bootstrap/ng-bootstrap&#x27;;
+import { select } from &#x27;@ngrx/store&#x27;;
+import { filter } from &#x27;rxjs/operators&#x27;;
+import * as ModalActions from &#x27;../core/modal/modal.actions&#x27;;
+import { selectModalState } from &#x27;../core/store&#x27;;
+import { ThemeVariantName } from &#x27;../shared/theme&#x27;;
+import { WvrBaseComponent } from &#x27;../shared/wvr-base.component&#x27;;
+
+@Component({
+  selector: &#x27;wvr-modal-component&#x27;,
+  templateUrl: &#x27;./wvr-modal.component.html&#x27;,
+  styleUrls: [&#x27;./wvr-modal.component.scss&#x27;]
+})
+export class WvrModalComponent extends WvrBaseComponent implements OnInit {
+
+  @ViewChild(&#x27;modalTemplateContent&#x27;) modalTemplateContent: TemplateRef&lt;Element&gt;;
+
+  modalRef: NgbModalRef;
+
+  /** This allows for the modal button to be toggle able. */
+  @Input() btnVisible: &#x27;true&#x27; | &#x27;false&#x27; &#x3D; &#x27;true&#x27;;
+
+  /** The header title value to be displayed as a modal title. */
+  @Input() title: string;
+
+  /** The text value to be displayed for the button launching the modal. */
+  @Input() btnText: string;
+
+  /** This defines the modal id. */
+  modalId: string;
+
+  /** Allows for the override of theme variant for modal component. */
+  @Input() themeVariant: ThemeVariantName &#x3D; &#x27;primary&#x27;;
+
+  /** Allows for the override of theme variant for the button launching the modal component. */
+  @Input() btnThemeVariant: ThemeVariantName;
+
+  /** Allows for the override of theme variant for modal header. */
+  @Input() modalHeaderThemeVariant: ThemeVariantName;
+
+  /** Allows for the override of theme variant for modal footer. */
+  @Input() modalFooterThemeVariant: ThemeVariantName &#x3D; &#x27;light&#x27;;
+
+  @Input() size: &#x27;sm&#x27; | &#x27;lg&#x27; | &#x27;xl&#x27; &#x3D; &#x27;lg&#x27;;
+
+  @Input() backdrop: &#x27;static&#x27; | boolean &#x3D; &#x27;static&#x27;;
+
+  @Input() centered &#x3D; false;
+
+  @Input() animation &#x3D; true;
+
+  @Input() keyboard &#x3D; false;
+
+  get openProps(): string {
+    return &#x60;{ id: &#x27;${this.modalId}&#x27;}&#x60;;
+  }
+
+  constructor(
+    injector: Injector,
+    private modalService: NgbModal
+  ) {
+    super(injector);
+  }
+
+  ngOnInit(): void {
+    super.ngOnInit();
+
+    this.modalService.activeInstances.subscribe((modalRefs: NgbModalRef[]) &#x3D;&gt; {
+      setTimeout(() &#x3D;&gt; {
+        if (!!this.modalRef &amp;&amp; modalRefs.length &gt; 0) {
+          [&#x27;body&#x27;, &#x27;footer&#x27;].forEach(content &#x3D;&gt; {
+            const template &#x3D; this.eRef.nativeElement.querySelector(&#x60;template[modal-${content}]&#x60;);
+            if (!!template) {
+              const element: Element &#x3D; this.eRef.nativeElement.querySelector(&#x60;div[modal-${content}]&#x60;);
+              const clone &#x3D; template.content.children.length &gt; 0
+                ? template.content.cloneNode(true)
+                : template
+              Array.from(clone.children)
+                .forEach((elem: Element) &#x3D;&gt; {
+                  element.appendChild(elem);
+                });
+            }
+          });
+        }
+      });
+    });
+
+    const defaultName &#x3D; &#x27;Weaver Modal&#x27;;
+    this.modalId &#x3D; !this.title ? &#x60;${defaultName
+      .split(&#x27; &#x27;)
+      .join(&#x27;&#x27;)}-${this.id}&#x60; : this.title;
+
+    this.title &#x3D; !this.title ? defaultName : this.title;
+
+    this.btnText &#x3D; this.btnText ? this.btnText : this.title;
+
+    this.btnThemeVariant &#x3D; this.btnThemeVariant ? this.btnThemeVariant : this.themeVariant;
+
+    this.store.dispatch(ModalActions.addModal({
+      modal: {
+        name: this.modalId,
+        open: false
+      }
+    }));
+
+    this.store.pipe(
+      select(selectModalState),
+      filter(modalState &#x3D;&gt; !!modalState)
+    )
+      .subscribe(modalState &#x3D;&gt; {
+        const modal &#x3D; modalState.entities[this.modalId];
+        if (modal.open) {
+          this.modalRef &#x3D; this.modalService.open(this.modalTemplateContent, {
+            ariaLabelledBy: &#x27;modal-basic-title&#x27;,
+            container: this.eRef.nativeElement,
+            size: this.size,
+            backdrop: this.backdrop,
+            centered: this.centered,
+            animation: this.animation,
+            keyboard: this.keyboard,
+            modalDialogClass: &#x27;modal-dialog&#x27;,
+            beforeDismiss: () &#x3D;&gt; {
+              this.store.dispatch(ModalActions.closeModal({ id: this.modalId }));
+
+              return false;
+            }
+          });
+
+        } else if (this.modalRef) {
+          [&#x27;body&#x27;, &#x27;footer&#x27;].forEach(content &#x3D;&gt; {
+            const template &#x3D; this.eRef.nativeElement.querySelector(&#x60;template[modal-${content}]&#x60;);
+            if (!!template) {
+              const element: Element &#x3D; this.eRef.nativeElement.querySelector(&#x60;div[modal-${content}]&#x60;);
+              Array.from(element.children)
+                .filter((elem: Element) &#x3D;&gt; elem.nodeName !&#x3D;&#x3D; &#x27;TEMPLATE&#x27;)
+                .forEach((elem: Element) &#x3D;&gt; {
+                  template.appendChild(elem);
+                });
+            }
+          });
+          this.modalRef.close();
+          delete this.modalRef;
+        }
+      });
+  }
+
+  openModal(): void {
+    this.store.dispatch(ModalActions.openModal({ id: this.modalId }));
+  }
+
+  /** This provides background, border and text color properties based on the them variant provided . */
+  additionalClasses(value): string {
+    let additionalClasses &#x3D; &#x27;&#x27;;
+    switch (value) {
+      case &#x27;header&#x27;:
+        additionalClasses &#x3D; this.modalHeaderThemeVariant ?
+          &#x60;bg-${this.modalHeaderThemeVariant} border-${this.modalHeaderThemeVariant} ${this.getTextColor(this.modalHeaderThemeVariant)}&#x60; :
+          this.themeVariant ?
+            &#x60;bg-${this.themeVariant} border-${this.themeVariant} ${this.getTextColor(this.themeVariant)}&#x60; :
+            &#x27;bg-light text-dark&#x27;;
+        break;
+      case &#x27;footer&#x27;:
+        additionalClasses &#x3D; this.modalFooterThemeVariant ?
+          &#x60;bg-${this.modalFooterThemeVariant} border-${this.modalFooterThemeVariant} ${this.getTextColor(this.modalFooterThemeVariant)}&#x60; :
+          this.themeVariant ?
+            &#x60;bg-${this.themeVariant} border-${this.themeVariant} ${this.getTextColor(this.themeVariant)}&#x60; :
+            &#x27;bg-light text-dark&#x27;;
+        break;
+      default:
+    }
+
+    return additionalClasses;
+  }
+
+  getTextColor(themeVariant): string {
+    return ((themeVariant &#x3D;&#x3D;&#x3D; &#x27;warning&#x27;) || (themeVariant &#x3D;&#x3D;&#x3D; &#x27;light&#x27;)) ? &#x27;text-dark&#x27; : &#x27;text-white&#x27;;
+  }
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;wvr-modal-wrapper #animationRoot&gt;
+
+  &lt;wvr-button-component
+    *ngIf&#x3D;&quot;btnVisible &#x3D;&#x3D;&#x3D; &#x27;true&#x27;&quot;
+    [btnTxt]&#x3D;&quot;btnText&quot;
+    [dispatchAction]&#x3D;&quot;&#x27;Modal.openModal&#x27;&quot;
+    [dispatchActionProps]&#x3D;&quot;openProps&quot;
+    [themeVariant]&#x3D;&quot;btnThemeVariant&quot;&gt;
+  &lt;/wvr-button-component&gt;
+
+  &lt;ng-template #modalTemplateContent&gt;
+    &lt;div class&#x3D;&quot;modal-header {{additionalClasses(&#x27;header&#x27;)}}&quot;&gt;
+      &lt;h4 class&#x3D;&quot;modal-title&quot; id&#x3D;&quot;modal-basic-title&quot;&gt;{{title}}&lt;/h4&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;modal-body&quot; modal-body&gt;
+      &lt;ng-content select&#x3D;&quot;template[modal-body]&quot;&gt;&lt;/ng-content&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;modal-footer {{additionalClasses(&#x27;footer&#x27;)}}&quot; modal-footer&gt;
+      &lt;ng-content select&#x3D;&quot;template[modal-footer]&quot;&gt;&lt;/ng-content&gt;
+    &lt;/div&gt;
+  &lt;/ng-template&gt;
+
+&lt;/wvr-modal-wrapper&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./wvr-modal.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">@import &quot;../shared/styles/wvr-variables.scss&quot;;
+@import &quot;../shared/styles/variables&quot;;
+
+:host {
+  @extend .variables;
+
+  font-family: var(--wvr-font-family-sans-serif);
+
+  ::ng-deep {
+    .modal-dialog {
+      font-family: var(--wvr-font-family-sans-serif);
+      .modal-footer {
+        padding: 4px 10px  0px 10px;
+      }
+    }
+  }
+
+}</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><wvr-modal-wrapper #animationRoot>  <wvr-button-component    *ngIf="btnVisible === \'true\'"    [btnTxt]="btnText"    [dispatchAction]="\'Modal.openModal\'"    [dispatchActionProps]="openProps"    [themeVariant]="btnThemeVariant">  </wvr-button-component>  <ng-template #modalTemplateContent>    <div class="modal-header {{additionalClasses(\'header\')}}">      <h4 class="modal-title" id="modal-basic-title">{{title}}</h4>    </div>    <div class="modal-body" modal-body>      <ng-content select="template[modal-body]"></ng-content>    </div>    <div class="modal-footer {{additionalClasses(\'footer\')}}" modal-footer>      <ng-content select="template[modal-footer]"></ng-content>    </div>  </ng-template></wvr-modal-wrapper></div>'
+    var COMPONENTS = [{'name': 'WvrAlertComponent', 'selector': 'wvr-alert-component'},{'name': 'WvrButtonComponent', 'selector': 'wvr-button-component'},{'name': 'WvrCardComponent', 'selector': 'wvr-card-component'},{'name': 'WvrColorPreviewComponent', 'selector': 'wvr-color-preview-component'},{'name': 'WvrDropdownComponent', 'selector': 'wvr-dropdown-component'},{'name': 'WvrFooterComponent', 'selector': 'wvr-footer-component'},{'name': 'WvrHeaderComponent', 'selector': 'wvr-header-component'},{'name': 'WvrIconComponent', 'selector': 'wvr-icon-component'},{'name': 'WvrItWorksComponent', 'selector': 'wvr-it-works-component'},{'name': 'WvrListComponent', 'selector': 'wvr-list-component'},{'name': 'WvrListItemComponent', 'selector': 'wvr-list-item-component'},{'name': 'WvrManifestComponent', 'selector': 'wvr-manifest-component'},{'name': 'WvrManifestEntryComponent', 'selector': 'wvr-manifest-entry-component'},{'name': 'WvrModalComponent', 'selector': 'wvr-modal-component'},{'name': 'WvrNavLiComponent', 'selector': 'wvr-nav-li-component'},{'name': 'WvrNavListComponent', 'selector': 'wvr-nav-list-component'},{'name': 'WvrTabComponent', 'selector': 'wvr-tab-component'},{'name': 'WvrTabsComponent', 'selector': 'wvr-tabs-component'},{'name': 'WvrTextComponent', 'selector': 'wvr-text-component'},{'name': 'WvrThemeComponent', 'selector': 'wvr-theme-component'},{'name': 'WvrWysiwygComponent', 'selector': 'wvr-wysiwyg-component'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'WvrModalComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'WvrModalComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

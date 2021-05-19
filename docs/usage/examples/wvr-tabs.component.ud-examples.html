@@ -1,0 +1,97 @@
+<example name="Weaver Tabs Default">
+  <desciption>
+    The default <code>wvre-tabs</code> component with no customizations.
+  </desciption>
+  <snippet>
+    <wvre-tabs>
+      <wvre-tab tab-text="Tab One">
+        <h3><wvre-text value="First Tab Header"></wvre-text></h3>
+        <wvre-text value="My First Tab Content"></wvre-text>
+      </wvre-tab>
+      <wvre-tab tab-text="Tab Two">
+        <h3><wvre-text value="Second Tab Header"></wvre-text></h3>
+        <wvre-text value="My Second Tab Content"></wvre-text>
+      </wvre-tab>
+    </wvre-tabs>
+  </snippet>
+<component-source>import { ChangeDetectionStrategy, Component, Injector } from '@angular/core';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
+import { WvrTabComponent } from './wvr-tab/wvr-tab.component';
+
+/**
+ * The principle component for a a tabbed presentation.
+ */
+@Component({
+  selector: 'wvr-tabs-component',
+  templateUrl: './wvr-tabs.component.html',
+  styleUrls: ['./wvr-tabs.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
+})
+export class WvrTabsComponent extends WvrBaseComponent {
+
+  /** The child WvrTabComponent contained within this tabs. */
+  private readonly tabs = new Array<wvrtabcomponent>();
+
+  /**  The WvrTabComponent that is currently active (displayed) */
+  activeTab: WvrTabComponent;
+
+  /* A contructed identifier for the content section, derrived from the the component id and the prefix 'wvr-tab-content' */
+  tabContentID = `wvr-tab-content-${this.id}`;
+
+  /* SafeHtml to be injected into the active tab content. */
+  activeTabContent = 'Tab Content';
+
+  constructor(injector: Injector) {
+    super(injector);
+  }
+
+  /* Places the incomming tab into the tabs array */
+  addTab(tab: WvrTabComponent): void {
+    if (!this.tabs.length) {
+      tab.activate();
+    }
+    this.tabs.push(tab);
+  }
+
+  /* Sets the incomming tab to active and resets the active tab content to the content of the incomming tab. */
+  activateTab(tab: WvrTabComponent): void {
+    this.activeTab = tab;
+    this.activeTabContent = tab.getTabContent();
+  }
+
+  /* Deactivates all tabs within the tabs array */
+  deactivateTabs(): void {
+    this.tabs.forEach(t =&gt; {
+      t.deActivate();
+    });
+  }
+
+}
+</wvrtabcomponent></component-source><component-template><ul class="nav nav-tabs bg-{{themeVariant}}" role="tablist">
+  <ng-container *ngtemplateoutlet="content"></ng-container>
+</ul>
+
+<tab-content [innerhtml]="activeTabContent" [id]="tabContentID" role="tabpanel" [attr.aria-labelledby]="activeTab?.htmlId"></tab-content>
+
+<ng-template #content="">
+  <ng-content select="wvre-tab, wvr-tab-component"></ng-content>
+</ng-template>
+</component-template><component-scss>@import "../shared/styles/wvr-variables.scss";
+@import "../shared/styles/variables";
+
+:host {
+
+  @extend .variables;
+
+  --tab-content-display: block;
+  --tab-content-padding: 25px 0px;
+
+  font-family: var(--wvr-font-family-sans-serif);
+
+  tab-content {
+    display: var(--tab-content-display);
+    padding: var(--tab-content-padding);
+  }
+
+}
+</component-scss></example>

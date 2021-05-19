@@ -1,0 +1,639 @@
+<example name="Weaver Header Default">
+  <desciption>
+    The default <code>wvre-header</code> component with no customizations.
+  </desciption>
+  <snippet>
+    <wvre-header></wvre-header>
+  </snippet>
+<component-source>import { AfterContentChecked, ChangeDetectionStrategy, Component, HostBinding, Injector, Input, OnInit } from '@angular/core';
+import { ThemeVariantName } from '../shared/theme';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
+
+/**
+ * Intended to appear at the top of document and provides for branding, links and page title.
+ */
+@Component({
+  selector: 'wvr-header-component',
+  templateUrl: './wvr-header.component.html',
+  styleUrls: ['./wvr-header.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
+})
+export class WvrHeaderComponent extends WvrBaseComponent implements AfterContentChecked {
+
+  /** The text value to be displayed beside the logo. */
+  @Input() logoText = 'Weaver Components';
+
+  /** The header title value to be displayed as a page title. */
+  @Input() headerTitle = 'Weaver Header Component';
+
+  /** A URL link clickable from the page title to landing page. */
+  @Input() headerTitleUrl: string;
+
+  /** A resolvable URI to an image to be displayed as the logo. */
+  @Input() logoSrc = `${this.appConfig.assetsUrl}/icons/custom/weaver-w.svg`;
+
+  /** A resolvable URL to a location linkable from the logo. */
+  @Input() logoHref = '#logo';
+
+  @HostBinding('style.--header-color') headerColor = `var(--${this.themeVariant}-button-color)`;
+
+  /** Allows for the override of the components theme variant in the top nav */
+  @Input() topNavThemeVariant: ThemeVariantName;
+  @HostBinding('style.--top-nav-color') get topNavColor(): string {
+    return this.topNavThemeVariant ? `var(--${this.topNavThemeVariant}-button-color)` : `var(--${this.themeVariant}-button-color)`;
+  }
+
+  /** Allows for the override of the components theme variant in the title row  */
+  @Input() titleRowThemeVariant: ThemeVariantName;
+  @HostBinding('style.--title-row-color') get titleRowColor(): string {
+    return this.titleRowThemeVariant ? `var(--${this.titleRowThemeVariant}-button-color)` : `var(--${this.themeVariant}-button-color)`;
+  }
+
+  /** Allows for the override of the components theme variant in the bottom nav  */
+  @Input() bottomNavThemeVariant: ThemeVariantName;
+  @HostBinding('style.--bottom-nav-color') get bottomNavColor(): string {
+    return this.bottomNavThemeVariant ? `var(--${this.bottomNavThemeVariant}-button-color)` : `var(--${this.themeVariant}-button-color)`;
+  }
+
+  /** Allows for the override of the --top-nav-height css variable. Default:  --wvr-navbar-height */
+  @HostBinding('style.--top-nav-height') @Input() topNavHeight;
+
+  /** Allows for the override of the --top-nav-padding css variable. Default:  --wvr-navbar-padding */
+  @HostBinding('style.--top-nav-padding') @Input() topNavPadding;
+
+  /** Allows for the override of the --logo-img-width css variable. Default:  30px */
+  @HostBinding('style.--logo-img-width') @Input() logoImgWidth;
+
+  /** Allows for the override of the --logo-img-width css variable. Default:  30px */
+  @HostBinding('style.--logo-img-height') @Input() logoImgHeight;
+
+  /** Allows for the override of the --logo-img-margin css variable. Default:  0 0 0 0 */
+  @HostBinding('style.--logo-img-margin') @Input() logoImgMargin;
+
+  /** Allows for the override of the --title-row-height css variable. Default:  --wvr-navbar-height */
+  @HostBinding('style.--title-row-height') @Input() titleRowHeight;
+
+  /** Allows for the override of the --bottom-nav-height css variable. Default:  --wvr-navbar-height */
+  @HostBinding('style.--bottom-nav-height') @Input() bottomNavHeight;
+
+  /** Allows for the override of the --bottom-nav-padding css variable. Default:  --wvr-navbar-padding */
+  @HostBinding('style.--bottom-nav-padding') @Input() bottomNavPadding;
+
+  /** Used to toggle display of bottom navbar section. */
+  @Input() displayBottomNav: 'true' | 'false';
+
+  get logoId(): string {
+    return this.logoHref.split('#')[1];
+  }
+
+  isBottomNavHidden = false;
+
+  mobileMenuClosed = true;
+
+  variantTypes = ['default'];
+
+  /**
+   * The weaver header component constructor
+   */
+  constructor(injector: Injector) {
+    super(injector);
+  }
+
+  ngAfterContentChecked(): void {
+    this.checkBottomNavHasChildren();
+  }
+
+  toggleMobileMenu(): void {
+    this.mobileMenuClosed = !this.mobileMenuClosed;
+  }
+
+  /** Determines if the bottom nav list has children in order to display bottom nav section. */
+  private checkBottomNavHasChildren(): void {
+    const bottomNavListElement = (this.eRef.nativeElement as HTMLElement).querySelector('.bottom-nav wvre-nav-li, .bottom-nav wvr-nav-li-component');
+    this.isBottomNavHidden = !(this.displayBottomNav === 'true' || (this.displayBottomNav === undefined &amp;&amp; !!bottomNavListElement));
+  }
+
+}
+</component-source><component-template><header class="wvr-components wvr-header bg-{{themeVariant}}" #animationroot="">
+
+  <nav class="top-nav navbar navbar-expand-lg bg-{{topNavThemeVariant}}">
+    <div class="container">
+      <a class="navbar-brand d-flex" [href]="logoHref" [id]="logoId">
+        <img alt="Logo" class="logo-img d-inline-block align-top" [src]="logoSrc">
+        <span class="align-self-center d-inline-block pl-1">
+          <wvr-text-component [themevariant]="topNavThemeVariant ? topNavThemeVariant : themeVariant" [value]="logoText"></wvr-text-component>
+        </span>
+      </a>
+      <div>
+        <ng-container *ngtemplateoutlet="topNavContent"></ng-container>
+      </div>
+    </div>
+  </nav>
+
+  <div class="title-row row m-0 bg-{{titleRowThemeVariant}}">
+    <div class="container d-flex align-items-center">
+      <a *ngif="headerTitleUrl" [href]="headerTitleUrl"><span class="h1">{{headerTitle}}</span></a>
+      <span *ngif="!headerTitleUrl" class="h1">
+        <wvr-text-component [themevariant]="titleRowThemeVariant" [value]="headerTitle"></wvr-text-component>
+      </span>
+    </div>
+  </div>
+
+  <nav *ngif="!isMobileLayout" class="bottom-nav navbar navbar-expand-lg bg-{{bottomNavThemeVariant}}" [hidden]="isBottomNavHidden">
+    <div class="container">
+      <div class="flex-fill align-self-stretch">
+        <ng-container *ngtemplateoutlet="bottomNavContent"></ng-container>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+<nav *ngif="isMobileLayout" class="mobile-menu" [ngclass]="{'closed': mobileMenuClosed}">
+  <div class="mobile-menu-header">
+    <div class="mobile-menu-close" (click)="toggleMobileMenu()">
+      <span>
+        <wvre-text-component value="Close" font-size="0.75em"></wvre-text-component>
+      </span>
+      <svg class="bi bi-x" width="1.25em" height="1.25em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z"></path>
+        <path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z"></path>
+      </svg>
+    </div>
+  </div>
+  <div class="mobile-menu-content flex-fill align-self-stretch">
+    <ng-container *ngtemplateoutlet="mobileMenuContent"></ng-container>
+  </div>
+</nav>
+
+<div class="container">
+  <svg (click)="toggleMobileMenu()" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu mobile-menu-button">
+    <line x1="3" y1="6" x2="21" y2="6"></line>
+    <line x1="3" y1="12" x2="21" y2="12"></line>
+    <line x1="3" y1="18" x2="21" y2="18"></line>
+  </svg>
+</div>
+
+<ng-template #topnavcontent="">
+  <div class="top-nav-wrapper" *ngif="!isMobileLayout">
+    <ng-content select="wvre-nav-list[top-navigation],wvr-nav-list-component[top-navigation]"></ng-content>
+  </div>
+</ng-template>
+<ng-template #bottomnavcontent="">
+  <div class="h-100" *ngif="!isMobileLayout">
+    <ng-content select="wvre-nav-list[bottom-navigation],wvr-nav-list-component[bottom-navigation]"></ng-content>
+  </div>
+</ng-template>
+<ng-template #mobilemenucontent="">
+  <div *ngif="isMobileLayout">
+    <ng-content select="[mobile-menu]"></ng-content>
+  </div>
+</ng-template>
+</component-template><component-scss>@import "../shared/styles/wvr-variables.scss";
+@import "../shared/styles/variables";
+
+:host {
+
+  @extend .variables;
+
+  --bottom-nav-height: var(--wvr-navbar-height);
+  --bottom-nav-padding: var(--wvr-navbar-padding);
+  --logo-img-width: 30px;
+  --logo-img-height: 30px;
+  --logo-img-margin: 0 0 0 0;
+  --title-row-height: var(--wvr-navbar-height);
+  --top-nav-height: var(--wvr-navbar-height);
+  --top-nav-padding: var(--wvr-navbar-padding);
+
+  --top-nav-color: var(--header-color);
+  --title-row-color: var(--header-color);
+  --bottom-nav-color: var(--header-color);
+
+  color: var(--header-color);
+
+  .wvr-header {
+    font-family: var(--wvr-font-family-sans-serif);
+  }
+
+  .container {
+    height: 100%;
+    a:hover {
+      text-decoration: none;
+      cursor: pointer;
+    }
+  }
+
+  .top-nav {
+    color: var(--top-nav-color);
+    height: var(--top-nav-height);
+    padding: var(--top-nav-padding);
+
+    .logo-img {
+      width: var(--logo-img-width);
+      height: var(--logo-img-height);
+      margin: var(--logo-img-margin);
+    }
+
+    .top-nav-wrapper {
+      ::ng-deep {
+        wvre-nav-list[top-navigation] &gt; ul &gt; wvre-nav-li &gt; li &gt; wvre-dropdown &gt; .wvr-dropdown &gt; .dropdown &gt; wvr-button-component &gt; button-wrapper{
+          display: flex;
+          justify-content: center;
+        }
+      }
+    }
+  }
+
+  .title-row {
+    color: var(--title-row-color);
+    height: var(--title-row-height);
+  }
+
+  .bottom-nav {
+    color: var(--bottom-nav-color);
+    height: var(--bottom-nav-height);
+    padding: var(--bottom-nav-padding);
+  }
+
+  .mobile-menu-button {
+    display: none;
+    overflow: hidden;
+  }
+
+  @media (max-width: 992px) {
+
+
+    .mobile-menu-button {
+      display: block;
+    }
+
+    .mobile-menu-button:hover {
+      cursor: pointer;
+    }
+
+    .mobile-menu-content {
+      white-space: nowrap !important;
+      ::ng-deep {
+        .section-title {
+          white-space: nowrap !important;
+        }
+        tl-nav-li &gt; a {
+          white-space: nowrap !important;
+        }
+        wvr-dropdown-component,
+        .section-title  {
+          min-width: 200px;
+        }
+      }
+    }
+
+    .mobile-menu.closed {
+      width: 0px;
+      opacity: 0;
+    }
+
+    .mobile-menu-header {
+      display: flex;
+      justify-content: flex-end;
+      background: #000;
+      color: #fff;
+      width: 100%;
+      padding: 12px 10px;
+      .mobile-menu-close:hover {
+        cursor: pointer;
+      }
+      li {
+        font-weight: lighter;
+        min-width: auto;
+        border-bottom: none;
+      }
+      li:hover {
+        background: transparent;
+      }
+    }
+
+  }
+
+
+}
+</component-scss></example>
+
+<example name="Weaver Header Custom">
+  <desciption>
+    The <code>wvre-header</code> component with all customizations.
+  </desciption>
+  <snippet>
+    <wvre-header></wvre-header>
+  </snippet>
+<component-source>import { AfterContentChecked, ChangeDetectionStrategy, Component, HostBinding, Injector, Input, OnInit } from '@angular/core';
+import { ThemeVariantName } from '../shared/theme';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
+
+/**
+ * Intended to appear at the top of document and provides for branding, links and page title.
+ */
+@Component({
+  selector: 'wvr-header-component',
+  templateUrl: './wvr-header.component.html',
+  styleUrls: ['./wvr-header.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
+})
+export class WvrHeaderComponent extends WvrBaseComponent implements AfterContentChecked {
+
+  /** The text value to be displayed beside the logo. */
+  @Input() logoText = 'Weaver Components';
+
+  /** The header title value to be displayed as a page title. */
+  @Input() headerTitle = 'Weaver Header Component';
+
+  /** A URL link clickable from the page title to landing page. */
+  @Input() headerTitleUrl: string;
+
+  /** A resolvable URI to an image to be displayed as the logo. */
+  @Input() logoSrc = `${this.appConfig.assetsUrl}/icons/custom/weaver-w.svg`;
+
+  /** A resolvable URL to a location linkable from the logo. */
+  @Input() logoHref = '#logo';
+
+  @HostBinding('style.--header-color') headerColor = `var(--${this.themeVariant}-button-color)`;
+
+  /** Allows for the override of the components theme variant in the top nav */
+  @Input() topNavThemeVariant: ThemeVariantName;
+  @HostBinding('style.--top-nav-color') get topNavColor(): string {
+    return this.topNavThemeVariant ? `var(--${this.topNavThemeVariant}-button-color)` : `var(--${this.themeVariant}-button-color)`;
+  }
+
+  /** Allows for the override of the components theme variant in the title row  */
+  @Input() titleRowThemeVariant: ThemeVariantName;
+  @HostBinding('style.--title-row-color') get titleRowColor(): string {
+    return this.titleRowThemeVariant ? `var(--${this.titleRowThemeVariant}-button-color)` : `var(--${this.themeVariant}-button-color)`;
+  }
+
+  /** Allows for the override of the components theme variant in the bottom nav  */
+  @Input() bottomNavThemeVariant: ThemeVariantName;
+  @HostBinding('style.--bottom-nav-color') get bottomNavColor(): string {
+    return this.bottomNavThemeVariant ? `var(--${this.bottomNavThemeVariant}-button-color)` : `var(--${this.themeVariant}-button-color)`;
+  }
+
+  /** Allows for the override of the --top-nav-height css variable. Default:  --wvr-navbar-height */
+  @HostBinding('style.--top-nav-height') @Input() topNavHeight;
+
+  /** Allows for the override of the --top-nav-padding css variable. Default:  --wvr-navbar-padding */
+  @HostBinding('style.--top-nav-padding') @Input() topNavPadding;
+
+  /** Allows for the override of the --logo-img-width css variable. Default:  30px */
+  @HostBinding('style.--logo-img-width') @Input() logoImgWidth;
+
+  /** Allows for the override of the --logo-img-width css variable. Default:  30px */
+  @HostBinding('style.--logo-img-height') @Input() logoImgHeight;
+
+  /** Allows for the override of the --logo-img-margin css variable. Default:  0 0 0 0 */
+  @HostBinding('style.--logo-img-margin') @Input() logoImgMargin;
+
+  /** Allows for the override of the --title-row-height css variable. Default:  --wvr-navbar-height */
+  @HostBinding('style.--title-row-height') @Input() titleRowHeight;
+
+  /** Allows for the override of the --bottom-nav-height css variable. Default:  --wvr-navbar-height */
+  @HostBinding('style.--bottom-nav-height') @Input() bottomNavHeight;
+
+  /** Allows for the override of the --bottom-nav-padding css variable. Default:  --wvr-navbar-padding */
+  @HostBinding('style.--bottom-nav-padding') @Input() bottomNavPadding;
+
+  /** Used to toggle display of bottom navbar section. */
+  @Input() displayBottomNav: 'true' | 'false';
+
+  get logoId(): string {
+    return this.logoHref.split('#')[1];
+  }
+
+  isBottomNavHidden = false;
+
+  mobileMenuClosed = true;
+
+  variantTypes = ['default'];
+
+  /**
+   * The weaver header component constructor
+   */
+  constructor(injector: Injector) {
+    super(injector);
+  }
+
+  ngAfterContentChecked(): void {
+    this.checkBottomNavHasChildren();
+  }
+
+  toggleMobileMenu(): void {
+    this.mobileMenuClosed = !this.mobileMenuClosed;
+  }
+
+  /** Determines if the bottom nav list has children in order to display bottom nav section. */
+  private checkBottomNavHasChildren(): void {
+    const bottomNavListElement = (this.eRef.nativeElement as HTMLElement).querySelector('.bottom-nav wvre-nav-li, .bottom-nav wvr-nav-li-component');
+    this.isBottomNavHidden = !(this.displayBottomNav === 'true' || (this.displayBottomNav === undefined &amp;&amp; !!bottomNavListElement));
+  }
+
+}
+</component-source><component-template><header class="wvr-components wvr-header bg-{{themeVariant}}" #animationroot="">
+
+  <nav class="top-nav navbar navbar-expand-lg bg-{{topNavThemeVariant}}">
+    <div class="container">
+      <a class="navbar-brand d-flex" [href]="logoHref" [id]="logoId">
+        <img alt="Logo" class="logo-img d-inline-block align-top" [src]="logoSrc">
+        <span class="align-self-center d-inline-block pl-1">
+          <wvr-text-component [themevariant]="topNavThemeVariant ? topNavThemeVariant : themeVariant" [value]="logoText"></wvr-text-component>
+        </span>
+      </a>
+      <div>
+        <ng-container *ngtemplateoutlet="topNavContent"></ng-container>
+      </div>
+    </div>
+  </nav>
+
+  <div class="title-row row m-0 bg-{{titleRowThemeVariant}}">
+    <div class="container d-flex align-items-center">
+      <a *ngif="headerTitleUrl" [href]="headerTitleUrl"><span class="h1">{{headerTitle}}</span></a>
+      <span *ngif="!headerTitleUrl" class="h1">
+        <wvr-text-component [themevariant]="titleRowThemeVariant" [value]="headerTitle"></wvr-text-component>
+      </span>
+    </div>
+  </div>
+
+  <nav *ngif="!isMobileLayout" class="bottom-nav navbar navbar-expand-lg bg-{{bottomNavThemeVariant}}" [hidden]="isBottomNavHidden">
+    <div class="container">
+      <div class="flex-fill align-self-stretch">
+        <ng-container *ngtemplateoutlet="bottomNavContent"></ng-container>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+<nav *ngif="isMobileLayout" class="mobile-menu" [ngclass]="{'closed': mobileMenuClosed}">
+  <div class="mobile-menu-header">
+    <div class="mobile-menu-close" (click)="toggleMobileMenu()">
+      <span>
+        <wvre-text-component value="Close" font-size="0.75em"></wvre-text-component>
+      </span>
+      <svg class="bi bi-x" width="1.25em" height="1.25em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z"></path>
+        <path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z"></path>
+      </svg>
+    </div>
+  </div>
+  <div class="mobile-menu-content flex-fill align-self-stretch">
+    <ng-container *ngtemplateoutlet="mobileMenuContent"></ng-container>
+  </div>
+</nav>
+
+<div class="container">
+  <svg (click)="toggleMobileMenu()" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu mobile-menu-button">
+    <line x1="3" y1="6" x2="21" y2="6"></line>
+    <line x1="3" y1="12" x2="21" y2="12"></line>
+    <line x1="3" y1="18" x2="21" y2="18"></line>
+  </svg>
+</div>
+
+<ng-template #topnavcontent="">
+  <div class="top-nav-wrapper" *ngif="!isMobileLayout">
+    <ng-content select="wvre-nav-list[top-navigation],wvr-nav-list-component[top-navigation]"></ng-content>
+  </div>
+</ng-template>
+<ng-template #bottomnavcontent="">
+  <div class="h-100" *ngif="!isMobileLayout">
+    <ng-content select="wvre-nav-list[bottom-navigation],wvr-nav-list-component[bottom-navigation]"></ng-content>
+  </div>
+</ng-template>
+<ng-template #mobilemenucontent="">
+  <div *ngif="isMobileLayout">
+    <ng-content select="[mobile-menu]"></ng-content>
+  </div>
+</ng-template>
+</component-template><component-scss>@import "../shared/styles/wvr-variables.scss";
+@import "../shared/styles/variables";
+
+:host {
+
+  @extend .variables;
+
+  --bottom-nav-height: var(--wvr-navbar-height);
+  --bottom-nav-padding: var(--wvr-navbar-padding);
+  --logo-img-width: 30px;
+  --logo-img-height: 30px;
+  --logo-img-margin: 0 0 0 0;
+  --title-row-height: var(--wvr-navbar-height);
+  --top-nav-height: var(--wvr-navbar-height);
+  --top-nav-padding: var(--wvr-navbar-padding);
+
+  --top-nav-color: var(--header-color);
+  --title-row-color: var(--header-color);
+  --bottom-nav-color: var(--header-color);
+
+  color: var(--header-color);
+
+  .wvr-header {
+    font-family: var(--wvr-font-family-sans-serif);
+  }
+
+  .container {
+    height: 100%;
+    a:hover {
+      text-decoration: none;
+      cursor: pointer;
+    }
+  }
+
+  .top-nav {
+    color: var(--top-nav-color);
+    height: var(--top-nav-height);
+    padding: var(--top-nav-padding);
+
+    .logo-img {
+      width: var(--logo-img-width);
+      height: var(--logo-img-height);
+      margin: var(--logo-img-margin);
+    }
+
+    .top-nav-wrapper {
+      ::ng-deep {
+        wvre-nav-list[top-navigation] &gt; ul &gt; wvre-nav-li &gt; li &gt; wvre-dropdown &gt; .wvr-dropdown &gt; .dropdown &gt; wvr-button-component &gt; button-wrapper{
+          display: flex;
+          justify-content: center;
+        }
+      }
+    }
+  }
+
+  .title-row {
+    color: var(--title-row-color);
+    height: var(--title-row-height);
+  }
+
+  .bottom-nav {
+    color: var(--bottom-nav-color);
+    height: var(--bottom-nav-height);
+    padding: var(--bottom-nav-padding);
+  }
+
+  .mobile-menu-button {
+    display: none;
+    overflow: hidden;
+  }
+
+  @media (max-width: 992px) {
+
+
+    .mobile-menu-button {
+      display: block;
+    }
+
+    .mobile-menu-button:hover {
+      cursor: pointer;
+    }
+
+    .mobile-menu-content {
+      white-space: nowrap !important;
+      ::ng-deep {
+        .section-title {
+          white-space: nowrap !important;
+        }
+        tl-nav-li &gt; a {
+          white-space: nowrap !important;
+        }
+        wvr-dropdown-component,
+        .section-title  {
+          min-width: 200px;
+        }
+      }
+    }
+
+    .mobile-menu.closed {
+      width: 0px;
+      opacity: 0;
+    }
+
+    .mobile-menu-header {
+      display: flex;
+      justify-content: flex-end;
+      background: #000;
+      color: #fff;
+      width: 100%;
+      padding: 12px 10px;
+      .mobile-menu-close:hover {
+        cursor: pointer;
+      }
+      li {
+        font-weight: lighter;
+        min-width: auto;
+        border-bottom: none;
+      }
+      li:hover {
+        background: transparent;
+      }
+    }
+
+  }
+
+
+}
+</component-scss></example>

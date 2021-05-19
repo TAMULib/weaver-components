@@ -1,0 +1,1545 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>weaver-components documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">weaver-components documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>WvrHeaderComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>projects/wvr-elements/src/lib/wvr-header/wvr-header.component.ts</code>
+</p>
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Intended to appear at the top of document and provides for branding, links and page title.</p>
+
+    </p>
+
+    <p class="comment">
+        <h3>Extends</h3>
+    </p>
+    <p class="comment">
+            <code>WvrBaseComponent</code>
+    </p>
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/AfterContentChecked" target="_blank" >AfterContentChecked</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.Default</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>wvr-header-component</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./wvr-header.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./wvr-header.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#isBottomNavHidden">isBottomNavHidden</a>
+                            </li>
+                            <li>
+                                <a href="#mobileMenuClosed">mobileMenuClosed</a>
+                            </li>
+                            <li>
+                                <a href="#variantTypes">variantTypes</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#checkBottomNavHasChildren">checkBottomNavHasChildren</a>
+                            </li>
+                            <li>
+                                <a href="#ngAfterContentChecked">ngAfterContentChecked</a>
+                            </li>
+                            <li>
+                                <a href="#toggleMobileMenu">toggleMobileMenu</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#bottomNavHeight">bottomNavHeight</a>
+                            </li>
+                            <li>
+                                <a href="#bottomNavPadding">bottomNavPadding</a>
+                            </li>
+                            <li>
+                                <a href="#bottomNavThemeVariant">bottomNavThemeVariant</a>
+                            </li>
+                            <li>
+                                <a href="#displayBottomNav">displayBottomNav</a>
+                            </li>
+                            <li>
+                                <a href="#headerTitle">headerTitle</a>
+                            </li>
+                            <li>
+                                <a href="#headerTitleUrl">headerTitleUrl</a>
+                            </li>
+                            <li>
+                                <a href="#logoHref">logoHref</a>
+                            </li>
+                            <li>
+                                <a href="#logoImgHeight">logoImgHeight</a>
+                            </li>
+                            <li>
+                                <a href="#logoImgMargin">logoImgMargin</a>
+                            </li>
+                            <li>
+                                <a href="#logoImgWidth">logoImgWidth</a>
+                            </li>
+                            <li>
+                                <a href="#logoSrc">logoSrc</a>
+                            </li>
+                            <li>
+                                <a href="#logoText">logoText</a>
+                            </li>
+                            <li>
+                                <a href="#titleRowHeight">titleRowHeight</a>
+                            </li>
+                            <li>
+                                <a href="#titleRowThemeVariant">titleRowThemeVariant</a>
+                            </li>
+                            <li>
+                                <a href="#topNavHeight">topNavHeight</a>
+                            </li>
+                            <li>
+                                <a href="#topNavPadding">topNavPadding</a>
+                            </li>
+                            <li>
+                                <a href="#topNavThemeVariant">topNavThemeVariant</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>HostBindings</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#style.--bottom-nav-color">style.--bottom-nav-color</a>
+                            </li>
+                            <li>
+                                <a href="#style.--header-color">style.--header-color</a>
+                            </li>
+                            <li>
+                                <a href="#style.--title-row-color">style.--title-row-color</a>
+                            </li>
+                            <li>
+                                <a href="#style.--top-nav-color">style.--top-nav-color</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#logoId">logoId</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(injector: <a href="https://angular.io/api/core/Injector" target="_blank">Injector</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">projects/wvr-elements/src/lib/wvr-header/wvr-header.component.ts:86</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>The weaver header component constructor</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>injector</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/core/Injector" target="_blank" >Injector</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="bottomNavHeight"></a>
+                        <b>bottomNavHeight</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">projects/wvr-elements/src/lib/wvr-header/wvr-header.component.ts:70</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Allows for the override of the --bottom-nav-height css variable. Default:  --wvr-navbar-height </p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="bottomNavPadding"></a>
+                        <b>bottomNavPadding</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">projects/wvr-elements/src/lib/wvr-header/wvr-header.component.ts:73</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Allows for the override of the --bottom-nav-padding css variable. Default:  --wvr-navbar-padding </p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="bottomNavThemeVariant"></a>
+                        <b>bottomNavThemeVariant</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/ThemeVariant.html" target="_self" >ThemeVariantName</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">projects/wvr-elements/src/lib/wvr-header/wvr-header.component.ts:46</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Allows for the override of the components theme variant in the bottom nav  </p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="displayBottomNav"></a>
+                        <b>displayBottomNav</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>&quot;true&quot; | &quot;false&quot;</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">projects/wvr-elements/src/lib/wvr-header/wvr-header.component.ts:76</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Used to toggle display of bottom navbar section. </p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="headerTitle"></a>
+                        <b>headerTitle</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;Weaver Header Component&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">projects/wvr-elements/src/lib/wvr-header/wvr-header.component.ts:20</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>The header title value to be displayed as a page title. </p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="headerTitleUrl"></a>
+                        <b>headerTitleUrl</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">projects/wvr-elements/src/lib/wvr-header/wvr-header.component.ts:23</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>A URL link clickable from the page title to landing page. </p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="logoHref"></a>
+                        <b>logoHref</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;#logo&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">projects/wvr-elements/src/lib/wvr-header/wvr-header.component.ts:29</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>A resolvable URL to a location linkable from the logo. </p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="logoImgHeight"></a>
+                        <b>logoImgHeight</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">projects/wvr-elements/src/lib/wvr-header/wvr-header.component.ts:61</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Allows for the override of the --logo-img-width css variable. Default:  30px </p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="logoImgMargin"></a>
+                        <b>logoImgMargin</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">projects/wvr-elements/src/lib/wvr-header/wvr-header.component.ts:64</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Allows for the override of the --logo-img-margin css variable. Default:  0 0 0 0 </p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="logoImgWidth"></a>
+                        <b>logoImgWidth</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">projects/wvr-elements/src/lib/wvr-header/wvr-header.component.ts:58</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Allows for the override of the --logo-img-width css variable. Default:  30px </p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="logoSrc"></a>
+                        <b>logoSrc</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x60;${this.appConfig.assetsUrl}/icons/custom/weaver-w.svg&#x60;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">projects/wvr-elements/src/lib/wvr-header/wvr-header.component.ts:26</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>A resolvable URI to an image to be displayed as the logo. </p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="logoText"></a>
+                        <b>logoText</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;Weaver Components&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">projects/wvr-elements/src/lib/wvr-header/wvr-header.component.ts:17</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>The text value to be displayed beside the logo. </p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="titleRowHeight"></a>
+                        <b>titleRowHeight</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">projects/wvr-elements/src/lib/wvr-header/wvr-header.component.ts:67</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Allows for the override of the --title-row-height css variable. Default:  --wvr-navbar-height </p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="titleRowThemeVariant"></a>
+                        <b>titleRowThemeVariant</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/ThemeVariant.html" target="_self" >ThemeVariantName</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">projects/wvr-elements/src/lib/wvr-header/wvr-header.component.ts:40</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Allows for the override of the components theme variant in the title row  </p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="topNavHeight"></a>
+                        <b>topNavHeight</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">projects/wvr-elements/src/lib/wvr-header/wvr-header.component.ts:52</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Allows for the override of the --top-nav-height css variable. Default:  --wvr-navbar-height </p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="topNavPadding"></a>
+                        <b>topNavPadding</b>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">projects/wvr-elements/src/lib/wvr-header/wvr-header.component.ts:55</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Allows for the override of the --top-nav-padding css variable. Default:  --wvr-navbar-padding </p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="topNavThemeVariant"></a>
+                        <b>topNavThemeVariant</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/ThemeVariant.html" target="_self" >ThemeVariantName</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">projects/wvr-elements/src/lib/wvr-header/wvr-header.component.ts:34</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Allows for the override of the components theme variant in the top nav </p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3>HostBindings</h3>        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="style.--bottom-nav-color"></a>
+                        <span class="name">
+                            <b>
+                            style.--bottom-nav-color</b>
+                            <a href="#style.--bottom-nav-color"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">projects/wvr-elements/src/lib/wvr-header/wvr-header.component.ts:47</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="style.--header-color"></a>
+                        <span class="name">
+                            <b>
+                            style.--header-color</b>
+                            <a href="#style.--header-color"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&#x60;var(--${this.themeVariant}-button-color)&#x60;</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">projects/wvr-elements/src/lib/wvr-header/wvr-header.component.ts:31</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="style.--title-row-color"></a>
+                        <span class="name">
+                            <b>
+                            style.--title-row-color</b>
+                            <a href="#style.--title-row-color"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">projects/wvr-elements/src/lib/wvr-header/wvr-header.component.ts:41</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="style.--top-nav-color"></a>
+                        <span class="name">
+                            <b>
+                            style.--top-nav-color</b>
+                            <a href="#style.--top-nav-color"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">projects/wvr-elements/src/lib/wvr-header/wvr-header.component.ts:35</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="checkBottomNavHasChildren"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            checkBottomNavHasChildren
+                        </b>
+                        <a href="#checkBottomNavHasChildren"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>checkBottomNavHasChildren()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="104"
+                            class="link-to-prism">projects/wvr-elements/src/lib/wvr-header/wvr-header.component.ts:104</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Determines if the bottom nav list has children in order to display bottom nav section. </p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngAfterContentChecked"></a>
+                    <span class="name">
+                        <b>
+                            ngAfterContentChecked
+                        </b>
+                        <a href="#ngAfterContentChecked"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngAfterContentChecked()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="95"
+                            class="link-to-prism">projects/wvr-elements/src/lib/wvr-header/wvr-header.component.ts:95</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toggleMobileMenu"></a>
+                    <span class="name">
+                        <b>
+                            toggleMobileMenu
+                        </b>
+                        <a href="#toggleMobileMenu"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>toggleMobileMenu()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="99"
+                            class="link-to-prism">projects/wvr-elements/src/lib/wvr-header/wvr-header.component.ts:99</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="isBottomNavHidden"></a>
+                        <span class="name">
+                            <b>
+                            isBottomNavHidden</b>
+                            <a href="#isBottomNavHidden"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>false</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">projects/wvr-elements/src/lib/wvr-header/wvr-header.component.ts:82</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="mobileMenuClosed"></a>
+                        <span class="name">
+                            <b>
+                            mobileMenuClosed</b>
+                            <a href="#mobileMenuClosed"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>true</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">projects/wvr-elements/src/lib/wvr-header/wvr-header.component.ts:84</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="variantTypes"></a>
+                        <span class="name">
+                            <b>
+                            variantTypes</b>
+                            <a href="#variantTypes"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[&#x27;default&#x27;]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">projects/wvr-elements/src/lib/wvr-header/wvr-header.component.ts:86</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="logoId"></a>
+                        <span class="name"><b>logoId</b><a href="#logoId"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>logoId()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">projects/wvr-elements/src/lib/wvr-header/wvr-header.component.ts:78</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { AfterContentChecked, ChangeDetectionStrategy, Component, HostBinding, Injector, Input, OnInit } from &#x27;@angular/core&#x27;;
+import { ThemeVariantName } from &#x27;../shared/theme&#x27;;
+import { WvrBaseComponent } from &#x27;../shared/wvr-base.component&#x27;;
+
+/**
+ * Intended to appear at the top of document and provides for branding, links and page title.
+ */
+@Component({
+  selector: &#x27;wvr-header-component&#x27;,
+  templateUrl: &#x27;./wvr-header.component.html&#x27;,
+  styleUrls: [&#x27;./wvr-header.component.scss&#x27;],
+  changeDetection: ChangeDetectionStrategy.Default
+})
+export class WvrHeaderComponent extends WvrBaseComponent implements AfterContentChecked {
+
+  /** The text value to be displayed beside the logo. */
+  @Input() logoText &#x3D; &#x27;Weaver Components&#x27;;
+
+  /** The header title value to be displayed as a page title. */
+  @Input() headerTitle &#x3D; &#x27;Weaver Header Component&#x27;;
+
+  /** A URL link clickable from the page title to landing page. */
+  @Input() headerTitleUrl: string;
+
+  /** A resolvable URI to an image to be displayed as the logo. */
+  @Input() logoSrc &#x3D; &#x60;${this.appConfig.assetsUrl}/icons/custom/weaver-w.svg&#x60;;
+
+  /** A resolvable URL to a location linkable from the logo. */
+  @Input() logoHref &#x3D; &#x27;#logo&#x27;;
+
+  @HostBinding(&#x27;style.--header-color&#x27;) headerColor &#x3D; &#x60;var(--${this.themeVariant}-button-color)&#x60;;
+
+  /** Allows for the override of the components theme variant in the top nav */
+  @Input() topNavThemeVariant: ThemeVariantName;
+  @HostBinding(&#x27;style.--top-nav-color&#x27;) get topNavColor(): string {
+    return this.topNavThemeVariant ? &#x60;var(--${this.topNavThemeVariant}-button-color)&#x60; : &#x60;var(--${this.themeVariant}-button-color)&#x60;;
+  }
+
+  /** Allows for the override of the components theme variant in the title row  */
+  @Input() titleRowThemeVariant: ThemeVariantName;
+  @HostBinding(&#x27;style.--title-row-color&#x27;) get titleRowColor(): string {
+    return this.titleRowThemeVariant ? &#x60;var(--${this.titleRowThemeVariant}-button-color)&#x60; : &#x60;var(--${this.themeVariant}-button-color)&#x60;;
+  }
+
+  /** Allows for the override of the components theme variant in the bottom nav  */
+  @Input() bottomNavThemeVariant: ThemeVariantName;
+  @HostBinding(&#x27;style.--bottom-nav-color&#x27;) get bottomNavColor(): string {
+    return this.bottomNavThemeVariant ? &#x60;var(--${this.bottomNavThemeVariant}-button-color)&#x60; : &#x60;var(--${this.themeVariant}-button-color)&#x60;;
+  }
+
+  /** Allows for the override of the --top-nav-height css variable. Default:  --wvr-navbar-height */
+  @HostBinding(&#x27;style.--top-nav-height&#x27;) @Input() topNavHeight;
+
+  /** Allows for the override of the --top-nav-padding css variable. Default:  --wvr-navbar-padding */
+  @HostBinding(&#x27;style.--top-nav-padding&#x27;) @Input() topNavPadding;
+
+  /** Allows for the override of the --logo-img-width css variable. Default:  30px */
+  @HostBinding(&#x27;style.--logo-img-width&#x27;) @Input() logoImgWidth;
+
+  /** Allows for the override of the --logo-img-width css variable. Default:  30px */
+  @HostBinding(&#x27;style.--logo-img-height&#x27;) @Input() logoImgHeight;
+
+  /** Allows for the override of the --logo-img-margin css variable. Default:  0 0 0 0 */
+  @HostBinding(&#x27;style.--logo-img-margin&#x27;) @Input() logoImgMargin;
+
+  /** Allows for the override of the --title-row-height css variable. Default:  --wvr-navbar-height */
+  @HostBinding(&#x27;style.--title-row-height&#x27;) @Input() titleRowHeight;
+
+  /** Allows for the override of the --bottom-nav-height css variable. Default:  --wvr-navbar-height */
+  @HostBinding(&#x27;style.--bottom-nav-height&#x27;) @Input() bottomNavHeight;
+
+  /** Allows for the override of the --bottom-nav-padding css variable. Default:  --wvr-navbar-padding */
+  @HostBinding(&#x27;style.--bottom-nav-padding&#x27;) @Input() bottomNavPadding;
+
+  /** Used to toggle display of bottom navbar section. */
+  @Input() displayBottomNav: &#x27;true&#x27; | &#x27;false&#x27;;
+
+  get logoId(): string {
+    return this.logoHref.split(&#x27;#&#x27;)[1];
+  }
+
+  isBottomNavHidden &#x3D; false;
+
+  mobileMenuClosed &#x3D; true;
+
+  variantTypes &#x3D; [&#x27;default&#x27;];
+
+  /**
+   * The weaver header component constructor
+   */
+  constructor(injector: Injector) {
+    super(injector);
+  }
+
+  ngAfterContentChecked(): void {
+    this.checkBottomNavHasChildren();
+  }
+
+  toggleMobileMenu(): void {
+    this.mobileMenuClosed &#x3D; !this.mobileMenuClosed;
+  }
+
+  /** Determines if the bottom nav list has children in order to display bottom nav section. */
+  private checkBottomNavHasChildren(): void {
+    const bottomNavListElement &#x3D; (this.eRef.nativeElement as HTMLElement).querySelector(&#x27;.bottom-nav wvre-nav-li, .bottom-nav wvr-nav-li-component&#x27;);
+    this.isBottomNavHidden &#x3D; !(this.displayBottomNav &#x3D;&#x3D;&#x3D; &#x27;true&#x27; || (this.displayBottomNav &#x3D;&#x3D;&#x3D; undefined &amp;&amp; !!bottomNavListElement));
+  }
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;header class&#x3D;&quot;wvr-components wvr-header bg-{{themeVariant}}&quot; #animationRoot&gt;
+
+  &lt;nav class&#x3D;&quot;top-nav navbar navbar-expand-lg bg-{{topNavThemeVariant}}&quot;&gt;
+    &lt;div class&#x3D;&quot;container&quot;&gt;
+      &lt;a class&#x3D;&quot;navbar-brand d-flex&quot; [href]&#x3D;&quot;logoHref&quot; [id]&#x3D;&quot;logoId&quot;&gt;
+        &lt;img alt&#x3D;&quot;Logo&quot; class&#x3D;&quot;logo-img d-inline-block align-top&quot; [src]&#x3D;&#x27;logoSrc&#x27; /&gt;
+        &lt;span class&#x3D;&quot;align-self-center d-inline-block pl-1&quot;&gt;
+          &lt;wvr-text-component [themeVariant]&#x3D;&quot;topNavThemeVariant ? topNavThemeVariant : themeVariant&quot; [value]&#x3D;&quot;logoText&quot;&gt;&lt;/wvr-text-component&gt;
+        &lt;/span&gt;
+      &lt;/a&gt;
+      &lt;div&gt;
+        &lt;ng-container *ngTemplateOutlet&#x3D;&quot;topNavContent&quot;&gt;&lt;/ng-container&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/nav&gt;
+
+  &lt;div class&#x3D;&quot;title-row row m-0 bg-{{titleRowThemeVariant}}&quot;&gt;
+    &lt;div class&#x3D;&quot;container d-flex align-items-center&quot;&gt;
+      &lt;a *ngIf&#x3D;&quot;headerTitleUrl&quot; [href]&#x3D;&quot;headerTitleUrl&quot;&gt;&lt;span class&#x3D;&quot;h1&quot;&gt;{{headerTitle}}&lt;/span&gt;&lt;/a&gt;
+      &lt;span *ngIf&#x3D;&quot;!headerTitleUrl&quot; class&#x3D;&quot;h1&quot;&gt;
+        &lt;wvr-text-component [themeVariant]&#x3D;&quot;titleRowThemeVariant&quot; [value]&#x3D;&quot;headerTitle&quot;&gt;&lt;/wvr-text-component&gt;
+      &lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;nav *ngIf&#x3D;&quot;!isMobileLayout&quot; class&#x3D;&quot;bottom-nav navbar navbar-expand-lg bg-{{bottomNavThemeVariant}}&quot;
+    [hidden]&#x3D;&quot;isBottomNavHidden&quot;&gt;
+    &lt;div class&#x3D;&quot;container&quot;&gt;
+      &lt;div class&#x3D;&quot;flex-fill align-self-stretch&quot;&gt;
+        &lt;ng-container *ngTemplateOutlet&#x3D;&quot;bottomNavContent&quot;&gt;&lt;/ng-container&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/nav&gt;
+
+&lt;/header&gt;
+
+&lt;nav *ngIf&#x3D;&quot;isMobileLayout&quot; class&#x3D;&quot;mobile-menu&quot; [ngClass]&#x3D;&quot;{&#x27;closed&#x27;: mobileMenuClosed}&quot;&gt;
+  &lt;div class&#x3D;&quot;mobile-menu-header&quot;&gt;
+    &lt;div class&#x3D;&quot;mobile-menu-close&quot; (click)&#x3D;&quot;toggleMobileMenu()&quot;&gt;
+      &lt;span&gt;
+        &lt;wvre-text-component value&#x3D;&quot;Close&quot; font-size&#x3D;&quot;0.75em&quot;&gt;&lt;/wvre-text-component&gt;
+      &lt;/span&gt;
+      &lt;svg class&#x3D;&quot;bi bi-x&quot; width&#x3D;&quot;1.25em&quot; height&#x3D;&quot;1.25em&quot; viewBox&#x3D;&quot;0 0 16 16&quot; fill&#x3D;&quot;currentColor&quot; xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;&gt;
+        &lt;path fill-rule&#x3D;&quot;evenodd&quot; d&#x3D;&quot;M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z&quot;/&gt;
+        &lt;path fill-rule&#x3D;&quot;evenodd&quot; d&#x3D;&quot;M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z&quot;/&gt;
+      &lt;/svg&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class&#x3D;&quot;mobile-menu-content flex-fill align-self-stretch&quot;&gt;
+    &lt;ng-container *ngTemplateOutlet&#x3D;&quot;mobileMenuContent&quot;&gt;&lt;/ng-container&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;
+
+&lt;div class&#x3D;&quot;container&quot; class&#x3D;&quot;mobile-menu-button&quot;&gt;
+  &lt;svg
+    (click)&#x3D;&quot;toggleMobileMenu()&quot;
+    xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;
+    width&#x3D;&quot;24&quot;
+    height&#x3D;&quot;24&quot;
+    viewBox&#x3D;&quot;0 0 24 24&quot;
+    fill&#x3D;&quot;none&quot;
+    stroke&#x3D;&quot;currentColor&quot;
+    stroke-width&#x3D;&quot;2&quot;
+    stroke-linecap&#x3D;&quot;round&quot;
+    stroke-linejoin&#x3D;&quot;round&quot;
+    class&#x3D;&quot;feather feather-menu mobile-menu-button&quot;&gt;
+    &lt;line x1&#x3D;&quot;3&quot; y1&#x3D;&quot;6&quot; x2&#x3D;&quot;21&quot; y2&#x3D;&quot;6&quot; /&gt;
+    &lt;line x1&#x3D;&quot;3&quot; y1&#x3D;&quot;12&quot; x2&#x3D;&quot;21&quot; y2&#x3D;&quot;12&quot; /&gt;
+    &lt;line x1&#x3D;&quot;3&quot; y1&#x3D;&quot;18&quot; x2&#x3D;&quot;21&quot; y2&#x3D;&quot;18&quot; /&gt;
+  &lt;/svg&gt;
+&lt;/div&gt;
+
+&lt;ng-template #topNavContent&gt;
+  &lt;div class&#x3D;&quot;top-nav-wrapper&quot; *ngIf&#x3D;&quot;!isMobileLayout&quot;&gt;
+    &lt;ng-content select&#x3D;&quot;wvre-nav-list[top-navigation],wvr-nav-list-component[top-navigation]&quot;&gt;&lt;/ng-content&gt;
+  &lt;/div&gt;
+&lt;/ng-template&gt;
+&lt;ng-template #bottomNavContent&gt;
+  &lt;div class&#x3D;&quot;h-100&quot; *ngIf&#x3D;&quot;!isMobileLayout&quot;&gt;
+    &lt;ng-content select&#x3D;&quot;wvre-nav-list[bottom-navigation],wvr-nav-list-component[bottom-navigation]&quot;&gt;&lt;/ng-content&gt;
+  &lt;/div&gt;
+&lt;/ng-template&gt;
+&lt;ng-template #mobileMenuContent&gt;
+  &lt;div *ngIf&#x3D;&quot;isMobileLayout&quot;&gt;
+    &lt;ng-content select&#x3D;&quot;[mobile-menu]&quot;&gt;&lt;/ng-content&gt;
+  &lt;/div&gt;
+&lt;/ng-template&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./wvr-header.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">@import &quot;../shared/styles/wvr-variables.scss&quot;;
+@import &quot;../shared/styles/variables&quot;;
+
+:host {
+
+  @extend .variables;
+
+  --bottom-nav-height: var(--wvr-navbar-height);
+  --bottom-nav-padding: var(--wvr-navbar-padding);
+  --logo-img-width: 30px;
+  --logo-img-height: 30px;
+  --logo-img-margin: 0 0 0 0;
+  --title-row-height: var(--wvr-navbar-height);
+  --top-nav-height: var(--wvr-navbar-height);
+  --top-nav-padding: var(--wvr-navbar-padding);
+
+  --top-nav-color: var(--header-color);
+  --title-row-color: var(--header-color);
+  --bottom-nav-color: var(--header-color);
+
+  color: var(--header-color);
+
+  .wvr-header {
+    font-family: var(--wvr-font-family-sans-serif);
+  }
+
+  .container {
+    height: 100%;
+    a:hover {
+      text-decoration: none;
+      cursor: pointer;
+    }
+  }
+
+  .top-nav {
+    color: var(--top-nav-color);
+    height: var(--top-nav-height);
+    padding: var(--top-nav-padding);
+
+    .logo-img {
+      width: var(--logo-img-width);
+      height: var(--logo-img-height);
+      margin: var(--logo-img-margin);
+    }
+
+    .top-nav-wrapper {
+      ::ng-deep {
+        wvre-nav-list[top-navigation] &gt; ul &gt; wvre-nav-li &gt; li &gt; wvre-dropdown &gt; .wvr-dropdown &gt; .dropdown &gt; wvr-button-component &gt; button-wrapper{
+          display: flex;
+          justify-content: center;
+        }
+      }
+    }
+  }
+
+  .title-row {
+    color: var(--title-row-color);
+    height: var(--title-row-height);
+  }
+
+  .bottom-nav {
+    color: var(--bottom-nav-color);
+    height: var(--bottom-nav-height);
+    padding: var(--bottom-nav-padding);
+  }
+
+  .mobile-menu-button {
+    display: none;
+    overflow: hidden;
+  }
+
+  @media (max-width: 992px) {
+
+
+    .mobile-menu-button {
+      display: block;
+    }
+
+    .mobile-menu-button:hover {
+      cursor: pointer;
+    }
+
+    .mobile-menu-content {
+      white-space: nowrap !important;
+      ::ng-deep {
+        .section-title {
+          white-space: nowrap !important;
+        }
+        tl-nav-li &gt; a {
+          white-space: nowrap !important;
+        }
+        wvr-dropdown-component,
+        .section-title  {
+          min-width: 200px;
+        }
+      }
+    }
+
+    .mobile-menu.closed {
+      width: 0px;
+      opacity: 0;
+    }
+
+    .mobile-menu-header {
+      display: flex;
+      justify-content: flex-end;
+      background: #000;
+      color: #fff;
+      width: 100%;
+      padding: 12px 10px;
+      .mobile-menu-close:hover {
+        cursor: pointer;
+      }
+      li {
+        font-weight: lighter;
+        min-width: auto;
+        border-bottom: none;
+      }
+      li:hover {
+        background: transparent;
+      }
+    }
+
+  }
+
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><header class="wvr-components wvr-header bg-{{themeVariant}}" #animationRoot>  <nav class="top-nav navbar navbar-expand-lg bg-{{topNavThemeVariant}}">    <div class="container">      <a class="navbar-brand d-flex" [href]="logoHref" [id]="logoId">        <img alt="Logo" class="logo-img d-inline-block align-top" [src]=\'logoSrc\' />        <span class="align-self-center d-inline-block pl-1">          <wvr-text-component [themeVariant]="topNavThemeVariant ? topNavThemeVariant : themeVariant" [value]="logoText"></wvr-text-component>        </span>      </a>      <div>        <ng-container *ngTemplateOutlet="topNavContent"></ng-container>      </div>    </div>  </nav>  <div class="title-row row m-0 bg-{{titleRowThemeVariant}}">    <div class="container d-flex align-items-center">      <a *ngIf="headerTitleUrl" [href]="headerTitleUrl"><span class="h1">{{headerTitle}}</span></a>      <span *ngIf="!headerTitleUrl" class="h1">        <wvr-text-component [themeVariant]="titleRowThemeVariant" [value]="headerTitle"></wvr-text-component>      </span>    </div>  </div>  <nav *ngIf="!isMobileLayout" class="bottom-nav navbar navbar-expand-lg bg-{{bottomNavThemeVariant}}"    [hidden]="isBottomNavHidden">    <div class="container">      <div class="flex-fill align-self-stretch">        <ng-container *ngTemplateOutlet="bottomNavContent"></ng-container>      </div>    </div>  </nav></header><nav *ngIf="isMobileLayout" class="mobile-menu" [ngClass]="{\'closed\': mobileMenuClosed}">  <div class="mobile-menu-header">    <div class="mobile-menu-close" (click)="toggleMobileMenu()">      <span>        <wvre-text-component value="Close" font-size="0.75em"></wvre-text-component>      </span>      <svg class="bi bi-x" width="1.25em" height="1.25em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">        <path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z"/>        <path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z"/>      </svg>    </div>  </div>  <div class="mobile-menu-content flex-fill align-self-stretch">    <ng-container *ngTemplateOutlet="mobileMenuContent"></ng-container>  </div></nav><div class="container" class="mobile-menu-button">  <svg    (click)="toggleMobileMenu()"    xmlns="http://www.w3.org/2000/svg"    width="24"    height="24"    viewBox="0 0 24 24"    fill="none"    stroke="currentColor"    stroke-width="2"    stroke-linecap="round"    stroke-linejoin="round"    class="feather feather-menu mobile-menu-button">    <line x1="3" y1="6" x2="21" y2="6" />    <line x1="3" y1="12" x2="21" y2="12" />    <line x1="3" y1="18" x2="21" y2="18" />  </svg></div><ng-template #topNavContent>  <div class="top-nav-wrapper" *ngIf="!isMobileLayout">    <ng-content select="wvre-nav-list[top-navigation],wvr-nav-list-component[top-navigation]"></ng-content>  </div></ng-template><ng-template #bottomNavContent>  <div class="h-100" *ngIf="!isMobileLayout">    <ng-content select="wvre-nav-list[bottom-navigation],wvr-nav-list-component[bottom-navigation]"></ng-content>  </div></ng-template><ng-template #mobileMenuContent>  <div *ngIf="isMobileLayout">    <ng-content select="[mobile-menu]"></ng-content>  </div></ng-template></div>'
+    var COMPONENTS = [{'name': 'WvrAlertComponent', 'selector': 'wvr-alert-component'},{'name': 'WvrButtonComponent', 'selector': 'wvr-button-component'},{'name': 'WvrCardComponent', 'selector': 'wvr-card-component'},{'name': 'WvrColorPreviewComponent', 'selector': 'wvr-color-preview-component'},{'name': 'WvrDropdownComponent', 'selector': 'wvr-dropdown-component'},{'name': 'WvrFooterComponent', 'selector': 'wvr-footer-component'},{'name': 'WvrHeaderComponent', 'selector': 'wvr-header-component'},{'name': 'WvrIconComponent', 'selector': 'wvr-icon-component'},{'name': 'WvrItWorksComponent', 'selector': 'wvr-it-works-component'},{'name': 'WvrListComponent', 'selector': 'wvr-list-component'},{'name': 'WvrListItemComponent', 'selector': 'wvr-list-item-component'},{'name': 'WvrManifestComponent', 'selector': 'wvr-manifest-component'},{'name': 'WvrManifestEntryComponent', 'selector': 'wvr-manifest-entry-component'},{'name': 'WvrModalComponent', 'selector': 'wvr-modal-component'},{'name': 'WvrNavLiComponent', 'selector': 'wvr-nav-li-component'},{'name': 'WvrNavListComponent', 'selector': 'wvr-nav-list-component'},{'name': 'WvrTabComponent', 'selector': 'wvr-tab-component'},{'name': 'WvrTabsComponent', 'selector': 'wvr-tabs-component'},{'name': 'WvrTextComponent', 'selector': 'wvr-text-component'},{'name': 'WvrThemeComponent', 'selector': 'wvr-theme-component'},{'name': 'WvrWysiwygComponent', 'selector': 'wvr-wysiwyg-component'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'WvrHeaderComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'WvrHeaderComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

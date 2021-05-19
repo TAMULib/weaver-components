@@ -1,0 +1,61 @@
+<example name="Weaver Nav List Default">
+  <desciption>
+    The <code>wvre-nav-list</code> component has the <code>weaver-nav-li</code> as a sub component.
+  </desciption>
+  <snippet>
+    <wvre-nav-list bottom-navigation="">
+      <wvre-nav-li href="#1">
+        <wvre-text value="Link 1"></wvre-text>
+      </wvre-nav-li>
+      <wvre-nav-li href="#2">
+        <wvre-text value="Link 2"></wvre-text>
+      </wvre-nav-li>
+      <wvre-nav-li href="#3">
+        <wvre-text value="Link 3"></wvre-text>
+      </wvre-nav-li>
+    </wvre-nav-list>
+  </snippet>
+<component-source>import { ChangeDetectionStrategy, Component, Injector, Input } from '@angular/core';
+import { Alignment } from '../shared/alignment.enum';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
+
+/**
+ * The WvrNavList Component presents a navigation list.
+ * Elements within this list must be wvre-nav-li elements and can be either links of action elements.
+ */
+@Component({
+  selector: 'wvr-nav-list-component',
+  templateUrl: './wvr-nav-list.component.html',
+  styleUrls: ['./wvr-nav-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
+})
+export class WvrNavListComponent extends WvrBaseComponent {
+
+  /** The aligned property describing the positioning of the list elements. */
+  @Input() aligned = Alignment.LEFT;
+
+  /** Toggles the display of the list horizontally or vertically. */
+  @Input() vertical: 'true' | 'false' = 'false';
+
+  constructor(injector: Injector) {
+    super(injector);
+  }
+
+}
+</component-source><component-template><ul #animationroot="" class="navbar-nav flex-wrap" [ngclass]="{ 'flex-row': vertical==='false', 'justify-content-end': aligned === 'RIGHT', 'justify-content-center': aligned === 'CENTER' }">
+  <ng-content select="wvre-nav-li,wvr-nav-li-component,[wvr-nav-items]"></ng-content>
+</ul>
+</component-template><component-scss>@import "../shared/styles/wvr-variables.scss";
+@import "../shared/styles/variables";
+
+:host {
+  
+  @extend .variables;
+
+  --wvr-nav-list-height: 100%;
+}
+
+.navbar-nav {
+  height: var(--wvr-nav-list-height);
+}
+</component-scss></example>

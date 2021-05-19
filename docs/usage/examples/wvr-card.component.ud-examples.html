@@ -1,0 +1,349 @@
+<example name="Weaver Card Default">
+  <desciption>
+    The default <code>wvre-card</code> component with no customizations.
+  </desciption>
+  <snippet>
+    <wvre-card>
+      <wvre-card-header>
+        <wvre-text value="Card Header"></wvre-text>
+      </wvre-card-header>
+      <wvre-card-title>
+        <wvre-text value="Card Title"></wvre-text>
+      </wvre-card-title>
+
+      <wvre-card-img src="assets/lighthouse.svg"></wvre-card-img>
+
+      <wvre-card-link href="www.google.com">
+        <wvre-text value="Google"></wvre-text>
+      </wvre-card-link>
+      <wvre-card-link href="www.gmail.com">
+        <wvre-text value="Gmail"></wvre-text>
+      </wvre-card-link>
+
+      <wvre-list top="" list-type="group-flush" context="info">
+        <wvre-list-item>
+          <wvre-text value="Item 1"></wvre-text>
+        </wvre-list-item>
+        <wvre-list-item context="warning">
+          <wvre-text value="Item 2"></wvre-text>
+        </wvre-list-item>
+        <wvre-list-item context="success">
+          <wvre-text value="Item 3"></wvre-text>
+        </wvre-list-item>
+      </wvre-list>
+
+      <wvre-text value="This is a basic card body content"></wvre-text>
+
+      <wvre-list bottom="" list-type="group-flush" context="info">
+        <wvre-list-item>
+          <wvre-text value="Item 1"></wvre-text>
+        </wvre-list-item>
+        <wvre-list-item context="warning">
+          <wvre-text value="Item 2"></wvre-text>
+        </wvre-list-item>
+      </wvre-list>
+
+      <wvre-button theme-variant="secondary">
+        <wvre-text value="Card Button Text"></wvre-text>
+      </wvre-button>
+
+      <wvre-card-footer text-muted="">
+        <wvre-text value="Card Footer"></wvre-text>
+      </wvre-card-footer>
+    </wvre-card>
+  </snippet>
+<component-source>import { AfterViewInit, ChangeDetectionStrategy, Component, HostBinding, Injector, Input } from '@angular/core';
+import { ThemeVariantName } from '../shared/theme';
+import { wvrTimeout } from '../shared/utility';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
+
+/**
+ * A component wrapper for the bootstrap card element.
+ */
+@Component({
+  selector: 'wvr-card-component',
+  templateUrl: './wvr-card.component.html',
+  styleUrls: ['./wvr-card.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
+})
+export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit {
+
+  /** Indicates the presence of the card header in the projected content. */
+  hasCardHeader: boolean;
+
+  /** Indicates the presence of the card img in the projected content. */
+  hasCardImg: boolean;
+
+  /** Indicates the presence of the card tile in the projected content. */
+  hasCardTitle: boolean;
+
+  /** Indicates the presence of the card list top in the projected content. */
+  hasCardListTop: boolean;
+
+  /** Indicates the presence of the card list bottom in the projected content. */
+  hasCardListBottom: boolean;
+
+  /** Indicates the presence of the card links in the projected content. */
+  hasCardLinkBody: boolean;
+
+  /** Indicates the presence of the card buttons in the projected content. */
+  hasCardButton: boolean;
+
+  /** Indicates the presence of the card footer in the projected content. */
+  hasCardFooter: boolean;
+
+  /** The weaver card footer text muted attribute */
+  footerTextMuted: boolean;
+
+  variantTypes = ['default'];
+
+  /** Allows for the override of the default 'wvre' sufix for psudo components. */
+  @Input() selectorPrefix = 'wvre';
+
+  /** Toggles the centering of header and footer texts. */
+  @Input() textCenter = false;
+
+  /** Used to describe the type of card. */
+  @Input() themeVariant: ThemeVariantName;
+
+  /** Used to describe the format of card. */
+  @Input() panelFormat: 'solid' | 'outlined' | 'mixed';
+
+  @HostBinding('style.--card-header-color') get cardHeaderColor(): string {
+    return this.panelFormat === 'outlined' ? 'var(--light-default-color)' : `var(--${this.themeVariant}-default-color)`;
+  }
+
+  @HostBinding('style.--card-body-color') get cardBodyColor(): string {
+    return this.panelFormat === 'solid' ? `var(--${this.themeVariant}-default-color)` : 'var(--light-default-color)';
+  }
+
+  imgSrc: string;
+
+  /** Convenience referece this components ElementReference's nativeElement. */
+  private readonly elem: HTMLElement;
+
+  /**
+   * The weaver card component constructor
+   */
+  constructor(injector: Injector) {
+    super(injector);
+    this.elem = this.eRef.nativeElement as HTMLElement;
+    this.themeVariant = 'primary';
+  }
+
+  /** Called after the view has been intialized. Handles the rendering of the projected content. */
+  ngAfterViewInit(): void {
+    wvrTimeout(() =&gt; {
+      this.renderCardHeader();
+      this.renderCardImg();
+      this.renderCardTitle();
+      this.renderCardLinks();
+      this.renderCardLists();
+      this.renderCardButtons();
+      this.renderCardFooter();
+    });
+  }
+
+  additionalCardClasses(): string {
+    let additionalClasses = '';
+    additionalClasses += ((!this.panelFormat || this.panelFormat === 'mixed') || this.panelFormat === 'outlined') ?
+      ` border-${this.themeVariant} ` : '';
+
+    additionalClasses += this.panelFormat === 'solid' ? ` bg-${this.themeVariant}` : '';
+
+    return additionalClasses;
+  }
+
+  additionalHeaderClasses(): string {
+    let additionalClasses = '';
+    additionalClasses += ((!this.panelFormat || this.panelFormat === 'mixed') || this.panelFormat === 'outlined') ?
+      ` border-${this.themeVariant} ` : '';
+
+    additionalClasses += (this.panelFormat === 'solid' || this.panelFormat === 'mixed') ? ` bg-${this.themeVariant}` : '';
+
+    return additionalClasses;
+  }
+
+  /** Prepares the card header for display, and sets it to the DOM */
+  private renderCardHeader(): void {
+    const wvrCardHeaderElem = this.elem.querySelector(`${this.selectorPrefix}-card-header`);
+
+    if (wvrCardHeaderElem) {
+      const classList: DOMTokenList = wvrCardHeaderElem.classList;
+      const headerText = wvrCardHeaderElem.innerHTML;
+      wvrCardHeaderElem.outerHTML = headerText;
+      // tslint:disable-next-line: no-unbound-method
+      classList.forEach(c =&gt; wvrCardHeaderElem.classList
+        .add);
+      this.hasCardHeader = true;
+    }
+  }
+
+  /** Prepares the card footer for display, and sets it to the DOM */
+  private renderCardFooter(): void {
+    const wvrCardFooterElem = this.elem.querySelector(`${this.selectorPrefix}-card-footer`);
+    if (wvrCardFooterElem) {
+      this.footerTextMuted = wvrCardFooterElem.hasAttribute('text-muted');
+      const footerText = wvrCardFooterElem.innerHTML;
+      wvrCardFooterElem.outerHTML = footerText;
+      this.hasCardFooter = true;
+    }
+  }
+
+  /** Prepares the card image for display, and sets it to the DOM */
+  private renderCardImg(): void {
+    const wvrCardImgElem = this.elem.querySelector(`${this.selectorPrefix}-card-img`);
+    if (wvrCardImgElem) {
+      this.imgSrc = wvrCardImgElem.getAttribute('src');
+      this.hasCardImg = true;
+    }
+  }
+
+  /** Prepares the card title for display, and sets it to the DOM */
+  private renderCardTitle(): void {
+    const wvrCardTitleElem = this.elem.querySelector(`${this.selectorPrefix}-card-title`);
+    if (wvrCardTitleElem) {
+      const titleText = wvrCardTitleElem.innerHTML;
+      wvrCardTitleElem.outerHTML = `${titleText}`;
+      this.hasCardTitle = true;
+    }
+  }
+
+  /** Prepares the card links for display, and sets it to the DOM */
+  private renderCardLinks(): void {
+    const wvrCardLinksElem = this.elem.querySelectorAll(`${this.selectorPrefix}-card-link`);
+    wvrCardLinksElem.forEach(link =&gt; {
+      const linkHref = link.getAttribute('href');
+      const linkText = link.innerHTML;
+      link.outerHTML = `<a href="${linkHref}" class="card-link">${linkText}</a>`;
+      this.hasCardLinkBody = true;
+    });
+  }
+
+  /** Prepares the card list for display, and sets it to the DOM */
+  private renderCardLists(): void {
+    const wvrCardListsTop = this.elem.querySelectorAll(`wvre-list[top], ${this.selectorPrefix}-list[top]`);
+    const wvrCardListsBottom = this.elem.querySelectorAll(`wvre-list[bottom], ${this.selectorPrefix}-list[bottom]`);
+    if (wvrCardListsTop.length) {
+      this.hasCardListTop = true;
+    }
+    if (wvrCardListsBottom.length) {
+      this.hasCardListBottom = true;
+    }
+  }
+
+  /** Prepares the card buttons for display, and sets it to the DOM */
+  private renderCardButtons(): void {
+    const wvrCardButton = this.elem.querySelectorAll(`${this.selectorPrefix}-button`);
+    if (wvrCardButton.length) {
+      this.hasCardButton = true;
+    }
+  }
+
+}
+</component-source><component-template><div #animationroot="" class="wvr-components wvr-card card {{additionalCardClasses()}}" [ngclass]="{ 'text-center': textCenter }" style="width: 18rem;">
+  <ng-container *ngtemplateoutlet="cardHeader"></ng-container>
+  <ng-container *ngtemplateoutlet="cardImg"></ng-container>
+  <ng-container *ngtemplateoutlet="cardListTop"></ng-container>
+  <ng-container *ngtemplateoutlet="cardBody"></ng-container>
+  <ng-container *ngtemplateoutlet="cardListBottom"></ng-container>
+  <ng-container *ngtemplateoutlet="cardLinkBody"></ng-container>
+  <ng-container *ngtemplateoutlet="cardButton"></ng-container>
+  <ng-container *ngtemplateoutlet="cardFooter"></ng-container>
+</div>
+
+<!-- cardHeader -->
+
+<ng-template #cardheader="">
+  <div class="card-header {{additionalHeaderClasses()}}" [ngclass]="{
+    'wvr-hidden': !hasCardHeader
+  }">
+    <ng-content select="wvre-card-header"></ng-content>
+  </div>
+</ng-template>
+
+<!-- cardTitle -->
+<ng-template #cardtitle="">
+  <h5 class="card-title" [ngclass]="{'wvr-hidden': !hasCardTitle}">
+    <ng-content select="wvre-card-title"></ng-content>
+  </h5>
+</ng-template>
+
+<!-- cardImgSrc -->
+<ng-template #cardimg="">
+  <div class="card-img" [ngclass]="{'wvr-hidden': !hasCardImg}">
+    <img alt="Card Image Cap" class="card-img-top" [src]="imgSrc">
+  </div>
+</ng-template>
+
+<!-- cardBody -->
+<ng-template #cardbody="">
+  <div class="card-body">
+    <ng-container *ngtemplateoutlet="cardTitle"></ng-container>
+    <ng-content></ng-content>
+  </div>
+</ng-template>
+
+<!-- cardButton -->
+<ng-template #cardbutton="">
+  <div class="card-body" [ngclass]="{'wvr-hidden': !hasCardButton}">
+    <ng-content select="wvre-button"></ng-content>
+  </div>
+</ng-template>
+
+<!-- cardLinkBody -->
+<ng-template #cardlinkbody="">
+  <div class="card-body" [ngclass]="{'wvr-hidden': !hasCardLinkBody}">
+    <ng-content select="wvre-card-link"></ng-content>
+  </div>
+</ng-template>
+
+
+<!-- cardListTop -->
+<ng-template #cardlisttop="">
+  <ng-content [ngclass]="{'wvr-hidden': !hasCardListTop,
+      'bg-primary': true
+    }" select="wvre-list[top]"></ng-content>
+</ng-template>
+
+<!-- cardListBotttom -->
+<ng-template #cardlistbottom="">
+  <ng-content [ngclass]="{'wvr-hidden': !hasCardListBottom}" select="wvre-list[bottom]"></ng-content>
+</ng-template>
+
+<!-- cardFooter -->
+<ng-template #cardfooter="">
+  <div class="card-footer" [ngclass]="{'text-muted': footerTextMuted, 'wvr-hidden': !hasCardFooter}">
+    <ng-content select="wvre-card-footer"></ng-content>
+  </div>
+</ng-template>
+</component-template><component-scss>@import "../shared/styles/wvr-variables.scss";
+@import "../shared/styles/variables";
+
+:host {
+
+  @extend .variables;
+
+  --card-color: var(--wvr-white);
+
+  font-family: var(--wvr-font-family-sans-serif);
+  ::ng-deep {
+
+    .list-group-flush {
+      border-top: 1px solid rgba(0, 0, 0, 0.125);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    }
+
+    .card-header {
+      color: var(--card-header-color)
+    }
+
+    .card-body {
+      color: var(--card-body-color)
+    }
+
+    
+
+  }
+}
+</component-scss></example>

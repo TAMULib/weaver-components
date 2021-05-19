@@ -1,0 +1,1268 @@
+<example name="Weaver Dropdown Default">
+  <desciption>
+    The default <code>wvre-dropdown</code> component with no customizations.
+  </desciption>
+  <snippet>
+    <wvre-dropdown>
+      <wvre-dropdown-btn>
+        <wvre-text value="Dropdown"></wvre-text>
+      </wvre-dropdown-btn>
+      <wvre-dropdown-menu>
+        <wvre-text value="Dropdown Menu Content"></wvre-text>
+      </wvre-dropdown-menu>
+    </wvre-dropdown>
+  </snippet>
+<component-source>import { ChangeDetectionStrategy, Component, HostBinding, HostListener, Injector, Input, ViewChild } from '@angular/core';
+import { NgbDropdown, NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
+import { ThemeVariantName } from '../shared/theme';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
+
+/**
+ * A dropdown with button and contextualized styling.
+ */
+@Component({
+  selector: 'wvr-dropdown-component',
+  templateUrl: './wvr-dropdown.component.html',
+  styleUrls: ['./wvr-dropdown.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
+})
+export class WvrDropdownComponent extends WvrBaseComponent {
+
+  /** Sets asside a reference to the NgbDropdown element. */
+  @ViewChild(NgbDropdown) dropdown: NgbDropdown;
+
+  /** Binds the value of the animationspeed in seconds to the css variable `--wvr-dropdown-menu-animation-speed` */
+  @HostBinding('style.--wvr-dropdown-menu-animation-speed') private _animationSpeedSeconds;
+
+  /** This establishes a delay in milliseconds before the dropdown is displayed. */
+  @Input() openDelay: number = 500;
+
+  private _openDelayTimer: NodeJS.Timeout;
+
+  /** A setter which sets the speed to `_animationSpeedSeconds` in seconds. */
+  @Input() set menuAnimationSpeed(speed: number) {
+    this._animationSpeedSeconds = `${speed / 1000}s`;
+  }
+
+  /** Allows for override of button background value. */
+  @Input() btnBackground: string;
+
+  /** Allows for override of button background value in active state. */
+  @Input() btnBackgroundActive: string;
+
+  /** Allows for override of button background value in hover state. */
+  @Input() btnBackgroundHover: string;
+
+  /** Allows for override of button border value in active state. */
+  @Input() btnBorderActive: string;
+
+  /** Allows for override of button border color. */
+  @Input() btnBorderColor: string;
+
+  /** Allows for override of button border value in focus state. */
+  @Input() btnBorderFocus: string;
+
+  /** Allows for override of button border value in hover state. */
+  @Input() btnBorderHover: string;
+
+  /** Allows for override the button color. */
+  @Input() btnColor: string;
+
+  /** Allows for override the button color in active state. */
+  @Input() btnColorActive: string;
+
+  /** Allows for override the button color in hover state. */
+  @Input() btnColorHover: string;
+
+  /** Allows for override the button radius. */
+  @Input() btnBorderRadius: string;
+
+  /** Allows for override the button box shadow in focus state. */
+  @Input() btnBoxShadowFocus: string;
+
+  /** Allows for override the button cursor. */
+  @Input() btnCursor: string;
+
+  /** Allows for override the button font family. */
+  @Input() btnFontFamily: string;
+
+  /** Allows for override the button font size. */
+  @Input() btnFontSize: string;
+
+  /** Allows for override the button font weight. */
+  @Input() btnFontWeight: string;
+
+  /** Allows for override the button line height. */
+  @Input() btnLineHeight: string;
+
+  /** Allows for override the button line height. */
+  @Input() btnPadding: string;
+
+  /** Allows for override the button line height. */
+  @Input() btnTextAlign: string;
+
+  /** Allows for override the button type. */
+  @Input() btnType: string;
+
+  /** Allows for override the button line height. */
+  @Input() btnVerticalAlign: string;
+
+  /** Allows for override of button href value. */
+  @Input() btnHref = '';
+
+  /** Allows for override of button size.  */
+  @Input() btnSize = '';
+
+  /** Allows for the visual customization of the dropdown menu activation button.  */
+  @Input() themeVariant: ThemeVariantName = 'secondary';
+
+  /** Binds the input from `menuBackground` to the css variable `--wvr-dropdown-menu-background` */
+  @Input() menuThemeVariant: ThemeVariantName;
+
+  /** Binds the input from `menu-border` to the css variable `--wvr-dropdown-menu-border` */
+  @HostBinding('style.--wvr-dropdown-menu-border') @Input() menuBorder;
+
+  /** Binds the input from `menu-border-radius` to the css variable `--wvr-dropdown-menu-border-radius` */
+  @HostBinding('style.--wvr-dropdown-menu-border-radius') @Input() menuBorderRadius;
+
+  /** Binds the input from `menu-border-display` to the css variable `--wvr-dropdown-menu-display` */
+  @HostBinding('style.--wvr-dropdown-menu-display') @Input() menuBorderDisplay;
+
+  /** Binds the input from `menu-border-flexDirection` to the css variable `--wvr-dropdown-menu-flex-direction` */
+  @HostBinding('style.--wvr-dropdown-menu-flex-direction') @Input() menuFlexDirection;
+
+  /** Binds the input from `menu-padding` to the css variable `--wvr-dropdown-menu-padding` */
+  @HostBinding('style.--wvr-dropdown-menu-padding') @Input() menuPadding;
+
+  /** Binds the input from `menu-width` to the css variable `--wvr-dropdown-menu-width` */
+  @HostBinding('style.--wvr-dropdown-menu-width') @Input() menuWidth;
+
+  /**
+   * Binds the input from `menu-x-offset` to the css variable `--wvr-dropdown-x-offset`.
+   * This css variable is applied by `left` css rule to the menu.
+   */
+  @HostBinding('style.--wvr-dropdown-menu-x-offset') @Input() menuXOffset;
+
+  /**
+   * Binds the input from `menu-y-offset` to the css variable `--wvr-dropdown-y-offset`.
+   * This css variable is applied by `margin-top` css rule to the menu.
+   */
+  @HostBinding('style.--wvr-dropdown-menu-y-offset') @Input() menuYOffset;
+
+  /**
+   * Binds the input from `item-margin` to the css variable `--wvr-dropdown-item-margin`.
+   * This css variable is applied by both the `[wvre-dropdown-menu-item]` and the `wvre-dropdown-menu-item`
+   * css rules to each item passed to the the dropdown menu.
+   */
+  @HostBinding('style.--wvr-dropdown-menu-item-margin') @Input() menuItemMargin;
+
+  /** Configures the event type which will activate the dropdown menu. */
+  @Input() toggleOn: 'click' | 'mouseover' = 'click';
+
+  /** Allows for override the button text decoration. */
+  private _btnTextDecoration: string;
+
+  @Input() set btnTextDecoration(value: string) {
+    this._btnTextDecoration = value;
+  }
+
+  get btnTextDecoration(): string {
+    return this._btnTextDecoration ?
+      this._btnTextDecoration :
+      `var(--wvr-btn-${this.themeVariant}-text-decoration-default)`;
+  }
+
+  /** Allows for override the button text decoration. */
+  private _btnTextDecorationActive: string;
+
+  @Input() set btnTextDecorationActive(value: string) {
+    this._btnTextDecorationActive = value;
+  }
+
+  get btnTextDecorationActive(): string {
+    return this._btnTextDecorationActive ?
+      this._btnTextDecorationActive :
+      `var(--wvr-btn-${this.themeVariant}-active-text-decoration-default)`;
+  }
+
+  // text-decoration-focus
+  private _btnTextDecorationFocus: string;
+
+  @Input() set btnTextDecorationFocus(value: string) {
+    this._btnTextDecorationFocus = value;
+  }
+
+  get btnTextDecorationFocus(): string {
+    return this._btnTextDecorationFocus ?
+      this._btnTextDecorationFocus :
+      `var(--wvr-btn-${this.themeVariant}-focus-text-decoration-default)`;
+  }
+
+  private _btnTextDecorationHover: string;
+
+  @Input() set btnTextDecorationHover(value: string) {
+    this._btnTextDecorationHover = value;
+  }
+
+  get btnTextDecorationHover(): string {
+    return this._btnTextDecorationHover ?
+      this._btnTextDecorationHover :
+      `var(--wvr-btn-${this.themeVariant}-hover-text-decoration-default)`;
+  }
+
+  @Input() placement = 'top-right';
+
+  /**
+   * A public access reference to the open/closed state of the dropdown menu. Used for
+   * animations;
+   */
+  open = false;
+
+  /**
+   * Indicates that the dropdown is in the process of closing.
+   */
+  // tslint:disable-next-line: prefer-readonly
+  private closing = false;
+
+  @Input() dropdownMenuDisplay = 'dynamic';
+
+  constructor(injector: Injector, config: NgbDropdownConfig) {
+    super(injector);
+    config.autoClose = false;
+  }
+
+  /** An access method to expose the `isOpen` utility method from `NgbDropdown` */
+  isOpen(): boolean {
+    return this.dropdown ? this.dropdown.isOpen() : false;
+  }
+
+  /**
+   * A handler method for the `mouseenter` event.
+   * Opens the dropdown if `toggleOn` is set to `mouseover`.
+   */
+  @HostListener('mouseenter', ['$event']) hoverOpen($event: Event): void {
+    if (this.toggleOn === 'mouseover' &amp;&amp; !this.closing &amp;&amp; !this._openDelayTimer) {
+      this._openDelayTimer = setTimeout(() =&gt; {
+        this.openDropdown();
+        this._openDelayTimer = undefined;
+      }, this.openDelay);
+    }
+  }
+
+  /**
+   * A handler method for the `mouseleave` event.
+   * Closes the dropdown if `toggleOn` is set to `mouseover`.
+   */
+  @HostListener('mouseleave', ['$event']) hoverClose($event: Event): void {
+    if (this.toggleOn === 'mouseover') {
+      this.closeDropdown();
+    }
+    if (this._openDelayTimer) {
+      clearTimeout(this._openDelayTimer);
+      this._openDelayTimer = undefined;
+    }
+  }
+
+  /**
+   * A handler method for the `document:click` event.
+   * Closes the dropdown if `toggleOn` is set to `click`
+   * And the click occured off of the wvre-dropdown component.
+   */
+  @HostListener('document:click', ['$event']) clickout($event): void {
+    const path = $event.composedPath();
+    if (!this.eRef.nativeElement.contains(path[0])) {
+      this.closeDropdown();
+    }
+  }
+
+  /**
+   * A handler method for a click event fired from the template.
+   * Toggles the open state of the dropdown.
+   */
+  clickOpen($event: Event): void {
+    if (this.toggleOn === 'click') {
+      this.isOpen() ? this.closeDropdown() : this.openDropdown();
+    }
+  }
+
+  /** Handles the opening of the dropdown, and updating state. */
+  private openDropdown(): void {
+    if (!this.isMobileLayout) {
+      this.open = true;
+      this.dropdown.open();
+    }
+  }
+
+  /** Handles the closing of the dropdown, and updating state. */
+  private closeDropdown(): void {
+    this.open = false;
+    this.dropdown.close();
+  }
+
+  // tslint:disable-next-line:max-file-line-count
+}
+</component-source><component-template><div #wvrdropdown="" class="wvr-components wvr-dropdown d-inline-flex align-items-center">
+  <div ngbdropdown="" display="{{dropdownMenuDisplay}}" class="d-inline-block">
+    <wvr-button-component (click)="clickOpen($event)" [background]="btnBackground" [backgroundactive]="btnBackgroundActive" [backgroundhover]="btnBackgroundHover" [bordercolor]="btnBorderColor" [borderactive]="btnBorderActive" [borderhover]="btnBorderHover" [borderfocus]="btnBorderFocus" [borderradius]="btnBorderRadius" [boxshadowfocus]="btnBoxShadowFocus" [themevariant]="themeVariant" [btnsize]="btnSize" [color]="btnColor" [btntype]="btnType" [coloractive]="btnColorActive" [colorhover]="btnColorHover" [cursor]="btnCursor" [fontfamily]="btnFontFamily" [fontsize]="btnFontSize" [fontweight]="btnFontWeight" [href]="btnHref" [lineheight]="btnLineHeight" [padding]="btnPadding" [textalign]="btnTextAlign" [textdecoration]="btnTextDecoration" [textdecorationactive]="btnTextDecorationActive" [textdecorationfocus]="btnTextDecorationFocus" [textdecorationhover]="btnTextDecorationHover" [verticalalign]="btnVerticalAlign" ngbdropdownanchor="">
+      <ng-content select="wvre-dropdown-btn" ngprojectas="wvre-btn-content"></ng-content>
+    </wvr-button-component>
+    <div ngbdropdownmenu="" [ngclass]="{open: open,closed: !open}" class="bg-{{menuThemeVariant}}">
+      <ng-content select="wvre-dropdown-menu"></ng-content>
+    </div>
+  </div>
+</div>
+</component-template><component-scss>@import "../shared/styles/wvr-variables.scss";
+@import "../shared/styles/variables";
+
+:host {
+  
+  @extend .variables;
+
+  --wvr-dropdown-menu-animation-speed: 0.25s;
+  --wvr-dropdown-menu-border: 1px solid var(--wvr-gray-dark);
+  --wvr-dropdown-menu-border-radius: 6px;
+  --wvr-dropdown-menu-display: flex;
+  --wvr-dropdown-menu-flex-direction: column;
+  --wvr-dropdown-menu-padding: 25px;
+  --wvr-dropdown-menu-width: fit-content;
+  --wvr-dropdown-menu-x-offset: 0px;
+  --wvr-dropdown-menu-y-offset: -6px;
+  --wvr-dropdown-menu-item-margin: 0 0 10px 0;
+}
+
+.wvr-dropdown {
+  font-family: var(--wvr-font-family-sans-serif);
+  position: relative;
+
+  .dropdown-toggle::after {
+    display:none;
+  }
+
+  wvr-button-component {
+    position: relative;
+    z-index: 1001;
+  }
+
+  [ngbDropdownMenu] {
+    
+    border: var(--wvr-dropdown-menu-border);
+    border-radius: var(--wvr-dropdown-menu-border-radius);
+    left: var(--wvr-dropdown-menu-x-offset) !important;
+    top: var(--wvr-dropdown-menu-y-offset) !important;
+    padding: var(--wvr-dropdown-menu-padding);
+    position: absolute;
+    width: var(--wvr-dropdown-menu-width);
+    z-index: 1200;
+  }
+
+  .open {
+    animation: openDD var(--wvr-dropdown-menu-animation-speed) ease-in-out;
+    
+  }
+
+  @keyframes openDD {
+    0% {  visibility:hidden; opacity: 0; }
+    100% { visibility:visible; opacity: 1; }
+  }
+
+  .closed {
+    animation: closeDD var(--wvr-dropdown-menu-animation-speed) ease-in-out;
+    visibility:hidden;
+  }
+
+  @keyframes closeDD {
+    0% { opacity: 1; visibility: visible; }
+    100% {  opacity: 0; visibility:hidden; }
+  }
+
+  ::ng-deep {
+    wvre-dropdown-menu {
+      display: var(--wvr-dropdown-menu-display);
+      flex-direction: var(--wvr-dropdown-menu-flex-direction);
+      height: auto;
+      width: auto;
+      [wvre-dropdown-menu-item],
+      wvre-dropdown-menu-item {
+        margin: var(--wvr-dropdown-menu-item-margin) !important;
+      }
+    }
+  }
+}
+</component-scss></example>
+
+<example name="Weaver Dropdown Custom">
+  <desciption>
+    The <code>wvre-dropdown</code> component with customizations.
+  </desciption>
+  <snippet>
+    <wvre-dropdown btn-type="plain" toggle-on="click" menu-animation-speed="250" menu-background="var(--wvr-white)" menu-border="1px solid var(--wvr-gray-dark)" menu-border-radius="6x" menu-display="flex" menu-flex-direction="column" menu-padding="25px" menu-width="200px" menu-x-offset="0px" menu-y-offset="39px" menu-item-margin="0 0 10px 0">
+      <wvre-dropdown-btn>
+        <wvre-text value="Dropdown"></wvre-text>
+      </wvre-dropdown-btn>
+      <wvre-dropdown-menu>
+        <h1><wvre-text value="HTML Content"></wvre-text></h1>
+      </wvre-dropdown-menu>
+    </wvre-dropdown>
+    <wvre-dropdown menu-y-offset="67px" btn-background="tomato" btn-background-active="yellow" btn-background-hover="red" btn-border-color="1px solid black" btn-border-active="1px solid teal" btn-border-hover="1px solid green" btn-border-focus="1px solid blue" btn-border-radius="6px" btn-box-shadow-focus="var(--wvr-btn-primary-focus-box-shadow)" btn-type="link" btn-size="large" btn-color="var(--wvr-btn-primary-color)" btn-color-active="var(--wvr-black)" btn-color-hover="teal" btn-cursor="help" btn-font-family="cursive" btn-href="" btn-line-height="1.2" btn-padding="1.5rem 1.5rem" btn-text-align="left" btn-text-decoration="none" btn-text-decorationactive="none" btn-text-decorationfocus="none" btn-text-decorationhover="none" btn-vertical-align="var(--wvr-btn-vertical-align)">
+      <wvre-dropdown-btn>
+        <wvre-text value="Customized Drop Down"></wvre-text>
+      </wvre-dropdown-btn>
+      <wvre-dropdown-menu>
+        <ul class="list-unstyled">
+          <li wvre-dropdown-menu-item="">
+            <a href="#linkOne" id="linkOne"><wvre-text value="Link One" text-decoration="underline"></wvre-text></a>
+            <p><wvre-text value="Description for link one"></wvre-text></p>
+          </li>
+        </ul>
+      </wvre-dropdown-menu>
+    </wvre-dropdown>
+  </snippet>
+<component-source>import { ChangeDetectionStrategy, Component, HostBinding, HostListener, Injector, Input, ViewChild } from '@angular/core';
+import { NgbDropdown, NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
+import { ThemeVariantName } from '../shared/theme';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
+
+/**
+ * A dropdown with button and contextualized styling.
+ */
+@Component({
+  selector: 'wvr-dropdown-component',
+  templateUrl: './wvr-dropdown.component.html',
+  styleUrls: ['./wvr-dropdown.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
+})
+export class WvrDropdownComponent extends WvrBaseComponent {
+
+  /** Sets asside a reference to the NgbDropdown element. */
+  @ViewChild(NgbDropdown) dropdown: NgbDropdown;
+
+  /** Binds the value of the animationspeed in seconds to the css variable `--wvr-dropdown-menu-animation-speed` */
+  @HostBinding('style.--wvr-dropdown-menu-animation-speed') private _animationSpeedSeconds;
+
+  /** This establishes a delay in milliseconds before the dropdown is displayed. */
+  @Input() openDelay: number = 500;
+
+  private _openDelayTimer: NodeJS.Timeout;
+
+  /** A setter which sets the speed to `_animationSpeedSeconds` in seconds. */
+  @Input() set menuAnimationSpeed(speed: number) {
+    this._animationSpeedSeconds = `${speed / 1000}s`;
+  }
+
+  /** Allows for override of button background value. */
+  @Input() btnBackground: string;
+
+  /** Allows for override of button background value in active state. */
+  @Input() btnBackgroundActive: string;
+
+  /** Allows for override of button background value in hover state. */
+  @Input() btnBackgroundHover: string;
+
+  /** Allows for override of button border value in active state. */
+  @Input() btnBorderActive: string;
+
+  /** Allows for override of button border color. */
+  @Input() btnBorderColor: string;
+
+  /** Allows for override of button border value in focus state. */
+  @Input() btnBorderFocus: string;
+
+  /** Allows for override of button border value in hover state. */
+  @Input() btnBorderHover: string;
+
+  /** Allows for override the button color. */
+  @Input() btnColor: string;
+
+  /** Allows for override the button color in active state. */
+  @Input() btnColorActive: string;
+
+  /** Allows for override the button color in hover state. */
+  @Input() btnColorHover: string;
+
+  /** Allows for override the button radius. */
+  @Input() btnBorderRadius: string;
+
+  /** Allows for override the button box shadow in focus state. */
+  @Input() btnBoxShadowFocus: string;
+
+  /** Allows for override the button cursor. */
+  @Input() btnCursor: string;
+
+  /** Allows for override the button font family. */
+  @Input() btnFontFamily: string;
+
+  /** Allows for override the button font size. */
+  @Input() btnFontSize: string;
+
+  /** Allows for override the button font weight. */
+  @Input() btnFontWeight: string;
+
+  /** Allows for override the button line height. */
+  @Input() btnLineHeight: string;
+
+  /** Allows for override the button line height. */
+  @Input() btnPadding: string;
+
+  /** Allows for override the button line height. */
+  @Input() btnTextAlign: string;
+
+  /** Allows for override the button type. */
+  @Input() btnType: string;
+
+  /** Allows for override the button line height. */
+  @Input() btnVerticalAlign: string;
+
+  /** Allows for override of button href value. */
+  @Input() btnHref = '';
+
+  /** Allows for override of button size.  */
+  @Input() btnSize = '';
+
+  /** Allows for the visual customization of the dropdown menu activation button.  */
+  @Input() themeVariant: ThemeVariantName = 'secondary';
+
+  /** Binds the input from `menuBackground` to the css variable `--wvr-dropdown-menu-background` */
+  @Input() menuThemeVariant: ThemeVariantName;
+
+  /** Binds the input from `menu-border` to the css variable `--wvr-dropdown-menu-border` */
+  @HostBinding('style.--wvr-dropdown-menu-border') @Input() menuBorder;
+
+  /** Binds the input from `menu-border-radius` to the css variable `--wvr-dropdown-menu-border-radius` */
+  @HostBinding('style.--wvr-dropdown-menu-border-radius') @Input() menuBorderRadius;
+
+  /** Binds the input from `menu-border-display` to the css variable `--wvr-dropdown-menu-display` */
+  @HostBinding('style.--wvr-dropdown-menu-display') @Input() menuBorderDisplay;
+
+  /** Binds the input from `menu-border-flexDirection` to the css variable `--wvr-dropdown-menu-flex-direction` */
+  @HostBinding('style.--wvr-dropdown-menu-flex-direction') @Input() menuFlexDirection;
+
+  /** Binds the input from `menu-padding` to the css variable `--wvr-dropdown-menu-padding` */
+  @HostBinding('style.--wvr-dropdown-menu-padding') @Input() menuPadding;
+
+  /** Binds the input from `menu-width` to the css variable `--wvr-dropdown-menu-width` */
+  @HostBinding('style.--wvr-dropdown-menu-width') @Input() menuWidth;
+
+  /**
+   * Binds the input from `menu-x-offset` to the css variable `--wvr-dropdown-x-offset`.
+   * This css variable is applied by `left` css rule to the menu.
+   */
+  @HostBinding('style.--wvr-dropdown-menu-x-offset') @Input() menuXOffset;
+
+  /**
+   * Binds the input from `menu-y-offset` to the css variable `--wvr-dropdown-y-offset`.
+   * This css variable is applied by `margin-top` css rule to the menu.
+   */
+  @HostBinding('style.--wvr-dropdown-menu-y-offset') @Input() menuYOffset;
+
+  /**
+   * Binds the input from `item-margin` to the css variable `--wvr-dropdown-item-margin`.
+   * This css variable is applied by both the `[wvre-dropdown-menu-item]` and the `wvre-dropdown-menu-item`
+   * css rules to each item passed to the the dropdown menu.
+   */
+  @HostBinding('style.--wvr-dropdown-menu-item-margin') @Input() menuItemMargin;
+
+  /** Configures the event type which will activate the dropdown menu. */
+  @Input() toggleOn: 'click' | 'mouseover' = 'click';
+
+  /** Allows for override the button text decoration. */
+  private _btnTextDecoration: string;
+
+  @Input() set btnTextDecoration(value: string) {
+    this._btnTextDecoration = value;
+  }
+
+  get btnTextDecoration(): string {
+    return this._btnTextDecoration ?
+      this._btnTextDecoration :
+      `var(--wvr-btn-${this.themeVariant}-text-decoration-default)`;
+  }
+
+  /** Allows for override the button text decoration. */
+  private _btnTextDecorationActive: string;
+
+  @Input() set btnTextDecorationActive(value: string) {
+    this._btnTextDecorationActive = value;
+  }
+
+  get btnTextDecorationActive(): string {
+    return this._btnTextDecorationActive ?
+      this._btnTextDecorationActive :
+      `var(--wvr-btn-${this.themeVariant}-active-text-decoration-default)`;
+  }
+
+  // text-decoration-focus
+  private _btnTextDecorationFocus: string;
+
+  @Input() set btnTextDecorationFocus(value: string) {
+    this._btnTextDecorationFocus = value;
+  }
+
+  get btnTextDecorationFocus(): string {
+    return this._btnTextDecorationFocus ?
+      this._btnTextDecorationFocus :
+      `var(--wvr-btn-${this.themeVariant}-focus-text-decoration-default)`;
+  }
+
+  private _btnTextDecorationHover: string;
+
+  @Input() set btnTextDecorationHover(value: string) {
+    this._btnTextDecorationHover = value;
+  }
+
+  get btnTextDecorationHover(): string {
+    return this._btnTextDecorationHover ?
+      this._btnTextDecorationHover :
+      `var(--wvr-btn-${this.themeVariant}-hover-text-decoration-default)`;
+  }
+
+  @Input() placement = 'top-right';
+
+  /**
+   * A public access reference to the open/closed state of the dropdown menu. Used for
+   * animations;
+   */
+  open = false;
+
+  /**
+   * Indicates that the dropdown is in the process of closing.
+   */
+  // tslint:disable-next-line: prefer-readonly
+  private closing = false;
+
+  @Input() dropdownMenuDisplay = 'dynamic';
+
+  constructor(injector: Injector, config: NgbDropdownConfig) {
+    super(injector);
+    config.autoClose = false;
+  }
+
+  /** An access method to expose the `isOpen` utility method from `NgbDropdown` */
+  isOpen(): boolean {
+    return this.dropdown ? this.dropdown.isOpen() : false;
+  }
+
+  /**
+   * A handler method for the `mouseenter` event.
+   * Opens the dropdown if `toggleOn` is set to `mouseover`.
+   */
+  @HostListener('mouseenter', ['$event']) hoverOpen($event: Event): void {
+    if (this.toggleOn === 'mouseover' &amp;&amp; !this.closing &amp;&amp; !this._openDelayTimer) {
+      this._openDelayTimer = setTimeout(() =&gt; {
+        this.openDropdown();
+        this._openDelayTimer = undefined;
+      }, this.openDelay);
+    }
+  }
+
+  /**
+   * A handler method for the `mouseleave` event.
+   * Closes the dropdown if `toggleOn` is set to `mouseover`.
+   */
+  @HostListener('mouseleave', ['$event']) hoverClose($event: Event): void {
+    if (this.toggleOn === 'mouseover') {
+      this.closeDropdown();
+    }
+    if (this._openDelayTimer) {
+      clearTimeout(this._openDelayTimer);
+      this._openDelayTimer = undefined;
+    }
+  }
+
+  /**
+   * A handler method for the `document:click` event.
+   * Closes the dropdown if `toggleOn` is set to `click`
+   * And the click occured off of the wvre-dropdown component.
+   */
+  @HostListener('document:click', ['$event']) clickout($event): void {
+    const path = $event.composedPath();
+    if (!this.eRef.nativeElement.contains(path[0])) {
+      this.closeDropdown();
+    }
+  }
+
+  /**
+   * A handler method for a click event fired from the template.
+   * Toggles the open state of the dropdown.
+   */
+  clickOpen($event: Event): void {
+    if (this.toggleOn === 'click') {
+      this.isOpen() ? this.closeDropdown() : this.openDropdown();
+    }
+  }
+
+  /** Handles the opening of the dropdown, and updating state. */
+  private openDropdown(): void {
+    if (!this.isMobileLayout) {
+      this.open = true;
+      this.dropdown.open();
+    }
+  }
+
+  /** Handles the closing of the dropdown, and updating state. */
+  private closeDropdown(): void {
+    this.open = false;
+    this.dropdown.close();
+  }
+
+  // tslint:disable-next-line:max-file-line-count
+}
+</component-source><component-template><div #wvrdropdown="" class="wvr-components wvr-dropdown d-inline-flex align-items-center">
+  <div ngbdropdown="" display="{{dropdownMenuDisplay}}" class="d-inline-block">
+    <wvr-button-component (click)="clickOpen($event)" [background]="btnBackground" [backgroundactive]="btnBackgroundActive" [backgroundhover]="btnBackgroundHover" [bordercolor]="btnBorderColor" [borderactive]="btnBorderActive" [borderhover]="btnBorderHover" [borderfocus]="btnBorderFocus" [borderradius]="btnBorderRadius" [boxshadowfocus]="btnBoxShadowFocus" [themevariant]="themeVariant" [btnsize]="btnSize" [color]="btnColor" [btntype]="btnType" [coloractive]="btnColorActive" [colorhover]="btnColorHover" [cursor]="btnCursor" [fontfamily]="btnFontFamily" [fontsize]="btnFontSize" [fontweight]="btnFontWeight" [href]="btnHref" [lineheight]="btnLineHeight" [padding]="btnPadding" [textalign]="btnTextAlign" [textdecoration]="btnTextDecoration" [textdecorationactive]="btnTextDecorationActive" [textdecorationfocus]="btnTextDecorationFocus" [textdecorationhover]="btnTextDecorationHover" [verticalalign]="btnVerticalAlign" ngbdropdownanchor="">
+      <ng-content select="wvre-dropdown-btn" ngprojectas="wvre-btn-content"></ng-content>
+    </wvr-button-component>
+    <div ngbdropdownmenu="" [ngclass]="{open: open,closed: !open}" class="bg-{{menuThemeVariant}}">
+      <ng-content select="wvre-dropdown-menu"></ng-content>
+    </div>
+  </div>
+</div>
+</component-template><component-scss>@import "../shared/styles/wvr-variables.scss";
+@import "../shared/styles/variables";
+
+:host {
+  
+  @extend .variables;
+
+  --wvr-dropdown-menu-animation-speed: 0.25s;
+  --wvr-dropdown-menu-border: 1px solid var(--wvr-gray-dark);
+  --wvr-dropdown-menu-border-radius: 6px;
+  --wvr-dropdown-menu-display: flex;
+  --wvr-dropdown-menu-flex-direction: column;
+  --wvr-dropdown-menu-padding: 25px;
+  --wvr-dropdown-menu-width: fit-content;
+  --wvr-dropdown-menu-x-offset: 0px;
+  --wvr-dropdown-menu-y-offset: -6px;
+  --wvr-dropdown-menu-item-margin: 0 0 10px 0;
+}
+
+.wvr-dropdown {
+  font-family: var(--wvr-font-family-sans-serif);
+  position: relative;
+
+  .dropdown-toggle::after {
+    display:none;
+  }
+
+  wvr-button-component {
+    position: relative;
+    z-index: 1001;
+  }
+
+  [ngbDropdownMenu] {
+    
+    border: var(--wvr-dropdown-menu-border);
+    border-radius: var(--wvr-dropdown-menu-border-radius);
+    left: var(--wvr-dropdown-menu-x-offset) !important;
+    top: var(--wvr-dropdown-menu-y-offset) !important;
+    padding: var(--wvr-dropdown-menu-padding);
+    position: absolute;
+    width: var(--wvr-dropdown-menu-width);
+    z-index: 1200;
+  }
+
+  .open {
+    animation: openDD var(--wvr-dropdown-menu-animation-speed) ease-in-out;
+    
+  }
+
+  @keyframes openDD {
+    0% {  visibility:hidden; opacity: 0; }
+    100% { visibility:visible; opacity: 1; }
+  }
+
+  .closed {
+    animation: closeDD var(--wvr-dropdown-menu-animation-speed) ease-in-out;
+    visibility:hidden;
+  }
+
+  @keyframes closeDD {
+    0% { opacity: 1; visibility: visible; }
+    100% {  opacity: 0; visibility:hidden; }
+  }
+
+  ::ng-deep {
+    wvre-dropdown-menu {
+      display: var(--wvr-dropdown-menu-display);
+      flex-direction: var(--wvr-dropdown-menu-flex-direction);
+      height: auto;
+      width: auto;
+      [wvre-dropdown-menu-item],
+      wvre-dropdown-menu-item {
+        margin: var(--wvr-dropdown-menu-item-margin) !important;
+      }
+    }
+  }
+}
+</component-scss></example>
+
+<example name="Weaver Dropdown Button Styles">
+  <desciption>
+    The <code>wvre-dropdown</code> component with customizations.
+  </desciption>
+  <snippet>
+
+    <style>
+      wvre-dropdown {
+        box-sizing: border-box;
+        margin: 0 5px;
+      }
+    </style>
+
+    <wvre-dropdown btn-type="primary" menu-y-offset="36px">
+      <wvre-dropdown-btn>
+        <wvre-text value="Primary"></wvre-text>
+      </wvre-dropdown-btn>
+      <wvre-dropdown-menu>
+        <h1><wvre-text value="HTML Content"></wvre-text></h1>
+      </wvre-dropdown-menu>
+    </wvre-dropdown>
+
+    <wvre-dropdown btn-type="secondary" menu-y-offset="36px">
+      <wvre-dropdown-btn>
+        <wvre-text value="Secondary"></wvre-text>
+      </wvre-dropdown-btn>
+      <wvre-dropdown-menu>
+        <h1><wvre-text value="HTML Content"></wvre-text></h1>
+      </wvre-dropdown-menu>
+    </wvre-dropdown>
+
+    <wvre-dropdown btn-type="success" menu-y-offset="36px">
+      <wvre-dropdown-btn>
+        <wvre-text value="Success"></wvre-text>
+      </wvre-dropdown-btn>
+      <wvre-dropdown-menu>
+        <h1><wvre-text value="HTML Content"></wvre-text></h1>
+      </wvre-dropdown-menu>
+    </wvre-dropdown>
+
+    <wvre-dropdown btn-type="info" menu-y-offset="36px">
+      <wvre-dropdown-btn>
+        <wvre-text value="Info"></wvre-text>
+      </wvre-dropdown-btn>
+      <wvre-dropdown-menu>
+        <h1><wvre-text value="HTML Content"></wvre-text></h1>
+      </wvre-dropdown-menu>
+    </wvre-dropdown>
+
+    <wvre-dropdown btn-type="warning" menu-y-offset="36px">
+      <wvre-dropdown-btn>
+        <wvre-text value="Warning"></wvre-text>
+      </wvre-dropdown-btn>
+      <wvre-dropdown-menu>
+        <h1><wvre-text value="HTML Content"></wvre-text></h1>
+      </wvre-dropdown-menu>
+    </wvre-dropdown>
+
+    <wvre-dropdown btn-type="danger" menu-y-offset="36px">
+      <wvre-dropdown-btn>
+        <wvre-text value="Danger"></wvre-text>
+      </wvre-dropdown-btn>
+      <wvre-dropdown-menu>
+        <h1><wvre-text value="HTML Content"></wvre-text></h1>
+      </wvre-dropdown-menu>
+    </wvre-dropdown>
+
+    <wvre-dropdown btn-type="light" menu-y-offset="36px">
+      <wvre-dropdown-btn>
+        <wvre-text value="Light"></wvre-text>
+      </wvre-dropdown-btn>
+      <wvre-dropdown-menu>
+        <h1><wvre-text value="HTML Content"></wvre-text></h1>
+      </wvre-dropdown-menu>
+    </wvre-dropdown>
+
+    <wvre-dropdown btn-type="dark" menu-y-offset="36px">
+      <wvre-dropdown-btn>
+        <wvre-text value="Dark"></wvre-text>
+      </wvre-dropdown-btn>
+      <wvre-dropdown-menu>
+        <h1><wvre-text value="HTML Content"></wvre-text></h1>
+      </wvre-dropdown-menu>
+    </wvre-dropdown>
+
+    <wvre-dropdown btn-type="link" menu-y-offset="36px">
+      <wvre-dropdown-btn>
+        <wvre-text value="Link"></wvre-text>
+      </wvre-dropdown-btn>
+      <wvre-dropdown-menu>
+        <h1><wvre-text value="HTML Content"></wvre-text></h1>
+      </wvre-dropdown-menu>
+    </wvre-dropdown>
+  </snippet>
+<component-source>import { ChangeDetectionStrategy, Component, HostBinding, HostListener, Injector, Input, ViewChild } from '@angular/core';
+import { NgbDropdown, NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
+import { ThemeVariantName } from '../shared/theme';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
+
+/**
+ * A dropdown with button and contextualized styling.
+ */
+@Component({
+  selector: 'wvr-dropdown-component',
+  templateUrl: './wvr-dropdown.component.html',
+  styleUrls: ['./wvr-dropdown.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
+})
+export class WvrDropdownComponent extends WvrBaseComponent {
+
+  /** Sets asside a reference to the NgbDropdown element. */
+  @ViewChild(NgbDropdown) dropdown: NgbDropdown;
+
+  /** Binds the value of the animationspeed in seconds to the css variable `--wvr-dropdown-menu-animation-speed` */
+  @HostBinding('style.--wvr-dropdown-menu-animation-speed') private _animationSpeedSeconds;
+
+  /** This establishes a delay in milliseconds before the dropdown is displayed. */
+  @Input() openDelay: number = 500;
+
+  private _openDelayTimer: NodeJS.Timeout;
+
+  /** A setter which sets the speed to `_animationSpeedSeconds` in seconds. */
+  @Input() set menuAnimationSpeed(speed: number) {
+    this._animationSpeedSeconds = `${speed / 1000}s`;
+  }
+
+  /** Allows for override of button background value. */
+  @Input() btnBackground: string;
+
+  /** Allows for override of button background value in active state. */
+  @Input() btnBackgroundActive: string;
+
+  /** Allows for override of button background value in hover state. */
+  @Input() btnBackgroundHover: string;
+
+  /** Allows for override of button border value in active state. */
+  @Input() btnBorderActive: string;
+
+  /** Allows for override of button border color. */
+  @Input() btnBorderColor: string;
+
+  /** Allows for override of button border value in focus state. */
+  @Input() btnBorderFocus: string;
+
+  /** Allows for override of button border value in hover state. */
+  @Input() btnBorderHover: string;
+
+  /** Allows for override the button color. */
+  @Input() btnColor: string;
+
+  /** Allows for override the button color in active state. */
+  @Input() btnColorActive: string;
+
+  /** Allows for override the button color in hover state. */
+  @Input() btnColorHover: string;
+
+  /** Allows for override the button radius. */
+  @Input() btnBorderRadius: string;
+
+  /** Allows for override the button box shadow in focus state. */
+  @Input() btnBoxShadowFocus: string;
+
+  /** Allows for override the button cursor. */
+  @Input() btnCursor: string;
+
+  /** Allows for override the button font family. */
+  @Input() btnFontFamily: string;
+
+  /** Allows for override the button font size. */
+  @Input() btnFontSize: string;
+
+  /** Allows for override the button font weight. */
+  @Input() btnFontWeight: string;
+
+  /** Allows for override the button line height. */
+  @Input() btnLineHeight: string;
+
+  /** Allows for override the button line height. */
+  @Input() btnPadding: string;
+
+  /** Allows for override the button line height. */
+  @Input() btnTextAlign: string;
+
+  /** Allows for override the button type. */
+  @Input() btnType: string;
+
+  /** Allows for override the button line height. */
+  @Input() btnVerticalAlign: string;
+
+  /** Allows for override of button href value. */
+  @Input() btnHref = '';
+
+  /** Allows for override of button size.  */
+  @Input() btnSize = '';
+
+  /** Allows for the visual customization of the dropdown menu activation button.  */
+  @Input() themeVariant: ThemeVariantName = 'secondary';
+
+  /** Binds the input from `menuBackground` to the css variable `--wvr-dropdown-menu-background` */
+  @Input() menuThemeVariant: ThemeVariantName;
+
+  /** Binds the input from `menu-border` to the css variable `--wvr-dropdown-menu-border` */
+  @HostBinding('style.--wvr-dropdown-menu-border') @Input() menuBorder;
+
+  /** Binds the input from `menu-border-radius` to the css variable `--wvr-dropdown-menu-border-radius` */
+  @HostBinding('style.--wvr-dropdown-menu-border-radius') @Input() menuBorderRadius;
+
+  /** Binds the input from `menu-border-display` to the css variable `--wvr-dropdown-menu-display` */
+  @HostBinding('style.--wvr-dropdown-menu-display') @Input() menuBorderDisplay;
+
+  /** Binds the input from `menu-border-flexDirection` to the css variable `--wvr-dropdown-menu-flex-direction` */
+  @HostBinding('style.--wvr-dropdown-menu-flex-direction') @Input() menuFlexDirection;
+
+  /** Binds the input from `menu-padding` to the css variable `--wvr-dropdown-menu-padding` */
+  @HostBinding('style.--wvr-dropdown-menu-padding') @Input() menuPadding;
+
+  /** Binds the input from `menu-width` to the css variable `--wvr-dropdown-menu-width` */
+  @HostBinding('style.--wvr-dropdown-menu-width') @Input() menuWidth;
+
+  /**
+   * Binds the input from `menu-x-offset` to the css variable `--wvr-dropdown-x-offset`.
+   * This css variable is applied by `left` css rule to the menu.
+   */
+  @HostBinding('style.--wvr-dropdown-menu-x-offset') @Input() menuXOffset;
+
+  /**
+   * Binds the input from `menu-y-offset` to the css variable `--wvr-dropdown-y-offset`.
+   * This css variable is applied by `margin-top` css rule to the menu.
+   */
+  @HostBinding('style.--wvr-dropdown-menu-y-offset') @Input() menuYOffset;
+
+  /**
+   * Binds the input from `item-margin` to the css variable `--wvr-dropdown-item-margin`.
+   * This css variable is applied by both the `[wvre-dropdown-menu-item]` and the `wvre-dropdown-menu-item`
+   * css rules to each item passed to the the dropdown menu.
+   */
+  @HostBinding('style.--wvr-dropdown-menu-item-margin') @Input() menuItemMargin;
+
+  /** Configures the event type which will activate the dropdown menu. */
+  @Input() toggleOn: 'click' | 'mouseover' = 'click';
+
+  /** Allows for override the button text decoration. */
+  private _btnTextDecoration: string;
+
+  @Input() set btnTextDecoration(value: string) {
+    this._btnTextDecoration = value;
+  }
+
+  get btnTextDecoration(): string {
+    return this._btnTextDecoration ?
+      this._btnTextDecoration :
+      `var(--wvr-btn-${this.themeVariant}-text-decoration-default)`;
+  }
+
+  /** Allows for override the button text decoration. */
+  private _btnTextDecorationActive: string;
+
+  @Input() set btnTextDecorationActive(value: string) {
+    this._btnTextDecorationActive = value;
+  }
+
+  get btnTextDecorationActive(): string {
+    return this._btnTextDecorationActive ?
+      this._btnTextDecorationActive :
+      `var(--wvr-btn-${this.themeVariant}-active-text-decoration-default)`;
+  }
+
+  // text-decoration-focus
+  private _btnTextDecorationFocus: string;
+
+  @Input() set btnTextDecorationFocus(value: string) {
+    this._btnTextDecorationFocus = value;
+  }
+
+  get btnTextDecorationFocus(): string {
+    return this._btnTextDecorationFocus ?
+      this._btnTextDecorationFocus :
+      `var(--wvr-btn-${this.themeVariant}-focus-text-decoration-default)`;
+  }
+
+  private _btnTextDecorationHover: string;
+
+  @Input() set btnTextDecorationHover(value: string) {
+    this._btnTextDecorationHover = value;
+  }
+
+  get btnTextDecorationHover(): string {
+    return this._btnTextDecorationHover ?
+      this._btnTextDecorationHover :
+      `var(--wvr-btn-${this.themeVariant}-hover-text-decoration-default)`;
+  }
+
+  @Input() placement = 'top-right';
+
+  /**
+   * A public access reference to the open/closed state of the dropdown menu. Used for
+   * animations;
+   */
+  open = false;
+
+  /**
+   * Indicates that the dropdown is in the process of closing.
+   */
+  // tslint:disable-next-line: prefer-readonly
+  private closing = false;
+
+  @Input() dropdownMenuDisplay = 'dynamic';
+
+  constructor(injector: Injector, config: NgbDropdownConfig) {
+    super(injector);
+    config.autoClose = false;
+  }
+
+  /** An access method to expose the `isOpen` utility method from `NgbDropdown` */
+  isOpen(): boolean {
+    return this.dropdown ? this.dropdown.isOpen() : false;
+  }
+
+  /**
+   * A handler method for the `mouseenter` event.
+   * Opens the dropdown if `toggleOn` is set to `mouseover`.
+   */
+  @HostListener('mouseenter', ['$event']) hoverOpen($event: Event): void {
+    if (this.toggleOn === 'mouseover' &amp;&amp; !this.closing &amp;&amp; !this._openDelayTimer) {
+      this._openDelayTimer = setTimeout(() =&gt; {
+        this.openDropdown();
+        this._openDelayTimer = undefined;
+      }, this.openDelay);
+    }
+  }
+
+  /**
+   * A handler method for the `mouseleave` event.
+   * Closes the dropdown if `toggleOn` is set to `mouseover`.
+   */
+  @HostListener('mouseleave', ['$event']) hoverClose($event: Event): void {
+    if (this.toggleOn === 'mouseover') {
+      this.closeDropdown();
+    }
+    if (this._openDelayTimer) {
+      clearTimeout(this._openDelayTimer);
+      this._openDelayTimer = undefined;
+    }
+  }
+
+  /**
+   * A handler method for the `document:click` event.
+   * Closes the dropdown if `toggleOn` is set to `click`
+   * And the click occured off of the wvre-dropdown component.
+   */
+  @HostListener('document:click', ['$event']) clickout($event): void {
+    const path = $event.composedPath();
+    if (!this.eRef.nativeElement.contains(path[0])) {
+      this.closeDropdown();
+    }
+  }
+
+  /**
+   * A handler method for a click event fired from the template.
+   * Toggles the open state of the dropdown.
+   */
+  clickOpen($event: Event): void {
+    if (this.toggleOn === 'click') {
+      this.isOpen() ? this.closeDropdown() : this.openDropdown();
+    }
+  }
+
+  /** Handles the opening of the dropdown, and updating state. */
+  private openDropdown(): void {
+    if (!this.isMobileLayout) {
+      this.open = true;
+      this.dropdown.open();
+    }
+  }
+
+  /** Handles the closing of the dropdown, and updating state. */
+  private closeDropdown(): void {
+    this.open = false;
+    this.dropdown.close();
+  }
+
+  // tslint:disable-next-line:max-file-line-count
+}
+</component-source><component-template><div #wvrdropdown="" class="wvr-components wvr-dropdown d-inline-flex align-items-center">
+  <div ngbdropdown="" display="{{dropdownMenuDisplay}}" class="d-inline-block">
+    <wvr-button-component (click)="clickOpen($event)" [background]="btnBackground" [backgroundactive]="btnBackgroundActive" [backgroundhover]="btnBackgroundHover" [bordercolor]="btnBorderColor" [borderactive]="btnBorderActive" [borderhover]="btnBorderHover" [borderfocus]="btnBorderFocus" [borderradius]="btnBorderRadius" [boxshadowfocus]="btnBoxShadowFocus" [themevariant]="themeVariant" [btnsize]="btnSize" [color]="btnColor" [btntype]="btnType" [coloractive]="btnColorActive" [colorhover]="btnColorHover" [cursor]="btnCursor" [fontfamily]="btnFontFamily" [fontsize]="btnFontSize" [fontweight]="btnFontWeight" [href]="btnHref" [lineheight]="btnLineHeight" [padding]="btnPadding" [textalign]="btnTextAlign" [textdecoration]="btnTextDecoration" [textdecorationactive]="btnTextDecorationActive" [textdecorationfocus]="btnTextDecorationFocus" [textdecorationhover]="btnTextDecorationHover" [verticalalign]="btnVerticalAlign" ngbdropdownanchor="">
+      <ng-content select="wvre-dropdown-btn" ngprojectas="wvre-btn-content"></ng-content>
+    </wvr-button-component>
+    <div ngbdropdownmenu="" [ngclass]="{open: open,closed: !open}" class="bg-{{menuThemeVariant}}">
+      <ng-content select="wvre-dropdown-menu"></ng-content>
+    </div>
+  </div>
+</div>
+</component-template><component-scss>@import "../shared/styles/wvr-variables.scss";
+@import "../shared/styles/variables";
+
+:host {
+  
+  @extend .variables;
+
+  --wvr-dropdown-menu-animation-speed: 0.25s;
+  --wvr-dropdown-menu-border: 1px solid var(--wvr-gray-dark);
+  --wvr-dropdown-menu-border-radius: 6px;
+  --wvr-dropdown-menu-display: flex;
+  --wvr-dropdown-menu-flex-direction: column;
+  --wvr-dropdown-menu-padding: 25px;
+  --wvr-dropdown-menu-width: fit-content;
+  --wvr-dropdown-menu-x-offset: 0px;
+  --wvr-dropdown-menu-y-offset: -6px;
+  --wvr-dropdown-menu-item-margin: 0 0 10px 0;
+}
+
+.wvr-dropdown {
+  font-family: var(--wvr-font-family-sans-serif);
+  position: relative;
+
+  .dropdown-toggle::after {
+    display:none;
+  }
+
+  wvr-button-component {
+    position: relative;
+    z-index: 1001;
+  }
+
+  [ngbDropdownMenu] {
+    
+    border: var(--wvr-dropdown-menu-border);
+    border-radius: var(--wvr-dropdown-menu-border-radius);
+    left: var(--wvr-dropdown-menu-x-offset) !important;
+    top: var(--wvr-dropdown-menu-y-offset) !important;
+    padding: var(--wvr-dropdown-menu-padding);
+    position: absolute;
+    width: var(--wvr-dropdown-menu-width);
+    z-index: 1200;
+  }
+
+  .open {
+    animation: openDD var(--wvr-dropdown-menu-animation-speed) ease-in-out;
+    
+  }
+
+  @keyframes openDD {
+    0% {  visibility:hidden; opacity: 0; }
+    100% { visibility:visible; opacity: 1; }
+  }
+
+  .closed {
+    animation: closeDD var(--wvr-dropdown-menu-animation-speed) ease-in-out;
+    visibility:hidden;
+  }
+
+  @keyframes closeDD {
+    0% { opacity: 1; visibility: visible; }
+    100% {  opacity: 0; visibility:hidden; }
+  }
+
+  ::ng-deep {
+    wvre-dropdown-menu {
+      display: var(--wvr-dropdown-menu-display);
+      flex-direction: var(--wvr-dropdown-menu-flex-direction);
+      height: auto;
+      width: auto;
+      [wvre-dropdown-menu-item],
+      wvre-dropdown-menu-item {
+        margin: var(--wvr-dropdown-menu-item-margin) !important;
+      }
+    }
+  }
+}
+</component-scss></example>

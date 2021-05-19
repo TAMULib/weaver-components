@@ -1,0 +1,135 @@
+<example name="Weaver Icon Default">
+  <desciption>
+    The default <code>wvre-icon</code> component with no customizations.
+  </desciption>
+  <snippet>
+    <wvre-icon set="custom" name="weaver-w"></wvre-icon>
+  </snippet>
+<component-source>import { ChangeDetectionStrategy, Component, HostBinding, Injector, Input, OnInit } from '@angular/core';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
+
+/**
+ * A reference to an Icon currently available in the configured assets.
+ */
+@Component({
+  selector: 'wvr-icon-component',
+  templateUrl: './wvr-icon.component.html',
+  styleUrls: ['./wvr-icon.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
+})
+export class WvrIconComponent extends WvrBaseComponent implements OnInit {
+
+  /** An attribute input describing the icon set to which this icon belongs. */
+  @Input() set: string;
+
+  /** An attribute input describing the icon name of this icon. */
+  @Input() name: string;
+
+  /** An attribute input bound to the css variable `--wvr-icon-color`.  */
+  @HostBinding('style.--wvr-icon-color') @Input() color: string;
+
+  /** An attribute input bound to the css variable `--wvr-icon-size`.  */
+  @HostBinding('style.--wvr-icon-size') @Input() size = '24px';
+
+  iconSvgUrl: string;
+
+  constructor(injector: Injector) {
+    super(injector);
+  }
+
+  ngOnInit(): void {
+    super.ngOnInit();
+    this.iconSvgUrl = `${this.appConfig.assetsUrl}/icons/${this.set}/${this.name}.svg`;
+  }
+
+}
+</component-source><component-template><span #animationroot="" class="icon" [inlinesvg]="iconSvgUrl" [cachesvg]="true" [setsvgattributes]="{
+    width: '100%',
+    height: '100%'
+  }">
+</span>
+</component-template><component-scss>@import "../shared/styles/wvr-variables.scss";
+@import "../shared/styles/variables";
+
+:host {
+  @extend .variables;
+
+  --wvr-icon-color: inherit;
+  --wvr-icon-size: inherit;
+
+  span.icon {
+    display: inline-block;
+    color: var(--wvr-icon-color);
+    width: var(--wvr-icon-size);
+    height: var(--wvr-icon-size);
+  }
+}
+</component-scss></example>
+
+<example name="Weaver Icon Custom">
+  <desciption>
+    The <code>wvre-icon</code> component with all customizations.
+  </desciption>
+  <snippet>
+    <wvre-icon set="custom" name="weaver-w" color="#500000" size="64px"></wvre-icon>
+  </snippet>
+<component-source>import { ChangeDetectionStrategy, Component, HostBinding, Injector, Input, OnInit } from '@angular/core';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
+
+/**
+ * A reference to an Icon currently available in the configured assets.
+ */
+@Component({
+  selector: 'wvr-icon-component',
+  templateUrl: './wvr-icon.component.html',
+  styleUrls: ['./wvr-icon.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
+})
+export class WvrIconComponent extends WvrBaseComponent implements OnInit {
+
+  /** An attribute input describing the icon set to which this icon belongs. */
+  @Input() set: string;
+
+  /** An attribute input describing the icon name of this icon. */
+  @Input() name: string;
+
+  /** An attribute input bound to the css variable `--wvr-icon-color`.  */
+  @HostBinding('style.--wvr-icon-color') @Input() color: string;
+
+  /** An attribute input bound to the css variable `--wvr-icon-size`.  */
+  @HostBinding('style.--wvr-icon-size') @Input() size = '24px';
+
+  iconSvgUrl: string;
+
+  constructor(injector: Injector) {
+    super(injector);
+  }
+
+  ngOnInit(): void {
+    super.ngOnInit();
+    this.iconSvgUrl = `${this.appConfig.assetsUrl}/icons/${this.set}/${this.name}.svg`;
+  }
+
+}
+</component-source><component-template><span #animationroot="" class="icon" [inlinesvg]="iconSvgUrl" [cachesvg]="true" [setsvgattributes]="{
+    width: '100%',
+    height: '100%'
+  }">
+</span>
+</component-template><component-scss>@import "../shared/styles/wvr-variables.scss";
+@import "../shared/styles/variables";
+
+:host {
+  @extend .variables;
+
+  --wvr-icon-color: inherit;
+  --wvr-icon-size: inherit;
+
+  span.icon {
+    display: inline-block;
+    color: var(--wvr-icon-color);
+    width: var(--wvr-icon-size);
+    height: var(--wvr-icon-size);
+  }
+}
+</component-scss></example>
