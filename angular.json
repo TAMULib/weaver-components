@@ -8,6 +8,9 @@
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
+        },
+        "@schematics/angular:application": {
+          "strict": true
         }
       },
       "root": "",
@@ -23,7 +26,7 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "aot": true,
+            "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
               "src/assets",
@@ -53,9 +56,7 @@
                 }
               ],
               "optimization": true,
-              "outputHashing": "none",
               "sourceMap": false,
-              "extractCss": false,
               "extractLicenses": true,
               "namedChunks": false,
               "commonChunk": false,
@@ -72,20 +73,31 @@
                   "maximumWarning": "50kb",
                   "maximumError": "500kb"
                 }
-              ]
+              ],
+              "outputHashing": "none"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
             }
-          }
+          },
+          "defaultConfiguration": "production"
         },
         "serve": {
           "builder": "ngx-build-plus:dev-server",
-          "options": {
-            "browserTarget": "weaver-components:build"
-          },
           "configurations": {
             "production": {
               "browserTarget": "weaver-components:build:production"
+            },
+            "development": {
+              "browserTarget": "weaver-components:build:development"
             }
-          }
+          },
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
@@ -100,6 +112,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
+            "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -144,16 +157,19 @@
       "prefix": "wvr",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "tsConfig": "projects/wvr-elements/tsconfig.lib.json",
             "project": "projects/wvr-elements/ng-package.json"
           },
           "configurations": {
             "production": {
               "tsConfig": "projects/wvr-elements/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/test-lib/tsconfig.lib.json"
             }
-          }
+          },
+          "defaultConfiguration": "production"
         },
         "test": {
           "builder": "ngx-build-plus:karma",

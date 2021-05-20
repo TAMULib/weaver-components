@@ -22,14 +22,14 @@
   "license": "MIT",
   "dependencies": {
     "css-element-queries": "^1.2.3",
-    "tslib": "^2.0.3",
-    "handlebars": "^4.7.6"
+    "tslib": "^2.2.0",
+    "handlebars": "^4.7.7"
   },
   "bin": {
     "wvr-ud": "./scripts/build-wvr-ud.js"
   },
   "peerDependencies": {
-    "@angular/common": "^11.0.3",
-    "@angular/core": "^11.0.3"
+    "@angular/common": "^12.0.1",
+    "@angular/core": "^12.0.1"
   }
 }

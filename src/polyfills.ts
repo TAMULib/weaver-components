@@ -62,22 +62,22 @@ import 'web-animations-js';  // Run `npm install --save web-animations-js`.
  *
  */
 
+ (window as any).global = window;
+
+ (window as any).__Zone_disable_requestAnimationFrame = true; // disable patch requestAnimationFrame
+ (window as any).__Zone_disable_on_property = true; // disable patch onProperty such as onclick
+ (window as any).__zone_symbol__UNPATCHED_EVENTS = ['scroll', 'mousemove']; // disable patch specified eventNames
+
 /***************************************************************************************************
  * Zone JS is required by default for Angular itself.
  */
 
-(window as any).__Zone_disable_requestAnimationFrame = true; // disable patch requestAnimationFrame
-(window as any).__Zone_disable_on_property = true; // disable patch onProperty such as onclick
-(window as any).__zone_symbol__UNPATCHED_EVENTS = ['scroll', 'mousemove']; // disable patch specified eventNames
-
 // tslint:disable-next-line:no-import-side-effect
-import 'zone.js/dist/zone';  // Included with Angular CLI.
+import 'zone.js';  // Included with Angular CLI.
 
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
 
 // tslint:disable-next-line:no-import-side-effect
-import 'document-register-element';
-
-(window as any).global = window;
+import '@ungap/custom-elements';
