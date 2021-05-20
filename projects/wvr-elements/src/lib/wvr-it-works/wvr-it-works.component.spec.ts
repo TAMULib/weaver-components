@@ -4,11 +4,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideMockStore } from '@ngrx/store/testing';
 import { APP_CONFIG, testAppConfig } from '../shared/config';
 import { WvrItWorksComponent } from './wvr-it-works.component';
+import { initialState } from '../core/store';
 
 describe('WvrItWorksComponent', () => {
-  const initialState = { theme: {
-    themes: {}
-  }};
   let component: WvrItWorksComponent;
   let fixture: ComponentFixture<WvrItWorksComponent>;
 

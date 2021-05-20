@@ -8,6 +8,9 @@ import { APP_CONFIG, testAppConfig } from '../shared/config';
 
 import { WvrWysiwygComponent } from './wvr-wysiwyg.component';
 
+// TODO: should be using the store's initial state but this is not currently working.
+//import { initialState } from '../core/store';
+
 @Component({
   selector: 'wvr-wysiwyg-test-component',
   // tslint:disable-next-line:component-max-inline-declarations

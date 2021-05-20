@@ -31,7 +31,7 @@ import { ActionRegistryService } from './action-registry.service';
 import { AnimationService } from './animation.service';
 import { ComponentRegistryService } from './component-registry.service';
 import { ManifestEffects } from './manifest/manifest.effects';
-import { MobileService } from './mobile.service';
+import { MobileEffects } from './mobile/mobile.effects';
 import { RestEffects } from './rest/rest.effects';
 import { metaReducers, ROOT_REDUCER } from './store';
 import { TemplateService } from './template.service';
@@ -85,6 +85,7 @@ export const showHiddentContent = (injector: Injector) => {
 const MODULES: Array<any> = [
   EffectsModule.forRoot([
     ManifestEffects,
+    MobileEffects,
     RestEffects,
     ThemeEffects,
     WysiwygEffects
@@ -102,7 +103,6 @@ const PROVIDERS = [
   AnimationService,
   ActionRegistryService,
   ComponentRegistryService,
-  MobileService,
   ThemeService,
   TemplateService
 ];

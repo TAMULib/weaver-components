@@ -79,3 +79,5 @@ import 'zone.js/dist/zone';  // Included with Angular CLI.
 
 // tslint:disable-next-line:no-import-side-effect
 import 'document-register-element';
+
+(window as any).global = window;

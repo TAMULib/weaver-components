@@ -51,7 +51,7 @@
   </div>
 </nav>
 
-<div class="container" class="mobile-menu-button">
+<div *ngIf="isMobileLayout" class="container" class="mobile-menu-button">
   <svg
     (click)="toggleMobileMenu()"
     xmlns="http://www.w3.org/2000/svg"
@@ -71,12 +71,12 @@
 </div>
 
 <ng-template #topNavContent>
-  <div class="top-nav-wrapper" *ngIf="!isMobileLayout">
+  <div *ngIf="!isMobileLayout" class="top-nav-wrapper">
     <ng-content select="wvre-nav-list[top-navigation],wvr-nav-list-component[top-navigation]"></ng-content>
   </div>
 </ng-template>
 <ng-template #bottomNavContent>
-  <div class="h-100" *ngIf="!isMobileLayout">
+  <div *ngIf="!isMobileLayout" class="h-100">
     <ng-content select="wvre-nav-list[bottom-navigation],wvr-nav-list-component[bottom-navigation]"></ng-content>
   </div>
 </ng-template>

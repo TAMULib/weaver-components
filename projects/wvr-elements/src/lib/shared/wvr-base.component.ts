@@ -1,14 +1,13 @@
 import { AfterContentInit, Directive, ElementRef, EventEmitter, HostBinding, Injector, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import * as JSON5 from 'json5';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { AnimationService } from '../core/animation.service';
 import { ComponentRegistryService } from '../core/component-registry.service';
 import { WvrDataSelect } from '../core/data-select';
 import * as ManifestActions from '../core/manifest/manifest.actions';
-import { MobileService } from '../core/mobile.service';
-import { RootState, selectManifestEntryResponse } from '../core/store';
+import { RootState, selectIsMobileLayout, selectManifestEntryResponse } from '../core/store';
 import { TemplateService } from '../core/template.service';
 import { ThemeService } from '../core/theme/theme.service';
 import { AppConfig, APP_CONFIG } from './config';
@@ -86,11 +85,6 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
   /** A view child of the template element containing the #animationRoot identifier. */
   @ViewChild('animationRoot') animationRootElem: ElementRef;
 
-  /** An accessor which uses the mobileService to determine if the current layout mode is mobile. */
-  get isMobileLayout(): boolean {
-    return this._mobileService.isMobileLayout;
-  }
-
   /** An accessor which determines if the current userAgent mode is mobile. */
   get isMobileAgent(): boolean {
     const agent = navigator.userAgent || navigator.vendor || (window as any).opera;
@@ -102,9 +96,6 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
   /** A reference to the AnimationService */
   private readonly _animationService: AnimationService<WvrBaseComponent>;
 
-  /** A reference to the MobileService */
-  private readonly _mobileService: MobileService;
-
   /** A reference to the TemplateService */
   private readonly _templateService: TemplateService<WvrBaseComponent>;
 
@@ -113,7 +104,7 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
 
   /** A host bound accessor which applies the wvr-hidden class if both isMobileLayout and hiddenInMobile evaluate to true.  */
   @HostBinding('class.wvr-hidden') private get _hiddenInMobile(): boolean {
-    return this._mobileService.isMobileLayout && this.hiddenInMobile;
+    return this.isMobileLayout && this.hiddenInMobile;
   }
 
   /** An attribute input specifying if this component should be hidden in the mobile layout. */
@@ -122,7 +113,12 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
   /** An Output biding used for triggering animations. */
   @Output() protected readonly animationEventTrigger = new EventEmitter<Event>();
 
+  isMobileLayout: boolean;
+
+  protected subscriptions: Array<Subscription>;
+
   constructor(injector: Injector) {
+    this.subscriptions = [];
     this.componentRegistry = injector.get(ComponentRegistryService);
     this.id = this.componentRegistry.register(this);
 
@@ -131,7 +127,6 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
     this.store = injector.get<Store<RootState>>(Store);
 
     this._animationService = injector.get(AnimationService);
-    this._mobileService = injector.get(MobileService);
     this._templateService = injector.get(TemplateService);
     this.themeService = injector.get(ThemeService);
 
@@ -146,6 +141,11 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
     this.initializeAnimationRegistration();
     this.themeService.registerComponent(this.id, this);
     this._templateService.parseProjectedContent(this, this.eRef.nativeElement);
+
+    this.subscriptions.push(this.store.pipe(select(selectIsMobileLayout))
+      .subscribe((isMobileLayout: boolean) => {
+        this.isMobileLayout = isMobileLayout;
+      }));
   }
 
   // TODO: fix this
@@ -158,6 +158,10 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
   ngOnDestroy(): void {
     this.componentRegistry.unRegisterComponent(this.id);
     this.themeService.unRegisterComponent(this.id);
+
+    this.subscriptions.forEach((subscription: Subscription) => {
+      subscription.unsubscribe();
+    });
   }
 
   applyThemeOverride(customProperty: string, value: string): void {

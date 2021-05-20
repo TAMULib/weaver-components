@@ -5,6 +5,7 @@ import { provideMockStore } from '@ngrx/store/testing';
 import { APP_CONFIG, testAppConfig } from '../shared/config';
 import { WvrManifestEntryComponent } from './wvr-manifest-entry/wvr-manifest-entry.component';
 import { WvrManifestComponent } from './wvr-manifest.component';
+import { initialState } from '../core/store';
 
 @Component({
   selector: 'wvr-manifest-test-component',
@@ -21,9 +22,6 @@ class WvrManifestHostComponent {
 }
 
 describe('WvrManifestComponent', () => {
-  const initialState = { theme: {
-    themes: {}
-  }};
   let hostComponent: WvrManifestHostComponent;
   let hostFixture: ComponentFixture<WvrManifestHostComponent>;
 

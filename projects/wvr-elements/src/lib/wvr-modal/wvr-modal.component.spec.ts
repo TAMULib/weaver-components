@@ -3,6 +3,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideMockStore } from '@ngrx/store/testing';
 import { APP_CONFIG, testAppConfig } from '../shared/config';
 
+// TODO: should be using the store's initial state but this is not currently working.
+//import { initialState } from '../core/store';
+
 import { WvrModalComponent } from './wvr-modal.component';
 
 describe('WvrModalComponent', () => {

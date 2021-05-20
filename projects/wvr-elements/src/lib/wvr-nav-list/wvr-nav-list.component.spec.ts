@@ -5,11 +5,9 @@ import { provideMockStore } from '@ngrx/store/testing';
 import { Alignment } from '../shared/alignment.enum';
 import { APP_CONFIG, testAppConfig } from '../shared/config';
 import { WvrNavListComponent } from './wvr-nav-list.component';
+import { initialState } from '../core/store';
 
 describe('WvrNavListComponent', () => {
-  const initialState = { theme: {
-    themes: {}
-  }};
   let component: WvrNavListComponent;
   let fixture: ComponentFixture<WvrNavListComponent>;
 
