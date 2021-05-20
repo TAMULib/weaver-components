@@ -8,6 +8,7 @@ import { metaReducers, ROOT_REDUCER } from '../core/store';
 import { APP_CONFIG } from '../shared/config/app-config';
 import { testAppConfig } from '../shared/config/test-app-config';
 import { WvrIconComponent } from './wvr-icon.component';
+import { initialState } from '../core/store';
 
 @Component({
   selector: 'wvr-icon-host-component',
@@ -19,9 +20,6 @@ class WvrIconHostComponent {
 }
 
 describe('WvrIconComponent', () => {
-  const initialState = { theme: {
-    themes: {}
-  }};
   let component: WvrIconComponent;
   let fixture: ComponentFixture<WvrIconComponent>;
 

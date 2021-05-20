@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideMockStore } from '@ngrx/store/testing';
 import { APP_CONFIG, testAppConfig } from '../shared/config';
 import { WvrFooterComponent } from './wvr-footer.component';
+import { initialState } from '../core/store';
 
 @Component({
   selector: 'wvr-footer-host-component',
@@ -15,9 +16,6 @@ class WvrFooterHostComponent {
 }
 
 describe('WvrFooterComponent', () => {
-  const initialState = { theme: {
-    themes: {}
-  }};
   let component: WvrFooterComponent;
   let fixture: ComponentFixture<WvrFooterComponent>;
 

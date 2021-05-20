@@ -2,10 +2,10 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideMockStore } from '@ngrx/store/testing';
-import { MobileService } from '../core/mobile.service';
 import { APP_CONFIG } from '../shared/config/app-config';
 import { testAppConfig } from '../shared/config/test-app-config';
 import { WvrHeaderComponent } from './wvr-header.component';
+import { initialState } from '../core/store';
 
 @Component({
   selector: 'wvr-header-host-component',
@@ -16,26 +16,13 @@ class WvrHeaderHostComponent {
   @ViewChild(WvrHeaderComponent) header: WvrHeaderComponent;
 }
 
-class MockMobileService {
-  isMobileLayout = false;
-}
-
 describe('WvrHeaderComponent', () => {
-  const initialState = { theme: {
-    themes: {}
-  }};
   let component: WvrHeaderComponent;
   let fixture: ComponentFixture<WvrHeaderComponent>;
 
-  let hostComponent: WvrHeaderHostComponent;
   let hostFixture: ComponentFixture<WvrHeaderHostComponent>;
 
-  let mockMobileService: MockMobileService;
-
   beforeEach(waitForAsync(() => {
-    mockMobileService = new MockMobileService();
-    TestBed.overrideProvider(MobileService, { useValue: mockMobileService });
-
     TestBed.configureTestingModule({
       imports: [
         BrowserAnimationsModule
@@ -62,7 +49,6 @@ describe('WvrHeaderComponent', () => {
     component = fixture.componentInstance;
 
     hostFixture = TestBed.createComponent(WvrHeaderHostComponent);
-    hostComponent = hostFixture.componentInstance;
 
     hostFixture.detectChanges();
     fixture.detectChanges();

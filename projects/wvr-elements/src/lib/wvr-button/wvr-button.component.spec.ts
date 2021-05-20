@@ -5,10 +5,12 @@ import { provideMockStore } from '@ngrx/store/testing';
 import { APP_CONFIG, testAppConfig } from '../shared/config';
 import { WvrButtonComponent } from './wvr-button.component';
 import { actions } from '../core/actions';
-import { doesNotMatch } from 'assert';
 import { select } from '@ngrx/store';
 import { filter } from 'rxjs/operators';
 import { selectThemeState } from '../core/store';
+
+// TODO: should be using the store's initial state but this is not currently working.
+//import { initialState } from '../core/store';
 
 @Component({
   selector: 'wvr-button-host-component',

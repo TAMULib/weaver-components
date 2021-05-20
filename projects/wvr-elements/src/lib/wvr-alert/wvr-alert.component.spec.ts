@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { APP_CONFIG, testAppConfig } from '../shared/config';
 import { WvrAlertComponent } from './wvr-alert.component';
+import { initialState } from '../core/store';
 
 @Component({
   selector: 'wvr-alert-test-component',
@@ -15,9 +16,6 @@ class WvrAlertHostComponent {
 }
 
 describe('WvrAlertComponent', () => {
-  const initialState = { theme: {
-    themes: {}
-  }};
   let store: MockStore;
   let component: WvrAlertComponent;
   let fixture: ComponentFixture<WvrAlertComponent>;

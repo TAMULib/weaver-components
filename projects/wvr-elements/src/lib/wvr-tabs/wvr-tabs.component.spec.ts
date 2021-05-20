@@ -5,11 +5,9 @@ import { provideMockStore } from '@ngrx/store/testing';
 import { APP_CONFIG, testAppConfig } from '../shared/config';
 import { WvrTabComponent } from './wvr-tab/wvr-tab.component';
 import { WvrTabsComponent } from './wvr-tabs.component';
+import { initialState } from '../core/store';
 
 describe('WvrTabsComponent', () => {
-  const initialState = { theme: {
-    themes: {}
-  }};
   let component: WvrTabsComponent;
   let fixture: ComponentFixture<WvrTabsComponent>;
   let wvrTabComponent: WvrTabComponent;

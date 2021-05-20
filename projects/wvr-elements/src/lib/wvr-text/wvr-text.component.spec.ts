@@ -4,11 +4,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideMockStore } from '@ngrx/store/testing';
 import { APP_CONFIG, testAppConfig } from '../shared/config';
 import { WvrTextComponent } from './wvr-text.component';
+import { initialState } from '../core/store';
 
 describe('WvrTextComponent', () => {
-  const initialState = { theme: {
-    themes: {}
-  }};
   let component: WvrTextComponent;
   let fixture: ComponentFixture<WvrTextComponent>;
 
