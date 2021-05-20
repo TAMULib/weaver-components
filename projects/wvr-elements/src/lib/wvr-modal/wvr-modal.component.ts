@@ -149,31 +149,23 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit {
     this.store.dispatch(ModalActions.openModal({ id: this.modalId }));
   }
 
-  /** This provides background, border and text color properties based on the them variant provided . */
-  additionalClasses(value): string {
-    let additionalClasses = '';
-    switch (value) {
-      case 'header':
-        additionalClasses = this.modalHeaderThemeVariant ?
-          `bg-${this.modalHeaderThemeVariant} border-${this.modalHeaderThemeVariant} ${this.getTextColor(this.modalHeaderThemeVariant)}` :
-          this.themeVariant ?
-            `bg-${this.themeVariant} border-${this.themeVariant} ${this.getTextColor(this.themeVariant)}` :
-            'bg-light text-dark';
-        break;
-      case 'footer':
-        additionalClasses = this.modalFooterThemeVariant ?
-          `bg-${this.modalFooterThemeVariant} border-${this.modalFooterThemeVariant} ${this.getTextColor(this.modalFooterThemeVariant)}` :
-          this.themeVariant ?
-            `bg-${this.themeVariant} border-${this.themeVariant} ${this.getTextColor(this.themeVariant)}` :
-            'bg-light text-dark';
-        break;
-      default:
-    }
-
-    return additionalClasses;
+  get additionalHeaderClasses(): string {
+    return this.modalHeaderThemeVariant ?
+      `bg-${this.modalHeaderThemeVariant} border-${this.modalHeaderThemeVariant} ${this.getTextColor(this.modalHeaderThemeVariant)}` :
+      this.themeVariant ?
+        `bg-${this.themeVariant} border-${this.themeVariant} ${this.getTextColor(this.themeVariant)}` :
+        'bg-light text-dark';
   }
 
-  getTextColor(themeVariant): string {
+  get additionalFooterClasses(): string {
+    return this.modalFooterThemeVariant ?
+      `bg-${this.modalFooterThemeVariant} border-${this.modalFooterThemeVariant} ${this.getTextColor(this.modalFooterThemeVariant)}` :
+      this.themeVariant ?
+        `bg-${this.themeVariant} border-${this.themeVariant} ${this.getTextColor(this.themeVariant)}` :
+        'bg-light text-dark';
+  }
+
+  private getTextColor(themeVariant): string {
     return ((themeVariant === 'warning') || (themeVariant === 'light')) ? 'text-dark' : 'text-white';
   }
 

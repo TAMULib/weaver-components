@@ -6,7 +6,6 @@
     "angular-tslint-rules"
   ],
   "rules": {
-    "template-no-call-expression": false,
     "template-cyclomatic-complexity": [
       true,
       10
