@@ -17,8 +17,5 @@
       "tinymce": "tinymce"
     }
   },
-  "allowedNonPeerDependencies": [
-    "css-element-queries",
-    "handlebars"
-  ]
+  "allowedNonPeerDependencies": []
 }
