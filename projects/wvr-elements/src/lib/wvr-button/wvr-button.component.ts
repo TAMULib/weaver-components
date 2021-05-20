@@ -206,7 +206,7 @@ export class WvrButtonComponent extends WvrBaseComponent {
       valid = !!registeredActions[parts[1]];
       if (!valid) {
         const actions = Object.keys(registeredActions[parts[0]])
-          .join(',')
+          .join(',');
         console.warn(`'${parts[1]}' is not a known action of ${parts[0]}. (${actions})`);
       }
 

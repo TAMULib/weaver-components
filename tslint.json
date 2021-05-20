@@ -6,7 +6,12 @@
     "angular-tslint-rules"
   ],
   "rules": {
-    "only-arrow-functions":false,
+    "template-no-call-expression": false,
+    "template-cyclomatic-complexity": [
+      true,
+      10
+    ],
+    "only-arrow-functions": false,
     "comment-type": [
       true,
       "singleline",

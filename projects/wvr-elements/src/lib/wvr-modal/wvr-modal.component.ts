@@ -58,7 +58,7 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit {
 
   constructor(
     injector: Injector,
-    private modalService: NgbModal
+    private readonly modalService: NgbModal
   ) {
     super(injector);
   }
@@ -66,7 +66,7 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit {
   ngOnInit(): void {
     super.ngOnInit();
 
-    this.modalService.activeInstances.subscribe((modalRefs: NgbModalRef[]) => {
+    this.modalService.activeInstances.subscribe((modalRefs: Array<NgbModalRef>) => {
       setTimeout(() => {
         if (!!this.modalRef && modalRefs.length > 0) {
           ['body', 'footer'].forEach(content => {
@@ -75,7 +75,7 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit {
               const element: Element = this.eRef.nativeElement.querySelector(`div[modal-${content}]`);
               const clone = template.content.children.length > 0
                 ? template.content.cloneNode(true)
-                : template
+                : template;
               Array.from(clone.children)
                 .forEach((elem: Element) => {
                   element.appendChild(elem);

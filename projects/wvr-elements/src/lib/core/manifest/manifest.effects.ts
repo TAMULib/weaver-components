@@ -12,7 +12,10 @@ import * as ManifestActions from './manifest.actions';
 @Injectable()
 export class ManifestEffects {
 
-  constructor(private readonly actions: Actions, private readonly store: Store<RootState>) {
+  constructor(
+    private readonly actions: Actions,
+    private readonly store: Store<RootState>
+  ) {
 
   }
 

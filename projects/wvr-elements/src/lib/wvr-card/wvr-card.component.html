@@ -1,6 +1,4 @@
-<div
-  #animationRoot
-  class="wvr-components wvr-card card {{additionalCardClasses()}}"
+<div #animationRoot class="wvr-components wvr-card card {{additionalCardClasses()}}"
   [ngClass]="{ 'text-center': textCenter }"
   style="width: 18rem;">
   <ng-container *ngTemplateOutlet="cardHeader"></ng-container>
@@ -17,9 +15,9 @@
 
 <ng-template #cardHeader>
   <div class="card-header {{additionalHeaderClasses()}}"
-  [ngClass]="{
-    'wvr-hidden': !hasCardHeader
-  }">
+    [ngClass]="{
+      'wvr-hidden': !hasCardHeader
+    }">
     <ng-content select="wvre-card-header"></ng-content>
   </div>
 </ng-template>

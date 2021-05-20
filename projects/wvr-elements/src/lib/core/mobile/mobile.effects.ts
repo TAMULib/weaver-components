@@ -13,12 +13,14 @@ export class MobileEffects implements OnInitEffects {
 
   }
 
-  resize = createEffect(() => fromEvent(window, 'resize').pipe(
-    withLatestFrom(this.store.pipe(select(selectIsMobileLayout))),
-    switchMap(([event, isMobileLayout]) => isMobileLayout !== this.isMobileLayout()
-      ? [this.ngrxOnInitEffects()]
-      : [])
-  ));
+  resize = createEffect(() => fromEvent(window, 'resize')
+    .pipe(
+      withLatestFrom(this.store.pipe(select(selectIsMobileLayout))),
+      switchMap(([event, isMobileLayout]) => isMobileLayout !== this.isMobileLayout()
+        ? [this.ngrxOnInitEffects()]
+        : [])
+    )
+  );
 
   ngrxOnInitEffects(): Action {
     return MobileActions.setMobileLayout({

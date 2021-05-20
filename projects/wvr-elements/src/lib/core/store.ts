@@ -28,7 +28,7 @@ export const initialState: RootState = {
   mobile: fromMobile.initialState,
   modals: fromModal.initialState,
   wysiwyg: fromWysiwyg.initialState
-}
+};
 
 export const reducers: ActionReducerMap<RootState> = {
   manifests: fromManifest.reducer,

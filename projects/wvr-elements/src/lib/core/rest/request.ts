@@ -9,6 +9,6 @@ export interface Request {
   body?: any;
   options?: RequestOptions;
   map?: map;
-  decode?: string[];
+  decode?: Array<string>;
   bodyHttpParams?: 'fromObject' | 'fromString';
 }

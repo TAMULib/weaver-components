@@ -43,7 +43,7 @@ export class AppModule {
 
     wvrTimeout(() => {
       const elements = document.querySelectorAll('.wvr-components-loading:not(body)');
-      elements.forEach(function(element) {
+      elements.forEach(element => {
         element.classList.remove('wvr-components-loading');
       });
 
