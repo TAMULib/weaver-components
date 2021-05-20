@@ -8,6 +8,7 @@ import { ManifestEntry } from './manifest/manifest-entry';
 import * as fromManifest from './manifest/manifest.reducers';
 import * as fromRest from './rest/rest.reducers';
 import * as fromTheme from './theme/theme.reducers';
+import * as fromMobile from './mobile/mobile.reducers';
 import * as fromModal from './modal/modal.reducers';
 import * as fromWysiwyg from './wysiwyg/wysiwyg.reducers';
 
@@ -15,6 +16,7 @@ export interface RootState {
   manifests: fromManifest.State;
   rest: fromRest.State;
   theme: fromTheme.State;
+  mobile: fromMobile.State;
   modals: fromModal.State;
   wysiwyg: fromWysiwyg.State;
 }
@@ -23,6 +25,7 @@ export const reducers: ActionReducerMap<RootState> = {
   manifests: fromManifest.reducer,
   rest: fromRest.reducer,
   theme: fromTheme.reducer,
+  mobile: fromMobile.reducer,
   modals: fromModal.reducer,
   wysiwyg: fromWysiwyg.reducer
 };
@@ -58,14 +61,17 @@ export const selectManifestNames = createSelector(
   selectManifestState,
   fromManifest.selectManifestNames
 );
+
 export const selectManifestEntities = createSelector(
   selectManifestState,
   fromManifest.selectManifestEntities
 );
+
 export const selectAllManifests = createSelector(
   selectManifestState,
   fromManifest.selectAllManifests
 );
+
 export const selectManifestTotal = createSelector(
   selectManifestState,
   fromManifest.selectManifestTotal
@@ -122,12 +128,22 @@ export const selectCurrentTheme = createSelector(
   (themeState: fromTheme.State) => themeState.themes[themeState.currentTheme]
 );
 
+// mobile selectors
+export const selectMobileState = createFeatureSelector<RootState, fromMobile.State>('mobile');
+
+export const selectIsMobileLayout = createSelector(
+  selectMobileState,
+  (mobileState: fromMobile.State) => mobileState.mobile.mobileLayout
+);
+
+// modal selectors
 export const selectModalState = createFeatureSelector<RootState, fromModal.State>('modals');
 
 export const selectModalByName = (modalName: string) => createSelector(
   selectModalState,
   modals => modals.entities[modalName]
 );
+
 // wysiwyg selectors
 export const selectWysiwygState = createFeatureSelector<RootState, fromWysiwyg.State>('wysiwyg');
 

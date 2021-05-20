@@ -2,7 +2,6 @@ import { Component, Injector, Input, OnDestroy, OnInit, ViewChild } from '@angul
 import { select } from '@ngrx/store';
 import { EditorComponent } from '@tinymce/tinymce-angular';
 import * as JSON5 from 'json5';
-import { Subscription } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import tinymce from 'tinymce';
 import { selectWysiwygById } from '../core/store';
@@ -43,8 +42,6 @@ export class WvrWysiwygComponent extends WvrBaseComponent implements OnInit, OnD
 
   @Input() emitSaveEvent: string;
 
-  subscription: Subscription;
-
   config = {
     base_url: 'tinymce',
     skin: 'oxide',
@@ -78,22 +75,19 @@ export class WvrWysiwygComponent extends WvrBaseComponent implements OnInit, OnD
       }
     }));
 
-    this.subscription = this.store.pipe(
+    this.subscriptions.push(this.store.pipe(
       select(selectWysiwygById(`${this.id}`)),
       filter(wysiwyg => !!wysiwyg),
       map(wysiwyg => wysiwyg.content)
     ).subscribe((content: string) => {
       this.content = content;
-    });
+    }));
   }
 
   ngOnDestroy(): void {
     super.ngOnDestroy();
     if (!!this.editor) {
       tinymce.remove(this.editor);
-    }
-    if (!!this.subscription) {
-      this.subscription.unsubscribe();
     }
   }
 
