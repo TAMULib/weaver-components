@@ -77,18 +77,18 @@ describe('WvrAlertComponent', () => {
       .toBeFalse();
     closeButton.dispatchEvent(new MouseEvent('click'));
     expect(component.alertClosed)
-    .toBeTrue();
+      .toBeTrue();
   });
 
   it('should auto close when alert-type="self-closing"', done => {
-
     setTimeout(() => {
       done();
       expect(hostComponent.alert
         .alertClosed)
         .toBeTrue();
     }, 100);
-
+    expect(component)
+      .toBeDefined();
   });
 
 });

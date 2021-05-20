@@ -176,7 +176,7 @@ describe('WvrButtonComponent', () => {
   });
 
   it('should set distpatch-action only when in proper form', () => {
-    const dispatchActionValue = 'Themeselect';
+    const dispatchActionValue = 'Theme.Select';
     component.dispatchAction = dispatchActionValue;
     // tslint:disable-next-line:no-string-literal
     expect(component['_action'])
@@ -241,6 +241,8 @@ describe('WvrButtonComponent', () => {
 
     component.eRef.nativeElement.click();
 
+    expect(component)
+      .toBeDefined();
   });
 
   it('should dispatch an action on click', () => {

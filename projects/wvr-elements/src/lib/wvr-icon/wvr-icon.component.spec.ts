@@ -9,6 +9,7 @@ import { APP_CONFIG } from '../shared/config/app-config';
 import { testAppConfig } from '../shared/config/test-app-config';
 import { WvrIconComponent } from './wvr-icon.component';
 import { initialState } from '../core/store';
+import { InlineSVGModule } from 'ng-inline-svg';
 
 @Component({
   selector: 'wvr-icon-host-component',
@@ -31,6 +32,7 @@ describe('WvrIconComponent', () => {
       imports: [
         HttpClientTestingModule,
         BrowserAnimationsModule,
+        InlineSVGModule,
         StoreModule.forRoot(ROOT_REDUCER, { metaReducers })
       ],
       providers: [
