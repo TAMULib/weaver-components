@@ -1,7 +1,7 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import { provideMockStore } from '@ngrx/store/testing';
 import { APP_CONFIG, testAppConfig } from '../shared/config';
 import { WvrWysiwygComponent } from './wvr-wysiwyg.component';
 
@@ -31,7 +31,6 @@ describe('WvrWysiwygComponent', () => {
   let hostComponent: WvrWysiwygHostComponent;
   let hostFixture: ComponentFixture<WvrWysiwygHostComponent>;
 
-  let store: MockStore;
   // tslint:disable-next-line: deprecation
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -53,8 +52,7 @@ describe('WvrWysiwygComponent', () => {
         CUSTOM_ELEMENTS_SCHEMA,
         NO_ERRORS_SCHEMA
       ]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {

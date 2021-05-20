@@ -4,12 +4,11 @@ import { ComponentFixture, inject, TestBed, waitForAsync } from '@angular/core/t
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { provideMockStore } from '@ngrx/store/testing';
-import { metaReducers, ROOT_REDUCER } from '../core/store';
+import { InlineSVGModule } from 'ng-inline-svg';
+import { initialState, metaReducers, ROOT_REDUCER } from '../core/store';
 import { APP_CONFIG } from '../shared/config/app-config';
 import { testAppConfig } from '../shared/config/test-app-config';
 import { WvrIconComponent } from './wvr-icon.component';
-import { initialState } from '../core/store';
-import { InlineSVGModule } from 'ng-inline-svg';
 
 @Component({
   selector: 'wvr-icon-host-component',
@@ -40,15 +39,14 @@ describe('WvrIconComponent', () => {
           provide: APP_CONFIG,
           useValue: testAppConfig
         },
-        provideMockStore({initialState})
+        provideMockStore({ initialState })
       ],
       declarations: [
         WvrIconComponent,
         WvrIconHostComponent
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
-    })
-    .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {

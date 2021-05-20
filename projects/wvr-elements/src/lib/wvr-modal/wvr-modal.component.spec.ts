@@ -1,12 +1,10 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideMockStore } from '@ngrx/store/testing';
 import { APP_CONFIG, testAppConfig } from '../shared/config';
-
 // TODO: should be using the store's initial state but this is not currently working.
 //import { initialState } from '../core/store';
-
 import { WvrModalComponent } from './wvr-modal.component';
 
 describe('WvrModalComponent', () => {
@@ -14,23 +12,20 @@ describe('WvrModalComponent', () => {
   let fixture: ComponentFixture<WvrModalComponent>;
   const initialState = {};
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ WvrModalComponent ],
-      imports: [
-        BrowserAnimationsModule
-      ],
-      providers: [
-        {
-          provide: APP_CONFIG,
-          useValue: testAppConfig
-        },
-        provideMockStore({initialState})
-      ],
-      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
-    })
-    .compileComponents();
-  });
+  beforeEach(waitForAsync(() => TestBed.configureTestingModule({
+    declarations: [WvrModalComponent],
+    imports: [
+      BrowserAnimationsModule
+    ],
+    providers: [
+      {
+        provide: APP_CONFIG,
+        useValue: testAppConfig
+      },
+      provideMockStore({ initialState })
+    ],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  }).compileComponents()));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(WvrModalComponent);
@@ -40,7 +35,7 @@ describe('WvrModalComponent', () => {
 
   it('should create', () => {
     expect(component)
-    .toBeTruthy();
+      .toBeTruthy();
   });
 
   it('should have `btnVisible` defined', () => {

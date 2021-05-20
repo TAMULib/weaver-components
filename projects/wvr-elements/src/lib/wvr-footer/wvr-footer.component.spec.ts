@@ -2,9 +2,9 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideMockStore } from '@ngrx/store/testing';
+import { initialState } from '../core/store';
 import { APP_CONFIG, testAppConfig } from '../shared/config';
 import { WvrFooterComponent } from './wvr-footer.component';
-import { initialState } from '../core/store';
 
 @Component({
   selector: 'wvr-footer-host-component',
@@ -32,12 +32,11 @@ describe('WvrFooterComponent', () => {
           provide: APP_CONFIG,
           useValue: testAppConfig
         },
-        provideMockStore({initialState})
+        provideMockStore({ initialState })
       ],
       declarations: [WvrFooterComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {

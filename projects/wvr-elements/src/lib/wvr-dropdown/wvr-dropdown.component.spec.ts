@@ -3,19 +3,20 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
 import { provideMockStore } from '@ngrx/store/testing';
+import { initialState } from '../core/store';
 import { APP_CONFIG, testAppConfig } from '../shared/config';
 import { WvrDropdownComponent } from './wvr-dropdown.component';
-import { initialState } from '../core/store';
 
 @Component({
   selector: 'wvr-dropdown-host-component',
   // tslint:disable-next-line:component-max-inline-declarations
-  template: `<wvr-dropdown-component
-              btnTextDecoration="none"
-              btnTextDecorationActive="underline"
-              btnTextDecorationHover="underline"
-              btnTextDecorationFocus="none">
-            </wvr-dropdown-component>`
+  template: `
+    <wvr-dropdown-component
+      btnTextDecoration="none"
+      btnTextDecorationActive="underline"
+      btnTextDecorationHover="underline"
+      btnTextDecorationFocus="none">
+    </wvr-dropdown-component>`
 })
 class WvrDropdownHostComponent {
   @ViewChild(WvrDropdownComponent) dropDown: WvrDropdownComponent;
@@ -37,7 +38,7 @@ describe('WvrDropdownComponent', () => {
           provide: APP_CONFIG,
           useValue: testAppConfig
         },
-        provideMockStore({initialState})
+        provideMockStore({ initialState })
       ],
       declarations: [
         WvrDropdownHostComponent,
@@ -45,8 +46,7 @@ describe('WvrDropdownComponent', () => {
         NgbDropdown
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
-    })
-      .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {

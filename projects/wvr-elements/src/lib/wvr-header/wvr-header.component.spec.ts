@@ -2,10 +2,10 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideMockStore } from '@ngrx/store/testing';
+import { initialState } from '../core/store';
 import { APP_CONFIG } from '../shared/config/app-config';
 import { testAppConfig } from '../shared/config/test-app-config';
 import { WvrHeaderComponent } from './wvr-header.component';
-import { initialState } from '../core/store';
 
 @Component({
   selector: 'wvr-header-host-component',
@@ -32,15 +32,14 @@ describe('WvrHeaderComponent', () => {
           provide: APP_CONFIG,
           useValue: testAppConfig
         },
-        provideMockStore({initialState})
+        provideMockStore({ initialState })
       ],
       declarations: [
         WvrHeaderHostComponent,
         WvrHeaderComponent
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
-    })
-      .compileComponents()
+    }).compileComponents()
       .catch(err => { console.error(err); });
   }));
 
@@ -131,7 +130,7 @@ describe('WvrHeaderComponent', () => {
     component.toggleMobileMenu();
     fixture.detectChanges();
     expect(component.mobileMenuClosed)
-    .toBe(false);
+      .toBe(false);
   });
 
 });

@@ -2,10 +2,10 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideMockStore } from '@ngrx/store/testing';
+import { initialState } from '../core/store';
 import { Alignment } from '../shared/alignment.enum';
 import { APP_CONFIG, testAppConfig } from '../shared/config';
 import { WvrNavListComponent } from './wvr-nav-list.component';
-import { initialState } from '../core/store';
 
 describe('WvrNavListComponent', () => {
   let component: WvrNavListComponent;
@@ -22,11 +22,10 @@ describe('WvrNavListComponent', () => {
           provide: APP_CONFIG,
           useValue: testAppConfig
         },
-        provideMockStore({initialState})
+        provideMockStore({ initialState })
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
-    })
-      .compileComponents()
+    }).compileComponents()
       .catch(err => { console.error(err); });
   }));
 
