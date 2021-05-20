@@ -168,7 +168,7 @@
               "tsConfig": "projects/wvr-elements/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "projects/test-lib/tsconfig.lib.json"
+              "tsConfig": "projects/wvr-elements/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
