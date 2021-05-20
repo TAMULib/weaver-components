@@ -45,8 +45,8 @@ describe('WvrWysiwygComponent', () => {
         provideMockStore({ initialState })
       ],
       declarations: [
-        WvrWysiwygHostComponent,
-        WvrWysiwygComponent
+        WvrWysiwygComponent,
+        WvrWysiwygHostComponent
       ],
       schemas: [
         CUSTOM_ELEMENTS_SCHEMA,

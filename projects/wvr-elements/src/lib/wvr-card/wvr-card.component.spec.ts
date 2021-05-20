@@ -41,8 +41,8 @@ describe('WvrCardComponent', () => {
         BrowserAnimationsModule
       ],
       declarations: [
-        WvrCardHostComponent,
-        WvrCardComponent
+        WvrCardComponent,
+        WvrCardHostComponent
       ],
       providers: [
         {

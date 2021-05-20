@@ -62,8 +62,8 @@ describe('WvrButtonComponent', () => {
         provideMockStore({ initialState })
       ],
       declarations: [
-        WvrButtonHostComponent,
-        WvrButtonComponent
+        WvrButtonComponent,
+        WvrButtonHostComponent
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();

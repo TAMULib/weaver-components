@@ -35,8 +35,8 @@ describe('WvrHeaderComponent', () => {
         provideMockStore({ initialState })
       ],
       declarations: [
-        WvrHeaderHostComponent,
-        WvrHeaderComponent
+        WvrHeaderComponent,
+        WvrHeaderHostComponent
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents()

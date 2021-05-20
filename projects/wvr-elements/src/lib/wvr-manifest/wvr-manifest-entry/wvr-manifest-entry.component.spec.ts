@@ -16,13 +16,13 @@ import { WvrManifestEntryComponent } from './wvr-manifest-entry.component';
   </wvr-manifest-component>
   `
 })
-class WvrManifestTestComponent {
+class WvrManifestHostComponent {
   @ViewChild(WvrManifestComponent) manifest: WvrManifestComponent;
 }
 
 describe('WvrManifestEntryComponent', () => {
-  let wvrManifestTestComponent: WvrManifestTestComponent;
-  let fixture: ComponentFixture<WvrManifestTestComponent>;
+  let wvrManifestTestComponent: WvrManifestHostComponent;
+  let fixture: ComponentFixture<WvrManifestHostComponent>;
 
   let childFixture: ComponentFixture<WvrManifestEntryComponent>;
 
@@ -30,7 +30,11 @@ describe('WvrManifestEntryComponent', () => {
     imports: [
       BrowserAnimationsModule
     ],
-    declarations: [WvrManifestTestComponent, WvrManifestComponent, WvrManifestEntryComponent],
+    declarations: [
+      WvrManifestHostComponent,
+      WvrManifestComponent,
+      WvrManifestEntryComponent
+    ],
     providers: [
       {
         provide: APP_CONFIG,
@@ -41,7 +45,7 @@ describe('WvrManifestEntryComponent', () => {
   }).compileComponents()));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(WvrManifestTestComponent);
+    fixture = TestBed.createComponent(WvrManifestHostComponent);
     wvrManifestTestComponent = fixture.componentInstance;
     fixture.detectChanges();
 

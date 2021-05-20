@@ -18,7 +18,10 @@ describe('WvrTabComponent', () => {
     imports: [
       BrowserAnimationsModule
     ],
-    declarations: [WvrTabsComponent, WvrTabComponent],
+    declarations: [
+      WvrTabsComponent,
+      WvrTabComponent
+    ],
     providers: [
       {
         provide: APP_CONFIG,

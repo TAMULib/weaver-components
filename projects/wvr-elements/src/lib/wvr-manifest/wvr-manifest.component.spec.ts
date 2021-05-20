@@ -32,9 +32,9 @@ describe('WvrManifestComponent', () => {
       BrowserAnimationsModule
     ],
     declarations: [
-      WvrManifestHostComponent,
       WvrManifestComponent,
-      WvrManifestEntryComponent
+      WvrManifestEntryComponent,
+      WvrManifestHostComponent
     ],
     providers: [
       {

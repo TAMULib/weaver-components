@@ -34,7 +34,10 @@ describe('WvrFooterComponent', () => {
         },
         provideMockStore({ initialState })
       ],
-      declarations: [WvrFooterComponent],
+      declarations: [
+        WvrFooterComponent,
+        WvrFooterHostComponent
+      ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
   }));

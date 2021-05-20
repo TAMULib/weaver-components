@@ -36,8 +36,8 @@ describe('WvrAlertComponent', () => {
         provideMockStore({ initialState })
       ],
       declarations: [
-        WvrAlertHostComponent,
-        WvrAlertComponent
+        WvrAlertComponent,
+        WvrAlertHostComponent
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();

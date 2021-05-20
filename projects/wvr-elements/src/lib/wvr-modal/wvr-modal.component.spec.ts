@@ -13,10 +13,10 @@ describe('WvrModalComponent', () => {
   const initialState = {};
 
   beforeEach(waitForAsync(() => TestBed.configureTestingModule({
-    declarations: [WvrModalComponent],
     imports: [
       BrowserAnimationsModule
     ],
+    declarations: [WvrModalComponent],
     providers: [
       {
         provide: APP_CONFIG,

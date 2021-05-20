@@ -41,9 +41,9 @@ describe('WvrDropdownComponent', () => {
         provideMockStore({ initialState })
       ],
       declarations: [
-        WvrDropdownHostComponent,
+        NgbDropdown,
         WvrDropdownComponent,
-        NgbDropdown
+        WvrDropdownHostComponent
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
