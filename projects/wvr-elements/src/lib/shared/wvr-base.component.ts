@@ -143,8 +143,8 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
     this._templateService.parseProjectedContent(this, this.eRef.nativeElement);
 
     this.subscriptions.push(this.store.pipe(select(selectIsMobileLayout))
-      .subscribe((isMobileLayout: boolean) => {
-        this.isMobileLayout = isMobileLayout;
+      .subscribe((isMobile: boolean) => {
+        this.isMobileLayout = isMobile;
       }));
   }
 
