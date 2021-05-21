@@ -1,3 +1,4 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Component, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { provideMockStore } from '@ngrx/store/testing';
@@ -24,7 +25,10 @@ describe('WvrHeaderComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [WvrSharedModule],
+      imports: [
+        HttpClientTestingModule,
+        WvrSharedModule
+      ],
       providers: [
         {
           provide: APP_CONFIG,

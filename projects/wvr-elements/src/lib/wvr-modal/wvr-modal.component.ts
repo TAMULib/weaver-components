@@ -165,8 +165,6 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit {
         'bg-light text-dark';
   }
 
-  private getTextColor(themeVariant): string {
-    return ((themeVariant === 'warning') || (themeVariant === 'light')) ? 'text-dark' : 'text-white';
-  }
+  getTextColor = (themeVariant): string => ((themeVariant === 'warning') || (themeVariant === 'light')) ? 'text-dark' : 'text-white';
 
 }
