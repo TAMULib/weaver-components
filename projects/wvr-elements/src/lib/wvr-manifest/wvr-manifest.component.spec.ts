@@ -1,20 +1,20 @@
 import { Component, ViewChild } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { provideMockStore } from '@ngrx/store/testing';
+import { initialState } from '../core/store';
 import { APP_CONFIG, testAppConfig } from '../shared/config';
+import { WvrSharedModule } from '../shared/wvr-shared.module';
 import { WvrManifestEntryComponent } from './wvr-manifest-entry/wvr-manifest-entry.component';
 import { WvrManifestComponent } from './wvr-manifest.component';
-import { initialState } from '../core/store';
 
 @Component({
   selector: 'wvr-manifest-test-component',
   // tslint:disable-next-line:component-max-inline-declarations
   template: `
-  <wvr-manifest-component name="Test Manifest" base-url="test" mapping-strategy="none">
-    <wvr-manifest-entry-component name="first" path="/first" methods="GET"></wvr-manifest-entry-component>
-    <wvr-manifest-entry-component name="second" path="/second" methods="GET" mapping-strategy="json"></wvr-manifest-entry-component>
-  </wvr-manifest-component>
+    <wvr-manifest-component name="Test Manifest" base-url="test" mapping-strategy="none">
+      <wvr-manifest-entry-component name="first" path="/first" methods="GET"></wvr-manifest-entry-component>
+      <wvr-manifest-entry-component name="second" path="/second" methods="GET" mapping-strategy="json"></wvr-manifest-entry-component>
+    </wvr-manifest-component>
   `
 })
 class WvrManifestHostComponent {
@@ -27,26 +27,20 @@ describe('WvrManifestComponent', () => {
 
   let entryFixture: ComponentFixture<WvrManifestEntryComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule
-      ],
-      declarations: [
-        WvrManifestHostComponent,
-        WvrManifestComponent,
-        WvrManifestEntryComponent
-      ],
-      providers: [
-        {
-          provide: APP_CONFIG,
-          useValue: testAppConfig
-        },
-        provideMockStore({initialState})
-      ]
-    })
-    .compileComponents();
-  });
+  beforeEach(waitForAsync(() => TestBed.configureTestingModule({
+    imports: [WvrSharedModule],
+    declarations: [
+      WvrManifestComponent,
+      WvrManifestHostComponent
+    ],
+    providers: [
+      {
+        provide: APP_CONFIG,
+        useValue: testAppConfig
+      },
+      provideMockStore({ initialState })
+    ]
+  }).compileComponents()));
 
   beforeEach(() => {
     hostFixture = TestBed.createComponent(WvrManifestHostComponent);

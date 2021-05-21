@@ -90,7 +90,7 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit 
     });
   }
 
-  additionalCardClasses(): string {
+  get additionalCardClasses(): string {
     let additionalClasses = '';
     additionalClasses += ((!this.panelFormat || this.panelFormat === 'mixed') || this.panelFormat === 'outlined') ?
       ` border-${this.themeVariant} ` : '';
@@ -100,7 +100,7 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit 
     return additionalClasses;
   }
 
-  additionalHeaderClasses(): string {
+  get additionalHeaderClasses(): string {
     let additionalClasses = '';
     additionalClasses += ((!this.panelFormat || this.panelFormat === 'mixed') || this.panelFormat === 'outlined') ?
       ` border-${this.themeVariant} ` : '';

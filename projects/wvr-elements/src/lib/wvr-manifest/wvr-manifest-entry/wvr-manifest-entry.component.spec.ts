@@ -1,8 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { provideMockStore } from '@ngrx/store/testing';
+import { initialState } from '../../core/store';
 import { APP_CONFIG, testAppConfig } from '../../shared/config';
+import { WvrSharedModule } from '../../shared/wvr-shared.module';
 import { WvrManifestComponent } from '../wvr-manifest.component';
 import { WvrManifestEntryComponent } from './wvr-manifest-entry.component';
 
@@ -15,38 +16,35 @@ import { WvrManifestEntryComponent } from './wvr-manifest-entry.component';
   </wvr-manifest-component>
   `
 })
-class WvrManifestTestComponent {
+class WvrManifestHostComponent {
   @ViewChild(WvrManifestComponent) manifest: WvrManifestComponent;
 }
 
 describe('WvrManifestEntryComponent', () => {
-  const initialState = { theme: {
-    themes: {}
-  }};
-  let wvrManifestTestComponent: WvrManifestTestComponent;
-  let fixture: ComponentFixture<WvrManifestTestComponent>;
+  let wvrManifestTestComponent: WvrManifestHostComponent;
+  let fixture: ComponentFixture<WvrManifestHostComponent>;
 
   let childFixture: ComponentFixture<WvrManifestEntryComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule
-      ],
-      declarations: [ WvrManifestTestComponent, WvrManifestComponent, WvrManifestEntryComponent ],
-      providers: [
-        {
-          provide: APP_CONFIG,
-          useValue: testAppConfig
-        },
-        provideMockStore({initialState})
-      ]
-    })
-    .compileComponents();
-  });
+  beforeEach(waitForAsync(() => TestBed.configureTestingModule({
+    imports: [WvrSharedModule],
+    declarations: [
+      WvrManifestHostComponent,
+      WvrManifestComponent,
+      WvrManifestEntryComponent
+    ],
+    providers: [
+      {
+        provide: APP_CONFIG,
+        useValue: testAppConfig
+      },
+      provideMockStore({ initialState })
+    ]
+  })
+    .compileComponents()));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(WvrManifestTestComponent);
+    fixture = TestBed.createComponent(WvrManifestHostComponent);
     wvrManifestTestComponent = fixture.componentInstance;
     fixture.detectChanges();
 

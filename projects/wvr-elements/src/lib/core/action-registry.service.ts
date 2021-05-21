@@ -9,7 +9,7 @@ import { actions } from './actions';
 })
 export class ActionRegistryService {
 
-  private actions: any;
+  private readonly actions: any;
 
   constructor() {
     this.actions = { ...actions };

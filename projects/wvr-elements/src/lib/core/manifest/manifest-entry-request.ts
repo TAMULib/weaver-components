@@ -8,7 +8,7 @@ export interface ManifestEntryRequest {
   method?: RequestMethod;
   body?: any;
   options?: RequestOptions;
-  decode?: string[];
+  decode?: Array<string>;
   bodyHttpParams?: 'fromObject' | 'fromString';
   onSuccess?: Array<Action>;
   onFailure?: Array<Action>;

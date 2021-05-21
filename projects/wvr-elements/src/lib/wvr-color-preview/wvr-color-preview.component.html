@@ -3,7 +3,7 @@
     class="swatches"
     [panelFormat]="'solid'"
     [themeVariant]="tv.key"
-    *ngFor="let tv of currentTheme | async | keyvalue : originalOrdering">
+    *ngFor="let tv of currentTheme | async | keyvalue : originalOrdering; trackBy:index">
     <wvre-card-header>
       <h3>{{tv.key}}</h3>
     </wvre-card-header>

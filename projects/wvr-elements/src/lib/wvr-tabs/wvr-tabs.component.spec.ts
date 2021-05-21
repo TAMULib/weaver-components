@@ -1,11 +1,10 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { provideMockStore } from '@ngrx/store/testing';
+import { initialState } from '../core/store';
 import { APP_CONFIG, testAppConfig } from '../shared/config';
+import { WvrSharedModule } from '../shared/wvr-shared.module';
 import { WvrTabComponent } from './wvr-tab/wvr-tab.component';
 import { WvrTabsComponent } from './wvr-tabs.component';
-import { initialState } from '../core/store';
 
 describe('WvrTabsComponent', () => {
   let component: WvrTabsComponent;
@@ -13,23 +12,18 @@ describe('WvrTabsComponent', () => {
   let wvrTabComponent: WvrTabComponent;
   let tabFixture: ComponentFixture<WvrTabComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule
-      ],
-      declarations: [WvrTabsComponent],
-      providers: [
-        {
-          provide: APP_CONFIG,
-          useValue: testAppConfig
-        },
-        provideMockStore({initialState})
-      ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA]
-    })
-      .compileComponents();
-  });
+  beforeEach(waitForAsync(() => TestBed.configureTestingModule({
+    imports: [WvrSharedModule],
+    declarations: [WvrTabsComponent],
+    providers: [
+      {
+        provide: APP_CONFIG,
+        useValue: testAppConfig
+      },
+      provideMockStore({ initialState })
+    ]
+  })
+    .compileComponents()));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(WvrTabsComponent);

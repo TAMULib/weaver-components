@@ -1,34 +1,29 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { provideMockStore } from '@ngrx/store/testing';
 import { APP_CONFIG, testAppConfig } from '../shared/config';
+import { WvrSharedModule } from '../shared/wvr-shared.module';
+import { WvrModalComponent } from './wvr-modal.component';
 
 // TODO: should be using the store's initial state but this is not currently working.
 //import { initialState } from '../core/store';
-
-import { WvrModalComponent } from './wvr-modal.component';
 
 describe('WvrModalComponent', () => {
   let component: WvrModalComponent;
   let fixture: ComponentFixture<WvrModalComponent>;
   const initialState = {};
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ WvrModalComponent ],
-      imports: [
-        BrowserAnimationsModule
-      ],
-      providers: [
-        {
-          provide: APP_CONFIG,
-          useValue: testAppConfig
-        },
-        provideMockStore({initialState})
-      ]
-    })
-    .compileComponents();
-  });
+  beforeEach(waitForAsync(() => TestBed.configureTestingModule({
+    imports: [WvrSharedModule],
+    declarations: [WvrModalComponent],
+    providers: [
+      {
+        provide: APP_CONFIG,
+        useValue: testAppConfig
+      },
+      provideMockStore({ initialState })
+    ]
+  })
+    .compileComponents()));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(WvrModalComponent);
@@ -38,7 +33,7 @@ describe('WvrModalComponent', () => {
 
   it('should create', () => {
     expect(component)
-    .toBeTruthy();
+      .toBeTruthy();
   });
 
   it('should have `btnVisible` defined', () => {

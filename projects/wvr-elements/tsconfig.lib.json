@@ -1,7 +1,8 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "outDir": "../../out-tsc/projects"
+    "outDir": "../../out-tsc/projects",
+    "emitDecoratorMetadata": false
   },
   "angularCompilerOptions": {
     "enableIvy": false

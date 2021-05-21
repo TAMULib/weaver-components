@@ -1,10 +1,10 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideMockStore } from '@ngrx/store/testing';
-import { APP_CONFIG, testAppConfig } from '../shared/config';
-import { WvrListComponent } from './wvr-list.component';
 import { initialState } from '../core/store';
+import { APP_CONFIG, testAppConfig } from '../shared/config';
+import { WvrSharedModule } from '../shared/wvr-shared.module';
+import { WvrListComponent } from './wvr-list.component';
 
 describe('WvrListComponent', () => {
   let component: WvrListComponent;
@@ -12,18 +12,15 @@ describe('WvrListComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule
-      ],
+      imports: [WvrSharedModule],
       declarations: [WvrListComponent],
       providers: [
         {
           provide: APP_CONFIG,
           useValue: testAppConfig
         },
-        provideMockStore({initialState})
-      ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA]
+        provideMockStore({ initialState })
+      ]
     })
       .compileComponents();
   }));
