@@ -1,9 +1,9 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideMockStore } from '@ngrx/store/testing';
 import { initialState } from '../core/store';
 import { APP_CONFIG, testAppConfig } from '../shared/config';
+import { WvrSharedModule } from '../shared/wvr-shared.module';
 import { WvrCardComponent } from './wvr-card.component';
 
 @Component({
@@ -37,9 +37,7 @@ describe('WvrCardComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule
-      ],
+      imports: [WvrSharedModule],
       declarations: [
         WvrCardComponent,
         WvrCardHostComponent

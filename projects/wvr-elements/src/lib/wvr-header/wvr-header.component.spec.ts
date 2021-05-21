@@ -1,10 +1,10 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideMockStore } from '@ngrx/store/testing';
 import { initialState } from '../core/store';
 import { APP_CONFIG } from '../shared/config/app-config';
 import { testAppConfig } from '../shared/config/test-app-config';
+import { WvrSharedModule } from '../shared/wvr-shared.module';
 import { WvrHeaderComponent } from './wvr-header.component';
 
 @Component({
@@ -24,9 +24,7 @@ describe('WvrHeaderComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule
-      ],
+      imports: [WvrSharedModule],
       providers: [
         {
           provide: APP_CONFIG,
@@ -37,8 +35,7 @@ describe('WvrHeaderComponent', () => {
       declarations: [
         WvrHeaderComponent,
         WvrHeaderHostComponent
-      ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA]
+      ]
     }).compileComponents()
       .catch(err => { console.error(err); });
   }));

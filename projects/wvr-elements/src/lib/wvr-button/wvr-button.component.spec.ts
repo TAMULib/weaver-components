@@ -1,12 +1,12 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { select } from '@ngrx/store';
 import { provideMockStore } from '@ngrx/store/testing';
 import { filter } from 'rxjs/operators';
 import { actions } from '../core/actions';
 import { selectThemeState } from '../core/store';
 import { APP_CONFIG, testAppConfig } from '../shared/config';
+import { WvrSharedModule } from '../shared/wvr-shared.module';
 import { WvrButtonComponent } from './wvr-button.component';
 
 // TODO: should be using the store's initial state but this is not currently working.
@@ -51,9 +51,7 @@ describe('WvrButtonComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule
-      ],
+      imports: [WvrSharedModule],
       providers: [
         {
           provide: APP_CONFIG,
@@ -64,8 +62,7 @@ describe('WvrButtonComponent', () => {
       declarations: [
         WvrButtonComponent,
         WvrButtonHostComponent
-      ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA]
+      ]
     }).compileComponents();
   }));
 

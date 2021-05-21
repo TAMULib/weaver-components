@@ -1,13 +1,11 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ComponentFixture, inject, TestBed, waitForAsync } from '@angular/core/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { StoreModule } from '@ngrx/store';
 import { provideMockStore } from '@ngrx/store/testing';
-import { InlineSVGModule } from 'ng-inline-svg';
-import { initialState, metaReducers, ROOT_REDUCER } from '../core/store';
+import { initialState } from '../core/store';
 import { APP_CONFIG } from '../shared/config/app-config';
 import { testAppConfig } from '../shared/config/test-app-config';
+import { WvrSharedModule } from '../shared/wvr-shared.module';
 import { WvrIconComponent } from './wvr-icon.component';
 
 @Component({
@@ -30,9 +28,7 @@ describe('WvrIconComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         HttpClientTestingModule,
-        BrowserAnimationsModule,
-        InlineSVGModule,
-        StoreModule.forRoot(ROOT_REDUCER, { metaReducers })
+        WvrSharedModule
       ],
       providers: [
         {
@@ -44,8 +40,7 @@ describe('WvrIconComponent', () => {
       declarations: [
         WvrIconComponent,
         WvrIconHostComponent
-      ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA]
+      ]
     }).compileComponents();
   }));
 

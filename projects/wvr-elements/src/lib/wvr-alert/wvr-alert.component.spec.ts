@@ -1,9 +1,9 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { initialState } from '../core/store';
 import { APP_CONFIG, testAppConfig } from '../shared/config';
+import { WvrSharedModule } from '../shared/wvr-shared.module';
 import { WvrAlertComponent } from './wvr-alert.component';
 
 @Component({
@@ -25,9 +25,7 @@ describe('WvrAlertComponent', () => {
   // tslint:disable-next-line: deprecation
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule
-      ],
+      imports: [WvrSharedModule],
       providers: [
         {
           provide: APP_CONFIG,
@@ -38,8 +36,7 @@ describe('WvrAlertComponent', () => {
       declarations: [
         WvrAlertComponent,
         WvrAlertHostComponent
-      ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA]
+      ]
     }).compileComponents();
     TestBed.inject(MockStore);
   }));

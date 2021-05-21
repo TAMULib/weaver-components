@@ -1,10 +1,9 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
 import { provideMockStore } from '@ngrx/store/testing';
 import { initialState } from '../core/store';
 import { APP_CONFIG, testAppConfig } from '../shared/config';
+import { WvrSharedModule } from '../shared/wvr-shared.module';
 import { WvrDropdownComponent } from './wvr-dropdown.component';
 
 @Component({
@@ -30,9 +29,7 @@ describe('WvrDropdownComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule
-      ],
+      imports: [WvrSharedModule],
       providers: [
         {
           provide: APP_CONFIG,
@@ -41,11 +38,9 @@ describe('WvrDropdownComponent', () => {
         provideMockStore({ initialState })
       ],
       declarations: [
-        NgbDropdown,
         WvrDropdownComponent,
         WvrDropdownHostComponent
-      ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA]
+      ]
     }).compileComponents();
   }));
 

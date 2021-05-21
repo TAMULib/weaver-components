@@ -1,8 +1,8 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideMockStore } from '@ngrx/store/testing';
 import { APP_CONFIG, testAppConfig } from '../shared/config';
+import { WvrSharedModule } from '../shared/wvr-shared.module';
 import { WvrWysiwygComponent } from './wvr-wysiwyg.component';
 
 // TODO: should be using the store's initial state but this is not currently working.
@@ -34,9 +34,7 @@ describe('WvrWysiwygComponent', () => {
   // tslint:disable-next-line: deprecation
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule
-      ],
+      imports: [WvrSharedModule],
       providers: [
         {
           provide: APP_CONFIG,
@@ -47,10 +45,6 @@ describe('WvrWysiwygComponent', () => {
       declarations: [
         WvrWysiwygComponent,
         WvrWysiwygHostComponent
-      ],
-      schemas: [
-        CUSTOM_ELEMENTS_SCHEMA,
-        NO_ERRORS_SCHEMA
       ]
     }).compileComponents();
   }));

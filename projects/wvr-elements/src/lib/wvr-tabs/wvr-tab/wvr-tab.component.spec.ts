@@ -1,9 +1,8 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideMockStore } from '@ngrx/store/testing';
 import { initialState } from '../../core/store';
 import { APP_CONFIG, testAppConfig } from '../../shared/config';
+import { WvrSharedModule } from '../../shared/wvr-shared.module';
 import { WvrTabsComponent } from '../wvr-tabs.component';
 import { WvrTabComponent } from './wvr-tab.component';
 
@@ -15,9 +14,7 @@ describe('WvrTabComponent', () => {
   let parentFixture: ComponentFixture<WvrTabsComponent>;
 
   beforeEach(waitForAsync(() => TestBed.configureTestingModule({
-    imports: [
-      BrowserAnimationsModule
-    ],
+    imports: [WvrSharedModule],
     declarations: [
       WvrTabsComponent,
       WvrTabComponent
@@ -28,8 +25,7 @@ describe('WvrTabComponent', () => {
         useValue: testAppConfig
       },
       provideMockStore({ initialState })
-    ],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    ]
   }).compileComponents()));
 
   beforeEach(() => {

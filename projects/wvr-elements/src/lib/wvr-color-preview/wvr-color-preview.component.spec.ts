@@ -1,9 +1,8 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideMockStore } from '@ngrx/store/testing';
 import { initialState } from '../core/store';
 import { APP_CONFIG, testAppConfig } from '../shared/config';
+import { WvrSharedModule } from '../shared/wvr-shared.module';
 import { WvrColorPreviewComponent } from './wvr-color-preview.component';
 
 describe('ColorPreviewComponent', () => {
@@ -11,9 +10,7 @@ describe('ColorPreviewComponent', () => {
   let fixture: ComponentFixture<WvrColorPreviewComponent>;
 
   beforeEach(waitForAsync(() => TestBed.configureTestingModule({
-    imports: [
-      BrowserAnimationsModule
-    ],
+    imports: [WvrSharedModule],
     providers: [
       {
         provide: APP_CONFIG,
@@ -21,8 +18,7 @@ describe('ColorPreviewComponent', () => {
       },
       provideMockStore({ initialState })
     ],
-    declarations: [WvrColorPreviewComponent],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    declarations: [WvrColorPreviewComponent]
   }).compileComponents()));
 
   beforeEach(() => {
