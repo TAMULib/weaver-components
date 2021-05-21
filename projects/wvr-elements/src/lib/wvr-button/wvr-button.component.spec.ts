@@ -52,18 +52,19 @@ describe('WvrButtonComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [WvrSharedModule],
+      declarations: [
+        WvrButtonComponent,
+        WvrButtonHostComponent
+      ],
       providers: [
         {
           provide: APP_CONFIG,
           useValue: testAppConfig
         },
         provideMockStore({ initialState })
-      ],
-      declarations: [
-        WvrButtonComponent,
-        WvrButtonHostComponent
       ]
-    }).compileComponents();
+    })
+      .compileComponents();
   }));
 
   beforeEach(() => {

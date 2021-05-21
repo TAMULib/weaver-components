@@ -30,18 +30,19 @@ describe('WvrDropdownComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [WvrSharedModule],
+      declarations: [
+        WvrDropdownComponent,
+        WvrDropdownHostComponent
+      ],
       providers: [
         {
           provide: APP_CONFIG,
           useValue: testAppConfig
         },
         provideMockStore({ initialState })
-      ],
-      declarations: [
-        WvrDropdownComponent,
-        WvrDropdownHostComponent
       ]
-    }).compileComponents();
+    })
+      .compileComponents();
   }));
 
   beforeEach(() => {

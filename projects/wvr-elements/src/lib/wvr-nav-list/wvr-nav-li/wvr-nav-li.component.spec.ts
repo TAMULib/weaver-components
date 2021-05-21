@@ -20,7 +20,8 @@ describe('WvrNavLiComponent', () => {
         },
         provideMockStore({ initialState })
       ]
-    }).compileComponents()
+    })
+      .compileComponents()
       .catch(err => { console.error(err); });
   }));
 

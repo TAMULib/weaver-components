@@ -29,18 +29,19 @@ describe('WvrHeaderComponent', () => {
         HttpClientTestingModule,
         WvrSharedModule
       ],
+      declarations: [
+        WvrHeaderComponent,
+        WvrHeaderHostComponent
+      ],
       providers: [
         {
           provide: APP_CONFIG,
           useValue: testAppConfig
         },
         provideMockStore({ initialState })
-      ],
-      declarations: [
-        WvrHeaderComponent,
-        WvrHeaderHostComponent
       ]
-    }).compileComponents()
+    })
+      .compileComponents()
       .catch(err => { console.error(err); });
   }));
 

@@ -26,18 +26,19 @@ describe('WvrAlertComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [WvrSharedModule],
+      declarations: [
+        WvrAlertComponent,
+        WvrAlertHostComponent
+      ],
       providers: [
         {
           provide: APP_CONFIG,
           useValue: testAppConfig
         },
         provideMockStore({ initialState })
-      ],
-      declarations: [
-        WvrAlertComponent,
-        WvrAlertHostComponent
       ]
-    }).compileComponents();
+    })
+      .compileComponents();
     TestBed.inject(MockStore);
   }));
 

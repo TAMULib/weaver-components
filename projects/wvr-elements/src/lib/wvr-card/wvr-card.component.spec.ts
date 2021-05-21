@@ -50,7 +50,8 @@ describe('WvrCardComponent', () => {
         provideMockStore({ initialState })
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
-    }).compileComponents();
+    })
+      .compileComponents();
   }));
 
   beforeEach(() => {

@@ -22,7 +22,8 @@ describe('WvrTabsComponent', () => {
       },
       provideMockStore({ initialState })
     ]
-  }).compileComponents()));
+  })
+    .compileComponents()));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(WvrTabsComponent);

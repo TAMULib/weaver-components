@@ -25,18 +25,19 @@ describe('WvrFooterComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [WvrSharedModule],
+      declarations: [
+        WvrFooterComponent,
+        WvrFooterHostComponent
+      ],
       providers: [
         {
           provide: APP_CONFIG,
           useValue: testAppConfig
         },
         provideMockStore({ initialState })
-      ],
-      declarations: [
-        WvrFooterComponent,
-        WvrFooterHostComponent
       ]
-    }).compileComponents();
+    })
+      .compileComponents();
   }));
 
   beforeEach(() => {

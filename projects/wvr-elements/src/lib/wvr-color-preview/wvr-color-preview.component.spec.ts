@@ -11,15 +11,16 @@ describe('ColorPreviewComponent', () => {
 
   beforeEach(waitForAsync(() => TestBed.configureTestingModule({
     imports: [WvrSharedModule],
+    declarations: [WvrColorPreviewComponent],
     providers: [
       {
         provide: APP_CONFIG,
         useValue: testAppConfig
       },
       provideMockStore({ initialState })
-    ],
-    declarations: [WvrColorPreviewComponent]
-  }).compileComponents()));
+    ]
+  })
+    .compileComponents()));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(WvrColorPreviewComponent);

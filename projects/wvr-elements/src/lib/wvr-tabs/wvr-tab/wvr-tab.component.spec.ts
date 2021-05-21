@@ -15,10 +15,7 @@ describe('WvrTabComponent', () => {
 
   beforeEach(waitForAsync(() => TestBed.configureTestingModule({
     imports: [WvrSharedModule],
-    declarations: [
-      WvrTabsComponent,
-      WvrTabComponent
-    ],
+    declarations: [WvrTabComponent],
     providers: [
       {
         provide: APP_CONFIG,
@@ -26,7 +23,8 @@ describe('WvrTabComponent', () => {
       },
       provideMockStore({ initialState })
     ]
-  }).compileComponents()));
+  })
+    .compileComponents()));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(WvrTabComponent);

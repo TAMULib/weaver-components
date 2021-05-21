@@ -35,18 +35,19 @@ describe('WvrWysiwygComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [WvrSharedModule],
+      declarations: [
+        WvrWysiwygComponent,
+        WvrWysiwygHostComponent
+      ],
       providers: [
         {
           provide: APP_CONFIG,
           useValue: testAppConfig
         },
         provideMockStore({ initialState })
-      ],
-      declarations: [
-        WvrWysiwygComponent,
-        WvrWysiwygHostComponent
       ]
-    }).compileComponents();
+    })
+      .compileComponents();
   }));
 
   beforeEach(() => {

@@ -30,18 +30,19 @@ describe('WvrIconComponent', () => {
         HttpClientTestingModule,
         WvrSharedModule
       ],
+      declarations: [
+        WvrIconComponent,
+        WvrIconHostComponent
+      ],
       providers: [
         {
           provide: APP_CONFIG,
           useValue: testAppConfig
         },
         provideMockStore({ initialState })
-      ],
-      declarations: [
-        WvrIconComponent,
-        WvrIconHostComponent
       ]
-    }).compileComponents();
+    })
+      .compileComponents();
   }));
 
   beforeEach(() => {

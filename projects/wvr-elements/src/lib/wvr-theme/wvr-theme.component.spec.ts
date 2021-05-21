@@ -19,7 +19,8 @@ describe('WvrThemeComponent', () => {
       },
       provideMockStore({ initialState })
     ]
-  }).compileComponents()));
+  })
+    .compileComponents()));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(WvrThemeComponent);

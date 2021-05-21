@@ -40,7 +40,8 @@ describe('WvrManifestEntryComponent', () => {
       },
       provideMockStore({ initialState })
     ]
-  }).compileComponents()));
+  })
+    .compileComponents()));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(WvrManifestHostComponent);
