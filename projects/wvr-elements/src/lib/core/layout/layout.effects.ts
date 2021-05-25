@@ -4,10 +4,10 @@ import { Action, select, Store } from '@ngrx/store';
 import { fromEvent } from 'rxjs';
 import { switchMap, withLatestFrom } from 'rxjs/operators';
 import { RootState, selectIsMobileLayout } from '../store';
-import * as MobileActions from './mobile.actions';
+import * as LayoutActions from './layout.actions';
 
 @Injectable()
-export class MobileEffects implements OnInitEffects {
+export class LayoutEffects implements OnInitEffects {
 
   constructor(private readonly store: Store<RootState>) {
 
@@ -16,19 +16,19 @@ export class MobileEffects implements OnInitEffects {
   resize = createEffect(() => fromEvent(window, 'resize')
     .pipe(
       withLatestFrom(this.store.pipe(select(selectIsMobileLayout))),
-      switchMap(([event, isMobileLayout]) => isMobileLayout !== this.isMobileLayout()
+      switchMap(([event, isMobile]) => isMobile !== this.isMobile()
         ? [this.ngrxOnInitEffects()]
         : [])
     )
   );
 
   ngrxOnInitEffects(): Action {
-    return MobileActions.setMobileLayout({
-      mobileLayout: this.isMobileLayout()
+    return LayoutActions.setIsMobile({
+      isMobile: this.isMobile()
     });
   }
 
   /** A mapping method to map resize events to boolean.  */
-  private readonly isMobileLayout = (): boolean => window.innerWidth < 992;
+  private readonly isMobile = (): boolean => window.innerWidth < 992;
 
 }

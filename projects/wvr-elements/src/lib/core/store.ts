@@ -8,34 +8,34 @@ import { ManifestEntry } from './manifest/manifest-entry';
 import * as fromManifest from './manifest/manifest.reducers';
 import * as fromRest from './rest/rest.reducers';
 import * as fromTheme from './theme/theme.reducers';
-import * as fromMobile from './mobile/mobile.reducers';
+import * as fromLayout from './layout/layout.reducers';
 import * as fromModal from './modal/modal.reducers';
 import * as fromWysiwyg from './wysiwyg/wysiwyg.reducers';
 
 export interface RootState {
+  layout: fromLayout.State;
   manifests: fromManifest.State;
+  modals: fromModal.State;
   rest: fromRest.State;
   theme: fromTheme.State;
-  mobile: fromMobile.State;
-  modals: fromModal.State;
   wysiwyg: fromWysiwyg.State;
 }
 
 export const initialState: RootState = {
+  layout: fromLayout.initialState,
   manifests: fromManifest.initialState,
+  modals: fromModal.initialState,
   rest: fromRest.initialState,
   theme: fromTheme.initialState,
-  mobile: fromMobile.initialState,
-  modals: fromModal.initialState,
   wysiwyg: fromWysiwyg.initialState
 };
 
 export const reducers: ActionReducerMap<RootState> = {
+  layout: fromLayout.reducer,
   manifests: fromManifest.reducer,
+  modals: fromModal.reducer,
   rest: fromRest.reducer,
   theme: fromTheme.reducer,
-  mobile: fromMobile.reducer,
-  modals: fromModal.reducer,
   wysiwyg: fromWysiwyg.reducer
 };
 
@@ -137,13 +137,13 @@ export const selectCurrentTheme = createSelector(
   (themeState: fromTheme.State) => themeState.themes[themeState.currentTheme]
 );
 
-// mobile selectors
-export const selectMobileState = createFeatureSelector<RootState, fromMobile.State>('mobile');
+// layout selectors
+export const selectLayoutState = createFeatureSelector<RootState, fromLayout.State>('layout');
 
 // TODO - determine how to pass states into tests without requiring null checks.
 export const selectIsMobileLayout = createSelector(
-  selectMobileState,
-  (mobileState: fromMobile.State) => mobileState?.mobile.mobileLayout
+  selectLayoutState,
+  (layoutState: fromLayout.State) => layoutState?.layout.isMobile
 );
 
 // modal selectors
