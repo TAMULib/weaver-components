@@ -46,9 +46,4 @@ describe('WvrItWorksComponent', () => {
       .toEqual('Weaver Components Work');
   });
 
-  it('should set is mobileAgent', () => {
-    expect(component.isMobileAgent)
-      .toBeFalse();
-  });
-
 });
