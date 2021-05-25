@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { filter } from 'rxjs/operators';
 import { ThemeVariants } from '../../shared/theme';
-import { hexToRgb, luminance, mix, yiq } from '../../shared/utility/color.utlity';
+import { hexToRgb, luminance, mix, yiq } from '../../shared/utility/color.utility';
 import { WvrThemeableComponent } from '../../shared/wvr-themeable.component';
 import { RootState, selectThemeState } from '../store';
 
