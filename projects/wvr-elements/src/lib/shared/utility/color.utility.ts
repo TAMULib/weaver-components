@@ -1,7 +1,7 @@
 /* istanbul ignore file */
 
 /* TODO: Issue #292. */
-import * as nameToHex from './nameToHex.utility.json';
+import * as nameToHex from './nameToHex.json';
 
 const expandHexShorthand = (hex: string): string => {
   // expand shorthand form (e.g. "03f") to full form (e.g. "0033ff")
