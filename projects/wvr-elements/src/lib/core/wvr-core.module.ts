@@ -34,7 +34,6 @@ import { ManifestEffects } from './manifest/manifest.effects';
 import { LayoutEffects } from './layout/layout.effects';
 import { RestEffects } from './rest/rest.effects';
 import { metaReducers, ROOT_REDUCER } from './store';
-import { TemplateService } from './template.service';
 import { ThemeEffects } from './theme/theme.effects';
 import { ThemeService } from './theme/theme.service';
 import { WysiwygEffects } from './wysiwyg/wysiwyg.effects';
@@ -103,8 +102,7 @@ const PROVIDERS = [
   AnimationService,
   ActionRegistryService,
   ComponentRegistryService,
-  ThemeService,
-  TemplateService
+  ThemeService
 ];
 
 @NgModule({
