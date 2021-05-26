@@ -20,6 +20,8 @@ export class WvrTextComponent {
 
   @Input() themeVariant: ThemeVariantName;
 
+  @Input() color: string;
+
   /** Allows for the override of font-size property for wvre-text */
   @HostBinding('style.--wvr-text-font-size') @Input() fontSize;
 
@@ -41,14 +43,8 @@ export class WvrTextComponent {
   /** Allows for the override of line-height property for wvre-text */
   @HostBinding('style.--wvr-text-line-height') @Input() lineHeight;
 
-  _textColor;
-
-  set textColor(value: string) {
-    this._textColor = value;
-  }
-
   @HostBinding('style.--wvr-text-color') get textColor(): string {
-    return this.themeVariant ? `var(--${this.themeVariant}-button-color)` : this._textColor;
+    return this.themeVariant ? `var(--${this.themeVariant}-button-color)` : this.color;
   }
 
   /** Allows for the override of text-align property for wvre-text */
