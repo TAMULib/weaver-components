@@ -8,13 +8,13 @@ import { ComponentRegistryService } from '../core/component-registry.service';
 import { WvrDataSelect } from '../core/data-select';
 import * as ManifestActions from '../core/manifest/manifest.actions';
 import { RootState, selectIsMobileLayout, selectManifestEntryResponse } from '../core/store';
-import { TemplateService } from '../core/template.service';
 import { ThemeService } from '../core/theme/theme.service';
 import { AppConfig, APP_CONFIG } from './config';
 import { ThemeVariantName } from './theme';
 import { WvrAnimationComponent } from './wvr-animation.component';
 import { WvrDataComponent } from './wvr-data.component';
 import { WvrThemeableComponent } from './wvr-themeable.component';
+import { wvrParseProjectedContent } from './utility';
 
 @Directive()
 // tslint:disable-next-line:directive-class-suffix
@@ -88,9 +88,6 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
   /** A reference to the AnimationService */
   private readonly _animationService: AnimationService<WvrBaseComponent>;
 
-  /** A reference to the TemplateService */
-  private readonly _templateService: TemplateService<WvrBaseComponent>;
-
   /** A reference to the ThemeService */
   private readonly themeService: ThemeService;
 
@@ -119,7 +116,6 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
     this.store = injector.get<Store<RootState>>(Store);
 
     this._animationService = injector.get(AnimationService);
-    this._templateService = injector.get(TemplateService);
     this.themeService = injector.get(ThemeService);
 
     const element = (this.eRef.nativeElement as HTMLElement);
@@ -132,7 +128,7 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
     this.processData();
     this.initializeAnimationRegistration();
     this.themeService.registerComponent(this.id, this);
-    this._templateService.parseProjectedContent(this, this.eRef.nativeElement);
+    wvrParseProjectedContent(this, this.eRef.nativeElement);
 
     this.subscriptions.push(this.store.pipe(select(selectIsMobileLayout))
       .subscribe((isMobile: boolean) => {
