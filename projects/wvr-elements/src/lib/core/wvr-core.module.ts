@@ -6,6 +6,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { InlineSVGModule } from 'ng-inline-svg';
+import { WvrElementDesc } from '../shared/utility/bootstrap.utility';
 import { WvrAlertComponent } from '../wvr-alert/wvr-alert.component';
 import { WvrButtonComponent } from '../wvr-button/wvr-button.component';
 import { WvrCardComponent } from '../wvr-card/wvr-card.component';
@@ -30,8 +31,8 @@ import { WvrWysiwygComponent } from '../wvr-wysiwyg/wvr-wysiwyg.component';
 import { ActionRegistryService } from './action-registry.service';
 import { AnimationService } from './animation.service';
 import { ComponentRegistryService } from './component-registry.service';
-import { ManifestEffects } from './manifest/manifest.effects';
 import { LayoutEffects } from './layout/layout.effects';
+import { ManifestEffects } from './manifest/manifest.effects';
 import { RestEffects } from './rest/rest.effects';
 import { metaReducers, ROOT_REDUCER } from './store';
 import { ThemeEffects } from './theme/theme.effects';
@@ -39,28 +40,28 @@ import { ThemeService } from './theme/theme.service';
 import { WysiwygEffects } from './wysiwyg/wysiwyg.effects';
 
 /** This property contains a list of components and the selector tags. */
-export const WVR_ELEMENTS = [
-  { component: WvrAlertComponent, selector: 'wvre-alert' },
-  { component: WvrButtonComponent, selector: 'wvre-button' },
-  { component: WvrCardComponent, selector: 'wvre-card' },
-  { component: WvrColorPreviewComponent, selector: 'wvre-color-preview' },
-  { component: WvrDropdownComponent, selector: 'wvre-dropdown' },
-  { component: WvrFooterComponent, selector: 'wvre-footer' },
-  { component: WvrHeaderComponent, selector: 'wvre-header' },
-  { component: WvrIconComponent, selector: 'wvre-icon' },
-  { component: WvrItWorksComponent, selector: 'wvre-it-works' },
-  { component: WvrListComponent, selector: 'wvre-list' },
-  { component: WvrListItemComponent, selector: 'wvre-list-item' },
-  { component: WvrNavListComponent, selector: 'wvre-nav-list' },
-  { component: WvrManifestComponent, selector: 'wvre-manifest' },
-  { component: WvrManifestEntryComponent, selector: 'wvre-manifest-entry' },
-  { component: WvrModalComponent, selector: 'wvre-modal' },
-  { component: WvrNavLiComponent, selector: 'wvre-nav-li' },
-  { component: WvrTextComponent, selector: 'wvre-text' },
-  { component: WvrTabsComponent, selector: 'wvre-tabs' },
-  { component: WvrTabComponent, selector: 'wvre-tab' },
-  { component: WvrThemeComponent, selector: 'wvre-theme' },
-  { component: WvrWysiwygComponent, selector: 'wvre-wysiwyg' }
+export const WVR_ELEMENTS: Array<WvrElementDesc> = [
+  { component: WvrAlertComponent, selector: 'wvre-alert', lazy: true },
+  { component: WvrButtonComponent, selector: 'wvre-button', lazy: true },
+  { component: WvrCardComponent, selector: 'wvre-card', lazy: true },
+  { component: WvrColorPreviewComponent, selector: 'wvre-color-preview', lazy: true },
+  { component: WvrDropdownComponent, selector: 'wvre-dropdown', lazy: true },
+  { component: WvrFooterComponent, selector: 'wvre-footer', lazy: true },
+  { component: WvrHeaderComponent, selector: 'wvre-header', lazy: true },
+  { component: WvrIconComponent, selector: 'wvre-icon', lazy: true },
+  { component: WvrItWorksComponent, selector: 'wvre-it-works', lazy: true },
+  { component: WvrListComponent, selector: 'wvre-list', lazy: true },
+  { component: WvrListItemComponent, selector: 'wvre-list-item', lazy: true },
+  { component: WvrNavListComponent, selector: 'wvre-nav-list', lazy: true },
+  { component: WvrManifestComponent, selector: 'wvre-manifest', lazy: false },
+  { component: WvrManifestEntryComponent, selector: 'wvre-manifest-entry', lazy: false },
+  { component: WvrModalComponent, selector: 'wvre-modal', lazy: true },
+  { component: WvrNavLiComponent, selector: 'wvre-nav-li', lazy: true },
+  { component: WvrTextComponent, selector: 'wvre-text', lazy: true },
+  { component: WvrTabsComponent, selector: 'wvre-tabs', lazy: true },
+  { component: WvrTabComponent, selector: 'wvre-tab', lazy: true },
+  { component: WvrThemeComponent, selector: 'wvre-theme', lazy: false },
+  { component: WvrWysiwygComponent, selector: 'wvre-wysiwyg', lazy: true }
 ];
 
 export const registerCustomElements = (injector: Injector, elements: Array<{ component: any, selector: string }>) => {
