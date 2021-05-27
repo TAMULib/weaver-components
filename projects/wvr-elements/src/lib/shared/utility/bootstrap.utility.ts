@@ -1,12 +1,17 @@
 /* istanbul ignore file */
 
 /* TODO: Issue #292. */
-import { SelectorContext } from '@angular/compiler';
 import { Injector, Type } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppConfig, APP_CONFIG } from '../config';
 import { wvrTimeout } from './timing.utility';
+
+interface WvrElementDesc {
+  component: any;
+  selector: string;
+  lazy: boolean
+}
 
 const componentScript = document.currentScript;
 
@@ -45,27 +50,22 @@ const lazyLoadWeaverElement = (element: HTMLElement, selectors: Array<string>): 
 };
 
 /** Lazy load weaver elements. */
-const registerWeaverElements = (injector: Injector, wvrElements: Array<{ component: any, selector: string }>) => {
+const registerWeaverElements = (injector: Injector, wvrElements: Array<WvrElementDesc>) => {
   // filter for selectors of elements to lazy load
-  const selectors = wvrElements.map(element => element.selector)
-    .filter(selector => selector !== 'wvre-theme')
-    .filter(selector => selector !== 'wvre-manifest')
-    .filter(selector => selector !== 'wvre-manifest-entry')
-    .map(selector => selector.toUpperCase());
+  const selectors = wvrElements.filter(wvrElement => wvrElement.lazy)
+    .map(wvrElement => wvrElement.selector.toUpperCase());
 
   // wrap elements that do not have weaver element as parent in div and template
   // div to specify class to target for min-height
   // template to prevent render of weaver element
   wvrElements
-    .filter(lazyElement => lazyElement.selector !== 'wvre-theme')
-    .filter(lazyElement => lazyElement.selector !== 'wvre-manifest')
-    .filter(lazyElement => lazyElement.selector !== 'wvre-manifest-entry')
-    .forEach(lazyElement => {
-      Array.from(document.getElementsByTagName(lazyElement.selector))
+    .filter(wvrElement => wvrElement.lazy)
+    .forEach(wvrElement => {
+      Array.from(document.getElementsByTagName(wvrElement.selector))
         .forEach(element => {
           if (lazyLoadWeaverElement(element as HTMLElement, selectors)) {
             const div = document.createElement('div');
-            div.setAttribute('element', lazyElement.selector);
+            div.setAttribute('element', wvrElement.selector);
             const template = document.createElement('template');
             div.appendChild(template);
             element.parentNode.replaceChild(div, element);
@@ -75,9 +75,9 @@ const registerWeaverElements = (injector: Injector, wvrElements: Array<{ compone
     });
 
   // define the weaver elements in custom browser element registry
-  wvrElements.forEach(lazyElement => {
+  wvrElements.forEach(wvrElement => {
     try {
-      customElements.define(lazyElement.selector, createCustomElement(lazyElement.component, { injector }));
+      customElements.define(wvrElement.selector, createCustomElement(wvrElement.component, { injector }));
     } catch (e) {
       // console.warn(e);
     }
@@ -128,6 +128,7 @@ const showWeaverElements = () => {
 export {
   obtainConfigPath,
   weaverBootstrap,
+  WvrElementDesc,
   registerWeaverElements,
   showWeaverElements
 };
