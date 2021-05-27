@@ -32,7 +32,7 @@
 <!-- cardImgSrc -->
 <ng-template #cardImg>
   <div class="card-img" [ngClass]="{'wvr-hidden': !hasCardImg}">
-    <img alt="Card Image Cap" class="card-img-top" [src]="imgSrc" />
+    <img alt="Card Image Cap" class="card-img-top" [src]="imgSrc" [height]="imgHeight" [width]="imgWidth" />
   </div>
 </ng-template>
 

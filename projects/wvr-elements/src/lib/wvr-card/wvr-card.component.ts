@@ -65,6 +65,10 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit 
 
   imgSrc: string;
 
+  imgHeight: string;
+
+  imgWidth: string;
+
   /** Convenience referece this components ElementReference's nativeElement. */
   private readonly elem: HTMLElement;
 
@@ -141,6 +145,8 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit 
     const wvrCardImgElem = this.elem.querySelector(`${this.selectorPrefix}-card-img`);
     if (wvrCardImgElem) {
       this.imgSrc = wvrCardImgElem.getAttribute('src');
+      this.imgHeight = wvrCardImgElem.getAttribute('height');
+      this.imgWidth = wvrCardImgElem.getAttribute('width');
       this.hasCardImg = true;
     }
   }
