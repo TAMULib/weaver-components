@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { select } from '@ngrx/store';
 import { provideMockStore } from '@ngrx/store/testing';
 import { filter } from 'rxjs/operators';
@@ -51,7 +52,10 @@ describe('WvrButtonComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [WvrSharedModule],
+      imports: [
+        BrowserAnimationsModule,
+        WvrSharedModule
+      ],
       declarations: [
         WvrButtonComponent,
         WvrButtonHostComponent

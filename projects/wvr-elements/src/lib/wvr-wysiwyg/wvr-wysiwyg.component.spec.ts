@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideMockStore } from '@ngrx/store/testing';
 import { APP_CONFIG, testAppConfig } from '../shared/config';
 import { WvrSharedModule } from '../shared/wvr-shared.module';
@@ -34,7 +35,10 @@ describe('WvrWysiwygComponent', () => {
   // tslint:disable-next-line: deprecation
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [WvrSharedModule],
+      imports: [
+        BrowserAnimationsModule,
+        WvrSharedModule
+      ],
       declarations: [
         WvrWysiwygComponent,
         WvrWysiwygHostComponent

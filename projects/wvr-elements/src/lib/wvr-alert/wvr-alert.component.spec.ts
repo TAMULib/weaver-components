@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { initialState } from '../core/store';
 import { APP_CONFIG, testAppConfig } from '../shared/config';
@@ -25,7 +26,10 @@ describe('WvrAlertComponent', () => {
   // tslint:disable-next-line: deprecation
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [WvrSharedModule],
+      imports: [
+        BrowserAnimationsModule,
+        WvrSharedModule
+      ],
       declarations: [
         WvrAlertComponent,
         WvrAlertHostComponent

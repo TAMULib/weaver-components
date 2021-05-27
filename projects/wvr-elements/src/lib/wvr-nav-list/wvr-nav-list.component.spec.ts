@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideMockStore } from '@ngrx/store/testing';
 import { initialState } from '../core/store';
 import { Alignment } from '../shared/alignment.enum';
@@ -12,7 +13,10 @@ describe('WvrNavListComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [WvrSharedModule],
+      imports: [
+        BrowserAnimationsModule,
+        WvrSharedModule
+      ],
       declarations: [WvrNavListComponent],
       providers: [
         {

@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideMockStore } from '@ngrx/store/testing';
 import { initialState } from '../core/store';
 import { APP_CONFIG, testAppConfig } from '../shared/config';
@@ -28,7 +29,10 @@ describe('WvrManifestComponent', () => {
   let entryFixture: ComponentFixture<WvrManifestEntryComponent>;
 
   beforeEach(waitForAsync(() => TestBed.configureTestingModule({
-    imports: [WvrSharedModule],
+    imports: [
+      BrowserAnimationsModule,
+      WvrSharedModule
+    ],
     declarations: [
       WvrManifestComponent,
       WvrManifestHostComponent
