@@ -7,7 +7,4 @@
   @import '../projects/wvr-elements/src/lib/shared/styles/overrides';
 }
 
-.wvr-components-loading,
-.wvr-hidden {
-  display: none;
-}
+@import '../projects/wvr-elements/src/lib/shared/styles/elements';

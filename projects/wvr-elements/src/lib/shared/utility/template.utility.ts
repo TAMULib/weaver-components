@@ -5,7 +5,7 @@ import * as JSON5 from 'json5';
 import Handlebars from 'handlebars/dist/cjs/handlebars';
 import { WvrDataSelect } from '../../core/data-select';
 import { WvrDataComponent } from '../wvr-data.component';
-import { wvrTimeout } from '../../shared/utility';
+import { wvrTimeout } from '../../shared/utility/timing.utility';
 
 const wvrCompile = (d: {}, s: WvrDataSelect, elem: HTMLElement, projectedContentElem: HTMLElement): void => {
   const data = {};

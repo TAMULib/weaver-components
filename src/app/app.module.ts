@@ -1,7 +1,7 @@
 import { Injector, NgModule } from '@angular/core';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
-import { AppConfig, APP_CONFIG, registerCustomElements, showHiddentContent, WvrCoreModule, WvrSharedModule, wvrTimeout, WVR_ELEMENTS } from '../../projects/wvr-elements/src/public-api';
+import { AppConfig, APP_CONFIG, registerWeaverElements, WvrCoreModule, WvrSharedModule, WVR_ELEMENTS } from '../../projects/wvr-elements/src/public-api';
 
 const getTinyMCEScript = (appConfig: AppConfig): string => `${appConfig.assetsUrl}/tinymce/tinymce.min.js`;
 
@@ -29,26 +29,12 @@ const getTinyMCEScript = (appConfig: AppConfig): string => `${appConfig.assetsUr
 })
 export class AppModule {
 
-  constructor(private readonly injector: Injector) {
-
+  constructor(injector: Injector) {
+    registerWeaverElements(injector, WVR_ELEMENTS);
   }
 
   ngDoBootstrap(): void {
-    registerCustomElements(this.injector, WVR_ELEMENTS);
-    showHiddentContent(this.injector);
-
-    wvrTimeout(() => {
-      const elements = document.querySelectorAll('.wvr-components-loading:not(body)');
-      elements.forEach(element => {
-        element.classList.remove('wvr-components-loading');
-      });
-
-      const bodyElem = document.querySelector('body');
-      if (bodyElem) {
-        bodyElem.classList.remove('wvr-components-loading');
-        bodyElem.classList.remove('wvr-hidden');
-      }
-    });
+    // do nothing
   }
 
 }

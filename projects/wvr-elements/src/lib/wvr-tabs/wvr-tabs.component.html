@@ -2,7 +2,7 @@
   <ng-container *ngTemplateOutlet="content"></ng-container>
 </ul>
 
-<tab-content [innerHTML]="activeTabContent" [id]="tabContentID" role="tabpanel" [attr.aria-labelledby]="activeTab?.htmlId"></tab-content>
+<tab-content [innerHTML]="activeTabContent | safe: 'html'" [id]="tabContentID" role="tabpanel" [attr.aria-labelledby]="activeTab?.htmlId"></tab-content>
 
 <ng-template #content>
   <ng-content select="wvre-tab, wvr-tab-component"></ng-content>

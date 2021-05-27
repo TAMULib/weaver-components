@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgbDropdownModule, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDropdownModule, NgbModalModule, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { InlineSVGModule } from 'ng-inline-svg';
 import { WvrAlertComponent } from '../wvr-alert/wvr-alert.component';
@@ -67,6 +67,7 @@ const MODULES = [
   InlineSVGModule,
   NgbDropdownModule,
   NgbModalModule,
+  NgbNavModule,
   ReactiveFormsModule
 ];
 
