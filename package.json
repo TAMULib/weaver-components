@@ -4,7 +4,7 @@
     "type": "git",
     "url": "git+https://github.com/TAMULib/weaver-components.git"
   },
-  "version": "1.11.1",
+  "version": "1.12.0",
   "private": false,
   "license": "MIT",
   "config": {
@@ -91,7 +91,7 @@
     "@lhci/cli": "^0.7.2",
     "@ngrx/schematics": "^12.0.0",
     "@pickra/copy-code-block": "^1.2.0",
-    "@types/jasmine": "~3.7.5",
+    "@types/jasmine": "~3.7.6",
     "@types/jasminewd2": "~2.0.9",
     "@types/json5": "^2.2.0",
     "@types/node": "^15.6.1",

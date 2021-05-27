@@ -10,7 +10,7 @@ import { wvrTimeout } from './timing.utility';
 interface WvrElementDesc {
   component: any;
   selector: string;
-  lazy: boolean
+  lazy: boolean;
 }
 
 const componentScript = document.currentScript;
