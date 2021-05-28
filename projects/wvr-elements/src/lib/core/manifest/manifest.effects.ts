@@ -42,9 +42,15 @@ export class ManifestEffects {
           return ManifestActions.queueRequest({ request });
         }
 
+        let path = entry.path;
+        request.options.pathVariables.forEach((v, k) => {
+          path = path.split(k)
+            .join(v);
+        });
+
         const method = request.method ? request.method : entry.methods[0];
         // TODO: validate method with allowed methods on manifests entry
-        const url = manifest.baseUrl + entry.path;
+        const url = manifest.baseUrl + path;
         const options = { ...entry.options, ...request.options };
         const onSuccess = request.onSuccess ? request.onSuccess : [];
         const onFailure = request.onFailure ? request.onFailure : [];
