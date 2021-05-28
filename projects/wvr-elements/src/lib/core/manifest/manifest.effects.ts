@@ -44,7 +44,7 @@ export class ManifestEffects {
 
         let path = entry.path;
         request.options.pathVariables.forEach((v, k) => {
-          path = path.split(k)
+          path = path.split(`:{k}`)
             .join(v);
         });
 
