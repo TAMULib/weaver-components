@@ -28,7 +28,7 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit {
   @Input() btnText: string;
 
   /** This defines the modal id. */
-  modalId: string;
+  @Input() modalId: string;
 
   /** Allows for the override of theme variant for modal component. */
   @Input() themeVariant: ThemeVariantName = 'primary';
@@ -87,9 +87,14 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit {
     });
 
     const defaultName = 'Weaver Modal';
-    this.modalId = !this.title ? `${defaultName
-      .split(' ')
-      .join('')}-${this.id}` : this.title;
+
+    this.modalId = !!this.modalId
+      ? this.modalId
+      : !!this.title
+      ? this.title
+      : `${defaultName
+        .split(' ')
+        .join('')}-${this.id}`;
 
     this.title = !this.title ? defaultName : this.title;
 
