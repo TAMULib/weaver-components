@@ -20,7 +20,6 @@
         "build": {
           "builder": "ngx-build-plus:browser",
           "options": {
-            "aot": true,
             "preserveSymlinks": true,
             "outputPath": "dist/weaver-components",
             "index": "./src/index.html",
