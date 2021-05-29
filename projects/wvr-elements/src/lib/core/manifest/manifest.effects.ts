@@ -43,10 +43,13 @@ export class ManifestEffects {
         }
 
         let path = entry.path;
-        request.options.pathVariables.forEach((v, k) => {
-          path = path.split(`:{k}`)
-            .join(v);
-        });
+        if (!!request.options.pathVariables) {
+          const pathVariables = new Map<string, string>(Object.entries(request.options.pathVariables));
+          pathVariables.forEach((v, k) => {
+            path = path.split(`:${k}`)
+              .join(v);
+          });
+        }
 
         const method = request.method ? request.method : entry.methods[0];
         // TODO: validate method with allowed methods on manifests entry
