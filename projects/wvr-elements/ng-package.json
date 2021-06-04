@@ -2,10 +2,20 @@
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
   "dest": "../../dist/wvr-elements",
   "lib": {
-    "entryFile": "src/public-api.ts"
+    "entryFile": "src/public-api.ts",
+    "umdModuleIds": {
+      "@ngrx/effects": "effects",
+      "@ngrx/entity": "entity",
+      "@ngrx/store": "store",
+      "@ngrx/store-devtools": "storeDevtools",
+      "@ng-bootstrap/ng-bootstrap": "ngBootstrap",
+      "@tinymce/tinymce-angular": "tinymceAngular",
+      "css-element-queries": "cssElementQueries",
+      "handlebars/dist/cjs/handlebars": "Handlebars",
+      "json5": "JSON5",
+      "ng-inline-svg": "ngInlineSvg",
+      "tinymce": "tinymce"
+    }
   },
-  "allowedNonPeerDependencies": [
-    "css-element-queries",
-    "handlebars"
-  ]
+  "allowedNonPeerDependencies": []
 }

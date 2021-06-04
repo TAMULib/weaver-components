@@ -1,12 +1,12 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ComponentFixture, inject, TestBed, waitForAsync } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { StoreModule } from '@ngrx/store';
 import { provideMockStore } from '@ngrx/store/testing';
-import { metaReducers, ROOT_REDUCER } from '../core/store';
+import { initialState } from '../core/store';
 import { APP_CONFIG } from '../shared/config/app-config';
 import { testAppConfig } from '../shared/config/test-app-config';
+import { WvrSharedModule } from '../shared/wvr-shared.module';
 import { WvrIconComponent } from './wvr-icon.component';
 
 @Component({
@@ -19,9 +19,6 @@ class WvrIconHostComponent {
 }
 
 describe('WvrIconComponent', () => {
-  const initialState = { theme: {
-    themes: {}
-  }};
   let component: WvrIconComponent;
   let fixture: ComponentFixture<WvrIconComponent>;
 
@@ -31,24 +28,23 @@ describe('WvrIconComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        HttpClientTestingModule,
         BrowserAnimationsModule,
-        StoreModule.forRoot(ROOT_REDUCER, { metaReducers })
+        HttpClientTestingModule,
+        WvrSharedModule
+      ],
+      declarations: [
+        WvrIconComponent,
+        WvrIconHostComponent
       ],
       providers: [
         {
           provide: APP_CONFIG,
           useValue: testAppConfig
         },
-        provideMockStore({initialState})
-      ],
-      declarations: [
-        WvrIconComponent,
-        WvrIconHostComponent
-      ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA]
+        provideMockStore({ initialState })
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

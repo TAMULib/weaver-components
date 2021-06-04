@@ -2,7 +2,6 @@ import { Component, Injector, Input, OnDestroy, OnInit, ViewChild } from '@angul
 import { select } from '@ngrx/store';
 import { EditorComponent } from '@tinymce/tinymce-angular';
 import * as JSON5 from 'json5';
-import { Subscription } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import tinymce from 'tinymce';
 import { selectWysiwygById } from '../core/store';
@@ -38,12 +37,10 @@ export class WvrWysiwygComponent extends WvrBaseComponent implements OnInit, OnD
   @Input() set toolbar(toolbar: string) { this.config.toolbar = toolbar; }
   get toolbar(): string { return this.config.toolbar; }
 
-  @Input() set menu(editorMenu: any) { this.config.menu = JSON5.parse(editorMenu) as WvrWysiwygMenu; }
+  @Input() set menu(editorMenu: any) { this.config.menu = JSON5.parse(editorMenu); }
   get menu(): any { return this.config.menu; }
 
   @Input() emitSaveEvent: string;
-
-  subscription: Subscription;
 
   config = {
     base_url: 'tinymce',
@@ -57,8 +54,12 @@ export class WvrWysiwygComponent extends WvrBaseComponent implements OnInit, OnD
     toolbar: 'undo redo | formatselect | bold italic forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table pagebreak | charmap codesample image | removeformat | help | cancel save',
     menu: (wvrEditor as any).default,
     /* TODO: Issue #316. */
-    save_oncancelcallback: $event => this.onReset($event),
-    save_onsavecallback: $event => this.onSave($event)
+    save_oncancelcallback: $event => {
+      this.onReset($event);
+    },
+    save_onsavecallback: $event => {
+      this.onSave($event);
+    }
   };
 
   htmlId = `wvr-wysiwyg-${this.id}`;
@@ -78,22 +79,21 @@ export class WvrWysiwygComponent extends WvrBaseComponent implements OnInit, OnD
       }
     }));
 
-    this.subscription = this.store.pipe(
-      select(selectWysiwygById(`${this.id}`)),
-      filter(wysiwyg => !!wysiwyg),
-      map(wysiwyg => wysiwyg.content)
-    ).subscribe((content: string) => {
-      this.content = content;
-    });
+    this.subscriptions.push(this.store
+      .pipe(
+        select(selectWysiwygById(`${this.id}`)),
+        filter(wysiwyg => !!wysiwyg),
+        map(wysiwyg => wysiwyg.content)
+      )
+      .subscribe((content: string) => {
+        this.content = content;
+      }));
   }
 
   ngOnDestroy(): void {
     super.ngOnDestroy();
     if (!!this.editor) {
       tinymce.remove(this.editor);
-    }
-    if (!!this.subscription) {
-      this.subscription.unsubscribe();
     }
   }
 

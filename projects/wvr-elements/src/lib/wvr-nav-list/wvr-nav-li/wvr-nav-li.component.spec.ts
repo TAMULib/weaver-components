@@ -1,21 +1,20 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideMockStore } from '@ngrx/store/testing';
+import { initialState } from '../../core/store';
 import { APP_CONFIG, testAppConfig } from '../../shared/config';
+import { WvrSharedModule } from '../../shared/wvr-shared.module';
 import { WvrNavLiComponent } from './wvr-nav-li.component';
 
 describe('WvrNavLiComponent', () => {
-  const initialState = { theme: {
-    themes: {}
-  }};
   let component: WvrNavLiComponent;
   let fixture: ComponentFixture<WvrNavLiComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        WvrSharedModule
       ],
       declarations: [WvrNavLiComponent],
       providers: [
@@ -23,9 +22,8 @@ describe('WvrNavLiComponent', () => {
           provide: APP_CONFIG,
           useValue: testAppConfig
         },
-        provideMockStore({initialState})
-      ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA]
+        provideMockStore({ initialState })
+      ]
     })
       .compileComponents()
       .catch(err => { console.error(err); });

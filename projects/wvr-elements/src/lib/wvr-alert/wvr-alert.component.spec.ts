@@ -1,8 +1,10 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import { initialState } from '../core/store';
 import { APP_CONFIG, testAppConfig } from '../shared/config';
+import { WvrSharedModule } from '../shared/wvr-shared.module';
 import { WvrAlertComponent } from './wvr-alert.component';
 
 @Component({
@@ -15,10 +17,6 @@ class WvrAlertHostComponent {
 }
 
 describe('WvrAlertComponent', () => {
-  const initialState = { theme: {
-    themes: {}
-  }};
-  let store: MockStore;
   let component: WvrAlertComponent;
   let fixture: ComponentFixture<WvrAlertComponent>;
 
@@ -29,23 +27,23 @@ describe('WvrAlertComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        WvrSharedModule
+      ],
+      declarations: [
+        WvrAlertComponent,
+        WvrAlertHostComponent
       ],
       providers: [
         {
           provide: APP_CONFIG,
           useValue: testAppConfig
         },
-        provideMockStore({initialState})
-      ],
-      declarations: [
-        WvrAlertHostComponent,
-        WvrAlertComponent
-      ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA]
+        provideMockStore({ initialState })
+      ]
     })
-    .compileComponents();
-    store = TestBed.inject(MockStore);
+      .compileComponents();
+    TestBed.inject(MockStore);
   }));
 
   beforeEach(() => {
@@ -61,7 +59,7 @@ describe('WvrAlertComponent', () => {
 
   it('should create', () => {
     expect(component)
-    .toBeTruthy();
+      .toBeTruthy();
   });
 
   it("should have as alert type as 'basic'", () => {
@@ -79,18 +77,18 @@ describe('WvrAlertComponent', () => {
       .toBeFalse();
     closeButton.dispatchEvent(new MouseEvent('click'));
     expect(component.alertClosed)
-    .toBeTrue();
+      .toBeTrue();
   });
 
   it('should auto close when alert-type="self-closing"', done => {
-
     setTimeout(() => {
       done();
       expect(hostComponent.alert
         .alertClosed)
         .toBeTrue();
     }, 100);
-
+    expect(component)
+      .toBeDefined();
   });
 
 });

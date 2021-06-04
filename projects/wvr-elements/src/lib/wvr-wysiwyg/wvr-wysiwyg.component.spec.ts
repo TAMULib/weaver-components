@@ -1,12 +1,13 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import { provideMockStore } from '@ngrx/store/testing';
 import { APP_CONFIG, testAppConfig } from '../shared/config';
-
+import { WvrSharedModule } from '../shared/wvr-shared.module';
 import { WvrWysiwygComponent } from './wvr-wysiwyg.component';
+
+// TODO: should be using the store's initial state but this is not currently working.
+//import { initialState } from '../core/store';
 
 @Component({
   selector: 'wvr-wysiwyg-test-component',
@@ -31,39 +32,38 @@ describe('WvrWysiwygComponent', () => {
   let hostComponent: WvrWysiwygHostComponent;
   let hostFixture: ComponentFixture<WvrWysiwygHostComponent>;
 
-  let store: MockStore;
-    // tslint:disable-next-line: deprecation
-    beforeEach(waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [
-          BrowserAnimationsModule
-        ],
-        providers: [
-          {
-            provide: APP_CONFIG,
-            useValue: testAppConfig
-          },
-          provideMockStore({initialState})
-        ],
-        declarations: [
-          WvrWysiwygHostComponent,
-          WvrWysiwygComponent
-        ],
-        schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
-      })
+  // tslint:disable-next-line: deprecation
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        BrowserAnimationsModule,
+        WvrSharedModule
+      ],
+      declarations: [
+        WvrWysiwygComponent,
+        WvrWysiwygHostComponent
+      ],
+      providers: [
+        {
+          provide: APP_CONFIG,
+          useValue: testAppConfig
+        },
+        provideMockStore({ initialState })
+      ]
+    })
       .compileComponents();
-    }));
+  }));
 
-    beforeEach(() => {
-      fixture = TestBed.createComponent(WvrWysiwygComponent);
-      component = fixture.componentInstance;
+  beforeEach(() => {
+    fixture = TestBed.createComponent(WvrWysiwygComponent);
+    component = fixture.componentInstance;
 
-      hostFixture = TestBed.createComponent(WvrWysiwygHostComponent);
-      hostComponent = hostFixture.componentInstance;
+    hostFixture = TestBed.createComponent(WvrWysiwygHostComponent);
+    hostComponent = hostFixture.componentInstance;
 
-      hostFixture.detectChanges();
-      fixture.detectChanges();
-    });
+    hostFixture.detectChanges();
+    fixture.detectChanges();
+  });
 
   it('should create', () => {
     expect(component).toBeTruthy();
@@ -88,13 +88,13 @@ describe('WvrWysiwygComponent', () => {
     expect(component.config.base_url)
       .toEqual('tinymce');
     expect(component.config.menu)
-    .toEqual(component.menu);
+      .toEqual(component.menu);
 
     expect(component.config.plugins)
-    .toEqual(component.plugins);
+      .toEqual(component.plugins);
 
     const plugins = ['preview anchor searchreplace visualblocks code',
-                    'fullscreen insertdatetime media table paste', 'help wordcount print preview save'];
+      'fullscreen insertdatetime media table paste', 'help wordcount print preview save'];
     component.plugins = plugins;
     fixture.detectChanges();
 
@@ -103,11 +103,11 @@ describe('WvrWysiwygComponent', () => {
 
     //skin
     expect(component.config.skin)
-    .toEqual(component.skin);
+      .toEqual(component.skin);
 
     //toolbar
     expect(component.config.toolbar)
-    .toEqual(component.toolbar);
+      .toEqual(component.toolbar);
 
     const toolbar = 'undo redo | formatselect | bold italic forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table pagebreak | charmap codesample image | removeformat | help | cancel save';
     component.toolbar = toolbar;
@@ -168,8 +168,8 @@ describe('WvrWysiwygComponent', () => {
 
     Object.keys(editorMenu).forEach(editorMenuKey => {
       Object.keys(component.menu).forEach(menuKey => {
-        if(editorMenuKey === menuKey) {
-          expect(JSON.stringify(editorMenu[editorMenuKey]) === JSON.stringify(component.menu[menuKey]) )
+        if (editorMenuKey === menuKey) {
+          expect(JSON.stringify(editorMenu[editorMenuKey]) === JSON.stringify(component.menu[menuKey]))
             .toBe(true);
         }
       });

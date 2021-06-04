@@ -1,0 +1,73 @@
+.wvr-components-loading {
+  opacity: 0;
+}
+
+.wvr-hidden,
+[wvr-hide-content] {
+  display: none;
+}
+
+div[element="wvre-header"],
+wvre-header {
+  min-height: 170px;
+}
+
+div[element="wvre-footer"],
+wvre-footer {
+  min-height: 40px;
+}
+
+div[element="wvre-wysiwyg"],
+wvre-wysiwyg {
+  min-height: 200px;
+}
+
+div[element="wvre-it-works"],
+wvre-it-works {
+  min-height: 200px;
+}
+
+div[element="wvre-card"],
+wvre-card {
+  min-height: 40px;
+}
+
+div[element="wvre-color-preview"],
+wvre-color-preview {
+  min-height: 20px;
+}
+
+div[element="wvre-alert"],
+wvre-alert {
+  min-height: 10px;
+}
+
+div[element="wvre-list-item"],
+wvre-list-item {
+  min-height: 10px;
+}
+
+div[element="wvre-nav-li"],
+wvre-nav-li {
+  min-height: 10px;
+}
+
+div[element="wvre-tab"],
+wvre-tab {
+  min-height: 10px;
+}
+
+div[element="wvre-button"],
+wvre-button {
+  min-height: 20px;
+}
+
+div[element="wvre-icon"],
+wvre-icon {
+  min-height: 20px;
+}
+
+div[element="wvre-text"],
+wvre-text {
+  min-height: 20px;
+}

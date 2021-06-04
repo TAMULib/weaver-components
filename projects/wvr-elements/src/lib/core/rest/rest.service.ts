@@ -56,9 +56,9 @@ export class RestService {
         }
 
         if (request.bodyHttpParams) {
-          const options: HttpParamsOptions = {};
-          options[request.bodyHttpParams] = body;
-          body = new HttpParams(options);
+          const httpParamsOptions: HttpParamsOptions = {};
+          httpParamsOptions[request.bodyHttpParams] = body;
+          body = new HttpParams(httpParamsOptions);
         }
 
         return callback(request.url, body, options);

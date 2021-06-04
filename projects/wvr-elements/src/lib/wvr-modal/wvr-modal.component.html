@@ -9,13 +9,13 @@
   </wvr-button-component>
 
   <ng-template #modalTemplateContent>
-    <div class="modal-header {{additionalClasses('header')}}">
+    <div class="modal-header {{additionalHeaderClasses}}">
       <h4 class="modal-title" id="modal-basic-title">{{title}}</h4>
     </div>
     <div class="modal-body" modal-body>
       <ng-content select="template[modal-body]"></ng-content>
     </div>
-    <div class="modal-footer {{additionalClasses('footer')}}" modal-footer>
+    <div class="modal-footer {{additionalFooterClasses}}" modal-footer>
       <ng-content select="template[modal-footer]"></ng-content>
     </div>
   </ng-template>

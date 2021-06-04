@@ -32,6 +32,6 @@
 
 <ng-template #closeButton>
   <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="clickClose($event)" *ngIf="closeable === 'true'">
-    <span aria-hidden="true">&times;</span>
+    <wvr-text-component aria-hidden="true" value="&times;"></wvr-text-component>
   </button>
 </ng-template>

@@ -60,11 +60,11 @@ export const WVR_PIPES = [
 
 const MODULES = [
   CommonModule,
+  EditorModule,
+  FormsModule,
   InlineSVGModule,
   NgbDropdownModule,
   NgbModalModule,
-  EditorModule,
-  FormsModule,
   ReactiveFormsModule
 ];
 
@@ -82,9 +82,7 @@ const MODULES = [
   ],
   providers: [],
   entryComponents: [],
-  schemas: [
-    CUSTOM_ELEMENTS_SCHEMA
-  ]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class WvrSharedModule {
 
