@@ -2,7 +2,7 @@
 
 ## [1.12.0] - 06-04-21
 ### Resolves
-- Lighthouse requires node 12. (#315)
+
 - The mobile service should use the ngrx store to maintain state. (#333)
 - Weaver Components should use an alternate mechanism to display: none when components are ready (#363)
 - Weaver Components should use Ngrx to to maintain state. (#364)
