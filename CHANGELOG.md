@@ -1,5 +1,24 @@
 # Changelog
 
+## [1.12.0] - 06-04-21
+### Resolves
+- Lighthouse requires node 12. (#315)
+- The mobile service should use the ngrx store to maintain state. (#333)
+- Weaver Components should use an alternate mechanism to display: none when components are ready (#363)
+- Weaver Components should use Ngrx to to maintain state. (#364)
+- Weaver Components should build without warnings (#365)
+- Refactor Template Service to Template Utility (#379)
+- Refactor to pure pipes (#380)
+- Remove isMobileAgent from base component (#381)
+- Refactor mobile store to layout store (#382)
+- Afford input text color on text component (#388)
+- Colors in color utility should be brought in via JSON (#390)
+- Weaver Components Manifest should support path variables (#398)
+
+## [1.11.1] - 05-19-21
+### Resolves
+- Weaver Components should use an alternate mechanism to display: none when components are ready (#363)
+
 ## [1.11.0] - 05-12-21
 ### Resolves
 
