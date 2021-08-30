@@ -23,7 +23,7 @@ export class WvrTabsComponent extends WvrBaseComponent implements OnInit {
   ngOnInit(): void {
     super.ngOnInit();
 
-    this.tabs = Array.from(this.eRef.nativeElement.querySelectorAll('wvre-tab'));
+    this.tabs = Array.from(this.eRef.nativeElement.querySelectorAll('template[tab-content]'));
 
     let count = 0;
     let activeTab = false;
@@ -56,7 +56,7 @@ export class WvrTabsComponent extends WvrBaseComponent implements OnInit {
         this.deactivate(t);
       });
     tab.setAttribute('active', '');
-    projectContent(this.eRef, `#${tab.id} > template[tab-content]`, 'div[active-tab]');
+    projectContent(this.eRef, `template[tab-content]#${tab.id}`, 'div[active-tab]');
 
     return false;
   }
@@ -64,7 +64,7 @@ export class WvrTabsComponent extends WvrBaseComponent implements OnInit {
   trackTabById = (index, tab: HTMLElement): string => tab.id;
 
   private deactivate(tab: HTMLElement): void {
-    preserveContent(this.eRef, `#${tab.id} > template[tab-content]`, 'div[active-tab]');
+    preserveContent(this.eRef, `template[tab-content]#${tab.id}`, 'div[active-tab]');
     tab.removeAttribute('active');
   }
 
