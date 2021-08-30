@@ -1,7 +1,7 @@
 import { ElementRef } from '@angular/core';
 
 /**
- * Projects content within template into target.
+ * Projects content within all templates into target.
  *
  * @param eRef element reference with native element to perform content projection
  * @param templateSelector input template to project
@@ -12,7 +12,7 @@ const projectContent = (eRef: ElementRef, templateSelector: string, targetSelect
 
   templates.forEach((template: any) => {
     const element: Element = eRef.nativeElement.querySelector(targetSelector);
-    const clone = template.children.length == 0 && template.content.children.length > 0
+    const clone = template.children.length === 0 && template.content.children.length > 0
         ? template.content.cloneNode(true)
         : template;
     Array.from(clone.children)
