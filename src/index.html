@@ -294,17 +294,16 @@
         <wvre-list-item theme-variant="warning">
           <wvre-text value="Item 2"></wvre-text>
         </wvre-list-item>
-        <wvre-list-item>
-          <a href="http://www.google.com">
-            <wvre-text value="Google"></wvre-text>
-          </a>
-        </wvre-list-item>
-        <wvre-list-item>
-          <a href="http://www.google.com">
-            <wvre-text value="Gmail"></wvre-text>
-          </a>
-        </wvre-list-item>
       </wvre-list>
+
+      <template card-links>
+        <a href="http://www.google.com" class="card-link">
+          <wvre-text value="Google"></wvre-text>
+        </a>
+        <a href="http://www.google.com" class="card-link">
+          <wvre-text value="Gmail"></wvre-text>
+        </a>
+      </template>
 
       <wvre-button theme-variant="secondary" dispatch-action="Modal.openModal" dispatch-action-props="{id: 'Weaver Modal'}">
         <wvre-text value="Open Me!"></wvre-text>

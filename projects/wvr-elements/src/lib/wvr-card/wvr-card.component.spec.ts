@@ -26,17 +26,15 @@ import { WvrCardComponent } from './wvr-card.component';
       <wvre-list-item context="warning">
         <wvre-text value="Item 2"></wvre-text>
       </wvre-list-item>
-      <wvre-list-item>
-          <a href="http://www.google.com">
-            <wvre-text value="Google"></wvre-text>
-          </a>
-        </wvre-list-item>
-        <wvre-list-item>
-          <a href="http://www.google.com">
-            <wvre-text value="Gmail"></wvre-text>
-          </a>
-        </wvre-list-item>
     </wvre-list>
+    <template card-links>
+      <a href="http://www.google.com">
+        <wvre-text value="Google"></wvre-text>
+      </a>
+      <a href="http://www.google.com">
+        <wvre-text value="Gmail"></wvre-text>
+      </a>
+    </template>
     <wvre-button theme-variant="secondary"><wvre-text value="Card Button Text"></wvre-text></wvre-button>
     <template card-footer><wvre-text class="text-muted" value="Card Footer1"></wvre-text></template>
   </wvr-card-component>
