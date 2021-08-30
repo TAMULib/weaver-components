@@ -8,20 +8,18 @@ import { ElementRef } from '@angular/core';
  * @param targetSelector target element to project template to
  */
 const projectContent = (eRef: ElementRef, templateSelector: string, targetSelector: string) => {
-  const template = eRef.nativeElement.querySelector(templateSelector);
-  if (!!template) {
+  const templates = Array.from(eRef.nativeElement.querySelectorAll(templateSelector));
+
+  templates.forEach((template: any) => {
     const element: Element = eRef.nativeElement.querySelector(targetSelector);
-    const clone = template.content.children.length > 0
-      ? template.content.cloneNode(true)
-      : template;
-    while (template.content.firstChild) {
-      template.content.removeChild(template.content.firstChild);
-    }
+    const clone = template.children.length == 0 && template.content.children.length > 0
+        ? template.content.cloneNode(true)
+        : template;
     Array.from(clone.children)
       .forEach((elem: Element) => {
         element.appendChild(elem);
       });
-  }
+  });
 };
 
 /**
