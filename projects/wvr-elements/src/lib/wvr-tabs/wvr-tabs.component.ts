@@ -1,53 +1,71 @@
-import { ChangeDetectionStrategy, Component, Injector } from '@angular/core';
+import { Component, Injector, OnInit } from '@angular/core';
+import { preserveContent, projectContent } from '../shared/utility/projection.utility';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
-import { WvrTabComponent } from './wvr-tab/wvr-tab.component';
 
 /**
- * The principle component for a a tabbed presentation.
+ * The principle component for a tabbed presentation.
  */
 @Component({
   selector: 'wvr-tabs-component',
   templateUrl: './wvr-tabs.component.html',
-  styleUrls: ['./wvr-tabs.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Default
+  styleUrls: ['./wvr-tabs.component.scss']
 })
-export class WvrTabsComponent extends WvrBaseComponent {
+export class WvrTabsComponent extends WvrBaseComponent implements OnInit {
 
-  /** The child WvrTabComponent contained within this tabs. */
-  private readonly tabs = new Array<WvrTabComponent>();
-
-  /**  The WvrTabComponent that is currently active (displayed) */
-  activeTab: WvrTabComponent;
-
-  /* A contructed identifier for the content section, derrived from the the component id and the prefix 'wvr-tab-content' */
   tabContentID = `wvr-tab-content-${this.id}`;
 
-  /* SafeHtml to be injected into the active tab content. */
-  activeTabContent = 'Tab Content';
+  tabs: Array<HTMLElement>;
 
   constructor(injector: Injector) {
     super(injector);
   }
 
-  /* Places the incomming tab into the tabs array */
-  addTab(tab: WvrTabComponent): void {
-    if (!this.tabs.length) {
-      tab.activate();
-    }
-    this.tabs.push(tab);
-  }
+  ngOnInit(): void {
+    super.ngOnInit();
 
-  /* Sets the incomming tab to active and resets the active tab content to the content of the incomming tab. */
-  activateTab(tab: WvrTabComponent): void {
-    this.activeTab = tab;
-    this.activeTabContent = tab.getTabContent();
-  }
+    this.tabs = Array.from(this.eRef.nativeElement.querySelectorAll('template[tab-content]'));
 
-  /* Deactivates all tabs within the tabs array */
-  deactivateTabs(): void {
-    this.tabs.forEach(t => {
-      t.deActivate();
+    let count = 0;
+    let activeTab = false;
+
+    this.tabs.forEach(tab => {
+      if (!tab.id) {
+        count += 1;
+        tab.id = `tab-${count}`;
+      }
+
+      if (this.isTabActive(tab)) {
+        this.activate(tab);
+        activeTab = true;
+      }
     });
+
+    if (!activeTab) {
+      if (this.tabs.length) {
+        this.activate(this.tabs[0]);
+      }
+    }
   }
+
+  activate(tab: HTMLElement): boolean {
+    this.tabs
+      .filter(this.isTabActive)
+      .forEach(t => {
+        this.deactivate(t);
+      });
+    tab.setAttribute('active', '');
+    projectContent(this.eRef, `template[tab-content]#${tab.id}`, 'div[active-tab]');
+
+    return false;
+  }
+
+  trackTabById = (index, tab: HTMLElement): string => tab.id;
+
+  private deactivate(tab: HTMLElement): void {
+    preserveContent(this.eRef, `template[tab-content]#${tab.id}`, 'div[active-tab]');
+    tab.removeAttribute('active');
+  }
+
+  private readonly isTabActive = (tab: HTMLElement): boolean => tab.hasAttribute('active');
 
 }

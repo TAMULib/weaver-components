@@ -14,6 +14,9 @@ const projectContent = (eRef: ElementRef, templateSelector: string, targetSelect
     const clone = template.content.children.length > 0
       ? template.content.cloneNode(true)
       : template;
+    while (template.content.firstChild) {
+      template.content.removeChild(template.content.firstChild);
+    }
     Array.from(clone.children)
       .forEach((elem: Element) => {
         element.appendChild(elem);
@@ -36,7 +39,11 @@ const preserveContent = (eRef: ElementRef, templateSelector: string, targetSelec
     Array.from(element.children)
       .filter((elem: Element) => elem.nodeName !== 'TEMPLATE')
       .forEach((elem: Element) => {
-        template.appendChild(elem);
+        if (template.children.length) {
+          template.replaceChild(elem, template.children[0]);
+        } else {
+          template.appendChild(elem);
+        }
       });
   }
 };
