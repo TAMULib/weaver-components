@@ -1,4 +1,4 @@
-import { Component, Injector, TemplateRef, ViewChild } from '@angular/core';
+import { Component, Injector, OnInit } from '@angular/core';
 import { preserveContent, projectContent } from '../shared/utility/projection.utility';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
@@ -10,7 +10,7 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
   templateUrl: './wvr-tabs.component.html',
   styleUrls: ['./wvr-tabs.component.scss']
 })
-export class WvrTabsComponent extends WvrBaseComponent {
+export class WvrTabsComponent extends WvrBaseComponent implements OnInit {
 
   tabContentID = `wvr-tab-content-${this.id}`;
 
@@ -20,11 +20,7 @@ export class WvrTabsComponent extends WvrBaseComponent {
     super(injector);
   }
 
-  ngAfterContentInit() {
-
-  }
-
-  ngOnInit() {
+  ngOnInit(): void {
     super.ngOnInit();
 
     this.tabs = Array.from(this.eRef.nativeElement.querySelectorAll('wvre-tab'));
@@ -34,7 +30,8 @@ export class WvrTabsComponent extends WvrBaseComponent {
 
     this.tabs.forEach(tab => {
       if (!tab.id) {
-        tab.id = `tab-${++count}`;
+        count += 1;
+        tab.id = `tab-${count}`;
       }
 
       if (this.isTabActive(tab)) {
@@ -52,27 +49,27 @@ export class WvrTabsComponent extends WvrBaseComponent {
     }
   }
 
-  isTabActive(tab: HTMLElement): boolean {
-    return tab.hasAttribute('active');
-  }
-
-  getTabText(tab: HTMLElement): string {
-    return tab.getAttribute('tab-text');
-  }
-
   activate(tab: HTMLElement): boolean {
-    this.tabs
-      .filter(this.isTabActive)
-      .forEach(tab => this.deactivate(tab));
-    tab.setAttribute('active', '');
-    projectContent(this.eRef, `#${tab.id} > template[tab-content]`, 'div[active-tab]');
+    if (!this.isTabActive(tab)) {
+      this.tabs
+        .filter(this.isTabActive)
+        .forEach(t => {
+          this.deactivate(t);
+        });
+      tab.setAttribute('active', '');
+      projectContent(this.eRef, `#${tab.id} > template[tab-content]`, 'div[active-tab]');
+    }
 
     return false;
   }
 
-  deactivate(tab: HTMLElement): void {
+  trackTabById = (index, tab: HTMLElement): string => tab.id;
+
+  private deactivate(tab: HTMLElement): void {
     preserveContent(this.eRef, `#${tab.id} > template[tab-content]`, 'div[active-tab]');
     tab.removeAttribute('active');
   }
+
+  private readonly isTabActive = (tab: HTMLElement): boolean => tab.hasAttribute('active');
 
 }
