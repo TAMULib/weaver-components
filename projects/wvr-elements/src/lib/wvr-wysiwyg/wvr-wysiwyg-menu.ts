@@ -1,4 +1,4 @@
-import { WvrwysiwygSubMenu } from "./wvr-wysiwyg-sub-menu";
+import { WvrwysiwygSubMenu } from './wvr-wysiwyg-sub-menu';
 
 export interface WvrWysiwygMenu {
   file: WvrwysiwygSubMenu;

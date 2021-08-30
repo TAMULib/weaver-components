@@ -5,7 +5,7 @@ import { ChangeDetectionStrategy, Component, Injector, OnInit } from '@angular/c
 import { select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { selectCurrentTheme } from '../core/store';
-import { ThemeVariants } from '../shared/theme';
+import { ThemeVariant, ThemeVariants } from '../shared/theme';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 @Component({
@@ -14,7 +14,7 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
   styleUrls: ['./wvr-color-preview.component.scss'],
   changeDetection: ChangeDetectionStrategy.Default
 })
-export class WvrColorPreviewComponent extends WvrBaseComponent  implements OnInit {
+export class WvrColorPreviewComponent extends WvrBaseComponent implements OnInit {
 
   currentTheme: Observable<ThemeVariants>;
 
@@ -32,6 +32,10 @@ export class WvrColorPreviewComponent extends WvrBaseComponent  implements OnIni
 
   originalOrdering(): number {
     return 0;
+  }
+
+  index(index: number, themeVariant: ThemeVariant): number {
+    return index;
   }
 
 }

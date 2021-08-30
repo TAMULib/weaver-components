@@ -2,8 +2,8 @@
 // tslint:disable-next-line:no-import-side-effect
 import '@angular/localize/init';
 /* tslint:disable: no-import-side-effect */
-import 'zone.js/dist/zone';
-import 'zone.js/dist/zone-testing';
+import 'zone.js';
+import 'zone.js/testing';
 /* tslint:enable: no-import-side-effect */
 import { getTestBed } from '@angular/core/testing';
 import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing';

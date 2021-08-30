@@ -1,63 +1,50 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
 import { provideMockStore } from '@ngrx/store/testing';
-import { MobileService } from '../core/mobile.service';
+import { initialState } from '../core/store';
 import { APP_CONFIG, testAppConfig } from '../shared/config';
+import { WvrSharedModule } from '../shared/wvr-shared.module';
 import { WvrDropdownComponent } from './wvr-dropdown.component';
 
 @Component({
   selector: 'wvr-dropdown-host-component',
   // tslint:disable-next-line:component-max-inline-declarations
-  template: `<wvr-dropdown-component
-              btnTextDecoration="none"
-              btnTextDecorationActive="underline"
-              btnTextDecorationHover="underline"
-              btnTextDecorationFocus="none">
-            </wvr-dropdown-component>`
+  template: `
+    <wvr-dropdown-component
+      btnTextDecoration="none"
+      btnTextDecorationActive="underline"
+      btnTextDecorationHover="underline"
+      btnTextDecorationFocus="none">
+    </wvr-dropdown-component>`
 })
 class WvrDropdownHostComponent {
   @ViewChild(WvrDropdownComponent) dropDown: WvrDropdownComponent;
 }
 
-class MockMobileService {
-  isMobileLayout = false;
-}
-
 describe('WvrDropdownComponent', () => {
-  const initialState = { theme: {
-    themes: {}
-  }};
   let component: WvrDropdownComponent;
   let fixture: ComponentFixture<WvrDropdownComponent>;
 
-  let hostComponent: WvrDropdownHostComponent;
   let hostFixture: ComponentFixture<WvrDropdownHostComponent>;
 
-  let mockMobileService: MockMobileService;
-
   beforeEach(waitForAsync(() => {
-    mockMobileService = new MockMobileService();
-    TestBed.overrideProvider(MobileService, { useValue: mockMobileService });
-
     TestBed.configureTestingModule({
       imports: [
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        WvrSharedModule
+      ],
+      declarations: [
+        WvrDropdownComponent,
+        WvrDropdownHostComponent
       ],
       providers: [
         {
           provide: APP_CONFIG,
           useValue: testAppConfig
         },
-        provideMockStore({initialState})
-      ],
-      declarations: [
-        WvrDropdownHostComponent,
-        WvrDropdownComponent,
-        NgbDropdown
-      ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA]
+        provideMockStore({ initialState })
+      ]
     })
       .compileComponents();
   }));
@@ -67,7 +54,6 @@ describe('WvrDropdownComponent', () => {
     component = fixture.componentInstance;
 
     hostFixture = TestBed.createComponent(WvrDropdownHostComponent);
-    hostComponent = hostFixture.componentInstance;
 
     hostFixture.detectChanges();
     fixture.detectChanges();

@@ -21,7 +21,7 @@ export class WvrDropdownComponent extends WvrBaseComponent {
   @HostBinding('style.--wvr-dropdown-menu-animation-speed') private _animationSpeedSeconds;
 
   /** This establishes a delay in milliseconds before the dropdown is displayed. */
-  @Input() openDelay: number = 500;
+  @Input() openDelay = 500;
 
   private _openDelayTimer: NodeJS.Timeout;
 

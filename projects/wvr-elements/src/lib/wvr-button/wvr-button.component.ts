@@ -186,7 +186,7 @@ export class WvrButtonComponent extends WvrBaseComponent {
     const registeredActions = this.actionRegistry.getActions(parts[0]);
 
     if (!registeredActions || !parts[1] || !registeredActions[parts[1]]) {
-      console.warn('somthing went wrong parsing the action input.');
+      console.warn('something went wrong parsing the action input.');
 
       return;
     }
@@ -206,7 +206,7 @@ export class WvrButtonComponent extends WvrBaseComponent {
       valid = !!registeredActions[parts[1]];
       if (!valid) {
         const actions = Object.keys(registeredActions[parts[0]])
-          .join(',')
+          .join(',');
         console.warn(`'${parts[1]}' is not a known action of ${parts[0]}. (${actions})`);
       }
 

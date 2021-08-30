@@ -12,7 +12,10 @@ import * as ManifestActions from './manifest.actions';
 @Injectable()
 export class ManifestEffects {
 
-  constructor(private readonly actions: Actions, private readonly store: Store<RootState>) {
+  constructor(
+    private readonly actions: Actions,
+    private readonly store: Store<RootState>
+  ) {
 
   }
 
@@ -39,9 +42,18 @@ export class ManifestEffects {
           return ManifestActions.queueRequest({ request });
         }
 
+        let path = entry.path;
+        if (!!request.options.pathVariables) {
+          const pathVariables = new Map<string, string>(Object.entries(request.options.pathVariables));
+          pathVariables.forEach((v, k) => {
+            path = path.split(`:${k}`)
+              .join(v);
+          });
+        }
+
         const method = request.method ? request.method : entry.methods[0];
         // TODO: validate method with allowed methods on manifests entry
-        const url = manifest.baseUrl + entry.path;
+        const url = manifest.baseUrl + path;
         const options = { ...entry.options, ...request.options };
         const onSuccess = request.onSuccess ? request.onSuccess : [];
         const onFailure = request.onFailure ? request.onFailure : [];
