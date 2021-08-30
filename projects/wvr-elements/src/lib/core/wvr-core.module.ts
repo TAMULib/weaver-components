@@ -23,7 +23,6 @@ import { WvrManifestComponent } from '../wvr-manifest/wvr-manifest.component';
 import { WvrModalComponent } from '../wvr-modal/wvr-modal.component';
 import { WvrNavLiComponent } from '../wvr-nav-list/wvr-nav-li/wvr-nav-li.component';
 import { WvrNavListComponent } from '../wvr-nav-list/wvr-nav-list.component';
-import { WvrTabComponent } from '../wvr-tabs/wvr-tab/wvr-tab.component';
 import { WvrTabsComponent } from '../wvr-tabs/wvr-tabs.component';
 import { WvrTextComponent } from '../wvr-text/wvr-text.component';
 import { WvrThemeComponent } from '../wvr-theme/wvr-theme.component';
@@ -59,7 +58,6 @@ export const WVR_ELEMENTS: Array<WvrElementDesc> = [
   { component: WvrNavLiComponent, selector: 'wvre-nav-li', lazy: true },
   { component: WvrTextComponent, selector: 'wvre-text', lazy: true },
   { component: WvrTabsComponent, selector: 'wvre-tabs', lazy: true },
-  { component: WvrTabComponent, selector: 'wvre-tab', lazy: true },
   { component: WvrThemeComponent, selector: 'wvre-theme', lazy: false },
   { component: WvrWysiwygComponent, selector: 'wvre-wysiwyg', lazy: true }
 ];

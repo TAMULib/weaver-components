@@ -30,7 +30,6 @@ export * from './lib/wvr-manifest/wvr-manifest.component';
 export * from './lib/wvr-modal/wvr-modal.component';
 export * from './lib/wvr-nav-list/wvr-nav-li/wvr-nav-li.component';
 export * from './lib/wvr-nav-list/wvr-nav-list.component';
-export * from './lib/wvr-tabs/wvr-tab/wvr-tab.component';
 export * from './lib/wvr-tabs/wvr-tabs.component';
 export * from './lib/wvr-text/wvr-text.component';
 export * from './lib/wvr-theme/wvr-theme.component';
