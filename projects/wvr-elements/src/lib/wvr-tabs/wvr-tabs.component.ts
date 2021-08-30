@@ -44,21 +44,19 @@ export class WvrTabsComponent extends WvrBaseComponent implements OnInit {
       if (this.tabs.length) {
         this.activate(this.tabs[0]);
       } else {
-        console.error('no tabs defined!');
+        console.error('No tabs defined!');
       }
     }
   }
 
   activate(tab: HTMLElement): boolean {
-    if (!this.isTabActive(tab)) {
-      this.tabs
-        .filter(this.isTabActive)
-        .forEach(t => {
-          this.deactivate(t);
-        });
-      tab.setAttribute('active', '');
-      projectContent(this.eRef, `#${tab.id} > template[tab-content]`, 'div[active-tab]');
-    }
+    this.tabs
+      .filter(this.isTabActive)
+      .forEach(t => {
+        this.deactivate(t);
+      });
+    tab.setAttribute('active', '');
+    projectContent(this.eRef, `#${tab.id} > template[tab-content]`, 'div[active-tab]');
 
     return false;
   }
