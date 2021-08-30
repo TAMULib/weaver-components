@@ -11,6 +11,7 @@
     "dist/bundle/weaver-components.js"
   ],
   "additionalAssets": [
-    "src/assets/**/*"
+    "src/assets/**/*",
+    "dist/bundle/styles.css"
   ]
 }
