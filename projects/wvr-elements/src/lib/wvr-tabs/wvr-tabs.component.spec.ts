@@ -37,16 +37,10 @@ describe('WvrTabsComponent', () => {
       .toBeTruthy();
   });
 
-  // it('should have unique tab content id', () => {
-    
-  // });
-
-  // it('should have an active tab content', () => {
-    
-  // });
-
-  // it('should have an option to add tab', () => {
-    
-  // });
+  it('should have unique active tab id', () => {
+    const tabContentElem = (fixture.elementRef.nativeElement as HTMLElement).querySelector('div[active-tab]');
+    expect(component.tabContentID)
+      .toEqual(tabContentElem.getAttribute('id'));
+  });
 
 });

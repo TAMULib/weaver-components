@@ -43,8 +43,6 @@ export class WvrTabsComponent extends WvrBaseComponent implements OnInit {
     if (!activeTab) {
       if (this.tabs.length) {
         this.activate(this.tabs[0]);
-      } else {
-        console.error('No tabs defined!');
       }
     }
   }
