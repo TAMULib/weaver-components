@@ -5,6 +5,7 @@ import { filter } from 'rxjs/operators';
 import * as ModalActions from '../core/modal/modal.actions';
 import { selectModalState } from '../core/store';
 import { ThemeVariantName } from '../shared/theme';
+import { preserveContent, projectContent } from '../shared/utility/projection.utility';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 @Component({
@@ -70,17 +71,7 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit {
       setTimeout(() => {
         if (!!this.modalRef && modalRefs.length > 0) {
           ['body', 'footer'].forEach(content => {
-            const template = this.eRef.nativeElement.querySelector(`template[modal-${content}]`);
-            if (!!template) {
-              const element: Element = this.eRef.nativeElement.querySelector(`div[modal-${content}]`);
-              const clone = template.content.children.length > 0
-                ? template.content.cloneNode(true)
-                : template;
-              Array.from(clone.children)
-                .forEach((elem: Element) => {
-                  element.appendChild(elem);
-                });
-            }
+            projectContent(this.eRef, `template[modal-${content}]`, `div[modal-${content}]`);
           });
         }
       });
@@ -134,15 +125,7 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit {
 
         } else if (this.modalRef) {
           ['body', 'footer'].forEach(content => {
-            const template = this.eRef.nativeElement.querySelector(`template[modal-${content}]`);
-            if (!!template) {
-              const element: Element = this.eRef.nativeElement.querySelector(`div[modal-${content}]`);
-              Array.from(element.children)
-                .filter((elem: Element) => elem.nodeName !== 'TEMPLATE')
-                .forEach((elem: Element) => {
-                  template.appendChild(elem);
-                });
-            }
+            preserveContent(this.eRef, `template[modal-${content}]`, `div[modal-${content}]`);
           });
           this.modalRef.close();
           delete this.modalRef;
