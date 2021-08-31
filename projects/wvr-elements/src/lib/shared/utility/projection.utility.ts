@@ -9,12 +9,11 @@ import { ElementRef } from '@angular/core';
  */
 const projectContent = (eRef: ElementRef, templateSelector: string, targetSelector: string) => {
   const templates = Array.from(eRef.nativeElement.querySelectorAll(templateSelector));
-
   templates.forEach((template: any) => {
-    const element: Element = eRef.nativeElement.querySelector(targetSelector);
     const clone = template.children.length === 0 && template.content.children.length > 0
-        ? template.content.cloneNode(true)
-        : template;
+      ? template.content.cloneNode(true)
+      : template;
+    const element: Element = eRef.nativeElement.querySelector(targetSelector);
     Array.from(clone.children)
       .forEach((elem: Element) => {
         element.appendChild(elem);
