@@ -28,10 +28,10 @@ import { WvrCardComponent } from './wvr-card.component';
       </wvre-list-item>
     </wvre-list>
     <template card-links>
-      <a href="http://www.google.com">
+      <a href="http://www.google.com" class="card-link">
         <wvre-text value="Google"></wvre-text>
       </a>
-      <a href="http://www.google.com">
+      <a href="http://www.google.com" class="card-link">
         <wvre-text value="Gmail"></wvre-text>
       </a>
     </template>
