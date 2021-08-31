@@ -19,8 +19,8 @@ const projectContent = (eRef: ElementRef, templateSelector: string, targetSelect
         element.appendChild(elem);
       });
   });
+  // hide target element if nothing to project
   if (!!element && !templates.length) {
-    console.log(templateSelector, 'hide');
     (element as HTMLElement).hidden = true;
   }
 };
