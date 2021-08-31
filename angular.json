@@ -56,9 +56,17 @@
                 }
               ],
               "buildOptimizer": true,
-              "optimization": true,
+              "optimization": {
+                "scripts": true,
+                "fonts": {
+                  "inline": true
+                },
+                "styles": {
+                  "minify": true,
+                  "inlineCritical": false
+                }
+              },
               "sourceMap": false,
-              "extractCss": false,
               "extractLicenses": true,
               "commonChunk": false,
               "namedChunks": false,
