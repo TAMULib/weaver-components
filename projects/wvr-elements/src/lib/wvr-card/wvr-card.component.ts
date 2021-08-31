@@ -46,10 +46,11 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit 
   ngAfterViewInit(): void {
     projectContent(this.eRef, 'template[card-header]', 'div[card-header]');
     projectContent(this.eRef, 'template[card-image]', 'div[card-image]');
-    projectContent(this.eRef, 'template[card-text]', 'p[card-text]');
-    projectContent(this.eRef, 'template[card-body]', 'div[card-body]');
-    projectContent(this.eRef, 'template[card-links]', 'div[card-links]');
     projectContent(this.eRef, 'template[card-title]', 'h5[card-title]');
+    projectContent(this.eRef, 'template[card-subtitle]', 'h6[card-subtitle]');
+    projectContent(this.eRef, 'template[card-text]', 'p[card-text]');
+    projectContent(this.eRef, 'template[card-links]', 'div[card-links]');
+    projectContent(this.eRef, 'wvre-button', 'div[card-buttons]');
     projectContent(this.eRef, 'template[card-footer]', 'div[card-footer]');
   }
 

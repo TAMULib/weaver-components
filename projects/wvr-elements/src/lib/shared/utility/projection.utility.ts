@@ -7,18 +7,22 @@ import { ElementRef } from '@angular/core';
  * @param templateSelector input template to project
  * @param targetSelector target element to project template to
  */
-const projectContent = (eRef: ElementRef, templateSelector: string, targetSelector: string) => {
-  const templates = Array.from(eRef.nativeElement.querySelectorAll(templateSelector));
-  templates.forEach((template: any) => {
-    const clone = template.children.length === 0 && template.content.children.length > 0
+const projectContent = (eRef: ElementRef, templateSelector: string, targetSelector: string): void => {
+  const element: Element = eRef.nativeElement.querySelector(targetSelector);
+  const templates: Array<HTMLTemplateElement> = Array.from(eRef.nativeElement.querySelectorAll(templateSelector));
+  templates.forEach((template: HTMLTemplateElement) => {
+    const clone: Node = template.children.length === 0 && template.content.children.length > 0
       ? template.content.cloneNode(true)
       : template;
-    const element: Element = eRef.nativeElement.querySelector(targetSelector);
-    Array.from(clone.children)
+    Array.from((clone as Element).children)
       .forEach((elem: Element) => {
         element.appendChild(elem);
       });
   });
+  if (!!element && !templates.length) {
+    console.log(templateSelector, 'hide');
+    (element as HTMLElement).hidden = true;
+  }
 };
 
 /**
@@ -29,10 +33,10 @@ const projectContent = (eRef: ElementRef, templateSelector: string, targetSelect
  * @param templateSelector template in which to preserve the content on
  * @param targetSelector target element to preserve its content
  */
-const preserveContent = (eRef: ElementRef, templateSelector: string, targetSelector: string) => {
-  const template = eRef.nativeElement.querySelector(templateSelector);
+const preserveContent = (eRef: ElementRef, templateSelector: string, targetSelector: string): void => {
+  const element: Element = eRef.nativeElement.querySelector(targetSelector);
+  const template: HTMLTemplateElement = eRef.nativeElement.querySelector(templateSelector);
   if (!!template) {
-    const element: Element = eRef.nativeElement.querySelector(targetSelector);
     Array.from(element.children)
       .filter((elem: Element) => elem.nodeName !== 'TEMPLATE')
       .forEach((elem: Element) => {

@@ -1,14 +1,13 @@
-<div #animationRoot class="wvr-components wvr-card card {{additionalCardClasses}}" [ngClass]="{ 'text-center': textCenter }" style="width: 18rem;">
+<div #animationRoot class="wvr-components wvr-card card {{additionalCardClasses}}"
+  [ngClass]="{ 'text-center': textCenter }"
+  style="width: 18rem;">
   <ng-container *ngTemplateOutlet="cardHeader"></ng-container>
   <ng-container *ngTemplateOutlet="cardImage"></ng-container>
   <ng-container *ngTemplateOutlet="cardListTop"></ng-container>
-  <div class="card-body">
-    <ng-container *ngTemplateOutlet="cardBody"></ng-container>
-    <ng-container *ngTemplateOutlet="cardText"></ng-container>
-    <ng-container *ngTemplateOutlet="cardLinks"></ng-container>
-    <ng-container *ngTemplateOutlet="cardButton"></ng-container>
-  </div>
+  <ng-container *ngTemplateOutlet="cardBody"></ng-container>
   <ng-container *ngTemplateOutlet="cardListBottom"></ng-container>
+  <ng-container *ngTemplateOutlet="cardLinks"></ng-container>
+  <ng-container *ngTemplateOutlet="cardButtons"></ng-container>
   <ng-container *ngTemplateOutlet="cardFooter"></ng-container>
 </div>
 
@@ -26,28 +25,6 @@
   </div>
 </ng-template>
 
-<!-- cardBody -->
-<ng-template #cardText>
-  <p class="card-text" card-text>
-    <ng-content select="template[card-text]"></ng-content>
-  </p>
-</ng-template>
-
-<!-- cardBody -->
-<ng-template #cardBody>
-  <div card-body>
-    <ng-container *ngTemplateOutlet="cardTitle"></ng-container>
-    <ng-content></ng-content>
-  </div>
-</ng-template>
-
-<!-- cardLinks -->
-<ng-template #cardLinks>
-  <div class="card-links" card-links>
-    <ng-content select="template[card-links]"></ng-content>
-  </div>
-</ng-template>
-
 <!-- cardTitle -->
 <ng-template #cardTitle>
   <h5 class="card-title" card-title>
@@ -55,9 +32,40 @@
   </h5>
 </ng-template>
 
+<!-- cardSubtitle -->
+<ng-template #cardSubtitle>
+  <h6 class="card-subtitle" card-subtitle>
+    <ng-content select="template[card-subtitle]"></ng-content>
+  </h6>
+</ng-template>
+
+<!-- cardBody -->
+<ng-template #cardBody>
+  <div class="card-body" card-body>
+    <ng-container *ngTemplateOutlet="cardTitle"></ng-container>
+    <ng-container *ngTemplateOutlet="cardSubtitle"></ng-container>
+    <ng-container *ngTemplateOutlet="cardText"></ng-container>
+    <ng-content></ng-content>
+  </div>
+</ng-template>
+
+<!-- cardBody -->
+<ng-template #cardText>
+  <p class="card-text" card-text>
+    <ng-content select="template[card-text]"></ng-content>
+  </p>
+</ng-template>
+
+<!-- cardLinks -->
+<ng-template #cardLinks>
+  <div class="card-body card-links" card-links>
+    <ng-content select="template[card-links]"></ng-content>
+  </div>
+</ng-template>
+
 <!-- cardButton -->
-<ng-template #cardButton>
-  <div class="card-button mt-3" card-button>
+<ng-template #cardButtons>
+  <div class="card-body card-buttons" card-buttons>
     <ng-content select="wvre-button"></ng-content>
   </div>
 </ng-template>
