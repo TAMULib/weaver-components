@@ -261,21 +261,21 @@
     <br /><br />
 
     <wvre-card theme-variant="warning" panel-format="mixed">
-      <wvre-card-header>
+      <template card-header>
         <wvre-text value="Card Header"></wvre-text>
-      </wvre-card-header>
-      <wvre-card-title>
+      </template>
+
+      <template card-title>
         <wvre-text value="Card Title"></wvre-text>
-      </wvre-card-title>
+      </template>
 
-      <wvre-card-img src="assets/lighthouse.svg" height="286" width="286"></wvre-card-img>
+      <template card-subtitle>
+        <wvre-text value="Card Subtitle"></wvre-text>
+      </template>
 
-      <wvre-card-link href="http://www.google.com">
-        <wvre-text value="Google"></wvre-text>
-      </wvre-card-link>
-      <wvre-card-link href="http://www.gmail.com">
-        <wvre-text value="Gmail"></wvre-text>
-      </wvre-card-link>
+      <template card-image>
+        <img alt="Card Image Cap" src="assets/lighthouse.svg" height="286" width="286" />
+      </template>
 
       <wvre-list top list-type="group-flush" theme-variant="info">
         <wvre-list-item>
@@ -300,32 +300,41 @@
         </wvre-list-item>
       </wvre-list>
 
-      <wvre-button theme-variant="secondary" dispatch-action="Modal.openModal" dispatch-action-props="{id: 'Weaver Modal'}">
+      <template card-links>
+        <a href="http://www.google.com" class="card-link">
+          <wvre-text value="Google"></wvre-text>
+        </a>
+        <a href="http://www.google.com" class="card-link">
+          <wvre-text value="Gmail"></wvre-text>
+        </a>
+      </template>
+
+      <wvre-button theme-variant="secondary" dispatch-action="Modal.openModal" dispatch-action-props="{id: 'customId'}">
         <wvre-text value="Open Me!"></wvre-text>
       </wvre-button>
 
-      <wvre-card-footer text-muted>
+      <template card-footer text-muted>
         <wvre-text value="Card Footer"></wvre-text>
-      </wvre-card-footer>
+      </template>
     </wvre-card>
 
     <br>
     <wvre-card text-center panel-format="solid" theme-variant="warning">
-      <wvre-card-header>
+      <template card-header>
         <wvre-text value="Solid Card Header"></wvre-text>
-      </wvre-card-header>
-      <wvre-card-title>
+      </template>
+      <template card-title>
         <wvre-text value="Solid Card Title"></wvre-text>
-      </wvre-card-title>
-      <wvre-card-text>
+      </template>
+      <template card-text>
         <wvre-text value="With supporting text below as a natural lead-in to additional content."></wvre-text>
-      </wvre-card-text>
+      </template>
       <wvre-button id="another-event-button" theme-variant="secondary" id="my-button" emit-event="anotherButtonTest">
         <wvre-text value="Go somewhere"></wvre-text>
       </wvre-button>
-      <wvre-card-footer text-muted>
-        <wvre-text value="Solid Card Footer"></wvre-text>
-      </wvre-card-footer>
+      <template card-footer>
+        <wvre-text class="text-muted" value="Solid Card Footer"></wvre-text>
+      </template>
     </wvre-card>
 
     <script>
@@ -335,18 +344,18 @@
 
     <br>
     <wvre-card text-center panel-format="outlined" theme-variant="warning">
-      <wvre-card-header>
+      <template card-header>
         <wvre-text value="Outlined Card Header"></wvre-text>
-      </wvre-card-header>
-      <wvre-card-title>
+      </template>
+      <template card-title>
         <wvre-text value="Outlined Card Title"></wvre-text>
-      </wvre-card-title>
-      <wvre-card-text>
+      </template>
+      <template card-text>
         <wvre-text value="With supporting text below as a natural lead-in to additional content."></wvre-text>
-      </wvre-card-text>
-      <wvre-card-footer>
+      </template>
+      <template card-footer>
         <wvre-text value="Outlined Card Footer"></wvre-text>
-      </wvre-card-footer>
+      </template>
     </wvre-card>
   </div>
 
@@ -874,6 +883,38 @@
           <h3><wvre-text value="Second Tab Header"></wvre-text></h3>
           <wvre-text value="My Second Tab Content"></wvre-text>
         </div>
+      </template>
+      <template tab-content tab-text="Tab Three" active>
+        <form>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Example input</label>
+            <input type="input" class="form-control" id="exampleFormControlInput1" placeholder="Hello, World!">
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlSelect1">Example select</label>
+            <select class="form-control" id="exampleFormControlSelect1">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlSelect2">Example multiple select</label>
+            <select multiple class="form-control" id="exampleFormControlSelect2">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Example textarea</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+          </div>
+        </form>
       </template>
     </wvre-tabs>
 

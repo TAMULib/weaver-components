@@ -4,21 +4,16 @@
   </desciption>
   <snippet>
     <wvre-card>
-      <wvre-card-header>
+      <template card-header>
         <wvre-text value="Card Header"></wvre-text>
-      </wvre-card-header>
-      <wvre-card-title>
+      </template>
+      <template card-title>
         <wvre-text value="Card Title"></wvre-text>
-      </wvre-card-title>
+      </template>
 
-      <wvre-card-img src="assets/lighthouse.svg"></wvre-card-img>
-
-      <wvre-card-link href="www.google.com">
-        <wvre-text value="Google"></wvre-text>
-      </wvre-card-link>
-      <wvre-card-link href="www.gmail.com">
-        <wvre-text value="Gmail"></wvre-text>
-      </wvre-card-link>
+      <template card-image>
+        <img src="assets/lighthouse.svg" />
+      </template>
 
       <wvre-list top list-type="group-flush" context="info">
         <wvre-list-item>
@@ -43,13 +38,22 @@
         </wvre-list-item>
       </wvre-list>
 
+      <template card-links>
+        <a href="http://www.google.com" class="card-link">
+          <wvre-text value="Google"></wvre-text>
+        </a>
+        <a href="http://www.google.com" class="card-link">
+          <wvre-text value="Gmail"></wvre-text>
+        </a>
+      </template>
+
       <wvre-button theme-variant="secondary">
         <wvre-text value="Card Button Text"></wvre-text>
       </wvre-button>
 
-      <wvre-card-footer text-muted>
-        <wvre-text value="Card Footer"></wvre-text>
-      </wvre-card-footer>
+      <template card-footer>
+        <wvre-text class="text-muted" value="Card Footer"></wvre-text>
+      </template>
     </wvre-card>
   </snippet>
 </example>

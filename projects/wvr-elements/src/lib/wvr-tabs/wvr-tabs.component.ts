@@ -54,7 +54,9 @@ export class WvrTabsComponent extends WvrBaseComponent implements OnInit {
         this.deactivate(t);
       });
     tab.setAttribute('active', '');
-    projectContent(this.eRef, `template[tab-content]#${tab.id}`, 'div[active-tab]');
+    if (!!tab.id) {
+      projectContent(this.eRef, `template[tab-content]#${tab.id}`, 'div[active-tab]');
+    }
 
     return false;
   }
@@ -62,7 +64,9 @@ export class WvrTabsComponent extends WvrBaseComponent implements OnInit {
   trackTabById = (index, tab: HTMLElement): string => tab.id;
 
   private deactivate(tab: HTMLElement): void {
-    preserveContent(this.eRef, `template[tab-content]#${tab.id}`, 'div[active-tab]');
+    if (!!tab.id) {
+      preserveContent(this.eRef, `template[tab-content]#${tab.id}`, 'div[active-tab]');
+    }
     tab.removeAttribute('active');
   }
 

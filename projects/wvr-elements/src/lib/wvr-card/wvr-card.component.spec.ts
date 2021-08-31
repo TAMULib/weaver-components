@@ -12,16 +12,31 @@ import { WvrCardComponent } from './wvr-card.component';
   // tslint:disable-next-line:component-max-inline-declarations
   template: `
   <wvr-card-component [themeVariant]="primary" [panelFormat]="mixed">
-    <wvre-card-header><wvre-text value="Card Header"></wvre-text></wvre-card-header>
-    <wvre-card-title><wvre-text value="Card Title"></wvre-text></wvre-card-title>
-    <wvre-card-img src="assets/lighthouse.svg"></wvre-card-img>
-    <wvre-card-link href="www.google.com"><wvre-text value="Google"></wvre-text></wvre-card-link>
-    <wvre-card-link href="www.gmail.com"><wvre-text value="Gmail"></wvre-text></wvre-card-link>
+    <template card-header><wvre-text value="Card Header"></wvre-text></template>
+    <template card-title><wvre-text value="Card Title"></wvre-text></template>
+    <template card-image>
+      <img src="assets/lighthouse.svg" />
+    </template>
     <wvre-list top list-type="group-flush" context="info"><wvre-list-item><wvre-text value="Item 1"></wvre-text></wvre-list-item><wvre-list-item context="warning"><wvre-text value="Item 2"></wvre-text></wvre-list-item><wvre-list-item context="success"><wvre-text value="Item 3"></wvre-text></wvre-list-item></wvre-list>
     <wvre-text value="This is a basic card body content"></wvre-text>
-    <wvre-list bottom list-type="group-flush" context="info"><wvre-list-item><wvre-text value="Item 1"></wvre-text></wvre-list-item><wvre-list-item context="warning"><wvre-text value="Item 2"></wvre-text></wvre-list-item></wvre-list>
+    <wvre-list bottom list-type="group-flush" context="info">
+      <wvre-list-item>
+        <wvre-text value="Item 1"></wvre-text>
+      </wvre-list-item>
+      <wvre-list-item context="warning">
+        <wvre-text value="Item 2"></wvre-text>
+      </wvre-list-item>
+    </wvre-list>
+    <template card-links>
+      <a href="http://www.google.com" class="card-link">
+        <wvre-text value="Google"></wvre-text>
+      </a>
+      <a href="http://www.google.com" class="card-link">
+        <wvre-text value="Gmail"></wvre-text>
+      </a>
+    </template>
     <wvre-button theme-variant="secondary"><wvre-text value="Card Button Text"></wvre-text></wvre-button>
-    <wvre-card-footer text-muted><wvre-text value="Card Footer1"></wvre-text></wvre-card-footer>
+    <template card-footer><wvre-text class="text-muted" value="Card Footer1"></wvre-text></template>
   </wvr-card-component>
 `
 })
