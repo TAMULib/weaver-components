@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component, HostBinding, HostListener, Injector, Input, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, HostBinding, HostListener, Injector, Input, ViewChild } from '@angular/core';
 import { NgbDropdown, NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
 import { ThemeVariantName } from '../shared/theme';
+import { projectContent } from '../shared/utility/projection.utility';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 /**
@@ -12,13 +13,13 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
   styleUrls: ['./wvr-dropdown.component.scss'],
   changeDetection: ChangeDetectionStrategy.Default
 })
-export class WvrDropdownComponent extends WvrBaseComponent {
+export class WvrDropdownComponent extends WvrBaseComponent implements AfterViewInit {
 
   /** Sets asside a reference to the NgbDropdown element. */
   @ViewChild(NgbDropdown) dropdown: NgbDropdown;
 
   /** Binds the value of the animationspeed in seconds to the css variable `--wvr-dropdown-menu-animation-speed` */
-  @HostBinding('style.--wvr-dropdown-menu-animation-speed') private _animationSpeedSeconds;
+  @HostBinding('style.--wvr-dropdown-menu-animation-speed') animationSpeedSeconds;
 
   /** This establishes a delay in milliseconds before the dropdown is displayed. */
   @Input() openDelay = 500;
@@ -27,7 +28,7 @@ export class WvrDropdownComponent extends WvrBaseComponent {
 
   /** A setter which sets the speed to `_animationSpeedSeconds` in seconds. */
   @Input() set menuAnimationSpeed(speed: number) {
-    this._animationSpeedSeconds = `${speed / 1000}s`;
+    this.animationSpeedSeconds = `${speed / 1000}s`;
   }
 
   /** Allows for override of button background value. */
@@ -215,6 +216,11 @@ export class WvrDropdownComponent extends WvrBaseComponent {
   constructor(injector: Injector, config: NgbDropdownConfig) {
     super(injector);
     config.autoClose = false;
+  }
+
+  /** Called after the view has been intialized. Handles the rendering of the projected content. */
+  ngAfterViewInit(): void {
+    projectContent(this.eRef, 'template[dropdown-menu]', 'div[dropdown-menu]');
   }
 
   /** An access method to expose the `isOpen` utility method from `NgbDropdown` */
