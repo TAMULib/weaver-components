@@ -36,7 +36,7 @@
     "publish:npm": "npm run build && node scripts/build-publish.js $1",
     "publish:npm-next": "npm run publish:npm next",
     "lint": "ng lint",
-    "link": "npm link ./dist/wvr-elements",
+    "link": "npm run build && node scripts/link-self.js",
     "ng": "ng",
     "start": "node scripts/build-wvr-components-style.js && node scripts/build-wvr-components-configuration.js defaults-dev-overrides.env && ng serve --port 4200",
     "start:dist": "node scripts/build-wvr-components-style.js && node scripts/build-wvr-components-configuration.js defaults-dist-overrides.env && node scripts/serve-dist.js",

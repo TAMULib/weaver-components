@@ -143,6 +143,7 @@ export class WvrButtonComponent extends WvrBaseComponent {
   constructor(injector: Injector) {
     super(injector);
     this.actionRegistry = injector.get(ActionRegistryService);
+    console.log("LINKED!!!");
   }
 
   onClick(): void {
