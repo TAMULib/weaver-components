@@ -14,9 +14,7 @@ angularCli.default({
   fs.copySync('scripts', `${elementsPath}/scripts`);
   fs.copySync('.wvr-ud', `${elementsPath}/.wvr-ud`);
 
-  shell
-    .cd(elementsPath)
-    .exec('npm link');
+  shell.exec(`npm link ./${elementsPath}`);
 
   shell.exit();
 });
