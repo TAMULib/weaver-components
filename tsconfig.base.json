@@ -33,6 +33,7 @@
     }
   },
   "angularCompilerOptions": {
-    "ivyCompiler": true
+    "ivyCompiler": true,
+    "preserveSymlinks": true
   }
 }
