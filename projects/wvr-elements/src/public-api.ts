@@ -6,6 +6,7 @@ export * from './lib/core/actions';
 export * from './lib/core/animation.service';
 export * from './lib/core/component-registry.service';
 export * from './lib/core/effects';
+export * from './lib/core/manifest';
 export * from './lib/core/store';
 export * from './lib/core/wvr-core.module';
 export * from './lib/shared/alignment.enum';
