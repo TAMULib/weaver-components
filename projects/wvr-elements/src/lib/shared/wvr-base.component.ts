@@ -1,7 +1,7 @@
 import { AfterContentInit, ChangeDetectorRef, Directive, ElementRef, EventEmitter, HostBinding, Injector, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import * as JSON5 from 'json5';
-import { Observable, Subscription } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { AnimationService } from '../core/animation.service';
 import { ComponentRegistryService } from '../core/component-registry.service';
@@ -11,10 +11,10 @@ import { RootState, selectIsMobileLayout, selectManifestEntryResponse } from '..
 import { ThemeService } from '../core/theme/theme.service';
 import { AppConfig, APP_CONFIG } from './config';
 import { ThemeVariantName } from './theme';
+import { wvrParseProjectedContent } from './utility';
 import { WvrAnimationComponent } from './wvr-animation.component';
 import { WvrDataComponent } from './wvr-data.component';
 import { WvrThemeableComponent } from './wvr-themeable.component';
-import { wvrParseProjectedContent } from './utility';
 
 @Directive()
 // tslint:disable-next-line:directive-class-suffix
@@ -29,6 +29,9 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
   /** A reference to the ElementRef */
   readonly eRef: ElementRef;
 
+  /** A reference to the ChangeDetectorRef */
+  readonly cdRef: ChangeDetectorRef;
+
   /** A reference to the AppConfig */
   readonly appConfig: AppConfig;
 
@@ -41,7 +44,6 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
   @Input() private wvrData: string;
 
   themeOverrides = {};
-  private _cdRef: ChangeDetectorRef;
 
   /** Allows for the override of theme for the particular component.  */
   @Input() set wvrTheme(themeName: string) {
@@ -105,7 +107,7 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
 
   isMobileLayout: boolean;
 
-  _ngBindings: any;
+  private _ngBindings: { [key: string]: string };
   @Input() set ngBindings(value: string) {
     this._ngBindings = JSON5.parse(value);
   }
@@ -118,7 +120,7 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
     this.id = this.componentRegistry.register(this);
 
     this.eRef = injector.get(ElementRef);
-    this._cdRef = injector.get(ChangeDetectorRef);
+    this.cdRef = injector.get(ChangeDetectorRef);
     this.appConfig = injector.get(APP_CONFIG);
     this.store = injector.get<Store<RootState>>(Store);
 
@@ -160,34 +162,48 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
     });
   }
 
-  // ngApply(): void {
-  //   this.ngScope.$apply();
-  // }
-
-  // _foo: any;
-
   bootstrapNgBindings(): void {
     if (!!this._ngBindings) {
       const win = window as any;
-      let ngScope;
       let elem = this.eRef.nativeElement;
-      // tslint:disable-next-line:no-conditional-assignment
-      while (!(ngScope = win.angular.element(elem)
-          .scope())) {
-        elem = elem.parentElement;
-      }
 
-      Object.entries(this.ngBindings)
-        .forEach(([v, k]) => {
-          this.ngBindings[`_${k}`] = ngScope[v];
-          Object.defineProperty(ngScope, k, {
-            set: (value: any) => {
-              this.ngBindings[`_${k}`] = value;
-              this._cdRef.detectChanges();
-            },
-            get: () => this.ngBindings[`_${k}`]
-          });
+      for (const [k, v] of Object.entries(this._ngBindings)) {
+        let ngScope;
+
+        while (!ngScope && elem.tagName !== 'BODY') {
+          const ngElem = win.angular.element(elem);
+          if (ngElem.scope() && ngElem.scope().hasOwnProperty(k)) {
+            ngScope = ngElem.scope();
+            break;
+          }
+          elem = elem.parentElement;
+          if (elem.tagName === 'BODY') {
+            console.warn(`${k} not found on ng scope`);
+          }
+        }
+
+        const subject = new BehaviorSubject<any>(ngScope[k]);
+
+        Object.defineProperty(ngScope, k, {
+          get: () => subject.getValue(),
+          set: (value: any) => {
+            if (value !== subject.getValue()) {
+              subject.next(value);
+              this.cdRef.detectChanges();
+            }
+          }
         });
+
+        Object.defineProperty(this, v, {
+          get: () => subject.getValue(),
+          set: (value: any): void => {
+            if (value !== subject.getValue()) {
+              subject.next(value);
+              ngScope.$apply();
+            }
+          }
+        });
+      }
     }
   }
 
