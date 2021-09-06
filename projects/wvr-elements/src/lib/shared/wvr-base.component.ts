@@ -7,6 +7,7 @@ import { AnimationService } from '../core/animation.service';
 import { ComponentRegistryService } from '../core/component-registry.service';
 import { WvrDataSelect } from '../core/data-select';
 import * as ManifestActions from '../core/manifest/manifest.actions';
+import { NgBindingsService } from '../core/ng-bindings.service';
 import { RootState, selectIsMobileLayout, selectManifestEntryResponse } from '../core/store';
 import { ThemeService } from '../core/theme/theme.service';
 import { AppConfig, APP_CONFIG } from './config';
@@ -94,6 +95,9 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
   /** A reference to the ThemeService */
   private readonly themeService: ThemeService;
 
+  /** A reference to the NgBindingsService */
+  private readonly ngBindingsService: NgBindingsService;
+
   /** A host bound accessor which applies the wvr-hidden class if both isMobileLayout and hiddenInMobile evaluate to true.  */
   @HostBinding('class.wvr-hidden') private get _hiddenInMobile(): boolean {
     return this.isMobileLayout && this.hiddenInMobile;
@@ -127,6 +131,8 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
     this._animationService = injector.get(AnimationService);
     this.themeService = injector.get(ThemeService);
 
+    this.ngBindingsService = injector.get(NgBindingsService);
+
     const element = (this.eRef.nativeElement as HTMLElement);
     const htmlIDAttrName = element.hasAttribute('id') ? 'wvr-id' : 'id';
     element.setAttribute(htmlIDAttrName, `${ComponentRegistryService.HTML_ID_BASE}-${this.id}`);
@@ -134,7 +140,6 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
 
   /** Used to setup this component for animating. */
   ngOnInit(): void {
-    this.bootstrapNgBindings();
     this.processData();
     this.initializeAnimationRegistration();
     this.themeService.registerComponent(this.id, this);
@@ -150,6 +155,7 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
   /** Used for post content initialization animation setup. */
   ngAfterContentInit(): void {
     this.initializeAnimationElement();
+    this.bootstrapNgBindings();
   }
 
   /** Handles the the unregistering of this component with the component registry. */
@@ -182,27 +188,36 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
           }
         }
 
-        const subject = new BehaviorSubject<any>(ngScope[k]);
+        if (!!ngScope) {
+          const subject = new BehaviorSubject<any>(ngScope[k]);
 
-        Object.defineProperty(ngScope, k, {
-          get: () => subject.getValue(),
-          set: (value: any) => {
-            if (value !== subject.getValue()) {
-              subject.next(value);
-              this.cdRef.detectChanges();
-            }
-          }
-        });
+          const references = this.ngBindingsService.putSubject(k, {
+            subject,
+            cdRef: this.cdRef
+          });
 
-        Object.defineProperty(this, v, {
-          get: () => subject.getValue(),
-          set: (value: any): void => {
-            if (value !== subject.getValue()) {
-              subject.next(value);
-              ngScope.$apply();
-            }
+          if (references.length === 1) {
+            Object.defineProperty(ngScope, k, {
+              get: () => subject.getValue(),
+              set: (value: any) => {
+                references.forEach((sub) => {
+                  sub.subject.next(value);
+                  sub.cdRef.detectChanges();
+                });
+              }
+            });
           }
-        });
+  
+          Object.defineProperty(this, v, {
+            get: () => subject.getValue(),
+            set: (value: any): void => {
+              if (value !== subject.getValue()) {
+                subject.next(value);
+                ngScope.$apply();
+              }
+            }
+          });
+        }
       }
     }
   }
