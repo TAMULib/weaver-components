@@ -51,8 +51,8 @@ export class WvrAlertComponent extends WvrBaseComponent implements OnInit, After
 
   /** Called after the view has been intialized. Handles the rendering of the projected content. */
   ngAfterViewInit(): void {
-    projectContent(this.eRef, 'template[alert]', 'div[alert]');
-    projectContent(this.eRef, 'template[custom-alert]', 'div[custom-alert]');
+    projectContent(this.eRef, 'template[alert-content]', 'div[alert-content]');
+    projectContent(this.eRef, 'template[custom-alert-content]', 'div[custom-alert-content]');
   }
 
 }
