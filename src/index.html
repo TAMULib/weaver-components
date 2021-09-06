@@ -217,15 +217,19 @@
   <div class="container index-container">
     <wvre-text value="Alert Component" text-decoration="underline"></wvre-text><br /><br />
     <wvre-alert theme-variant="primary" alert-type="basic">
-      <wvre-text value="This is basic primary alert. "></wvre-text>
+      <template alert>
+        <wvre-text value="This is basic primary alert. "></wvre-text>
+      </template>
     </wvre-alert>
 
     <wvre-alert theme-variant="success" alert-type="self-closing" close-timer="5000">
-      <wvre-text value="This is self closing success alert"></wvre-text>
+      <template alert>
+        <wvre-text value="This is self closing success alert"></wvre-text>
+      </template>
     </wvre-alert>
 
     <wvre-alert theme-variant="success" alert-type="custom">
-      <wvre-custom-alert>
+      <template custom-alert>
         <h4 class="alert-heading">
           <wvre-text value="Custom Alert Heading"></wvre-text>
         </h4>
@@ -236,11 +240,11 @@
         <p class="mb-0">
           <wvre-text value="Custom Alert footer section."></wvre-text>
         </p>
-      </wvre-custom-alert>
+      </template>
     </wvre-alert>
 
     <wvre-alert theme-variant="danger" alert-type="custom" closable="false">
-      <wvre-custom-alert>
+      <template custom-alert>
         <h4 class="alert-heading">
           <wvre-text value="Custom Alert Heading"></wvre-text>
         </h4>
@@ -251,7 +255,7 @@
         <p class="mb-0">
           <wvre-text value="Custom Alert footer section."></wvre-text>
         </p>
-      </wvre-custom-alert>
+      </template>
     </wvre-alert>
 
   </div>

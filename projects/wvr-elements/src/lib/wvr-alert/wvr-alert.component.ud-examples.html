@@ -3,28 +3,28 @@
     The basic <code>wvre-alert</code> component with no customizations.
   </desciption>
   <snippet>
-    <wvre-alert
-      theme-variant="primary"
-      alert-type="basic">
+    <wvre-alert theme-variant="primary" alert-type="basic">
+      <template alert>
         <wvre-text value="This is a basic alert"></wvre-text>
+      </template>
     </wvre-alert>
 
-    <wvre-alert
-      theme-variant="secondary"
-      alert-type="basic">
+    <wvre-alert theme-variant="secondary" alert-type="basic">
+      <template alert>
         <wvre-text value="This is a basic alert"></wvre-text>
+      </template>
     </wvre-alert>
 
-    <wvre-alert
-      theme-variant="info"
-      alert-type="basic">
+    <wvre-alert theme-variant="info" alert-type="basic">
+      <template alert>
         <wvre-text value="This is a basic alert"></wvre-text>
+      </template>
     </wvre-alert>
 
-    <wvre-alert
-      theme-variant="primary"
-      alert-type="basic">
+    <wvre-alert theme-variant="primary" alert-type="basic">
+      <template alert>
         <wvre-text value="This is basic primary alert. "></wvre-text>
+      </template>
     </wvre-alert>
   </snippet>
 </example>
@@ -34,10 +34,7 @@
     The <code>wvre-alert</code> component with self closing feature based on the input closing timer.
   </desciption>
   <snippet>
-    <wvre-alert
-      theme-variant="success"
-      alert-type="self-closing"
-      close-timer="5000">
+    <wvre-alert theme-variant="success" alert-type="self-closing" close-timer="5000">
         <wvre-text value="This is self closing success alert"></wvre-text>
     </wvre-alert>
   </snippet>
@@ -48,41 +45,36 @@
     The <code>wvre-alert</code> component with custom content.
   </desciption>
   <snippet>
-    <wvre-alert
-      theme-variant="danger"
-      alert-type="custom">
-        <wvre-custom-alert>
-          <h4 class="alert-heading">
-            <wvre-text value="Custom Alert Heading"></wvre-text>
-          </h4>
-          <p>
-            <wvre-text value="Custom Alert Body"></wvre-text>
-          </p>
-          <hr>
-          <p class="mb-0">
-            <wvre-text value="Custom Alert footer section."></wvre-text>
-          </p>
-        </wvre-custom-alert>
+    <wvre-alert theme-variant="danger" alert-type="custom">
+      <template custom-alert>
+        <h4 class="alert-heading">
+          <wvre-text value="Custom Alert Heading"></wvre-text>
+        </h4>
+        <p>
+          <wvre-text value="Custom Alert Body"></wvre-text>
+        </p>
+        <hr>
+        <p class="mb-0">
+          <wvre-text value="Custom Alert footer section."></wvre-text>
+        </p>
+      </template>
     </wvre-alert>
   </snippet>
 
   <snippet>
-    <wvre-alert
-      theme-variant="danger"
-      alert-type="custom"
-      closable="false">
-        <wvre-custom-alert>
-          <h4 class="alert-heading">
-            <wvre-text value="Custom Alert Heading"></wvre-text>
-          </h4>
-          <p>
-            <wvre-text value="Custom Alert Body with no closable button"></wvre-text>
-          </p>
-          <hr>
-          <p class="mb-0">
-            <wvre-text value="Custom Alert footer section."></wvre-text>
-          </p>
-        </wvre-custom-alert>
+    <wvre-alert theme-variant="danger" alert-type="custom" closable="false">
+      <template custom-alert>
+        <h4 class="alert-heading">
+          <wvre-text value="Custom Alert Heading"></wvre-text>
+        </h4>
+        <p>
+          <wvre-text value="Custom Alert Body with no closable button"></wvre-text>
+        </p>
+        <hr>
+        <p class="mb-0">
+          <wvre-text value="Custom Alert footer section."></wvre-text>
+        </p>
+      </template>
     </wvre-alert>
   </snippet>
 </example>
