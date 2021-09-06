@@ -2,6 +2,7 @@
 
 /* TODO: Issue #292. */
 import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular/core';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
 import { ThemeVariantName } from '../shared/theme';
 
 /**
@@ -13,7 +14,7 @@ import { ThemeVariantName } from '../shared/theme';
   styleUrls: ['./wvr-text.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class WvrTextComponent {
+export class WvrTextComponent extends WvrBaseComponent {
 
   /** The text value to be displayed in the text node. */
   @Input() value: string;

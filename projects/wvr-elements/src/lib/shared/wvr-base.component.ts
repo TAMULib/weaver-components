@@ -1,4 +1,4 @@
-import { AfterContentInit, Directive, ElementRef, EventEmitter, HostBinding, Injector, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
+import { AfterContentInit, ChangeDetectorRef, Directive, ElementRef, EventEmitter, HostBinding, Injector, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import * as JSON5 from 'json5';
 import { Observable, Subscription } from 'rxjs';
@@ -41,6 +41,7 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
   @Input() private wvrData: string;
 
   themeOverrides = {};
+  private _cdRef: ChangeDetectorRef;
 
   /** Allows for the override of theme for the particular component.  */
   @Input() set wvrTheme(themeName: string) {
@@ -104,6 +105,11 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
 
   isMobileLayout: boolean;
 
+  _ngBindings: any;
+  @Input() set ngBindings(value: string) {
+    this._ngBindings = JSON5.parse(value);
+  }
+
   protected subscriptions: Array<Subscription>;
 
   constructor(injector: Injector) {
@@ -112,6 +118,7 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
     this.id = this.componentRegistry.register(this);
 
     this.eRef = injector.get(ElementRef);
+    this._cdRef = injector.get(ChangeDetectorRef);
     this.appConfig = injector.get(APP_CONFIG);
     this.store = injector.get<Store<RootState>>(Store);
 
@@ -125,6 +132,7 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
 
   /** Used to setup this component for animating. */
   ngOnInit(): void {
+    this.bootstrapNgBindings();
     this.processData();
     this.initializeAnimationRegistration();
     this.themeService.registerComponent(this.id, this);
@@ -150,6 +158,37 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
     this.subscriptions.forEach((subscription: Subscription) => {
       subscription.unsubscribe();
     });
+  }
+
+  // ngApply(): void {
+  //   this.ngScope.$apply();
+  // }
+
+  // _foo: any;
+
+  bootstrapNgBindings(): void {
+    if (!!this._ngBindings) {
+      const win = window as any;
+      let ngScope;
+      let elem = this.eRef.nativeElement;
+      // tslint:disable-next-line:no-conditional-assignment
+      while (!(ngScope = win.angular.element(elem)
+          .scope())) {
+        elem = elem.parentElement;
+      }
+
+      Object.entries(this.ngBindings)
+        .forEach(([v, k]) => {
+          this.ngBindings[`_${k}`] = ngScope[v];
+          Object.defineProperty(ngScope, k, {
+            set: (value: any) => {
+              this.ngBindings[`_${k}`] = value;
+              this._cdRef.detectChanges();
+            },
+            get: () => this.ngBindings[`_${k}`]
+          });
+        });
+    }
   }
 
   applyThemeOverride(customProperty: string, value: string): void {
