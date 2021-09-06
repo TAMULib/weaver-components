@@ -50,9 +50,9 @@
           menu-padding="0"
           menu-item-margin="0"
           wvr-hide-content>
-          <wvre-dropdown-btn>
+          <template dropdown-button>
             <wvre-text value="Dropdown 1" theme-variant="light"></wvre-text>
-          </wvre-dropdown-btn>
+          </template>
           <template dropdown-menu>
             <div class="list-group">
               <button type="button" class="list-group-item list-group-item-action active">
@@ -89,9 +89,9 @@
           menu-padding="45px 10px 0px 10px"
           menu-item-margin="5px 0 0 0"
           wvr-hide-content>
-          <wvre-dropdown-btn>
+          <template dropdown-button>
             <wvre-text value="Dropdown 2" theme-variant="light"></wvre-text>
-          </wvre-dropdown-btn>
+          </template>
           <template dropdown-menu>
             <ul class="list-unstyled">
               <li wvre-dropdown-menu-item>
@@ -152,9 +152,9 @@
           menu-padding="0"
           menu-item-margin="0"
           wvr-hide-content>
-          <wvre-dropdown-btn>
+          <template dropdown-button>
             <wvre-text value="Dropdown 1" theme-variant="light"></wvre-text>
-          </wvre-dropdown-btn>
+          </template>
           <template dropdown-menu>
             <div class="list-group">
               <button type="button" class="list-group-item list-group-item-action active">
@@ -314,7 +314,9 @@
       </template>
 
       <wvre-button theme-variant="secondary" dispatch-action="Modal.openModal" dispatch-action-props="{id: 'customId'}">
-        <wvre-text value="Open Me!"></wvre-text>
+        <template button-content>
+          <wvre-text value="Open Me!"></wvre-text>
+        </template>
       </wvre-button>
 
       <template card-footer text-muted>
@@ -334,7 +336,9 @@
         <wvre-text value="With supporting text below as a natural lead-in to additional content."></wvre-text>
       </template>
       <wvre-button id="another-event-button" theme-variant="secondary" id="my-button" emit-event="anotherButtonTest">
-        <wvre-text value="Go somewhere"></wvre-text>
+        <template button-content>
+          <wvre-text value="Go somewhere"></wvre-text>
+        </template>
       </wvre-button>
       <template card-footer>
         <wvre-text class="text-muted" value="Solid Card Footer"></wvre-text>
@@ -366,9 +370,9 @@
   <div class="container index-container">
     <wvre-text value="Dropdown with Buttons" text-decoration="underline"></wvre-text><br />
     <wvre-dropdown theme-variant="primary" hidden-in-mobile="true">
-      <wvre-dropdown-btn>
+      <template dropdown-button>
         <wvre-text value="Primary Dropdown Hidden in Mobile"></wvre-text>
-      </wvre-dropdown-btn>
+      </template>
       <template dropdown-menu>
         <wvre-dropdown-menu-item>
           <wvre-text value="Drop Down Item 1"></wvre-text>
@@ -383,9 +387,9 @@
     </wvre-dropdown>
 
     <wvre-dropdown theme-variant="secondary">
-      <wvre-dropdown-btn>
+      <template dropdown-button>
         <wvre-text value="Secondary Dropdown"></wvre-text>
-      </wvre-dropdown-btn>
+      </template>
       <template dropdown-menu>
         <wvre-dropdown-menu-item>
           <wvre-text value="Drop Down Item 1"></wvre-text>
@@ -400,9 +404,9 @@
     </wvre-dropdown>
 
     <wvre-dropdown theme-variant="success">
-      <wvre-dropdown-btn>
+      <template dropdown-button>
         <wvre-text value="Success Dropdown"></wvre-text>
-      </wvre-dropdown-btn>
+      </template>
       <template dropdown-menu>
         <wvre-dropdown-menu-item>
           <wvre-text value="Drop Down Item 1"></wvre-text>
@@ -417,9 +421,9 @@
     </wvre-dropdown>
 
     <wvre-dropdown theme-variant="danger">
-      <wvre-dropdown-btn>
+      <template dropdown-button>
         <wvre-text value="Danger Dropdown"></wvre-text>
-      </wvre-dropdown-btn>
+      </template>
       <template dropdown-menu>
         <wvre-dropdown-menu-item>
           <wvre-text value="Drop Down Item 1"></wvre-text>
@@ -434,9 +438,9 @@
     </wvre-dropdown>
 
     <wvre-dropdown theme-variant="warning">
-      <wvre-dropdown-btn>
+      <template dropdown-button>
         <wvre-text value="Warning Dropdown"></wvre-text>
-      </wvre-dropdown-btn>
+      </template>
       <template dropdown-menu>
         <wvre-dropdown-menu-item>
           <wvre-text value="Drop Down Item 1"></wvre-text>
@@ -452,9 +456,9 @@
     <br />
 
     <wvre-dropdown theme-variant="info">
-      <wvre-dropdown-btn>
+      <template dropdown-button>
         <wvre-text value="Info Dropdown"></wvre-text>
-      </wvre-dropdown-btn>
+      </template>
       <template dropdown-menu>
         <wvre-dropdown-menu-item>
           <wvre-text value="Drop Down Item 1"></wvre-text>
@@ -469,9 +473,9 @@
     </wvre-dropdown>
 
     <wvre-dropdown theme-variant="light">
-      <wvre-dropdown-btn>
+      <template dropdown-button>
         <wvre-text value="Light Dropdown"></wvre-text>
-      </wvre-dropdown-btn>
+      </template>
       <template dropdown-menu>
         <wvre-dropdown-menu-item>
           <wvre-text value="Drop Down Item 1"></wvre-text>
@@ -486,9 +490,9 @@
     </wvre-dropdown>
 
     <wvre-dropdown theme-variant="dark">
-      <wvre-dropdown-btn>
+      <template dropdown-button>
         <wvre-text value="Dark Dropdown"></wvre-text>
-      </wvre-dropdown-btn>
+      </template>
       <template dropdown-menu>
         <wvre-dropdown-menu-item>
           <wvre-text value="Drop Down Item 1"></wvre-text>
@@ -503,9 +507,9 @@
     </wvre-dropdown>
 
     <wvre-dropdown theme-variant="link">
-      <wvre-dropdown-btn>
+      <template dropdown-button>
         <wvre-text value="Link Dropdown"></wvre-text>
-      </wvre-dropdown-btn>
+      </template>
       <template dropdown-menu>
         <wvre-dropdown-menu-item>
           <wvre-text value="Drop Down Item 1"></wvre-text>
@@ -548,9 +552,9 @@
       btn-text-decorationFocus="none"
       btn-text-decorationHover="none"
       btn-vertical-align="var(--wvr-btn-vertical-align)">
-      <wvre-dropdown-btn>
+      <template dropdown-button>
         <wvre-text value="Customized Drop Down"></wvre-text>
-      </wvre-dropdown-btn>
+      </template>
       <template dropdown-menu>
         <ul class="list-unstyled">
           <li wvre-dropdown-menu-item>
@@ -565,62 +569,98 @@
   <div class="container index-container">
     <wvre-text value="Button List" text-decoration="underline"></wvre-text><br />
     <wvre-button theme-variant="primary" btn-size="large" hidden-in-mobile="true">
-      <wvre-text value="Large Size Primary Button"></wvre-text>
+      <template button-content>
+        <wvre-text value="Large Size Primary Button"></wvre-text>
+      </template>
     </wvre-button>
     <wvre-button theme-variant="secondary" btn-size="small">
-      <wvre-text value="Secondary"></wvre-text>
+      <template button-content>
+        <wvre-text value="Secondary"></wvre-text>
+      </template>
     </wvre-button>
     <wvre-button theme-variant="success">
-      <wvre-text value="Success"></wvre-text>
+      <template button-content>
+        <wvre-text value="Success"></wvre-text>
+      </template>
     </wvre-button>
     <wvre-button theme-variant="danger">
-      <wvre-text value="Danger"></wvre-text>
+      <template button-content>
+        <wvre-text value="Danger"></wvre-text>
+      </template>
     </wvre-button>
     <wvre-button theme-variant="warning">
-      <wvre-text value="Warning"></wvre-text>
+      <template button-content>
+        <wvre-text value="Warning"></wvre-text>
+      </template>
     </wvre-button>
     <wvre-button theme-variant="info">
-      <wvre-text value="Info"></wvre-text>
+      <template button-content>
+        <wvre-text value="Info"></wvre-text>
+      </template>
     </wvre-button>
     <wvre-button theme-variant="light">
-      <wvre-text value="Light"></wvre-text>
+      <template button-content>
+        <wvre-text value="Light"></wvre-text>
+      </template>
     </wvre-button>
     <wvre-button theme-variant="dark">
-      <wvre-text value="Dark"></wvre-text>
+      <template button-content>
+        <wvre-text value="Dark"></wvre-text>
+      </template>
     </wvre-button>
     <wvre-button btn-type="link" href="http://www.google.com">
-      <wvre-text value="Link"></wvre-text>
+      <template button-content>
+        <wvre-text value="Link"></wvre-text>
+      </template>
     </wvre-button>
   </div>
 
   <div class="container index-container">
     <wvre-text value="Themed Button List" text-decoration="underline"></wvre-text><br /><br />
     <wvre-button wvr-theme="test" theme-variant="primary">
-      <wvre-text value="Primary"></wvre-text>
+      <template button-content>
+        <wvre-text value="Primary"></wvre-text>
+      </template>
     </wvre-button>
     <wvre-button wvr-theme="test" theme-variant="secondary">
-      <wvre-text value="Secondary"></wvre-text>
+      <template button-content>
+        <wvre-text value="Secondary"></wvre-text>
+      </template>
     </wvre-button>
     <wvre-button wvr-theme="test" theme-variant="success">
-      <wvre-text value="Success"></wvre-text>
+      <template button-content>
+        <wvre-text value="Success"></wvre-text>
+      </template>
     </wvre-button>
     <wvre-button wvr-theme="test" theme-variant="danger">
-      <wvre-text value="Danger"></wvre-text>
+      <template button-content>
+        <wvre-text value="Danger"></wvre-text>
+      </template>
     </wvre-button>
     <wvre-button wvr-theme="test" theme-variant="warning">
-      <wvre-text value="Warning"></wvre-text>
+      <template button-content>
+        <wvre-text value="Warning"></wvre-text>
+      </template>
     </wvre-button>
     <wvre-button wvr-theme="test" theme-variant="info">
-      <wvre-text value="Info"></wvre-text>
+      <template button-content>
+        <wvre-text value="Info"></wvre-text>
+      </template>
     </wvre-button>
     <wvre-button wvr-theme="test" theme-variant="light">
-      <wvre-text value="Light"></wvre-text>
+      <template button-content>
+        <wvre-text value="Light"></wvre-text>
+      </template>
     </wvre-button>
     <wvre-button wvr-theme="test" theme-variant="dark">
-      <wvre-text value="Dark"></wvre-text>
+      <template button-content>
+        <wvre-text value="Dark"></wvre-text>
+      </template>
     </wvre-button>
     <wvre-button wvr-theme="test" btn-type="link" href="http://www.google.com">
-      <wvre-text value="Link"></wvre-text>
+      <template button-content>
+        <wvre-text value="Link"></wvre-text>
+      </template>
     </wvre-button>
   </div>
 
@@ -658,35 +698,53 @@
       padding="1.5rem 1.5rem"
       text-align="center"
       vertical-align="var(--wvr-btn-vertical-align)">
-      <wvre-text value=" Customized Button "></wvre-text>
+      <template button-content>
+        <wvre-text value=" Customized Button "></wvre-text>
+      </template>
     </wvre-button>
   </div>
 
   <div class="container index-container">
     <wvre-text value="Outline Button List" text-decoration="underline"></wvre-text><br />
     <wvre-button theme-variant="outline-primary" btn-type="button" hidden-in-mobile="true">
-      <wvre-text value="Outline Primary (Hidden in MV)"></wvre-text>
+      <template button-content>
+        <wvre-text value="Outline Primary (Hidden in MV)"></wvre-text>
+      </template>
     </wvre-button>
     <wvre-button theme-variant="outline-secondary" btn-type="button">
-      <wvre-text value="Outline Secondary"></wvre-text>
+      <template button-content>
+        <wvre-text value="Outline Secondary"></wvre-text>
+      </template>
     </wvre-button>
     <wvre-button theme-variant="outline-success" btn-type="button">
-      <wvre-text value="Outline Success"></wvre-text>
+      <template button-content>
+        <wvre-text value="Outline Success"></wvre-text>
+      </template>
     </wvre-button>
     <wvre-button theme-variant="outline-danger" btn-type="button">
-      <wvre-text value="Outline Danger"></wvre-text>
+      <template button-content>
+        <wvre-text value="Outline Danger"></wvre-text>
+      </template>
     </wvre-button>
     <wvre-button theme-variant="outline-warning" btn-type="button">
-      <wvre-text value="Outline Warning"></wvre-text>
+      <template button-content>
+        <wvre-text value="Outline Warning"></wvre-text>
+      </template>
     </wvre-button>
     <wvre-button theme-variant="outline-info" btn-type="button">
-      <wvre-text value="Outline Info"></wvre-text>
+      <template button-content>
+        <wvre-text value="Outline Info"></wvre-text>
+      </template>
     </wvre-button>
     <wvre-button theme-variant="outline-light" btn-type="button">
-      <wvre-text value="Outline Light"></wvre-text>
+      <template button-content>
+        <wvre-text value="Outline Light"></wvre-text>
+      </template>
     </wvre-button>
     <wvre-button theme-variant="outline-dark" btn-type="button">
-      <wvre-text value="Outline Dark"></wvre-text>
+      <template button-content>
+        <wvre-text value="Outline Dark"></wvre-text>
+      </template>
     </wvre-button>
   </div>
 
@@ -695,12 +753,16 @@
     <wvre-icon set="custom" name="weaver-w"></wvre-icon>
     <wvre-icon set="custom" name="weaver-w" color="#500000" size="64px" hidden-in-mobile="true"></wvre-icon>
     <wvre-button theme-variant="primary" btn-type="button" animate="{click: 'rotateToggle'}">
-      <wvre-icon set="custom" name="weaver-w" color="#500000"></wvre-icon>
-      <wvre-text value="Icon Btn"></wvre-text>
+      <template button-content>
+        <wvre-icon set="custom" name="weaver-w" color="#500000"></wvre-icon>
+        <wvre-text value="Icon Btn"></wvre-text>
+      </template>
     </wvre-button>
     <wvre-button theme-variant="info" btn-type="button" animate="{click: 'animationTrigger'}" animate-target="elem1" hidden-in-mobile="true">
-      <wvre-text value="Icon Btn to Be Hidden in Mobile View"></wvre-text>
-      <wvre-icon set="feather" name="chevron-right" color="#500000" animate="{animationTrigger: 'rotateToggle'}" animate-id="elem1"></wvre-icon>
+      <template button-content>
+        <wvre-text value="Icon Btn to Be Hidden in Mobile View"></wvre-text>
+        <wvre-icon set="feather" name="chevron-right" color="#500000" animate="{animationTrigger: 'rotateToggle'}" animate-id="elem1"></wvre-icon>
+      </template>
     </wvre-button>
   </div>
 
