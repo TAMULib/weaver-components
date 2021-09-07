@@ -21,7 +21,7 @@ export class WvrListComponent extends WvrBaseComponent implements AfterViewInit 
   }
 
   ngAfterViewInit(): void {
-    projectContent(this.eRef, 'template[list-items]', 'ul[list-items],ol[list-items],dl[list-items],div[list-items]');
+    projectContent(this.eRef, 'template[list-items],template[wvr-compile]', 'ul[list-items],ol[list-items],dl[list-items],div[list-items]');
   }
 
 }
