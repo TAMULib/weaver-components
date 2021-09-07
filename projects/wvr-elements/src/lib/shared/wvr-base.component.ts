@@ -104,6 +104,8 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
 
   isMobileLayout: boolean;
 
+  isMobile: Observable<boolean>
+
   protected subscriptions: Array<Subscription>;
 
   constructor(injector: Injector) {
@@ -130,10 +132,11 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
     this.themeService.registerComponent(this.id, this);
     wvrParseProjectedContent(this, this.eRef.nativeElement);
 
-    this.subscriptions.push(this.store.pipe(select(selectIsMobileLayout))
-      .subscribe((isMobile: boolean) => {
-        this.isMobileLayout = isMobile;
-      }));
+    this.isMobile = this.store.pipe(select(selectIsMobileLayout));
+
+    this.subscriptions.push(this.isMobile.subscribe((isMobile: boolean) => {
+      this.isMobileLayout = isMobile;
+    }));
   }
 
   // TODO: fix this
