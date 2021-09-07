@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, HostBinding, HostListener, Injector, Input, OnInit } from '@angular/core';
 import { ResizeSensor } from 'css-element-queries';
-import { wvrTimeout } from '../shared/utility';
+import { projectContent } from '../shared/utility/projection.utility';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 /**
@@ -50,7 +50,6 @@ export class WvrFooterComponent extends WvrBaseComponent implements OnInit {
    * and calculates height to determine 'stickiness'
    */
   @HostListener('window:resize', ['$event']) positionSelf(): void {
-
     if (!this.footerElement) {
       this.footerElement = (this.eRef.nativeElement as HTMLElement).querySelector('footer.wvr-footer');
     }
@@ -77,6 +76,11 @@ export class WvrFooterComponent extends WvrBaseComponent implements OnInit {
     const rs = new ResizeSensor(this.parentElement, () => {
       this.positionSelf();
     });
+  }
+
+  /** Called after the view has been intialized. Handles the rendering of the projected content. */
+  ngAfterViewInit(): void {
+    projectContent(this.eRef, 'template[footer-content]', 'div[footer-content]');
   }
 
 }

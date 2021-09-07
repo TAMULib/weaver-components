@@ -1,8 +1,8 @@
 <footer class="wvr-components wvr-footer bg-{{themeVariant}}" [ngClass]="{'stick-to-bottom': isSticky}">
   <nav class="navbar navbar-expand-lg">
     <div class="container">
-      <div class="flex-fill align-self-stretch">
-        <ng-content select="wvre-nav-list,wvr-nav-list-component"></ng-content>
+      <div class="flex-fill align-self-stretch" footer-content>
+        <ng-content select="template[footer-content]"></ng-content>
       </div>
     </div>
   </nav>

@@ -997,17 +997,19 @@
   </div>
 
   <wvre-footer theme="DefaultColorTheme">
-    <wvre-nav-list aligned="CENTER">
-      <wvre-nav-li>
-        <wvre-text value="Action 1"></wvre-text>
-      </wvre-nav-li>
-      <wvre-nav-li href="#3" id="3">
-        <wvre-text value="Example" theme-variant="light"></wvre-text>
-      </wvre-nav-li>
-      <wvre-nav-li>
-        <wvre-text value="Action 2"></wvre-text>
-      </wvre-nav-li>
-    </wvre-nav-list>
+    <template footer-content>
+      <wvre-nav-list aligned="CENTER">
+        <wvre-nav-li>
+          <wvre-text value="Action 1"></wvre-text>
+        </wvre-nav-li>
+        <wvre-nav-li href="#3" id="3">
+          <wvre-text value="Example" theme-variant="light"></wvre-text>
+        </wvre-nav-li>
+        <wvre-nav-li>
+          <wvre-text value="Action 2"></wvre-text>
+        </wvre-nav-li>
+      </wvre-nav-list>
+    </template>
   </wvre-footer>
 
   <wvre-manifest name="Directory App" base-url="https://api-dev.library.tamu.edu/directory-service" mapping-strategy="weaver">
