@@ -1,33 +1,33 @@
 <wvre-list-wrapper #animationRoot [ngSwitch]="true">
-  <ul *ngSwitchCase="listType === 'unordered'">
+  <ul *ngSwitchCase="listType === 'unordered'" list-items>
     <ng-container *ngTemplateOutlet="selection"></ng-container>
   </ul>
 
-  <ul *ngSwitchCase="listType === 'unstyled'" class="list-unstyled">
+  <ul *ngSwitchCase="listType === 'unstyled'" class="list-unstyled" list-items>
     <ng-container *ngTemplateOutlet="selection"></ng-container>
   </ul>
 
-  <ol *ngSwitchCase="listType === 'ordered'">
+  <ol *ngSwitchCase="listType === 'ordered'" list-items>
     <ng-container *ngTemplateOutlet="selection"></ng-container>
   </ol>
 
-  <dl *ngSwitchCase="listType === 'described'">
+  <dl *ngSwitchCase="listType === 'described'" list-items>
     <ng-container *ngTemplateOutlet="selection"></ng-container>
   </dl>
 
-  <ul *ngSwitchCase="listType === 'group-ul' || listType === 'group'" class="list-group">
+  <ul *ngSwitchCase="listType === 'group-ul' || listType === 'group'" class="list-group" list-items>
     <ng-container *ngTemplateOutlet="selection"></ng-container>
   </ul>
 
-  <div *ngSwitchCase="listType === 'group-div'" class="list-group">
+  <div *ngSwitchCase="listType === 'group-div'" class="list-group" list-items>
     <ng-container *ngTemplateOutlet="selection"></ng-container>
   </div>
 
-  <ul *ngSwitchCase="listType === 'group-flush'" class="list-group list-group-flush">
+  <ul *ngSwitchCase="listType === 'group-flush'" class="list-group list-group-flush" list-items>
     <ng-container *ngTemplateOutlet="selection"></ng-container>
   </ul>
 
-  <div *ngSwitchCase="listType === 'group-custom-content'" class="list-group">
+  <div *ngSwitchCase="listType === 'group-custom-content'" class="list-group" list-items>
     <ng-container *ngTemplateOutlet="selection"></ng-container>
   </div>
 
@@ -36,5 +36,5 @@
 </wvre-list-wrapper>
 
 <ng-template #selection>
-  <ng-content select="wvre-list-item, wvr-list-item-component, template[wvr-compile]"></ng-content>
+  <ng-content select="template[list-items]"></ng-content>
 </ng-template>

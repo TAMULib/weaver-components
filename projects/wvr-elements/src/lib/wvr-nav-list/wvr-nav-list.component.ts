@@ -26,7 +26,7 @@ export class WvrNavListComponent extends WvrBaseComponent implements AfterViewIn
   }
 
   ngAfterViewInit(): void {
-    projectContent(this.eRef, 'template[nav-list-items]', 'ul[nav-list-items]')
+    projectContent(this.eRef, 'template[nav-list-items]', 'ul[nav-list-items]');
   }
 
 }

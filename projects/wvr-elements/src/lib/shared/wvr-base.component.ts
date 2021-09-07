@@ -104,7 +104,7 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
 
   isMobileLayout: boolean;
 
-  isMobile: Observable<boolean>
+  isMobile: Observable<boolean>;
 
   protected subscriptions: Array<Subscription>;
 

@@ -17,7 +17,11 @@ import { WvrCardComponent } from './wvr-card.component';
     <template card-image>
       <img src="assets/lighthouse.svg" />
     </template>
-    <wvre-list top list-type="group-flush" context="info"><wvre-list-item><wvre-text value="Item 1"></wvre-text></wvre-list-item><wvre-list-item context="warning"><wvre-text value="Item 2"></wvre-text></wvre-list-item><wvre-list-item context="success"><wvre-text value="Item 3"></wvre-text></wvre-list-item></wvre-list>
+    <wvre-list top list-type="group-flush" context="info">
+      <wvre-list-item><wvre-text value="Item 1"></wvre-text></wvre-list-item>
+      <wvre-list-item context="warning"><wvre-text value="Item 2"></wvre-text></wvre-list-item>
+      <wvre-list-item context="success"><wvre-text value="Item 3"></wvre-text></wvre-list-item>
+    </wvre-list>
     <wvre-text value="This is a basic card body content"></wvre-text>
     <wvre-list bottom list-type="group-flush" context="info">
       <wvre-list-item>

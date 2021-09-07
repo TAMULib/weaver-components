@@ -290,26 +290,30 @@
       </template>
 
       <wvre-list top list-type="group-flush" theme-variant="info">
-        <wvre-list-item>
-          <wvre-text value="Item 1"></wvre-text>
-        </wvre-list-item>
-        <wvre-list-item theme-variant="warning">
-          <wvre-text value="Item 2"></wvre-text>
-        </wvre-list-item>
-        <wvre-list-item theme-variant="success">
-          <wvre-text value="Item 3"></wvre-text>
-        </wvre-list-item>
+        <template list-items>
+          <wvre-list-item>
+            <wvre-text value="Item 1"></wvre-text>
+          </wvre-list-item>
+          <wvre-list-item theme-variant="warning">
+            <wvre-text value="Item 2"></wvre-text>
+          </wvre-list-item>
+          <wvre-list-item theme-variant="success">
+            <wvre-text value="Item 3"></wvre-text>
+          </wvre-list-item>
+        </template>
       </wvre-list>
 
       <wvre-text value="This is a basic card body content"></wvre-text>
 
       <wvre-list bottom list-type="group-flush" theme-variant="info">
-        <wvre-list-item>
-          <wvre-text value="Item 1"></wvre-text>
-        </wvre-list-item>
-        <wvre-list-item theme-variant="warning">
-          <wvre-text value="Item 2"></wvre-text>
-        </wvre-list-item>
+        <template list-items>
+          <wvre-list-item>
+            <wvre-text value="Item 1"></wvre-text>
+          </wvre-list-item>
+          <wvre-list-item theme-variant="warning">
+            <wvre-text value="Item 2"></wvre-text>
+          </wvre-list-item>
+        </template>
       </wvre-list>
 
       <template card-links>
@@ -780,145 +784,163 @@
 
     <wvre-text value="Unordered List" text-decoration="underline"></wvre-text><br />
     <wvre-list list-type="unordered" hidden-in-mobile="true">
-      <wvre-list-item>
-        <wvre-text value="Item 1"></wvre-text>
-      </wvre-list-item>
-      <wvre-list-item>
-        <wvre-text value="Item 2"></wvre-text>
-      </wvre-list-item>
-      <wvre-list-item>
-        <wvre-text value="Item 3"></wvre-text>
-      </wvre-list-item>
+      <template list-items>
+        <wvre-list-item>
+          <wvre-text value="Item 1"></wvre-text>
+        </wvre-list-item>
+        <wvre-list-item>
+          <wvre-text value="Item 2"></wvre-text>
+        </wvre-list-item>
+        <wvre-list-item>
+          <wvre-text value="Item 3"></wvre-text>
+        </wvre-list-item>
+      </template>
     </wvre-list>
     <br /><br />
 
     <wvre-text value="Ordered List" text-decoration="underline"></wvre-text><br />
     <wvre-list list-type="ordered">
-      <wvre-list-item>
-        <wvre-text value="Item 1"></wvre-text>
-      </wvre-list-item>
-      <wvre-list-item>
-        <wvre-text value="Item 2"></wvre-text>
-      </wvre-list-item>
-      <wvre-list-item>
-        <wvre-text value="Item 3"></wvre-text>
-      </wvre-list-item>
+      <template list-items>
+        <wvre-list-item>
+          <wvre-text value="Item 1"></wvre-text>
+        </wvre-list-item>
+        <wvre-list-item>
+          <wvre-text value="Item 2"></wvre-text>
+        </wvre-list-item>
+        <wvre-list-item>
+          <wvre-text value="Item 3"></wvre-text>
+        </wvre-list-item>
+      </template>
     </wvre-list>
     <br /><br />
 
     <wvre-text value="Unstyled List" text-decoration="underline"></wvre-text><br />
     <wvre-list list-type="unstyled">
-      <wvre-list-item>
-        <wvre-text value="Item 1"></wvre-text>
-      </wvre-list-item>
-      <wvre-list-item>
-        <wvre-text value="Item 2"></wvre-text>
-      </wvre-list-item>
-      <wvre-list-item>
-        <wvre-text value="Item 3"></wvre-text>
-      </wvre-list-item>
+      <template list-items>
+        <wvre-list-item>
+          <wvre-text value="Item 1"></wvre-text>
+        </wvre-list-item>
+        <wvre-list-item>
+          <wvre-text value="Item 2"></wvre-text>
+        </wvre-list-item>
+        <wvre-list-item>
+          <wvre-text value="Item 3"></wvre-text>
+        </wvre-list-item>
+      </template>
     </wvre-list>
     <br /><br />
 
     <wvre-text value="Described List" text-decoration="underline"></wvre-text><br />
     <wvre-list list-type="described">
-      <wvre-list-item description="Description 1">
-        <wvre-text value="Item 1"></wvre-text>
-      </wvre-list-item>
-      <wvre-list-item description="Description 2">
-        <wvre-text value="Item 2"></wvre-text>
-      </wvre-list-item>
-      <wvre-list-item description="Description 3">
-        <wvre-text value="Item 3"></wvre-text>
-      </wvre-list-item>
+      <template list-items>
+        <wvre-list-item description="Description 1">
+          <wvre-text value="Item 1"></wvre-text>
+        </wvre-list-item>
+        <wvre-list-item description="Description 2">
+          <wvre-text value="Item 2"></wvre-text>
+        </wvre-list-item>
+        <wvre-list-item description="Description 3">
+          <wvre-text value="Item 3"></wvre-text>
+        </wvre-list-item>
+      </template>
     </wvre-list>
     <br /><br />
 
     <wvre-text value="Group List" text-decoration="underline"></wvre-text><br />
     <wvre-list list-type="group">
-      <wvre-list-item>
-        <wvre-text value="Item 1"></wvre-text>
-      </wvre-list-item>
-      <wvre-list-item>
-        <wvre-text value="Item 2"></wvre-text>
-      </wvre-list-item>
-      <wvre-list-item>
-        <wvre-text value="Item 3"></wvre-text>
-      </wvre-list-item>
+      <template list-items>
+        <wvre-list-item>
+          <wvre-text value="Item 1"></wvre-text>
+        </wvre-list-item>
+        <wvre-list-item>
+          <wvre-text value="Item 2"></wvre-text>
+        </wvre-list-item>
+        <wvre-list-item>
+          <wvre-text value="Item 3"></wvre-text>
+        </wvre-list-item>
+      </template>
     </wvre-list>
     <br /><br />
 
     <wvre-text value="Group List - Div" text-decoration="underline"></wvre-text><br />
     <wvre-list list-type="group-div">
-      <wvre-list-item>
-        <wvre-text value="Item 1"></wvre-text>
-      </wvre-list-item>
-      <wvre-list-item>
-        <wvre-text value="Item 2"></wvre-text>
-      </wvre-list-item>
-      <wvre-list-item>
-        <wvre-text value="Item 3"></wvre-text>
-      </wvre-list-item>
+      <template list-items>
+        <wvre-list-item>
+          <wvre-text value="Item 1"></wvre-text>
+        </wvre-list-item>
+        <wvre-list-item>
+          <wvre-text value="Item 2"></wvre-text>
+        </wvre-list-item>
+        <wvre-list-item>
+          <wvre-text value="Item 3"></wvre-text>
+        </wvre-list-item>
+      </template>
     </wvre-list>
     <br /><br />
 
     <wvre-text value="Group List - Flush" text-decoration="underline"></wvre-text><br />
     <wvre-list list-type="group-flush" theme-variant="info">
-      <wvre-list-item>
-        <wvre-text value="Item 1"></wvre-text>
-      </wvre-list-item>
-      <wvre-list-item theme-variant="warning">
-        <wvre-text value="Item 2"></wvre-text>
-      </wvre-list-item>
-      <wvre-list-item theme-variant="success">
-        <wvre-text value="Item 3"></wvre-text>
-      </wvre-list-item>
+      <template list-items>
+        <wvre-list-item>
+          <wvre-text value="Item 1"></wvre-text>
+        </wvre-list-item>
+        <wvre-list-item theme-variant="warning">
+          <wvre-text value="Item 2"></wvre-text>
+        </wvre-list-item>
+        <wvre-list-item theme-variant="success">
+          <wvre-text value="Item 3"></wvre-text>
+        </wvre-list-item>
+      </template>
     </wvre-list>
     <br /><br />
 
     <wvre-text value="Group List - Contextual Classes"text-decoration="underline"></wvre-text><br />
     <wvre-list list-type="group-ul" theme-variant="info">
-      <wvre-list-item>
-        <wvre-text value="Item 1"></wvre-text>
-        <span class="badge badge-primary badge-pill">
-          <wvre-text value="14"></wvre-text>
-        </span>
-      </wvre-list-item>
-      <wvre-list-item theme-variant="warning">
-        <wvre-text value="Item 2"></wvre-text>
-        <span class="badge badge-secondary badge-pill">
-          <wvre-text value="28"></wvre-text>
-        </span>
-      </wvre-list-item>
-      <wvre-list-item theme-variant="success">
-        <wvre-text value="Item 3"></wvre-text>
-        <span class="badge badge-success badge-pill">
-          <wvre-text value="46"></wvre-text>
-        </span>
-      </wvre-list-item>
+      <template list-items>
+        <wvre-list-item>
+          <wvre-text value="Item 1"></wvre-text>
+          <span class="badge badge-primary badge-pill">
+            <wvre-text value="14"></wvre-text>
+          </span>
+        </wvre-list-item>
+        <wvre-list-item theme-variant="warning">
+          <wvre-text value="Item 2"></wvre-text>
+          <span class="badge badge-secondary badge-pill">
+            <wvre-text value="28"></wvre-text>
+          </span>
+        </wvre-list-item>
+        <wvre-list-item theme-variant="success">
+          <wvre-text value="Item 3"></wvre-text>
+          <span class="badge badge-success badge-pill">
+            <wvre-text value="46"></wvre-text>
+          </span>
+        </wvre-list-item>
+      </template>
     </wvre-list>
     <br /><br />
 
     <wvre-text value="Group List - Custom Content" text-decoration="underline"></wvre-text><br />
     <wvre-list list-type="group-custom-content" hidden-in-mobile="true">
-      <wvre-list-item
-        custom-content-item-heading="Custom Content Item Heading"
-        cusom-content-heading-small-text="Custom Content Heading Small Text"
-        custom-content-small-text="Custom Content Small Text">
-        <wvre-text value="Custom Content Description 1"></wvre-text>
-      </wvre-list-item>
-      <wvre-list-item
-        custom-content-item-heading="Custom Content Item Heading2"
-        cusom-content-heading-small-text="Custom Content Heading Small Text2"
-        custom-content-small-text="Custom Content Small Text2">
-        <wvre-text value="Custom Content Description 2"></wvre-text>
-      </wvre-list-item>
-      <wvre-list-item
-        custom-content-item-heading="Custom Content Item Heading3"
-        cusom-content-heading-small-text="Custom Content Heading Small Text3"
-        custom-content-small-text="Custom Content Small Text3">
-        <wvre-text value="Custom Content Description 3"></wvre-text>
-      </wvre-list-item>
+      <template list-items>
+        <wvre-list-item
+          custom-content-item-heading="Custom Content Item Heading"
+          cusom-content-heading-small-text="Custom Content Heading Small Text"
+          custom-content-small-text="Custom Content Small Text">
+          <wvre-text value="Custom Content Description 1"></wvre-text>
+        </wvre-list-item>
+        <wvre-list-item
+          custom-content-item-heading="Custom Content Item Heading2"
+          cusom-content-heading-small-text="Custom Content Heading Small Text2"
+          custom-content-small-text="Custom Content Small Text2">
+          <wvre-text value="Custom Content Description 2"></wvre-text>
+        </wvre-list-item>
+        <wvre-list-item
+          custom-content-item-heading="Custom Content Item Heading3"
+          cusom-content-heading-small-text="Custom Content Heading Small Text3"
+          custom-content-small-text="Custom Content Small Text3">
+          <wvre-text value="Custom Content Description 3"></wvre-text>
+        </wvre-list-item>
+      </template>
     </wvre-list>
 
   </div>
@@ -932,7 +954,7 @@
       entry: 'All Sorted',
       as: 'allSorted'
     }]">
-      <template wvr-compile>
+      <template list-items>
         {{#each allSorted}}
           <wvre-list-item>{{fullName}}</wvre-list-item>
         {{/each}}
