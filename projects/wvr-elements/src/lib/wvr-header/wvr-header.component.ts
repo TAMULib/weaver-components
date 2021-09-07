@@ -1,5 +1,8 @@
-import { AfterContentChecked, ChangeDetectionStrategy, Component, HostBinding, Injector, Input, OnInit } from '@angular/core';
+import { AfterContentChecked, AfterViewInit, ChangeDetectionStrategy, Component, HostBinding, Injector, Input, OnInit } from '@angular/core';
+import { select } from '@ngrx/store';
+import { selectIsMobileLayout } from 'wvr-elements';
 import { ThemeVariantName } from '../shared/theme';
+import { preserveContent, projectContent } from '../shared/utility/projection.utility';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 /**
@@ -11,7 +14,7 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
   styleUrls: ['./wvr-header.component.scss'],
   changeDetection: ChangeDetectionStrategy.Default
 })
-export class WvrHeaderComponent extends WvrBaseComponent implements AfterContentChecked {
+export class WvrHeaderComponent extends WvrBaseComponent implements AfterContentChecked, AfterViewInit, OnInit {
 
   /** The text value to be displayed beside the logo. */
   @Input() logoText = 'Weaver Components';
@@ -94,6 +97,26 @@ export class WvrHeaderComponent extends WvrBaseComponent implements AfterContent
 
   ngAfterContentChecked(): void {
     this.checkBottomNavHasChildren();
+  }
+
+  /** Called after the view has been intialized. Handles the rendering of the projected content. */
+  ngAfterViewInit(): void {
+    this.subscriptions.push(this.store.pipe(select(selectIsMobileLayout))
+      .subscribe((isMobile: boolean) => {
+        if (isMobile) {
+          setTimeout(() => {
+            preserveContent(this.eRef, 'template[top-navigation]', 'div[top-navigation]');
+            preserveContent(this.eRef, 'template[bottom-navigation]', 'div[bottom-navigation]');
+            projectContent(this.eRef, 'template[mobile-menu]', 'div[mobile-menu]');
+          });
+        } else {
+          setTimeout(() => {
+            preserveContent(this.eRef, 'template[mobile-menu]', 'div[mobile-menu]');
+            projectContent(this.eRef, 'template[top-navigation]', 'div[top-navigation]');
+            projectContent(this.eRef, 'template[bottom-navigation]', 'div[bottom-navigation]');
+          });
+        }
+      }));
   }
 
   toggleMobileMenu(): void {

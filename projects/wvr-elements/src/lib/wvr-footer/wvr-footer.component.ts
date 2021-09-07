@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, HostBinding, HostListener, Injector, Input, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, HostBinding, HostListener, Injector, Input, OnInit } from '@angular/core';
 import { ResizeSensor } from 'css-element-queries';
 import { projectContent } from '../shared/utility/projection.utility';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
@@ -12,7 +12,7 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
   styleUrls: ['./wvr-footer.component.scss'],
   changeDetection: ChangeDetectionStrategy.Default
 })
-export class WvrFooterComponent extends WvrBaseComponent implements OnInit {
+export class WvrFooterComponent extends WvrBaseComponent implements OnInit, AfterViewInit {
 
   /** An internal reference to the body element. */
   private parentElement: HTMLElement;

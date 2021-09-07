@@ -37,146 +37,150 @@
 <body class="wvr-components-loading">
 
   <wvre-header title-row-theme-variant="primary" top-nav-theme-variant="primaryNeutral" bottom-nav-theme-variant="primaryNeutral">
-    <wvre-nav-list top-navigation>
-      <wvre-nav-li>
-        <wvre-dropdown
-          btn-type="link"
-          btn-text-decoration="none"
-          btn-text-decoration-active="none"
-          btn-text-decoration-hover="none"
-          placement="top-left"
-          toggle-on="click"
-          menu-width="400px"
-          menu-padding="0"
-          menu-item-margin="0"
-          wvr-hide-content>
-          <template dropdown-button>
-            <wvre-text value="Dropdown 1" theme-variant="light"></wvre-text>
-          </template>
-          <template dropdown-menu>
-            <div class="list-group">
-              <button type="button" class="list-group-item list-group-item-action active">
-                <wvre-text value="Option One"></wvre-text>
-              </button>
-              <button type="button" class="list-group-item list-group-item-action">
-                <wvre-text value="Option Two"></wvre-text>
-              </button>
-              <button type="button" class="list-group-item list-group-item-action">
-                <wvre-text value="Option Three"></wvre-text>
-              </button>
-              <button type="button" class="list-group-item list-group-item-action">
-                <wvre-text value="Option Four"></wvre-text>
-              </button>
-              <button type="button" class="list-group-item list-group-item-action" disabled>
-                <wvre-text value="Option Five" text-decoration="line-through"></wvre-text>
-              </button>
-            </div>
-          </template>
-        </wvre-dropdown>
-      </wvre-nav-li>
-      <wvre-nav-li>
-        <wvre-dropdown
-          btn-href="https://github.com/TAMULib/weaver-components"
-          btn-type="link"
-          btn-text-decoration="none"
-          btn-text-decoration-active="none"
-          btn-text-decoration-hover="none"
-          btn-box-shadow-focus="none"
-          toggle-on="mouseover"
-          menu-animation-speed="350"
-          menu-width="400px"
-          menu-x-offset="-140px"
-          menu-padding="45px 10px 0px 10px"
-          menu-item-margin="5px 0 0 0"
-          wvr-hide-content>
-          <template dropdown-button>
-            <wvre-text value="Dropdown 2" theme-variant="light"></wvre-text>
-          </template>
-          <template dropdown-menu>
-            <ul class="list-unstyled">
-              <li wvre-dropdown-menu-item>
-                <a href="#linkOne" id="linkOne">
-                  <wvre-text value="Link One" text-decoration="underline">
-                </a>
-                <p>
-                  <wvre-text value="Description for link one"></wvre-text>
-                </p>
-              </li>
-              <li wvre-dropdown-menu-item>
-                <a href="#linkTwo" id="linkTwo">
-                  <wvre-text value="Link Two" text-decoration="underline">
-                </a>
-                <p>
-                  <wvre-text value="Description for link Two"></wvre-text>
-                </p>
-              </li>
-              <li wvre-dropdown-menu-item>
-                <a href="#linkThree" id="linkThree">
-                  <wvre-text value="Link Three" text-decoration="underline">
-                </a>
-                <p>
-                  <wvre-text value="Description for link Three"></wvre-text>
-                </p>
-              </li>
-              <li wvre-dropdown-menu-item>
-                <a href="#linkFour" id="linkFour">
-                  <wvre-text value="Link Four" text-decoration="underline">
-                </a>
-                <p>
-                  <wvre-text value="Description for link Four"></wvre-text>
-                </p>
-              </li>
-            </ul>
-          </template>
-        </wvre-dropdown>
-      </wvre-nav-li>
-      <wvre-nav-li>
-        <wvre-text value="Action 1" theme-variant="light"></wvre-text>
-      </wvre-nav-li>
-    </wvre-nav-list>
-    <wvre-nav-list bottom-navigation hidden-in-mobile="true">
-      <wvre-nav-li href="#1" id="1">
-        <wvre-text value="Example 1" theme-variant="light"></wvre-text>
-      </wvre-nav-li>
-      <wvre-nav-li href="#2" id="2">
-        <wvre-text value="Example 2" theme-variant="light"></wvre-text>
-      </wvre-nav-li>
-      <wvre-nav-li>
-        <wvre-dropdown
-          theme-variant="link"
-          btn-text-decoration="none"
-          btn-text-decoration-active="none"
-          btn-text-decoration-hover="none"
-          toggle-on="click"
-          menu-width="400px"
-          menu-padding="0"
-          menu-item-margin="0"
-          wvr-hide-content>
-          <template dropdown-button>
-            <wvre-text value="Dropdown 1" theme-variant="light"></wvre-text>
-          </template>
-          <template dropdown-menu>
-            <div class="list-group">
-              <button type="button" class="list-group-item list-group-item-action active">
-                <wvre-text value="Option One"></wvre-text>
-              </button>
-              <button type="button" class="list-group-item list-group-item-action">
-                <wvre-text value="Option Two"></wvre-text>
-              </button>
-              <button type="button" class="list-group-item list-group-item-action">
-                <wvre-text value="Option Three"></wvre-text>
-              </button>
-              <button type="button" class="list-group-item list-group-item-action">
-                <wvre-text value="Option Four"></wvre-text>
-              </button>
-              <button type="button" class="list-group-item list-group-item-action" disabled>
-                <wvre-text value="Option Five" text-decoration="line-through"></wvre-text>
-              </button>
-            </div>
-          </template>
-        </wvre-dropdown>
-      </wvre-nav-li>
-    </wvre-nav-list>
+    <template top-navigation>
+      <wvre-nav-list>
+        <wvre-nav-li>
+          <wvre-dropdown
+            btn-type="link"
+            btn-text-decoration="none"
+            btn-text-decoration-active="none"
+            btn-text-decoration-hover="none"
+            placement="top-left"
+            toggle-on="click"
+            menu-width="400px"
+            menu-padding="0"
+            menu-item-margin="0"
+            wvr-hide-content>
+            <template dropdown-button>
+              <wvre-text value="Dropdown 1" theme-variant="light"></wvre-text>
+            </template>
+            <template dropdown-menu>
+              <div class="list-group">
+                <button type="button" class="list-group-item list-group-item-action active">
+                  <wvre-text value="Option One"></wvre-text>
+                </button>
+                <button type="button" class="list-group-item list-group-item-action">
+                  <wvre-text value="Option Two"></wvre-text>
+                </button>
+                <button type="button" class="list-group-item list-group-item-action">
+                  <wvre-text value="Option Three"></wvre-text>
+                </button>
+                <button type="button" class="list-group-item list-group-item-action">
+                  <wvre-text value="Option Four"></wvre-text>
+                </button>
+                <button type="button" class="list-group-item list-group-item-action" disabled>
+                  <wvre-text value="Option Five" text-decoration="line-through"></wvre-text>
+                </button>
+              </div>
+            </template>
+          </wvre-dropdown>
+        </wvre-nav-li>
+        <wvre-nav-li>
+          <wvre-dropdown
+            btn-href="https://github.com/TAMULib/weaver-components"
+            btn-type="link"
+            btn-text-decoration="none"
+            btn-text-decoration-active="none"
+            btn-text-decoration-hover="none"
+            btn-box-shadow-focus="none"
+            toggle-on="mouseover"
+            menu-animation-speed="350"
+            menu-width="400px"
+            menu-x-offset="-140px"
+            menu-padding="45px 10px 0px 10px"
+            menu-item-margin="5px 0 0 0"
+            wvr-hide-content>
+            <template dropdown-button>
+              <wvre-text value="Dropdown 2" theme-variant="light"></wvre-text>
+            </template>
+            <template dropdown-menu>
+              <ul class="list-unstyled">
+                <li wvre-dropdown-menu-item>
+                  <a href="#linkOne" id="linkOne">
+                    <wvre-text value="Link One" text-decoration="underline">
+                  </a>
+                  <p>
+                    <wvre-text value="Description for link one"></wvre-text>
+                  </p>
+                </li>
+                <li wvre-dropdown-menu-item>
+                  <a href="#linkTwo" id="linkTwo">
+                    <wvre-text value="Link Two" text-decoration="underline">
+                  </a>
+                  <p>
+                    <wvre-text value="Description for link Two"></wvre-text>
+                  </p>
+                </li>
+                <li wvre-dropdown-menu-item>
+                  <a href="#linkThree" id="linkThree">
+                    <wvre-text value="Link Three" text-decoration="underline">
+                  </a>
+                  <p>
+                    <wvre-text value="Description for link Three"></wvre-text>
+                  </p>
+                </li>
+                <li wvre-dropdown-menu-item>
+                  <a href="#linkFour" id="linkFour">
+                    <wvre-text value="Link Four" text-decoration="underline">
+                  </a>
+                  <p>
+                    <wvre-text value="Description for link Four"></wvre-text>
+                  </p>
+                </li>
+              </ul>
+            </template>
+          </wvre-dropdown>
+        </wvre-nav-li>
+        <wvre-nav-li>
+          <wvre-text value="Action 1" theme-variant="light"></wvre-text>
+        </wvre-nav-li>
+      </wvre-nav-list>
+    </template>
+    <template bottom-navigation>
+      <wvre-nav-list hidden-in-mobile="true">
+        <wvre-nav-li href="#1" id="1">
+          <wvre-text value="Example 1" theme-variant="light"></wvre-text>
+        </wvre-nav-li>
+        <wvre-nav-li href="#2" id="2">
+          <wvre-text value="Example 2" theme-variant="light"></wvre-text>
+        </wvre-nav-li>
+        <wvre-nav-li>
+          <wvre-dropdown
+            theme-variant="link"
+            btn-text-decoration="none"
+            btn-text-decoration-active="none"
+            btn-text-decoration-hover="none"
+            toggle-on="click"
+            menu-width="400px"
+            menu-padding="0"
+            menu-item-margin="0"
+            wvr-hide-content>
+            <template dropdown-button>
+              <wvre-text value="Dropdown 1" theme-variant="light"></wvre-text>
+            </template>
+            <template dropdown-menu>
+              <div class="list-group">
+                <button type="button" class="list-group-item list-group-item-action active">
+                  <wvre-text value="Option One"></wvre-text>
+                </button>
+                <button type="button" class="list-group-item list-group-item-action">
+                  <wvre-text value="Option Two"></wvre-text>
+                </button>
+                <button type="button" class="list-group-item list-group-item-action">
+                  <wvre-text value="Option Three"></wvre-text>
+                </button>
+                <button type="button" class="list-group-item list-group-item-action">
+                  <wvre-text value="Option Four"></wvre-text>
+                </button>
+                <button type="button" class="list-group-item list-group-item-action" disabled>
+                  <wvre-text value="Option Five" text-decoration="line-through"></wvre-text>
+                </button>
+              </div>
+            </template>
+          </wvre-dropdown>
+        </wvre-nav-li>
+      </wvre-nav-list>
+    </template>
   </wvre-header>
   <br />
 
