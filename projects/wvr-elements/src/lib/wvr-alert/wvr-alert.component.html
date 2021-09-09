@@ -17,7 +17,9 @@
 </div>
 
 <ng-template #basic>
-  <ng-content select="wvre-text, wvr-text-component"></ng-content>
+  <div alert-content>
+    <ng-content select="template[alert-content]"></ng-content>
+  </div>
 </ng-template>
 
 <ng-template #selfClosing>
@@ -27,7 +29,9 @@
 </ng-template>
 
 <ng-template #custom>
-  <ng-content select="wvre-custom-alert"></ng-content>
+  <div custom-alert-content>
+    <ng-content select="template[custom-alert-content]"></ng-content>
+  </div>
 </ng-template>
 
 <ng-template #closeButton>

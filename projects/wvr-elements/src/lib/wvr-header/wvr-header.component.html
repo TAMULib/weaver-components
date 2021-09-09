@@ -23,8 +23,7 @@
     </div>
   </div>
 
-  <nav *ngIf="!isMobileLayout" class="bottom-nav navbar navbar-expand-lg bg-{{bottomNavThemeVariant}}"
-    [hidden]="isBottomNavHidden">
+  <nav *ngIf="!isMobileLayout" class="bottom-nav navbar navbar-expand-lg bg-{{bottomNavThemeVariant}}" [hidden]="isBottomNavHidden">
     <div class="container">
       <div class="flex-fill align-self-stretch">
         <ng-container *ngTemplateOutlet="bottomNavContent"></ng-container>
@@ -71,17 +70,17 @@
 </div>
 
 <ng-template #topNavContent>
-  <div *ngIf="!isMobileLayout" class="top-nav-wrapper">
-    <ng-content select="wvre-nav-list[top-navigation],wvr-nav-list-component[top-navigation]"></ng-content>
+  <div *ngIf="!isMobileLayout" class="top-nav-wrapper" top-navigation>
+    <ng-content select="template[top-navigation]"></ng-content>
   </div>
 </ng-template>
 <ng-template #bottomNavContent>
-  <div *ngIf="!isMobileLayout" class="h-100">
-    <ng-content select="wvre-nav-list[bottom-navigation],wvr-nav-list-component[bottom-navigation]"></ng-content>
+  <div *ngIf="!isMobileLayout" class="h-100" bottom-navigation>
+    <ng-content select="template[bottom-navigation]"></ng-content>
   </div>
 </ng-template>
 <ng-template #mobileMenuContent>
-  <div *ngIf="isMobileLayout">
-    <ng-content select="[mobile-menu]"></ng-content>
+  <div *ngIf="isMobileLayout" mobile-menu>
+    <ng-content select="template[mobile-menu]"></ng-content>
   </div>
 </ng-template>

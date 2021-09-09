@@ -1,4 +1,5 @@
-import { Component, Injector, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Injector, Input, OnInit } from '@angular/core';
+import { projectContent } from '../shared/utility/projection.utility';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 /**
@@ -9,7 +10,7 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
   templateUrl: './wvr-alert.component.html',
   styleUrls: ['./wvr-alert.component.scss']
 })
-export class WvrAlertComponent extends WvrBaseComponent implements OnInit {
+export class WvrAlertComponent extends WvrBaseComponent implements OnInit, AfterViewInit {
 
   /** Used to define the type of alert. */
   @Input() alertType: 'basic' | 'self-closing' | 'custom' = 'basic';
@@ -46,6 +47,12 @@ export class WvrAlertComponent extends WvrBaseComponent implements OnInit {
         this.alertClosed = true;
       }, this.closeTimer);
     }
+  }
+
+  /** Called after the view has been intialized. Handles the rendering of the projected content. */
+  ngAfterViewInit(): void {
+    projectContent(this.eRef, 'template[alert-content]', 'div[alert-content]');
+    projectContent(this.eRef, 'template[custom-alert-content]', 'div[custom-alert-content]');
   }
 
 }

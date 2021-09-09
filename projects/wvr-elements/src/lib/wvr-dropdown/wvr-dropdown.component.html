@@ -29,7 +29,9 @@
       [textDecorationFocus]="btnTextDecorationFocus"
       [textDecorationHover]="btnTextDecorationHover"
       [verticalAlign]="btnVerticalAlign" ngbDropdownAnchor>
-      <ng-content select="wvre-dropdown-btn" ngProjectAs="wvre-btn-content"></ng-content>
+      <template button-content>
+        <ng-content select="template[dropdown-button]"></ng-content>
+      </template>
     </wvr-button-component>
     <div ngbDropdownMenu [ngClass]="{open: open,closed: !open}" class="bg-{{menuThemeVariant}}" dropdown-menu>
       <ng-content select="template[dropdown-menu]"></ng-content>

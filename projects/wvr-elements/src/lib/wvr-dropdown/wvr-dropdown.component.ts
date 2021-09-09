@@ -221,6 +221,7 @@ export class WvrDropdownComponent extends WvrBaseComponent implements AfterViewI
   /** Called after the view has been intialized. Handles the rendering of the projected content. */
   ngAfterViewInit(): void {
     projectContent(this.eRef, 'template[dropdown-menu]', 'div[dropdown-menu]');
+    projectContent(this.eRef, 'template[dropdown-button]', 'span[button-content]');
   }
 
   /** An access method to expose the `isOpen` utility method from `NgbDropdown` */
