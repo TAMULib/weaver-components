@@ -4,15 +4,17 @@
   </desciption>
   <snippet>
     <wvre-list list-type="unordered">
-      <wvre-list-item>
-        <wvre-text value="Item 1"></wvre-text>
-      </wvre-list-item>
-      <wvre-list-item>
-        <wvre-text value="Item 2"></wvre-text>
-      </wvre-list-item>
-      <wvre-list-item>
-        <wvre-text value="Item 3"></wvre-text>
-      </wvre-list-item>
+      <template list-items>
+        <wvre-list-item>
+          <wvre-text value="Item 1"></wvre-text>
+        </wvre-list-item>
+        <wvre-list-item>
+          <wvre-text value="Item 2"></wvre-text>
+        </wvre-list-item>
+        <wvre-list-item>
+          <wvre-text value="Item 3"></wvre-text>
+        </wvre-list-item>
+      </template>
     </wvre-list>
   </snippet>
 </example>
@@ -23,15 +25,17 @@
   </desciption>
   <snippet>
     <wvre-list list-type="ordered">
-      <wvre-list-item>
-        <wvre-text value="Item 1"></wvre-text>
-      </wvre-list-item>
-      <wvre-list-item>
-        <wvre-text value="Item 2"></wvre-text>
-      </wvre-list-item>
-      <wvre-list-item>
-        <wvre-text value="Item 3"></wvre-text>
-      </wvre-list-item>
+      <template list-items>
+        <wvre-list-item>
+          <wvre-text value="Item 1"></wvre-text>
+        </wvre-list-item>
+        <wvre-list-item>
+          <wvre-text value="Item 2"></wvre-text>
+        </wvre-list-item>
+        <wvre-list-item>
+          <wvre-text value="Item 3"></wvre-text>
+        </wvre-list-item>
+      </template>
     </wvre-list>
   </snippet>
 </example>
@@ -42,15 +46,17 @@
   </desciption>
   <snippet>
     <wvre-list list-type="unstyled">
-      <wvre-list-item>
-        <wvre-text value="Item 1"></wvre-text>
-      </wvre-list-item>
-      <wvre-list-item>
-        <wvre-text value="Item 2"></wvre-text>
-      </wvre-list-item>
-      <wvre-list-item>
-        <wvre-text value="Item 3"></wvre-text>
-      </wvre-list-item>
+      <template list-items>
+        <wvre-list-item>
+          <wvre-text value="Item 1"></wvre-text>
+        </wvre-list-item>
+        <wvre-list-item>
+          <wvre-text value="Item 2"></wvre-text>
+        </wvre-list-item>
+        <wvre-list-item>
+          <wvre-text value="Item 3"></wvre-text>
+        </wvre-list-item>
+      </template>
     </wvre-list>
   </snippet>
 </example>
@@ -61,15 +67,17 @@
   </desciption>
   <snippet>
     <wvre-list list-type="described">
-      <wvre-list-item description="Description 1">
-        <wvre-text value="Item 1"></wvre-text>
-      </wvre-list-item>
-      <wvre-list-item description="Description 2">
-        <wvre-text value="Item 2"></wvre-text>
-      </wvre-list-item>
-      <wvre-list-item description="Description 3">
-        <wvre-text value="Item 3"></wvre-text>
-      </wvre-list-item>
+      <template list-items>
+        <wvre-list-item description="Description 1">
+          <wvre-text value="Item 1"></wvre-text>
+        </wvre-list-item>
+        <wvre-list-item description="Description 2">
+          <wvre-text value="Item 2"></wvre-text>
+        </wvre-list-item>
+        <wvre-list-item description="Description 3">
+          <wvre-text value="Item 3"></wvre-text>
+        </wvre-list-item>
+      </template>
     </wvre-list>
   </snippet>
 </example>
@@ -80,16 +88,18 @@
   </desciption>
   <snippet>
     <wvre-list list-type="group">
-      <wvre-list-item>
-        <wvre-text value="Item 1"></wvre-text>
-      </wvre-list-item>
-      <wvre-list-item>
-        <wvre-text value="Item 2"></wvre-text>
-      </wvre-list-item>
-      <wvre-list-item>
-        <wvre-text value="Item 3"></wvre-text>
-      </wvre-list-item>
-    </wvre-list>
+      <template list-items>
+        <wvre-list-item>
+          <wvre-text value="Item 1"></wvre-text>
+        </wvre-list-item>
+        <wvre-list-item>
+          <wvre-text value="Item 2"></wvre-text>
+        </wvre-list-item>
+        <wvre-list-item>
+          <wvre-text value="Item 3"></wvre-text>
+        </wvre-list-item>
+      </wvre-list>
+    </template>
   </snippet>
 </example>
 
@@ -99,16 +109,18 @@
   </desciption>
   <snippet>
     <wvre-list list-type="group-flush" theme-variant="info">
-      <wvre-list-item>
-        <wvre-text value="Item 1"></wvre-text>
-      </wvre-list-item>
-      <wvre-list-item theme-variant="warning">
-        <wvre-text value="Item 2"></wvre-text>
-      </wvre-list-item>
-      <wvre-list-item theme-variant="success">
-        <wvre-text value="Item 3"></wvre-text>
-      </wvre-list-item>
-    </wvre-list>
+      <template list-items>
+        <wvre-list-item>
+          <wvre-text value="Item 1"></wvre-text>
+        </wvre-list-item>
+        <wvre-list-item theme-variant="warning">
+          <wvre-text value="Item 2"></wvre-text>
+        </wvre-list-item>
+        <wvre-list-item theme-variant="success">
+          <wvre-text value="Item 3"></wvre-text>
+        </wvre-list-item>
+      </wvre-list>
+    </template>
   </snippet>
 </example>
 
@@ -118,25 +130,27 @@
   </desciption>
   <snippet>
     <wvre-list list-type="group-ul" theme-variant="info">
-      <wvre-list-item>
-        <wvre-text value="Item 1"></wvre-text>
-        <span class="badge badge-primary badge-pill">
-          <wvre-text value="14"></wvre-text>
-        </span>
-      </wvre-list-item>
-      <wvre-list-item theme-variant="warning">
-        <wvre-text value="Item 2"></wvre-text>
-        <span class="badge badge-secondary badge-pill">
-          <wvre-text value="28"></wvre-text>
-        </span>
-      </wvre-list-item>
-      <wvre-list-item theme-variant="success">
-        <wvre-text value="Item 3"></wvre-text>
-        <span class="badge badge-success badge-pill">
-          <wvre-text value="46"></wvre-text>
-        </span>
-      </wvre-list-item>
-    </wvre-list>
+      <template list-items>
+        <wvre-list-item>
+          <wvre-text value="Item 1"></wvre-text>
+          <span class="badge badge-primary badge-pill">
+            <wvre-text value="14"></wvre-text>
+          </span>
+        </wvre-list-item>
+        <wvre-list-item theme-variant="warning">
+          <wvre-text value="Item 2"></wvre-text>
+          <span class="badge badge-secondary badge-pill">
+            <wvre-text value="28"></wvre-text>
+          </span>
+        </wvre-list-item>
+        <wvre-list-item theme-variant="success">
+          <wvre-text value="Item 3"></wvre-text>
+          <span class="badge badge-success badge-pill">
+            <wvre-text value="46"></wvre-text>
+          </span>
+        </wvre-list-item>
+      </wvre-list>
+    </template>
   </snippet>
 </example>
 
@@ -146,24 +160,26 @@
   </desciption>
   <snippet>
     <wvre-list list-type="group-custom-content">
-      <wvre-list-item
-          custom-content-item-heading="Custom Content Item Heading"
-          cusom-content-heading-small-text="Custom Content Heading Small Text"
-          custom-content-small-text="Custom Content Small Text">
-        <wvre-text value="Custom Content Description 1"></wvre-text>
-      </wvre-list-item>
-      <wvre-list-item
-          custom-content-item-heading="Custom Content Item Heading2"
-          cusom-content-heading-small-text="Custom Content Heading Small Text2"
-          custom-content-small-text="Custom Content Small Text2">
-        <wvre-text value="Custom Content Description 2"></wvre-text>
-      </wvre-list-item>
-      <wvre-list-item
-          custom-content-item-heading="Custom Content Item Heading3"
-          cusom-content-heading-small-text="Custom Content Heading Small Text3"
-          custom-content-small-text="Custom Content Small Text3">
-        <wvre-text value="Custom Content Description 3"></wvre-text>
-      </wvre-list-item>
+      <template list-items>
+        <wvre-list-item
+            custom-content-item-heading="Custom Content Item Heading"
+            cusom-content-heading-small-text="Custom Content Heading Small Text"
+            custom-content-small-text="Custom Content Small Text">
+          <wvre-text value="Custom Content Description 1"></wvre-text>
+        </wvre-list-item>
+        <wvre-list-item
+            custom-content-item-heading="Custom Content Item Heading2"
+            cusom-content-heading-small-text="Custom Content Heading Small Text2"
+            custom-content-small-text="Custom Content Small Text2">
+          <wvre-text value="Custom Content Description 2"></wvre-text>
+        </wvre-list-item>
+        <wvre-list-item
+            custom-content-item-heading="Custom Content Item Heading3"
+            cusom-content-heading-small-text="Custom Content Heading Small Text3"
+            custom-content-small-text="Custom Content Small Text3">
+          <wvre-text value="Custom Content Description 3"></wvre-text>
+        </wvre-list-item>
+      </template>
     </wvre-list>
   </snippet>
 </example>
@@ -174,41 +190,43 @@
   </desciption>
   <snippet>
     <wvre-list list-type="unstyled">
-      <wvre-list-item>
-        <wvre-button theme-variant="link" animate="{click: 'animationTrigger'}" animate-target="list1">
-          <wvre-text value="Item One"></wvre-text>
-          <wvre-icon set="feather" name="chevron-right" animate="{animationTrigger: 'rotateToggle'}" animate-id="list1"></wvre-icon>
-        </wvre-button>
-        <wvre-list list-type="unordered" animate="{animationTrigger: 'expandCollapseToggle'}" animate-id="list1" animate-config="{
-          expandCollapseToggle: {
-            timing: '250ms ease-in',
-            to: '100px',
-            from: '0px'
-          }
-        }">
-          <wvre-list-item>
-            <wvre-text value="Item One.One"></wvre-text>
-          </wvre-list-item>
-          <wvre-list-item>
-            <wvre-text value="Item One.Two"></wvre-text>
-          </wvre-list-item>
-          <wvre-list-item>
-            <wvre-text value="Item One.Three"></wvre-text>
-          </wvre-list-item>
-        </wvre-list>
-      </wvre-list-item>
-      <wvre-list-item>
-        <wvre-button theme-variant="link">
-          <wvre-text value="Item Two"></wvre-text>
-          <wvre-icon set="feather" name="chevron-right"></wvre-icon>
-        </wvre-button>
-      </wvre-list-item>
-      <wvre-list-item>
-        <wvre-button theme-variant="link">
-          <wvre-text value="Item Three"></wvre-text>
-          <wvre-icon set="feather" name="chevron-right"></wvre-icon>
-        </wvre-button>
-      </wvre-list-item>
+      <template list-items>
+        <wvre-list-item>
+          <wvre-button theme-variant="link" animate="{click: 'animationTrigger'}" animate-target="list1">
+            <wvre-text value="Item One"></wvre-text>
+            <wvre-icon set="feather" name="chevron-right" animate="{animationTrigger: 'rotateToggle'}" animate-id="list1"></wvre-icon>
+          </wvre-button>
+          <wvre-list list-type="unordered" animate="{animationTrigger: 'expandCollapseToggle'}" animate-id="list1" animate-config="{
+            expandCollapseToggle: {
+              timing: '250ms ease-in',
+              to: '100px',
+              from: '0px'
+            }
+          }">
+            <wvre-list-item>
+              <wvre-text value="Item One.One"></wvre-text>
+            </wvre-list-item>
+            <wvre-list-item>
+              <wvre-text value="Item One.Two"></wvre-text>
+            </wvre-list-item>
+            <wvre-list-item>
+              <wvre-text value="Item One.Three"></wvre-text>
+            </wvre-list-item>
+          </wvre-list>
+        </wvre-list-item>
+        <wvre-list-item>
+          <wvre-button theme-variant="link">
+            <wvre-text value="Item Two"></wvre-text>
+            <wvre-icon set="feather" name="chevron-right"></wvre-icon>
+          </wvre-button>
+        </wvre-list-item>
+        <wvre-list-item>
+          <wvre-button theme-variant="link">
+            <wvre-text value="Item Three"></wvre-text>
+            <wvre-icon set="feather" name="chevron-right"></wvre-icon>
+          </wvre-button>
+        </wvre-list-item>
+      </template>
     </wvre-list>
   </snippet>
 </example>

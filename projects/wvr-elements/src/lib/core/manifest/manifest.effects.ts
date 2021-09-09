@@ -43,7 +43,7 @@ export class ManifestEffects {
         }
 
         let path = entry.path;
-        if (!!request.options.pathVariables) {
+        if (!!request.options && !!request.options.pathVariables) {
           const pathVariables = new Map<string, string>(Object.entries(request.options.pathVariables));
           pathVariables.forEach((v, k) => {
             path = path.split(`:${k}`)

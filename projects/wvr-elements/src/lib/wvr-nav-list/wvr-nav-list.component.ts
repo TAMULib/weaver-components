@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, Injector, Input } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, Injector, Input } from '@angular/core';
 import { Alignment } from '../shared/alignment.enum';
+import { projectContent } from '../shared/utility/projection.utility';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 /**
@@ -12,7 +13,7 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
   styleUrls: ['./wvr-nav-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.Default
 })
-export class WvrNavListComponent extends WvrBaseComponent {
+export class WvrNavListComponent extends WvrBaseComponent implements AfterViewInit {
 
   /** The aligned property describing the positioning of the list elements. */
   @Input() aligned = Alignment.LEFT;
@@ -22,6 +23,10 @@ export class WvrNavListComponent extends WvrBaseComponent {
 
   constructor(injector: Injector) {
     super(injector);
+  }
+
+  ngAfterViewInit(): void {
+    projectContent(this.eRef, 'template[nav-list-items]', 'ul[nav-list-items]');
   }
 
 }
