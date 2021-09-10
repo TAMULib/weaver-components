@@ -2,3 +2,4 @@ export { obtainConfigPath, registerWeaverElements, showWeaverElements, weaverBoo
 export { debounce } from './decorators.utilty';
 export { wvrCompile, wvrParseProjectedContent } from './template.utility';
 export { wvrTimeout } from './timing.utility';
+export { projectContent, preserveContent } from './projection.utility';
