@@ -32,8 +32,8 @@
 </button-wrapper>
 
 <ng-template #content>
-  <span button-content>
-    <ng-content select="template[button-content]"></ng-content>
-  </span>
+  <span [wvrContentProjection]="eRef" template="button-content"></span>
   {{btnTxt}}
 </ng-template>
+
+<ng-content select="template"></ng-content>
