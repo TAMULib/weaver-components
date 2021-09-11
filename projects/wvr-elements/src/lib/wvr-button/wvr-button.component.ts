@@ -1,7 +1,8 @@
-import { ChangeDetectionStrategy, Component, HostBinding, Injector, Input } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, HostBinding, Injector, Input } from '@angular/core';
 import * as JSON5 from 'json5';
 import { ActionRegistryService } from '../core/action-registry.service';
 import { ThemeVariantName } from '../shared/theme';
+import { projectContent } from '../shared/utility/projection.utility';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 @Component({
@@ -10,7 +11,7 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
   styleUrls: ['./wvr-button.component.scss'],
   changeDetection: ChangeDetectionStrategy.Default
 })
-export class WvrButtonComponent extends WvrBaseComponent {
+export class WvrButtonComponent extends WvrBaseComponent implements AfterViewInit {
 
   htmlId = `wvr-button-${this.id}`;
 
@@ -143,6 +144,11 @@ export class WvrButtonComponent extends WvrBaseComponent {
   constructor(injector: Injector) {
     super(injector);
     this.actionRegistry = injector.get(ActionRegistryService);
+  }
+
+  /** Called after the view has been intialized. Handles the rendering of the projected content. */
+  ngAfterViewInit(): void {
+    projectContent(this.eRef, 'template[button-content]', 'span[button-content]');
   }
 
   onClick(): void {
