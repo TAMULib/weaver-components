@@ -24,6 +24,7 @@ import { WvrTabsComponent } from '../wvr-tabs/wvr-tabs.component';
 import { WvrTextComponent } from '../wvr-text/wvr-text.component';
 import { WvrThemeComponent } from '../wvr-theme/wvr-theme.component';
 import { WvrWysiwygComponent } from '../wvr-wysiwyg/wvr-wysiwyg.component';
+import { WvrContentProjectionDirective } from './directives/wvr-content-projection.directive';
 import { DefaultPipe } from './pipes/default.pipe';
 import { SafePipe } from './pipes/safe.pipe';
 
@@ -48,7 +49,8 @@ export const WVR_COMPONENTS = [
   WvrManifestEntryComponent,
   WvrTabsComponent,
   WvrThemeComponent,
-  WvrWysiwygComponent
+  WvrWysiwygComponent,
+  WvrContentProjectionDirective
 ];
 
 export const WVR_PIPES = [

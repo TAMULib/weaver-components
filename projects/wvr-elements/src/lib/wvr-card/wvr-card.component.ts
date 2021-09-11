@@ -1,6 +1,5 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, HostBinding, Injector, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, Injector, Input } from '@angular/core';
 import { ThemeVariantName } from '../shared/theme';
-import { projectContent } from '../shared/utility/projection.utility';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 /**
@@ -12,7 +11,7 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
   styleUrls: ['./wvr-card.component.scss'],
   changeDetection: ChangeDetectionStrategy.Default
 })
-export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit {
+export class WvrCardComponent extends WvrBaseComponent {
 
   /** Allows for the override of the default 'wvre' sufix for psudo components. */
   @Input() selectorPrefix = 'wvre';
@@ -40,18 +39,6 @@ export class WvrCardComponent extends WvrBaseComponent implements AfterViewInit 
   constructor(injector: Injector) {
     super(injector);
     this.themeVariant = 'primary';
-  }
-
-  /** Called after the view has been intialized. Handles the rendering of the projected content. */
-  ngAfterViewInit(): void {
-    projectContent(this.eRef, 'template[card-header]', 'div[card-header]');
-    projectContent(this.eRef, 'template[card-image]', 'div[card-image]');
-    projectContent(this.eRef, 'template[card-title]', 'h5[card-title]');
-    projectContent(this.eRef, 'template[card-subtitle]', 'h6[card-subtitle]');
-    projectContent(this.eRef, 'template[card-text]', 'p[card-text]');
-    projectContent(this.eRef, 'template[card-links]', 'div[card-links]');
-    projectContent(this.eRef, 'wvre-button', 'div[card-buttons]');
-    projectContent(this.eRef, 'template[card-footer]', 'div[card-footer]');
   }
 
   get additionalCardClasses(): string {

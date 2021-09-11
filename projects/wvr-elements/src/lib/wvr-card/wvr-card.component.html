@@ -1,38 +1,16 @@
 <div #animationRoot class="wvr-components wvr-card card {{additionalCardClasses}}" [ngClass]="{ 'text-center': textCenter }" style="width: 18rem;">
-  <div class="card-header {{additionalHeaderClasses}}" card-header>
-    <ng-content select="template[card-header]"></ng-content>
+  <div class="card-header {{additionalHeaderClasses}}" [wvrContentProjection]="eRef" template="card-header"></div>
+  <div class="card-image" [wvrContentProjection]="eRef" template="card-image"></div>
+  <div [wvrContentProjection]="eRef" template="card-list-top"></div>
+  <div class="card-body">
+    <h5 class="card-title" [wvrContentProjection]="eRef" template="card-title"></h5>
+    <h6 class="card-subtitle" [wvrContentProjection]="eRef" template="card-subtitle"></h6>
+    <p class="card-text" [wvrContentProjection]="eRef" template="card-text"></p>
+    <div [wvrContentProjection]="eRef" template="card-content"></div>
   </div>
-
-  <div class="card-image" card-image>
-    <ng-content select="template[card-image]"></ng-content>
-  </div>
-
-  <ng-content class="bg-primary" select="wvre-list[top]"></ng-content>
-
-  <div class="card-body" card-body>
-    <h5 class="card-title" card-title>
-      <ng-content select="template[card-title]"></ng-content>
-    </h5>
-    <h6 class="card-subtitle" card-subtitle>
-      <ng-content select="template[card-subtitle]"></ng-content>
-    </h6>
-    <p class="card-text" card-text>
-      <ng-content select="template[card-text]"></ng-content>
-    </p>
-    <ng-content></ng-content>
-  </div>
-
-  <ng-content select="wvre-list[bottom]"></ng-content>
-
-  <div class="card-body card-links" card-links>
-    <ng-content select="template[card-links]"></ng-content>
-  </div>
-
-  <div class="card-body card-buttons" card-buttons>
-    <ng-content select="wvre-button"></ng-content>
-  </div>
-
-  <div class="card-footer" card-footer>
-    <ng-content select="template[card-footer]"></ng-content>
-  </div>
+  <div [wvrContentProjection]="eRef" template="card-list-bottom"></div>
+  <div class="card-body card-links" [wvrContentProjection]="eRef" template="card-links"></div>
+  <div class="card-body card-buttons" [wvrContentProjection]="eRef" template="card-buttons"></div>
+  <div class="card-footer" [wvrContentProjection]="eRef" template="card-footer"></div>
+  <ng-content></ng-content>
 </div>
