@@ -45,9 +45,9 @@ describe('WvrItWorksComponent', () => {
       .toEqual('it-works-component');
   });
 
-  it("should have as text 'Weaver Components Work'", () => {
+  it("should have as text 'Weaver Components'", () => {
     expect(component.text)
-      .toEqual('Weaver Components Work');
+      .toEqual('Weaver Components');
   });
 
 });
