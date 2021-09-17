@@ -20,7 +20,7 @@ export class WvrItWorksComponent extends WvrBaseComponent {
   title = 'it-works-component';
 
   /** The text value to be displayed in the title. */
-  @Input() text = 'Weaver Components Work';
+  @Input() text = 'Weaver Components';
 
   /** Allows for the override of the --wvr-primary css variable. */
   @HostBinding('style.--wvr-primary') @Input() primary;

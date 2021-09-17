@@ -1,15 +1,17 @@
 import { ElementRef } from '@angular/core';
 
-/**
- * Projects content within all templates into target.
- *
- * @param eRef element reference with native element to perform content projection
- * @param templateSelector input template to project
- * @param targetSelector target element to project template to
- */
-const projectContent = (eRef: ElementRef, templateSelector: string, targetSelector: string): void => {
-  const element: Element = eRef.nativeElement.querySelector(targetSelector);
-  const templates: Array<HTMLTemplateElement> = Array.from(eRef.nativeElement.querySelectorAll(templateSelector));
+const projectContent = (elementRef: ElementRef, templateSelector: string, targetSelector: string): void => {
+  const element: Element = elementRef.nativeElement.querySelector(targetSelector);
+  project(element, elementRef, templateSelector);
+};
+
+const projectSourceContent = (elementRef: ElementRef, sourceElementRef: ElementRef, templateSelector: string): void => {
+  const element: Element = elementRef.nativeElement;
+  project(element, sourceElementRef, templateSelector);
+};
+
+const project = (element: Element, sourceElementRef: ElementRef, templateSelector: string): void => {
+  const templates: Array<HTMLTemplateElement> = Array.from(sourceElementRef.nativeElement.querySelectorAll(templateSelector));
   if (!!element) {
     templates.forEach((template: HTMLTemplateElement) => {
       const clone: Node = template.children.length === 0 && template.content.children.length > 0
@@ -27,17 +29,9 @@ const projectContent = (eRef: ElementRef, templateSelector: string, targetSelect
   }
 };
 
-/**
- * When projected content requires being preserved but not rendered.
- * This ratains two-way binding.
- *
- * @param eRef element reference with native element to preserve projected content
- * @param templateSelector template in which to preserve the content on
- * @param targetSelector target element to preserve its content
- */
-const preserveContent = (eRef: ElementRef, templateSelector: string, targetSelector: string): void => {
-  const element: Element = eRef.nativeElement.querySelector(targetSelector);
-  const template: HTMLTemplateElement = eRef.nativeElement.querySelector(templateSelector);
+const preserveContent = (elementRef: ElementRef, templateSelector: string, targetSelector: string): void => {
+  const element: Element = elementRef.nativeElement.querySelector(targetSelector);
+  const template: HTMLTemplateElement = elementRef.nativeElement.querySelector(templateSelector);
   if (!!element && !!template) {
     Array.from(element.children)
       .filter((elem: Element) => elem.nodeName !== 'TEMPLATE')
@@ -53,5 +47,6 @@ const preserveContent = (eRef: ElementRef, templateSelector: string, targetSelec
 
 export {
   projectContent,
+  projectSourceContent,
   preserveContent
 };

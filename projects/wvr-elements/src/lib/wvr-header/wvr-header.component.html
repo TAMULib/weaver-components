@@ -8,8 +8,8 @@
           <wvr-text-component [themeVariant]="topNavThemeVariant ? topNavThemeVariant : themeVariant" [value]="logoText"></wvr-text-component>
         </span>
       </a>
-      <div>
-        <ng-container *ngTemplateOutlet="topNavContent"></ng-container>
+      <div *ngIf="!isMobileLayout" class="top-nav-wrapper" top-navigation>
+        <ng-content select="template[top-navigation]"></ng-content>
       </div>
     </div>
   </nav>
@@ -25,8 +25,8 @@
 
   <nav *ngIf="!isMobileLayout" class="bottom-nav navbar navbar-expand-lg bg-{{bottomNavThemeVariant}}" [hidden]="isBottomNavHidden">
     <div class="container">
-      <div class="flex-fill align-self-stretch">
-        <ng-container *ngTemplateOutlet="bottomNavContent"></ng-container>
+      <div class="flex-fill align-self-stretch h-100" bottom-navigation>
+        <ng-content select="template[bottom-navigation]"></ng-content>
       </div>
     </div>
   </nav>
@@ -45,8 +45,8 @@
       </svg>
     </div>
   </div>
-  <div class="mobile-menu-content flex-fill align-self-stretch">
-    <ng-container *ngTemplateOutlet="mobileMenuContent"></ng-container>
+  <div *ngIf="isMobileLayout" class="mobile-menu-content flex-fill align-self-stretch" mobile-menu>
+    <ng-content select="template[mobile-menu]"></ng-content>
   </div>
 </nav>
 
@@ -68,19 +68,3 @@
     <line x1="3" y1="18" x2="21" y2="18" />
   </svg>
 </div>
-
-<ng-template #topNavContent>
-  <div *ngIf="!isMobileLayout" class="top-nav-wrapper" top-navigation>
-    <ng-content select="template[top-navigation]"></ng-content>
-  </div>
-</ng-template>
-<ng-template #bottomNavContent>
-  <div *ngIf="!isMobileLayout" class="h-100" bottom-navigation>
-    <ng-content select="template[bottom-navigation]"></ng-content>
-  </div>
-</ng-template>
-<ng-template #mobileMenuContent>
-  <div *ngIf="isMobileLayout" mobile-menu>
-    <ng-content select="template[mobile-menu]"></ng-content>
-  </div>
-</ng-template>
