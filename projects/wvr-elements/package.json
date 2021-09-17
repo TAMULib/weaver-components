@@ -27,8 +27,8 @@
     "tslib": "^2.3.1"
   },
   "peerDependencies": {
-    "@angular/common": "^12.2.5",
-    "@angular/core": "^12.2.5",
+    "@angular/common": "^12.2.6",
+    "@angular/core": "^12.2.6",
     "css-element-queries": "^1.2.3",
     "handlebars": "^4.7.7"
   }
