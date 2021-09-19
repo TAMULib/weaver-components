@@ -97,14 +97,12 @@ export class WvrHeaderComponent extends WvrBaseComponent implements AfterContent
     this.subscriptions.push(this.isMobile.subscribe((isMobile: boolean) => {
       if (isMobile) {
         setTimeout(() => {
-          console.log('isMobile');
           preserveContent(this.eRef, 'template[top-navigation]', 'div[top-navigation]');
           preserveContent(this.eRef, 'template[bottom-navigation]', 'div[bottom-navigation]');
           projectContent(this.eRef, 'template[mobile-menu]', 'div[mobile-menu]');
         });
       } else {
         setTimeout(() => {
-          console.log('isNotMobile');
           preserveContent(this.eRef, 'template[mobile-menu]', 'div[mobile-menu]');
           projectContent(this.eRef, 'template[top-navigation]', 'div[top-navigation]');
           projectContent(this.eRef, 'template[bottom-navigation]', 'div[bottom-navigation]');
