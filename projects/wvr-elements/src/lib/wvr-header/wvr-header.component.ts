@@ -1,6 +1,4 @@
-import { AfterContentChecked, AfterViewInit, ChangeDetectionStrategy, Component, HostBinding, Injector, Input, OnInit } from '@angular/core';
-import { select } from '@ngrx/store';
-import { selectIsMobileLayout } from 'wvr-elements';
+import { AfterContentChecked, AfterViewInit, ChangeDetectionStrategy, Component, HostBinding, Injector, Input } from '@angular/core';
 import { ThemeVariantName } from '../shared/theme';
 import { preserveContent, projectContent } from '../shared/utility/projection.utility';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
@@ -14,7 +12,7 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
   styleUrls: ['./wvr-header.component.scss'],
   changeDetection: ChangeDetectionStrategy.Default
 })
-export class WvrHeaderComponent extends WvrBaseComponent implements AfterContentChecked, OnInit {
+export class WvrHeaderComponent extends WvrBaseComponent implements AfterContentChecked, AfterViewInit {
 
   /** The text value to be displayed beside the logo. */
   @Input() logoText = 'Weaver Components';
@@ -95,17 +93,18 @@ export class WvrHeaderComponent extends WvrBaseComponent implements AfterContent
     super(injector);
   }
 
-  ngOnInit(): void {
-    super.ngOnInit();
+  ngAfterViewInit(): void {
     this.subscriptions.push(this.isMobile.subscribe((isMobile: boolean) => {
       if (isMobile) {
         setTimeout(() => {
+          console.log('isMobile');
           preserveContent(this.eRef, 'template[top-navigation]', 'div[top-navigation]');
           preserveContent(this.eRef, 'template[bottom-navigation]', 'div[bottom-navigation]');
           projectContent(this.eRef, 'template[mobile-menu]', 'div[mobile-menu]');
         });
       } else {
         setTimeout(() => {
+          console.log('isNotMobile');
           preserveContent(this.eRef, 'template[mobile-menu]', 'div[mobile-menu]');
           projectContent(this.eRef, 'template[top-navigation]', 'div[top-navigation]');
           projectContent(this.eRef, 'template[bottom-navigation]', 'div[bottom-navigation]');
