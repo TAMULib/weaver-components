@@ -62,4 +62,17 @@
     100% {  opacity: 0; visibility:hidden; }
   }
 
+  ::ng-deep {
+    div[template="dropdown-menu"] {
+      display: var(--wvr-dropdown-menu-display);
+      flex-direction: var(--wvr-dropdown-menu-flex-direction);
+      height: auto;
+      width: auto;
+      [wvre-dropdown-menu-item],
+      wvre-dropdown-menu-item {
+        margin: var(--wvr-dropdown-menu-item-margin) !important;
+      }
+    }
+  }
+
 }
