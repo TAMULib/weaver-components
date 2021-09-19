@@ -8,7 +8,7 @@
           <wvr-text-component [themeVariant]="topNavThemeVariant ? topNavThemeVariant : themeVariant" [value]="logoText"></wvr-text-component>
         </span>
       </a>
-      <div *ngIf="!isMobileLayout" class="top-nav-wrapper" top-navigation>
+      <div class="top-nav-wrapper" top-navigation [hidden]="isMobileLayout">
         <ng-content select="template[top-navigation]"></ng-content>
       </div>
     </div>
@@ -23,7 +23,7 @@
     </div>
   </div>
 
-  <nav *ngIf="!isMobileLayout" class="bottom-nav navbar navbar-expand-lg bg-{{bottomNavThemeVariant}}" [hidden]="isBottomNavHidden">
+  <nav class="bottom-nav navbar navbar-expand-lg bg-{{bottomNavThemeVariant}}" [hidden]="isBottomNavHidden || isMobileLayout">
     <div class="container">
       <div class="flex-fill align-self-stretch h-100" bottom-navigation>
         <ng-content select="template[bottom-navigation]"></ng-content>
@@ -33,7 +33,7 @@
 
 </header>
 
-<nav *ngIf="isMobileLayout" class="mobile-menu" [ngClass]="{'closed': mobileMenuClosed}">
+<nav class="mobile-menu" [ngClass]="{'closed': mobileMenuClosed}" [hidden]="!isMobileLayout">
   <div class="mobile-menu-header">
     <div class="mobile-menu-close" (click)="toggleMobileMenu()">
       <span>
@@ -45,12 +45,12 @@
       </svg>
     </div>
   </div>
-  <div *ngIf="isMobileLayout" class="mobile-menu-content flex-fill align-self-stretch" mobile-menu>
+  <div class="mobile-menu-content flex-fill align-self-stretch" mobile-menu>
     <ng-content select="template[mobile-menu]"></ng-content>
   </div>
 </nav>
 
-<div *ngIf="isMobileLayout" class="container" class="mobile-menu-button">
+<div class="container" class="mobile-menu-button" [hidden]="!isMobileLayout">
   <svg
     (click)="toggleMobileMenu()"
     xmlns="http://www.w3.org/2000/svg"
