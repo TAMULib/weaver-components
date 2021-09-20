@@ -146,7 +146,7 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
     this.processData();
     this.initializeAnimationRegistration();
     this.themeService.registerComponent(this.id, this);
-    wvrParseProjectedContent(this, this.eRef.nativeElement);
+    wvrParseProjectedContent(this, this.eRef.nativeElement, this.subscriptions);
 
     this.isMobile = this.store.pipe(select(selectIsMobileLayout));
 

@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, Injector, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { Subscription } from 'rxjs';
 import { select } from '@ngrx/store';
 import { filter } from 'rxjs/operators';
 import * as ModalActions from '../core/modal/modal.actions';
@@ -54,9 +55,7 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit {
 
   @Input() keyboard = false;
 
-  get openProps(): string {
-    return `{ id: '${this.modalId}'}`;
-  }
+  subscription: Subscription;
 
   constructor(
     injector: Injector,
@@ -101,41 +100,51 @@ export class WvrModalComponent extends WvrBaseComponent implements OnInit {
       }
     }));
 
-    this.store.pipe(
+    this.subscription = this.store.pipe(
       select(selectModalState),
       filter(modalState => !!modalState)
     )
-      .subscribe(modalState => {
-        const modal = modalState.entities[this.modalId];
-        if (modal.open) {
-          this.modalRef = this.modalService.open(this.modalTemplateContent, {
-            ariaLabelledBy: 'modal-basic-title',
-            container: this.eRef.nativeElement,
-            size: this.size,
-            backdrop: this.backdrop,
-            centered: this.centered,
-            animation: this.animation,
-            keyboard: this.keyboard,
-            modalDialogClass: 'modal-dialog',
-            beforeDismiss: () => {
-              this.store.dispatch(ModalActions.closeModal({ id: this.modalId }));
+    .subscribe(modalState => {
+      const modal = modalState.entities[this.modalId];
+      if (modal.open) {
+        this.modalRef = this.modalService.open(this.modalTemplateContent, {
+          ariaLabelledBy: 'modal-basic-title',
+          container: this.eRef.nativeElement,
+          size: this.size,
+          backdrop: this.backdrop,
+          centered: this.centered,
+          animation: this.animation,
+          keyboard: this.keyboard,
+          modalDialogClass: 'modal-dialog',
+          beforeDismiss: () => {
+            this.store.dispatch(ModalActions.closeModal({ id: this.modalId }));
 
-              return false;
-            }
-          });
+            return false;
+          }
+        });
 
-        } else if (this.modalRef) {
-          ['body', 'footer'].forEach(content => {
-            preserveContent(this.eRef, `template[modal-${content}]`, `div[modal-${content}]`);
-          });
-          this.modalRef.close();
-          delete this.modalRef;
-        }
-      });
+      } else if (this.modalRef) {
+        ['body', 'footer'].forEach(content => {
+          preserveContent(this.eRef, `template[modal-${content}]`, `div[modal-${content}]`);
+        });
+        this.modalRef.close();
+        delete this.modalRef;
+      }
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.modalService.activeInstances.unsubscribe();
+
+    this.subscription.unsubscribe();
   }
 
   openModal(): void {
     this.store.dispatch(ModalActions.openModal({ id: this.modalId }));
+  }
+
+  get openProps(): string {
+    return `{ id: '${this.modalId}'}`;
   }
 
   get additionalHeaderClasses(): string {
