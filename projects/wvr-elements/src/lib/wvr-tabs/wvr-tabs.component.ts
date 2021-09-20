@@ -1,4 +1,4 @@
-import { Component, Injector, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Injector, OnInit } from '@angular/core';
 import { preserveContent, projectContent } from '../shared/utility/projection.utility';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
@@ -8,7 +8,8 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
 @Component({
   selector: 'wvr-tabs-component',
   templateUrl: './wvr-tabs.component.html',
-  styleUrls: ['./wvr-tabs.component.scss']
+  styleUrls: ['./wvr-tabs.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export class WvrTabsComponent extends WvrBaseComponent implements OnInit {
 
