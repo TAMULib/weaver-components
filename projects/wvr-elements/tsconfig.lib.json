@@ -5,6 +5,7 @@
     "emitDecoratorMetadata": false
   },
   "angularCompilerOptions": {
+    "enableIvy": false,
     "preserveSymlinks": true
   },
   "exclude": [
