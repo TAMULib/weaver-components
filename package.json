@@ -4,7 +4,7 @@
     "type": "git",
     "url": "git+https://github.com/TAMULib/weaver-components.git"
   },
-  "version": "2.0.0",
+  "version": "2.0.0-rc.1",
   "private": false,
   "license": "MIT",
   "config": {
