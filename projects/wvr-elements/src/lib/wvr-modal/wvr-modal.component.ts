@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Injector, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Injector, Input, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 import { select } from '@ngrx/store';
@@ -15,7 +15,7 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
   styleUrls: ['./wvr-modal.component.scss'],
   changeDetection: ChangeDetectionStrategy.Default
 })
-export class WvrModalComponent extends WvrBaseComponent implements OnInit {
+export class WvrModalComponent extends WvrBaseComponent implements OnInit, OnDestroy {
 
   @ViewChild('modalTemplateContent') modalTemplateContent: TemplateRef<Element>;
 

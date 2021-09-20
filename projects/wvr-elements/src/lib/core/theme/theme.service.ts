@@ -1,7 +1,7 @@
 /* istanbul ignore file */
 
 /* TODO: Issue #292. */
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { filter } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
@@ -13,7 +13,7 @@ import { RootState, selectThemeState } from '../store';
 @Injectable({
   providedIn: 'root'
 })
-export class ThemeService {
+export class ThemeService implements OnDestroy {
 
   currentTheme: ThemeVariants;
 
