@@ -146,7 +146,7 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
     this.processData();
     this.initializeAnimationRegistration();
     this.themeService.registerComponent(this.id, this);
-    wvrParseProjectedContent(this, this.eRef.nativeElement);
+    wvrParseProjectedContent(this, this.eRef.nativeElement, this.subscriptions);
 
     this.isMobile = this.store.pipe(select(selectIsMobileLayout));
 
@@ -182,7 +182,8 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
 
         while (!ngScope && elem.tagName !== 'BODY') {
           const ngElem = win.angular.element(elem);
-          if (ngElem.scope() && ngElem.scope().hasOwnProperty(k)) {
+          if (ngElem.scope() && ngElem.scope()
+            .hasOwnProperty(k)) {
             ngScope = ngElem.scope();
             break;
           }
@@ -204,14 +205,14 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
             Object.defineProperty(ngScope, k, {
               get: () => subject.getValue(),
               set: (value: any) => {
-                references.forEach((sub) => {
+                references.forEach(sub => {
                   sub.subject.next(value);
                   sub.cdRef.detectChanges();
                 });
               }
             });
           }
-  
+
           Object.defineProperty(this, v, {
             get: () => subject.getValue(),
             set: (value: any): void => {

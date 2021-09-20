@@ -2,7 +2,6 @@
 @import "../shared/styles/variables";
 
 :host {
-  
   @extend .variables;
 
   --wvr-dropdown-menu-animation-speed: 0.25s;
@@ -31,7 +30,6 @@
   }
 
   [ngbDropdownMenu] {
-    
     border: var(--wvr-dropdown-menu-border);
     border-radius: var(--wvr-dropdown-menu-border-radius);
     left: var(--wvr-dropdown-menu-x-offset) !important;
@@ -44,7 +42,6 @@
 
   .open {
     animation: openDD var(--wvr-dropdown-menu-animation-speed) ease-in-out;
-    
   }
 
   @keyframes openDD {
@@ -60,18 +57,5 @@
   @keyframes closeDD {
     0% { opacity: 1; visibility: visible; }
     100% {  opacity: 0; visibility:hidden; }
-  }
-
-  ::ng-deep {
-    wvre-dropdown-menu {
-      display: var(--wvr-dropdown-menu-display);
-      flex-direction: var(--wvr-dropdown-menu-flex-direction);
-      height: auto;
-      width: auto;
-      [wvre-dropdown-menu-item],
-      wvre-dropdown-menu-item {
-        margin: var(--wvr-dropdown-menu-item-margin) !important;
-      }
-    }
   }
 }

@@ -11,6 +11,8 @@ export * from './lib/core/store';
 export * from './lib/core/wvr-core.module';
 export * from './lib/shared/alignment.enum';
 export * from './lib/shared/config';
+export * from './lib/shared/directives';
+export * from './lib/shared/pipes';
 export * from './lib/shared/theme';
 export * from './lib/shared/utility';
 export * from './lib/shared/wvr-base.component';

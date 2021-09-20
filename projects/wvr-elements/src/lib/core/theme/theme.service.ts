@@ -1,9 +1,10 @@
 /* istanbul ignore file */
 
 /* TODO: Issue #292. */
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { filter } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 import { ThemeVariants } from '../../shared/theme';
 import { hexToRgb, luminance, mix, yiq } from '../../shared/utility/color.utility';
 import { WvrThemeableComponent } from '../../shared/wvr-themeable.component';
@@ -12,7 +13,7 @@ import { RootState, selectThemeState } from '../store';
 @Injectable({
   providedIn: 'root'
 })
-export class ThemeService {
+export class ThemeService implements OnDestroy {
 
   currentTheme: ThemeVariants;
 
@@ -20,19 +21,25 @@ export class ThemeService {
 
   themedComponents: Map<number, WvrThemeableComponent>;
 
+  subscription: Subscription;
+
   constructor(private readonly store: Store<RootState>) {
     this.themedComponents = new Map<number, WvrThemeableComponent>();
-    this.store.pipe(
+    this.subscription = this.store.pipe(
       select(selectThemeState),
       filter(themeState => !!themeState)
     )
-      .subscribe(themeState => {
-        this.themes = themeState.themes;
-        this.currentTheme = this.themes[themeState.currentTheme];
-        this.themedComponents.forEach((themeableComponent: WvrThemeableComponent, id: number) => {
-          this.applyTheme(this.currentTheme, themeableComponent);
-        });
+    .subscribe(themeState => {
+      this.themes = themeState.themes;
+      this.currentTheme = this.themes[themeState.currentTheme];
+      this.themedComponents.forEach((themeableComponent: WvrThemeableComponent, id: number) => {
+        this.applyTheme(this.currentTheme, themeableComponent);
       });
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   registerComponent(id: number, themeableComponent: WvrThemeableComponent): void {
