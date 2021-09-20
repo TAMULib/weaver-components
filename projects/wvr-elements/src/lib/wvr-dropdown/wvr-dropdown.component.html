@@ -33,7 +33,7 @@
         <ng-content select="template[dropdown-button]"></ng-content>
       </template>
     </wvr-button-component>
-    <div ngbDropdownMenu [ngClass]="{open: open,closed: !open}" class="bg-{{menuThemeVariant}}" [wvrContentProjection]="eRef" template="dropdown-menu"></div>
+    <div ngbDropdownMenu dropdown-menu [ngClass]="{open: open,closed: !open}" class="bg-{{menuThemeVariant}}"></div>
   </div>
 </div>
 
