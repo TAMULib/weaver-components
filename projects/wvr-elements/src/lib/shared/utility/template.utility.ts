@@ -3,6 +3,7 @@
 /* TODO: Issue #292. */
 import * as JSON5 from 'json5';
 import Handlebars from 'handlebars/dist/cjs/handlebars';
+import { Subscription } from 'rxjs';
 import { WvrDataSelect } from '../../core/data-select';
 import { WvrDataComponent } from '../wvr-data.component';
 import { wvrTimeout } from '../../shared/utility/timing.utility';
@@ -14,7 +15,7 @@ const wvrCompile = (d: {}, s: WvrDataSelect, elem: HTMLElement, projectedContent
   projectedContentElem.outerHTML = compiledContent;
 };
 
-const wvrParseProjectedContent = (component: WvrDataComponent, elem: HTMLElement): void => {
+const wvrParseProjectedContent = (component: WvrDataComponent, elem: HTMLElement, subscriptions: Array<Subscription>): void => {
   if (!component.hasWvrData()) {
     return;
   }
@@ -30,9 +31,11 @@ const wvrParseProjectedContent = (component: WvrDataComponent, elem: HTMLElement
     wvrDataSelects
       .filter((s: WvrDataSelect) => !!s.manifest && !!s.entry && !!s.as)
       .forEach((s: WvrDataSelect) => {
-        component.data[s.as].subscribe(d => {
-          wvrCompile(d, s, elem, projectedContentElem as HTMLElement);
-        });
+        subscriptions.push(
+          component.data[s.as].subscribe(d => {
+            wvrCompile(d, s, elem, projectedContentElem as HTMLElement);
+          })
+        );
       });
   });
 };
