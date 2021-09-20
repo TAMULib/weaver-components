@@ -32,6 +32,10 @@
       cursor: not-allowed;
       text-decoration: underline;
     }
+
+    span[button-content] {
+      display: inline-block;
+    }
   }
 
   .wvr-button.btn {

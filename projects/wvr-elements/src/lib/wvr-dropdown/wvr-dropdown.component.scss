@@ -60,7 +60,7 @@
   }
 
   ::ng-deep {
-    div[template="dropdown-menu"] {
+    div[dropdown-menu] {
       display: var(--wvr-dropdown-menu-display);
       flex-direction: var(--wvr-dropdown-menu-flex-direction);
       height: auto;
