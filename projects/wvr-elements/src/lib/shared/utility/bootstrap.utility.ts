@@ -1,7 +1,7 @@
 /* istanbul ignore file */
 
 /* TODO: Issue #292. */
-import { Injector, Type } from '@angular/core';
+import { enableProdMode, Injector, isDevMode, Type } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppConfig, APP_CONFIG } from '../config';
@@ -23,6 +23,23 @@ const obtainConfigPath = (): string => {
   const configBasePath = componentScriptSrcPathParts.join('/');
 
   return `${configBasePath}/config.json`;
+};
+
+const weaverInit = (module: Type<unknown>, environment: any) => {
+  if (environment.production) {
+    enableProdMode();
+  }
+
+  const win = (window as any);
+
+  if (!win.weaverBootstrapEvent) {
+    win.weaverBootstrapEvent = 'DOMContentLoaded';
+  }
+
+  document.addEventListener(win.weaverBootstrapEvent, () => {
+    weaverBootstrap(module)(isDevMode() ? '/config.json' : undefined)
+      .catch();
+  });
 };
 
 /** Obtains, parses and injects the configuration. */
@@ -127,8 +144,8 @@ const showWeaverElements = () => {
 
 export {
   obtainConfigPath,
-  weaverBootstrap,
-  WvrElementDesc,
   registerWeaverElements,
-  showWeaverElements
+  showWeaverElements,
+  weaverInit,
+  WvrElementDesc,
 };

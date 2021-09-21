@@ -32,7 +32,6 @@ import { AnimationService } from './animation.service';
 import { ComponentRegistryService } from './component-registry.service';
 import { LayoutEffects } from './layout/layout.effects';
 import { ManifestEffects } from './manifest/manifest.effects';
-import { NgBindingsService } from './ng-bindings.service';
 import { RestEffects } from './rest/rest.effects';
 import { metaReducers, ROOT_REDUCER } from './store';
 import { ThemeEffects } from './theme/theme.effects';
@@ -102,7 +101,6 @@ const PROVIDERS = [
   AnimationService,
   ActionRegistryService,
   ComponentRegistryService,
-  NgBindingsService,
   ThemeService
 ];
 
