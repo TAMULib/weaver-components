@@ -195,6 +195,9 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
           Object.defineProperty(ngScope, k, {
             get: () => subject.getValue(),
             set: (value: any) => {
+              if (!value || value === 'undefined' || value === 'null') {
+                value = '';
+              }
               const elem = this.eRef.nativeElement as HTMLElement;
               elem.setAttribute(attribute, value);
             }
