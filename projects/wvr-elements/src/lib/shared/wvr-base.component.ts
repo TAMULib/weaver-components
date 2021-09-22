@@ -7,6 +7,7 @@ import { AnimationService } from '../core/animation.service';
 import { ComponentRegistryService } from '../core/component-registry.service';
 import { WvrDataSelect } from '../core/data-select';
 import * as ManifestActions from '../core/manifest/manifest.actions';
+import { RefBindingSubject, NgBindingsService } from '../core/ng-bindings.service';
 import { RootState, selectIsMobileLayout, selectManifestEntryResponse } from '../core/store';
 import { ThemeService } from '../core/theme/theme.service';
 import { AppConfig, APP_CONFIG } from './config';
@@ -94,6 +95,9 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
   /** A reference to the ThemeService */
   private readonly themeService: ThemeService;
 
+  /** A reference to the NgBindingsService */
+  private readonly ngBindingsService: NgBindingsService;
+
   /** A host bound accessor which applies the wvr-hidden class if both isMobileLayout and hiddenInMobile evaluate to true.  */
   @HostBinding('class.wvr-hidden') private get _hiddenInMobile(): boolean {
     return this.isMobileLayout && this.hiddenInMobile;
@@ -129,6 +133,8 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
 
     this._animationService = injector.get(AnimationService);
     this.themeService = injector.get(ThemeService);
+
+    this.ngBindingsService = injector.get(NgBindingsService);
 
     const element = (this.eRef.nativeElement as HTMLElement);
     const htmlIDAttrName = element.hasAttribute('id') ? 'wvr-id' : 'id';
@@ -190,22 +196,37 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
         if (!!ngScope) {
           const subject = new BehaviorSubject<any>(ngScope[k]);
 
+          const references = this.ngBindingsService.putSubject(k, {
+            subject,
+            cdRef: this.cdRef,
+            eRef: this.eRef
+          });
+
           const attribute = this.kebabize(k);
 
-          Object.defineProperty(ngScope, k, {
-            get: () => subject.getValue(),
-            set: (value: any) => {
-              if (!value || value === 'undefined' || value === 'null') {
-                value = '';
+          if (references.length === 1) {
+            Object.defineProperty(ngScope, k, {
+              get: () => subject.getValue(),
+              set: (value: any) => {
+                references.forEach((sub: RefBindingSubject) => {
+                  console.log('ngScope set', v, value);
+                  const subElem = sub.eRef.nativeElement as HTMLElement;
+                  if (!value || value === 'undefined' || value === 'null') {
+                    subElem.removeAttribute(attribute);
+                  } else {
+                    subElem.setAttribute(attribute, value);
+                  }
+                  sub.subject.next(value);
+                  sub.cdRef.detectChanges();
+                });
               }
-              const elem = this.eRef.nativeElement as HTMLElement;
-              elem.setAttribute(attribute, value);
-            }
-          });
+            });
+          }
 
           Object.defineProperty(this, v, {
             get: () => subject.getValue(),
             set: (value: any): void => {
+              console.log('component set', v, value);
               if (value !== subject.getValue()) {
                 subject.next(value);
                 ngScope.$apply();
@@ -301,12 +322,8 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
       });
   }
 
-  private kebabize = (attribute: string) => {
-    return attribute.split('').map((letter, idx) => {
-      return letter.toUpperCase() === letter
-        ? `${idx !== 0 ? '-' : ''}${letter.toLowerCase()}`
-        : letter;
-    }).join('');
-  }
+  private readonly kebabize = (attribute: string) => attribute.split('')
+    .map((letter, idx) => letter.toUpperCase() === letter ? `${idx !== 0 ? '-' : ''}${letter.toLowerCase()}` : letter)
+      .join('');
 
 }

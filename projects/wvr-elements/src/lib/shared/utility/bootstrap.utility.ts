@@ -147,5 +147,5 @@ export {
   registerWeaverElements,
   showWeaverElements,
   weaverInit,
-  WvrElementDesc,
+  WvrElementDesc
 };
