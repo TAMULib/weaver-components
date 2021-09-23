@@ -7,7 +7,7 @@ import { AnimationService } from '../core/animation.service';
 import { ComponentRegistryService } from '../core/component-registry.service';
 import { WvrDataSelect } from '../core/data-select';
 import * as ManifestActions from '../core/manifest/manifest.actions';
-import { RefBindingSubject, NgBindingsService } from '../core/ng-bindings.service';
+import { NgBindingsService, RefBindingSubject } from '../core/ng-bindings.service';
 import { RootState, selectIsMobileLayout, selectManifestEntryResponse } from '../core/store';
 import { ThemeService } from '../core/theme/theme.service';
 import { AppConfig, APP_CONFIG } from './config';
@@ -209,15 +209,12 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
               get: () => subject.getValue(),
               set: (value: any) => {
                 references.forEach((sub: RefBindingSubject) => {
-                  console.log('ngScope set', v, value);
                   const subElem = sub.eRef.nativeElement as HTMLElement;
                   if (!value || value === 'undefined' || value === 'null') {
                     subElem.removeAttribute(attribute);
                   } else {
                     subElem.setAttribute(attribute, value);
                   }
-                  sub.subject.next(value);
-                  sub.cdRef.detectChanges();
                 });
               }
             });
@@ -226,7 +223,6 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
           Object.defineProperty(this, v, {
             get: () => subject.getValue(),
             set: (value: any): void => {
-              console.log('component set', v, value);
               if (value !== subject.getValue()) {
                 subject.next(value);
                 ngScope.$apply();
