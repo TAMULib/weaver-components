@@ -7,7 +7,7 @@ import { AnimationService } from '../core/animation.service';
 import { ComponentRegistryService } from '../core/component-registry.service';
 import { WvrDataSelect } from '../core/data-select';
 import * as ManifestActions from '../core/manifest/manifest.actions';
-import { NgBindingsService } from '../core/ng-bindings.service';
+import { NgBindingsService, RefBindingSubject } from '../core/ng-bindings.service';
 import { RootState, selectIsMobileLayout, selectManifestEntryResponse } from '../core/store';
 import { ThemeService } from '../core/theme/theme.service';
 import { AppConfig, APP_CONFIG } from './config';
@@ -198,16 +198,23 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
 
           const references = this.ngBindingsService.putSubject(k, {
             subject,
-            cdRef: this.cdRef
+            cdRef: this.cdRef,
+            eRef: this.eRef
           });
+
+          const attribute = this.kebabize(k);
 
           if (references.length === 1) {
             Object.defineProperty(ngScope, k, {
               get: () => subject.getValue(),
               set: (value: any) => {
-                references.forEach(sub => {
-                  sub.subject.next(value);
-                  sub.cdRef.detectChanges();
+                references.forEach((sub: RefBindingSubject) => {
+                  const subElem = sub.eRef.nativeElement as HTMLElement;
+                  if (!value || value === 'undefined' || value === 'null') {
+                    subElem.removeAttribute(attribute);
+                  } else {
+                    subElem.setAttribute(attribute, value);
+                  }
                 });
               }
             });
@@ -310,5 +317,9 @@ export abstract class WvrBaseComponent implements AfterContentInit, OnInit, OnDe
         }));
       });
   }
+
+  private readonly kebabize = (attribute: string) => attribute.split('')
+    .map((letter, idx) => letter.toUpperCase() === letter ? `${idx !== 0 ? '-' : ''}${letter.toLowerCase()}` : letter)
+      .join('');
 
 }
