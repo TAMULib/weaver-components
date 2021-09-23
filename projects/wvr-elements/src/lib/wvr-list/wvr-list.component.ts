@@ -27,11 +27,13 @@ export class WvrListComponent extends WvrBaseComponent implements AfterViewInit,
   ngAfterViewInit(): void {
     this.project();
     const element: Element = this.eRef.nativeElement.querySelector('template[list-items],template[wvr-compile]');
-    this.observer.observe(element, {
-      attributes: false,
-      childList: true,
-      subtree: false
-    });
+    if (!!element) {
+      this.observer.observe(element, {
+        attributes: false,
+        childList: true,
+        subtree: false
+      });
+    }
   }
 
   ngOnDestroy(): void {
