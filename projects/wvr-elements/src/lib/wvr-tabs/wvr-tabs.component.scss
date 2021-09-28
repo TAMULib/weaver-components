@@ -15,4 +15,25 @@
     padding: var(--tab-content-padding);
   }
 
+  .nav-tabs .nav-link {
+    color: var(--wvr-gray);
+    border: 1px solid var(--wvr-grey);
+    border-top: 5px solid var(--wvr-grey);
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+
+  }
+
+  .nav-tabs .nav-link:hover,
+  .nav-tabs .nav-link:focus {
+    color: var(--wvr-gray-dark);
+    border-top: 5px solid var(--primary);
+  }
+
+  .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: var(--wvr-gray-dark);
+    background-color: var(--wvr-white);
+    border-top: 5px solid  var(--primary);
+  }
+
 }
