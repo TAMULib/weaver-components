@@ -16,13 +16,15 @@ import { WvrFooterComponent } from '../wvr-footer/wvr-footer.component';
 import { WvrHeaderComponent } from '../wvr-header/wvr-header.component';
 import { WvrIconComponent } from '../wvr-icon/wvr-icon.component';
 import { WvrItWorksComponent } from '../wvr-it-works/wvr-it-works.component';
-import { WvrListItemComponent } from '../wvr-list/wvr-list-item/wvr-list-item.component';
 import { WvrListComponent } from '../wvr-list/wvr-list.component';
+import { WvrListItemComponent } from '../wvr-list/wvr-list-item/wvr-list-item.component';
 import { WvrManifestEntryComponent } from '../wvr-manifest/wvr-manifest-entry/wvr-manifest-entry.component';
 import { WvrManifestComponent } from '../wvr-manifest/wvr-manifest.component';
 import { WvrModalComponent } from '../wvr-modal/wvr-modal.component';
 import { WvrNavLiComponent } from '../wvr-nav-list/wvr-nav-li/wvr-nav-li.component';
 import { WvrNavListComponent } from '../wvr-nav-list/wvr-nav-list.component';
+import { WvrStompManifestEntryComponent } from '../wvr-stomp-manifest/wvr-stomp-manifest-entry/wvr-stomp-manifest-entry.component';
+import { WvrStompManifestComponent } from '../wvr-stomp-manifest/wvr-stomp-manifest.component';
 import { WvrTabsComponent } from '../wvr-tabs/wvr-tabs.component';
 import { WvrTextComponent } from '../wvr-text/wvr-text.component';
 import { WvrThemeComponent } from '../wvr-theme/wvr-theme.component';
@@ -34,6 +36,7 @@ import { LayoutEffects } from './layout/layout.effects';
 import { ManifestEffects } from './manifest/manifest.effects';
 import { NgBindingsService } from './ng-bindings.service';
 import { RestEffects } from './rest/rest.effects';
+import { StompManifestEffects } from './stomp-manifest/stomp-manifest.effects';
 import { metaReducers, ROOT_REDUCER } from './store';
 import { ThemeEffects } from './theme/theme.effects';
 import { ThemeService } from './theme/theme.service';
@@ -52,13 +55,15 @@ export const WVR_ELEMENTS: Array<WvrElementDesc> = [
   { component: WvrItWorksComponent, selector: 'wvre-it-works', lazy: true },
   { component: WvrListComponent, selector: 'wvre-list', lazy: true },
   { component: WvrListItemComponent, selector: 'wvre-list-item', lazy: true },
-  { component: WvrNavListComponent, selector: 'wvre-nav-list', lazy: true },
   { component: WvrManifestComponent, selector: 'wvre-manifest', lazy: false },
   { component: WvrManifestEntryComponent, selector: 'wvre-manifest-entry', lazy: false },
   { component: WvrModalComponent, selector: 'wvre-modal', lazy: true },
   { component: WvrNavLiComponent, selector: 'wvre-nav-li', lazy: true },
-  { component: WvrTextComponent, selector: 'wvre-text', lazy: true },
+  { component: WvrNavListComponent, selector: 'wvre-nav-list', lazy: true },
+  { component: WvrStompManifestComponent, selector: 'wvre-stomp-manifest', lazy: false },
+  { component: WvrStompManifestEntryComponent, selector: 'wvre-stomp-manifest-entry', lazy: false },
   { component: WvrTabsComponent, selector: 'wvre-tabs', lazy: true },
+  { component: WvrTextComponent, selector: 'wvre-text', lazy: true },
   { component: WvrThemeComponent, selector: 'wvre-theme', lazy: false },
   { component: WvrWysiwygComponent, selector: 'wvre-wysiwyg', lazy: true }
 ];
@@ -86,6 +91,7 @@ const MODULES: Array<any> = [
     ManifestEffects,
     LayoutEffects,
     RestEffects,
+    StompManifestEffects,
     ThemeEffects,
     WysiwygEffects
   ]),
