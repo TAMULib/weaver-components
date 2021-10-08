@@ -19,7 +19,6 @@ cp.fork(__dirname + '/build-wvr-config-template.js');
 
   const files = [
     `${componentsPath}/polyfills-${esv}.js`,
-    `${componentsPath}/styles-${esv}.js`,
     `${componentsPath}/main-${esv}.js`
   ];
 
@@ -30,7 +29,8 @@ cp.fork(__dirname + '/build-wvr-config-template.js');
   await concat(files, `${bundlePath}/weaver-components.js`);
 
   fs.copy(`${componentsPath}/assets`, `${usagePath}/assets`);
-  fs.copy(`${componentsPath}/assets`, `${bundlePath}/assets`);
+  fs.copy(`${componentsPath}/assets`, `${bundlePath}/assets`)
+  fs.copy(`${componentsPath}/styles.css`, `${bundlePath}/styles.css`);
 
   fs.copy('projects/wvr-elements/src/lib/shared/styles', `${elementsPath}/styles`);
   fs.copy('scripts', `${elementsPath}/scripts`);

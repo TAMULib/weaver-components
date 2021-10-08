@@ -51,7 +51,8 @@ export class RestService {
 
         if (request.decode) {
           request.decode.forEach(prop => {
-            body[prop] = atob(body[prop]);
+            body[prop] = Buffer.from(body[prop], 'base64')
+              .toString();
           });
         }
 

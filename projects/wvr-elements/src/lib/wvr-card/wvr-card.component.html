@@ -1,80 +1,17 @@
-<div #animationRoot class="wvr-components wvr-card card {{additionalCardClasses}}"
-  [ngClass]="{ 'text-center': textCenter }"
-  style="width: 18rem;">
-  <ng-container *ngTemplateOutlet="cardHeader"></ng-container>
-  <ng-container *ngTemplateOutlet="cardImg"></ng-container>
-  <ng-container *ngTemplateOutlet="cardListTop"></ng-container>
-  <ng-container *ngTemplateOutlet="cardBody"></ng-container>
-  <ng-container *ngTemplateOutlet="cardListBottom"></ng-container>
-  <ng-container *ngTemplateOutlet="cardLinkBody"></ng-container>
-  <ng-container *ngTemplateOutlet="cardButton"></ng-container>
-  <ng-container *ngTemplateOutlet="cardFooter"></ng-container>
+<div #animationRoot class="wvr-components wvr-card card {{additionalCardClasses}}" [ngClass]="{ 'text-center': textCenter }" style="width: 18rem;">
+  <div class="card-header {{additionalHeaderClasses}}" [wvrContentProjection]="eRef" template="card-header"></div>
+  <div class="card-image" [wvrContentProjection]="eRef" template="card-image"></div>
+  <div [wvrContentProjection]="eRef" template="card-list-top"></div>
+  <div class="card-body">
+    <h5 class="card-title" [wvrContentProjection]="eRef" template="card-title"></h5>
+    <h6 class="card-subtitle" [wvrContentProjection]="eRef" template="card-subtitle"></h6>
+    <p class="card-text" [wvrContentProjection]="eRef" template="card-text"></p>
+    <div [wvrContentProjection]="eRef" template="card-content"></div>
+  </div>
+  <div [wvrContentProjection]="eRef" template="card-list-bottom"></div>
+  <div class="card-body card-links" [wvrContentProjection]="eRef" template="card-links"></div>
+  <div class="card-body card-buttons" [wvrContentProjection]="eRef" template="card-buttons"></div>
+  <div class="card-footer" [wvrContentProjection]="eRef" template="card-footer"></div>
 </div>
 
-<!-- cardHeader -->
-
-<ng-template #cardHeader>
-  <div class="card-header {{additionalHeaderClasses}}"
-    [ngClass]="{
-      'wvr-hidden': !hasCardHeader
-    }">
-    <ng-content select="wvre-card-header"></ng-content>
-  </div>
-</ng-template>
-
-<!-- cardTitle -->
-<ng-template #cardTitle>
-  <h5 class="card-title" [ngClass]="{'wvr-hidden': !hasCardTitle}">
-    <ng-content select="wvre-card-title"></ng-content>
-  </h5>
-</ng-template>
-
-<!-- cardImgSrc -->
-<ng-template #cardImg>
-  <div class="card-img" [ngClass]="{'wvr-hidden': !hasCardImg}">
-    <img alt="Card Image Cap" class="card-img-top" [src]="imgSrc" [height]="imgHeight" [width]="imgWidth" />
-  </div>
-</ng-template>
-
-<!-- cardBody -->
-<ng-template #cardBody>
-  <div class="card-body">
-    <ng-container *ngTemplateOutlet="cardTitle"></ng-container>
-    <ng-content></ng-content>
-  </div>
-</ng-template>
-
-<!-- cardButton -->
-<ng-template #cardButton>
-  <div class="card-body" [ngClass]="{'wvr-hidden': !hasCardButton}">
-    <ng-content select="wvre-button"></ng-content>
-  </div>
-</ng-template>
-
-<!-- cardLinkBody -->
-<ng-template #cardLinkBody>
-  <div class="card-body" [ngClass]="{'wvr-hidden': !hasCardLinkBody}">
-    <ng-content select="wvre-card-link"></ng-content>
-  </div>
-</ng-template>
-
-
-<!-- cardListTop -->
-<ng-template #cardListTop>
-  <ng-content [ngClass]="{'wvr-hidden': !hasCardListTop,
-      'bg-primary': true
-    }"
-    select="wvre-list[top]"></ng-content>
-</ng-template>
-
-<!-- cardListBotttom -->
-<ng-template #cardListBottom>
-  <ng-content [ngClass]="{'wvr-hidden': !hasCardListBottom}" select="wvre-list[bottom]"></ng-content>
-</ng-template>
-
-<!-- cardFooter -->
-<ng-template #cardFooter>
-  <div class="card-footer" [ngClass]="{'text-muted': footerTextMuted, 'wvr-hidden': !hasCardFooter}">
-    <ng-content select="wvre-card-footer"></ng-content>
-  </div>
-</ng-template>
+<ng-content select="template"></ng-content>

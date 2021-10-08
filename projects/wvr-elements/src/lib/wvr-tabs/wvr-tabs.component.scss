@@ -10,7 +10,7 @@
 
   font-family: var(--wvr-font-family-sans-serif);
 
-  tab-content {
+  .active-tab {
     display: var(--tab-content-display);
     padding: var(--tab-content-padding);
   }

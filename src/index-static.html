@@ -27,6 +27,7 @@
       border-bottom: 1px solid grey;
     }
   </style>
+  <link rel="stylesheet" type="text/css" href="/weaver-components/docs/usage/assets/styles.css"></link>
 </head>
 
 <body class="wvr-components-loading">
@@ -48,11 +49,15 @@
   </div>
 
   <wvre-footer>
-    <wvre-nav-list aligned="CENTER">
-      <wvre-nav-li href="https://github.com/TAMULib/weaver-components">
-        <wvre-text value="Github"></wvre-text>
-      </wvre-nav-li>
-    </wvre-nav-list>
+    <template footer-content>
+      <wvre-nav-list aligned="CENTER">
+        <template nav-list-items>
+          <wvre-nav-li href="https://github.com/TAMULib/weaver-components">
+            <wvre-text value="Github"></wvre-text>
+          </wvre-nav-li>
+        </template>
+      </wvre-nav-list>
+    </template>
   </wvre-footer>
 
   <script defer src="/weaver-components/docs/usage/additional-scripts.js"></script>

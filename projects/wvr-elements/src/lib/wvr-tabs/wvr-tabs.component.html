@@ -1,9 +1,11 @@
 <ul class="nav nav-tabs bg-{{themeVariant}}" role="tablist">
-  <ng-container *ngTemplateOutlet="content"></ng-container>
+  <li class="nav-item bg-{{themeVariant}}" *ngFor="let tab of tabs; trackBy:trackTabById">
+    <a [id]="tab.id" class="nav-link" href [ngClass]="{ active: !!tab.attributes['active'] }" (click)="activate(tab)" role="tab" [attr.aria-controls]="tabContentID">
+      {{ tab.attributes['tab-text'].value }}
+    </a>
+  </li>
 </ul>
 
-<tab-content [innerHTML]="activeTabContent | safe: 'html'" [id]="tabContentID" role="tabpanel" [attr.aria-labelledby]="activeTab?.htmlId"></tab-content>
+<div class="active-tab" active-tab [id]="tabContentID"></div>
 
-<ng-template #content>
-  <ng-content select="wvre-tab, wvr-tab-component"></ng-content>
-</ng-template>
+<ng-content select="template[tab-content]"></ng-content>

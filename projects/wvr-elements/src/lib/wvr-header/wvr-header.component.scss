@@ -45,7 +45,15 @@
 
     .top-nav-wrapper {
       ::ng-deep {
-        wvre-nav-list[top-navigation] > ul > wvre-nav-li > li > wvre-dropdown > .wvr-dropdown > .dropdown > wvr-button-component > button-wrapper{
+        wvre-nav-list[top-navigation]
+        > ul
+        > wvre-nav-li
+        > li
+        > wvre-dropdown
+        > .wvr-dropdown
+        > .dropdown
+        > wvr-button-component
+        > button-wrapper {
           display: flex;
           justify-content: center;
         }
@@ -122,6 +130,5 @@
     }
 
   }
-
 
 }

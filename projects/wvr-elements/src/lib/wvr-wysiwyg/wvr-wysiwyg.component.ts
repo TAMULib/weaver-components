@@ -1,4 +1,4 @@
-import { Component, Injector, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Injector, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { select } from '@ngrx/store';
 import { EditorComponent } from '@tinymce/tinymce-angular';
 import * as JSON5 from 'json5';
@@ -7,13 +7,13 @@ import tinymce from 'tinymce';
 import { selectWysiwygById } from '../core/store';
 import * as WysiwygActions from '../core/wysiwyg/wysiwyg.actions';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
-import { WvrWysiwygMenu } from './wvr-wysiwyg-menu';
 import * as wvrEditor from './wvr-wysiwyg.json';
 
 @Component({
   selector: 'wvr-wysiwyg-component',
   templateUrl: './wvr-wysiwyg.component.html',
-  styleUrls: ['./wvr-wysiwyg.component.scss']
+  styleUrls: ['./wvr-wysiwyg.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export class WvrWysiwygComponent extends WvrBaseComponent implements OnInit, OnDestroy {
 

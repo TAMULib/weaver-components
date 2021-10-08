@@ -1,5 +1,21 @@
 # Changelog
 
+## [2.0.0] - 10-08-21
+### Resolves
+
+- Weaver Components should have a consistent content projection strategy. (#236)
+- Convert wvre-tab to pseudo element. (#308)
+- Card component needs redesign to avoid local state from DOM inspection. (#387)
+- Weaver Components should expose the manifest entry request through its public api. (#405)
+- Extract CSS to avoid the removal of deprecated style strategy. (#408)
+- Weaver Tabs should utilize the new content projection strategy. (#410)
+- Weaver Components Card Component should utilize the content projection strategy. (#414)
+- Weaver Components dropdown should utilize common content projection to afford two-way binding. (#417)
+- Weaver Components should support two way binding to angularjs scope. (#421)
+- Weaver Components should delay bootstrapping until a specified condition has been met. (#425)
+- Weaver Components Memory and Performance Concerns. (#428)
+- Weaver Components should compile using the ivy partial compiler option. (#430)
+
 ## [1.12.0] - 06-04-21
 ### Resolves
 
@@ -23,9 +39,9 @@
 ### Resolves
 
 - The weaver modal bg should be displayed (and NOT flicker). (#328)
-- Weaver modal only opens when a single modal is used.. (#346)
+- Weaver modal only opens when a single modal is used. (#346)
 - Weaver components should offer a default theme group (modeled after btn). (#347)
-- The Card Component should support theming.. (#350)
+- The Card Component should support theming. (#350)
 - Lighthouse build failing for weaver components. (#356)
 
 ## [1.10.0] - 04-23-21

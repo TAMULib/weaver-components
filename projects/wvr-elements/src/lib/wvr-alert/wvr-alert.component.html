@@ -17,7 +17,7 @@
 </div>
 
 <ng-template #basic>
-  <ng-content select="wvre-text, wvr-text-component"></ng-content>
+  <div [wvrContentProjection]="eRef" template="alert-content"></div>
 </ng-template>
 
 <ng-template #selfClosing>
@@ -27,7 +27,7 @@
 </ng-template>
 
 <ng-template #custom>
-  <ng-content select="wvre-custom-alert"></ng-content>
+  <div [wvrContentProjection]="eRef" template="custom-alert-content"></div>
 </ng-template>
 
 <ng-template #closeButton>
@@ -35,3 +35,5 @@
     <wvr-text-component aria-hidden="true" value="&times;"></wvr-text-component>
   </button>
 </ng-template>
+
+<ng-content select="template"></ng-content>

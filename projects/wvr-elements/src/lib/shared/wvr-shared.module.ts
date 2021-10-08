@@ -20,11 +20,11 @@ import { WvrManifestComponent } from '../wvr-manifest/wvr-manifest.component';
 import { WvrModalComponent } from '../wvr-modal/wvr-modal.component';
 import { WvrNavLiComponent } from '../wvr-nav-list/wvr-nav-li/wvr-nav-li.component';
 import { WvrNavListComponent } from '../wvr-nav-list/wvr-nav-list.component';
-import { WvrTabComponent } from '../wvr-tabs/wvr-tab/wvr-tab.component';
 import { WvrTabsComponent } from '../wvr-tabs/wvr-tabs.component';
 import { WvrTextComponent } from '../wvr-text/wvr-text.component';
 import { WvrThemeComponent } from '../wvr-theme/wvr-theme.component';
 import { WvrWysiwygComponent } from '../wvr-wysiwyg/wvr-wysiwyg.component';
+import { WvrContentProjectionDirective } from './directives/wvr-content-projection.directive';
 import { DefaultPipe } from './pipes/default.pipe';
 import { SafePipe } from './pipes/safe.pipe';
 
@@ -48,9 +48,9 @@ export const WVR_COMPONENTS = [
   WvrManifestComponent,
   WvrManifestEntryComponent,
   WvrTabsComponent,
-  WvrTabComponent,
   WvrThemeComponent,
-  WvrWysiwygComponent
+  WvrWysiwygComponent,
+  WvrContentProjectionDirective
 ];
 
 export const WVR_PIPES = [
