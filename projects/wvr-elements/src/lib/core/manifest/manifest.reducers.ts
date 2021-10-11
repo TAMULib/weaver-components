@@ -52,7 +52,7 @@ const manifestReducer = createReducer(
     return adapter.updateOne({
       id: manifest.name,
       changes: {
-        entries: manifest.entries.map(entry => {
+        entries: state.entities[manifest.name].entries.map(entry => {
           if (entry.name === request.entryName) {
             return { ...entry, request, response };
           }
@@ -71,7 +71,7 @@ const manifestReducer = createReducer(
     return adapter.updateOne({
       id: manifest.name,
       changes: {
-        entries: manifest.entries.map(entry => {
+        entries: state.entities[manifest.name].entries.map(entry => {
           if (entry.name === request.entryName) {
             return { ...entry, request, response };
           }
