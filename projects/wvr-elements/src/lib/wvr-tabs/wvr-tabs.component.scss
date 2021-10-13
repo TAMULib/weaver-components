@@ -42,7 +42,7 @@
 
     &:is([active-tab-theme="#{$color}"]) .nav-tabs .nav-item .nav-link.active:is([active-tab-theme=""]),
     &:is([active-tab-theme="#{$color}"]) .nav-tabs .nav-item .nav-link.active:is([active-tab-theme=""]):active,
-    & .nav-tabs .nav-item .nav-link:is([active-tab-theme="#{$color}"]).active,
+    & .nav-tabs .nav-item .nav-link.active:is([active-tab-theme="#{$color}"]),
     & .nav-tabs .nav-item .nav-link.active:is([active-tab-theme="#{$color}"]):active {
       border-color: var(--#{$color}-button-active-border);
       border-bottom-color: transparent;
