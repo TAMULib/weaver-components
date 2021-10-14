@@ -1,6 +1,6 @@
 <ul class="nav nav-tabs bg-{{themeVariant}}" role="tablist">
   <li class="nav-item bg-{{themeVariant}}" *ngFor="let tab of tabs; trackBy:trackTabById">
-    <a [id]="tab.id" class="nav-link" href [ngClass]="{ active: !!tab.attributes['active'] }" (click)="activate(tab)" role="tab" [attr.aria-controls]="tabContentID">
+    <a [id]="tab.id" class="nav-link" href [ngClass]="{ active: !!tab.attributes['active'] }" (click)="activate(tab)" role="tab" [attr.aria-controls]="tabContentID" [attr.active-tab-theme]="!!tab.attributes['active-tab-theme'] ? tab.attributes['active-tab-theme'].value : ''" [attr.inactive-tab-theme]="!!tab.attributes['inactive-tab-theme'] ? tab.attributes['inactive-tab-theme'].value : ''">
       {{ tab.attributes['tab-text'].value }}
     </a>
   </li>
