@@ -83,7 +83,7 @@ describe('Manifest Reducer', () => {
 
     request = {
       manifestName: manifest.name,
-      entryName: "All Sorted Request"
+      entryName: entry1.name
     };
   });
 
@@ -299,6 +299,12 @@ describe('Manifest Reducer', () => {
     state.entities[manifest.name] = manifest;
 
     const response = {};
+
+    update.id = manifest.name;
+    update.changes = {
+      entries: manifest.entries.map(e => e.name === request.entryName ? { ...e, request, response } : e)
+    };
+
     const expected = fromManifestReducers.adapter.updateOne(update, state);
     const action = fromManifestActions.submitRequestFailure({ manifest, request, response });
     const reduced = fromManifestReducers.reducer(state, action);
@@ -307,23 +313,20 @@ describe('Manifest Reducer', () => {
       .toBe(true);
   });
 
-  it('should submit manifest request failure with a matched entry name', () => {
+  it('should submit manifest request failure with an unmatched entry name', () => {
     state.entities[manifest.name] = manifest;
-    request.entryName = entry2.name;
+    request.entryName = "Does Not Exist";
 
     const response = {};
+
+    update.id = manifest.name;
+    update.changes = {
+      entries: manifest.entries.map(e => e.name === request.entryName ? { ...e, request, response } : e)
+    };
+
     const expected = fromManifestReducers.adapter.updateOne(update, state);
     const action = fromManifestActions.submitRequestFailure({ manifest, request, response });
     const reduced = fromManifestReducers.reducer(state, action);
-
-    expect(JSON.stringify(reduced.entities[manifest.name].entries[1].request) === JSON.stringify(request))
-      .toBe(true);
-
-    expect(JSON.stringify(reduced.entities[manifest.name].entries[1].response) === JSON.stringify(response))
-      .toBe(true);
-
-    delete reduced.entities[manifest.name].entries[1].request;
-    delete reduced.entities[manifest.name].entries[1].response;
 
     expect(JSON.stringify(expected) === JSON.stringify(reduced))
       .toBe(true);
@@ -333,6 +336,12 @@ describe('Manifest Reducer', () => {
     state.entities[manifest.name] = manifest;
 
     const response = {};
+
+    update.id = manifest.name;
+    update.changes = {
+      entries: manifest.entries.map(e => e.name === request.entryName ? { ...e, request, response } : e)
+    };
+
     const expected = fromManifestReducers.adapter.updateOne(update, state);
     const action = fromManifestActions.submitRequestSuccess({ manifest, request, response });
     const reduced = fromManifestReducers.reducer(state, action);
@@ -341,23 +350,20 @@ describe('Manifest Reducer', () => {
       .toBe(true);
   });
 
-  it('should submit manifest request success with a matched entry name', () => {
+  it('should submit manifest request success with an unmatched entry name', () => {
     state.entities[manifest.name] = manifest;
-    request.entryName = entry2.name;
+    request.entryName = "Does Not Exist";
 
     const response = {};
+
+    update.id = manifest.name;
+    update.changes = {
+      entries: manifest.entries.map(e => e.name === request.entryName ? { ...e, request, response } : e)
+    };
+
     const expected = fromManifestReducers.adapter.updateOne(update, state);
     const action = fromManifestActions.submitRequestSuccess({ manifest, request, response });
     const reduced = fromManifestReducers.reducer(state, action);
-
-    expect(JSON.stringify(reduced.entities[manifest.name].entries[1].request) === JSON.stringify(request))
-      .toBe(true);
-
-    expect(JSON.stringify(reduced.entities[manifest.name].entries[1].response) === JSON.stringify(response))
-      .toBe(true);
-
-    delete reduced.entities[manifest.name].entries[1].request;
-    delete reduced.entities[manifest.name].entries[1].response;
 
     expect(JSON.stringify(expected) === JSON.stringify(reduced))
       .toBe(true);
@@ -371,11 +377,39 @@ describe('Manifest Reducer', () => {
       .toBe(true);
   });
 
+  it('should queue a request with multiple requests', () => {
+    state.pendingRequests.push({ ...request, manifestName: manifest.name + ' 2', entryName: entry3.name });
+    state.pendingRequests.push({ ...request, entryName: entry2.name });
+
+    const action = fromManifestActions.queueRequest({ request });
+    const reduced = fromManifestReducers.reducer(state, action);
+
+    expect(JSON.stringify(request) === JSON.stringify(reduced.pendingRequests[reduced.pendingRequests.length - 1]))
+      .toBe(true);
+
+    expect(reduced.pendingRequests.length === 3)
+      .toBe(true);
+  });
+
   it('should dequeue a request', () => {
+    state.pendingRequests.push(request);
+
     const action = fromManifestActions.dequeueRequest({ request });
     const reduced = fromManifestReducers.reducer(state, action);
 
     expect(reduced.pendingRequests.length === 0)
+      .toBe(true);
+  });
+
+  it('should dequeue a request with multiple requests', () => {
+    state.pendingRequests.push({ ...request, manifestName: manifest.name + ' 2', entryName: entry3.name });
+    state.pendingRequests.push({ ...request, manifestName: manifest.name, entryName: entry2.name });
+    state.pendingRequests.push(request);
+
+    const action = fromManifestActions.dequeueRequest({ request });
+    const reduced = fromManifestReducers.reducer(state, action);
+
+    expect(reduced.pendingRequests.length === 2)
       .toBe(true);
   });
 
