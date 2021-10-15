@@ -96,7 +96,7 @@ const manifestReducer = createReducer(
   on(ManifestActions.dequeueRequest, (state, { request }) => {
     return {
       ...state,
-      pendingRequests: state.pendingRequests.filter(r => r.manifestName !== request.manifestName && r.entryName !== request.entryName)
+      pendingRequests: state.pendingRequests.filter(r => r.manifestName !== request.manifestName || r.entryName !== request.entryName)
     };
   })
 );
