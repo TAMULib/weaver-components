@@ -75,10 +75,47 @@ describe('WvrFooterComponent', () => {
   it('should have isSticky feature to true', () => {
     expect(component.isSticky)
       .toBeFalse();
-    window.resizeBy(300, 300);
+
+    // save the height to restore after test.
+    const originalHeight = window.innerHeight;
+
+    // The resize must be pre-dispatcehd before making changes to the window height.
     window.dispatchEvent(new Event('resize'));
+
+    // This overwrites the value to the desired height.
+    (<any>window).innerHeight = 1;
+
+    // Another dispatch is needed to trigger the desired change.
+    window.dispatchEvent(new Event('resize'));
+
     expect(component.isSticky)
       .toBeTruthy();
+
+    // The window does not get restored after the change, so manually restore it.
+    (<any>window).innerHeight = originalHeight;
+  });
+
+  it('should have isSticky feature to false', () => {
+    expect(component.isSticky)
+      .toBeFalse();
+
+    // save the height to restore after test.
+    const originalHeight = window.innerHeight;
+
+    // The resize must be pre-dispatcehd before making changes to the window height.
+    window.dispatchEvent(new Event('resize'));
+
+    // This overwrites the value to the desired height.
+    (<any>window).innerHeight = 1000;
+
+    // Another dispatch is needed to trigger the desired change.
+    window.dispatchEvent(new Event('resize'));
+
+    expect(component.isSticky)
+      .toBeFalsy();
+
+    // The window does not get restored after the change, so manually restore it.
+    (<any>window).innerHeight = originalHeight;
   });
 
 });
