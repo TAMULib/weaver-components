@@ -42,6 +42,9 @@ export class WvrWysiwygComponent extends WvrBaseComponent implements OnInit, OnD
 
   @Input() emitSaveEvent: string;
 
+  @Input() set height(height: string) { this.config.height = height; }
+  get height(): string { return this.config.height; }
+
   config = {
     base_url: 'tinymce',
     skin: 'oxide',
@@ -53,6 +56,7 @@ export class WvrWysiwygComponent extends WvrBaseComponent implements OnInit, OnD
     ],
     toolbar: 'undo redo | formatselect | bold italic forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table pagebreak | charmap codesample image | removeformat | help | cancel save',
     menu: (wvrEditor as any).default,
+    height: '300',
     /* TODO: Issue #316. */
     save_oncancelcallback: $event => {
       this.onReset($event);
