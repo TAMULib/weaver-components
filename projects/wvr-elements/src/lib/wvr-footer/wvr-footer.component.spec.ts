@@ -83,7 +83,7 @@ describe('WvrFooterComponent', () => {
     window.dispatchEvent(new Event('resize'));
 
     // This overwrites the value to the desired height.
-    (<any>window).innerHeight = 1;
+    (<any>window).innerHeight = 1000;
 
     // Another dispatch is needed to trigger the desired change.
     window.dispatchEvent(new Event('resize'));
@@ -106,7 +106,7 @@ describe('WvrFooterComponent', () => {
     window.dispatchEvent(new Event('resize'));
 
     // This overwrites the value to the desired height.
-    (<any>window).innerHeight = 1000;
+    (<any>window).innerHeight = 1;
 
     // Another dispatch is needed to trigger the desired change.
     window.dispatchEvent(new Event('resize'));
