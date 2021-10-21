@@ -12,8 +12,27 @@
   }
 
   font-family: var(--wvr-font-family-sans-serif);
-  ::ng-deep {
 
+  & .wvr-card.collapsed .card-header {
+    border-bottom: 0px;
+  }
+
+  & .wvr-card.collapsed .card-body,
+  & .wvr-card.collapsed .card-footer {
+    visibility: collapse;
+    overflow: hidden;
+
+    height: 0px;
+    min-height: 0px;
+    max-height: 0px;
+
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
+    outline: 0px;
+  }
+
+  ::ng-deep {
     .list-group-flush {
       border-top: 1px solid rgba(0, 0, 0, 0.125);
       border-bottom: 1px solid rgba(0, 0, 0, 0.125);
@@ -26,6 +45,6 @@
     .card-body {
       color: var(--card-body-color)
     }
-
   }
+
 }

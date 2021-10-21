@@ -52,7 +52,7 @@ const manifestReducer = createReducer(
     return adapter.updateOne({
       id: manifest.name,
       changes: {
-        entries: manifest.entries.map(entry => {
+        entries: state.entities[manifest.name].entries.map(entry => {
           if (entry.name === request.entryName) {
             return { ...entry, request, response };
           }
@@ -71,7 +71,7 @@ const manifestReducer = createReducer(
     return adapter.updateOne({
       id: manifest.name,
       changes: {
-        entries: manifest.entries.map(entry => {
+        entries: state.entities[manifest.name].entries.map(entry => {
           if (entry.name === request.entryName) {
             return { ...entry, request, response };
           }
@@ -96,7 +96,7 @@ const manifestReducer = createReducer(
   on(ManifestActions.dequeueRequest, (state, { request }) => {
     return {
       ...state,
-      pendingRequests: state.pendingRequests.filter(r => r.manifestName !== request.manifestName && r.entryName !== request.entryName)
+      pendingRequests: state.pendingRequests.filter(r => r.manifestName !== request.manifestName || r.entryName !== request.entryName)
     };
   })
 );

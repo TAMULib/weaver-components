@@ -15,4 +15,49 @@
     padding: var(--tab-content-padding);
   }
 
+  @each $color, $value in $theme-colors {
+    &:is([inactive-tab-theme="#{$color}"]) .nav-tabs .nav-item .nav-link:not(.active):is([inactive-tab-theme=""]),
+    & .nav-tabs .nav-item .nav-link:is([inactive-tab-theme="#{$color}"]):not(.active) {
+      border-color: var(--#{$color}-button-border);
+      border-bottom-color: transparent;
+    }
+
+    &:is([inactive-tab-theme="#{$color}"]) .nav-tabs .nav-item .nav-link:not(.active):is([inactive-tab-theme=""]):active,
+    & .nav-tabs .nav-item .nav-link:is([inactive-tab-theme="#{$color}"]):not(.active):active {
+      border-color: var(--#{$color}-button-active-border);
+      border-bottom-color: transparent;
+    }
+
+    &:is([inactive-tab-theme="#{$color}"]) .nav-tabs .nav-item .nav-link:not(.active):is([inactive-tab-theme=""]):focus,
+    & .nav-tabs .nav-item .nav-link:is([inactive-tab-theme="#{$color}"]):not(.active):focus {
+      border-color: var(--#{$color}-button-focus-border);
+      border-bottom-color: transparent;
+    }
+
+    &:is([inactive-tab-theme="#{$color}"]) .nav-tabs .nav-item .nav-link:not(.active):is([inactive-tab-theme=""]):hover,
+    & .nav-tabs .nav-item .nav-link:is([inactive-tab-theme="#{$color}"]):not(.active):hover {
+      border-color: var(--#{$color}-button-hover-border);
+      border-bottom-color: transparent;
+    }
+
+    &:is([active-tab-theme="#{$color}"]) .nav-tabs .nav-item .nav-link.active:is([active-tab-theme=""]),
+    &:is([active-tab-theme="#{$color}"]) .nav-tabs .nav-item .nav-link.active:is([active-tab-theme=""]):active,
+    & .nav-tabs .nav-item .nav-link.active:is([active-tab-theme="#{$color}"]),
+    & .nav-tabs .nav-item .nav-link.active:is([active-tab-theme="#{$color}"]):active {
+      border-color: var(--#{$color}-button-active-border);
+      border-bottom-color: transparent;
+    }
+
+    &:is([active-tab-theme="#{$color}"]) .nav-tabs .nav-item .nav-link.active:is([active-tab-theme=""]):focus,
+    & .nav-tabs .nav-item .nav-link.active:is([active-tab-theme="#{$color}"]):focus {
+      border-color: var(--#{$color}-button-focus-border);
+      border-bottom-color: transparent;
+    }
+
+    &:is([active-tab-theme="#{$color}"]) .nav-tabs .nav-item .nav-link.active:is([active-tab-theme=""]):hover,
+    & .nav-tabs .nav-item .nav-link.active:is([active-tab-theme="#{$color}"]):hover {
+      border-color: var(--#{$color}-button-hover-border);
+      border-bottom-color: transparent;
+    }
+  }
 }

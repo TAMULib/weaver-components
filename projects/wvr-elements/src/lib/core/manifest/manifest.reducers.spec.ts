@@ -6,328 +6,347 @@ import * as fromManifestActions from './manifest.actions';
 import { ManifestEntryRequest } from './manifest-entry-request';
 
 describe('Manifest Reducer', () => {
+  let entry1: ManifestEntry;
+  let entry2: ManifestEntry;
+  let entry3: ManifestEntry;
+  let manifest: Manifest;
+  let manifests: Array<Manifest>;
+  let update: Update<Manifest>;
+  let updates: Array<Update<Manifest>>;
+  let state: any;
+  let actionObjectManifest: any;
+  let request: ManifestEntryRequest;
 
-  // START
+  beforeEach(() => {
+    entry1 = {
+      name: 'All Sorted',
+      path: '/ldap/all-sorted',
+      methods: [ 'GET' ]
+    };
 
-  const manifestEntry1: ManifestEntry = {
-    name: "All Sorted",
-    path: "/ldap/all-sorted",
-    methods: ["GET"]
-  };
-  const manifestEntry2: ManifestEntry = {
-    name: "Departments",
-    path: "/ldap/departments",
-    methods: ["GET"]
-  };
+    entry2 = {
+      name: 'Departments',
+      path: '/ldap/departments',
+      methods: [ 'GET' ]
+    };
 
-  const manifest: Manifest = {
-    name: "Directory App",
-    baseUrl: "https://api-dev.library.tamu.edu/directory-service",
-    entries: [manifestEntry1, manifestEntry2]
-  };
+    entry3 = {
+      name: 'Other',
+      path: '/other',
+      methods: [ 'GET' ]
+    };
 
-  describe('initial state', ()=> {
+    manifest = {
+      name: 'Directory App',
+      baseUrl: 'https://api-dev.library.tamu.edu/directory-service',
+      entries: [ entry1, entry2 ]
+    };
+
+    manifests = [
+      manifest, {
+        ...manifest,
+        name: manifest.name + ' 2',
+        entries: [ entry3 ]
+      }
+    ];
+
+    state = {
+      ids: [],
+      entities: {},
+      pendingRequests: [],
+      currentRequest: undefined
+    };
+
+    actionObjectManifest = {
+      name: manifest.name,
+      baseUrl: manifest.baseUrl,
+      entries: [
+        { description: undefined, map: data =>
+          data.payload[Object.keys(data.payload)[0]], methods: entry1.methods, name: entry1.name, options: {}, path: entry1.path },
+        { description: undefined, map: data => data, methods: entry2.methods, name: entry2.name, options: {}, path: entry2.path }
+      ]
+    };
+
+    update = {
+      id: JSON.stringify(fromManifestReducers.adapter.selectId),
+      changes: { name: manifest.name + ' updated' }
+    };
+
+    updates = [
+      update, {
+        ...update,
+        changes: {
+          name: manifest.name + ' updated 2'
+        }
+      }
+    ];
+
+    request = {
+      manifestName: manifest.name,
+      entryName: entry1.name
+    };
+  });
+
+  describe('initial state', () => {
     it('should return the initial state', () => {
       const { initialState } = fromManifestReducers;
       const action = {} as any;
+
       expect(fromManifestReducers.reducer(undefined, action))
-      .toBe(initialState);
+        .toBe(initialState);
     });
 
     it('should select manifest by name', () => {
       expect(fromManifestReducers.selectManifestByName(manifest))
-      .toEqual(manifest.name);
+        .toEqual(manifest.name);
     });
 
-    const state =  {currentRequest: undefined,entities: {},ids: [],pendingRequests: []};
     it('should select current request', () => {
       expect(fromManifestReducers.selectCurrentRequest(state))
-      .toEqual(state.currentRequest);
+        .toEqual(state.currentRequest);
     });
 
     it('should select pending request', () => {
       expect(fromManifestReducers.selectPendingRequests(state))
-      .toEqual(state.pendingRequests);
+        .toEqual(state.pendingRequests);
     });
-
   });
 
-  describe('Manifest reducer ', () => {
-    const state = { ids: [], entities: {}, pendingRequests: [{manifestName: "Directory App", entryName: "All Sorted"}], currentRequest: undefined };
-    const addManifestActionObj = { manifest: { manifest,entries: [
-            { description: undefined, map: data => data.payload[Object.keys(data.payload)[0]], methods: ["GET"], name: "All Sorted", options: {}, path: "/ldap/all-sorted"},
-            { description: undefined, map: data => data, methods: ["GET"], name: "Departments", options: {}, path: "/ldap/departments" }],
-        name: "Directory App"},
-     type: "[Manifest] Add Manifest"
-    };
+  it('should add manifest', () => {
+    const expected = fromManifestReducers.adapter.addOne(manifest, state);
+    const action = fromManifestActions.addManifest({ manifest });
+    const reduced = fromManifestReducers.reducer(state, action);
 
-    it("should have manifest action type as '[Manifest] Add Manifest'", () => {
-      const addManifestAction = fromManifestActions.addManifest({manifest});
-      expect(addManifestAction.type === '[Manifest] Add Manifest')
+    expect(JSON.stringify(expected) === JSON.stringify(reduced))
       .toBe(true);
-    });
-
-    it('should add manifest', () => {
-      expect(JSON.stringify(fromManifestReducers.adapter.addOne(manifest, state).entities[0]) ===
-      JSON.stringify(fromManifestReducers.reducer(state, addManifestActionObj).entities[0]) )
-      .toBe(true);
-    });
-
-    // setManifest
-    const setManifestActionObj = {
-      "manifest":{
-        "name":"Directory App SetObj",
-        "baseUrl":"https://api-dev.library.tamu.edu/directory-service",
-        "entries":[
-          {"name":"All Sorted","path":"/ldap/all-sorted","methods":["GET"]},
-          {"name":"Departments","path":"/ldap/departments","methods":["GET"]}
-        ]
-      },
-      "type":"[Manifest] Set Manifest"
-    };
-
-    it("should have manifest action type as '[Manifest] Set Manifest'", () => {
-      const setManifestAction = fromManifestActions.setManifest({manifest});
-      expect( setManifestAction.type === '[Manifest] Set Manifest' )
-      .toBe(true);
-    });
-
-    it('should set manifest', () => {
-      expect(JSON.stringify(fromManifestReducers.adapter.setOne(manifest, state).entities[0]) ===
-      JSON.stringify(fromManifestReducers.reducer(state, setManifestActionObj).entities[0]) )
-      .toBe(true);
-    });
-
-    //upsert Manifest
-    const upsertManifestObj = {
-      "manifest":{
-        "name":"Directory App UpsertObj",
-        "baseUrl":"https://api-dev.library.tamu.edu/directory-service",
-        "entries":[
-          {"name":"All Sorted","path":"/ldap/all-sorted","methods":["GET"]},
-          {"name":"Departments","path":"/ldap/departments","methods":["GET"]}
-        ]
-      },
-      "type":"[Manifest] Upsert Manifest"
-    };
-
-    it("should have manifest action type as '[Manifest] Upsert Manifest'", () => {
-      const upsertManifestAction = fromManifestActions.upsertManifest({manifest});
-      expect(upsertManifestAction.type === '[Manifest] Upsert Manifest')
-      .toBe(true);
-    });
-
-    it('should upsert manifest', () => {
-      expect(JSON.stringify(fromManifestReducers.adapter.upsertOne(manifest, state).entities[0]) ===
-      JSON.stringify(fromManifestReducers.reducer(state, upsertManifestObj).entities[0]) )
-      .toBe(true);
-    });
-
-    // add many manifests
-    const manifests = [manifest, manifest];
-    const addManifestsObj = {
-      "manifests":[
-        {"name":"Directory App","baseUrl":"https://api-dev.library.tamu.edu/directory-service","entries":[{"name":"All Sorted","path":"/ldap/all-sorted","methods":["GET"]},{"name":"Departments","path":"/ldap/departments","methods":["GET"]}]},
-        {"name":"Directory App","baseUrl":"https://api-dev.library.tamu.edu/directory-service","entries":[{"name":"All Sorted","path":"/ldap/all-sorted","methods":["GET"]},{"name":"Departments","path":"/ldap/departments","methods":["GET"]}]}
-      ],
-      "type":"[Manifest] Add Manifests"
-    };
-
-    it("should have manifest action type as '[Manifest] Add Manifests'", () => {
-      expect( addManifestsObj.type === '[Manifest] Add Manifests')
-      .toBe(true);
-    });
-
-    it('should add manifests', () => {
-      expect(JSON.stringify(fromManifestReducers.adapter.addMany(manifests, state).entities[0]) ===
-      JSON.stringify(fromManifestReducers.reducer(state, addManifestsObj).entities[0]) )
-      .toBe(true);
-    });
-
-    // upsert manifests
-    const upsertManifestsObj = {
-      "manifests":[
-        {"name":"Directory App","baseUrl":"https://api-dev.library.tamu.edu/directory-service","entries":[{"name":"All Sorted","path":"/ldap/all-sorted","methods":["GET"]},{"name":"Departments","path":"/ldap/departments","methods":["GET"]}]},
-        {"name":"Directory App","baseUrl":"https://api-dev.library.tamu.edu/directory-service","entries":[{"name":"All Sorted","path":"/ldap/all-sorted","methods":["GET"]},{"name":"Departments","path":"/ldap/departments","methods":["GET"]}]}
-      ],
-      "type":"[Manifest] Upsert Manifests"
-    };
-    it("should have manifest action type as '[Manifest] Upsert Manifests'", () => {
-      const upsertManifestsAction = fromManifestActions.upsertManifests({manifests});
-      expect( upsertManifestsAction.type  === '[Manifest] Upsert Manifests')
-      .toBe(true);
-    });
-
-    it('should upsert manifests', () => {
-      expect(JSON.stringify(fromManifestReducers.adapter.upsertMany(manifests, state).entities[0]) ===
-      JSON.stringify(fromManifestReducers.reducer(state, upsertManifestsObj).entities[0]) )
-      .toBe(true);
-    });
-
-    const update: Update<Manifest> = {
-      id: JSON.stringify( fromManifestReducers.adapter.selectId ),
-      changes: {name: JSON.stringify( fromManifestReducers.selectManifestByName(manifest))}
-    };
-
-    // update one manifest
-    const updateOneAdpater = fromManifestReducers.adapter.updateOne(
-      {id: JSON.stringify( fromManifestReducers.adapter.selectId ),changes: {name: manifest.name}}, state);
-
-    it('should update one manifest', () => {
-      const updateOneAction = fromManifestActions.updateManifest( {update} );
-      const updateOneReducer = fromManifestReducers.reducer(state, updateOneAction);
-      expect(JSON.stringify(updateOneAdpater.entities[0]) === JSON.stringify(updateOneReducer.entities[0]) )
-      .toBe(true);
-    });
-
-    // update many manifests
-    it('should update many manifests', () => {
-      const updates = [update, update ];
-      const updateManifestsAction = fromManifestActions.updateManifests({ updates });
-      const updateManifestsAdapter = fromManifestReducers.adapter.updateMany(updates, state);
-      const updateManyReducer = fromManifestReducers.reducer(state, updateManifestsAction);
-      expect(JSON.stringify(updateManifestsAdapter.entities[0]) === JSON.stringify(updateManyReducer.entities[0]) )
-      .toBe(true);
-    });
-
-    // entity MapOne
-    it('should map one manifest', () => {
-      const entityMap: EntityMapOne<Manifest> = {
-        id: fromManifestReducers.selectManifestByName(manifest),
-        map: undefined
-      };
-      const mapOneAction = fromManifestActions.mapManifest({ entityMap});
-      const mapOneadpater = fromManifestReducers.adapter.mapOne(entityMap, state);
-      const mapOneReducer = fromManifestReducers.reducer(state, mapOneAction);
-      expect(JSON.stringify(mapOneadpater.entities[0]) === JSON.stringify(mapOneReducer.entities[0]) )
-      .toBe(true);
-    });
-
-    // TODO entity MapManifests
-    /* TODO: Issue #294. */
-
-    // deleteManifest
-    it('should be able to remove manifest', () => {
-      const id = manifest.name;
-      const deleteManifestAction = fromManifestActions.deleteManifest({id: id });
-      const deleteManifestAdapter = fromManifestReducers.adapter.removeOne(id, state) ;
-      const deleteManifestReducer = fromManifestReducers.reducer(state, deleteManifestAction);
-      expect(JSON.stringify(deleteManifestAdapter) === JSON.stringify(deleteManifestReducer) )
-      .toBe(true);
-    });
-
-    const anotherManifest: Manifest = {
-      name: "Subject App",
-      baseUrl: "https://api-dev.library.tamu.edu/directory-service",
-      entries: [manifestEntry1, manifestEntry2]
-    };
-
-    // delete manifests
-    it('should be able to remove manifests', () => {
-      const ids = [manifest.name, anotherManifest.name];
-      const deleteManifestsAction = fromManifestActions.deleteManifests({ids: ids });
-      const deleteManifestsAdapter = fromManifestReducers.adapter.removeMany(ids, state) ;
-      const deleteManifestsReducer = fromManifestReducers.reducer(state, deleteManifestsAction);
-      expect(JSON.stringify(deleteManifestsAdapter) === JSON.stringify(deleteManifestsReducer) )
-      .toBe(true);
-    });
-
-    // TODO delete manifests by predicate
-    /* TODO: Issue #294. */
-
-    // load manifests
-    it('should be able to load manifests', () => {
-      const manifests = [manifest, anotherManifest];
-      const loadManifestsAction = fromManifestActions.loadManifests( {manifests});
-      const loadManifestsAdapter = fromManifestReducers.adapter.setAll(manifests, state) ;
-      const loadManifestsReducer = fromManifestReducers.reducer(state, loadManifestsAction);
-      expect(JSON.stringify(loadManifestsAdapter) === JSON.stringify(loadManifestsReducer) )
-      .toBe(true);
-    });
-
-    // clear manifests
-    it('should be able to clear manifests', () => {
-      const clearManifestsAction = fromManifestActions.clearManifests();
-      const clearManifestsAdapter = fromManifestReducers.adapter.removeAll(state) ;
-      const clearManifestsReducer = fromManifestReducers.reducer(state, clearManifestsAction);
-      expect(JSON.stringify(clearManifestsAdapter) === JSON.stringify(clearManifestsReducer))
-      .toBe(true);
-    });
-
-    // submit request
-    it('should be able to submit request', () => {
-      const request: ManifestEntryRequest = {
-        manifestName: "Directory App",
-        entryName: "All Sorted Submit Request"
-      };
-      const submitRequestAction = fromManifestActions.submitRequest({request});
-      const submitRequestReducer = fromManifestReducers.reducer(state,submitRequestAction);
-      expect(JSON.stringify(submitRequestAction.request)===JSON.stringify(submitRequestReducer.currentRequest))
-      .toBe(true);
-    });
-
-    // submit request success
-    let request: ManifestEntryRequest = {
-      manifestName: "Directory App",
-      entryName: "All Sorted Submit Request"
-    };
-
-    it('should be able to submit request success', () => {
-      const response = {};
-      let submitRequestAction = fromManifestActions.submitRequestSuccess({manifest, request, response});
-      let submitRequestReducer = fromManifestReducers.reducer(state,submitRequestAction);
-      expect(JSON.stringify(updateOneAdpater)===JSON.stringify(submitRequestReducer))
-      .toBe(true);
-
-      // to check the reducer response when request entry name equals manifest entry name
-      request = {
-        manifestName: "Directory App",
-        entryName: "All Sorted"
-      };
-      submitRequestAction = fromManifestActions.submitRequestSuccess({manifest, request, response});
-      submitRequestReducer = fromManifestReducers.reducer(state,submitRequestAction);
-      expect(JSON.stringify(updateOneAdpater)===JSON.stringify(submitRequestReducer))
-      .toBe(true);
-    });
-
-    // submit request failure
-    it('should have submit request failure', () => {
-      const response = {};
-      let submitRequestAction = fromManifestActions.submitRequestFailure({manifest, request, response});
-      let submitRequestReducer = fromManifestReducers.reducer(state,submitRequestAction);
-      expect(JSON.stringify(updateOneAdpater)===JSON.stringify(submitRequestReducer))
-      .toBe(true);
-      request = {
-        manifestName: "Directory App",
-        entryName: "All Sorted"
-      };
-      submitRequestAction = fromManifestActions.submitRequestFailure({manifest, request, response});
-      submitRequestReducer = fromManifestReducers.reducer(state,submitRequestAction);
-      expect(JSON.stringify(updateOneAdpater)===JSON.stringify(submitRequestReducer))
-      .toBe(true);
-    });
-
-    // queue request
-    it('should be able to queue a request', () => {
-      const request: ManifestEntryRequest = {
-        manifestName: "Directory App",
-        entryName: "All Sorted Queued Request"
-      };
-      const queueRequestAction = fromManifestActions.queueRequest({request});
-      const queueRequestReducer = fromManifestReducers.reducer(state, queueRequestAction);
-      expect(JSON.stringify(queueRequestReducer.pendingRequests[queueRequestReducer.pendingRequests.length -1]) === JSON.stringify(request))
-        .toBe(true);
-    });
-
-    // dequeue request
-    it('should be able to dequeue a request', () => {
-      const queueRequestAction = fromManifestActions.dequeueRequest({request});
-      const queueRequestReducer = fromManifestReducers.reducer(state, queueRequestAction);
-      expect( queueRequestReducer.pendingRequests.length  === 0 )
-        .toBe(true);
-    });
-
   });
 
-  // END
+  it('should add manifest', () => {
+    const expected = fromManifestReducers.adapter.addOne(manifest, state);
+    const action = fromManifestActions.addManifest({ manifest });
+    const reduced = fromManifestReducers.reducer(state, action);
+
+    expect(JSON.stringify(expected) === JSON.stringify(reduced))
+      .toBe(true);
+  });
+
+  it('should add many manifests', () => {
+    const expected = fromManifestReducers.adapter.addMany(manifests, state);
+    const action = fromManifestActions.addManifests({ manifests });
+    const reduced = fromManifestReducers.reducer(state, action);
+
+    expect(JSON.stringify(expected) === JSON.stringify(reduced))
+      .toBe(true);
+  });
+
+  it('should clear all manifests', () => {
+    const expected = fromManifestReducers.adapter.removeAll(state);
+    const action = fromManifestActions.clearManifests();
+    const reduced = fromManifestReducers.reducer(state, action);
+
+    expect(JSON.stringify(expected) === JSON.stringify(reduced))
+      .toBe(true);
+  });
+
+  it('should delete manifest', () => {
+    const expected = fromManifestReducers.adapter.removeOne(manifest.name, state);
+    const action = fromManifestActions.deleteManifest({ id: manifest.name });
+    const reduced = fromManifestReducers.reducer(state, action);
+
+    expect(JSON.stringify(expected) === JSON.stringify(reduced))
+      .toBe(true);
+  });
+
+  it('should delete many manifests', () => {
+    const ids = [ manifest.name, manifest.name + ' 2' ];
+    const expected = fromManifestReducers.adapter.removeMany(ids, state);
+    const action = fromManifestActions.deleteManifests({ ids } );
+    const reduced = fromManifestReducers.reducer(state, action);
+
+    expect(JSON.stringify(expected) === JSON.stringify(reduced))
+      .toBe(true);
+  });
+
+  it('should load many manifests', () => {
+    const expected = fromManifestReducers.adapter.setAll(manifests, state);
+    const action = fromManifestActions.loadManifests({ manifests });
+    const reduced = fromManifestReducers.reducer(state, action);
+
+    expect(JSON.stringify(expected) === JSON.stringify(reduced))
+      .toBe(true);
+  });
+
+  it('should set manifest', () => {
+    const expected = fromManifestReducers.adapter.setOne(manifest, state);
+    const action = fromManifestActions.setManifest({ manifest });
+    const reduced = fromManifestReducers.reducer(state, action);
+
+    expect(JSON.stringify(expected) === JSON.stringify(reduced))
+      .toBe(true);
+  });
+
+  it('should update manifest', () => {
+    const expected = fromManifestReducers.adapter.updateOne(update, state);
+    const action = fromManifestActions.updateManifest({ update });
+    const reduced = fromManifestReducers.reducer(state, action);
+
+    expect(JSON.stringify(expected) === JSON.stringify(reduced))
+      .toBe(true);
+  });
+
+  it('should update many manifests', () => {
+    const expected = fromManifestReducers.adapter.updateMany(updates, state);
+    const action = fromManifestActions.updateManifests({ updates });
+    const reduced = fromManifestReducers.reducer(state, action);
+
+    expect(JSON.stringify(expected) === JSON.stringify(reduced))
+      .toBe(true);
+  });
+
+  it('should upsert manifest', () => {
+    const expected = fromManifestReducers.adapter.upsertOne(manifest, state);
+    const action = fromManifestActions.upsertManifest({ manifest });
+    const reduced = fromManifestReducers.reducer(state, action);
+
+    expect(JSON.stringify(expected) === JSON.stringify(reduced))
+      .toBe(true);
+  });
+
+  it('should upsert many manifests', () => {
+    const expected = fromManifestReducers.adapter.upsertMany(manifests, state);
+    const action = fromManifestActions.upsertManifests({ manifests });
+    const reduced = fromManifestReducers.reducer(state, action);
+
+    expect(JSON.stringify(expected) === JSON.stringify(reduced))
+      .toBe(true);
+  });
+
+  it('should submit manifest request', () => {
+    const action = fromManifestActions.submitRequest({ request });
+    const reduced = fromManifestReducers.reducer(state, action);
+
+    expect(JSON.stringify(action.request) === JSON.stringify(reduced.currentRequest))
+      .toBe(true);
+  });
+
+  it('should submit manifest request failure', () => {
+    state.entities[manifest.name] = manifest;
+
+    const response = {};
+
+    update.id = manifest.name;
+    update.changes = {
+      entries: manifest.entries.map(e => e.name === request.entryName ? { ...e, request, response } : e)
+    };
+
+    const expected = fromManifestReducers.adapter.updateOne(update, state);
+    const action = fromManifestActions.submitRequestFailure({ manifest, request, response });
+    const reduced = fromManifestReducers.reducer(state, action);
+
+    expect(JSON.stringify(expected) === JSON.stringify(reduced))
+      .toBe(true);
+  });
+
+  it('should submit manifest request failure with an unmatched entry name', () => {
+    state.entities[manifest.name] = manifest;
+    request.entryName = "Does Not Exist";
+
+    const response = {};
+
+    update.id = manifest.name;
+    update.changes = {
+      entries: manifest.entries.map(e => e.name === request.entryName ? { ...e, request, response } : e)
+    };
+
+    const expected = fromManifestReducers.adapter.updateOne(update, state);
+    const action = fromManifestActions.submitRequestFailure({ manifest, request, response });
+    const reduced = fromManifestReducers.reducer(state, action);
+
+    expect(JSON.stringify(expected) === JSON.stringify(reduced))
+      .toBe(true);
+  });
+
+  it('should submit manifest request success', () => {
+    state.entities[manifest.name] = manifest;
+
+    const response = {};
+
+    update.id = manifest.name;
+    update.changes = {
+      entries: manifest.entries.map(e => e.name === request.entryName ? { ...e, request, response } : e)
+    };
+
+    const expected = fromManifestReducers.adapter.updateOne(update, state);
+    const action = fromManifestActions.submitRequestSuccess({ manifest, request, response });
+    const reduced = fromManifestReducers.reducer(state, action);
+
+    expect(JSON.stringify(expected) === JSON.stringify(reduced))
+      .toBe(true);
+  });
+
+  it('should submit manifest request success with an unmatched entry name', () => {
+    state.entities[manifest.name] = manifest;
+    request.entryName = "Does Not Exist";
+
+    const response = {};
+
+    update.id = manifest.name;
+    update.changes = {
+      entries: manifest.entries.map(e => e.name === request.entryName ? { ...e, request, response } : e)
+    };
+
+    const expected = fromManifestReducers.adapter.updateOne(update, state);
+    const action = fromManifestActions.submitRequestSuccess({ manifest, request, response });
+    const reduced = fromManifestReducers.reducer(state, action);
+
+    expect(JSON.stringify(expected) === JSON.stringify(reduced))
+      .toBe(true);
+  });
+
+  it('should queue a request', () => {
+    const action = fromManifestActions.queueRequest({ request });
+    const reduced = fromManifestReducers.reducer(state, action);
+
+    expect(JSON.stringify(request) === JSON.stringify(reduced.pendingRequests[reduced.pendingRequests.length - 1]))
+      .toBe(true);
+  });
+
+  it('should queue a request with multiple requests', () => {
+    state.pendingRequests.push({ ...request, manifestName: manifest.name + ' 2', entryName: entry3.name });
+    state.pendingRequests.push({ ...request, entryName: entry2.name });
+
+    const action = fromManifestActions.queueRequest({ request });
+    const reduced = fromManifestReducers.reducer(state, action);
+
+    expect(JSON.stringify(request) === JSON.stringify(reduced.pendingRequests[reduced.pendingRequests.length - 1]))
+      .toBe(true);
+
+    expect(reduced.pendingRequests.length === 3)
+      .toBe(true);
+  });
+
+  it('should dequeue a request', () => {
+    state.pendingRequests.push(request);
+
+    const action = fromManifestActions.dequeueRequest({ request });
+    const reduced = fromManifestReducers.reducer(state, action);
+
+    expect(reduced.pendingRequests.length === 0)
+      .toBe(true);
+  });
+
+  it('should dequeue a request with multiple requests', () => {
+    state.pendingRequests.push({ ...request, manifestName: manifest.name + ' 2', entryName: entry3.name });
+    state.pendingRequests.push({ ...request, manifestName: manifest.name, entryName: entry2.name });
+    state.pendingRequests.push(request);
+
+    const action = fromManifestActions.dequeueRequest({ request });
+    const reduced = fromManifestReducers.reducer(state, action);
+
+    expect(reduced.pendingRequests.length === 2)
+      .toBe(true);
+  });
+
+  // TODO entity MapManifests, delete manifests by predicate, Issue #294.
+
 });
