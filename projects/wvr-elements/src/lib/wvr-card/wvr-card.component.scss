@@ -7,6 +7,10 @@
 
   --card-color: var(--wvr-white);
 
+  .wvr-card {
+    width: 18rem;
+  }
+
   font-family: var(--wvr-font-family-sans-serif);
 
   & .wvr-card.collapsed .card-header {
