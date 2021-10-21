@@ -1,6 +1,6 @@
 type map = (key: string) => any;
 
-export interface StompClientOptions {
+export interface MessageClientOptions {
   connectHeaders?: map;
   disconnectHeaders?: map;
   heartbeatIncoming?: number;

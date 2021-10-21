@@ -1,16 +1,16 @@
 import { ChangeDetectionStrategy, Component, ElementRef, Input, OnInit } from '@angular/core';
 import { ComponentRegistryService } from '../../core/component-registry.service';
 import { WvrBaseComponent } from '../../shared/wvr-base.component';
-import { WvrStompManifestComponent } from '../wvr-stomp-manifest.component';
+import { WvrMessageManifestComponent } from '../wvr-message-manifest.component';
 
 @Component({
-  selector: 'wvr-stomp-manifest-entry-component',
+  selector: 'wvr-message-manifest-entry-component',
   template: '',
   changeDetection: ChangeDetectionStrategy.Default
 })
-export class WvrStompManifestEntryComponent implements OnInit {
+export class WvrMessageManifestEntryComponent implements OnInit {
 
-  /** The name by which this stomp manifest entry can be referenced. */
+  /** The name by which this message manifest entry can be referenced. */
   @Input() name;
 
   /** A human description of this manifes. */
@@ -28,8 +28,8 @@ export class WvrStompManifestEntryComponent implements OnInit {
   /** The strategy to be employed to unwrap response data. */
   @Input() mappingStrategy;
 
-  /** A collection of the child WvrStompManifestEntryComponent. */
-  private parent: WvrStompManifestComponent;
+  /** A collection of the child WvrMessageManifestEntryComponent. */
+  private parent: WvrMessageManifestComponent;
 
   constructor(
     private readonly eRef: ElementRef<HTMLElement>,
@@ -39,12 +39,12 @@ export class WvrStompManifestEntryComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const parentElem = this.eRef.nativeElement.closest('wvre-stomp-manifest, wvr-stomp-manifest-component');
+    const parentElem = this.eRef.nativeElement.closest('wvre-message-manifest, wvr-message-manifest-component');
     if (parentElem) {
-      this.parent = this.componentRegistry.getComponentByElement(parentElem as HTMLElement) as WvrStompManifestComponent;
+      this.parent = this.componentRegistry.getComponentByElement(parentElem as HTMLElement) as WvrMessageManifestComponent;
       this.parent.addEntry(this);
     } else {
-      console.warn(`WvrStompManifestEntryComponent ${this.name} is not contained with a WvrStompManifestComponent`);
+      console.warn(`WvrMessageManifestEntryComponent ${this.name} is not contained with a WvrMessageManifestComponent`);
     }
   }
 

@@ -3,14 +3,14 @@ import { Store } from '@ngrx/store';
 import { ActivationState, Client, IFrame, IMessage, StompHeaders } from '@stomp/stompjs';
 import { combineLatest, from, Observable, of } from 'rxjs';
 import { RootState } from '../store';
-import { StompManifest, StompManifestEntry, StompManifestEntryMessage, StompMappingStrategy } from '../stomp-manifest';
-import * as StompManifestActions from '../stomp-manifest/stomp-manifest.actions';
+import { MessageManifest, MessageManifestEntry, MessageManifestEntryMessage, MessageMappingStrategy } from '../message-manifest';
+import * as MessageManifestActions from '../message-manifest/message-manifest.actions';
 import * as SockJS from 'sockjs-client';
 
 @Injectable({
   providedIn: 'root'
 })
-export class StompService {
+export class MessageService {
   private readonly clients: Map<string, Client>;
 
   constructor(private readonly store: Store<RootState>) {
@@ -20,12 +20,12 @@ export class StompService {
   /**
    * Connect to the given broker.
    *
-   * @param manifest The Stomp Manifest.
+   * @param manifest The Message Manifest.
    *
    * @return An empty observable.
    */
-  connect(manifest: StompManifest): Observable<void> {
-    const stompConfig = {
+  connect(manifest: MessageManifest): Observable<void> {
+    const messageConfig = {
       brokerUrl: manifest.brokerUrl,
       // disable reconnectDelay to allow for custom attempts at connecting to avoid infinitely attempting reconnect.
       reconnectDelay: 0
@@ -35,12 +35,12 @@ export class StompService {
       const keys = [ 'connectHeaders', 'disconnectHeaders', 'heartbeatIncoming', 'heartbeatOutgoing', 'appendMissingNULLonIncoming' ];
       for (const key of keys) {
         if (!!manifest.options[key]) {
-          stompConfig[key] = manifest.options[key];
+          messageConfig[key] = manifest.options[key];
         }
       }
     }
 
-    const client = this.createClient(manifest, stompConfig);
+    const client = this.createClient(manifest, messageConfig);
 
     client.activate();
 
@@ -50,9 +50,9 @@ export class StompService {
   /**
    * Disconnect from the given broker, completel unsubscribing before disconnecting.
    *
-   * @param manifest The Stomp Manifest.
+   * @param manifest The Message Manifest.
    */
-  disconnect(manifest: StompManifest): Observable<any> {
+  disconnect(manifest: MessageManifest): Observable<any> {
     const unsubscriptions = manifest.entries.filter(entry => !!entry.id)
         .map(entry => entry.id)
         .map(id => this.unsubscribe(manifest, id));
@@ -67,10 +67,10 @@ export class StompService {
   /**
    * Subscribe to the given destination.
    *
-   * @param manifest The Stomp Manifest.
-   * @param entry The Stomp Manifest Entry.
+   * @param manifest The Message Manifest.
+   * @param entry The Message Manifest Entry.
    */
-  subscribe(manifest: StompManifest, entry: StompManifestEntry): Observable<any> {
+  subscribe(manifest: MessageManifest, entry: MessageManifestEntry): Observable<any> {
     return of(this.clients
       .get(manifest.name)
       .subscribe(entry.destination, (response: IMessage) => {
@@ -88,7 +88,7 @@ export class StompService {
           message = JSON.parse(response.body);
         }
 
-        this.store.dispatch(StompManifestActions.receiveMessage({
+        this.store.dispatch(MessageManifestActions.receiveMessage({
           manifest,
           entry,
           message
@@ -100,12 +100,12 @@ export class StompService {
   /**
    * Unsubscribe a given identifier.
    *
-   * @param manifest The stomp manifest to get the client of.
+   * @param manifest The message manifest to get the client of.
    * @param id The identifier to unsubscribe from.
    *
    * @return The response from unsubscribe.
    */
-  unsubscribe(manifest: StompManifest, id: string): Observable<any> {
+  unsubscribe(manifest: MessageManifest, id: string): Observable<any> {
     // tslint:disable:no-void-expression
     return of(this.clients
       .get(manifest.name)
@@ -114,19 +114,19 @@ export class StompService {
   }
 
   /**
-   * Create a stomp client using the given manifest and configuration.
+   * Create a message client using the given manifest and configuration.
    *
    * The onConnect() and onDisconnect will be custom built.
-   * All other helpers will bind to the methods on the StompService.
+   * All other helpers will bind to the methods on the MessageService.
    *
    * The websocket factory will be assigned to SockJS.
    *
-   * @param manifest The stomp manifest to create a client for.
-   * @param config The stomp configuration.
+   * @param manifest The message manifest to create a client for.
+   * @param config The message configuration.
    *
-   * @return The created stomp client.
+   * @return The created message client.
    */
-  createClient = (manifest: StompManifest, config: any): Client => {
+  createClient = (manifest: MessageManifest, config: any): Client => {
     const client = new Client();
 
     // tslint:disable:unnecessary-bind
@@ -138,7 +138,7 @@ export class StompService {
     client.onWebSocketError = this.onWebSocketError.bind(this);
 
     client.onConnect = (frame: IFrame): void => {
-      this.store.dispatch(StompManifestActions.connectManifestConnected({
+      this.store.dispatch(MessageManifestActions.connectManifestConnected({
         manifest,
         frame: {
           command: frame.command,
@@ -148,7 +148,7 @@ export class StompService {
     };
 
     client.onDisconnect = (frame: IFrame): void => {
-      this.store.dispatch(StompManifestActions.disconnectManifestDisconnected({
+      this.store.dispatch(MessageManifestActions.disconnectManifestDisconnected({
         manifest,
         frame: {
           command: frame.command,
@@ -168,11 +168,11 @@ export class StompService {
   /**
    * Delete client from the manifest.
    *
-   * @param manifest The Stomp Manifest.
+   * @param manifest The Message Manifest.
    *
    * @return An empty observable.
    */
-  deleteClient = (manifest: StompManifest): Observable<void> => {
+  deleteClient = (manifest: MessageManifest): Observable<void> => {
     this.clients.delete(manifest.name);
 
     return of();
@@ -181,7 +181,7 @@ export class StompService {
   // tslint:disable:no-empty
   // tslint:disable:invalid-void
   /**
-   * Callback passed to the Stomp client to for beforeConnect() calls.
+   * Callback passed to the Message client to for beforeConnect() calls.
    *
    * @return May return a promise for asynchronous operation.
    */
@@ -190,7 +190,7 @@ export class StompService {
 
   // tslint:disable:no-empty
   /**
-   * Callback passed to the Stomp client to for onChangeState() calls.
+   * Callback passed to the Message client to for onChangeState() calls.
    *
    * @param state The activation state triggering the state change.
    */
@@ -199,25 +199,25 @@ export class StompService {
 
   // tslint:disable:no-empty
   /**
-   * Callback passed to the Stomp client to for debug() calls.
+   * Callback passed to the Message client to for debug() calls.
    *
-   * @param message The message sent by the Stomp client debugger.
+   * @param message The message sent by the Message client debugger.
    */
   debug = (message: string): void => {
   };
 
   // tslint:disable:no-empty
   /**
-   * Callback passed to the Stomp client to for onStompError() calls.
+   * Callback passed to the Message client to for onStompError() calls.
    *
-   * @param frame The stomp frame relating to the error.
+   * @param frame The message frame relating to the error.
    */
   onStompError = (frame: IFrame): void => {
   };
 
   // tslint:disable:no-empty
   /**
-   * Callback passed to the Stomp client to for onWebSocketClose() calls.
+   * Callback passed to the Message client to for onWebSocketClose() calls.
    *
    * @param event The event triggering the web socket close.
    */
@@ -226,7 +226,7 @@ export class StompService {
 
   // tslint:disable:no-empty
   /**
-   * Callback passed to the Stomp client to for onWebSocketError() calls.
+   * Callback passed to the Message client to for onWebSocketError() calls.
    *
    * @param event The event triggering the web socket error.
    */

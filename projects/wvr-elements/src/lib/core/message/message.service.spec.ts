@@ -7,14 +7,14 @@ import { WvrBaseComponent } from '../../shared/wvr-base.component';
 import { WvrItWorksComponent } from '../../wvr-it-works/wvr-it-works.component';
 import { APP_CONFIG, testAppConfig } from '../../shared/config';
 import { metaReducers, ROOT_REDUCER } from '../store';
-import { StompService } from './stomp.service';
-import { StompManifest, StompManifestReducers } from '../stomp-manifest';
+import { MessageService } from './message.service';
+import { MessageManifest, MessageManifestReducers } from '../message-manifest';
 
-describe('StompService', () => {
-  let service: StompService;
+describe('MessageService', () => {
+  let service: MessageService;
   let component: WvrItWorksComponent;
   let fixture: ComponentFixture<WvrItWorksComponent>;
-  let manifest: StompManifest;
+  let manifest: MessageManifest;
 
   let mockClient = jasmine.createSpyObj('Client', [ 'activate', 'configure', 'deactivate', 'subscribe', 'unsubscribe' ]);
 
@@ -31,18 +31,18 @@ describe('StompService', () => {
   }));
 
   beforeEach(() => {
-    service = TestBed.inject(StompService);
+    service = TestBed.inject(MessageService);
     fixture = TestBed.createComponent(WvrItWorksComponent);
     component = fixture.componentInstance;
 
     manifest = {
-      name: 'Directory App STOMP',
+      name: 'Directory App Message',
       brokerUrl: 'https://api-dev.library.tamu.edu/mylibrary/connect',
       mappingStrategy: 'WEAVER',
       protocol: 'WEB_SOCKET',
       entries: [ ],
       connection: {
-        status: StompManifestReducers.ConnectionStatus.DISCONNECTED
+        status: MessageManifestReducers.ConnectionStatus.DISCONNECTED
       }
     };
 

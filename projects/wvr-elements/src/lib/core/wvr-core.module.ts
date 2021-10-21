@@ -20,11 +20,11 @@ import { WvrListComponent } from '../wvr-list/wvr-list.component';
 import { WvrListItemComponent } from '../wvr-list/wvr-list-item/wvr-list-item.component';
 import { WvrManifestEntryComponent } from '../wvr-manifest/wvr-manifest-entry/wvr-manifest-entry.component';
 import { WvrManifestComponent } from '../wvr-manifest/wvr-manifest.component';
+import { WvrMessageManifestEntryComponent } from '../wvr-message-manifest/wvr-message-manifest-entry/wvr-message-manifest-entry.component';
+import { WvrMessageManifestComponent } from '../wvr-message-manifest/wvr-message-manifest.component';
 import { WvrModalComponent } from '../wvr-modal/wvr-modal.component';
 import { WvrNavLiComponent } from '../wvr-nav-list/wvr-nav-li/wvr-nav-li.component';
 import { WvrNavListComponent } from '../wvr-nav-list/wvr-nav-list.component';
-import { WvrStompManifestEntryComponent } from '../wvr-stomp-manifest/wvr-stomp-manifest-entry/wvr-stomp-manifest-entry.component';
-import { WvrStompManifestComponent } from '../wvr-stomp-manifest/wvr-stomp-manifest.component';
 import { WvrTabsComponent } from '../wvr-tabs/wvr-tabs.component';
 import { WvrTextComponent } from '../wvr-text/wvr-text.component';
 import { WvrThemeComponent } from '../wvr-theme/wvr-theme.component';
@@ -34,9 +34,9 @@ import { AnimationService } from './animation.service';
 import { ComponentRegistryService } from './component-registry.service';
 import { LayoutEffects } from './layout/layout.effects';
 import { ManifestEffects } from './manifest/manifest.effects';
+import { MessageManifestEffects } from './message-manifest/message-manifest.effects';
 import { NgBindingsService } from './ng-bindings.service';
 import { RestEffects } from './rest/rest.effects';
-import { StompManifestEffects } from './stomp-manifest/stomp-manifest.effects';
 import { metaReducers, ROOT_REDUCER } from './store';
 import { ThemeEffects } from './theme/theme.effects';
 import { ThemeService } from './theme/theme.service';
@@ -57,11 +57,11 @@ export const WVR_ELEMENTS: Array<WvrElementDesc> = [
   { component: WvrListItemComponent, selector: 'wvre-list-item', lazy: true },
   { component: WvrManifestComponent, selector: 'wvre-manifest', lazy: false },
   { component: WvrManifestEntryComponent, selector: 'wvre-manifest-entry', lazy: false },
+  { component: WvrMessageManifestComponent, selector: 'wvre-message-manifest', lazy: false },
+  { component: WvrMessageManifestEntryComponent, selector: 'wvre-message-manifest-entry', lazy: false },
   { component: WvrModalComponent, selector: 'wvre-modal', lazy: true },
   { component: WvrNavLiComponent, selector: 'wvre-nav-li', lazy: true },
   { component: WvrNavListComponent, selector: 'wvre-nav-list', lazy: true },
-  { component: WvrStompManifestComponent, selector: 'wvre-stomp-manifest', lazy: false },
-  { component: WvrStompManifestEntryComponent, selector: 'wvre-stomp-manifest-entry', lazy: false },
   { component: WvrTabsComponent, selector: 'wvre-tabs', lazy: true },
   { component: WvrTextComponent, selector: 'wvre-text', lazy: true },
   { component: WvrThemeComponent, selector: 'wvre-theme', lazy: false },
@@ -88,10 +88,10 @@ export const showHiddentContent = (injector: Injector) => {
 
 const MODULES: Array<any> = [
   EffectsModule.forRoot([
-    ManifestEffects,
     LayoutEffects,
+    ManifestEffects,
+    MessageManifestEffects,
     RestEffects,
-    StompManifestEffects,
     ThemeEffects,
     WysiwygEffects
   ]),

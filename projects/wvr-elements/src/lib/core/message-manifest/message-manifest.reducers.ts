@@ -1,8 +1,8 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { Action, createReducer, on } from '@ngrx/store';
-import { StompManifest } from './stomp-manifest';
-import { StompManifestEntryMessage } from './stomp-manifest-entry-message';
-import * as StompManifestActions from './stomp-manifest.actions';
+import { MessageManifest } from './message-manifest';
+import { MessageManifestEntryMessage } from './message-manifest-entry-message';
+import * as MessageManifestActions from './message-manifest.actions';
 
 export enum ConnectionStatus {
   CONNECTED = 'CONNECTED',
@@ -11,43 +11,43 @@ export enum ConnectionStatus {
   DISCONNECTING = 'DISCONNECTING'
 }
 
-export interface StompManifestState extends EntityState<StompManifest> {
-  pendingMessages: Array<StompManifestEntryMessage>;
-  currentMessage: StompManifestEntryMessage;
+export interface MessageManifestState extends EntityState<MessageManifest> {
+  pendingMessages: Array<MessageManifestEntryMessage>;
+  currentMessage: MessageManifestEntryMessage;
 }
 
 // tslint:disable-next-line:only-arrow-functions
-export function selectManifestByName(manifest: StompManifest): string {
+export function selectManifestByName(manifest: MessageManifest): string {
   return manifest.name;
 }
 
-export const adapter: EntityAdapter<StompManifest> = createEntityAdapter<StompManifest>({
+export const adapter: EntityAdapter<MessageManifest> = createEntityAdapter<MessageManifest>({
   selectId: selectManifestByName
 });
 
-export const initialState: StompManifestState = adapter.getInitialState({
+export const initialState: MessageManifestState = adapter.getInitialState({
   pendingMessages: [],
   currentMessage: undefined
 });
 
-const stompManifestReducer = createReducer(
+const messageManifestReducer = createReducer(
   initialState,
-  on(StompManifestActions.addManifest, (state, { manifest }) => adapter.addOne(manifest, state)),
-  on(StompManifestActions.addManifests, (state, { manifests }) => adapter.addMany(manifests, state)),
-  on(StompManifestActions.clearManifests, state => adapter.removeAll({ ...state, selectedStompManifestId: undefined })),
-  on(StompManifestActions.deleteManifest, (state, { id }) => adapter.removeOne(id, state)),
-  on(StompManifestActions.deleteManifests, (state, { ids }) => adapter.removeMany(ids, state)),
-  on(StompManifestActions.deleteManifestsByPredicate, (state, { predicate }) => adapter.removeMany(predicate, state)),
-  on(StompManifestActions.loadManifests, (state, { manifests }) => adapter.setAll(manifests, state)),
-  on(StompManifestActions.mapManifest, (state, { entityMap }) => adapter.mapOne(entityMap, state)),
-  on(StompManifestActions.mapManifests, (state, { entityMap }) => adapter.map(entityMap, state)),
-  on(StompManifestActions.setManifest, (state, { manifest }) => adapter.setOne(manifest, state)),
-  on(StompManifestActions.updateManifest, (state, { update }) => adapter.updateOne(update, state)),
-  on(StompManifestActions.updateManifests, (state, { updates }) => adapter.updateMany(updates, state)),
-  on(StompManifestActions.upsertManifest, (state, { manifest }) => adapter.upsertOne(manifest, state)),
-  on(StompManifestActions.upsertManifests, (state, { manifests }) => adapter.upsertMany(manifests, state)),
+  on(MessageManifestActions.addManifest, (state, { manifest }) => adapter.addOne(manifest, state)),
+  on(MessageManifestActions.addManifests, (state, { manifests }) => adapter.addMany(manifests, state)),
+  on(MessageManifestActions.clearManifests, state => adapter.removeAll({ ...state, selectedMessageManifestId: undefined })),
+  on(MessageManifestActions.deleteManifest, (state, { id }) => adapter.removeOne(id, state)),
+  on(MessageManifestActions.deleteManifests, (state, { ids }) => adapter.removeMany(ids, state)),
+  on(MessageManifestActions.deleteManifestsByPredicate, (state, { predicate }) => adapter.removeMany(predicate, state)),
+  on(MessageManifestActions.loadManifests, (state, { manifests }) => adapter.setAll(manifests, state)),
+  on(MessageManifestActions.mapManifest, (state, { entityMap }) => adapter.mapOne(entityMap, state)),
+  on(MessageManifestActions.mapManifests, (state, { entityMap }) => adapter.map(entityMap, state)),
+  on(MessageManifestActions.setManifest, (state, { manifest }) => adapter.setOne(manifest, state)),
+  on(MessageManifestActions.updateManifest, (state, { update }) => adapter.updateOne(update, state)),
+  on(MessageManifestActions.updateManifests, (state, { updates }) => adapter.updateMany(updates, state)),
+  on(MessageManifestActions.upsertManifest, (state, { manifest }) => adapter.upsertOne(manifest, state)),
+  on(MessageManifestActions.upsertManifests, (state, { manifests }) => adapter.upsertMany(manifests, state)),
   // tslint:disable-next-line:arrow-return-shorthand
-  on(StompManifestActions.receiveMessage, (state, { manifest, entry, message }) => {
+  on(MessageManifestActions.receiveMessage, (state, { manifest, entry, message }) => {
     return adapter.updateOne({
       id: manifest.name,
       changes: {
@@ -59,7 +59,7 @@ const stompManifestReducer = createReducer(
     });
   }),
   // tslint:disable-next-line:arrow-return-shorthand
-  on(StompManifestActions.submitMessage, (state, { message }) => {
+  on(MessageManifestActions.submitMessage, (state, { message }) => {
     return {
       ...state,
       currentMessage: message
@@ -67,7 +67,7 @@ const stompManifestReducer = createReducer(
     }
   }),
   // tslint:disable-next-line:arrow-return-shorthand
-  on(StompManifestActions.submitMessageSuccess, (state, { manifest, message }) => {
+  on(MessageManifestActions.submitMessageSuccess, (state, { manifest, message }) => {
     return adapter.updateOne({
       id: manifest.name,
       changes: {
@@ -79,7 +79,7 @@ const stompManifestReducer = createReducer(
     });
   }),
   // tslint:disable-next-line:arrow-return-shorthand
-  on(StompManifestActions.submitMessageFailure, (state, { manifest, message }) => {
+  on(MessageManifestActions.submitMessageFailure, (state, { manifest, message }) => {
     return adapter.updateOne({
       id: manifest.name,
       changes: {
@@ -91,7 +91,7 @@ const stompManifestReducer = createReducer(
     });
   }),
   // tslint:disable-next-line:arrow-return-shorthand
-  on(StompManifestActions.queueMessage, (state, { message }) => {
+  on(MessageManifestActions.queueMessage, (state, { message }) => {
     return {
       ...state,
       pendingMessages: state.pendingMessages.concat([{ ...message }]),
@@ -99,14 +99,14 @@ const stompManifestReducer = createReducer(
     };
   }),
   // tslint:disable-next-line:arrow-return-shorthand
-  on(StompManifestActions.dequeueMessage, (state, { message }) => {
+  on(MessageManifestActions.dequeueMessage, (state, { message }) => {
     return {
       ...state,
       pendingMessages: state.pendingMessages.filter(m => m.manifestName !== message.manifestName || m.entryName !== message.entryName)
     };
   }),
   // tslint:disable-next-line:arrow-return-shorthand
-  on(StompManifestActions.connectManifest, (state, { manifest }) => {
+  on(MessageManifestActions.connectManifest, (state, { manifest }) => {
     return adapter.updateOne({
       id: manifest.name,
       changes: {
@@ -120,7 +120,7 @@ const stompManifestReducer = createReducer(
     });
   }),
   // tslint:disable-next-line:arrow-return-shorthand
-  on(StompManifestActions.connectManifestConnected, (state, { manifest, frame }) => {
+  on(MessageManifestActions.connectManifestConnected, (state, { manifest, frame }) => {
     return adapter.updateOne({
       id: manifest.name,
       changes: {
@@ -134,7 +134,7 @@ const stompManifestReducer = createReducer(
     });
   }),
   // tslint:disable-next-line:arrow-return-shorthand
-  on(StompManifestActions.disconnectManifest, (state, { manifest }) => {
+  on(MessageManifestActions.disconnectManifest, (state, { manifest }) => {
     return adapter.updateOne({
       id: manifest.name,
       changes: {
@@ -148,7 +148,7 @@ const stompManifestReducer = createReducer(
     });
   }),
   // tslint:disable-next-line:arrow-return-shorthand
-  on(StompManifestActions.disconnectManifestDisconnected, (state, { manifest, frame }) => {
+  on(MessageManifestActions.disconnectManifestDisconnected, (state, { manifest, frame }) => {
     return adapter.updateOne({
       id: manifest.name,
       changes: {
@@ -162,7 +162,7 @@ const stompManifestReducer = createReducer(
     });
   }),
   // tslint:disable-next-line:arrow-return-shorthand
-  on(StompManifestActions.subscribeManifestSuccess, (state, { manifest, entry, subscription }) => {
+  on(MessageManifestActions.subscribeManifestSuccess, (state, { manifest, entry, subscription }) => {
     return adapter.updateOne({
       id: manifest.name,
       changes: {
@@ -173,7 +173,7 @@ const stompManifestReducer = createReducer(
     });
   }),
   // tslint:disable-next-line:arrow-return-shorthand
-  on(StompManifestActions.unsubscribeManifestSuccess, (state, { manifest, entry }) => {
+  on(MessageManifestActions.unsubscribeManifestSuccess, (state, { manifest, entry }) => {
     return adapter.updateOne({
       id: manifest.name,
       changes: {
@@ -186,8 +186,8 @@ const stompManifestReducer = createReducer(
 );
 
 // tslint:disable-next-line:typedef
-export function reducer(state: StompManifestState | undefined, action: Action) {
-  return stompManifestReducer(state, action);
+export function reducer(state: MessageManifestState | undefined, action: Action) {
+  return messageManifestReducer(state, action);
 }
 
 // get the selectors.
@@ -198,18 +198,18 @@ const {
   selectTotal
 } = adapter.getSelectors();
 
-// select the array of stomp manifest names.
+// select the array of message manifest names.
 export const selectManifestNames = selectIds;
 
-// select the dictionary of stomp manifest subscriptions.
+// select the dictionary of message manifest subscriptions.
 export const selectManifestEntities = selectEntities;
 
-// select the array of stomp stompManifests.
+// select the array of message messageManifests.
 export const selectAllManifests = selectAll;
 
-// select the total stomp manifest count.
+// select the total message manifest count.
 export const selectManifestTotal = selectTotal;
 
-export const selectCurrentMessage = (state: StompManifestState) => state.currentMessage;
+export const selectCurrentMessage = (state: MessageManifestState) => state.currentMessage;
 
-export const selectPendingMessage = (state: StompManifestState) => state.pendingMessages;
+export const selectPendingMessage = (state: MessageManifestState) => state.pendingMessages;

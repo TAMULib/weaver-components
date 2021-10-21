@@ -4,29 +4,29 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideMockStore } from '@ngrx/store/testing';
 import { initialState } from '../core/store';
 import { APP_CONFIG, testAppConfig } from '../shared/config';
+import { WvrMessageManifestEntryComponent } from './wvr-message-manifest-entry/wvr-message-manifest-entry.component';
+import { WvrMessageManifestComponent } from './wvr-message-manifest.component';
 import { WvrSharedModule } from '../shared/wvr-shared.module';
-import { WvrStompManifestEntryComponent } from './wvr-stomp-manifest-entry/wvr-stomp-manifest-entry.component';
-import { WvrStompManifestComponent } from './wvr-stomp-manifest.component';
 
 @Component({
-  selector: 'wvr-stomp-manifest-test-component',
+  selector: 'wvr-message-manifest-test-component',
   // tslint:disable-next-line:component-max-inline-declarations
   template: `
-    <wvr-stomp-manifest-component name="Test Stomp Manifest" base-url="test" mapping-strategy="none">
-      <wvr-stomp-manifest-entry-component name="first" path="/first" methods="GET"></wvr-stomp-manifest-entry-component>
-      <wvr-stomp-manifest-entry-component name="second" path="/second" methods="GET" mapping-strategy="json"></wvr-stomp-manifest-entry-component>
-    </wvr-stomp-manifest-component>
+    <wvr-message-manifest-component name="Test Message Manifest" base-url="test" mapping-strategy="none">
+      <wvr-message-manifest-entry-component name="first" path="/first" methods="GET"></wvr-message-manifest-entry-component>
+      <wvr-message-manifest-entry-component name="second" path="/second" methods="GET" mapping-strategy="json"></wvr-message-manifest-entry-component>
+    </wvr-message-manifest-component>
   `
 })
-class WvrStompManifestHostComponent {
-  @ViewChild(WvrStompManifestComponent) manifest: WvrStompManifestComponent;
+class WvrMessageManifestHostComponent {
+  @ViewChild(WvrMessageManifestComponent) manifest: WvrMessageManifestComponent;
 }
 
-describe('WvrStompManifestComponent', () => {
-  let hostComponent: WvrStompManifestHostComponent;
-  let hostFixture: ComponentFixture<WvrStompManifestHostComponent>;
+describe('WvrMessageManifestComponent', () => {
+  let hostComponent: WvrMessageManifestHostComponent;
+  let hostFixture: ComponentFixture<WvrMessageManifestHostComponent>;
 
-  let entryFixture: ComponentFixture<WvrStompManifestEntryComponent>;
+  let entryFixture: ComponentFixture<WvrMessageManifestEntryComponent>;
 
   beforeEach(waitForAsync(() => TestBed.configureTestingModule({
     imports: [
@@ -34,8 +34,8 @@ describe('WvrStompManifestComponent', () => {
       WvrSharedModule
     ],
     declarations: [
-      WvrStompManifestComponent,
-      WvrStompManifestHostComponent
+      WvrMessageManifestComponent,
+      WvrMessageManifestHostComponent
     ],
     providers: [
       {
@@ -47,7 +47,7 @@ describe('WvrStompManifestComponent', () => {
   }).compileComponents()));
 
   beforeEach(() => {
-    hostFixture = TestBed.createComponent(WvrStompManifestHostComponent);
+    hostFixture = TestBed.createComponent(WvrMessageManifestHostComponent);
     hostComponent = hostFixture.componentInstance;
     hostFixture.detectChanges();
   });
@@ -58,10 +58,10 @@ describe('WvrStompManifestComponent', () => {
   });
 
   it('should add entry', () => {
-    entryFixture = TestBed.createComponent(WvrStompManifestEntryComponent);
+    entryFixture = TestBed.createComponent(WvrMessageManifestEntryComponent);
 
     // tslint:disable-next-line:no-string-literal
-    const entries = hostComponent.manifest['stompManifestEntries'];
+    const entries = hostComponent.manifest['messageManifestEntries'];
     const lengthBefore = entries.length;
 
     hostComponent.manifest.addEntry(entryFixture.componentInstance);
@@ -72,7 +72,7 @@ describe('WvrStompManifestComponent', () => {
 
   it('should create entries', () => {
     // tslint:disable-next-line:no-string-literal
-    const entries = hostComponent.manifest['stompManifestEntries'];
+    const entries = hostComponent.manifest['messageManifestEntries'];
     expect(entries.length)
       .toBeTruthy();
   });

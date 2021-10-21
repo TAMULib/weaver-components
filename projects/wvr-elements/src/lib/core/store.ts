@@ -5,22 +5,22 @@ import { InjectionToken } from '@angular/core';
 import { ActionReducerMap, createFeatureSelector, createSelector, MetaReducer } from '@ngrx/store';
 import { Manifest } from './manifest/manifest';
 import { ManifestEntry } from './manifest/manifest-entry';
-import { StompManifest } from './stomp-manifest/stomp-manifest';
-import { StompManifestEntry } from './stomp-manifest/stomp-manifest-entry';
-import * as fromManifest from './manifest/manifest.reducers';
-import * as fromRest from './rest/rest.reducers';
-import * as fromStompManifest from './stomp-manifest/stomp-manifest.reducers';
-import * as fromTheme from './theme/theme.reducers';
+import { MessageManifest } from './message-manifest/message-manifest';
+import { MessageManifestEntry } from './message-manifest/message-manifest-entry';
 import * as fromLayout from './layout/layout.reducers';
+import * as fromManifest from './manifest/manifest.reducers';
+import * as fromMessageManifest from './message-manifest/message-manifest.reducers';
+import * as fromRest from './rest/rest.reducers';
+import * as fromTheme from './theme/theme.reducers';
 import * as fromModal from './modal/modal.reducers';
 import * as fromWysiwyg from './wysiwyg/wysiwyg.reducers';
 
 export interface RootState {
   layout: fromLayout.State;
   manifests: fromManifest.State;
+  messageManifests: fromMessageManifest.MessageManifestState;
   modals: fromModal.State;
   rest: fromRest.State;
-  stompManifests: fromStompManifest.StompManifestState;
   theme: fromTheme.State;
   wysiwyg: fromWysiwyg.State;
 }
@@ -28,9 +28,9 @@ export interface RootState {
 export const initialState: RootState = {
   layout: fromLayout.initialState,
   manifests: fromManifest.initialState,
+  messageManifests: fromMessageManifest.initialState,
   modals: fromModal.initialState,
   rest: fromRest.initialState,
-  stompManifests: fromStompManifest.initialState,
   theme: fromTheme.initialState,
   wysiwyg: fromWysiwyg.initialState
 };
@@ -38,9 +38,9 @@ export const initialState: RootState = {
 export const reducers: ActionReducerMap<RootState> = {
   layout: fromLayout.reducer,
   manifests: fromManifest.reducer,
+  messageManifests: fromMessageManifest.reducer,
   modals: fromModal.reducer,
   rest: fromRest.reducer,
-  stompManifests: fromStompManifest.reducer,
   theme: fromTheme.reducer,
   wysiwyg: fromWysiwyg.reducer
 };
@@ -125,45 +125,45 @@ export const selectRestRequest = createSelector(
   fromRest.selectRequest
 );
 
-// stomp manifest selectors
-export const selectStompManifestState = createFeatureSelector<RootState, fromStompManifest.StompManifestState>('stompManifests');
+// message manifest selectors
+export const selectMessageManifestState = createFeatureSelector<RootState, fromMessageManifest.MessageManifestState>('messageManifests');
 
-const findStompManifestEntry =
-  (manifest: StompManifest, entryName: string): StompManifestEntry => manifest.entries.find(e => e.name === entryName);
+const findMessageManifestEntry =
+  (manifest: MessageManifest, entryName: string): MessageManifestEntry => manifest.entries.find(e => e.name === entryName);
 
-export const selectStompManifestNames = createSelector(
-  selectStompManifestState,
-  fromStompManifest.selectManifestNames
+export const selectMessageManifestNames = createSelector(
+  selectMessageManifestState,
+  fromMessageManifest.selectManifestNames
 );
 
-export const selectStompManifestEntities = createSelector(
-  selectStompManifestState,
-  fromStompManifest.selectManifestEntities
+export const selectMessageManifestEntities = createSelector(
+  selectMessageManifestState,
+  fromMessageManifest.selectManifestEntities
 );
 
-export const selectAllStompManifests = createSelector(
-  selectStompManifestState,
-  fromStompManifest.selectAllManifests
+export const selectAllMessageManifests = createSelector(
+  selectMessageManifestState,
+  fromMessageManifest.selectAllManifests
 );
 
-export const selectStompManifestTotal = createSelector(
-  selectStompManifestState,
-  fromStompManifest.selectManifestTotal
+export const selectMessageManifestTotal = createSelector(
+  selectMessageManifestState,
+  fromMessageManifest.selectManifestTotal
 );
 
-export const selectCurrentStompMessage = createSelector(
-  selectStompManifestState,
-  fromStompManifest.selectCurrentMessage
+export const selectCurrentMessageMessage = createSelector(
+  selectMessageManifestState,
+  fromMessageManifest.selectCurrentMessage
 );
 
-export const selectPendingStompMessages = createSelector(
-  selectStompManifestState,
-  fromStompManifest.selectPendingMessage
+export const selectPendingMessageMessages = createSelector(
+  selectMessageManifestState,
+  fromMessageManifest.selectPendingMessage
 );
 
-export const selectStompManifestByName = (manifestName: string) => createSelector(
-  selectStompManifestEntities,
-  stompManifestEntities => stompManifestEntities[manifestName]
+export const selectMessageManifestByName = (manifestName: string) => createSelector(
+  selectMessageManifestEntities,
+  messageManifestEntities => messageManifestEntities[manifestName]
 );
 
 // theme selectors

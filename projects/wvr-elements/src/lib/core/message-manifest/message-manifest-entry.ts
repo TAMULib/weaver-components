@@ -1,10 +1,10 @@
-import { StompClientOptions } from './stomp-client-options';
-import { StompClientProtocol } from './stomp-client-protocol';
-import { StompMappingStrategy } from './stomp-mapping-strategy';
+import { MessageClientOptions } from './message-client-options';
+import { MessageClientProtocol } from './message-client-protocol';
+import { MessageMappingStrategy } from './message-mapping-strategy';
 
 export type map = (response) => any;
 
-export interface StompManifestEntry {
+export interface MessageManifestEntry {
   // A subscription identifier.
   id?: string;
   name: string; // unique.
@@ -12,7 +12,7 @@ export interface StompManifestEntry {
   // that path to subscribe to.
   destination: string;
   // mapping strategy to use for deserialization.
-  mappingStrategy?: StompMappingStrategy;
+  mappingStrategy?: MessageMappingStrategy;
   // the last received message.
   message?: any;
   // error from last failed message.
