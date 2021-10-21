@@ -99,7 +99,7 @@ describe('WvrCardComponent', () => {
   });
 
   it('should collapse when collapsible and clicked while expanded', () => {
-    component.collapsed = false;
+    component._collapsed = 'false';
     component.collapseMethod = 'click';
     fixture.detectChanges();
 
@@ -108,12 +108,12 @@ describe('WvrCardComponent', () => {
 
     cardHeaderElem.dispatchEvent(new MouseEvent('click'));
     fixture.detectChanges();
-    expect(component.collapsed)
-      .toBeTrue();
+    expect(component._collapsed)
+      .toBe('true');
   });
 
   it('should not collapse when not collapsible and clicked while expanded', () => {
-    component.collapsed = false;
+    component._collapsed = 'false';
     component.collapseMethod = 'none';
     fixture.detectChanges();
 
@@ -122,12 +122,12 @@ describe('WvrCardComponent', () => {
 
     cardHeaderElem.dispatchEvent(new MouseEvent('click'));
     fixture.detectChanges();
-    expect(component.collapsed)
-      .toBeFalse();
+    expect(component._collapsed)
+      .toBe('false');
   });
 
   it('should expand while collapsed and clicked', () => {
-    component.collapsed = true;
+    component._collapsed = 'true';
     component.collapseMethod = 'click';
     fixture.detectChanges();
 
@@ -136,8 +136,8 @@ describe('WvrCardComponent', () => {
 
     cardHeaderElem.dispatchEvent(new MouseEvent('click'));
     fixture.detectChanges();
-    expect(component.collapsed)
-      .toBeFalse();
+    expect(component._collapsed)
+      .toBe('false');
   });
 
 });
