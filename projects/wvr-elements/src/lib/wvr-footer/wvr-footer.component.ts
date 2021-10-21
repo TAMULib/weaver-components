@@ -63,13 +63,13 @@ export class WvrFooterComponent extends WvrBaseComponent implements OnInit, Afte
     this.footerElement.style.width = `${this.parentElement.clientWidth}px`;
 
     if (this.isSticky) {
-      if (window.innerHeight > this.totalHeight) {
+      if (window.innerHeight < this.totalHeight) {
         this.isSticky = false;
       }
     } else {
       this.totalHeight = parentHeight;
 
-      if (window.innerHeight < this.totalHeight) {
+      if (window.innerHeight > this.totalHeight) {
         this.isSticky = true;
       }
     }
