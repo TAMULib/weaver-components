@@ -32,7 +32,12 @@ export class WvrCardComponent extends WvrBaseComponent implements OnInit {
   @Input() startCollapsed: boolean;
 
   /** The collapsed/uncollapsed state. */
-  isCollapsed: boolean;
+  @HostBinding('attr.collapsed') _collapsed: 'true' | 'false';
+
+  /** Update the element attribute when the boolean changes */
+  @Input() set collapsed(value: 'true' | 'false') {
+    this._collapsed = value;
+  }
 
   @HostBinding('style.--card-header-color') get cardHeaderColor(): string {
     return this.panelFormat === 'outlined' ? 'var(--light-default-color)' : `var(--${this.themeVariant}-default-color)`;
@@ -56,7 +61,7 @@ export class WvrCardComponent extends WvrBaseComponent implements OnInit {
    */
   ngOnInit(): void {
     super.ngOnInit();
-    this.isCollapsed = !!this.startCollapsed;
+    this._collapsed = !!this.startCollapsed ? 'true' : 'false';
   }
 
   /**
@@ -64,7 +69,7 @@ export class WvrCardComponent extends WvrBaseComponent implements OnInit {
    */
   toggleCollapsibleClick(): void {
     if (this.collapseMethod === 'click') {
-      this.isCollapsed = !this.isCollapsed;
+      this._collapsed = this._collapsed === 'true' ? 'false' : 'true';
     }
   }
 

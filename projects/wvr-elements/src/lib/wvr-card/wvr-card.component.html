@@ -1,4 +1,4 @@
-<div #animationRoot class="wvr-components wvr-card card {{additionalCardClasses}}" [ngClass]="{ 'text-center': textCenter, 'collapsed': isCollapsed }">
+<div #animationRoot class="wvr-components wvr-card card {{additionalCardClasses}}" [ngClass]="{ 'text-center': textCenter, 'collapsed': _collapsed === 'true' }">
   <div class="card-header {{additionalHeaderClasses}}" [wvrContentProjection]="eRef" template="card-header" (click)="toggleCollapsibleClick()"></div>
   <div class="card-image" [wvrContentProjection]="eRef" template="card-image"></div>
   <div [wvrContentProjection]="eRef" template="card-list-top"></div>
