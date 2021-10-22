@@ -9,6 +9,8 @@ import { MessageManifestEntry } from './message-manifest-entry';
 import * as MessageManifestActions from './message-manifest.actions';
 import { MessageService } from '../message';
 
+/* disable test coverage until a strategy for testing effects can be determined. */
+/* istanbul ignore file */
 @Injectable()
 export class MessageManifestEffects {
 

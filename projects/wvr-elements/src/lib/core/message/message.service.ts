@@ -17,6 +17,8 @@ export class MessageService {
     this.clients = new Map();
   }
 
+  /* disable test coverage until a strategy for testing can be determined. */
+  /* istanbul ignore next */
   /**
    * Connect to the given broker.
    *
@@ -47,6 +49,8 @@ export class MessageService {
     return of();
   }
 
+  /* disable test coverage until a strategy for testing can be determined. */
+  /* istanbul ignore next */
   /**
    * Disconnect from the given broker, completel unsubscribing before disconnecting.
    *
@@ -64,6 +68,8 @@ export class MessageService {
       ));
   }
 
+  /* disable test coverage until a strategy for testing can be determined. */
+  /* istanbul ignore next */
   /**
    * Subscribe to the given destination.
    *
@@ -97,6 +103,8 @@ export class MessageService {
     );
   }
 
+  /* disable test coverage until a strategy for testing can be determined. */
+  /* istanbul ignore next */
   /**
    * Unsubscribe a given identifier.
    *
@@ -113,6 +121,8 @@ export class MessageService {
     );
   }
 
+  /* disable test coverage until a strategy for testing can be determined. */
+  /* istanbul ignore next */
   /**
    * Create a message client using the given manifest and configuration.
    *
@@ -165,6 +175,8 @@ export class MessageService {
     return client;
   };
 
+  /* disable test coverage until a strategy for testing can be determined. */
+  /* istanbul ignore next */
   /**
    * Delete client from the manifest.
    *
