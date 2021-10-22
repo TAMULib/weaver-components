@@ -17,6 +17,8 @@ import { WvrListItemComponent } from '../wvr-list/wvr-list-item/wvr-list-item.co
 import { WvrListComponent } from '../wvr-list/wvr-list.component';
 import { WvrManifestEntryComponent } from '../wvr-manifest/wvr-manifest-entry/wvr-manifest-entry.component';
 import { WvrManifestComponent } from '../wvr-manifest/wvr-manifest.component';
+import { WvrMessageManifestEntryComponent } from '../wvr-message-manifest/wvr-message-manifest-entry/wvr-message-manifest-entry.component';
+import { WvrMessageManifestComponent } from '../wvr-message-manifest/wvr-message-manifest.component';
 import { WvrModalComponent } from '../wvr-modal/wvr-modal.component';
 import { WvrNavLiComponent } from '../wvr-nav-list/wvr-nav-li/wvr-nav-li.component';
 import { WvrNavListComponent } from '../wvr-nav-list/wvr-nav-list.component';
@@ -34,23 +36,25 @@ export const WVR_COMPONENTS = [
   WvrButtonComponent,
   WvrCardComponent,
   WvrColorPreviewComponent,
+  WvrContentProjectionDirective,
   WvrDropdownComponent,
   WvrFooterComponent,
   WvrHeaderComponent,
   WvrIconComponent,
+  WvrItWorksComponent,
   WvrListComponent,
   WvrListItemComponent,
-  WvrItWorksComponent,
-  WvrNavListComponent,
-  WvrNavLiComponent,
-  WvrModalComponent,
-  WvrTextComponent,
   WvrManifestComponent,
   WvrManifestEntryComponent,
+  WvrMessageManifestComponent,
+  WvrMessageManifestEntryComponent,
+  WvrModalComponent,
+  WvrNavLiComponent,
+  WvrNavListComponent,
   WvrTabsComponent,
+  WvrTextComponent,
   WvrThemeComponent,
-  WvrWysiwygComponent,
-  WvrContentProjectionDirective
+  WvrWysiwygComponent
 ];
 
 export const WVR_PIPES = [

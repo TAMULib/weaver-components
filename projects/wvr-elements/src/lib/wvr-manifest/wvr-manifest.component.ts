@@ -56,14 +56,13 @@ export class WvrManifestComponent extends WvrBaseComponent {
    */
   private buildEntries(): void {
 
-    let ms = mappingStrategies[this.mappingStrategy] ?
+    const ms = mappingStrategies[this.mappingStrategy] ?
       mappingStrategies[this.mappingStrategy] :
       mappingStrategies.none;
 
     const entries: Array<ManifestEntry> = this.manifestEntries.map(e => {
-      const eMS = e.mappingStrategy;
-      ms = mappingStrategies[eMS] ?
-        mappingStrategies[eMS] :
+      const ems = mappingStrategies[e.mappingStrategy] ?
+        mappingStrategies[e.mappingStrategy] :
         ms;
 
       return {
