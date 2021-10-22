@@ -30,6 +30,7 @@
     "build:static-docs": "npm run test:audit && npm run build:static-setup && npm run build:docs-usage && npm run build:docs-development",
     "build:static-reports": "npm run build:static-setup && npm run test:coverage",
     "build:static-production": "npm run build:static && node scripts/build-wvr-components-configuration.js defaults-ci-overrides.env",
+    "build:sass-migrator": "npm install -g sass-migrator && cd node_modules/ &&  sass-migrator division **/*.scss",
     "clean": "npm run clean:dist && npm run clean:static",
     "clean:dist": "rimraf dist",
     "clean:static": "rimraf static",
