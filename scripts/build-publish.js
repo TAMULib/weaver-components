@@ -6,6 +6,7 @@ const angularCli = require('@angular/cli');
 const elementsPath = 'dist/wvr-elements';
 
 const next = process.argv[2] ? '--tag next' : '';
+const registry = process.argv[3] ? '--registry http://localhost:4873' : '';
 
 angularCli.default({
   cliArgs: ['b', '--project=wvr-elements'],
@@ -16,7 +17,7 @@ angularCli.default({
   fs.copySync('scripts', `${elementsPath}/scripts`);
   fs.copySync('.wvr-ud', `${elementsPath}/.wvr-ud`);
 
-  shell.exec(`npm publish ${elementsPath}/ ${next}`);
+  shell.exec(`npm ${registry} publish ${elementsPath}/ ${next}`);
 
   shell.exit();
 });
