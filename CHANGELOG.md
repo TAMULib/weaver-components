@@ -1,6 +1,6 @@
 # Changelog
 
-## [2.0.0] - 10-08-21
+## [2.0.0] - 10-29-21
 ### Resolves
 
 - Weaver Components should have a consistent content projection strategy. (#236)
@@ -15,6 +15,15 @@
 - Weaver Components should delay bootstrapping until a specified condition has been met. (#425)
 - Weaver Components Memory and Performance Concerns. (#428)
 - Weaver Components should compile using the ivy partial compiler option. (#430)
+- Memory Leak And Performance degradation when components is left open. After about 2 hours Gigibytes of memory in use. (Memory Leak And Performance degradation when components is left open. After about 2 hours Gigibytes of memory in use. #438)
+- Incorrect boolean logic in dequeue and inadequate tests (Incorrect boolean logic in dequeue and inadequate tests #442)
+- The tabs component should support theming (The tabs component should support theming #348)
+- Incorrect manifest entries are being updated in Manifest. (Incorrect manifest entries are being updated in Manifest. #439)
+- The tabs component should support theming (The tabs component should support theming #348)
+- Incorrect manifest entries are being updated in Manifest. (Incorrect manifest entries are being updated in Manifest. #439)
+- Weaver Card hardcodes width as a style. (Weaver Card hardcodes width as a style. #451)
+- Weaver Components should provide a Message Receiver Component (Weaver Components should provide a Message Receiver Component #407)
+- Weaver Card Should Support Expand/Collapse on Card Header click. (Weaver Card Should Support Expand/Collapse on Card Header click. #445)
 
 ## [1.12.0] - 06-04-21
 ### Resolves
