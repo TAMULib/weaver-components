@@ -11,6 +11,7 @@
     "DOCKER_SERVER": ""
   },
   "scripts": {
+    "postinstall": "node scripts/post-install.js",
     "build": "ng build --configuration production --single-bundle --output-hashing none",
     "build:clean": "npm run clean && npm run build",
     "build:wvr-elements": "ng build --configuration production wvr-elements",
@@ -30,18 +31,21 @@
     "build:static-docs": "npm run test:audit && npm run build:static-setup && npm run build:docs-usage && npm run build:docs-development",
     "build:static-reports": "npm run build:static-setup && npm run test:coverage",
     "build:static-production": "npm run build:static && node scripts/build-wvr-components-configuration.js defaults-ci-overrides.env",
-    "clean": "npm run clean:dist && npm run clean:static",
+    "clean": "npm run clean:dist && npm run clean:static && npm run clean:npm-local",
     "clean:dist": "rimraf dist",
     "clean:static": "rimraf static",
+    "clean:npm-local": "rimraf .verdaccio",
     "publish:docker": "node scripts/docker-push.js",
     "publish:npm": "npm run build && node scripts/build-publish.js $1",
     "publish:npm-next": "npm run publish:npm next",
+    "publish:npm-local": "npm run publish:npm next local",
     "lint": "ng lint",
     "ng": "ng",
     "start": "node scripts/build-wvr-components-style.js && node scripts/build-wvr-components-configuration.js defaults-dev-overrides.env && ng serve --port 4200",
     "start:dist": "node scripts/build-wvr-components-style.js && node scripts/build-wvr-components-configuration.js defaults-dist-overrides.env && node scripts/serve-dist.js",
     "start:static": "node scripts/build-wvr-components-style.js && node scripts/build-wvr-components-configuration.js defaults-static-overrides.env && static-server static -p 8081",
     "start:docker": "node scripts/build-wvr-components-style.js && node scripts/start-docker.js",
+    "start:npm-local": "verdaccio --listen localhost:4873 --config ./verdaccio-config.yaml",
     "test": "npm run test:unit && npm run test:e2e",
     "test:audit": "rimraf .lighthouseci && lhci autorun --upload.target=temporary-public-storage --config=./lighthouserc.json && node scripts/build-wvr-components-lighthouse-badges.js",
     "test:e2e": "ng e2e",
@@ -128,6 +132,8 @@
     "static-server": "^2.2.1",
     "ts-node": "~10.2.1",
     "tslint": "~6.1.3",
-    "typescript": "~4.3.5"
+    "typescript": "~4.3.5",
+    "sass-migrator": "^1.5.2",
+    "verdaccio": "^5.2.0"
   }
 }
