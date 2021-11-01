@@ -22,6 +22,9 @@ export class WvrFooterComponent extends WvrBaseComponent implements OnInit, Afte
   /** An internal reference to the footer element. */
   private footerElement: HTMLElement;
 
+  /** Height of the parent and footer when the footer is not fixed. */
+  private totalHeight: number;
+
   /** Used internally to toggle fixed behavior. */
   isSticky = false;
 
@@ -50,15 +53,25 @@ export class WvrFooterComponent extends WvrBaseComponent implements OnInit, Afte
    * and calculates height to determine 'stickiness'
    */
   @HostListener('window:resize', ['$event']) positionSelf(): void {
+    const parentHeight = this.parentElement.clientHeight;
+
     if (!this.footerElement) {
       this.footerElement = (this.eRef.nativeElement as HTMLElement).querySelector('footer.wvr-footer');
+      this.totalHeight = this.isSticky ? parentHeight + this.footerElement.clientHeight : parentHeight;
     }
 
     this.footerElement.style.width = `${this.parentElement.clientWidth}px`;
-    const compareHeight = this.isSticky ? (window.innerHeight - this.footerElement.clientHeight) : window.innerHeight;
-    const newIsSticky = this.parentElement.clientHeight <= compareHeight;
-    if (this.isSticky !== newIsSticky) {
-      this.isSticky = newIsSticky;
+
+    if (this.isSticky) {
+      if (window.innerHeight < this.totalHeight) {
+        this.isSticky = false;
+      }
+    } else {
+      this.totalHeight = parentHeight;
+
+      if (window.innerHeight > this.totalHeight) {
+        this.isSticky = true;
+      }
     }
   }
 

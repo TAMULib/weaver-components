@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, HostBinding, Injector, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, Injector, Input, OnInit } from '@angular/core';
 import { ThemeVariantName } from '../shared/theme';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
@@ -11,7 +11,7 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
   styleUrls: ['./wvr-card.component.scss'],
   changeDetection: ChangeDetectionStrategy.Default
 })
-export class WvrCardComponent extends WvrBaseComponent {
+export class WvrCardComponent extends WvrBaseComponent implements OnInit {
 
   /** Allows for the override of the default 'wvre' sufix for psudo components. */
   @Input() selectorPrefix = 'wvre';
@@ -24,6 +24,20 @@ export class WvrCardComponent extends WvrBaseComponent {
 
   /** Used to describe the format of card. */
   @Input() panelFormat: 'solid' | 'outlined' | 'mixed';
+
+  /** Designate how to expand/collapse. */
+  @Input() collapseMethod: 'click' | 'none';
+
+  /** Designate the initial expanded/collapsed state. */
+  @Input() startCollapsed: boolean;
+
+  /** The collapsed/uncollapsed state. */
+  @HostBinding('attr.collapsed') _collapsed: 'true' | 'false';
+
+  /** Update the element attribute when the boolean changes */
+  @Input() set collapsed(value: 'true' | 'false') {
+    this._collapsed = value;
+  }
 
   @HostBinding('style.--card-header-color') get cardHeaderColor(): string {
     return this.panelFormat === 'outlined' ? 'var(--light-default-color)' : `var(--${this.themeVariant}-default-color)`;
@@ -39,6 +53,24 @@ export class WvrCardComponent extends WvrBaseComponent {
   constructor(injector: Injector) {
     super(injector);
     this.themeVariant = 'primary';
+    this.collapseMethod = 'none';
+  }
+
+  /**
+   * Initialize properties dependent on @Input.
+   */
+  ngOnInit(): void {
+    super.ngOnInit();
+    this._collapsed = !!this.startCollapsed ? 'true' : 'false';
+  }
+
+  /**
+   * Toggle the collapsible state when clicked, if allowed.
+   */
+  toggleCollapsibleClick(): void {
+    if (this.collapseMethod === 'click') {
+      this._collapsed = this._collapsed === 'true' ? 'false' : 'true';
+    }
   }
 
   get additionalCardClasses(): string {

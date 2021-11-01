@@ -378,6 +378,22 @@
         <wvre-text value="Outlined Card Footer"></wvre-text>
       </template>
     </wvre-card>
+
+    <br>
+    <wvre-card text-center panel-format="outlined" theme-variant="warning" collapse-method="click" start-collapsed="true">
+      <template card-header>
+        <wvre-text value="Collapsible Card Header"></wvre-text>
+      </template>
+      <template card-title>
+        <wvre-text value="Collapsible Card Title"></wvre-text>
+      </template>
+      <template card-text>
+        <wvre-text value="With supporting text below as a natural lead-in to additional content."></wvre-text>
+      </template>
+      <template card-footer>
+        <wvre-text value="Collapsible Card Footer"></wvre-text>
+      </template>
+    </wvre-card>
   </div>
 
   <div class="container index-container">
@@ -968,7 +984,7 @@
 
     <wvre-text value="Tabs" text-decoration="underline"></wvre-text><br /><br />
 
-    <wvre-tabs theme-variant="primary">
+    <wvre-tabs>
       <template tab-content tab-text="Tab One">
         <div class="jumbotron">
           <h3><wvre-text value="First Tab Header"></wvre-text></h3>
@@ -1049,6 +1065,11 @@
     <wvre-manifest-entry name="All Sorted" path="/ldap/all-sorted" methods="GET"></wvre-manifest-entry>
     <wvre-manifest-entry name="Departments" path="/ldap/departments" methods="GET" mapping-strategy="none"></wvre-manifest-entry>
   </wvre-manifest>
+
+  <!-- This script section is to demonstrate receiving a weaver message message. -->
+  <!--<wvre-message-manifest name="My Library Time" broker-url="https://api-dev.library.tamu.edu/mylibrary/connect" mapping-strategy="weaver" protocol="WEB_SOCKET">
+    <wvre-message-manifest-entry name="time" destination="/channel/time"></wvre-message-manifest-entry>
+  </wvre-message-manifest>-->
 
   <wvre-theme name="defaultDark"></wvre-theme>
 

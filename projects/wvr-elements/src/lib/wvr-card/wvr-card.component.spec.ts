@@ -98,4 +98,46 @@ describe('WvrCardComponent', () => {
       .toBeTruthy();
   });
 
+  it('should collapse when collapsible and clicked while expanded', () => {
+    component._collapsed = 'false';
+    component.collapseMethod = 'click';
+    fixture.detectChanges();
+
+    const cardElem = fixture.elementRef.nativeElement as HTMLElement;
+    const cardHeaderElem = cardElem.querySelector('.card-header') as HTMLElement;
+
+    cardHeaderElem.dispatchEvent(new MouseEvent('click'));
+    fixture.detectChanges();
+    expect(component._collapsed)
+      .toBe('true');
+  });
+
+  it('should not collapse when not collapsible and clicked while expanded', () => {
+    component._collapsed = 'false';
+    component.collapseMethod = 'none';
+    fixture.detectChanges();
+
+    const cardElem = fixture.elementRef.nativeElement as HTMLElement;
+    const cardHeaderElem = cardElem.querySelector('.card-header') as HTMLElement;
+
+    cardHeaderElem.dispatchEvent(new MouseEvent('click'));
+    fixture.detectChanges();
+    expect(component._collapsed)
+      .toBe('false');
+  });
+
+  it('should expand while collapsed and clicked', () => {
+    component._collapsed = 'true';
+    component.collapseMethod = 'click';
+    fixture.detectChanges();
+
+    const cardElem = fixture.elementRef.nativeElement as HTMLElement;
+    const cardHeaderElem = cardElem.querySelector('.card-header') as HTMLElement;
+
+    cardHeaderElem.dispatchEvent(new MouseEvent('click'));
+    fixture.detectChanges();
+    expect(component._collapsed)
+      .toBe('false');
+  });
+
 });
