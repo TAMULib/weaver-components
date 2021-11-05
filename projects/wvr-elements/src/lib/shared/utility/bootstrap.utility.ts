@@ -59,6 +59,7 @@ const lazyLoadWeaverElement = (element: HTMLElement, selectors: Array<string>): 
   if (selectors.indexOf(element.parentNode.nodeName) >= 0) {
     return false;
   }
+
   if (element.parentNode.nodeName === 'BODY') {
     return true;
   }
@@ -85,7 +86,7 @@ const registerWeaverElements = (injector: Injector, wvrElements: Array<WvrElemen
             div.setAttribute('element', wvrElement.selector);
             const template = document.createElement('template');
             div.appendChild(template);
-            element.parentNode.replaceChild(div, element);
+            element.insertAdjacentElement('beforebegin', div);
             template.content.appendChild(element);
           }
         });
@@ -106,8 +107,9 @@ const registerWeaverElements = (injector: Injector, wvrElements: Array<WvrElemen
       // when wrapped element enters view port, unwrap it and remove from observer
       if (entry.isIntersecting) {
         observer.unobserve(entry.target);
-        const clone = (entry.target.childNodes[0] as HTMLTemplateElement).content.cloneNode(true);
-        entry.target.parentNode.replaceChild(clone.childNodes[0], entry.target);
+        const child = (entry.target.childNodes[0] as HTMLTemplateElement).content.childNodes[0];
+        entry.target.insertAdjacentElement('beforebegin', child as Element);
+        entry.target.parentNode.removeChild(entry.target);
       }
     });
   }, {
