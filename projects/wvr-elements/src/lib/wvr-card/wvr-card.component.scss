@@ -13,12 +13,17 @@
 
   font-family: var(--wvr-font-family-sans-serif);
 
-  & .wvr-card.collapsed .card-header {
+  .wvr-card.collapsed .card-header {
     border-bottom: 0px;
   }
 
-  & .wvr-card.collapsed .card-body,
-  & .wvr-card.collapsed .card-footer {
+  .wvr-card.collapsed .card-body,
+  .wvr-card.collapsed [template="card-buttons"],
+  .wvr-card.collapsed [template="card-image"],
+  .wvr-card.collapsed [template="card-links"],
+  .wvr-card.collapsed [template="card-list-top"],
+  .wvr-card.collapsed [template="card-list-bottom"],
+  .wvr-card.collapsed [template="card-footer"] {
     visibility: collapse;
     overflow: hidden;
 
