@@ -2,7 +2,7 @@
 @import "../../shared/styles/variables";
 
 :host {
-  
+
   @extend .variables;
 
   --wvr-nav-li-cursor: pointer;
@@ -19,7 +19,6 @@
 a.nav-link,
 li.nav-item {
   height: var(--wvr-nav-li-height);
-  min-width: var(--wvr-nav-li-width);
   cursor: var(--wvr-nav-li-cursor);
   ::ng-deep wvre-dropdown {
     display: flex;
@@ -29,7 +28,7 @@ li.nav-item {
     justify-content: center;
 
     [ngbdropdown],
-    [ngdropdownanchor], 
+    [ngdropdownanchor],
     wvre-dropdown-btn,
     .wvr-dropdown {
       width: 100%;
@@ -48,6 +47,10 @@ a.nav-link {
   color: var(--wvr-nav-link-color);
   font-size: var(--wvr-nav-link-font-size);
   font-weight: var(--wvr-nav-link-font-weight);
+}
+
+li.nav-item {
+  min-width: var(--wvr-nav-li-width);
 }
 
 li.nav-item:hover {
