@@ -8,34 +8,87 @@
 
 # Weaver Components
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.21.
+Weaver Components provides a collection of custom HTML elements that represent a toolkit of dynamically renderred HTML markup, CSS Styles, and effects. This toolkit may be made available to a given project either via a CDN URL, directly attached as a Javascript file and CSS file, or via a project dependency. Such elements may be dropped directly onto a page utilizing Weaver Components and they shall be immediately renderred as appropriate.
 
-[Documentation](https://tamulib.github.io/weaver-components/docs).
+## Installation
 
-[Reports](https://tamulib.github.io/weaver-components/reports).
+Weaver Components may be installed by either referencing a CDN or by using [NodeJs](https://nodejs.org/).
 
-## Development server
+### NodeJs Installation
 
-Run `npm start` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Using the `npm` command (from [NpmJs](https://www.npmjs.com/)), install this project as a dependency to an existing project:
+```
+npm install @wvr/elements
+```
 
-## Code scaffolding
+### CDN Installation
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+The files `weaver-components.js` and `styles.css` need to be available on some server.
+See the **Building** section below for details on how to build these files.
 
-## Build
+The CSS file should be added as an HTML `<link>` element to the HTML `<header>` element, such as:
+```
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="https://localhost/styles.css">
+  </head>
+</html>
+```
 
-Run `npm run build` to build the project. The build artifacts will be stored in the `dist/` directory.
-You can also use `npm run build:clean|wvr-elements|wvr-components`.
+The Javascript file should be added an HTML `<script>` element to the HTML `<bottom>` element at the very end, such as:
+```
+<html>
+  <body>
+    ...
+    <script src="https://localhost/weaver-components.js"></script>
+  </body>
+</html>
+```
 
-## Running unit tests
+## Building
 
-Run `npm test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-You can also use `npm run test:unit|watch`.
+To build this project use the `npm` command (from [NpmJs](https://www.npmjs.com/)).
 
-## Running end-to-end tests
+This project can be built to run locally for development purposes be built to get the `weaver-components.js` and `styles.css` files needed to run on a CDN.
+More detailed documentation about the build process may be found via the referenced links in the **Documentation** section below.
 
-Run `npm run test:e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+### Building the `weaver-components.js` and the `styles.css`
 
-## Further help
+The `weaver-components.js` and the `styles.css` files are needed if intending to utilize this project via a CDN.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+These files are built using the `build` command from within the project root directory:
+```
+  cd weaver-components
+  npm run build
+```
+
+Once this has successfully completed the `weaver-components.js` and `styles.css` files should be located under the `dist/bundle/` sub-directory:
+```
+  dist/bundle/styles.css
+  dist/bundle/weaver-components.js
+```
+
+### Building for a NodeJs Package
+
+Building this for a NodeJS Package is the same as building this for a CDN.
+
+These files are built using the `build` command from within the project root directory:
+```
+  cd weaver-components
+  npm run build
+```
+
+Once notable difference is that for those who want to develop against changes to this project, the `publish:npm-local` can be used as well.
+This process requires starting a [Verdaccio](https://verdaccio.org/) service, of which is provided by the `start:npm-local` command.
+For further details, visit the links referenced in the detailed documentation below.
+
+## Documentation
+
+Detailed [documentation](https://tamulib.github.io/weaver-components/docs) may be found:
+- [Usage Documentation](https://tamulib.github.io/weaver-components/docs/usage)
+- [Development Documentation](https://tamulib.github.io/weaver-components/docs/development/index.html)
+- [Wiki](https://github.com/TAMULib/weaver-components/wiki)
+
+Detailed [reports](https://tamulib.github.io/weaver-components/reports) may be found:
+- [Audit](https://tamulib.github.io/weaver-components/reports/audit/index.html)
+- [Coverage](https://tamulib.github.io/weaver-components/reports/coverage/wvr-elements/index.html)
