@@ -16,6 +16,8 @@ Weaver Components may be installed by either referencing a CDN or by using [NpmJ
 
 ### Installation via NpmJs
 
+The latest pre-built package may be found in the [Weaver Elements NpmJs Repository](https://www.npmjs.com/package/@wvr/elements).
+
 Using the `npm` command (from [NpmJs](https://www.npmjs.com/)), install this project as a dependency to an existing project:
 ```
 npm install @wvr/elements
