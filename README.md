@@ -12,16 +12,16 @@ Weaver Components provides a collection of custom HTML elements that represent a
 
 ## Installation
 
-Weaver Components may be installed by either referencing a CDN or by using [NodeJs](https://nodejs.org/).
+Weaver Components may be installed by either referencing a CDN or by using [NpmJs](https://www.npmjs.com/).
 
-### NodeJs Installation
+### Installation via NpmJs
 
 Using the `npm` command (from [NpmJs](https://www.npmjs.com/)), install this project as a dependency to an existing project:
 ```
 npm install @wvr/elements
 ```
 
-### CDN Installation
+### Installation via CDN
 
 The files `weaver-components.js` and `styles.css` need to be available on some server.
 See the **Building** section below for details on how to build these files.
@@ -68,9 +68,9 @@ Once this has successfully completed the `weaver-components.js` and `styles.css`
   dist/bundle/weaver-components.js
 ```
 
-### Building for a NodeJs Package
+### Building for a NpmJs Package
 
-Building this for a NodeJS Package is the same as building this for a CDN.
+Building this for a NpmJs Package is the same as building this for a CDN.
 
 These files are built using the `build` command from within the project root directory:
 ```
