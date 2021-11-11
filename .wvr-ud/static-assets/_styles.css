@@ -151,4 +151,48 @@ main.loading #preview {
   display: inline-block;
 }
 
+/*
+* Main View
+*/
+.main-view {
+  position: relative;
+  height: 100%;
+  overflow: auto;
+}
+
+/*
+* Preview
+*/
+#preview {
+  min-width: 65%;
+}
+
+/*
+* About
+*/
+#about {
+  box-sizing: border-box;
+
+  width: 35%;
+  min-width: 200px;
+  max-height: 100%;
+
+  background-color: #efefdb;
+
+  margin: 0.5rem;
+  padding: 0.5rem;
+  border: 1px solid #5f5f00;
+
+  overflow: auto;
+}
+
+#about.empty {
+  display: none;
+  width: 0px;
+}
+
+#about code {
+  color: #122f92;
+}
+
 /*** OVERRIDES ***/

@@ -1,3 +1,4 @@
+let aboutElem = document.querySelector('#about');
 let componentManifest = JSON.parse($('#expamples-manifest').html());
 let editorElem = document.querySelector('#editor');
 let previewElem = document.querySelector('#preview');
@@ -77,6 +78,7 @@ let setupComponentLinks = ()=>{
         });
         components.push({
           name: componentName,
+          about: this.responseXML.querySelector('about'),
           examples: examples
         });
         interationCount++;
@@ -101,12 +103,32 @@ let setupComponentLinks = ()=>{
   });
 }
 
+
+let loadAbout = (component) => {
+  let headerElem = aboutElem.querySelector('.about-header');
+  let contentElem = aboutElem.querySelector('.about-content');
+
+  if (component.about === null) {
+    if (!aboutElem.classList.contains('empty')) {
+      aboutElem.classList.add('empty');
+    }
+  } else {
+    headerElem.innerHTML = component.about ? component.about.getAttribute('title') : component.name;
+    contentElem.innerHTML = component.about ? component.about.innerHTML : '';
+
+    if (aboutElem.classList.contains('empty')) {
+      aboutElem.classList.remove('empty');
+    }
+  }
+};
+
 let loadExample = (example) => {
   let snippet = example.querySelector('snippet').rawHTML;
   let desciption = example.querySelector('desciption').innerHTML;
   let componentScss = example.querySelector('component-scss').innerHTML;
   let componentSource = example.querySelector('component-source').innerHTML;
   let componentTemplate = example.querySelector('component-template').rawTemplateHTML;
+
   document.querySelector('#copy-btn').setAttribute('data-clipboard-text', snippet);
   activeExampleNameElem.innerText = example.getAttribute('name');
   previewElem.innerHTML = snippet;
@@ -119,7 +141,7 @@ let loadExample = (example) => {
 
 let renderComponentLinks = componentsToRender => {
   componentsToRender.sort();
-  componentsToRender.forEach(component=> {
+  componentsToRender.forEach(component => {
     let componentCollectionClone = componentCollectionTemplate.content.cloneNode(true);
     let componentLinksElem = componentCollectionClone.querySelector('ul.component-links');
     let componentCollectionLink = componentCollectionClone.querySelector('.component-collection-link')
@@ -131,8 +153,9 @@ let renderComponentLinks = componentsToRender => {
         ccl.classList.add('closed') :
         ccl.classList.remove('closed');
     });
+
     componentCollectionClone.querySelector('.component-links').setAttribute('id', component.name);
-    component.examples.forEach(example=>{
+    component.examples.forEach(example => {
       let componentLinkTemplateClone = componentLinkTemplate.content.cloneNode(true);
       componentLinkTemplateClone.querySelector('a.nav-link').setAttribute('href', `#${example.getAttribute('name').replace(/\s/g,'')}`);
       componentLinkTemplateClone.querySelector('.component-link-name').innerText = example.getAttribute('name');
@@ -145,6 +168,7 @@ let renderComponentLinks = componentsToRender => {
             activeExample.querySelector('snippet').rawHTML = activeExample.querySelector('snippet').innerHTML;
             activeExample.querySelector('component-template').rawTemplateHTML = activeExample.querySelector('component-template').innerHTML;
             loadExample(example);
+            loadAbout(component);
           }
         });
       });
