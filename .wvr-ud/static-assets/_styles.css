@@ -154,17 +154,30 @@ main.loading #preview {
 /*
 * Main View
 */
-.main-view {
-  position: relative;
+.main {
   height: 100%;
-  overflow: auto;
+}
+
+.main-preview {
+  height: 90%;
+}
+
+.main-tabs {
+  min-height: 400px;
 }
 
 /*
 * Preview
 */
+.preview-view {
+  position: relative;
+  height: 100%;
+  overflow: auto;
+}
+
 #preview {
-  min-width: 65%;
+  width: 65%;
+  min-width: 300px;
 }
 
 /*
@@ -174,12 +187,13 @@ main.loading #preview {
   box-sizing: border-box;
 
   width: 35%;
-  min-width: 200px;
+  min-width: 300px;
   max-height: 100%;
 
   background-color: #efefdb;
 
   margin: 0.5rem;
+  margin-right: auto;
   padding: 0.5rem;
   border: 1px solid #5f5f00;
 

@@ -113,7 +113,7 @@ let loadAbout = (component) => {
       aboutElem.classList.add('empty');
     }
   } else {
-    headerElem.innerHTML = component.about ? component.about.getAttribute('title') : component.name;
+    headerElem.innerHTML = component.about ? component.about.getAttribute('name') : component.name;
     contentElem.innerHTML = component.about ? component.about.innerHTML : '';
 
     if (aboutElem.classList.contains('empty')) {
