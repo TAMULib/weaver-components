@@ -74,7 +74,7 @@
     "css-element-queries": "^1.2.3",
     "handlebars": "^4.7.7",
     "json5": "^2.2.0",
-    "ng-inline-svg": "^13.0.0",
+    "ng-inline-svg": "13.0.0",
     "rxjs": "~6.6.7",
     "tinymce": "^5.8.1",
     "tslib": "^2.2.0",
