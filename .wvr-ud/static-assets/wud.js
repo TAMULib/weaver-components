@@ -154,6 +154,8 @@ let loadExample = (example) => {
 };
 
 let renderComponentLinks = componentsToRender => {
+  resetAbout();
+
   componentsToRender.sort();
   componentsToRender.forEach(component => {
     let componentCollectionClone = componentCollectionTemplate.content.cloneNode(true);
@@ -168,8 +170,6 @@ let renderComponentLinks = componentsToRender => {
         ccl.classList.remove('closed');
     });
 
-    resetAbout();
-
     componentCollectionClone.querySelector('.component-links').setAttribute('id', component.name);
     component.examples.forEach(example => {
       let componentLinkTemplateClone = componentLinkTemplate.content.cloneNode(true);
@@ -183,7 +183,7 @@ let renderComponentLinks = componentsToRender => {
             activeExample=example;
             activeExample.querySelector('snippet').rawHTML = activeExample.querySelector('snippet').innerHTML;
             activeExample.querySelector('component-template').rawTemplateHTML = activeExample.querySelector('component-template').innerHTML;
-
+            resetAbout();
             loadExample(example);
             loadAbout(component);
           }
