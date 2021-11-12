@@ -192,9 +192,9 @@ main.loading #preview {
 
   background-color: #efefdb;
 
-  margin: 0.5rem;
+  margin: 5px;
   margin-right: auto;
-  padding: 0.5rem;
+  padding: 5px;
   border: 1px solid #5f5f00;
 
   overflow: auto;
