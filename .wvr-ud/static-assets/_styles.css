@@ -126,7 +126,7 @@ main.loading #preview {
 }
 
 #active-component-name {
-  position: fixed;
+  position: absolute;
   right: 25px;
   font-size: 1.5em;
 }
@@ -155,7 +155,8 @@ main.loading #preview {
 * Main View
 */
 .main {
-  height: 100%;
+  height: 90%;
+  overflow-y: auto;
 }
 
 .main-preview {
