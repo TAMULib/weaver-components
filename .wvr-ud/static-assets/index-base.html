@@ -30,10 +30,16 @@
           </ul>
         </div>
       </nav>
-      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4" style="height: 100%;">
-        <div class="d-flex flex-column bd-highlight mb-3" style="height: 90%;">
-          <div id="preview" style="width:100%;"></div>
-          <div class="mt-auto" style="height: 400px;">
+      <main role="main" class="main col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+        <div class="main-preview d-flex flex-column bd-highlight mb-3">
+          <div class="preview-view d-flex flex-row">
+            <div id="preview"></div>
+            <aside id="about">
+              <h2 class="about-header"></h2>
+              <div class="about-content"></div>
+            </aside>
+          </div>
+          <div class="main-tabs mt-auto">
             <span id="active-component-name" class="h3 float-right badge badge-secondary"></span>
             <ul class="nav nav-tabs" id="tabs" role="tablist">
               <li class="nav-item">
