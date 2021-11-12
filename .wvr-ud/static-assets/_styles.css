@@ -171,8 +171,6 @@ main.loading #preview {
 */
 .preview-view {
   position: relative;
-  height: 100%;
-  overflow: auto;
 }
 
 #preview {
@@ -188,7 +186,8 @@ main.loading #preview {
 
   width: 35%;
   min-width: 300px;
-  max-height: 100%;
+  min-height: 100px;
+  max-height: 300px;
 
   background-color: #efefdb;
 
@@ -197,7 +196,7 @@ main.loading #preview {
   padding: 5px;
   border: 1px solid #5f5f00;
 
-  overflow: auto;
+  overflow-y: auto;
 }
 
 #about.empty {
