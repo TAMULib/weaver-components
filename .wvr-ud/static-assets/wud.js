@@ -103,18 +103,32 @@ let setupComponentLinks = ()=>{
   });
 }
 
+let resetAbout = (component) => {
+  let headerElem = aboutElem.querySelector('.about-header');
+  let contentElem = aboutElem.querySelector('.about-content');
+
+  aboutElem.removeAttribute('style');
+  headerElem.innerHTML = '';
+  contentElem.innerHTML = '';
+
+  if (!aboutElem.classList.contains('empty')) {
+    aboutElem.classList.add('empty');
+  }
+};
 
 let loadAbout = (component) => {
   let headerElem = aboutElem.querySelector('.about-header');
   let contentElem = aboutElem.querySelector('.about-content');
 
-  if (component.about === null) {
-    if (!aboutElem.classList.contains('empty')) {
-      aboutElem.classList.add('empty');
-    }
-  } else {
+  if (component.about !== null) {
+    let aboutStyle = component.about.getAttribute('style');
+
     headerElem.innerHTML = component.about ? component.about.getAttribute('name') : component.name;
     contentElem.innerHTML = component.about ? component.about.innerHTML : '';
+
+    if (aboutStyle !== null) {
+      aboutElem.setAttribute('style', aboutStyle);
+    }
 
     if (aboutElem.classList.contains('empty')) {
       aboutElem.classList.remove('empty');
@@ -140,6 +154,8 @@ let loadExample = (example) => {
 };
 
 let renderComponentLinks = componentsToRender => {
+  resetAbout();
+
   componentsToRender.sort();
   componentsToRender.forEach(component => {
     let componentCollectionClone = componentCollectionTemplate.content.cloneNode(true);
