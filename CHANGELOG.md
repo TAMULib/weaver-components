@@ -3,10 +3,12 @@
 ## [2.0.1] - 11-15-21
 ### Resolves
 
-- Investigate and solve the performance problem of loading a large number of components at one time. (#461)
-- Improve Components Build Process and Update Build Process Documentation. (#469)
-- Components In-Code Documentation Improvements. (470)
-- Collapsible Card is not completely collapsible. (476)
+- Local npm via Verdaccio and SASS Migrator. by @kaladay in (#472)
+- The mobile menu slide out tray continues to allow links to be clicked on when closed. by @kaladay in (#474)
+- Avoid replaceChild() and restructure projection function. by @kaladay in (#479)
+- Collapsible Card is not completely collapsible. by @kaladay in (#483)
+- Directory UI - bottom-nav items (left most) is seen to have shifted left. by @kaladay in (#482)
+- Add in-code documentation for the README.md. by @kaladay in (#484)
 
 ## [2.0.0] - 10-29-21
 ### Resolves
