@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.0.1] - 11-15-21
+### Resolves
+
+- Investigate and solve the performance problem of loading a large number of components at one time. (#461)
+- Improve Components Build Process and Update Build Process Documentation. (#469)
+- Components In-Code Documentation Improvements. (470)
+- Collapsible Card is not completely collapsible. (476)
+
 ## [2.0.0] - 10-29-21
 ### Resolves
 
