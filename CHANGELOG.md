@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.12.1] - 11-17-21
+### Resolves
+
+- The mobile menu slide out tray continues to allow links to be clicked on when closed. by @kaladay in (#475)
+- Require ng-inline-svg 13.0.0, 13.0.1 currently breaks build. by @kaladay in (#485)
+
 ## [1.12.0] - 06-04-21
 ### Resolves
 
