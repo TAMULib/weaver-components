@@ -13,19 +13,22 @@ const projectSourceContent = (elementRef: ElementRef, sourceElementRef: ElementR
 const project = (element: Element, sourceElementRef: ElementRef, templateSelector: string): void => {
   const templates: Array<HTMLTemplateElement> = Array.from(sourceElementRef.nativeElement.querySelectorAll(templateSelector));
   if (!!element) {
-    templates.forEach((template: HTMLTemplateElement) => {
-      const clone: Node = template.children.length === 0 && template.content.children.length > 0
-        ? template.content.cloneNode(true)
-        : template;
-      Array.from((clone as Element).children)
-        .forEach((elem: Element) => {
-          element.appendChild(elem);
-        });
-    });
-  }
-  // hide target element if nothing to project
-  if (!!element && !templates.length) {
-    (element as HTMLElement).hidden = true;
+    if (templates.length) {
+      templates.forEach((template: HTMLTemplateElement) => {
+        const clone: Node = template.children.length === 0 && template.content.children.length > 0
+          ? template.content.cloneNode(true)
+          : template;
+
+        Array.from((clone as Node).childNodes)
+          .forEach((child: Node) => {
+            element.appendChild(child);
+          });
+      });
+    }
+    else {
+      // hide target element if nothing to project
+      (element as HTMLElement).hidden = true;
+    }
   }
 };
 

@@ -61,6 +61,10 @@ body {
   text-transform: uppercase;
 }
 
+.sidebar-sticky .component-links .nav-item {
+  width: 100%;
+}
+
 /*
 * Navbar
 */
@@ -126,7 +130,7 @@ main.loading #preview {
 }
 
 #active-component-name {
-  position: fixed;
+  position: absolute;
   right: 25px;
   font-size: 1.5em;
 }
@@ -149,6 +153,64 @@ main.loading #preview {
 .feather-plus-circle,
 .open .feather-minus-circle {
   display: inline-block;
+}
+
+/*
+* Main View
+*/
+.main {
+  height: 90%;
+  overflow-y: auto;
+}
+
+.main-preview {
+  height: 90%;
+}
+
+.main-tabs {
+  min-height: 400px;
+}
+
+/*
+* Preview
+*/
+.preview-view {
+  position: relative;
+}
+
+#preview {
+  width: 65%;
+  min-width: 300px;
+}
+
+/*
+* About
+*/
+#about {
+  box-sizing: border-box;
+
+  width: 35%;
+  min-width: 300px;
+  min-height: 100px;
+  max-height: 300px;
+
+  background-color: #efefdb;
+
+  margin: 5px;
+  margin-right: auto;
+  padding: 5px;
+  border: 1px solid #5f5f00;
+
+  overflow-y: auto;
+}
+
+#about.empty {
+  display: none;
+  width: 0px;
+}
+
+#about code {
+  color: #122f92;
 }
 
 /*** OVERRIDES ***/

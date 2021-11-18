@@ -78,8 +78,6 @@
   }
 
   @media (max-width: 992px) {
-
-
     .mobile-menu-button {
       display: block;
     }
@@ -90,13 +88,16 @@
 
     .mobile-menu-content {
       white-space: nowrap !important;
+
       ::ng-deep {
         .section-title {
           white-space: nowrap !important;
         }
+
         tl-nav-li > a {
           white-space: nowrap !important;
         }
+
         wvr-dropdown-component,
         .section-title  {
           min-width: 200px;
@@ -107,6 +108,7 @@
     .mobile-menu.closed {
       width: 0px;
       opacity: 0;
+      overflow: hidden;
     }
 
     .mobile-menu-header {
@@ -116,19 +118,21 @@
       color: #fff;
       width: 100%;
       padding: 12px 10px;
+
       .mobile-menu-close:hover {
         cursor: pointer;
       }
+
       li {
         font-weight: lighter;
         min-width: auto;
         border-bottom: none;
       }
+
       li:hover {
         background: transparent;
       }
     }
-
   }
 
 }

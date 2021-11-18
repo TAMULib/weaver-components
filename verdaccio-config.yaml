@@ -1,0 +1,37 @@
+# Look here for more config file examples:
+# https://github.com/verdaccio/verdaccio/tree/master/conf
+
+# path to a directory with all packages
+storage: .verdaccio/storage
+# path to a directory with plugins to include
+plugins: .verdaccio/plugins
+
+web:
+  title: Verdaccio - Weaver Components
+
+# a list of other known repositories we can talk to
+uplinks:
+  npmjs:
+    url: https://registry.npmjs.org/
+
+packages:
+  '@wvr/*':
+    # and three keywords: "$all", "$anonymous", "$authenticated"
+    access: $all
+    publish: $all
+    unpublish: $all
+
+  '**':
+    access: $all
+
+    # if package is not available locally, proxy requests to 'npmjs' registry
+    proxy: npmjs
+
+server:
+  keepAliveTimeout: 60
+
+middlewares:
+  audit:
+    enabled: true
+
+logs: { type: stdout, format: pretty, level: http }
