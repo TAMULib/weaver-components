@@ -24,11 +24,11 @@
     "wvr-ud": "./scripts/build-wvr-ud.js"
   },
   "dependencies": {
-    "tslib": "^2.3.1"
+    "tslib": "^2.4.0"
   },
   "peerDependencies": {
-    "@angular/common": "^12.2.7",
-    "@angular/core": "^12.2.7",
+    "@angular/common": "^12.2.16",
+    "@angular/core": "^12.2.16",
     "css-element-queries": "^1.2.3",
     "handlebars": "^4.7.7"
   }
