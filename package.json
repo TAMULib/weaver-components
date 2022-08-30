@@ -150,5 +150,8 @@
     "ts-node": "~10.2.1",
     "typescript": "~4.3.5",
     "verdaccio": "^5.14.0"
+  },
+  "overrides": {
+    "@types/eslint": "^6.1.3"
   }
 }
