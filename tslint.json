@@ -3,7 +3,6 @@
     "node_modules/codelyzer"
   ],
   "extends": [
-    "angular-tslint-rules"
   ],
   "rules": {
     "template-cyclomatic-complexity": [
