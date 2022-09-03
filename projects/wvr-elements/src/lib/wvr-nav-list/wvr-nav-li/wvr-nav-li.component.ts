@@ -53,6 +53,8 @@ export class WvrNavLiComponent extends WvrBaseComponent {
       .forEach((elem: any) => {
         ul.appendChild(elem);
       });
+
+    this.eRef.nativeElement.parentNode.parentNode.appendChild(this.eRef.nativeElement);
   }
 
 }
