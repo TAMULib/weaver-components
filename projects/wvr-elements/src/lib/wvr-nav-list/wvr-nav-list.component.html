@@ -1,3 +1,3 @@
-<ul #animationRoot class="navbar-nav flex-wrap" [ngClass]="{ 'flex-row': vertical==='false', 'justify-content-end': aligned === 'RIGHT', 'justify-content-center': aligned === 'CENTER' }" nav-list-items>
+<div #animationRoot class="navbar-nav flex-wrap" [ngClass]="{ 'flex-row': vertical==='false', 'justify-content-end': aligned === 'RIGHT', 'justify-content-center': aligned === 'CENTER' }" role="list" nav-list-items>
   <ng-content select="template[nav-list-items]"></ng-content>
-</ul>
+</div>

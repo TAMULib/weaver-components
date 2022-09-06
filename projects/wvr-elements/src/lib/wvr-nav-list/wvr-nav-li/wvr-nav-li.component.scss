@@ -17,7 +17,7 @@
 }
 
 a.nav-link,
-li.nav-item {
+[role=listitem].nav-item {
   height: var(--wvr-nav-li-height);
   cursor: var(--wvr-nav-li-cursor);
   ::ng-deep wvre-dropdown {
@@ -49,11 +49,11 @@ a.nav-link {
   font-weight: var(--wvr-nav-link-font-weight);
 }
 
-li.nav-item {
+[role=listitem].nav-item {
   min-width: var(--wvr-nav-li-width);
 }
 
-li.nav-item:hover {
+[role=listitem].nav-item:hover {
   background: var(--wvr-nav-link-background-hover);
   text-decoration: var(--wvr-nav-link-text-decoration-hover);
   a.nav-link {
