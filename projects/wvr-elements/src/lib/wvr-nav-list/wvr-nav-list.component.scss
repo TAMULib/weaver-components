@@ -2,20 +2,10 @@
 @import "../shared/styles/variables";
 
 :host {
-
+  
   @extend .variables;
 
   --wvr-nav-list-height: 100%;
-
-  --wvr-nav-li-cursor: pointer;
-  --wvr-nav-li-height: inherit;
-  --wvr-nav-li-width: 140px;
-  --wvr-nav-link-background-hover: var(--wvr-primary);
-  --wvr-nav-link-color-hover: var(--wvr-dark);
-  --wvr-nav-link-color: var(--wvr-blue);
-  --wvr-nav-link-font-size: inherit;
-  --wvr-nav-link-font-weight: inherit;
-  --wvr-nav-link-text-decoration-hover: none;
 }
 
 .navbar-nav {
