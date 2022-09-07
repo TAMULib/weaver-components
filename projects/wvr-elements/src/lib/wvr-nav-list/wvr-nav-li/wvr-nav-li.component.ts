@@ -46,15 +46,4 @@ export class WvrNavLiComponent extends WvrBaseComponent {
     super(injector);
   }
 
-  ngAfterViewInit(): void {
-    const list = this.eRef.nativeElement.parentNode;
-
-    Array.from(this.eRef.nativeElement.children)
-      .forEach((elem: any) => {
-        list.appendChild(elem);
-      });
-
-    list.parentNode.appendChild(this.eRef.nativeElement);
-  }
-
 }

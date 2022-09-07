@@ -35,7 +35,7 @@
       transition: transform 0.3s;
       z-index: 3;
     }
-    
+
     .skip-to-content-link:focus {
       transform: translateY(0%);
     }
@@ -62,9 +62,9 @@
     .top-nav-wrapper {
       ::ng-deep {
         wvre-nav-list[top-navigation]
-        > ul
+        > [role="list"]
         > wvre-nav-li
-        > li
+        > [role=listitem]
         > wvre-dropdown
         > .wvr-dropdown
         > .dropdown
@@ -139,13 +139,13 @@
         cursor: pointer;
       }
 
-      li {
+      [role=listitem] {
         font-weight: lighter;
         min-width: auto;
         border-bottom: none;
       }
 
-      li:hover {
+      [role=listitem]:hover {
         background: transparent;
       }
     }
