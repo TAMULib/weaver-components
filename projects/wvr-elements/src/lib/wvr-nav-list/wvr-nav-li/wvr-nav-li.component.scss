@@ -55,6 +55,7 @@ a.nav-link {
 
 [role=menuitem].nav-item:focus-within,
 [role=menuitem].nav-item:hover {
+  color: var(--wvr-nav-link-color-hover);
   background: var(--wvr-nav-link-background-hover);
   text-decoration: var(--wvr-nav-link-text-decoration-hover);
   a.nav-link {
