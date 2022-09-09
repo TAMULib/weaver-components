@@ -1,5 +1,4 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, HostBinding, HostListener, Inject, Injector, Input, ViewChild } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
 import { NgbDropdown, NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
 import { ThemeVariantName } from '../shared/theme';
 import { projectContent } from '../shared/utility/projection.utility';
@@ -221,7 +220,7 @@ export class WvrDropdownComponent extends WvrBaseComponent implements AfterViewI
 
   @Input() dropdownMenuDisplay = 'dynamic';
 
-  constructor(injector: Injector, config: NgbDropdownConfig, @Inject(DOCUMENT) private document: Document) {
+  constructor(injector: Injector, config: NgbDropdownConfig) {
     super(injector);
     config.autoClose = false;
   }
@@ -269,6 +268,7 @@ export class WvrDropdownComponent extends WvrBaseComponent implements AfterViewI
 
   /**
    * A handler method for the `mouseenter` event.
+   *
    * Opens the dropdown if `toggleOn` is set to `mouseover`.
    */
   @HostListener('mouseenter', ['$event']) hoverOpen($event: Event): void {
@@ -279,6 +279,7 @@ export class WvrDropdownComponent extends WvrBaseComponent implements AfterViewI
 
   /**
    * A handler method for the `mouseleave` event.
+   *
    * Closes the dropdown if `toggleOn` is set to `mouseover`.
    */
   @HostListener('mouseleave', ['$event']) hoverClose($event: Event): void {
@@ -289,6 +290,7 @@ export class WvrDropdownComponent extends WvrBaseComponent implements AfterViewI
 
   /**
    * A handler method for the `document:click` event.
+   *
    * Closes the dropdown if `toggleOn` is set to `click`
    * And the click occured off of the wvre-dropdown component.
    */
