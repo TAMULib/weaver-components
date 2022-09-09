@@ -28,8 +28,8 @@
       border-bottom-color: transparent;
     }
 
-    &:is([inactive-tab-theme="#{$color}"]) .nav-tabs .nav-item .nav-link:not(.active):is([inactive-tab-theme=""]):focus,
-    & .nav-tabs .nav-item .nav-link:is([inactive-tab-theme="#{$color}"]):not(.active):focus {
+    &:is([inactive-tab-theme="#{$color}"]) .nav-tabs .nav-item .nav-link:not(.active):is([inactive-tab-theme=""]):focus-within,
+    & .nav-tabs .nav-item .nav-link:is([inactive-tab-theme="#{$color}"]):not(.active):focus-within {
       border-color: var(--#{$color}-button-focus-border);
       border-bottom-color: transparent;
     }
@@ -48,13 +48,15 @@
       border-bottom-color: transparent;
     }
 
-    &:is([active-tab-theme="#{$color}"]) .nav-tabs .nav-item .nav-link.active:is([active-tab-theme=""]):focus,
-    & .nav-tabs .nav-item .nav-link.active:is([active-tab-theme="#{$color}"]):focus {
+    &:is([active-tab-theme="#{$color}"]) .nav-tabs .nav-item .nav-link.active:is([active-tab-theme=""]):focus-within,
+    & .nav-tabs .nav-item .nav-link.active:is([active-tab-theme="#{$color}"]):focus-within {
       border-color: var(--#{$color}-button-focus-border);
       border-bottom-color: transparent;
     }
 
+    &:is([active-tab-theme="#{$color}"]) .nav-tabs .nav-item .nav-link.active:is([active-tab-theme=""]):focus-within,
     &:is([active-tab-theme="#{$color}"]) .nav-tabs .nav-item .nav-link.active:is([active-tab-theme=""]):hover,
+    & .nav-tabs .nav-item .nav-link.active:is([active-tab-theme="#{$color}"]):focus-within,
     & .nav-tabs .nav-item .nav-link.active:is([active-tab-theme="#{$color}"]):hover {
       border-color: var(--#{$color}-button-hover-border);
       border-bottom-color: transparent;

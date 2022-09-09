@@ -1,4 +1,5 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, HostBinding, HostListener, Injector, Input, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, HostBinding, HostListener, Inject, Injector, Input, ViewChild } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 import { NgbDropdown, NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
 import { ThemeVariantName } from '../shared/theme';
 import { projectContent } from '../shared/utility/projection.utility';
@@ -21,8 +22,12 @@ export class WvrDropdownComponent extends WvrBaseComponent implements AfterViewI
   /** Binds the value of the animationspeed in seconds to the css variable `--wvr-dropdown-menu-animation-speed` */
   @HostBinding('style.--wvr-dropdown-menu-animation-speed') animationSpeedSeconds;
 
-  /** This establishes a delay in milliseconds before the dropdown is displayed. */
-  @Input() openDelay = 500;
+  /**
+   * This establishes a delay in milliseconds before the dropdown is displayed.
+   *
+   * Do not set this too low as there may be problems with the focusIn and click events (click event may trigger or be triggered by a focusIn).
+   */
+  @Input() openDelay = 120;
 
   private _openDelayTimer: NodeJS.Timeout;
 
@@ -105,6 +110,9 @@ export class WvrDropdownComponent extends WvrBaseComponent implements AfterViewI
 
   /** Binds the input from `menuBackground` to the css variable `--wvr-dropdown-menu-background` */
   @Input() menuThemeVariant: ThemeVariantName;
+
+  /** Allows for override of role value (such as setting role="menu"). */
+  @Input() role: string;
 
   /** Binds the input from `menu-border` to the css variable `--wvr-dropdown-menu-border` */
   @HostBinding('style.--wvr-dropdown-menu-border') @Input() menuBorder;
@@ -206,14 +214,14 @@ export class WvrDropdownComponent extends WvrBaseComponent implements AfterViewI
   open = false;
 
   /**
-   * Indicates that the dropdown is in the process of closing.
+   * A state used to represent that focus is on or within the element.
+   * Used for button navigation decisions.
    */
-  // tslint:disable-next-line: prefer-readonly
-  private closing = false;
+  focus = false;
 
   @Input() dropdownMenuDisplay = 'dynamic';
 
-  constructor(injector: Injector, config: NgbDropdownConfig) {
+  constructor(injector: Injector, config: NgbDropdownConfig, @Inject(DOCUMENT) private document: Document) {
     super(injector);
     config.autoClose = false;
   }
@@ -230,15 +238,42 @@ export class WvrDropdownComponent extends WvrBaseComponent implements AfterViewI
   }
 
   /**
+   * A handler method for the `focus` event.
+   */
+  @HostListener('focusin', ['$event']) focusIn($event: Event): void {
+    if (this.eRef.nativeElement.contains($event.target)) {
+      if (!this.focus) {
+        $event.stopPropagation();
+        $event.preventDefault();
+
+        this.giveFocus();
+      }
+    } else {
+      this.takeFocus();
+    }
+  }
+
+  /**
+   * A handler method for the `focus` event.
+   *
+   * The 'relatedTarget' may be null if the focus lost is due to the focus leaving the web browser itself rather than the element within the page.
+   * In this case, do not remove focus because the what goes on outside of the page should not affect what goes inside the page.
+   */
+  @HostListener('focusout', ['$event']) focusOut($event: Event): void {
+    if ($event['relatedTarget'] !== null) {
+      if (!this.eRef.nativeElement.contains($event['relatedTarget'])) {
+        this.takeFocus();
+      }
+    }
+  }
+
+  /**
    * A handler method for the `mouseenter` event.
    * Opens the dropdown if `toggleOn` is set to `mouseover`.
    */
   @HostListener('mouseenter', ['$event']) hoverOpen($event: Event): void {
-    if (this.toggleOn === 'mouseover' && !this.closing && !this._openDelayTimer) {
-      this._openDelayTimer = setTimeout(() => {
-        this.openDropdown();
-        this._openDelayTimer = undefined;
-      }, this.openDelay);
+    if (this.toggleOn === 'mouseover') {
+      this.giveFocus();
     }
   }
 
@@ -248,11 +283,7 @@ export class WvrDropdownComponent extends WvrBaseComponent implements AfterViewI
    */
   @HostListener('mouseleave', ['$event']) hoverClose($event: Event): void {
     if (this.toggleOn === 'mouseover') {
-      this.closeDropdown();
-    }
-    if (this._openDelayTimer) {
-      clearTimeout(this._openDelayTimer);
-      this._openDelayTimer = undefined;
+      this.takeFocus();
     }
   }
 
@@ -261,22 +292,165 @@ export class WvrDropdownComponent extends WvrBaseComponent implements AfterViewI
    * Closes the dropdown if `toggleOn` is set to `click`
    * And the click occured off of the wvre-dropdown component.
    */
-  @HostListener('document:click', ['$event']) clickout($event): void {
-    const path = $event.composedPath();
-    if (!this.eRef.nativeElement.contains(path[0])) {
-      this.closeDropdown();
+  @HostListener('document:click', ['$event']) documentClick($event: Event): void {
+    if (this.eRef.nativeElement.contains($event.target)) {
+      if (this.toggleOn === 'click') {
+        $event.stopPropagation();
+        $event.preventDefault();
+
+        if (this.isOpen()) {
+          this.takeFocus();
+        } else {
+          this.giveFocus();
+        }
+      }
+    } else {
+      this.takeFocus();
     }
   }
 
   /**
-   * A handler method for a click event fired from the template.
-   * Toggles the open state of the dropdown.
+   * A single handler method for when the any key is down while associated with the host element.
    */
-  clickOpen($event: Event): void {
-    if (this.toggleOn === 'click') {
-      this.isOpen() ? this.closeDropdown() : this.openDropdown();
+  @HostListener('keydown', ['$event']) keyDown($event): void {
+    const lowerKey = $event.key.toLowerCase();
+
+    if (lowerKey == "escape") {
+      if (this.isOpen()) {
+        const list = this.eRef.nativeElement.querySelector('.dropdown-menu > *');
+
+        $event.stopPropagation();
+        $event.preventDefault();
+
+        if (!!list && list.contains($event.target)) {
+          this.focusToToggle();
+        } else {
+          this.takeFocus();
+        }
+      }
+    }
+    else if (lowerKey == "space") {
+      const list = this.eRef.nativeElement.querySelector('.dropdown-menu > *');
+
+      if (!!list && list.contains($event.target)) {
+        // @todo
+      } else {
+        $event.stopPropagation();
+        $event.preventDefault();
+
+        if (this.isOpen()) {
+          this.takeFocus();
+        } else {
+          this.giveFocus();
+        }
+      }
+    }
+    else if (lowerKey == "arrowup" || lowerKey == "arrowdown") {
+      const list = this.eRef.nativeElement.querySelector('.dropdown-menu > *');
+
+      if (!!list) {
+        const up = lowerKey == "arrowup";
+
+        $event.stopPropagation();
+        $event.preventDefault();
+
+        if (list.contains($event.target)) {
+          let focused = list.children.length;
+
+          for (let i = 0; i < list.children.length; i++) {
+            if ($event.target == list.children[i]) {
+              focused = i;
+            }
+          }
+
+          this.focusToChild(focused, up, list);
+        }
+        else if (list.children.length > 0) {
+          const focused = up ? list.children.length - 1 : -1;
+
+          this.focusToChild(focused, up, list);
+        }
+      }
     }
   }
+
+  /** Change focus to the drop down toggle that exists outside of the drop down list. */
+  private focusToToggle() {
+    const dropdown = this.eRef.nativeElement.querySelector('.dropdown .dropdown-toggle .wvr-button');
+
+    if (!!dropdown) {
+      dropdown.focus();
+    }
+  }
+
+  /** Change focus to a non-disabled child based on the current focused position within the list. */
+  private focusToChild(focused: number, up: boolean, list: any): void {
+    if (focused == list.children.length || up && focused == 0 || !up && focused == list.children.length) {
+      this.focusToToggle();
+    } else {
+      let i = up ? focused - 1 : focused + 1;
+
+      // Select the first non-disabled child.
+      if (up) {
+        for (; i >= 0; i--) {
+          if (!list.children[i].hasAttribute('disabled')) {
+            break;
+          }
+
+          // There is no available child to move to, so set out of range.
+          if (i == 0) {
+            i = list.children.length;
+            break;
+          }
+        }
+      } else {
+        for (; i < list.children.length; i++) {
+          if (!list.children[i].hasAttribute('disabled')) {
+            break;
+          }
+        }
+      }
+
+      if (i == list.children.length) {
+        this.focusToToggle();
+      } else {
+        list.children[i].focus();
+      }
+    }
+  }
+
+  /**
+   * If focus is not set, then set focus.
+   *
+   * Does open dropdown, if it is closed and not already in the process of opening.
+   */
+  private giveFocus(): void {
+    if (!this._openDelayTimer && !this.focus) {
+      this.focus = true;
+
+      this._openDelayTimer = setTimeout(() => {
+        if (this.focus) {
+          this.openDropdown();
+          this._openDelayTimer = undefined;
+        }
+      }, this.openDelay);
+    }
+  };
+
+  /**
+   * If focus is set, then unset focus.
+   *
+   * Does close dropdown, if it is open.
+   */
+  private takeFocus(): void {
+    if (this.focus) {
+      this.focus = false;
+
+      if (this.isOpen()) {
+        this.closeDropdown();
+      }
+    }
+  };
 
   /** Handles the opening of the dropdown, and updating state. */
   private openDropdown(): void {
@@ -291,6 +465,4 @@ export class WvrDropdownComponent extends WvrBaseComponent implements AfterViewI
     this.open = false;
     this.dropdown.close();
   }
-
-  // tslint:disable-next-line:max-file-line-count
 }

@@ -1,6 +1,6 @@
 <div #WvrDropdown class="wvr-components wvr-dropdown d-inline-flex align-items-center">
   <div ngbDropdown display="{{dropdownMenuDisplay}}" class="d-inline-block">
-    <wvr-button-component (click)="clickOpen($event)"
+    <wvr-button-component
       [background]="btnBackground"
       [backgroundActive]="btnBackgroundActive"
       [backgroundHover]="btnBackgroundHover"
@@ -23,6 +23,7 @@
       [href]="btnHref"
       [lineHeight]="btnLineHeight"
       [padding]="btnPadding"
+      [role]="role"
       [textAlign]="btnTextAlign"
       [textDecoration]="btnTextDecoration"
       [textDecorationActive]="btnTextDecorationActive"
