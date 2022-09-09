@@ -218,6 +218,13 @@ export class WvrDropdownComponent extends WvrBaseComponent implements AfterViewI
    */
   focus = false;
 
+  /**
+   * Designate that a close has been requested.
+   *
+   * Used to inform that the popup should be closed while the popup is still in the process of opening up.
+   */
+  private requestClose = false;
+
   @Input() dropdownMenuDisplay = 'dynamic';
 
   constructor(injector: Injector, config: NgbDropdownConfig) {
@@ -433,16 +440,19 @@ export class WvrDropdownComponent extends WvrBaseComponent implements AfterViewI
   private giveFocus(): void {
     if (!this._openDelayTimer && !this.focus) {
       this.focus = true;
+      this.requestClose = false;
 
       this._openDelayTimer = setTimeout(() => {
         if (this.focus) {
-          if (!this.isMobileLayout) {
+          if (!this.requestClose && !this.isMobileLayout) {
             this.open = true;
             this.dropdown.open();
           }
 
           this._openDelayTimer = undefined;
         }
+
+        this.requestClose = false;
       }, this.openDelay);
     }
   };
@@ -453,7 +463,9 @@ export class WvrDropdownComponent extends WvrBaseComponent implements AfterViewI
    * Does close dropdown, if it is open.
    */
   private takeFocus(): void {
-    if (!this._openDelayTimer && this.focus) {
+    if (!!this._openDelayTimer) {
+      this.requestClose = true;
+    } else if (this.focus) {
       this.focus = false;
 
       if (this.isOpen()) {
