@@ -26,7 +26,7 @@ export class WvrDropdownComponent extends WvrBaseComponent implements AfterViewI
    *
    * Do not set this too low as there may be problems with the focusIn and click events (click event may trigger or be triggered by a focusIn).
    */
-  @Input() openDelay = 120;
+  @Input() openDelay = 150;
 
   private _openDelayTimer: NodeJS.Timeout;
 
@@ -289,12 +289,16 @@ export class WvrDropdownComponent extends WvrBaseComponent implements AfterViewI
   }
 
   /**
-   * A handler method for the `document:click` event.
+   * A handler method for the `document:mousedown` event.
    *
    * Closes the dropdown if `toggleOn` is set to `click`
    * And the click occured off of the wvre-dropdown component.
+   *
+   * The 'mousedown' is used instead of 'click' to avoid bubbling problems.
+   * The 'click' does not happen before 'focusin' and there is a race condition between the two.
+   * When 'mousedown' is used, it happens before 'focusin' and the bubbling can be blocked to avoid a race condition.
    */
-  @HostListener('document:click', ['$event']) documentClick($event: Event): void {
+  @HostListener('document:mousedown', ['$event']) documentClick($event: Event): void {
     if (this.eRef.nativeElement.contains($event.target)) {
       if (this.toggleOn === 'click') {
         $event.stopPropagation();
@@ -432,7 +436,11 @@ export class WvrDropdownComponent extends WvrBaseComponent implements AfterViewI
 
       this._openDelayTimer = setTimeout(() => {
         if (this.focus) {
-          this.openDropdown();
+          if (!this.isMobileLayout) {
+            this.open = true;
+            this.dropdown.open();
+          }
+
           this._openDelayTimer = undefined;
         }
       }, this.openDelay);
@@ -445,26 +453,13 @@ export class WvrDropdownComponent extends WvrBaseComponent implements AfterViewI
    * Does close dropdown, if it is open.
    */
   private takeFocus(): void {
-    if (this.focus) {
+    if (!this._openDelayTimer && this.focus) {
       this.focus = false;
 
       if (this.isOpen()) {
-        this.closeDropdown();
+        this.open = false;
+        this.dropdown.close();
       }
     }
   };
-
-  /** Handles the opening of the dropdown, and updating state. */
-  private openDropdown(): void {
-    if (!this.isMobileLayout) {
-      this.open = true;
-      this.dropdown.open();
-    }
-  }
-
-  /** Handles the closing of the dropdown, and updating state. */
-  private closeDropdown(): void {
-    this.open = false;
-    this.dropdown.close();
-  }
 }
