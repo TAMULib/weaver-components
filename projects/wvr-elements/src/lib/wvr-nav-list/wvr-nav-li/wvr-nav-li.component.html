@@ -1,10 +1,10 @@
-<div *ngIf="href" class="nav-item d-flex align-items-center justify-content-center" role="listitem">
+<div *ngIf="href" class="nav-item d-flex align-items-center justify-content-center" role="menuitem">
   <a class="nav-link" [href]="href">
     <ng-container *ngTemplateOutlet="contentProjection"></ng-container>
   </a>
 </div>
 
-<div *ngIf="!href" class="nav-item d-flex align-items-center justify-content-center" role="listitem">
+<div *ngIf="!href" class="nav-item d-flex align-items-center justify-content-center" role="menuitem">
   <ng-container *ngTemplateOutlet="contentProjection"></ng-container>
 </div>
 

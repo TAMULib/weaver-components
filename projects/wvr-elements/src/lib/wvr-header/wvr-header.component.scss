@@ -42,6 +42,7 @@
 
   .container {
     height: 100%;
+    a:focus-within,
     a:hover {
       text-decoration: none;
       cursor: pointer;
@@ -62,9 +63,9 @@
     .top-nav-wrapper {
       ::ng-deep {
         wvre-nav-list[top-navigation]
-        > [role="list"]
+        > [role=menu]
         > wvre-nav-li
-        > [role=listitem]
+        > [role=menuitem]
         > wvre-dropdown
         > .wvr-dropdown
         > .dropdown
@@ -98,6 +99,7 @@
       display: block;
     }
 
+    .mobile-menu-button:focus-within,
     .mobile-menu-button:hover {
       cursor: pointer;
     }
@@ -135,17 +137,19 @@
       width: 100%;
       padding: 12px 10px;
 
+      .mobile-menu-close:focus-within,
       .mobile-menu-close:hover {
         cursor: pointer;
       }
 
-      [role=listitem] {
+      [role=menuitem] {
         font-weight: lighter;
         min-width: auto;
         border-bottom: none;
       }
 
-      [role=listitem]:hover {
+      [role=menuitem]:focus-within,
+      [role=menuitem]:hover {
         background: transparent;
       }
     }
