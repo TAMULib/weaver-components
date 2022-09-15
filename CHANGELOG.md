@@ -1,14 +1,18 @@
 # Changelog
 
-## [2.0.1] - 11-15-21
+## [2.0.1] - 09-15-22
 ### Resolves
 
-- Local npm via Verdaccio and SASS Migrator. by @kaladay in (#472)
-- The mobile menu slide out tray continues to allow links to be clicked on when closed. by @kaladay in (#474)
-- Avoid replaceChild() and restructure projection function. by @kaladay in (#479)
-- Collapsible Card is not completely collapsible. by @kaladay in (#483)
-- Directory UI - bottom-nav items (left most) is seen to have shifted left. by @kaladay in (#482)
-- Add in-code documentation for the README.md. by @kaladay in (#484)
+- Local npm via Verdaccio and SASS Migrator. (#472)
+- The mobile menu slide out tray continues to allow links to be clicked on when closed. (#474)
+- Avoid replaceChild() and restructure projection function. (#479)
+- Collapsible Card is not completely collapsible. (#483)
+- Directory UI - bottom-nav items (left most) is seen to have shifted left. (#482)
+- Add in-code documentation for the README.md. (#484)
+- Build components with Node 16 or greater. (TAMULib/tamu-library-components#429)
+- Update deprecated karma coverage package. (#306)
+- ADA - Buttons missing label and expand/collapse notification. (TAMULib/tamu-library-components#423)
+- Issue 4: Focus indicator missing. (TAMULib/tamu-library-components#425)
 
 ## [2.0.0] - 10-29-21
 ### Resolves
