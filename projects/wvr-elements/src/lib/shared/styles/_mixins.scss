@@ -46,13 +46,14 @@
   border-color: $border;
   @include box-shadow($btn-box-shadow);
 
-  @include hover {
+  @include hover-focus {
     color: $hover-color;
     @include gradient-bg($hover-background);
     border-color: $hover-border;
   }
 
   &:focus,
+  &:focus-within,
   &.focus {
     color: $hover-color;
     background-color: $hover-background;
@@ -86,7 +87,8 @@
     }
     border-color: $active-border;
 
-    &:focus {
+    &:focus,
+    &:focus-within {
       // Avoid using mixin so we can pass custom focus shadow properly
       @if $enable-shadows {
         box-shadow: $btn-active-box-shadow, 0 0 0 $btn-focus-width $box-shadow-color;
@@ -101,7 +103,7 @@
   color: $color;
   border-color: $color;
 
-  @include hover {
+  @include hover-focus {
     color: $color-hover;
     background-color: $active-background;
     border-color: $active-border;
@@ -183,7 +185,7 @@
   .table-hover {
 
     .table-#{$state} {
-      @include hover {
+      @include hover-focus {
         background-color: $background;
         -webkit-filter: brightness(95%) !important;
         filter: brightness(95%);

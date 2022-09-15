@@ -1,4 +1,4 @@
-FROM node:12.14-slim as npm
+FROM node:16-slim as npm
 
 COPY package.json ./
 

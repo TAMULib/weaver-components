@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, HostBinding, Injector, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, HostListener, Injector, Input, OnInit } from '@angular/core';
 import { ThemeVariantName } from '../shared/theme';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
@@ -62,6 +62,26 @@ export class WvrCardComponent extends WvrBaseComponent implements OnInit {
   ngOnInit(): void {
     super.ngOnInit();
     this._collapsed = !!this.startCollapsed ? 'true' : 'false';
+  }
+
+  /**
+   * A handler method for when the enter key is down.
+   */
+  @HostListener('keydown.enter', ['$event']) enterKeyDown($event: Event): void {
+    $event.stopPropagation();
+    $event.preventDefault();
+
+    this.toggleCollapsibleClick();
+  }
+
+  /**
+   * A handler method for when the space key is down.
+   */
+  @HostListener('keydown.space', ['$event']) spaceKeyDown($event: Event): void {
+    $event.stopPropagation();
+    $event.preventDefault();
+
+    this.toggleCollapsibleClick();
   }
 
   /**

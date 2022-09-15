@@ -24,8 +24,25 @@
     font-family: var(--wvr-font-family-sans-serif);
   }
 
+    // Skip Navigation
+    .skip-to-content-link {
+      background: var(--primary);
+      color: var(--white);
+      height: 30px;
+      padding: 8px;
+      position: absolute;
+      transform: translateY(-100%);
+      transition: transform 0.3s;
+      z-index: 3;
+    }
+
+    .skip-to-content-link:focus {
+      transform: translateY(0%);
+    }
+
   .container {
     height: 100%;
+    a:focus-within,
     a:hover {
       text-decoration: none;
       cursor: pointer;
@@ -46,9 +63,9 @@
     .top-nav-wrapper {
       ::ng-deep {
         wvre-nav-list[top-navigation]
-        > ul
+        > [role=menu]
         > wvre-nav-li
-        > li
+        > [role=menuitem]
         > wvre-dropdown
         > .wvr-dropdown
         > .dropdown
@@ -82,6 +99,7 @@
       display: block;
     }
 
+    .mobile-menu-button:focus-within,
     .mobile-menu-button:hover {
       cursor: pointer;
     }
@@ -119,17 +137,19 @@
       width: 100%;
       padding: 12px 10px;
 
+      .mobile-menu-close:focus-within,
       .mobile-menu-close:hover {
         cursor: pointer;
       }
 
-      li {
+      [role=menuitem] {
         font-weight: lighter;
         min-width: auto;
         border-bottom: none;
       }
 
-      li:hover {
+      [role=menuitem]:focus-within,
+      [role=menuitem]:hover {
         background: transparent;
       }
     }

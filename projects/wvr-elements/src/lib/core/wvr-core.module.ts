@@ -50,7 +50,7 @@ export const WVR_ELEMENTS: Array<WvrElementDesc> = [
   { component: WvrColorPreviewComponent, selector: 'wvre-color-preview', lazy: true },
   { component: WvrDropdownComponent, selector: 'wvre-dropdown', lazy: true },
   { component: WvrFooterComponent, selector: 'wvre-footer', lazy: true },
-  { component: WvrHeaderComponent, selector: 'wvre-header', lazy: true },
+  { component: WvrHeaderComponent, selector: 'wvre-header', lazy: false },
   { component: WvrIconComponent, selector: 'wvre-icon', lazy: true },
   { component: WvrItWorksComponent, selector: 'wvre-it-works', lazy: true },
   { component: WvrListComponent, selector: 'wvre-list', lazy: true },
