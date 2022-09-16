@@ -301,24 +301,31 @@ export class WvrDropdownComponent extends WvrBaseComponent implements AfterViewI
    * Closes the dropdown if `toggleOn` is set to `click`
    * And the click occured off of the wvre-dropdown component.
    *
+   * The event.button == 0 is the left click or the un-initialized state.
+   *
    * The 'mousedown' is used instead of 'click' to avoid bubbling problems.
    * The 'click' does not happen before 'focusin' and there is a race condition between the two.
    * When 'mousedown' is used, it happens before 'focusin' and the bubbling can be blocked to avoid a race condition.
    */
-  @HostListener('document:mousedown', ['$event']) documentClick($event: Event): void {
-    if (this.eRef.nativeElement.contains($event.target)) {
-      if (this.toggleOn === 'click') {
-        $event.stopPropagation();
-        $event.preventDefault();
+  @HostListener('document:mousedown', ['$event']) documentClick($event: MouseEvent): void {
+    if ($event.button == 0) {
+      const dropDownButton = this.eRef.nativeElement.querySelector(".wvr-dropdown > div > wvr-button-component");
+      if (!!dropDownButton && !!dropDownButton.nativeElement && !!$event.target) {
+        if (dropDownButton.nativeElement.contains($event.target)) {
+          if (this.toggleOn === 'click') {
+            $event.stopPropagation();
+            $event.preventDefault();
 
-        if (this.isOpen()) {
-          this.takeFocus();
+            if (this.isOpen()) {
+              this.takeFocus();
+            } else {
+              this.giveFocus();
+            }
+          }
         } else {
-          this.giveFocus();
+          this.takeFocus();
         }
       }
-    } else {
-      this.takeFocus();
     }
   }
 
