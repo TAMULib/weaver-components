@@ -1,5 +1,10 @@
 # Changelog
 
+## [2.0.2] - 09-19-22
+### Resolves
+
+- Normal mouse clicks do not work for certain designs with drop-down menus following the 2.0.1 release.
+
 ## [2.0.1] - 09-15-22
 ### Resolves
 
