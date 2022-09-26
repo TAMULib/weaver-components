@@ -62,3 +62,8 @@ src/assets/tinymce/
 
 .wvr-ud/static-assets/styles.css
 .verdaccio
+
+docs/
+static/
+development/
+.lighthouseci/
