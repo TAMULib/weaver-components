@@ -50,7 +50,7 @@
     "start:dist": "node scripts/build-wvr-components-style.js && node scripts/build-wvr-components-configuration.js defaults-dist-overrides.env && node scripts/serve-dist.js",
     "start:static": "node scripts/build-wvr-components-style.js && node scripts/build-wvr-components-configuration.js defaults-static-overrides.env && static-server static -p 8081",
     "start:docker": "node scripts/build-wvr-components-style.js && node scripts/start-docker.js",
-    "start:npm-local": "verdaccio --listen localhost:4873 --config ./verdaccio-config.yaml",
+    "start:registry": "verdaccio --config ./verdaccio-config.yaml",
     "test": "npm run test:unit && npm run test:e2e",
     "test:audit": "rimraf .lighthouseci && lhci autorun --upload.target=temporary-public-storage --config=./lighthouserc.json && node scripts/build-wvr-components-lighthouse-badges.js",
     "test:e2e": "ng e2e",
@@ -149,7 +149,7 @@
     "static-server": "^2.2.1",
     "ts-node": "~10.2.1",
     "typescript": "~4.3.5",
-    "verdaccio": "^5.14.0"
+    "verdaccio": "^5.15.3"
   },
   "overrides": {
     "@types/eslint": "^6.1.3"
