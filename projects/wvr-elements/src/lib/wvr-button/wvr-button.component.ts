@@ -180,10 +180,7 @@ export class WvrButtonComponent extends WvrBaseComponent implements AfterViewIni
   // tslint:disable-next-line:prefer-function-over-method
   private parseActionNameAndType(nameAndType: string): any {
     const parts = nameAndType.split('.');
-    let valid = true;
-
-    valid = parts.length === 2;
-    if (!valid) {
+    if (parts.length !== 2) {
       console.warn(`'${nameAndType}' is not a valid value for 'dispatch-action'. Must in form '[ActionType].[ActionName]'`);
 
       return;
@@ -191,30 +188,24 @@ export class WvrButtonComponent extends WvrBaseComponent implements AfterViewIni
 
     const registeredActions = this.actionRegistry.getActions(parts[0]);
 
-    if (!registeredActions || !parts[1] || !registeredActions[parts[1]]) {
-      console.warn('something went wrong parsing the action input.');
+    if (!registeredActions) {
+      console.warn(`No registered actions were found for '${nameAndType}'.`);
 
       return;
     }
 
-    if (registeredActions && registeredActions[parts[0]]) {
-      valid = !!registeredActions;
-      if (!valid) {
-        const types = Object.keys(registeredActions)
-          .join(',');
-        console.warn(`'${parts[0]}' is not a known action type. (${types})`);
-      }
+    if (!parts[0] || !registeredActions[parts[0]]) {
+      const types = Object.keys(registeredActions)
+        .join(',');
+      console.warn(`'${parts[0]}' is not a known action type (${types}).`);
 
       return;
     }
 
-    if (registeredActions && registeredActions[parts[0]]) {
-      valid = !!registeredActions[parts[1]];
-      if (!valid) {
-        const actions = Object.keys(registeredActions[parts[0]])
-          .join(',');
-        console.warn(`'${parts[1]}' is not a known action of ${parts[0]}. (${actions})`);
-      }
+    if (!parts[1] || !registeredActions[parts[1]]) {
+      const actions = Object.keys(registeredActions[parts[0]])
+        .join(',');
+      console.warn(`'${parts[1]}' is not a known action of ${parts[0]} (${actions}).`);
 
       return;
     }
