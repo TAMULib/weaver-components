@@ -22,8 +22,8 @@
   }
   
   .stick-to-bottom {
-    position: fixed;
-    bottom: 0;
+    top: 100vh;
+    position: sticky;
   }
 
 }

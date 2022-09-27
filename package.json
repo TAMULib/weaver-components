@@ -12,7 +12,7 @@
     "npm": ">=8.0.0"
   },
   "config": {
-    "DOCKER_SERVER": ""
+    "DOCKER_SERVER": "harbor.library.tamu.edu/weaver/wvr-components"
   },
   "scripts": {
     "postinstall": "node scripts/post-install.js",
