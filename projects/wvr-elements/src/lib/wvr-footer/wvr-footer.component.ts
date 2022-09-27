@@ -1,5 +1,4 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, HostBinding, HostListener, Injector, Input, OnInit } from '@angular/core';
-import { ResizeSensor } from 'css-element-queries';
+import { ChangeDetectionStrategy, Component, HostBinding, Injector, Input } from '@angular/core';
 import { projectContent } from '../shared/utility/projection.utility';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
@@ -12,7 +11,7 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
   styleUrls: ['./wvr-footer.component.scss'],
   changeDetection: ChangeDetectionStrategy.Default
 })
-export class WvrFooterComponent extends WvrBaseComponent implements OnInit, AfterViewInit {
+export class WvrFooterComponent extends WvrBaseComponent {
 
   @HostBinding('style.--footer-color') get cardBodyColor(): string {
     return this.themeVariant ? `var(--${this.themeVariant}-button-color)` : 'var(--light-button-color)';
@@ -33,7 +32,6 @@ export class WvrFooterComponent extends WvrBaseComponent implements OnInit, Afte
     super(injector);
     this.themeVariant = 'light';
   }
-
 
   /** Called after the view has been intialized. Handles the rendering of the projected content. */
   ngAfterViewInit(): void {
