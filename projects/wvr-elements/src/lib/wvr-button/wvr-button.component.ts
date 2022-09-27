@@ -194,16 +194,8 @@ export class WvrButtonComponent extends WvrBaseComponent implements AfterViewIni
       return;
     }
 
-    if (!parts[0] || !registeredActions[parts[0]]) {
-      const types = Object.keys(registeredActions)
-        .join(',');
-      console.warn(`'${parts[0]}' is not a known action type (${types}).`);
-
-      return;
-    }
-
     if (!parts[1] || !registeredActions[parts[1]]) {
-      const actions = Object.keys(registeredActions[parts[0]])
+      const actions = Object.keys(registeredActions)
         .join(',');
       console.warn(`'${parts[1]}' is not a known action of ${parts[0]} (${actions}).`);
 
