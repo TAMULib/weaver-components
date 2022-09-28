@@ -54,6 +54,10 @@
                 {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.prod.ts"
+                },
+                {
+                  "replace": "projects/wvr-elements/src/lib/core/devtools/instrument.ts",
+                  "with": "projects/wvr-elements/src/lib/core/devtools/instrument.prod.ts"
                 }
               ],
               "buildOptimizer": true,

@@ -6,7 +6,7 @@ import { WvrBaseComponent } from '../shared/wvr-base.component';
 import { ThemeVariantName } from '../shared/theme';
 
 /**
- * The Weaver Text Component allows for a node based textual entry. This will support i18n in the future.
+ * The Weaver Text Component allows for a node based textual entry.
  */
 @Component({
   selector: 'wvr-text-component',

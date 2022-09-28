@@ -4,7 +4,7 @@ import { CUSTOM_ELEMENTS_SCHEMA, Injector, NgModule, Optional, SkipSelf } from '
 import { createCustomElement } from '@angular/elements';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { storeDevtoolsInstrument } from './devtools/instrument';
 import { WvrElementDesc } from '../shared/utility/bootstrap.utility';
 import { WvrAlertComponent } from '../wvr-alert/wvr-alert.component';
 import { WvrButtonComponent } from '../wvr-button/wvr-button.component';
@@ -96,7 +96,7 @@ const MODULES: Array<any> = [
   ]),
   HttpClientModule,
   StoreModule.forRoot(ROOT_REDUCER, { metaReducers }),
-  StoreDevtoolsModule.instrument()
+  ...storeDevtoolsInstrument
 ];
 
 const PROVIDERS = [

@@ -1,7 +1,16 @@
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+
+// Excluse devtools from production as per https://ngrx.io/guide/store-devtools/recipes/exclude .
+export const storeDevtoolsInstrument = [
+  StoreDevtoolsModule.instrument({
+    maxAge: 25, // retains last 25 states
+    logOnly: true // restrict extension to log-only mode
+  })
+];
+
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
-
 export const environment = {
   production: false
 };
