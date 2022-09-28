@@ -5,7 +5,6 @@ import { createCustomElement } from '@angular/elements';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { InlineSVGModule } from 'ng-inline-svg';
 import { WvrElementDesc } from '../shared/utility/bootstrap.utility';
 import { WvrAlertComponent } from '../wvr-alert/wvr-alert.component';
 import { WvrButtonComponent } from '../wvr-button/wvr-button.component';
@@ -96,10 +95,6 @@ const MODULES: Array<any> = [
     WysiwygEffects
   ]),
   HttpClientModule,
-  InlineSVGModule.forRoot({
-    clientOnly: true,
-    bypassHttpClientInterceptorChain: true
-  }),
   StoreModule.forRoot(ROOT_REDUCER, { metaReducers }),
   StoreDevtoolsModule.instrument()
 ];
