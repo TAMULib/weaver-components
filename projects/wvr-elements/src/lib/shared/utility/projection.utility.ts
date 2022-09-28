@@ -39,11 +39,7 @@ const preserveContent = (elementRef: ElementRef, templateSelector: string, targe
     Array.from(element.children)
       .filter((elem: Element) => elem.nodeName !== 'TEMPLATE')
       .forEach((elem: Element) => {
-        if (template.children.length) {
-          template.replaceChild(elem, template.children[0]);
-        } else {
-          template.appendChild(elem);
-        }
+        template.appendChild(elem);
       });
   }
 };
