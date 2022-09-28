@@ -1,6 +1,4 @@
 // This file is required by karma.conf.js and loads recursively all the .spec and framework files
-// tslint:disable-next-line:no-import-side-effect
-import '@angular/localize/init';
 /* tslint:disable: no-import-side-effect */
 import 'zone.js';
 import 'zone.js/testing';

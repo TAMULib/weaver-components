@@ -10,10 +10,8 @@
       "@ngrx/store-devtools": "storeDevtools",
       "@ng-bootstrap/ng-bootstrap": "ngBootstrap",
       "@tinymce/tinymce-angular": "tinymceAngular",
-      "css-element-queries": "cssElementQueries",
       "handlebars/dist/cjs/handlebars": "Handlebars",
       "json5": "JSON5",
-      "ng-inline-svg": "ngInlineSvg",
       "tinymce": "tinymce"
     }
   },

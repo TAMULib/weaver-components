@@ -1,6 +1,6 @@
 import { Injector, NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { storeDevtoolsInstrument } from '../environments/environment';
 import { TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
 import { AppConfig, APP_CONFIG, registerWeaverElements, WvrCoreModule, WvrSharedModule, WVR_ELEMENTS } from '../../projects/wvr-elements/src/public-api';
 
@@ -9,10 +9,7 @@ const getTinyMCEScript = (appConfig: AppConfig): string => `${appConfig.assetsUr
 @NgModule({
   imports: [
     BrowserAnimationsModule,
-    StoreDevtoolsModule.instrument({
-      maxAge: 25, // retains last 25 states
-      logOnly: true // restrict extension to log-only mode
-    }),
+    ...storeDevtoolsInstrument,
     WvrCoreModule,
     WvrSharedModule
   ],
