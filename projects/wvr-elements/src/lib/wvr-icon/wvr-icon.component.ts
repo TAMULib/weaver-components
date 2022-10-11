@@ -1,4 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, HostBinding, Injector, Input, OnInit } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { WvrBaseComponent } from '../shared/wvr-base.component';
 
 /**
@@ -24,15 +28,18 @@ export class WvrIconComponent extends WvrBaseComponent implements OnInit {
   /** An attribute input bound to the css variable `--wvr-icon-size`.  */
   @HostBinding('style.--wvr-icon-size') @Input() size = '24px';
 
-  iconSvgUrl: string;
+  iconSvg: Observable<SafeHtml>;
 
-  constructor(injector: Injector) {
+  constructor(injector: Injector, private readonly http: HttpClient, protected readonly sanitizer: DomSanitizer) {
     super(injector);
   }
 
   ngOnInit(): void {
     super.ngOnInit();
-    this.iconSvgUrl = `${this.appConfig.assetsUrl}/icons/${this.set}/${this.name}.svg`;
+    const iconSvgUrl = `${this.appConfig.assetsUrl}/icons/${this.set}/${this.name}.svg`;
+    this.iconSvg = this.http.get(iconSvgUrl, {
+      responseType: 'text'
+    }).pipe(map((svg: string) => this.sanitizer.bypassSecurityTrustHtml(svg)));
   }
 
 }

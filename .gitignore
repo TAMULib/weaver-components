@@ -1,57 +1,58 @@
-# See http://help.github.com/ignore-files/ for more about ignoring files.
+### Git ###
+!.gitkeep
 
-# compiled output
-/dist
-/tmp
-/out-tsc
-# Only exists if Bazel was run
-/bazel-out
 
-# dependencies
-node_modules
-
-# profiling files
-chrome-profiler-events*.json
-speed-measure-plugin*.json
-
-# IDEs and editors
-/.idea
-.project
+### STS ###
+.apt_generated
 .classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
 
-# IDE - VSCode
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-.history/*
 
-# misc
-/.sass-cache
-/connect.lock
-/coverage
-/libpeerconnection.log
-npm-debug.log
-yarn-error.log
-testem.log
-/typings
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
 
-# System Files
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+
+/.nb-gradle/
+
+
+### VS Code ###
+.vscode/
+
+dump.rdb
+
+
+### OS Specific ###
 .DS_Store
-Thumbs.db
+.tmp/
 
+tmp/
+
+
+### Node / NPM ###
 coverage/
-docs/
-static/
-development/
-.lighthouseci/
+logs/
+node_modules/
+
+.npmrc
+
+npm-debug.log
 package-lock.json
-yarn.lock
+
+
+### Project Specific ###
 src/config.json
 src/config-template.json
 src/assets/icons/*
@@ -60,5 +61,9 @@ src/assets/tinymce/
 !src/assets/icons/feather/chevron-right.svg
 
 .wvr-ud/static-assets/styles.css
-
 .verdaccio
+
+docs/
+static/
+development/
+.lighthouseci/

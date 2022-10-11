@@ -1,8 +1,6 @@
-@import "../shared/styles/wvr-variables.scss";
 @import "../shared/styles/variables";
 
 :host {
-  
   @extend .variables;
 
   --footer-height: var(--wvr-navbar-height);
@@ -15,15 +13,12 @@
     font-family: var(--wvr-font-family-sans-serif);
     height: var(--footer-height);
     padding: var(--footer-padding);
-  }
-  
-  .container, .navbar {
-    height: 100%;
-  }
-  
-  .stick-to-bottom {
-    position: fixed;
-    bottom: 0;
+    top: 100vh;
+    position: sticky;
   }
 
+  .container,
+  .navbar {
+    height: 100%;
+  }
 }

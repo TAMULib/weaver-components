@@ -3,7 +3,6 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbDropdownModule, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { EditorModule } from '@tinymce/tinymce-angular';
-import { InlineSVGModule } from 'ng-inline-svg';
 import { WvrAlertComponent } from '../wvr-alert/wvr-alert.component';
 import { WvrButtonComponent } from '../wvr-button/wvr-button.component';
 import { WvrCardComponent } from '../wvr-card/wvr-card.component';
@@ -66,7 +65,6 @@ const MODULES = [
   CommonModule,
   EditorModule,
   FormsModule,
-  InlineSVGModule,
   NgbDropdownModule,
   NgbModalModule,
   ReactiveFormsModule

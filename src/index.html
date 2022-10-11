@@ -3,6 +3,8 @@
 
 <head>
   <title>Weaver Components</title>
+  <meta name="description" content="Custom Web Components for the Weaver UI">
+  <meta name="keywords" content="Angular, Web Components, Custom Browser Elements">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
   <style>
@@ -1061,13 +1063,13 @@
     </template>
   </wvre-footer>
 
-  <wvre-manifest name="Directory App" base-url="https://api-dev.library.tamu.edu/directory-service" mapping-strategy="weaver">
+  <wvre-manifest name="Directory App" base-url="https://api-dev.library.tamu.edu/directory" mapping-strategy="weaver">
     <wvre-manifest-entry name="All Sorted" path="/ldap/all-sorted" methods="GET"></wvre-manifest-entry>
     <wvre-manifest-entry name="Departments" path="/ldap/departments" methods="GET" mapping-strategy="none"></wvre-manifest-entry>
   </wvre-manifest>
 
-  <!-- This script section is to demonstrate receiving a weaver message message. -->
-  <!--<wvre-message-manifest name="My Library Time" broker-url="https://api-dev.library.tamu.edu/mylibrary/connect" mapping-strategy="weaver" protocol="WEB_SOCKET">
+  <!-- This script section is to demonstrate receiving a weaver message text. -->
+  <!--<wvre-message-manifest name="My Library Time" broker-url="https://api-dev.library.tamu.edu/mylibrary/3x/connect" mapping-strategy="weaver" protocol="WEB_SOCKET">
     <wvre-message-manifest-entry name="time" destination="/channel/time"></wvre-message-manifest-entry>
   </wvre-message-manifest>-->
 

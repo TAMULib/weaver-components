@@ -1,22 +1,31 @@
-# Look here for more config file examples:
-# https://github.com/verdaccio/verdaccio/tree/master/conf
+# https://verdaccio.org/docs/configuration/
 
-# path to a directory with all packages
+# Path to a directory with all packages.
 storage: .verdaccio/storage
-# path to a directory with plugins to include
+
+# Path to a directory with plugins to include.
 plugins: .verdaccio/plugins
 
 web:
-  title: Verdaccio - Weaver Components
+  title: Verdaccio - Weaver - Localhost
 
-# a list of other known repositories we can talk to
+  # Disable login requirement for localhost.
+  login: false
+
+# List of other known repositories to use.
 uplinks:
   npmjs:
     url: https://registry.npmjs.org/
+    cache: true
+
+    # Set max cache age to 40 days.
+    maxage: 40d
+
+listen: 0.0.0.0:4873
 
 packages:
   '@wvr/*':
-    # and three keywords: "$all", "$anonymous", "$authenticated"
+    # Choices: "$all", "$anonymous", "$authenticated".
     access: $all
     publish: $all
     unpublish: $all
@@ -24,11 +33,25 @@ packages:
   '**':
     access: $all
 
-    # if package is not available locally, proxy requests to 'npmjs' registry
+    # Proxy non-local packages to 'npmjs' registry.
     proxy: npmjs
+
+# Allow for publishing while offline.
+publish:
+  allow_offline: true
 
 server:
   keepAliveTimeout: 60
+
+security:
+  api:
+    jwt:
+      sign:
+        expiresIn: 15d
+        notBefore: 0
+  web:
+    sign:
+      expiresIn: 1h
 
 middlewares:
   audit:
