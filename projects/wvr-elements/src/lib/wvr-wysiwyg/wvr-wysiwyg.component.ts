@@ -63,7 +63,8 @@ export class WvrWysiwygComponent extends WvrBaseComponent implements OnInit, OnD
     },
     save_onsavecallback: $event => {
       this.onSave($event);
-    }
+    },
+    promotion: false
   };
 
   htmlId = `wvr-wysiwyg-${this.id}`;
