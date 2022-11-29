@@ -62,7 +62,11 @@
   },
   "dependencies": {
     "@angular/animations": "12.2.16",
+    "@angular/common": "12.2.16",
+    "@angular/compiler": "12.2.16",
     "@angular/elements": "12.2.16",
+    "@angular/forms": "12.2.16",
+    "@angular/localize": "12.2.16",
     "@angular/platform-browser-dynamic": "12.2.16",
     "@ng-bootstrap/ng-bootstrap": "10.0.0",
     "@ngrx/effects": "12.5.1",
@@ -76,10 +80,11 @@
     "tinymce": "6.2.0"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "12.2.18",
+    "@angular-devkit/build-angular": "12.2.16",
     "@angular-eslint/eslint-plugin": "14.1.2",
     "@angular-eslint/eslint-plugin-template": "14.1.2",
     "@angular/cli": "12.2.16",
+    "@angular/compiler-cli": "12.2.16",
     "@compodoc/compodoc": "1.1.19",
     "@lhci/cli": "0.9.0",
     "@ngrx/schematics": "12.5.1",
