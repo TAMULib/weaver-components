@@ -61,9 +61,9 @@
     "test:ci": "npm run test:audit && npm run test:coverage"
   },
   "dependencies": {
-    "@angular/animations": "12.2.16",
-    "@angular/elements": "12.2.16",
-    "@angular/platform-browser-dynamic": "12.2.16",
+    "@angular/animations": "^12.2.16",
+    "@angular/elements": "^12.2.16",
+    "@angular/platform-browser-dynamic": "^12.2.16",
     "@ng-bootstrap/ng-bootstrap": "10.0.0",
     "@ngrx/effects": "12.5.1",
     "@ngrx/entity": "12.5.1",
@@ -76,7 +76,7 @@
     "tinymce": "6.2.0"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "12.2.18",
+    "@angular-devkit/build-angular": "^12.2.16",
     "@angular-eslint/eslint-plugin": "14.1.2",
     "@angular-eslint/eslint-plugin-template": "14.1.2",
     "@angular/cli": "12.2.16",
