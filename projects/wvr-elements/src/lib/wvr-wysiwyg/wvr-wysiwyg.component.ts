@@ -49,15 +49,15 @@ export class WvrWysiwygComponent extends WvrBaseComponent implements OnInit, OnD
     base_url: 'tinymce',
     skin: 'oxide',
     plugins: [
-      "advlist", "autolink", "lists", "link", "image", "charmap",
+      "advlist", "autolink", "lists", "link", "image", "charmap", "print",
       "preview", "anchor", "searchreplace", "visualblocks", "code",
-      "fullscreen", "insertdatetime", "media", "table",
-      "help", "wordcount", "preview", "save"
+      "fullscreen", "insertdatetime", "media", "table", "paste",
+      "help", "wordcount", "print", "preview", "save"
     ],
-    toolbar: 'undo redo | formatselect | bold italic forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table pagebreak | charmap codesample image | removeformat | help | cancel save',
+    toolbar: 'undo redo | print formatselect | bold italic forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table pagebreak | charmap codesample image | removeformat | help | cancel save',
     menu: (wvrEditor as any).default,
     height: '300',
-    /* TODO: Issue #316. */
+
     save_oncancelcallback: $event => {
       this.onReset($event);
     },
