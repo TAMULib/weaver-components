@@ -1,0 +1,170 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>weaver-components documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+	   <link rel="stylesheet" href="./styles/style.css">
+        <link rel="stylesheet" href="./styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="./" class="navbar-brand">weaver-components documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content getting-started">
+                   <div class="content-data">
+
+<p><a href="https://github.com/TAMULib/weaver-components/actions?query=workflow%3ABuild"><img src="https://github.com/TAMULib/weaver-components/workflows/Build/badge.svg" alt="Build Status" class="img-responsive"></a>
+<a href="https://coveralls.io/github/TAMULib/weaver-components?branch=master"><img src="https://coveralls.io/repos/github/TAMULib/weaver-components/badge.svg?branch=master" alt="Coverage Status" class="img-responsive"></a> <a href="https://tamulib.github.io/weaver-components/docs/development/coverage.html"><img src="https://tamulib.github.io/weaver-components/docs/development/images/coverage-badge-documentation.svg" alt="Compodoc Coverage" class="img-responsive"></a>
+<a href="https://tamulib.github.io/weaver-components/reports/audit/#performance"><img src="https://tamulib.github.io/weaver-components/reports/audit/assets/performance.svg" alt="Performance" class="img-responsive"></a>
+<a href="https://tamulib.github.io/weaver-components/reports/audit/#accessibility"><img src="https://tamulib.github.io/weaver-components/reports/audit/assets/accessibility.svg" alt="Accessibility" class="img-responsive"></a>
+<a href="https://tamulib.github.io/weaver-components/reports/audit/#best-practices"><img src="https://tamulib.github.io/weaver-components/reports/audit/assets/best-practices.svg" alt="Best Practices" class="img-responsive"></a>
+<a href="https://tamulib.github.io/weaver-components/reports/audit/#seo"><img src="https://tamulib.github.io/weaver-components/reports/audit/assets/seo.svg" alt="SEO" class="img-responsive"></a>
+<a href="https://tamulib.github.io/weaver-components/reports/audit/#pwa"><img src="https://tamulib.github.io/weaver-components/reports/audit/assets/pwa.svg" alt="Progressive Web App" class="img-responsive"></a></p>
+<h1 id="weaver-components">Weaver Components</h1>
+<p>Weaver Components provides a collection of custom HTML elements that represent a toolkit of dynamically renderred HTML markup, CSS Styles, and effects. This toolkit may be made available to a given project either via a CDN URL, directly attached as a Javascript file and CSS file, or via a project dependency. Such elements may be dropped directly onto a page utilizing Weaver Components and they will be immediately renderred as appropriate.</p>
+<h2 id="installation">Installation</h2>
+<p>Weaver Components may be installed by either referencing a CDN or by using <a href="https://www.npmjs.com/">NpmJs</a>.</p>
+<h3 id="installation-via-npmjs">Installation via NpmJs</h3>
+<p>The latest pre-built package may be found in the <a href="https://www.npmjs.com/package/@wvr/elements">Weaver Elements NpmJs Repository</a>.</p>
+<p>Using the <code>npm</code> command (from <a href="https://www.npmjs.com/">NpmJs</a>), install this project as a dependency to an existing project:</p>
+<div><pre class="line-numbers"><code class="language-none">npm install &#64;wvr/elements</code></pre></div><h3 id="installation-via-cdn">Installation via CDN</h3>
+<p>The files <code>weaver-components.js</code> and <code>styles.css</code> need to be available on some server.
+See the <strong>Building</strong> section below for details on how to build these files.</p>
+<p>The CSS file should be added as an HTML <code>&lt;link&gt;</code> element to the HTML <code>&lt;header&gt;</code> element, such as:</p>
+<div><pre class="line-numbers"><code class="language-none">&lt;html&gt;
+  &lt;head&gt;
+    &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;https://localhost/styles.css&quot;&gt;
+  &lt;/head&gt;
+&lt;/html&gt;</code></pre></div><p>The Javascript file should be added an HTML <code>&lt;script&gt;</code> element to the HTML <code>&lt;bottom&gt;</code> element at the very end, such as:</p>
+<div><pre class="line-numbers"><code class="language-none">&lt;html&gt;
+  &lt;body&gt;
+    ...
+    &lt;script src=&quot;https://localhost/weaver-components.js&quot;&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre></div><h2 id="building">Building</h2>
+<p>To build this project use the <code>npm</code> command (from <a href="https://www.npmjs.com/">NpmJs</a>).</p>
+<p>This project can be built to run locally for development purposes be built to get the <code>weaver-components.js</code> and <code>styles.css</code> files needed to run on a CDN.
+More detailed documentation about the build process may be found via the referenced links in the <strong>Documentation</strong> section below.</p>
+<h3 id="building-the-weaver-componentsjs-and-the-stylescss">Building the <code>weaver-components.js</code> and the <code>styles.css</code></h3>
+<p>The <code>weaver-components.js</code> and the <code>styles.css</code> files are needed if intending to utilize this project via a CDN.</p>
+<p>These files are built using the <code>build</code> command from within the project root directory:</p>
+<div><pre class="line-numbers"><code class="language-none">  cd weaver-components
+  npm run build</code></pre></div><p>Once this has successfully completed the <code>weaver-components.js</code> and <code>styles.css</code> files should be located under the <code>dist/bundle/</code> sub-directory:</p>
+<div><pre class="line-numbers"><code class="language-none">  dist/bundle/styles.css
+  dist/bundle/weaver-components.js</code></pre></div><h3 id="building-for-a-npmjs-package">Building for a NpmJs Package</h3>
+<p>Building this for a NpmJs Package is the same as building this for a CDN.</p>
+<p>These files are built using the <code>build</code> command from within the project root directory:</p>
+<div><pre class="line-numbers"><code class="language-none">  cd weaver-components
+  npm run build</code></pre></div><p>Once notable difference is that for those who want to develop against changes to this project, the <code>publish:npm-local</code> can be used as well.
+This process requires starting a <a href="https://verdaccio.org/">Verdaccio</a> service, of which is provided by the <code>start:npm-local</code> command.
+For further details, visit the links referenced in the detailed documentation below.</p>
+<h2 id="documentation">Documentation</h2>
+<p>Detailed <a href="https://tamulib.github.io/weaver-components/docs">documentation</a> may be found:</p>
+<ul>
+<li><a href="https://tamulib.github.io/weaver-components/docs/usage">Usage Documentation</a></li>
+<li><a href="https://tamulib.github.io/weaver-components/docs/development/index.html">Development Documentation</a></li>
+<li><a href="https://github.com/TAMULib/weaver-components/wiki">Wiki</a></li>
+</ul>
+<p>Detailed <a href="https://tamulib.github.io/weaver-components/reports">reports</a> may be found:</p>
+<ul>
+<li><a href="https://tamulib.github.io/weaver-components/reports/audit/index.html">Audit</a></li>
+<li><a href="https://tamulib.github.io/weaver-components/reports/coverage/wvr-elements/index.html">Coverage</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 0;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'getting-started';
+            var COMPODOC_CURRENT_PAGE_URL = 'index.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="./js/libs/custom-elements.min.js"></script>
+       <script src="./js/libs/lit-html.js"></script>
+
+       <script src="./js/menu-wc.js" defer></script>
+       <script nomodule src="./js/menu-wc_es5.js" defer></script>
+
+       <script src="./js/libs/bootstrap-native.js"></script>
+
+       <script src="./js/libs/es6-shim.min.js"></script>
+       <script src="./js/libs/EventDispatcher.js"></script>
+       <script src="./js/libs/promise.min.js"></script>
+       <script src="./js/libs/zepto.min.js"></script>
+
+       <script src="./js/compodoc.js"></script>
+
+       <script src="./js/tabs.js"></script>
+       <script src="./js/menu.js"></script>
+       <script src="./js/libs/clipboard.min.js"></script>
+       <script src="./js/libs/prism.js"></script>
+       <script src="./js/sourceCode.js"></script>
+          <script src="./js/search/search.js"></script>
+          <script src="./js/search/lunr.min.js"></script>
+          <script src="./js/search/search-lunr.js"></script>
+          <script src="./js/search/search_index.js"></script>
+       <script src="./js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

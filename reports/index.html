@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Weaver Components Documentation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="https://api.library.tamu.edu/wvr-components/latest/assets/favicon.ico">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <style>
+    body {
+      transition: opacity 0.5s ease-in;
+    }
+
+    .wvr-components-loading {
+      opacity: 0;
+    }
+
+    .wvr-hidden,
+    [wvr-hide-content] {
+      display: none;
+    }
+
+    .index-container {
+      margin: 12px;
+      padding: 15px;
+      border-bottom: 1px solid grey;
+    }
+  </style>
+  <link rel="stylesheet" type="text/css" href="/weaver-components/docs/usage/assets/styles.css"></link>
+</head>
+
+<body class="wvr-components-loading">
+  <wvre-header
+    top-nav-theme-variant="secondary"
+    title-row-theme-variant="primary"
+    logo-src='https://api.library.tamu.edu/wvr-components/latest/assets/icons/custom/weaver-w.svg'
+    logo-text="Weaver"
+    header-title="Weaver Components">
+  </wvre-header>
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">Weaver Components Reporting</h1>
+      <p class="lead">Choose your option:
+        <a class="btn btn-primary ml-2" href="/weaver-components/reports/audit/index.html">Audit</a>
+        <a class="btn btn-success ml-2" href="/weaver-components/reports/coverage/wvr-elements/index.html">Coverage</a>
+      </p>
+    </div>
+  </div>
+
+  <wvre-footer>
+    <template footer-content>
+      <wvre-nav-list aligned="CENTER">
+        <template nav-list-items>
+          <wvre-nav-li href="https://github.com/TAMULib/weaver-components">
+            <wvre-text value="Github"></wvre-text>
+          </wvre-nav-li>
+        </template>
+      </wvre-nav-list>
+    </template>
+  </wvre-footer>
+
+  <script defer src="/weaver-components/docs/usage/additional-scripts.js"></script>
+</body>
+
+</html>

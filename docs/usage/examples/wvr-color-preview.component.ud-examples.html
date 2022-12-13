@@ -1,0 +1,70 @@
+<about name="Weaver Color Preview">
+  <p>This component represents a set of blocks showing the availble themes and their colors.</p>
+
+  <p>The color options shown generally represent names to be used when selecting a theme or color variation.</p>
+</about>
+
+<example name="Weaver Color Preview Default">
+  <desciption>
+    The default <code>wvre-color-preview</code> component with no customizations.
+  </desciption>
+  <snippet>
+    <wvre-color-preview></wvre-color-preview>
+  </snippet>
+<component-source>/* istanbul ignore file */
+
+/* TODO: Issue #292. */
+import { ChangeDetectionStrategy, Component, Injector, OnInit } from '@angular/core';
+import { select } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { selectCurrentTheme } from '../core/store';
+import { ThemeVariant, ThemeVariants } from '../shared/theme';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
+
+@Component({
+  selector: 'wvr-color-preview-component',
+  templateUrl: './wvr-color-preview.component.html',
+  styleUrls: ['./wvr-color-preview.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
+})
+export class WvrColorPreviewComponent extends WvrBaseComponent implements OnInit {
+
+  currentTheme: Observable<themevariants>;
+
+  constructor(injector: Injector) {
+    super(injector);
+  }
+
+  ngOnInit(): void {
+    super.ngOnInit();
+
+    this.currentTheme = this.store
+      .pipe(select(selectCurrentTheme));
+
+  }
+
+  originalOrdering(): number {
+    return 0;
+  }
+
+  index(index: number, themeVariant: ThemeVariant): number {
+    return index;
+  }
+
+}
+</themevariants></component-source><component-template><div class="inline-block">
+  <wvr-card-component class="swatches" [panelformat]="'solid'" [themevariant]="tv.key" *ngfor="let tv of currentTheme | async | keyvalue : originalOrdering; trackBy:index">
+    <template card-header="">
+      <h3>{{tv.key}}</h3>
+    </template>
+    <template card-content="">
+      {{tv.value.baseColor}}
+    </template>
+  </wvr-card-component>
+</div>
+</component-template><component-scss>:host {
+  .swatches {
+    display: inline-block;
+    margin: 0 10px 10px 0;
+  }
+}</component-scss></example>

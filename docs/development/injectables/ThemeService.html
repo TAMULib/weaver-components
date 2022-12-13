@@ -1,0 +1,1071 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>weaver-components documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">weaver-components documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Injectables</li>
+  <li >ThemeService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>projects/wvr-elements/src/lib/core/theme/theme.service.ts</code>
+        </p>
+
+
+
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#currentTheme" >currentTheme</a>
+                            </li>
+                            <li>
+                                <a href="#subscription" >subscription</a>
+                            </li>
+                            <li>
+                                <a href="#themedComponents" >themedComponents</a>
+                            </li>
+                            <li>
+                                <a href="#themes" >themes</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#applyTheme" >applyTheme</a>
+                            </li>
+                            <li>
+                                <a href="#applyThemeByName" >applyThemeByName</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnDestroy" >ngOnDestroy</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#processThemeVariants" >processThemeVariants</a>
+                            </li>
+                            <li>
+                                <a href="#registerComponent" >registerComponent</a>
+                            </li>
+                            <li>
+                                <a href="#unRegisterComponent" >unRegisterComponent</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(store: Store<RootState>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">projects/wvr-elements/src/lib/core/theme/theme.service.ts:24</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>store</td>
+                                                  
+                                                        <td>
+                                                                    <code>Store&lt;RootState&gt;</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="applyTheme"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>applyTheme</b></span>
+                        <a href="#applyTheme"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>applyTheme(theme: <a href="../interfaces/ThemeVariants.html" target="_self">ThemeVariants</a>, themeableComponent: <a href="../interfaces/WvrThemeableComponent.html" target="_self">WvrThemeableComponent</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="59"
+                            class="link-to-prism">projects/wvr-elements/src/lib/core/theme/theme.service.ts:59</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>theme</td>
+                                    <td>
+                                                <code><a href="../interfaces/ThemeVariants.html" target="_self" >ThemeVariants</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>themeableComponent</td>
+                                    <td>
+                                                <code><a href="../interfaces/WvrThemeableComponent.html" target="_self" >WvrThemeableComponent</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="applyThemeByName"></a>
+                    <span class="name">
+                        <span ><b>applyThemeByName</b></span>
+                        <a href="#applyThemeByName"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>applyThemeByName(themeName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, themeableComponent: <a href="../interfaces/WvrThemeableComponent.html" target="_self">WvrThemeableComponent</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="54"
+                            class="link-to-prism">projects/wvr-elements/src/lib/core/theme/theme.service.ts:54</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>themeName</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>themeableComponent</td>
+                                    <td>
+                                                <code><a href="../interfaces/WvrThemeableComponent.html" target="_self" >WvrThemeableComponent</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                        <span ><b>ngOnDestroy</b></span>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="41"
+                            class="link-to-prism">projects/wvr-elements/src/lib/core/theme/theme.service.ts:41</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="processThemeVariants"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>processThemeVariants</b></span>
+                        <a href="#processThemeVariants"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>processThemeVariants(theme: <a href="../interfaces/ThemeVariants.html" target="_self">ThemeVariants</a>, themeableComponent: <a href="../interfaces/WvrThemeableComponent.html" target="_self">WvrThemeableComponent</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="68"
+                            class="link-to-prism">projects/wvr-elements/src/lib/core/theme/theme.service.ts:68</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>theme</td>
+                                    <td>
+                                                <code><a href="../interfaces/ThemeVariants.html" target="_self" >ThemeVariants</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>themeableComponent</td>
+                                    <td>
+                                                <code><a href="../interfaces/WvrThemeableComponent.html" target="_self" >WvrThemeableComponent</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="registerComponent"></a>
+                    <span class="name">
+                        <span ><b>registerComponent</b></span>
+                        <a href="#registerComponent"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>registerComponent(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, themeableComponent: <a href="../interfaces/WvrThemeableComponent.html" target="_self">WvrThemeableComponent</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="45"
+                            class="link-to-prism">projects/wvr-elements/src/lib/core/theme/theme.service.ts:45</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>themeableComponent</td>
+                                    <td>
+                                                <code><a href="../interfaces/WvrThemeableComponent.html" target="_self" >WvrThemeableComponent</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="unRegisterComponent"></a>
+                    <span class="name">
+                        <span ><b>unRegisterComponent</b></span>
+                        <a href="#unRegisterComponent"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>unRegisterComponent(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="50"
+                            class="link-to-prism">projects/wvr-elements/src/lib/core/theme/theme.service.ts:50</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+            <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="currentTheme"></a>
+                    <span class="name">
+                        <span ><b>currentTheme</b></span>
+                        <a href="#currentTheme"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/ThemeVariants.html" target="_self" >ThemeVariants</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">projects/wvr-elements/src/lib/core/theme/theme.service.ts:18</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="subscription"></a>
+                    <span class="name">
+                        <span ><b>subscription</b></span>
+                        <a href="#subscription"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Subscription</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">projects/wvr-elements/src/lib/core/theme/theme.service.ts:24</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="themedComponents"></a>
+                    <span class="name">
+                        <span ><b>themedComponents</b></span>
+                        <a href="#themedComponents"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/WvrThemeableComponent.html" target="_self" >Map&lt;number | WvrThemeableComponent&gt;</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">projects/wvr-elements/src/lib/core/theme/theme.service.ts:22</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="themes"></a>
+                    <span class="name">
+                        <span ><b>themes</b></span>
+                        <a href="#themes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>literal type</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">projects/wvr-elements/src/lib/core/theme/theme.service.ts:20</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, OnDestroy } from &#x27;@angular/core&#x27;;
+import { select, Store } from &#x27;@ngrx/store&#x27;;
+import { filter } from &#x27;rxjs/operators&#x27;;
+import { Subscription } from &#x27;rxjs&#x27;;
+import { ThemeVariants } from &#x27;../../shared/theme&#x27;;
+import { hexToRgb, luminance, mix, yiq } from &#x27;../../shared/utility/color.utility&#x27;;
+import { WvrThemeableComponent } from &#x27;../../shared/wvr-themeable.component&#x27;;
+import { RootState, selectThemeState } from &#x27;../store&#x27;;
+
+@Injectable({
+  providedIn: &#x27;root&#x27;
+})
+export class ThemeService implements OnDestroy {
+
+  currentTheme: ThemeVariants;
+
+  themes: { [name: string]: ThemeVariants };
+
+  themedComponents: Map&lt;number, WvrThemeableComponent&gt;;
+
+  subscription: Subscription;
+
+  constructor(private readonly store: Store&lt;RootState&gt;) {
+    this.themedComponents &#x3D; new Map&lt;number, WvrThemeableComponent&gt;();
+    this.subscription &#x3D; this.store.pipe(
+      select(selectThemeState),
+      filter(themeState &#x3D;&gt; !!themeState)
+    )
+    .subscribe(themeState &#x3D;&gt; {
+      this.themes &#x3D; themeState.themes;
+      this.currentTheme &#x3D; this.themes[themeState.currentTheme];
+      this.themedComponents.forEach((themeableComponent: WvrThemeableComponent, id: number) &#x3D;&gt; {
+        this.applyTheme(this.currentTheme, themeableComponent);
+      });
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
+  registerComponent(id: number, themeableComponent: WvrThemeableComponent): void {
+    this.themedComponents.set(id, themeableComponent);
+    this.applyTheme(this.currentTheme, themeableComponent);
+  }
+
+  unRegisterComponent(id: number): void {
+    this.themedComponents.delete(id);
+  }
+
+  applyThemeByName(themeName: string, themeableComponent: WvrThemeableComponent): void {
+    const theme &#x3D; this.themes[themeName];
+    this.applyTheme(theme, themeableComponent);
+  }
+
+  private applyTheme(theme: ThemeVariants, themeableComponent: WvrThemeableComponent): void {
+    if (!!theme) {
+      let styles &#x3D; &#x27;&#x27;;
+      styles +&#x3D; this.processThemeVariants(theme, themeableComponent);
+      themeableComponent.style &#x3D; styles;
+    }
+  }
+
+  // tslint:disable-next-line:prefer-function-over-method
+  private processThemeVariants(theme: ThemeVariants, themeableComponent: WvrThemeableComponent): string {
+    const computedStyle &#x3D; getComputedStyle(themeableComponent.eRef.nativeElement);
+
+    const yiqContrastedThreshold &#x3D; Number(computedStyle.getPropertyValue(&#x27;--yiq-contrasted-threshold&#x27;)
+      .trim());
+    const yiqTextDark &#x3D; computedStyle.getPropertyValue(&#x27;--yiq-text-dark&#x27;)
+      .trim();
+    const yiqTextLight &#x3D; computedStyle.getPropertyValue(&#x27;--yiq-text-light&#x27;)
+      .trim();
+
+    const themeColorInterval &#x3D; parseInt(computedStyle.getPropertyValue(&#x27;--theme-color-interval&#x27;)
+      .trim(), 10);
+
+    const black &#x3D; computedStyle.getPropertyValue(&#x27;--black&#x27;)
+      .trim();
+    const white &#x3D; computedStyle.getPropertyValue(&#x27;--white&#x27;)
+      .trim();
+
+    const constrast &#x3D; (level: number) &#x3D;&gt; (level &gt; 0 ? black : white);
+    const yiqConstrast &#x3D; (value: number) &#x3D;&gt; (value &gt;&#x3D; yiqContrastedThreshold ? yiqTextDark : yiqTextLight);
+
+    let styles &#x3D; &#x27;&#x27;;
+
+    const appendStyle &#x3D; (customProperty: string, value: string): void &#x3D;&gt; {
+      styles +&#x3D; themeableComponent.themeOverrides[customProperty]
+        ? &#x60;${customProperty}: ${themeableComponent.themeOverrides[customProperty]};&#x60;
+        : &#x60;${customProperty}: ${value};&#x60;;
+    };
+
+    // update variant variables
+    for (const k of Object.keys(theme)) {
+      const key &#x3D; &#x60;--${k}&#x60;;
+      const value &#x3D; theme[k].baseColor;
+
+      // update theme variable
+      styles +&#x3D; &#x60;${key}: ${value};&#x60;;
+
+      themeableComponent.variantTypes.forEach(variantType &#x3D;&gt; {
+
+        switch (variantType) {
+          case &#x27;alert&#x27;:
+            const alertBackgroundLevel &#x3D; Number(computedStyle.getPropertyValue(&#x27;--alert-bg-level&#x27;)
+              .trim());
+            const alertBorderLevel &#x3D; Number(computedStyle.getPropertyValue(&#x27;--alert-border-level&#x27;)
+              .trim());
+            const alertColorLevel &#x3D; Number(computedStyle.getPropertyValue(&#x27;--alert-color-level&#x27;)
+              .trim());
+
+            // update alert variants
+            const alertBgValue &#x3D; mix(constrast(alertBackgroundLevel), value, Math.abs(alertBackgroundLevel) * themeColorInterval);
+            appendStyle(&#x60;${key}-alert-bg&#x60;, alertBgValue);
+
+            const alertBorderValue &#x3D; mix(constrast(alertBorderLevel), value, Math.abs(alertBorderLevel) * themeColorInterval);
+            appendStyle(&#x60;${key}-alert-border&#x60;, alertBorderValue);
+
+            const alertColorValue &#x3D; mix(constrast(alertColorLevel), value, Math.abs(alertColorLevel) * themeColorInterval);
+            appendStyle(&#x60;${key}-alert-color&#x60;, alertColorValue);
+            break;
+          case &#x27;badge&#x27;:
+            // update badge variants
+            const badgeBgValue &#x3D; value;
+            appendStyle(&#x60;${key}-badge-bg&#x60;, badgeBgValue);
+
+            const badgeColorValue &#x3D; yiqConstrast(yiq(value));
+            appendStyle(&#x60;${key}-badge-color&#x60;, badgeColorValue);
+            break;
+          case &#x27;button&#x27;:
+            // update button outline variants
+            const buttonOutlineColorValue &#x3D; value;
+            appendStyle(&#x60;${key}-button-outline-color&#x60;, buttonOutlineColorValue);
+
+            const buttonOutlineColorHoverValue &#x3D; yiqConstrast(yiq(value));
+            appendStyle(&#x60;${key}-button-outline-color-hover&#x60;, buttonOutlineColorHoverValue);
+
+            const bobsrgba &#x3D; hexToRgb(value);
+            const buttonOutlineBoxShadowColorValue &#x3D; &#x60;rgba(${bobsrgba.r}, ${bobsrgba.g}, ${bobsrgba.b}, .5)&#x60;;
+            appendStyle(&#x60;${key}-button-outline-box-shadow-color&#x60;, buttonOutlineBoxShadowColorValue);
+
+            // update button variants
+            const buttonColorValue &#x3D; yiqConstrast(yiq(value));
+            appendStyle(&#x60;${key}-button-color&#x60;, buttonColorValue);
+
+            const buttonBgValue &#x3D; value;
+            appendStyle(&#x60;${key}-button-bg&#x60;, buttonBgValue);
+
+            const buttonBorderValue &#x3D; value;
+            appendStyle(&#x60;${key}-button-border&#x60;, buttonBorderValue);
+
+            const buttonHoverColorValue &#x3D; yiqConstrast(yiq(luminance(value, -0.1165)));
+            appendStyle(&#x60;${key}-button-hover-color&#x60;, buttonHoverColorValue);
+
+            const buttonHoverBgValue &#x3D; luminance(value, -0.1165);
+            appendStyle(&#x60;${key}-button-hover-bg&#x60;, buttonHoverBgValue);
+
+            const buttonHoverBorderValue &#x3D; luminance(value, -0.1415);
+            appendStyle(&#x60;${key}-button-hover-border&#x60;, buttonHoverBorderValue);
+
+            const buttonActiveColorValue &#x3D; yiqConstrast(yiq(luminance(value, -0.1415)));
+            appendStyle(&#x60;${key}-button-active-color&#x60;, buttonActiveColorValue);
+
+            const buttonActiveBgValue &#x3D; luminance(value, -0.1415);
+            appendStyle(&#x60;${key}-button-active-bg&#x60;, buttonActiveBgValue);
+
+            const buttonActiveBorderValue &#x3D; luminance(value, -0.17);
+            appendStyle(&#x60;${key}-button-active-border&#x60;, buttonActiveBorderValue);
+
+            const bbsrgba &#x3D; hexToRgb(mix(yiqConstrast(yiq(luminance(buttonBgValue, -0.1165))), buttonBorderValue, 15));
+            const buttonBoxShadowColorValue &#x3D; &#x60;rgba(${bbsrgba.r}, ${bbsrgba.g}, ${bbsrgba.b}, .5)&#x60;;
+            appendStyle(&#x60;${key}-button-box-shadow-color&#x60;, buttonBoxShadowColorValue);
+            break;
+          case &#x27;default&#x27;:
+              // update default outline variants
+              const defaultOutlineColorValue &#x3D; value;
+              appendStyle(&#x60;${key}-default-outline-color&#x60;, defaultOutlineColorValue);
+
+              const defaultOutlineColorHoverValue &#x3D; yiqConstrast(yiq(value));
+              appendStyle(&#x60;${key}-default-outline-color-hover&#x60;, defaultOutlineColorHoverValue);
+
+              const dvobsrgba &#x3D; hexToRgb(value);
+              const defaultOutlineBoxShadowColorValue &#x3D; &#x60;rgba(${dvobsrgba.r}, ${dvobsrgba.g}, ${dvobsrgba.b}, .5)&#x60;;
+              appendStyle(&#x60;${key}-default-outline-box-shadow-color&#x60;, defaultOutlineBoxShadowColorValue);
+
+              // update default variants
+              const defaultColorValue &#x3D; yiqConstrast(yiq(value));
+              appendStyle(&#x60;${key}-default-color&#x60;, defaultColorValue);
+
+              const defaultBgValue &#x3D; value;
+              appendStyle(&#x60;${key}-default-bg&#x60;, defaultBgValue);
+
+              const defaultBorderValue &#x3D; value;
+              appendStyle(&#x60;${key}-default-border&#x60;, defaultBorderValue);
+
+              const defaultHoverColorValue &#x3D; yiqConstrast(yiq(luminance(value, -0.1165)));
+              appendStyle(&#x60;${key}-default-hover-color&#x60;, defaultHoverColorValue);
+
+              const defaultHoverBgValue &#x3D; luminance(value, -0.1165);
+              appendStyle(&#x60;${key}-default-hover-bg&#x60;, defaultHoverBgValue);
+
+              const defaultHoverBorderValue &#x3D; luminance(value, -0.1415);
+              appendStyle(&#x60;${key}-default-hover-border&#x60;, defaultHoverBorderValue);
+
+              const defaultActiveColorValue &#x3D; yiqConstrast(yiq(luminance(value, -0.1415)));
+              appendStyle(&#x60;${key}-default-active-color&#x60;, defaultActiveColorValue);
+
+              const defaultActiveBgValue &#x3D; luminance(value, -0.1415);
+              appendStyle(&#x60;${key}-default-active-bg&#x60;, defaultActiveBgValue);
+
+              const defaultActiveBorderValue &#x3D; luminance(value, -0.17);
+              appendStyle(&#x60;${key}-default-active-border&#x60;, defaultActiveBorderValue);
+
+              const dbsrgba &#x3D; hexToRgb(mix(yiqConstrast(yiq(luminance(defaultBgValue, -0.1165))), defaultBorderValue, 15));
+              const defaultBoxShadowColorValue &#x3D; &#x60;rgba(${dbsrgba.r}, ${dbsrgba.g}, ${dbsrgba.b}, .5)&#x60;;
+              appendStyle(&#x60;${key}-default-box-shadow-color&#x60;, defaultBoxShadowColorValue);
+              break;
+          case &#x27;list-group-item&#x27;:
+            const listGroupItemBackgroundLevel &#x3D; Number(computedStyle.getPropertyValue(&#x27;--list-group-item-bg-level&#x27;)
+              .trim());
+            const listGroupItemColorLevel &#x3D; Number(computedStyle.getPropertyValue(&#x27;--list-group-item-color-level&#x27;)
+              .trim());
+
+            // update list item group variants
+            // tslint:disable-next-line:max-line-length
+            const listGroupItemBgValue &#x3D; mix(constrast(listGroupItemBackgroundLevel), value, Math.abs(listGroupItemBackgroundLevel) * themeColorInterval);
+            appendStyle(&#x60;${key}-list-group-item-bg&#x60;, listGroupItemBgValue);
+
+            // tslint:disable-next-line:max-line-length
+            const listGroupItemColorValue &#x3D; mix(constrast(listGroupItemColorLevel), value, Math.abs(listGroupItemColorLevel) * themeColorInterval);
+            appendStyle(&#x60;${key}-list-group-item-color&#x60;, listGroupItemColorValue);
+            break;
+          case &#x27;table&#x27;:
+            const tableBackgroundLevel &#x3D; Number(computedStyle.getPropertyValue(&#x27;--table-bg-level&#x27;)
+              .trim());
+            const tableBorderLevel &#x3D; Number(computedStyle.getPropertyValue(&#x27;--table-border-level&#x27;)
+              .trim());
+
+            // update table variants
+            const tableBgValue &#x3D; mix(constrast(tableBackgroundLevel), value, Math.abs(tableBackgroundLevel) * themeColorInterval);
+            appendStyle(&#x60;${key}-table-bg&#x60;, tableBgValue);
+
+            const tableBorderValue &#x3D; mix(constrast(tableBorderLevel), value, Math.abs(tableBorderLevel) * themeColorInterval);
+            appendStyle(&#x60;${key}-table-border&#x60;, tableBorderValue);
+            break;
+          default: break;
+        }
+
+      });
+    }
+
+    return styles;
+  }
+
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'ThemeService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
