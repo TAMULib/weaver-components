@@ -1,5 +1,25 @@
 # Changelog
 
+## [2.0.5] - 12-02-22
+### Resolves
+
+- WYSIWYG save is not working. (#516)
+
+## [2.0.4] - 11-15-22
+### Resolves
+
+- Remove the "upgrade" button from the tinymce editor. (#512)
+- Locked the node version to 16. (#515)
+
+## [2.0.3] - 10-12-22
+### Resolves
+
+- Fix bad error handling and reporting wvr-button. (#504)
+- Footer Becoming Sticky when it should not. (#503)
+- Remove ng-inline-svg as it is no longer maintained. (#502)
+- Redesign dependency list, reducing dependencies where possible. (#507)
+- Fixed tabs to no longer need a wrapping div to display content. (#505)
+
 ## [2.0.2] - 09-19-22
 ### Resolves
 
