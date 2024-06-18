@@ -42,6 +42,8 @@ export class WvrWysiwygComponent extends WvrBaseComponent implements OnInit, OnD
 
   @Input() emitSaveEvent: string;
 
+  @Input() emitChangeEvent: string;
+
   @Input() set height(height: string) { this.config.height = height; }
   get height(): string { return this.config.height; }
 
@@ -106,6 +108,18 @@ export class WvrWysiwygComponent extends WvrBaseComponent implements OnInit, OnD
     this.store.dispatch(WysiwygActions.resetWysiwyg({
       id: `${this.id}`
     }));
+  }
+
+  onChange($event): void {
+    if (this.emitChangeEvent) {
+      this.eRef.nativeElement.dispatchEvent(new CustomEvent(this.emitChangeEvent, {
+        bubbles: true,
+        detail: {
+          data: this.content,
+          wysiwyg: this
+        }
+      }));
+    }
   }
 
   onSave($event): void {
