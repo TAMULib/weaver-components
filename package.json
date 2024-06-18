@@ -15,6 +15,7 @@
     "DOCKER_SERVER": ""
   },
   "scripts": {
+    "ngversion": "ng version",
     "postinstall": "node scripts/post-install.js",
     "build": "ng build --configuration production --single-bundle --output-hashing none && npm run build:version",
     "build:clean": "npm run clean && npm run build",
@@ -61,12 +62,12 @@
     "test:ci": "npm run test:audit && npm run test:coverage"
   },
   "dependencies": {
-    "@angular/animations": "12.2.16",
-    "@angular/elements": "12.2.16",
-    "@angular/forms": "12.2.16",
-    "@angular/localize": "12.2.16",
-    "@angular/platform-browser-dynamic": "12.2.16",
-    "@ng-bootstrap/ng-bootstrap": "10.0.0",
+    "@angular/animations": "13.4.0",
+    "@angular/elements": "13.4.0",
+    "@angular/forms": "13.4.0",
+    "@angular/localize": "13.4.0",
+    "@angular/platform-browser-dynamic": "13.4.0",
+    "@ng-bootstrap/ng-bootstrap": "11.0.0",
     "@ngrx/effects": "12.5.1",
     "@ngrx/entity": "12.5.1",
     "@ngrx/store-devtools": "12.5.1",
@@ -78,10 +79,10 @@
     "tinymce": "6.2.0"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "12.2.16",
+    "@angular-devkit/build-angular": "13.3.11",
     "@angular-eslint/eslint-plugin": "14.1.2",
     "@angular-eslint/eslint-plugin-template": "14.1.2",
-    "@angular/cli": "12.2.16",
+    "@angular/cli": "13.3.11",
     "@compodoc/compodoc": "1.1.19",
     "@lhci/cli": "0.9.0",
     "@ngrx/schematics": "12.5.1",
@@ -116,8 +117,8 @@
     "karma-ng-html2js-preprocessor": "1.0.0",
     "lighthouse": "9.6.7",
     "lighthouse-badges": "1.1.26",
-    "ng-packagr": "12.2.7",
-    "ngx-build-plus": "12.2.0",
+    "ng-packagr": "13.3.1",
+    "ngx-build-plus": "13.0.1",
     "protractor": "7.0.0",
     "sass-migrator": "1.7.1",
     "shelljs": "0.8.5",
@@ -126,8 +127,8 @@
     "zone.js": "0.11.8"
   },
   "overrides": {
-    "@angular/compiler": "12.2.16",
-    "@angular/core": "12.2.16",
+    "@angular/compiler": "13.4.0",
+    "@angular/core": "13.4.0",
     "@types/eslint": "6.8.1",
     "chokidar": "3.5.3",
     "fs-extra": "10.1.0",
