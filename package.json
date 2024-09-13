@@ -4,7 +4,7 @@
     "type": "git",
     "url": "git+https://github.com/TAMULib/weaver-components.git"
   },
-  "version": "2.0.5-rc.1",
+  "version": "2.0.5-rc.2",
   "private": false,
   "license": "MIT",
   "engines": {
@@ -61,11 +61,11 @@
     "test:ci": "npm run test:audit && npm run test:coverage"
   },
   "dependencies": {
-    "@angular/animations": "12.2.16",
-    "@angular/elements": "12.2.16",
-    "@angular/forms": "12.2.16",
-    "@angular/localize": "12.2.16",
-    "@angular/platform-browser-dynamic": "12.2.16",
+    "@angular/animations": "12.2.17",
+    "@angular/elements": "12.2.17",
+    "@angular/forms": "12.2.17",
+    "@angular/localize": "12.2.17",
+    "@angular/platform-browser-dynamic": "12.2.17",
     "@ng-bootstrap/ng-bootstrap": "10.0.0",
     "@ngrx/effects": "12.5.1",
     "@ngrx/entity": "12.5.1",
@@ -78,10 +78,10 @@
     "tinymce": "6.2.0"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "12.2.16",
+    "@angular-devkit/build-angular": "12.2.17",
     "@angular-eslint/eslint-plugin": "14.1.2",
     "@angular-eslint/eslint-plugin-template": "14.1.2",
-    "@angular/cli": "12.2.16",
+    "@angular/cli": "12.2.17",
     "@compodoc/compodoc": "1.1.19",
     "@lhci/cli": "0.9.0",
     "@ngrx/schematics": "12.5.1",
@@ -126,14 +126,19 @@
     "zone.js": "0.11.8"
   },
   "overrides": {
-    "@angular/compiler": "12.2.16",
-    "@angular/core": "12.2.16",
+    "@angular/compiler": "12.2.17",
+    "@angular/compiler-cli": "12.2.17",
+    "@angular/core": "12.2.17",
     "@types/eslint": "6.8.1",
+    "@types/node": "18.11.10",
+    "cheerio": "1.0.0-rc.10",
     "chokidar": "3.5.3",
     "fs-extra": "10.1.0",
     "glob": "7.2.3",
     "latest-version": "7.0.0",
     "selfsigned": "2.1.1",
-    "tslib": "2.4.0"
+    "tslib": "2.4.0",
+    "typescript": ">=4.2.3 <4.4",
+    "whatwg-mimetype": "^3.0.0"
   }
 }
