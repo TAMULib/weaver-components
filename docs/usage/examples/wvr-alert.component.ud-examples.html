@@ -1,0 +1,392 @@
+<about name="Weaver Alert">
+  <p>This component represents an alert.</p>
+  <p>An alert may be closed automatically, on event, or not closable at all.</p>
+
+  <div>
+    <p>The following attributes are available:</p>
+    <ul>
+      <li><code>alert-type</code>: One of <code>basic</code>, <code>custom</code>, or <code>self-closing</code>.</li>
+      <li><code>closeable</code>: One of <code>true</code> or <code>false</code>.</li>
+      <li><code>closeTimer</code>: A unit of time in milliseconds for how long to wait before auto-closing.</li>
+      <li><code>theme-variant</code>: The name of a theme variant to use for the alert.</li>
+    </ul>
+  </div>
+</about>
+
+<example name="Weaver Alert Basic">
+  <desciption>
+    The basic <code>wvre-alert</code> component with no customizations.
+  </desciption>
+  <snippet>
+    <wvre-alert theme-variant="primary" alert-type="basic">
+      <template alert-content="">
+        <wvre-text value="This is a basic alert"></wvre-text>
+      </template>
+    </wvre-alert>
+
+    <wvre-alert theme-variant="secondary" alert-type="basic">
+      <template alert-content="">
+        <wvre-text value="This is a basic alert"></wvre-text>
+      </template>
+    </wvre-alert>
+
+    <wvre-alert theme-variant="info" alert-type="basic">
+      <template alert-content="">
+        <wvre-text value="This is a basic alert"></wvre-text>
+      </template>
+    </wvre-alert>
+
+    <wvre-alert theme-variant="primary" alert-type="basic">
+      <template alert-content="">
+        <wvre-text value="This is basic primary alert. "></wvre-text>
+      </template>
+    </wvre-alert>
+  </snippet>
+<component-source>import { ChangeDetectionStrategy, Component, Injector, Input, OnInit } from '@angular/core';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
+
+/**
+ * A message display with contextualized styling.
+ */
+@Component({
+  selector: 'wvr-alert-component',
+  templateUrl: './wvr-alert.component.html',
+  styleUrls: ['./wvr-alert.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
+})
+export class WvrAlertComponent extends WvrBaseComponent implements OnInit {
+
+  /** Used to define the type of alert. */
+  @Input() alertType: 'basic' | 'self-closing' | 'custom' = 'basic';
+
+  /** Used to self close the alert box. */
+  alertClosed = false;
+
+  /** Used to display the Close button. */
+  @Input() closeable: 'true' | 'false' = 'true';
+
+  /** Setting the delay timer for the self closing alert message */
+  @Input() closeTimer = 5000;
+
+  variantTypes = ['alert'];
+
+  constructor(injector: Injector) {
+    super(injector);
+  }
+
+  /**
+   * An event handle method for the `document:click` event.
+   * Closes the alert box once the `X` is clicked.
+   */
+  clickClose($event: MouseEvent): void {
+      this.alertClosed = true;
+      this.themeVariant = 'primary';
+  }
+
+  /** Initializes the closing timer for a self closing alert. */
+  ngOnInit(): void {
+    super.ngOnInit();
+    if (this.alertType === 'self-closing') {
+      setTimeout(() =&gt; {
+        this.alertClosed = true;
+      }, this.closeTimer);
+    }
+  }
+
+}
+</component-source><component-template><div *ngif="!alertClosed" class="wvr-components wvr-alert alert alert-{{themeVariant}}" role="alert">
+
+  <div *ngif="alertType==='basic'" class="basic flex-fill align-self-stretch">
+    <ng-container *ngtemplateoutlet="closeButton"></ng-container>
+    <ng-container *ngtemplateoutlet="basic"></ng-container>
+  </div>
+
+  <div *ngif="alertType==='self-closing'" class="self-closing flex-fill align-self-stretch">
+    <ng-container *ngtemplateoutlet="selfClosing"></ng-container>
+  </div>
+
+  <div *ngif="alertType==='custom'" class="custom flex-fill align-self-stretch">
+    <ng-container *ngtemplateoutlet="closeButton"></ng-container>
+    <ng-container *ngtemplateoutlet="custom"></ng-container>
+  </div>
+
+</div>
+
+<ng-template #basic="">
+  <div [wvrcontentprojection]="eRef" template="alert-content"></div>
+</ng-template>
+
+<ng-template #selfclosing="">
+  <div class="alert-dismissible" (close)="alertClosed = true">
+    <ng-container *ngtemplateoutlet="basic"></ng-container>
+  </div>
+</ng-template>
+
+<ng-template #custom="">
+  <div [wvrcontentprojection]="eRef" template="custom-alert-content"></div>
+</ng-template>
+
+<ng-template #closebutton="">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="clickClose($event)" *ngif="closeable === 'true'">
+    <wvr-text-component aria-hidden="true" value="×"></wvr-text-component>
+  </button>
+</ng-template>
+
+<ng-content select="template"></ng-content>
+</component-template><component-scss>@import "../shared/styles/variables";
+
+:host {
+  @extend .variables;
+
+  font-family: var(--wvr-font-family-sans-serif);
+  
+}
+</component-scss></example>
+
+<example name="Weaver Alert Self-Closing">
+  <desciption>
+    The <code>wvre-alert</code> component with self closing feature based on the input closing timer.
+  </desciption>
+  <snippet>
+    <wvre-alert theme-variant="success" alert-type="self-closing" close-timer="5000">
+        <wvre-text value="This is self closing success alert"></wvre-text>
+    </wvre-alert>
+  </snippet>
+<component-source>import { ChangeDetectionStrategy, Component, Injector, Input, OnInit } from '@angular/core';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
+
+/**
+ * A message display with contextualized styling.
+ */
+@Component({
+  selector: 'wvr-alert-component',
+  templateUrl: './wvr-alert.component.html',
+  styleUrls: ['./wvr-alert.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
+})
+export class WvrAlertComponent extends WvrBaseComponent implements OnInit {
+
+  /** Used to define the type of alert. */
+  @Input() alertType: 'basic' | 'self-closing' | 'custom' = 'basic';
+
+  /** Used to self close the alert box. */
+  alertClosed = false;
+
+  /** Used to display the Close button. */
+  @Input() closeable: 'true' | 'false' = 'true';
+
+  /** Setting the delay timer for the self closing alert message */
+  @Input() closeTimer = 5000;
+
+  variantTypes = ['alert'];
+
+  constructor(injector: Injector) {
+    super(injector);
+  }
+
+  /**
+   * An event handle method for the `document:click` event.
+   * Closes the alert box once the `X` is clicked.
+   */
+  clickClose($event: MouseEvent): void {
+      this.alertClosed = true;
+      this.themeVariant = 'primary';
+  }
+
+  /** Initializes the closing timer for a self closing alert. */
+  ngOnInit(): void {
+    super.ngOnInit();
+    if (this.alertType === 'self-closing') {
+      setTimeout(() =&gt; {
+        this.alertClosed = true;
+      }, this.closeTimer);
+    }
+  }
+
+}
+</component-source><component-template><div *ngif="!alertClosed" class="wvr-components wvr-alert alert alert-{{themeVariant}}" role="alert">
+
+  <div *ngif="alertType==='basic'" class="basic flex-fill align-self-stretch">
+    <ng-container *ngtemplateoutlet="closeButton"></ng-container>
+    <ng-container *ngtemplateoutlet="basic"></ng-container>
+  </div>
+
+  <div *ngif="alertType==='self-closing'" class="self-closing flex-fill align-self-stretch">
+    <ng-container *ngtemplateoutlet="selfClosing"></ng-container>
+  </div>
+
+  <div *ngif="alertType==='custom'" class="custom flex-fill align-self-stretch">
+    <ng-container *ngtemplateoutlet="closeButton"></ng-container>
+    <ng-container *ngtemplateoutlet="custom"></ng-container>
+  </div>
+
+</div>
+
+<ng-template #basic="">
+  <div [wvrcontentprojection]="eRef" template="alert-content"></div>
+</ng-template>
+
+<ng-template #selfclosing="">
+  <div class="alert-dismissible" (close)="alertClosed = true">
+    <ng-container *ngtemplateoutlet="basic"></ng-container>
+  </div>
+</ng-template>
+
+<ng-template #custom="">
+  <div [wvrcontentprojection]="eRef" template="custom-alert-content"></div>
+</ng-template>
+
+<ng-template #closebutton="">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="clickClose($event)" *ngif="closeable === 'true'">
+    <wvr-text-component aria-hidden="true" value="×"></wvr-text-component>
+  </button>
+</ng-template>
+
+<ng-content select="template"></ng-content>
+</component-template><component-scss>@import "../shared/styles/variables";
+
+:host {
+  @extend .variables;
+
+  font-family: var(--wvr-font-family-sans-serif);
+  
+}
+</component-scss></example>
+
+<example name="Weaver Alert Custom Content">
+  <desciption>
+    The <code>wvre-alert</code> component with custom content.
+  </desciption>
+  <snippet>
+    <wvre-alert theme-variant="danger" alert-type="custom">
+      <template custom-alert-content="">
+        <h4 class="alert-heading">
+          <wvre-text value="Custom Alert Heading"></wvre-text>
+        </h4>
+        <p>
+          <wvre-text value="Custom Alert Body"></wvre-text>
+        </p>
+        <hr>
+        <p class="mb-0">
+          <wvre-text value="Custom Alert footer section."></wvre-text>
+        </p>
+      </template>
+    </wvre-alert>
+  </snippet>
+
+  <snippet>
+    <wvre-alert theme-variant="danger" alert-type="custom" closable="false">
+      <template custom-alert-content="">
+        <h4 class="alert-heading">
+          <wvre-text value="Custom Alert Heading"></wvre-text>
+        </h4>
+        <p>
+          <wvre-text value="Custom Alert Body with no closable button"></wvre-text>
+        </p>
+        <hr>
+        <p class="mb-0">
+          <wvre-text value="Custom Alert footer section."></wvre-text>
+        </p>
+      </template>
+    </wvre-alert>
+  </snippet>
+<component-source>import { ChangeDetectionStrategy, Component, Injector, Input, OnInit } from '@angular/core';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
+
+/**
+ * A message display with contextualized styling.
+ */
+@Component({
+  selector: 'wvr-alert-component',
+  templateUrl: './wvr-alert.component.html',
+  styleUrls: ['./wvr-alert.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
+})
+export class WvrAlertComponent extends WvrBaseComponent implements OnInit {
+
+  /** Used to define the type of alert. */
+  @Input() alertType: 'basic' | 'self-closing' | 'custom' = 'basic';
+
+  /** Used to self close the alert box. */
+  alertClosed = false;
+
+  /** Used to display the Close button. */
+  @Input() closeable: 'true' | 'false' = 'true';
+
+  /** Setting the delay timer for the self closing alert message */
+  @Input() closeTimer = 5000;
+
+  variantTypes = ['alert'];
+
+  constructor(injector: Injector) {
+    super(injector);
+  }
+
+  /**
+   * An event handle method for the `document:click` event.
+   * Closes the alert box once the `X` is clicked.
+   */
+  clickClose($event: MouseEvent): void {
+      this.alertClosed = true;
+      this.themeVariant = 'primary';
+  }
+
+  /** Initializes the closing timer for a self closing alert. */
+  ngOnInit(): void {
+    super.ngOnInit();
+    if (this.alertType === 'self-closing') {
+      setTimeout(() =&gt; {
+        this.alertClosed = true;
+      }, this.closeTimer);
+    }
+  }
+
+}
+</component-source><component-template><div *ngif="!alertClosed" class="wvr-components wvr-alert alert alert-{{themeVariant}}" role="alert">
+
+  <div *ngif="alertType==='basic'" class="basic flex-fill align-self-stretch">
+    <ng-container *ngtemplateoutlet="closeButton"></ng-container>
+    <ng-container *ngtemplateoutlet="basic"></ng-container>
+  </div>
+
+  <div *ngif="alertType==='self-closing'" class="self-closing flex-fill align-self-stretch">
+    <ng-container *ngtemplateoutlet="selfClosing"></ng-container>
+  </div>
+
+  <div *ngif="alertType==='custom'" class="custom flex-fill align-self-stretch">
+    <ng-container *ngtemplateoutlet="closeButton"></ng-container>
+    <ng-container *ngtemplateoutlet="custom"></ng-container>
+  </div>
+
+</div>
+
+<ng-template #basic="">
+  <div [wvrcontentprojection]="eRef" template="alert-content"></div>
+</ng-template>
+
+<ng-template #selfclosing="">
+  <div class="alert-dismissible" (close)="alertClosed = true">
+    <ng-container *ngtemplateoutlet="basic"></ng-container>
+  </div>
+</ng-template>
+
+<ng-template #custom="">
+  <div [wvrcontentprojection]="eRef" template="custom-alert-content"></div>
+</ng-template>
+
+<ng-template #closebutton="">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="clickClose($event)" *ngif="closeable === 'true'">
+    <wvr-text-component aria-hidden="true" value="×"></wvr-text-component>
+  </button>
+</ng-template>
+
+<ng-content select="template"></ng-content>
+</component-template><component-scss>@import "../shared/styles/variables";
+
+:host {
+  @extend .variables;
+
+  font-family: var(--wvr-font-family-sans-serif);
+  
+}
+</component-scss></example>

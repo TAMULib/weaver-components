@@ -1,0 +1,346 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>weaver-components documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+	   <link rel="stylesheet" href="./styles/style.css">
+        <link rel="stylesheet" href="./styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="./" class="navbar-brand">weaver-components documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content getting-started">
+                   <div class="content-data">
+
+<h1 id="changelog">Changelog</h1>
+<h2 id="205-rc2---09-13-24">[2.0.5-rc.2] - 09-13-24</h2>
+<h3 id="resolves">Resolves</h3>
+<ul>
+<li>Downgrading Angular dependencies to 12.2.16 to fix npm build.</li>
+<li>Added <code>&quot;cheerio&quot;: &quot;1.0.0-rc.10&quot;</code> to resolve issues with the compodocs command not running correctly.</li>
+<li>Added <code>&quot;typescript&quot;: &quot;&gt;=4.2.3 &lt;4.4&quot;</code> to fix npm build.</li>
+<li>Added <code>&quot;whatwg-mimetype&quot;: &quot;^3.0.0&quot;</code> to fix npm build.</li>
+</ul>
+<h2 id="205-rc1---12-02-22">[2.0.5-rc.1] - 12-02-22</h2>
+<h3 id="resolves-1">Resolves</h3>
+<ul>
+<li>WYSIWYG save is not working. (#516)</li>
+</ul>
+<h2 id="204---11-15-22">[2.0.4] - 11-15-22</h2>
+<h3 id="resolves-2">Resolves</h3>
+<ul>
+<li>Remove the &quot;upgrade&quot; button from the tinymce editor. (#512)</li>
+<li>Locked the node version to 16. (#515)</li>
+</ul>
+<h2 id="203---10-12-22">[2.0.3] - 10-12-22</h2>
+<h3 id="resolves-3">Resolves</h3>
+<ul>
+<li>Fix bad error handling and reporting wvr-button. (#504)</li>
+<li>Footer Becoming Sticky when it should not. (#503)</li>
+<li>Remove ng-inline-svg as it is no longer maintained. (#502)</li>
+<li>Redesign dependency list, reducing dependencies where possible. (#507)</li>
+<li>Fixed tabs to no longer need a wrapping div to display content. (#505)</li>
+</ul>
+<h2 id="202---09-19-22">[2.0.2] - 09-19-22</h2>
+<h3 id="resolves-4">Resolves</h3>
+<ul>
+<li>Normal mouse clicks do not work for certain designs with drop-down menus following the 2.0.1 release.</li>
+</ul>
+<h2 id="201---09-15-22">[2.0.1] - 09-15-22</h2>
+<h3 id="resolves-5">Resolves</h3>
+<ul>
+<li>Local npm via Verdaccio and SASS Migrator. (#472)</li>
+<li>The mobile menu slide out tray continues to allow links to be clicked on when closed. (#474)</li>
+<li>Avoid replaceChild() and restructure projection function. (#479)</li>
+<li>Collapsible Card is not completely collapsible. (#483)</li>
+<li>Directory UI - bottom-nav items (left most) is seen to have shifted left. (#482)</li>
+<li>Add in-code documentation for the README.md. (#484)</li>
+<li>Build components with Node 16 or greater. (TAMULib/tamu-library-components#429)</li>
+<li>Update deprecated karma coverage package. (#306)</li>
+<li>ADA - Buttons missing label and expand/collapse notification. (TAMULib/tamu-library-components#423)</li>
+<li>Issue 4: Focus indicator missing. (TAMULib/tamu-library-components#425)</li>
+</ul>
+<h2 id="200---10-29-21">[2.0.0] - 10-29-21</h2>
+<h3 id="resolves-6">Resolves</h3>
+<ul>
+<li>Weaver Components should have a consistent content projection strategy. (#236)</li>
+<li>Convert wvre-tab to pseudo element. (#308)</li>
+<li>Card component needs redesign to avoid local state from DOM inspection. (#387)</li>
+<li>Weaver Components should expose the manifest entry request through its public api. (#405)</li>
+<li>Extract CSS to avoid the removal of deprecated style strategy. (#408)</li>
+<li>Weaver Tabs should utilize the new content projection strategy. (#410)</li>
+<li>Weaver Components Card Component should utilize the content projection strategy. (#414)</li>
+<li>Weaver Components dropdown should utilize common content projection to afford two-way binding. (#417)</li>
+<li>Weaver Components should support two way binding to angularjs scope. (#421)</li>
+<li>Weaver Components should delay bootstrapping until a specified condition has been met. (#425)</li>
+<li>Weaver Components Memory and Performance Concerns. (#428)</li>
+<li>Weaver Components should compile using the ivy partial compiler option. (#430)</li>
+<li>Memory Leak And Performance degradation when components is left open. After about 2 hours Gigibytes of memory in use. (#438)</li>
+<li>Incorrect boolean logic in dequeue and inadequate tests (#442)</li>
+<li>The tabs component should support theming (#348)</li>
+<li>Incorrect manifest entries are being updated in Manifest. (#439)</li>
+<li>The tabs component should support theming (#348)</li>
+<li>Incorrect manifest entries are being updated in Manifest. (#439)</li>
+<li>Weaver Card hardcodes width as a style. (#451)</li>
+<li>Weaver Components should provide a Message Receiver Component (#407)</li>
+<li>Weaver Card Should Support Expand/Collapse on Card Header click. (#445)</li>
+</ul>
+<h2 id="1120---06-04-21">[1.12.0] - 06-04-21</h2>
+<h3 id="resolves-7">Resolves</h3>
+<ul>
+<li>The mobile service should use the ngrx store to maintain state. (#333)</li>
+<li>Weaver Components should use an alternate mechanism to display: none when components are ready (#363)</li>
+<li>Weaver Components should use Ngrx to to maintain state. (#364)</li>
+<li>Weaver Components should build without warnings (#365)</li>
+<li>Refactor Template Service to Template Utility (#379)</li>
+<li>Refactor to pure pipes (#380)</li>
+<li>Remove isMobileAgent from base component (#381)</li>
+<li>Refactor mobile store to layout store (#382)</li>
+<li>Afford input text color on text component (#388)</li>
+<li>Colors in color utility should be brought in via JSON (#390)</li>
+<li>Weaver Components Manifest should support path variables (#398)</li>
+</ul>
+<h2 id="1111---05-19-21">[1.11.1] - 05-19-21</h2>
+<h3 id="resolves-8">Resolves</h3>
+<ul>
+<li>Weaver Components should use an alternate mechanism to display: none when components are ready (#363)</li>
+</ul>
+<h2 id="1110---05-12-21">[1.11.0] - 05-12-21</h2>
+<h3 id="resolves-9">Resolves</h3>
+<ul>
+<li>The weaver modal bg should be displayed (and NOT flicker). (#328)</li>
+<li>Weaver modal only opens when a single modal is used. (#346)</li>
+<li>Weaver components should offer a default theme group (modeled after btn). (#347)</li>
+<li>The Card Component should support theming. (#350)</li>
+<li>Lighthouse build failing for weaver components. (#356)</li>
+</ul>
+<h2 id="1100---04-23-21">[1.10.0] - 04-23-21</h2>
+<h3 id="resolves-10">Resolves</h3>
+<ul>
+<li>Weaver Modal button should be toggle-able. (#329 )</li>
+<li>WVRWYSIWYG is not appearing in the usage documentation. (#330 )</li>
+<li>WVR Theme Variants should be expanded to include all needed variant names. (#334)</li>
+<li>Weaver Component&#39;s Modal Component should utilize the wvr-button-component intead of the wvre-button. ( #341)</li>
+<li>Weaver component should provide additional theme variants. ( #342)</li>
+<li>Weaver drop down menu should have a delay on hover prior to displaying the dropdown menu. ( #344)</li>
+</ul>
+<h2 id="190---03-31-21">[1.9.0] - 03-31-21</h2>
+<h3 id="resolves-11">Resolves</h3>
+<ul>
+<li>Weaver Components should provide a modal component. (#314)</li>
+<li>Weaver Components should offer a WYSIWYG component. (#315)</li>
+<li>Weaver Button should be able to trigger actions on a parent component. (#319)</li>
+<li>Weaver WYSIWYG should maintain state using NgRX (#322)</li>
+</ul>
+<h2 id="180---12-18-20">[1.8.0] - 12-18-20</h2>
+<h3 id="resolves-12">Resolves</h3>
+<ul>
+<li>Weaver Components should utilize externals to reduce bundle size. (#158)</li>
+<li>Remove scss, rendered unnecessary by the recent theme features. (#276)</li>
+</ul>
+<h2 id="174---12-15-20">[1.7.4] - 12-15-20</h2>
+<h3 id="resolves-13">Resolves</h3>
+<ul>
+<li>Patch icon bug</li>
+</ul>
+<h2 id="173---12-15-20">[1.7.3] - 12-15-20</h2>
+<h3 id="resolves-14">Resolves</h3>
+<ul>
+<li>Fixed SVG styling and performance.</li>
+</ul>
+<h2 id="172---12-14-20">[1.7.2] - 12-14-20</h2>
+<h3 id="resolves-15">Resolves</h3>
+<ul>
+<li>Performance improvements</li>
+</ul>
+<h2 id="171---11-20-20">[1.7.1] - 11-20-20</h2>
+<h3 id="resolves-16">Resolves</h3>
+<ul>
+<li>Fixes bootstrapping process.</li>
+</ul>
+<h2 id="170---11-20-20">[1.7.0] - 11-20-20</h2>
+<h3 id="resolves-17">Resolves</h3>
+<ul>
+<li>Wvr animations have regressed and are no longer firing. (#256)</li>
+<li>SetTimeouts are not performant at load time. (#257)</li>
+<li>Weaver Usage Documentation should include the component template in tab list. (#260)</li>
+<li>Wvr Components should support an extensible list of branded colors. (Primary, secondary, danger, warning... etc). (#262)</li>
+<li>Refactor color usage across wvr components to use branded color list, and include fallback support. (#263)</li>
+<li>Color preview component. (#264)</li>
+</ul>
+<h2 id="160---11-2-20">[1.6.0] - 11-2-20</h2>
+<h3 id="resolves-18">Resolves</h3>
+<ul>
+<li>Weaver component&#39;s build process should build multiple versions of the product. (#86)</li>
+<li>Weaver Usage Docs should be converted into an angular project. (#102)</li>
+<li>The wvr manifest action to submit request should afford providing response map. (#223)</li>
+<li>Handlebars should be extracted into a service and all helpers declared outside of the component constructor. (#232)</li>
+<li>On safari (check firefox) mobile display does not run the position footer function at load time. (#233)</li>
+<li>Weaver components should provide a wvr-cards component. (#234)</li>
+<li>Weaver Component selectors need to be refactored to avoid name collision with Weaver (angularjs) directives. (#237)</li>
+<li>The wvr-header should use the configured asset path for the header logo. (#255)</li>
+</ul>
+<h2 id="150---10-8-20">[1.5.0] - 10-8-20</h2>
+<h3 id="resolves-19">Resolves</h3>
+<ul>
+<li>Weaver Components should communicate with Weaver web services. (#195)</li>
+<li>Weaver Lists should automatically assign aria owns attribute for each of its list items. (#206)</li>
+<li>Weaver Components should provide an Alert Component. (#207)</li>
+<li>Weaver Components should dynamically assign unique identifiers to each component. (#208)</li>
+<li>Explore ngRX as a state store solution for components. (#209)</li>
+<li>Weaver Components should offer a tabs component. (#210)</li>
+</ul>
+<h2 id="140---9-23-20">[1.4.0] - 9-23-20</h2>
+<h3 id="resolves-20">Resolves</h3>
+<ul>
+<li>Encapsulates bootstrap within global styling</li>
+<li>Performance improvements </li>
+<li>Introduces Mobile Service</li>
+<li>The list item context attr should override the visual context of the list item. (#199)</li>
+</ul>
+<h2 id="130---08-13-20">[1.3.0] - 08-13-20</h2>
+<h3 id="resolves-21">Resolves</h3>
+<ul>
+<li>Weaver Components should have an element query strategy. (#27)</li>
+<li>Icons should be integrated into weaver buttons. (#128)</li>
+<li>Weaver Components should support lists with expanding and collapsing sections. (#163)</li>
+<li>The Wvr Icon component should support animation. (#164)</li>
+<li>Weaver Components should have a list component. (#165)</li>
+<li>Coveralls not providing the coverage notification. (#167)</li>
+<li>Observable subscriptions should be unsubscribed from or converted to promises. (#168)</li>
+</ul>
+<h2 id="120---07-16-20">[1.2.0] - 07-16-20</h2>
+<h3 id="resolves-22">Resolves</h3>
+<ul>
+<li>Weaver Component should support a global configuration paradigm. (#64)</li>
+<li>Weaver Components should share vendor styling across components. (#82)</li>
+<li>Weaver Components should support multiple font icon libraries. (#85)</li>
+<li>Buttons must be integrated into weaver drop-down. (#129)</li>
+<li>Weaver footer &quot;stick-to-bottom&quot; property affected by wvr-button line-height and padding property. (#150)</li>
+</ul>
+<h2 id="110---06-25-20">[1.1.0] - 06-25-20</h2>
+<h3 id="resolves-23">Resolves</h3>
+<ul>
+<li>Wvr Components should provide a wvr-button component (#103)</li>
+<li>CDN needs to be exposed through the firewall (#135)</li>
+<li>Fix Z-Index on dropdown overlaps (#133)</li>
+<li>Restore dynamic change detection for display of bottom nav (#136)</li>
+<li>Dropdown inside of List inside of Header flickers instead of staying open (#119)</li>
+</ul>
+<h2 id="100---06-11-20">[1.0.0] - 06-11-20</h2>
+<h3 id="resolves-24">Resolves</h3>
+<ul>
+<li>The wvr-header should support mobile and tablet layouts (#7)</li>
+<li>Weaver Components should have CI hooks for lighthouse (#105)</li>
+<li>wvr-component should have attribute: page-title-url (#116)</li>
+<li>Weaver Drop down component selector should be renamed (#125)</li>
+</ul>
+<h2 id="005---05-14-2020">[0.0.5] - 05-14-2020</h2>
+<h3 id="resolves-25">Resolves</h3>
+<ul>
+<li>The wvr-header should support accessible designs (#8)</li>
+<li>Weaver Components should provide a drop down element (#20)</li>
+<li>The wvr-header component&#39;s bottom-nav section should display conditionally (#81)</li>
+<li>Weaver components usage documentation fails to build (#83)</li>
+<li>Weaver documentation landing page is broken (#84)</li>
+<li>wvr-footer&#39;s navbar should be have a height of 100% (#89)</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 0;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'getting-started';
+            var COMPODOC_CURRENT_PAGE_URL = 'changelog.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="./js/libs/custom-elements.min.js"></script>
+       <script src="./js/libs/lit-html.js"></script>
+
+       <script src="./js/menu-wc.js" defer></script>
+       <script nomodule src="./js/menu-wc_es5.js" defer></script>
+
+       <script src="./js/libs/bootstrap-native.js"></script>
+
+       <script src="./js/libs/es6-shim.min.js"></script>
+       <script src="./js/libs/EventDispatcher.js"></script>
+       <script src="./js/libs/promise.min.js"></script>
+       <script src="./js/libs/zepto.min.js"></script>
+
+       <script src="./js/compodoc.js"></script>
+
+       <script src="./js/tabs.js"></script>
+       <script src="./js/menu.js"></script>
+       <script src="./js/libs/clipboard.min.js"></script>
+       <script src="./js/libs/prism.js"></script>
+       <script src="./js/sourceCode.js"></script>
+          <script src="./js/search/search.js"></script>
+          <script src="./js/search/lunr.min.js"></script>
+          <script src="./js/search/search-lunr.js"></script>
+          <script src="./js/search/search_index.js"></script>
+       <script src="./js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -1,0 +1,153 @@
+<about name="Weaver Icon">
+  <p>This component represents an icon.</p>
+
+  <div>
+    <p>The following attributes are available:</p>
+    <ul>
+      <li><code>color</code>: A color to apply on the icon.</li>
+      <li><code>name</code>: The file name of the icon representing the file (without the file extension) under the icon set.</li>
+      <li><code>set</code>: The icon set in which to associate the icon.</li>
+      <li><code>size</code>: The size of the icon.</li>
+    </ul>
+  </div>
+</about>
+
+<example name="Weaver Icon Default">
+  <desciption>
+    The default <code>wvre-icon</code> component with no customizations.
+  </desciption>
+  <snippet>
+    <wvre-icon set="custom" name="weaver-w"></wvre-icon>
+  </snippet>
+<component-source>import { HttpClient } from '@angular/common/http';
+import { ChangeDetectionStrategy, Component, HostBinding, Injector, Input, OnInit } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
+
+/**
+ * A reference to an Icon currently available in the configured assets.
+ */
+@Component({
+  selector: 'wvr-icon-component',
+  templateUrl: './wvr-icon.component.html',
+  styleUrls: ['./wvr-icon.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
+})
+export class WvrIconComponent extends WvrBaseComponent implements OnInit {
+
+  /** An attribute input describing the icon set to which this icon belongs. */
+  @Input() set: string;
+
+  /** An attribute input describing the icon name of this icon. */
+  @Input() name: string;
+
+  /** An attribute input bound to the css variable `--wvr-icon-color`.  */
+  @HostBinding('style.--wvr-icon-color') @Input() color: string;
+
+  /** An attribute input bound to the css variable `--wvr-icon-size`.  */
+  @HostBinding('style.--wvr-icon-size') @Input() size = '24px';
+
+  iconSvg: Observable<safehtml>;
+
+  constructor(injector: Injector, private readonly http: HttpClient, protected readonly sanitizer: DomSanitizer) {
+    super(injector);
+  }
+
+  ngOnInit(): void {
+    super.ngOnInit();
+    const iconSvgUrl = `${this.appConfig.assetsUrl}/icons/${this.set}/${this.name}.svg`;
+    this.iconSvg = this.http.get(iconSvgUrl, {
+      responseType: 'text'
+    }).pipe(map((svg: string) =&gt; this.sanitizer.bypassSecurityTrustHtml(svg)));
+  }
+
+}
+</safehtml></component-source><component-template><span #animationroot="" class="icon" [innerhtml]="iconSvg | async"></span>
+</component-template><component-scss>@import "../shared/styles/variables";
+
+:host {
+  @extend .variables;
+
+  --wvr-icon-color: inherit;
+  --wvr-icon-size: inherit;
+
+  span.icon {
+    display: inline-block;
+    color: var(--wvr-icon-color);
+    width: var(--wvr-icon-size);
+    height: var(--wvr-icon-size);
+  }
+}
+</component-scss></example>
+
+<example name="Weaver Icon Custom">
+  <desciption>
+    The <code>wvre-icon</code> component with all customizations.
+  </desciption>
+  <snippet>
+    <wvre-icon set="custom" name="weaver-w" color="#500000" size="64px"></wvre-icon>
+  </snippet>
+<component-source>import { HttpClient } from '@angular/common/http';
+import { ChangeDetectionStrategy, Component, HostBinding, Injector, Input, OnInit } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
+
+/**
+ * A reference to an Icon currently available in the configured assets.
+ */
+@Component({
+  selector: 'wvr-icon-component',
+  templateUrl: './wvr-icon.component.html',
+  styleUrls: ['./wvr-icon.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
+})
+export class WvrIconComponent extends WvrBaseComponent implements OnInit {
+
+  /** An attribute input describing the icon set to which this icon belongs. */
+  @Input() set: string;
+
+  /** An attribute input describing the icon name of this icon. */
+  @Input() name: string;
+
+  /** An attribute input bound to the css variable `--wvr-icon-color`.  */
+  @HostBinding('style.--wvr-icon-color') @Input() color: string;
+
+  /** An attribute input bound to the css variable `--wvr-icon-size`.  */
+  @HostBinding('style.--wvr-icon-size') @Input() size = '24px';
+
+  iconSvg: Observable<safehtml>;
+
+  constructor(injector: Injector, private readonly http: HttpClient, protected readonly sanitizer: DomSanitizer) {
+    super(injector);
+  }
+
+  ngOnInit(): void {
+    super.ngOnInit();
+    const iconSvgUrl = `${this.appConfig.assetsUrl}/icons/${this.set}/${this.name}.svg`;
+    this.iconSvg = this.http.get(iconSvgUrl, {
+      responseType: 'text'
+    }).pipe(map((svg: string) =&gt; this.sanitizer.bypassSecurityTrustHtml(svg)));
+  }
+
+}
+</safehtml></component-source><component-template><span #animationroot="" class="icon" [innerhtml]="iconSvg | async"></span>
+</component-template><component-scss>@import "../shared/styles/variables";
+
+:host {
+  @extend .variables;
+
+  --wvr-icon-color: inherit;
+  --wvr-icon-size: inherit;
+
+  span.icon {
+    display: inline-block;
+    color: var(--wvr-icon-color);
+    width: var(--wvr-icon-size);
+    height: var(--wvr-icon-size);
+  }
+}
+</component-scss></example>

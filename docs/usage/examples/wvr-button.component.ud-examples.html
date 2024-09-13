@@ -1,0 +1,2003 @@
+<about name="Weaver Button">
+  <p>This component represents a button.</p>
+  <p>A button is generally clickable and triggers an event.</p>
+
+  <div>
+    <p>The following attributes are available:</p>
+    <ul>
+      <li><code>background</code>: A button background value.</li>
+      <li><code>background-active</code>: A button background value, when active.</li>
+      <li><code>background-hover</code>: A button background value, when hover.</li>
+      <li><code>border-active</code>: A button border value, when active.</li>
+      <li><code>border-color</code>: A button border color value.</li>
+      <li><code>border-focus</code>: A button border value, when focus.</li>
+      <li><code>border-hover</code>: A button border value, when hover.</li>
+      <li><code>border-radius</code>: A button border radius value.</li>
+      <li><code>box-shadow-focus</code>: A button box shadow, when focus.</li>
+      <li><code>btn-text</code>: A text on the button.</li>
+      <li><code>btn-size</code>: One of <code>large</code>, <code>small</code>, or <code>block</code>.</li>
+      <li><code>btn-type</code>: One of <code>button</code>, <code>checkbox</code>, <code>radio</code>, <code>reset</code>, <code>submit</code>, or <code>link</code>.</li>
+      <li><code>color</code>: A button color value.</li>
+      <li><code>color-active</code>: A button color value, when active.</li>
+      <li><code>color-hover</code>: A button color value, when hover.</li>
+      <li><code>cursor</code>: A button cursor value.</li>
+      <li><code>disable</code>: One of <code>true</code> or <code>false</code>.</li>
+      <li><code>emitEvent</code>: An event to emit on button click.</li>
+      <li><code>font-family</code>: A button font-family value.</li>
+      <li><code>font-size</code>: A button font-size value.</li>
+      <li><code>href</code>: A URL for the button.</li>
+      <li><code>line-height</code>: A button line-height value.</li>
+      <li><code>padding</code>: A button padding value.</li>
+      <li><code>testInput</code>: A test input value.</li>
+      <li><code>text-align</code>: A button text alignment value.</li>
+      <li><code>theme-variant</code>: The name of a theme variant to use for the button.</li>
+      <li><code>vertical-align</code>: A button vertical alignment value.</li>
+    </ul>
+  </div>
+</about>
+
+<example name="Weaver Button Default">
+  <desciption>
+    The default <code>wvre-button</code> component with no customizations.
+  </desciption>
+  <snippet>
+    <wvre-button>
+      <wvre-text value="Default Button"></wvre-text>
+    </wvre-button>
+  </snippet>
+<component-source>import { AfterViewInit, ChangeDetectionStrategy, Component, HostBinding, Injector, Input } from '@angular/core';
+import * as JSON5 from 'json5';
+import { ActionRegistryService } from '../core/action-registry.service';
+import { ThemeVariantName } from '../shared/theme';
+import { projectContent } from '../shared/utility/projection.utility';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
+
+@Component({
+  selector: 'wvr-button-component',
+  templateUrl: './wvr-button.component.html',
+  styleUrls: ['./wvr-button.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
+})
+export class WvrButtonComponent extends WvrBaseComponent implements AfterViewInit {
+
+  htmlId = `wvr-button-${this.id}`;
+
+  /** Used to define the class type for button component.  */
+  @Input() themeVariant: ThemeVariantName = 'primary';
+
+  /** Used to define the size for button component.  */
+  @Input() btnSize: 'large' | 'small' | 'block';
+
+  /** Used to define the type of a button.  */
+  @Input() btnType: 'button' | 'checkbox' | 'radio' | 'reset' | 'submit' | 'link' = 'button';
+
+  /** Allows for the button component to be an anchor tag component if href property present. */
+  @Input() href: string;
+
+  @Input() disabled = false;
+
+  /** Allows for the override of background */
+  @Input() set background(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-bg`, value);
+  }
+
+  /** Allows for the override of active background */
+  @Input() set backgroundActive(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-active-bg`, value);
+  }
+
+  /** Allows for the override of hover background */
+  @Input() set backgroundHover(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-hover-bg`, value);
+  }
+
+  /** Allows for the override of border */
+  @Input() set borderColor(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-border`, value);
+  }
+
+  /** Allows for the override of active border */
+  @Input() set borderActive(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-active-border`, value);
+  }
+
+  /** Allows for the override of hover border */
+  @Input() set borderHover(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-hover-border`, value);
+  }
+
+  /** Allows for the override of button border in focus state */
+  @Input() set borderFocus(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-focus-border`, value);
+  }
+
+  /** Allows for override of box-shadow propery when the button is in focus state */
+  @Input() set boxShadowFocus(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-focus-box-shadow`, value);
+  }
+
+  /** Allows for the override of color */
+  @Input() set color(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-color`, value);
+  }
+
+  /** Allows for the override of active color */
+  @Input() set colorActive(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-active-color`, value);
+  }
+
+  /** Allows for the override of hover color */
+  @Input() set colorHover(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-hover-color`, value);
+  }
+
+  /** Allows for the override of button border radius */
+  @HostBinding('style.--wvr-btn-border-radius') @Input() borderRadius;
+
+  /** Allows for the override of button cursor property */
+  @HostBinding('style.--wvr-btn-cursor') @Input() cursor;
+
+  /** Allows for the override of button font family property */
+  @HostBinding('style.--wvr-btn-font-family-sans-serif') @Input() fontFamily;
+
+  /** Allows for the override of button font size property */
+  @HostBinding('style.--wvr-btn-font-size') @Input() fontSize;
+
+  /** Allows for the override of button font weight property */
+  @HostBinding('style.--wvr-btn-font-weight') @Input() fontWeight;
+
+  /** Allows for the override of button hover line height property */
+  @HostBinding('style.--wvr-btn-line-height') @Input() lineHeight;
+
+  /** Allows for the override of button padding property */
+  @HostBinding('style.--wvr-btn-padding') @Input() padding;
+
+  /** Allows for the override of button text align property */
+  @HostBinding('style.--wvr-btn-text-align') @Input() textAlign;
+
+  /** Allows for the override of button vertical align property */
+  @HostBinding('style.--wvr-btn-vertical-align') @Input() verticalAlign;
+
+  private _action: any;
+  @Input() set dispatchAction(value: string) {
+    this._action = this.parseActionNameAndType(value);
+  }
+
+  private _actionProps: any;
+  @Input() set dispatchActionProps(value: string) {
+    this._actionProps = JSON5.parse(value);
+  }
+
+  private _dispatchActions: Array<actionandprops>;
+  @Input() set dispatchActions(value: string) {
+    const actionInputs = JSON5.parse(value);
+    this._dispatchActions = actionInputs.map(ai =&gt;
+      ({
+        action: this.parseActionNameAndType(ai.action),
+        props: ai.props
+      }));
+  }
+
+  @Input() emitEvent: string;
+
+  @Input() btnTxt: string;
+
+  @Input() testInput: boolean;
+
+  variantTypes = ['button'];
+
+  actionRegistry?: ActionRegistryService;
+
+  constructor(injector: Injector) {
+    super(injector);
+    this.actionRegistry = injector.get(ActionRegistryService);
+  }
+
+  /** Called after the view has been intialized. Handles the rendering of the projected content. */
+  ngAfterViewInit(): void {
+    projectContent(this.eRef, 'template[button-content]', 'span[button-content]');
+  }
+
+  onClick(): void {
+    if (this._dispatchActions) {
+      this._dispatchActions.forEach(actionAndProp =&gt; {
+        this.store.dispatch(actionAndProp.action(
+          actionAndProp.props
+        ));
+      });
+    } else if (this._action) {
+      this._actionProps ?
+      this.store.dispatch(this._action(
+        this._actionProps
+      )) :
+      this.store.dispatch(this._action());
+    }
+
+    if (this.emitEvent) {
+      this.eRef.nativeElement.dispatchEvent(new CustomEvent(this.emitEvent, {
+        bubbles: true,
+        detail: {
+          data: (this.eRef.nativeElement as HTMLElement).dataset,
+          button: this
+        }
+      }));
+    }
+  }
+
+  // tslint:disable-next-line:prefer-function-over-method
+  private parseActionNameAndType(nameAndType: string): any {
+    const parts = nameAndType.split('.');
+    if (parts.length !== 2) {
+      console.warn(`'${nameAndType}' is not a valid value for 'dispatch-action'. Must in form '[ActionType].[ActionName]'`);
+
+      return;
+    }
+
+    const registeredActions = this.actionRegistry.getActions(parts[0]);
+
+    if (!registeredActions) {
+      console.warn(`No registered actions were found for '${nameAndType}'.`);
+
+      return;
+    }
+
+    if (!parts[1] || !registeredActions[parts[1]]) {
+      const actions = Object.keys(registeredActions)
+        .join(',');
+      console.warn(`'${parts[1]}' is not a known action of ${parts[0]} (${actions}).`);
+
+      return;
+    }
+
+    return registeredActions[parts[1]];
+  }
+
+}
+
+export interface ActionAndProps {
+  action: any;
+  props: Object;
+}
+</actionandprops></component-source><component-template><button-wrapper #animationroot="">
+  <button *ngif="!href" [attr.id]="htmlId" [type]="btnType" [ngclass]="{
+      'btn-lg': btnSize === 'large',
+      'btn-sm': btnSize === 'small',
+      'btn-block': btnSize === 'block',
+      'btn-link': btnType === 'link'
+    }" [disabled]="disabled" (click)="onClick()" role="button" class="wvr-components wvr-button btn {{btnType!=='link' ? 'btn-' + themeVariant : ''}}">
+    <ng-container *ngtemplateoutlet="content"></ng-container>
+  </button>
+  <a *ngif="href" [attr.id]="htmlId" [attr.href]="disabled ? undefined : href" [ngclass]="{
+      'btn-lg': btnSize === 'large',
+      'btn-sm': btnSize === 'small',
+      'btn-block': btnSize === 'block',
+      'btn-link': btnType === 'link',
+      'disabled': disabled
+    }" role="button" aria-label="button" class="wvr-components wvr-button btn {{btnType!=='link' ? 'btn-' + themeVariant : ''}}">
+    <ng-container *ngtemplateoutlet="content"></ng-container>
+  </a>
+</button-wrapper>
+
+<ng-template #content="">
+  <span button-content="">
+    <ng-content select="template[button-content]"></ng-content>
+  </span>
+  {{btnTxt}}
+</ng-template>
+</component-template><component-scss>@import "../shared/styles/variables";
+
+:host {
+  
+  @extend .variables;
+
+  --wvr-btn-cursor-default: pointer;
+  --wvr-btn-font-family-sans-serif-default: var(--wvr-font-family-sans-serif);
+  --wvr-btn-font-size-default: 1rem;
+  --wvr-btn-font-weight-default: normal;
+  --wvr-btn-line-height-default: 1.5;
+  --wvr-btn-padding-default: .375rem .75rem;
+  --wvr-btn-text-align-default: center;
+  --wvr-btn-vertical-align-default: middle;
+
+  --wvr-btn-cursor: var(--wvr-btn-cursor-default);
+  --wvr-btn-font-family-sans-serif: var(--wvr-btn-font-family-sans-serif-default);
+  --wvr-btn-font-size: var(--wvr-btn-font-size-default);
+  --wvr-btn-font-weight: var(--wvr-btn-font-weight-default);
+  --wvr-btn-line-height: var(--wvr-btn-line-height-default);
+  --wvr-btn-padding: var(--wvr-btn-padding-default);
+  --wvr-btn-text-align: var(--wvr-btn-text-align-default);
+  --wvr-btn-vertical-align: var(--wvr-btn-vertical-align-default);
+
+  button-wrapper {
+    display: inline-block;
+    overflow: hidden;
+
+    a.disabled {
+      color: gray;
+      cursor: not-allowed;
+      text-decoration: underline;
+    }
+
+    span[button-content] {
+      display: inline-block;
+    }
+  }
+
+  .wvr-button.btn {
+    cursor: var(--wvr-btn-cursor-default);
+    font-family: var(--wvr-btn-font-family-sans-serif);
+    font-size: var(--wvr-btn-font-size);
+    font-weight: var(--wvr-btn-font-weight);
+    line-height: var(--wvr-btn-line-height);
+    padding: var(--wvr-btn-padding);
+    text-align: var(--wvr-btn-text-align);
+    vertical-align: var(--wvr-btn-vertical-align);
+  }
+
+  .wvr-button.btn:not(:disabled):not(.disabled) {
+    cursor: var(--wvr-btn-cursor);
+  }
+
+  .btn {
+    ::ng-deep {
+      wvre-icon {
+        margin: 0px 5px 0px 0px;
+        svg {
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+
+}
+</component-scss></example>
+
+<example name="Weaver Button Custom">
+  <desciption>
+    The <code>wvre-button</code> component with customizations.
+  </desciption>
+  <snippet>
+    <wvre-button theme-variant="primary" btn-size="large" wvr-btn-type="button" background="tomato" border-color="1px solid var(--wvr-btn-outline-warning-hover-color)" color="var(--wvr-btn-outline-warning-hover-color)" text-decoration="none" background-active="yellow" border-active="1px solid green" color-active="teal" text-decoration-active="underline" background-hover="green" border-hover="1px solid blue" color-hover="var(--wvr-black)" text-decoration-hover="none" border-radius="5px" cursor="var(--wvr-btn-cursor-pointer)" font-family="cursive" font-size="18px" line-height="1.75" padding="1.5rem 1.5rem" text-align="center" vertical-align="var(--wvr-btn-vertical-align)">
+      <wvre-text value=" Customized Button "></wvre-text>
+    </wvre-button>
+  </snippet>
+<component-source>import { AfterViewInit, ChangeDetectionStrategy, Component, HostBinding, Injector, Input } from '@angular/core';
+import * as JSON5 from 'json5';
+import { ActionRegistryService } from '../core/action-registry.service';
+import { ThemeVariantName } from '../shared/theme';
+import { projectContent } from '../shared/utility/projection.utility';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
+
+@Component({
+  selector: 'wvr-button-component',
+  templateUrl: './wvr-button.component.html',
+  styleUrls: ['./wvr-button.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
+})
+export class WvrButtonComponent extends WvrBaseComponent implements AfterViewInit {
+
+  htmlId = `wvr-button-${this.id}`;
+
+  /** Used to define the class type for button component.  */
+  @Input() themeVariant: ThemeVariantName = 'primary';
+
+  /** Used to define the size for button component.  */
+  @Input() btnSize: 'large' | 'small' | 'block';
+
+  /** Used to define the type of a button.  */
+  @Input() btnType: 'button' | 'checkbox' | 'radio' | 'reset' | 'submit' | 'link' = 'button';
+
+  /** Allows for the button component to be an anchor tag component if href property present. */
+  @Input() href: string;
+
+  @Input() disabled = false;
+
+  /** Allows for the override of background */
+  @Input() set background(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-bg`, value);
+  }
+
+  /** Allows for the override of active background */
+  @Input() set backgroundActive(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-active-bg`, value);
+  }
+
+  /** Allows for the override of hover background */
+  @Input() set backgroundHover(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-hover-bg`, value);
+  }
+
+  /** Allows for the override of border */
+  @Input() set borderColor(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-border`, value);
+  }
+
+  /** Allows for the override of active border */
+  @Input() set borderActive(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-active-border`, value);
+  }
+
+  /** Allows for the override of hover border */
+  @Input() set borderHover(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-hover-border`, value);
+  }
+
+  /** Allows for the override of button border in focus state */
+  @Input() set borderFocus(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-focus-border`, value);
+  }
+
+  /** Allows for override of box-shadow propery when the button is in focus state */
+  @Input() set boxShadowFocus(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-focus-box-shadow`, value);
+  }
+
+  /** Allows for the override of color */
+  @Input() set color(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-color`, value);
+  }
+
+  /** Allows for the override of active color */
+  @Input() set colorActive(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-active-color`, value);
+  }
+
+  /** Allows for the override of hover color */
+  @Input() set colorHover(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-hover-color`, value);
+  }
+
+  /** Allows for the override of button border radius */
+  @HostBinding('style.--wvr-btn-border-radius') @Input() borderRadius;
+
+  /** Allows for the override of button cursor property */
+  @HostBinding('style.--wvr-btn-cursor') @Input() cursor;
+
+  /** Allows for the override of button font family property */
+  @HostBinding('style.--wvr-btn-font-family-sans-serif') @Input() fontFamily;
+
+  /** Allows for the override of button font size property */
+  @HostBinding('style.--wvr-btn-font-size') @Input() fontSize;
+
+  /** Allows for the override of button font weight property */
+  @HostBinding('style.--wvr-btn-font-weight') @Input() fontWeight;
+
+  /** Allows for the override of button hover line height property */
+  @HostBinding('style.--wvr-btn-line-height') @Input() lineHeight;
+
+  /** Allows for the override of button padding property */
+  @HostBinding('style.--wvr-btn-padding') @Input() padding;
+
+  /** Allows for the override of button text align property */
+  @HostBinding('style.--wvr-btn-text-align') @Input() textAlign;
+
+  /** Allows for the override of button vertical align property */
+  @HostBinding('style.--wvr-btn-vertical-align') @Input() verticalAlign;
+
+  private _action: any;
+  @Input() set dispatchAction(value: string) {
+    this._action = this.parseActionNameAndType(value);
+  }
+
+  private _actionProps: any;
+  @Input() set dispatchActionProps(value: string) {
+    this._actionProps = JSON5.parse(value);
+  }
+
+  private _dispatchActions: Array<actionandprops>;
+  @Input() set dispatchActions(value: string) {
+    const actionInputs = JSON5.parse(value);
+    this._dispatchActions = actionInputs.map(ai =&gt;
+      ({
+        action: this.parseActionNameAndType(ai.action),
+        props: ai.props
+      }));
+  }
+
+  @Input() emitEvent: string;
+
+  @Input() btnTxt: string;
+
+  @Input() testInput: boolean;
+
+  variantTypes = ['button'];
+
+  actionRegistry?: ActionRegistryService;
+
+  constructor(injector: Injector) {
+    super(injector);
+    this.actionRegistry = injector.get(ActionRegistryService);
+  }
+
+  /** Called after the view has been intialized. Handles the rendering of the projected content. */
+  ngAfterViewInit(): void {
+    projectContent(this.eRef, 'template[button-content]', 'span[button-content]');
+  }
+
+  onClick(): void {
+    if (this._dispatchActions) {
+      this._dispatchActions.forEach(actionAndProp =&gt; {
+        this.store.dispatch(actionAndProp.action(
+          actionAndProp.props
+        ));
+      });
+    } else if (this._action) {
+      this._actionProps ?
+      this.store.dispatch(this._action(
+        this._actionProps
+      )) :
+      this.store.dispatch(this._action());
+    }
+
+    if (this.emitEvent) {
+      this.eRef.nativeElement.dispatchEvent(new CustomEvent(this.emitEvent, {
+        bubbles: true,
+        detail: {
+          data: (this.eRef.nativeElement as HTMLElement).dataset,
+          button: this
+        }
+      }));
+    }
+  }
+
+  // tslint:disable-next-line:prefer-function-over-method
+  private parseActionNameAndType(nameAndType: string): any {
+    const parts = nameAndType.split('.');
+    if (parts.length !== 2) {
+      console.warn(`'${nameAndType}' is not a valid value for 'dispatch-action'. Must in form '[ActionType].[ActionName]'`);
+
+      return;
+    }
+
+    const registeredActions = this.actionRegistry.getActions(parts[0]);
+
+    if (!registeredActions) {
+      console.warn(`No registered actions were found for '${nameAndType}'.`);
+
+      return;
+    }
+
+    if (!parts[1] || !registeredActions[parts[1]]) {
+      const actions = Object.keys(registeredActions)
+        .join(',');
+      console.warn(`'${parts[1]}' is not a known action of ${parts[0]} (${actions}).`);
+
+      return;
+    }
+
+    return registeredActions[parts[1]];
+  }
+
+}
+
+export interface ActionAndProps {
+  action: any;
+  props: Object;
+}
+</actionandprops></component-source><component-template><button-wrapper #animationroot="">
+  <button *ngif="!href" [attr.id]="htmlId" [type]="btnType" [ngclass]="{
+      'btn-lg': btnSize === 'large',
+      'btn-sm': btnSize === 'small',
+      'btn-block': btnSize === 'block',
+      'btn-link': btnType === 'link'
+    }" [disabled]="disabled" (click)="onClick()" role="button" class="wvr-components wvr-button btn {{btnType!=='link' ? 'btn-' + themeVariant : ''}}">
+    <ng-container *ngtemplateoutlet="content"></ng-container>
+  </button>
+  <a *ngif="href" [attr.id]="htmlId" [attr.href]="disabled ? undefined : href" [ngclass]="{
+      'btn-lg': btnSize === 'large',
+      'btn-sm': btnSize === 'small',
+      'btn-block': btnSize === 'block',
+      'btn-link': btnType === 'link',
+      'disabled': disabled
+    }" role="button" aria-label="button" class="wvr-components wvr-button btn {{btnType!=='link' ? 'btn-' + themeVariant : ''}}">
+    <ng-container *ngtemplateoutlet="content"></ng-container>
+  </a>
+</button-wrapper>
+
+<ng-template #content="">
+  <span button-content="">
+    <ng-content select="template[button-content]"></ng-content>
+  </span>
+  {{btnTxt}}
+</ng-template>
+</component-template><component-scss>@import "../shared/styles/variables";
+
+:host {
+  
+  @extend .variables;
+
+  --wvr-btn-cursor-default: pointer;
+  --wvr-btn-font-family-sans-serif-default: var(--wvr-font-family-sans-serif);
+  --wvr-btn-font-size-default: 1rem;
+  --wvr-btn-font-weight-default: normal;
+  --wvr-btn-line-height-default: 1.5;
+  --wvr-btn-padding-default: .375rem .75rem;
+  --wvr-btn-text-align-default: center;
+  --wvr-btn-vertical-align-default: middle;
+
+  --wvr-btn-cursor: var(--wvr-btn-cursor-default);
+  --wvr-btn-font-family-sans-serif: var(--wvr-btn-font-family-sans-serif-default);
+  --wvr-btn-font-size: var(--wvr-btn-font-size-default);
+  --wvr-btn-font-weight: var(--wvr-btn-font-weight-default);
+  --wvr-btn-line-height: var(--wvr-btn-line-height-default);
+  --wvr-btn-padding: var(--wvr-btn-padding-default);
+  --wvr-btn-text-align: var(--wvr-btn-text-align-default);
+  --wvr-btn-vertical-align: var(--wvr-btn-vertical-align-default);
+
+  button-wrapper {
+    display: inline-block;
+    overflow: hidden;
+
+    a.disabled {
+      color: gray;
+      cursor: not-allowed;
+      text-decoration: underline;
+    }
+
+    span[button-content] {
+      display: inline-block;
+    }
+  }
+
+  .wvr-button.btn {
+    cursor: var(--wvr-btn-cursor-default);
+    font-family: var(--wvr-btn-font-family-sans-serif);
+    font-size: var(--wvr-btn-font-size);
+    font-weight: var(--wvr-btn-font-weight);
+    line-height: var(--wvr-btn-line-height);
+    padding: var(--wvr-btn-padding);
+    text-align: var(--wvr-btn-text-align);
+    vertical-align: var(--wvr-btn-vertical-align);
+  }
+
+  .wvr-button.btn:not(:disabled):not(.disabled) {
+    cursor: var(--wvr-btn-cursor);
+  }
+
+  .btn {
+    ::ng-deep {
+      wvre-icon {
+        margin: 0px 5px 0px 0px;
+        svg {
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+
+}
+</component-scss></example>
+
+<example name="Weaver Button Solid">
+  <desciption>
+    The <code>wvre-button</code> component with customizations.
+  </desciption>
+  <snippet>
+  <wvre-button theme-variant="primary">
+    <wvre-text value=" Primary "></wvre-text>
+  </wvre-button>
+  <wvre-button theme-variant="secondary">
+    <wvre-text value=" Secondary "></wvre-text>
+  </wvre-button>
+  <wvre-button theme-variant="success">
+    <wvre-text value=" Success "></wvre-text>
+  </wvre-button>
+  <wvre-button theme-variant="danger">
+    <wvre-text value=" Danger "></wvre-text>
+  </wvre-button>
+  <wvre-button theme-variant="warning">
+    <wvre-text value=" Warning "></wvre-text>
+  </wvre-button>
+  <wvre-button theme-variant="info">
+    <wvre-text value=" Info "></wvre-text>
+  </wvre-button>
+  <wvre-button theme-variant="light">
+    <wvre-text value=" Light "></wvre-text>
+  </wvre-button>
+  <wvre-button theme-variant="dark">
+    <wvre-text value=" Dark "></wvre-text>
+  </wvre-button>
+  <wvre-button theme-variant="primary" wvr-btn-type="button" href="www.google.com">
+    <wvre-text value=" Link "></wvre-text>
+  </wvre-button>
+  </snippet>
+<component-source>import { AfterViewInit, ChangeDetectionStrategy, Component, HostBinding, Injector, Input } from '@angular/core';
+import * as JSON5 from 'json5';
+import { ActionRegistryService } from '../core/action-registry.service';
+import { ThemeVariantName } from '../shared/theme';
+import { projectContent } from '../shared/utility/projection.utility';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
+
+@Component({
+  selector: 'wvr-button-component',
+  templateUrl: './wvr-button.component.html',
+  styleUrls: ['./wvr-button.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
+})
+export class WvrButtonComponent extends WvrBaseComponent implements AfterViewInit {
+
+  htmlId = `wvr-button-${this.id}`;
+
+  /** Used to define the class type for button component.  */
+  @Input() themeVariant: ThemeVariantName = 'primary';
+
+  /** Used to define the size for button component.  */
+  @Input() btnSize: 'large' | 'small' | 'block';
+
+  /** Used to define the type of a button.  */
+  @Input() btnType: 'button' | 'checkbox' | 'radio' | 'reset' | 'submit' | 'link' = 'button';
+
+  /** Allows for the button component to be an anchor tag component if href property present. */
+  @Input() href: string;
+
+  @Input() disabled = false;
+
+  /** Allows for the override of background */
+  @Input() set background(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-bg`, value);
+  }
+
+  /** Allows for the override of active background */
+  @Input() set backgroundActive(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-active-bg`, value);
+  }
+
+  /** Allows for the override of hover background */
+  @Input() set backgroundHover(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-hover-bg`, value);
+  }
+
+  /** Allows for the override of border */
+  @Input() set borderColor(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-border`, value);
+  }
+
+  /** Allows for the override of active border */
+  @Input() set borderActive(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-active-border`, value);
+  }
+
+  /** Allows for the override of hover border */
+  @Input() set borderHover(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-hover-border`, value);
+  }
+
+  /** Allows for the override of button border in focus state */
+  @Input() set borderFocus(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-focus-border`, value);
+  }
+
+  /** Allows for override of box-shadow propery when the button is in focus state */
+  @Input() set boxShadowFocus(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-focus-box-shadow`, value);
+  }
+
+  /** Allows for the override of color */
+  @Input() set color(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-color`, value);
+  }
+
+  /** Allows for the override of active color */
+  @Input() set colorActive(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-active-color`, value);
+  }
+
+  /** Allows for the override of hover color */
+  @Input() set colorHover(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-hover-color`, value);
+  }
+
+  /** Allows for the override of button border radius */
+  @HostBinding('style.--wvr-btn-border-radius') @Input() borderRadius;
+
+  /** Allows for the override of button cursor property */
+  @HostBinding('style.--wvr-btn-cursor') @Input() cursor;
+
+  /** Allows for the override of button font family property */
+  @HostBinding('style.--wvr-btn-font-family-sans-serif') @Input() fontFamily;
+
+  /** Allows for the override of button font size property */
+  @HostBinding('style.--wvr-btn-font-size') @Input() fontSize;
+
+  /** Allows for the override of button font weight property */
+  @HostBinding('style.--wvr-btn-font-weight') @Input() fontWeight;
+
+  /** Allows for the override of button hover line height property */
+  @HostBinding('style.--wvr-btn-line-height') @Input() lineHeight;
+
+  /** Allows for the override of button padding property */
+  @HostBinding('style.--wvr-btn-padding') @Input() padding;
+
+  /** Allows for the override of button text align property */
+  @HostBinding('style.--wvr-btn-text-align') @Input() textAlign;
+
+  /** Allows for the override of button vertical align property */
+  @HostBinding('style.--wvr-btn-vertical-align') @Input() verticalAlign;
+
+  private _action: any;
+  @Input() set dispatchAction(value: string) {
+    this._action = this.parseActionNameAndType(value);
+  }
+
+  private _actionProps: any;
+  @Input() set dispatchActionProps(value: string) {
+    this._actionProps = JSON5.parse(value);
+  }
+
+  private _dispatchActions: Array<actionandprops>;
+  @Input() set dispatchActions(value: string) {
+    const actionInputs = JSON5.parse(value);
+    this._dispatchActions = actionInputs.map(ai =&gt;
+      ({
+        action: this.parseActionNameAndType(ai.action),
+        props: ai.props
+      }));
+  }
+
+  @Input() emitEvent: string;
+
+  @Input() btnTxt: string;
+
+  @Input() testInput: boolean;
+
+  variantTypes = ['button'];
+
+  actionRegistry?: ActionRegistryService;
+
+  constructor(injector: Injector) {
+    super(injector);
+    this.actionRegistry = injector.get(ActionRegistryService);
+  }
+
+  /** Called after the view has been intialized. Handles the rendering of the projected content. */
+  ngAfterViewInit(): void {
+    projectContent(this.eRef, 'template[button-content]', 'span[button-content]');
+  }
+
+  onClick(): void {
+    if (this._dispatchActions) {
+      this._dispatchActions.forEach(actionAndProp =&gt; {
+        this.store.dispatch(actionAndProp.action(
+          actionAndProp.props
+        ));
+      });
+    } else if (this._action) {
+      this._actionProps ?
+      this.store.dispatch(this._action(
+        this._actionProps
+      )) :
+      this.store.dispatch(this._action());
+    }
+
+    if (this.emitEvent) {
+      this.eRef.nativeElement.dispatchEvent(new CustomEvent(this.emitEvent, {
+        bubbles: true,
+        detail: {
+          data: (this.eRef.nativeElement as HTMLElement).dataset,
+          button: this
+        }
+      }));
+    }
+  }
+
+  // tslint:disable-next-line:prefer-function-over-method
+  private parseActionNameAndType(nameAndType: string): any {
+    const parts = nameAndType.split('.');
+    if (parts.length !== 2) {
+      console.warn(`'${nameAndType}' is not a valid value for 'dispatch-action'. Must in form '[ActionType].[ActionName]'`);
+
+      return;
+    }
+
+    const registeredActions = this.actionRegistry.getActions(parts[0]);
+
+    if (!registeredActions) {
+      console.warn(`No registered actions were found for '${nameAndType}'.`);
+
+      return;
+    }
+
+    if (!parts[1] || !registeredActions[parts[1]]) {
+      const actions = Object.keys(registeredActions)
+        .join(',');
+      console.warn(`'${parts[1]}' is not a known action of ${parts[0]} (${actions}).`);
+
+      return;
+    }
+
+    return registeredActions[parts[1]];
+  }
+
+}
+
+export interface ActionAndProps {
+  action: any;
+  props: Object;
+}
+</actionandprops></component-source><component-template><button-wrapper #animationroot="">
+  <button *ngif="!href" [attr.id]="htmlId" [type]="btnType" [ngclass]="{
+      'btn-lg': btnSize === 'large',
+      'btn-sm': btnSize === 'small',
+      'btn-block': btnSize === 'block',
+      'btn-link': btnType === 'link'
+    }" [disabled]="disabled" (click)="onClick()" role="button" class="wvr-components wvr-button btn {{btnType!=='link' ? 'btn-' + themeVariant : ''}}">
+    <ng-container *ngtemplateoutlet="content"></ng-container>
+  </button>
+  <a *ngif="href" [attr.id]="htmlId" [attr.href]="disabled ? undefined : href" [ngclass]="{
+      'btn-lg': btnSize === 'large',
+      'btn-sm': btnSize === 'small',
+      'btn-block': btnSize === 'block',
+      'btn-link': btnType === 'link',
+      'disabled': disabled
+    }" role="button" aria-label="button" class="wvr-components wvr-button btn {{btnType!=='link' ? 'btn-' + themeVariant : ''}}">
+    <ng-container *ngtemplateoutlet="content"></ng-container>
+  </a>
+</button-wrapper>
+
+<ng-template #content="">
+  <span button-content="">
+    <ng-content select="template[button-content]"></ng-content>
+  </span>
+  {{btnTxt}}
+</ng-template>
+</component-template><component-scss>@import "../shared/styles/variables";
+
+:host {
+  
+  @extend .variables;
+
+  --wvr-btn-cursor-default: pointer;
+  --wvr-btn-font-family-sans-serif-default: var(--wvr-font-family-sans-serif);
+  --wvr-btn-font-size-default: 1rem;
+  --wvr-btn-font-weight-default: normal;
+  --wvr-btn-line-height-default: 1.5;
+  --wvr-btn-padding-default: .375rem .75rem;
+  --wvr-btn-text-align-default: center;
+  --wvr-btn-vertical-align-default: middle;
+
+  --wvr-btn-cursor: var(--wvr-btn-cursor-default);
+  --wvr-btn-font-family-sans-serif: var(--wvr-btn-font-family-sans-serif-default);
+  --wvr-btn-font-size: var(--wvr-btn-font-size-default);
+  --wvr-btn-font-weight: var(--wvr-btn-font-weight-default);
+  --wvr-btn-line-height: var(--wvr-btn-line-height-default);
+  --wvr-btn-padding: var(--wvr-btn-padding-default);
+  --wvr-btn-text-align: var(--wvr-btn-text-align-default);
+  --wvr-btn-vertical-align: var(--wvr-btn-vertical-align-default);
+
+  button-wrapper {
+    display: inline-block;
+    overflow: hidden;
+
+    a.disabled {
+      color: gray;
+      cursor: not-allowed;
+      text-decoration: underline;
+    }
+
+    span[button-content] {
+      display: inline-block;
+    }
+  }
+
+  .wvr-button.btn {
+    cursor: var(--wvr-btn-cursor-default);
+    font-family: var(--wvr-btn-font-family-sans-serif);
+    font-size: var(--wvr-btn-font-size);
+    font-weight: var(--wvr-btn-font-weight);
+    line-height: var(--wvr-btn-line-height);
+    padding: var(--wvr-btn-padding);
+    text-align: var(--wvr-btn-text-align);
+    vertical-align: var(--wvr-btn-vertical-align);
+  }
+
+  .wvr-button.btn:not(:disabled):not(.disabled) {
+    cursor: var(--wvr-btn-cursor);
+  }
+
+  .btn {
+    ::ng-deep {
+      wvre-icon {
+        margin: 0px 5px 0px 0px;
+        svg {
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+
+}
+</component-scss></example>
+
+<example name="Weaver Button Outline">
+  <desciption>
+    The <code>wvre-button-outline</code> component with customizations.
+  </desciption>
+  <snippet>
+  <wvre-button theme-variant="outline-primary" wvr-btn-type="button">
+    <wvre-text value="Outline Primary"></wvre-text>
+  </wvre-button>
+  <wvre-button theme-variant="outline-secondary" wvr-btn-type="button">
+    <wvre-text value="Outline Secondary "></wvre-text>
+  </wvre-button>
+  <wvre-button theme-variant="outline-success" wvr-btn-type="button">
+    <wvre-text value="Outline Success "></wvre-text>
+  </wvre-button>
+  <wvre-button theme-variant="outline-danger" wvr-btn-type="button">
+    <wvre-text value="Outline Danger "></wvre-text>
+  </wvre-button>
+  <wvre-button theme-variant="outline-warning" wvr-btn-type="button">
+    <wvre-text value="Outline Warning "></wvre-text>
+  </wvre-button>
+  <wvre-button theme-variant="outline-info" wvr-btn-type="button">
+    <wvre-text value="Outline Info "></wvre-text>
+  </wvre-button>
+  <wvre-button theme-variant="outline-light" wvr-btn-type="button">
+    <wvre-text value="Outline Light "></wvre-text>
+  </wvre-button>
+  <wvre-button theme-variant="outline-dark" wvr-btn-type="button">
+    <wvre-text value="Outline Dark "></wvre-text>
+  </wvre-button>
+  </snippet>
+<component-source>import { AfterViewInit, ChangeDetectionStrategy, Component, HostBinding, Injector, Input } from '@angular/core';
+import * as JSON5 from 'json5';
+import { ActionRegistryService } from '../core/action-registry.service';
+import { ThemeVariantName } from '../shared/theme';
+import { projectContent } from '../shared/utility/projection.utility';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
+
+@Component({
+  selector: 'wvr-button-component',
+  templateUrl: './wvr-button.component.html',
+  styleUrls: ['./wvr-button.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
+})
+export class WvrButtonComponent extends WvrBaseComponent implements AfterViewInit {
+
+  htmlId = `wvr-button-${this.id}`;
+
+  /** Used to define the class type for button component.  */
+  @Input() themeVariant: ThemeVariantName = 'primary';
+
+  /** Used to define the size for button component.  */
+  @Input() btnSize: 'large' | 'small' | 'block';
+
+  /** Used to define the type of a button.  */
+  @Input() btnType: 'button' | 'checkbox' | 'radio' | 'reset' | 'submit' | 'link' = 'button';
+
+  /** Allows for the button component to be an anchor tag component if href property present. */
+  @Input() href: string;
+
+  @Input() disabled = false;
+
+  /** Allows for the override of background */
+  @Input() set background(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-bg`, value);
+  }
+
+  /** Allows for the override of active background */
+  @Input() set backgroundActive(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-active-bg`, value);
+  }
+
+  /** Allows for the override of hover background */
+  @Input() set backgroundHover(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-hover-bg`, value);
+  }
+
+  /** Allows for the override of border */
+  @Input() set borderColor(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-border`, value);
+  }
+
+  /** Allows for the override of active border */
+  @Input() set borderActive(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-active-border`, value);
+  }
+
+  /** Allows for the override of hover border */
+  @Input() set borderHover(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-hover-border`, value);
+  }
+
+  /** Allows for the override of button border in focus state */
+  @Input() set borderFocus(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-focus-border`, value);
+  }
+
+  /** Allows for override of box-shadow propery when the button is in focus state */
+  @Input() set boxShadowFocus(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-focus-box-shadow`, value);
+  }
+
+  /** Allows for the override of color */
+  @Input() set color(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-color`, value);
+  }
+
+  /** Allows for the override of active color */
+  @Input() set colorActive(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-active-color`, value);
+  }
+
+  /** Allows for the override of hover color */
+  @Input() set colorHover(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-hover-color`, value);
+  }
+
+  /** Allows for the override of button border radius */
+  @HostBinding('style.--wvr-btn-border-radius') @Input() borderRadius;
+
+  /** Allows for the override of button cursor property */
+  @HostBinding('style.--wvr-btn-cursor') @Input() cursor;
+
+  /** Allows for the override of button font family property */
+  @HostBinding('style.--wvr-btn-font-family-sans-serif') @Input() fontFamily;
+
+  /** Allows for the override of button font size property */
+  @HostBinding('style.--wvr-btn-font-size') @Input() fontSize;
+
+  /** Allows for the override of button font weight property */
+  @HostBinding('style.--wvr-btn-font-weight') @Input() fontWeight;
+
+  /** Allows for the override of button hover line height property */
+  @HostBinding('style.--wvr-btn-line-height') @Input() lineHeight;
+
+  /** Allows for the override of button padding property */
+  @HostBinding('style.--wvr-btn-padding') @Input() padding;
+
+  /** Allows for the override of button text align property */
+  @HostBinding('style.--wvr-btn-text-align') @Input() textAlign;
+
+  /** Allows for the override of button vertical align property */
+  @HostBinding('style.--wvr-btn-vertical-align') @Input() verticalAlign;
+
+  private _action: any;
+  @Input() set dispatchAction(value: string) {
+    this._action = this.parseActionNameAndType(value);
+  }
+
+  private _actionProps: any;
+  @Input() set dispatchActionProps(value: string) {
+    this._actionProps = JSON5.parse(value);
+  }
+
+  private _dispatchActions: Array<actionandprops>;
+  @Input() set dispatchActions(value: string) {
+    const actionInputs = JSON5.parse(value);
+    this._dispatchActions = actionInputs.map(ai =&gt;
+      ({
+        action: this.parseActionNameAndType(ai.action),
+        props: ai.props
+      }));
+  }
+
+  @Input() emitEvent: string;
+
+  @Input() btnTxt: string;
+
+  @Input() testInput: boolean;
+
+  variantTypes = ['button'];
+
+  actionRegistry?: ActionRegistryService;
+
+  constructor(injector: Injector) {
+    super(injector);
+    this.actionRegistry = injector.get(ActionRegistryService);
+  }
+
+  /** Called after the view has been intialized. Handles the rendering of the projected content. */
+  ngAfterViewInit(): void {
+    projectContent(this.eRef, 'template[button-content]', 'span[button-content]');
+  }
+
+  onClick(): void {
+    if (this._dispatchActions) {
+      this._dispatchActions.forEach(actionAndProp =&gt; {
+        this.store.dispatch(actionAndProp.action(
+          actionAndProp.props
+        ));
+      });
+    } else if (this._action) {
+      this._actionProps ?
+      this.store.dispatch(this._action(
+        this._actionProps
+      )) :
+      this.store.dispatch(this._action());
+    }
+
+    if (this.emitEvent) {
+      this.eRef.nativeElement.dispatchEvent(new CustomEvent(this.emitEvent, {
+        bubbles: true,
+        detail: {
+          data: (this.eRef.nativeElement as HTMLElement).dataset,
+          button: this
+        }
+      }));
+    }
+  }
+
+  // tslint:disable-next-line:prefer-function-over-method
+  private parseActionNameAndType(nameAndType: string): any {
+    const parts = nameAndType.split('.');
+    if (parts.length !== 2) {
+      console.warn(`'${nameAndType}' is not a valid value for 'dispatch-action'. Must in form '[ActionType].[ActionName]'`);
+
+      return;
+    }
+
+    const registeredActions = this.actionRegistry.getActions(parts[0]);
+
+    if (!registeredActions) {
+      console.warn(`No registered actions were found for '${nameAndType}'.`);
+
+      return;
+    }
+
+    if (!parts[1] || !registeredActions[parts[1]]) {
+      const actions = Object.keys(registeredActions)
+        .join(',');
+      console.warn(`'${parts[1]}' is not a known action of ${parts[0]} (${actions}).`);
+
+      return;
+    }
+
+    return registeredActions[parts[1]];
+  }
+
+}
+
+export interface ActionAndProps {
+  action: any;
+  props: Object;
+}
+</actionandprops></component-source><component-template><button-wrapper #animationroot="">
+  <button *ngif="!href" [attr.id]="htmlId" [type]="btnType" [ngclass]="{
+      'btn-lg': btnSize === 'large',
+      'btn-sm': btnSize === 'small',
+      'btn-block': btnSize === 'block',
+      'btn-link': btnType === 'link'
+    }" [disabled]="disabled" (click)="onClick()" role="button" class="wvr-components wvr-button btn {{btnType!=='link' ? 'btn-' + themeVariant : ''}}">
+    <ng-container *ngtemplateoutlet="content"></ng-container>
+  </button>
+  <a *ngif="href" [attr.id]="htmlId" [attr.href]="disabled ? undefined : href" [ngclass]="{
+      'btn-lg': btnSize === 'large',
+      'btn-sm': btnSize === 'small',
+      'btn-block': btnSize === 'block',
+      'btn-link': btnType === 'link',
+      'disabled': disabled
+    }" role="button" aria-label="button" class="wvr-components wvr-button btn {{btnType!=='link' ? 'btn-' + themeVariant : ''}}">
+    <ng-container *ngtemplateoutlet="content"></ng-container>
+  </a>
+</button-wrapper>
+
+<ng-template #content="">
+  <span button-content="">
+    <ng-content select="template[button-content]"></ng-content>
+  </span>
+  {{btnTxt}}
+</ng-template>
+</component-template><component-scss>@import "../shared/styles/variables";
+
+:host {
+  
+  @extend .variables;
+
+  --wvr-btn-cursor-default: pointer;
+  --wvr-btn-font-family-sans-serif-default: var(--wvr-font-family-sans-serif);
+  --wvr-btn-font-size-default: 1rem;
+  --wvr-btn-font-weight-default: normal;
+  --wvr-btn-line-height-default: 1.5;
+  --wvr-btn-padding-default: .375rem .75rem;
+  --wvr-btn-text-align-default: center;
+  --wvr-btn-vertical-align-default: middle;
+
+  --wvr-btn-cursor: var(--wvr-btn-cursor-default);
+  --wvr-btn-font-family-sans-serif: var(--wvr-btn-font-family-sans-serif-default);
+  --wvr-btn-font-size: var(--wvr-btn-font-size-default);
+  --wvr-btn-font-weight: var(--wvr-btn-font-weight-default);
+  --wvr-btn-line-height: var(--wvr-btn-line-height-default);
+  --wvr-btn-padding: var(--wvr-btn-padding-default);
+  --wvr-btn-text-align: var(--wvr-btn-text-align-default);
+  --wvr-btn-vertical-align: var(--wvr-btn-vertical-align-default);
+
+  button-wrapper {
+    display: inline-block;
+    overflow: hidden;
+
+    a.disabled {
+      color: gray;
+      cursor: not-allowed;
+      text-decoration: underline;
+    }
+
+    span[button-content] {
+      display: inline-block;
+    }
+  }
+
+  .wvr-button.btn {
+    cursor: var(--wvr-btn-cursor-default);
+    font-family: var(--wvr-btn-font-family-sans-serif);
+    font-size: var(--wvr-btn-font-size);
+    font-weight: var(--wvr-btn-font-weight);
+    line-height: var(--wvr-btn-line-height);
+    padding: var(--wvr-btn-padding);
+    text-align: var(--wvr-btn-text-align);
+    vertical-align: var(--wvr-btn-vertical-align);
+  }
+
+  .wvr-button.btn:not(:disabled):not(.disabled) {
+    cursor: var(--wvr-btn-cursor);
+  }
+
+  .btn {
+    ::ng-deep {
+      wvre-icon {
+        margin: 0px 5px 0px 0px;
+        svg {
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+
+}
+</component-scss></example>
+
+<example name="Weaver Button Sized">
+  <desciption>
+    The <code>wvre-button</code> component with customizations.
+  </desciption>
+  <snippet>
+    <wvre-button theme-variant="primary" btn-size="small">
+      <wvre-text value=" Small Size "></wvre-text>
+    </wvre-button><br>
+
+    <wvre-button theme-variant="secondary" btn-size="large">
+      <wvre-text value=" Large Size "></wvre-text>
+    </wvre-button><br>
+
+    <wvre-button theme-variant="success" btn-size="block">
+      <wvre-text value=" Block Size "></wvre-text>
+    </wvre-button>
+  </snippet>
+<component-source>import { AfterViewInit, ChangeDetectionStrategy, Component, HostBinding, Injector, Input } from '@angular/core';
+import * as JSON5 from 'json5';
+import { ActionRegistryService } from '../core/action-registry.service';
+import { ThemeVariantName } from '../shared/theme';
+import { projectContent } from '../shared/utility/projection.utility';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
+
+@Component({
+  selector: 'wvr-button-component',
+  templateUrl: './wvr-button.component.html',
+  styleUrls: ['./wvr-button.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
+})
+export class WvrButtonComponent extends WvrBaseComponent implements AfterViewInit {
+
+  htmlId = `wvr-button-${this.id}`;
+
+  /** Used to define the class type for button component.  */
+  @Input() themeVariant: ThemeVariantName = 'primary';
+
+  /** Used to define the size for button component.  */
+  @Input() btnSize: 'large' | 'small' | 'block';
+
+  /** Used to define the type of a button.  */
+  @Input() btnType: 'button' | 'checkbox' | 'radio' | 'reset' | 'submit' | 'link' = 'button';
+
+  /** Allows for the button component to be an anchor tag component if href property present. */
+  @Input() href: string;
+
+  @Input() disabled = false;
+
+  /** Allows for the override of background */
+  @Input() set background(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-bg`, value);
+  }
+
+  /** Allows for the override of active background */
+  @Input() set backgroundActive(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-active-bg`, value);
+  }
+
+  /** Allows for the override of hover background */
+  @Input() set backgroundHover(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-hover-bg`, value);
+  }
+
+  /** Allows for the override of border */
+  @Input() set borderColor(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-border`, value);
+  }
+
+  /** Allows for the override of active border */
+  @Input() set borderActive(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-active-border`, value);
+  }
+
+  /** Allows for the override of hover border */
+  @Input() set borderHover(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-hover-border`, value);
+  }
+
+  /** Allows for the override of button border in focus state */
+  @Input() set borderFocus(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-focus-border`, value);
+  }
+
+  /** Allows for override of box-shadow propery when the button is in focus state */
+  @Input() set boxShadowFocus(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-focus-box-shadow`, value);
+  }
+
+  /** Allows for the override of color */
+  @Input() set color(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-color`, value);
+  }
+
+  /** Allows for the override of active color */
+  @Input() set colorActive(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-active-color`, value);
+  }
+
+  /** Allows for the override of hover color */
+  @Input() set colorHover(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-hover-color`, value);
+  }
+
+  /** Allows for the override of button border radius */
+  @HostBinding('style.--wvr-btn-border-radius') @Input() borderRadius;
+
+  /** Allows for the override of button cursor property */
+  @HostBinding('style.--wvr-btn-cursor') @Input() cursor;
+
+  /** Allows for the override of button font family property */
+  @HostBinding('style.--wvr-btn-font-family-sans-serif') @Input() fontFamily;
+
+  /** Allows for the override of button font size property */
+  @HostBinding('style.--wvr-btn-font-size') @Input() fontSize;
+
+  /** Allows for the override of button font weight property */
+  @HostBinding('style.--wvr-btn-font-weight') @Input() fontWeight;
+
+  /** Allows for the override of button hover line height property */
+  @HostBinding('style.--wvr-btn-line-height') @Input() lineHeight;
+
+  /** Allows for the override of button padding property */
+  @HostBinding('style.--wvr-btn-padding') @Input() padding;
+
+  /** Allows for the override of button text align property */
+  @HostBinding('style.--wvr-btn-text-align') @Input() textAlign;
+
+  /** Allows for the override of button vertical align property */
+  @HostBinding('style.--wvr-btn-vertical-align') @Input() verticalAlign;
+
+  private _action: any;
+  @Input() set dispatchAction(value: string) {
+    this._action = this.parseActionNameAndType(value);
+  }
+
+  private _actionProps: any;
+  @Input() set dispatchActionProps(value: string) {
+    this._actionProps = JSON5.parse(value);
+  }
+
+  private _dispatchActions: Array<actionandprops>;
+  @Input() set dispatchActions(value: string) {
+    const actionInputs = JSON5.parse(value);
+    this._dispatchActions = actionInputs.map(ai =&gt;
+      ({
+        action: this.parseActionNameAndType(ai.action),
+        props: ai.props
+      }));
+  }
+
+  @Input() emitEvent: string;
+
+  @Input() btnTxt: string;
+
+  @Input() testInput: boolean;
+
+  variantTypes = ['button'];
+
+  actionRegistry?: ActionRegistryService;
+
+  constructor(injector: Injector) {
+    super(injector);
+    this.actionRegistry = injector.get(ActionRegistryService);
+  }
+
+  /** Called after the view has been intialized. Handles the rendering of the projected content. */
+  ngAfterViewInit(): void {
+    projectContent(this.eRef, 'template[button-content]', 'span[button-content]');
+  }
+
+  onClick(): void {
+    if (this._dispatchActions) {
+      this._dispatchActions.forEach(actionAndProp =&gt; {
+        this.store.dispatch(actionAndProp.action(
+          actionAndProp.props
+        ));
+      });
+    } else if (this._action) {
+      this._actionProps ?
+      this.store.dispatch(this._action(
+        this._actionProps
+      )) :
+      this.store.dispatch(this._action());
+    }
+
+    if (this.emitEvent) {
+      this.eRef.nativeElement.dispatchEvent(new CustomEvent(this.emitEvent, {
+        bubbles: true,
+        detail: {
+          data: (this.eRef.nativeElement as HTMLElement).dataset,
+          button: this
+        }
+      }));
+    }
+  }
+
+  // tslint:disable-next-line:prefer-function-over-method
+  private parseActionNameAndType(nameAndType: string): any {
+    const parts = nameAndType.split('.');
+    if (parts.length !== 2) {
+      console.warn(`'${nameAndType}' is not a valid value for 'dispatch-action'. Must in form '[ActionType].[ActionName]'`);
+
+      return;
+    }
+
+    const registeredActions = this.actionRegistry.getActions(parts[0]);
+
+    if (!registeredActions) {
+      console.warn(`No registered actions were found for '${nameAndType}'.`);
+
+      return;
+    }
+
+    if (!parts[1] || !registeredActions[parts[1]]) {
+      const actions = Object.keys(registeredActions)
+        .join(',');
+      console.warn(`'${parts[1]}' is not a known action of ${parts[0]} (${actions}).`);
+
+      return;
+    }
+
+    return registeredActions[parts[1]];
+  }
+
+}
+
+export interface ActionAndProps {
+  action: any;
+  props: Object;
+}
+</actionandprops></component-source><component-template><button-wrapper #animationroot="">
+  <button *ngif="!href" [attr.id]="htmlId" [type]="btnType" [ngclass]="{
+      'btn-lg': btnSize === 'large',
+      'btn-sm': btnSize === 'small',
+      'btn-block': btnSize === 'block',
+      'btn-link': btnType === 'link'
+    }" [disabled]="disabled" (click)="onClick()" role="button" class="wvr-components wvr-button btn {{btnType!=='link' ? 'btn-' + themeVariant : ''}}">
+    <ng-container *ngtemplateoutlet="content"></ng-container>
+  </button>
+  <a *ngif="href" [attr.id]="htmlId" [attr.href]="disabled ? undefined : href" [ngclass]="{
+      'btn-lg': btnSize === 'large',
+      'btn-sm': btnSize === 'small',
+      'btn-block': btnSize === 'block',
+      'btn-link': btnType === 'link',
+      'disabled': disabled
+    }" role="button" aria-label="button" class="wvr-components wvr-button btn {{btnType!=='link' ? 'btn-' + themeVariant : ''}}">
+    <ng-container *ngtemplateoutlet="content"></ng-container>
+  </a>
+</button-wrapper>
+
+<ng-template #content="">
+  <span button-content="">
+    <ng-content select="template[button-content]"></ng-content>
+  </span>
+  {{btnTxt}}
+</ng-template>
+</component-template><component-scss>@import "../shared/styles/variables";
+
+:host {
+  
+  @extend .variables;
+
+  --wvr-btn-cursor-default: pointer;
+  --wvr-btn-font-family-sans-serif-default: var(--wvr-font-family-sans-serif);
+  --wvr-btn-font-size-default: 1rem;
+  --wvr-btn-font-weight-default: normal;
+  --wvr-btn-line-height-default: 1.5;
+  --wvr-btn-padding-default: .375rem .75rem;
+  --wvr-btn-text-align-default: center;
+  --wvr-btn-vertical-align-default: middle;
+
+  --wvr-btn-cursor: var(--wvr-btn-cursor-default);
+  --wvr-btn-font-family-sans-serif: var(--wvr-btn-font-family-sans-serif-default);
+  --wvr-btn-font-size: var(--wvr-btn-font-size-default);
+  --wvr-btn-font-weight: var(--wvr-btn-font-weight-default);
+  --wvr-btn-line-height: var(--wvr-btn-line-height-default);
+  --wvr-btn-padding: var(--wvr-btn-padding-default);
+  --wvr-btn-text-align: var(--wvr-btn-text-align-default);
+  --wvr-btn-vertical-align: var(--wvr-btn-vertical-align-default);
+
+  button-wrapper {
+    display: inline-block;
+    overflow: hidden;
+
+    a.disabled {
+      color: gray;
+      cursor: not-allowed;
+      text-decoration: underline;
+    }
+
+    span[button-content] {
+      display: inline-block;
+    }
+  }
+
+  .wvr-button.btn {
+    cursor: var(--wvr-btn-cursor-default);
+    font-family: var(--wvr-btn-font-family-sans-serif);
+    font-size: var(--wvr-btn-font-size);
+    font-weight: var(--wvr-btn-font-weight);
+    line-height: var(--wvr-btn-line-height);
+    padding: var(--wvr-btn-padding);
+    text-align: var(--wvr-btn-text-align);
+    vertical-align: var(--wvr-btn-vertical-align);
+  }
+
+  .wvr-button.btn:not(:disabled):not(.disabled) {
+    cursor: var(--wvr-btn-cursor);
+  }
+
+  .btn {
+    ::ng-deep {
+      wvre-icon {
+        margin: 0px 5px 0px 0px;
+        svg {
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+
+}
+</component-scss></example>
+
+<example name="Weaver Button Animations">
+  <desciption>
+    The default <code>wvre-button</code> component with animations.
+  </desciption>
+  <snippet>
+
+    <wvre-button theme-variant="primary" wvr-btn-type="button" animate="{click: 'rotateToggle'}">
+      <wvre-text value="Default Animation"></wvre-text>
+    </wvre-button>
+
+    <wvre-button theme-variant="info" wvr-btn-type="button" animate="{click: 'animationTrigger'}" animate-target="icon1">
+      <wvre-text value="Targeted Animation"></wvre-text>
+      <wvre-icon set="feather" name="chevron-right" color="#500000" animate="{animationTrigger: 'rotateToggle'}" animate-id="icon1"></wvre-icon>
+    </wvre-button>
+
+    <wvre-button theme-variant="success" wvr-btn-type="button" animate="{click: 'rotateToggle'}" animate-config="{
+      rotateToggle: {
+        timing: '1000ms ease-in-out',
+        to: 180,
+        from: 0
+      }
+    }">
+      <wvre-text value="Customized Animation"></wvre-text>
+    </wvre-button>
+
+  </snippet>
+<component-source>import { AfterViewInit, ChangeDetectionStrategy, Component, HostBinding, Injector, Input } from '@angular/core';
+import * as JSON5 from 'json5';
+import { ActionRegistryService } from '../core/action-registry.service';
+import { ThemeVariantName } from '../shared/theme';
+import { projectContent } from '../shared/utility/projection.utility';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
+
+@Component({
+  selector: 'wvr-button-component',
+  templateUrl: './wvr-button.component.html',
+  styleUrls: ['./wvr-button.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
+})
+export class WvrButtonComponent extends WvrBaseComponent implements AfterViewInit {
+
+  htmlId = `wvr-button-${this.id}`;
+
+  /** Used to define the class type for button component.  */
+  @Input() themeVariant: ThemeVariantName = 'primary';
+
+  /** Used to define the size for button component.  */
+  @Input() btnSize: 'large' | 'small' | 'block';
+
+  /** Used to define the type of a button.  */
+  @Input() btnType: 'button' | 'checkbox' | 'radio' | 'reset' | 'submit' | 'link' = 'button';
+
+  /** Allows for the button component to be an anchor tag component if href property present. */
+  @Input() href: string;
+
+  @Input() disabled = false;
+
+  /** Allows for the override of background */
+  @Input() set background(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-bg`, value);
+  }
+
+  /** Allows for the override of active background */
+  @Input() set backgroundActive(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-active-bg`, value);
+  }
+
+  /** Allows for the override of hover background */
+  @Input() set backgroundHover(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-hover-bg`, value);
+  }
+
+  /** Allows for the override of border */
+  @Input() set borderColor(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-border`, value);
+  }
+
+  /** Allows for the override of active border */
+  @Input() set borderActive(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-active-border`, value);
+  }
+
+  /** Allows for the override of hover border */
+  @Input() set borderHover(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-hover-border`, value);
+  }
+
+  /** Allows for the override of button border in focus state */
+  @Input() set borderFocus(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-focus-border`, value);
+  }
+
+  /** Allows for override of box-shadow propery when the button is in focus state */
+  @Input() set boxShadowFocus(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-focus-box-shadow`, value);
+  }
+
+  /** Allows for the override of color */
+  @Input() set color(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-color`, value);
+  }
+
+  /** Allows for the override of active color */
+  @Input() set colorActive(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-active-color`, value);
+  }
+
+  /** Allows for the override of hover color */
+  @Input() set colorHover(value: string) {
+    this.applyThemeOverride(`--${this.themeVariant}-button-hover-color`, value);
+  }
+
+  /** Allows for the override of button border radius */
+  @HostBinding('style.--wvr-btn-border-radius') @Input() borderRadius;
+
+  /** Allows for the override of button cursor property */
+  @HostBinding('style.--wvr-btn-cursor') @Input() cursor;
+
+  /** Allows for the override of button font family property */
+  @HostBinding('style.--wvr-btn-font-family-sans-serif') @Input() fontFamily;
+
+  /** Allows for the override of button font size property */
+  @HostBinding('style.--wvr-btn-font-size') @Input() fontSize;
+
+  /** Allows for the override of button font weight property */
+  @HostBinding('style.--wvr-btn-font-weight') @Input() fontWeight;
+
+  /** Allows for the override of button hover line height property */
+  @HostBinding('style.--wvr-btn-line-height') @Input() lineHeight;
+
+  /** Allows for the override of button padding property */
+  @HostBinding('style.--wvr-btn-padding') @Input() padding;
+
+  /** Allows for the override of button text align property */
+  @HostBinding('style.--wvr-btn-text-align') @Input() textAlign;
+
+  /** Allows for the override of button vertical align property */
+  @HostBinding('style.--wvr-btn-vertical-align') @Input() verticalAlign;
+
+  private _action: any;
+  @Input() set dispatchAction(value: string) {
+    this._action = this.parseActionNameAndType(value);
+  }
+
+  private _actionProps: any;
+  @Input() set dispatchActionProps(value: string) {
+    this._actionProps = JSON5.parse(value);
+  }
+
+  private _dispatchActions: Array<actionandprops>;
+  @Input() set dispatchActions(value: string) {
+    const actionInputs = JSON5.parse(value);
+    this._dispatchActions = actionInputs.map(ai =&gt;
+      ({
+        action: this.parseActionNameAndType(ai.action),
+        props: ai.props
+      }));
+  }
+
+  @Input() emitEvent: string;
+
+  @Input() btnTxt: string;
+
+  @Input() testInput: boolean;
+
+  variantTypes = ['button'];
+
+  actionRegistry?: ActionRegistryService;
+
+  constructor(injector: Injector) {
+    super(injector);
+    this.actionRegistry = injector.get(ActionRegistryService);
+  }
+
+  /** Called after the view has been intialized. Handles the rendering of the projected content. */
+  ngAfterViewInit(): void {
+    projectContent(this.eRef, 'template[button-content]', 'span[button-content]');
+  }
+
+  onClick(): void {
+    if (this._dispatchActions) {
+      this._dispatchActions.forEach(actionAndProp =&gt; {
+        this.store.dispatch(actionAndProp.action(
+          actionAndProp.props
+        ));
+      });
+    } else if (this._action) {
+      this._actionProps ?
+      this.store.dispatch(this._action(
+        this._actionProps
+      )) :
+      this.store.dispatch(this._action());
+    }
+
+    if (this.emitEvent) {
+      this.eRef.nativeElement.dispatchEvent(new CustomEvent(this.emitEvent, {
+        bubbles: true,
+        detail: {
+          data: (this.eRef.nativeElement as HTMLElement).dataset,
+          button: this
+        }
+      }));
+    }
+  }
+
+  // tslint:disable-next-line:prefer-function-over-method
+  private parseActionNameAndType(nameAndType: string): any {
+    const parts = nameAndType.split('.');
+    if (parts.length !== 2) {
+      console.warn(`'${nameAndType}' is not a valid value for 'dispatch-action'. Must in form '[ActionType].[ActionName]'`);
+
+      return;
+    }
+
+    const registeredActions = this.actionRegistry.getActions(parts[0]);
+
+    if (!registeredActions) {
+      console.warn(`No registered actions were found for '${nameAndType}'.`);
+
+      return;
+    }
+
+    if (!parts[1] || !registeredActions[parts[1]]) {
+      const actions = Object.keys(registeredActions)
+        .join(',');
+      console.warn(`'${parts[1]}' is not a known action of ${parts[0]} (${actions}).`);
+
+      return;
+    }
+
+    return registeredActions[parts[1]];
+  }
+
+}
+
+export interface ActionAndProps {
+  action: any;
+  props: Object;
+}
+</actionandprops></component-source><component-template><button-wrapper #animationroot="">
+  <button *ngif="!href" [attr.id]="htmlId" [type]="btnType" [ngclass]="{
+      'btn-lg': btnSize === 'large',
+      'btn-sm': btnSize === 'small',
+      'btn-block': btnSize === 'block',
+      'btn-link': btnType === 'link'
+    }" [disabled]="disabled" (click)="onClick()" role="button" class="wvr-components wvr-button btn {{btnType!=='link' ? 'btn-' + themeVariant : ''}}">
+    <ng-container *ngtemplateoutlet="content"></ng-container>
+  </button>
+  <a *ngif="href" [attr.id]="htmlId" [attr.href]="disabled ? undefined : href" [ngclass]="{
+      'btn-lg': btnSize === 'large',
+      'btn-sm': btnSize === 'small',
+      'btn-block': btnSize === 'block',
+      'btn-link': btnType === 'link',
+      'disabled': disabled
+    }" role="button" aria-label="button" class="wvr-components wvr-button btn {{btnType!=='link' ? 'btn-' + themeVariant : ''}}">
+    <ng-container *ngtemplateoutlet="content"></ng-container>
+  </a>
+</button-wrapper>
+
+<ng-template #content="">
+  <span button-content="">
+    <ng-content select="template[button-content]"></ng-content>
+  </span>
+  {{btnTxt}}
+</ng-template>
+</component-template><component-scss>@import "../shared/styles/variables";
+
+:host {
+  
+  @extend .variables;
+
+  --wvr-btn-cursor-default: pointer;
+  --wvr-btn-font-family-sans-serif-default: var(--wvr-font-family-sans-serif);
+  --wvr-btn-font-size-default: 1rem;
+  --wvr-btn-font-weight-default: normal;
+  --wvr-btn-line-height-default: 1.5;
+  --wvr-btn-padding-default: .375rem .75rem;
+  --wvr-btn-text-align-default: center;
+  --wvr-btn-vertical-align-default: middle;
+
+  --wvr-btn-cursor: var(--wvr-btn-cursor-default);
+  --wvr-btn-font-family-sans-serif: var(--wvr-btn-font-family-sans-serif-default);
+  --wvr-btn-font-size: var(--wvr-btn-font-size-default);
+  --wvr-btn-font-weight: var(--wvr-btn-font-weight-default);
+  --wvr-btn-line-height: var(--wvr-btn-line-height-default);
+  --wvr-btn-padding: var(--wvr-btn-padding-default);
+  --wvr-btn-text-align: var(--wvr-btn-text-align-default);
+  --wvr-btn-vertical-align: var(--wvr-btn-vertical-align-default);
+
+  button-wrapper {
+    display: inline-block;
+    overflow: hidden;
+
+    a.disabled {
+      color: gray;
+      cursor: not-allowed;
+      text-decoration: underline;
+    }
+
+    span[button-content] {
+      display: inline-block;
+    }
+  }
+
+  .wvr-button.btn {
+    cursor: var(--wvr-btn-cursor-default);
+    font-family: var(--wvr-btn-font-family-sans-serif);
+    font-size: var(--wvr-btn-font-size);
+    font-weight: var(--wvr-btn-font-weight);
+    line-height: var(--wvr-btn-line-height);
+    padding: var(--wvr-btn-padding);
+    text-align: var(--wvr-btn-text-align);
+    vertical-align: var(--wvr-btn-vertical-align);
+  }
+
+  .wvr-button.btn:not(:disabled):not(.disabled) {
+    cursor: var(--wvr-btn-cursor);
+  }
+
+  .btn {
+    ::ng-deep {
+      wvre-icon {
+        margin: 0px 5px 0px 0px;
+        svg {
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+
+}
+</component-scss></example>

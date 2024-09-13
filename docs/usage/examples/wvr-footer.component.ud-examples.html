@@ -1,0 +1,106 @@
+<about name="Weaver Footer">
+  <p>This component represents a page footer.</p>
+
+  <p>The footer is shown at the bottom of the page.</p>
+
+  <p>When page is scrolled beyond the parent element, then the footer will become fixed to the screen.</p>
+
+  <p>When page is scrolled within or above the parent element, then the footer will no longer be fixed to the screen.</p>
+
+  <div>
+    <p>The following may be specified as an attribute on a <code>template</code> element:</p>
+    <ul>
+      <li><code>footer-content</code>: The content to display in the footer.</li>
+    </ul>
+  </div>
+
+  <div>
+    <p>The following attributes are available:</p>
+    <ul>
+      <li><code>parent-element-name</code>: The name of the parent element the footer will consider when attaching and detaching.</li>
+    </ul>
+  </div>
+</about>
+
+<example name="Weaver Footer Default">
+  <desciption>
+    The default <code>wvre-footer</code> component with no customizations.
+  </desciption>
+  <snippet>
+    <wvre-footer parent-component-name="main"></wvre-footer>
+  </snippet>
+<component-source>import { ChangeDetectionStrategy, Component, HostBinding, Injector, Input } from '@angular/core';
+import { projectContent } from '../shared/utility/projection.utility';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
+
+/**
+ * A fullwidth footer component which attaches to the bottom of the document body.
+ */
+@Component({
+  selector: 'wvr-footer-component',
+  templateUrl: './wvr-footer.component.html',
+  styleUrls: ['./wvr-footer.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
+})
+export class WvrFooterComponent extends WvrBaseComponent {
+
+  @HostBinding('style.--footer-color') get cardBodyColor(): string {
+    return this.themeVariant ? `var(--${this.themeVariant}-button-color)` : 'var(--light-button-color)';
+  }
+
+  /** Allows for the override of the --footer-height css variable. */
+  @HostBinding('style.--footer-height') @Input() height;
+
+  /** Allows for the override of the --footer-padding css variable. */
+  @HostBinding('style.--footer-padding') @Input() padding;
+
+  variantTypes = ['default'];
+
+  /**
+   * The weaver footer component constructor
+   */
+  constructor(injector: Injector) {
+    super(injector);
+    this.themeVariant = 'light';
+  }
+
+  /** Called after the view has been intialized. Handles the rendering of the projected content. */
+  ngAfterViewInit(): void {
+    projectContent(this.eRef, 'template[footer-content]', 'div[footer-content]');
+  }
+
+}
+</component-source><component-template><footer class="wvr-components wvr-footer bg-{{themeVariant}}">
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <div class="flex-fill align-self-stretch" footer-content="">
+        <ng-content select="template[footer-content]"></ng-content>
+      </div>
+    </div>
+  </nav>
+</footer>
+</component-template><component-scss>@import "../shared/styles/variables";
+
+:host {
+  @extend .variables;
+
+  --footer-height: var(--wvr-navbar-height);
+  --footer-padding: var(--wvr-navbar-padding);
+  --footer-color: var(--light-color);
+
+  color: var(--footer-color);
+
+  .wvr-footer {
+    font-family: var(--wvr-font-family-sans-serif);
+    height: var(--footer-height);
+    padding: var(--footer-padding);
+    top: 100vh;
+    position: sticky;
+  }
+
+  .container,
+  .navbar {
+    height: 100%;
+  }
+}
+</component-scss></example>

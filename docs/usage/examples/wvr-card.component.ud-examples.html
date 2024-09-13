@@ -1,0 +1,530 @@
+<about name="Weaver Card">
+  <p>This component represents a customizable container.</p>
+  <p>A card is broken up into multiple optional sections specified via an HTML <code>template</code> element.</p>
+  <p>A card can be used as a simple list or a simple menu.</p>
+  <p>A card can be conditionally collapsible.</p>
+
+  <div>
+    <p>The following may be specified as an attribute on a <code>template</code> element:</p>
+    <ul>
+      <li><code>card-header</code>: The card header, which may also be "clickable" if enabled.</li>
+      <li><code>card-image</code>: An image that spans across the card, immediately below the header.</li>
+      <li><code>card-list-top</code>: A list displayed above the body section.</li>
+      <li><code>card-title</code>: The card title, as the first sub-section within the body section.</li>
+      <li><code>card-subtitle</code>: The card sub-title, immediately below the title within the body section.</li>
+      <li><code>card-text</code>: The main content of the card, below the title and sub-title within the body section.</li>
+      <li><code>card-buttons</code>: Buttons made availble on the card, the last sub-section within the body section.</li>
+      <li><code>card-list-bottom</code>: A list displayed below the body section.</li>
+      <li><code>card-footer</code>: The card footer, at the very bottom.</li>
+    </ul>
+  </div>
+
+  <div>
+    <p>The following attributes are available:</p>
+    <ul>
+      <li><code>collapsed</code>: One of <code>click</code> or <code>none</code> (auto-updated and can be watched).</li>
+      <li><code>collapse-method</code>: One of <code>click</code> or <code>none</code>.</li>
+      <li><code>selector-prefix</code>: A name representing the prefix to select.</li>
+      <li><code>start-collapsed</code>: One of <code>true</code> or <code>false</code>.</li>
+      <li><code>text-center</code>: One of <code>true</code> or <code>false</code>.</li>
+      <li><code>theme-variant</code>: The name of a theme variant to use on the button.</li>
+      <li><code>panel-format</code>: One of <code>solid</code>, <code>outlined</code>, or <code>mixed</code>.</li>
+    </ul>
+  </div>
+</about>
+
+<example name="Weaver Card Default">
+  <desciption>
+    The default <code>wvre-card</code> component with no customizations.
+  </desciption>
+  <snippet>
+    <wvre-card>
+      <template card-header="">
+        <wvre-text value="Card Header"></wvre-text>
+      </template>
+      <template card-title="">
+        <wvre-text value="Card Title"></wvre-text>
+      </template>
+      <template card-image="">
+        <img src="assets/lighthouse.svg">
+      </template>
+      <template card-list-top="">
+        <wvre-list list-type="group-flush" context="info">
+          <wvre-list-item>
+            <wvre-text value="Item 1"></wvre-text>
+          </wvre-list-item>
+          <wvre-list-item context="warning">
+            <wvre-text value="Item 2"></wvre-text>
+          </wvre-list-item>
+          <wvre-list-item context="success">
+            <wvre-text value="Item 3"></wvre-text>
+          </wvre-list-item>
+        </wvre-list>
+      </template>
+      <template card-content="">
+        <wvre-text value="This is a basic card body content"></wvre-text>
+      </template>
+      <template card-list-bottom="">
+        <wvre-list list-type="group-flush" context="info">
+          <wvre-list-item>
+            <wvre-text value="Item 1"></wvre-text>
+          </wvre-list-item>
+          <wvre-list-item context="warning">
+            <wvre-text value="Item 2"></wvre-text>
+          </wvre-list-item>
+        </wvre-list>
+      </template>
+      <template card-links="">
+        <a href="http://www.google.com" class="card-link">
+          <wvre-text value="Google"></wvre-text>
+        </a>
+        <a href="http://www.google.com" class="card-link">
+          <wvre-text value="Gmail"></wvre-text>
+        </a>
+      </template>
+      <template card-buttons="">
+        <wvre-button theme-variant="secondary">
+          <wvre-text value="Card Button Text"></wvre-text>
+        </wvre-button>
+      </template>
+      <template card-footer="">
+        <wvre-text class="text-muted" value="Card Footer"></wvre-text>
+      </template>
+    </wvre-card>
+  </snippet>
+<component-source>import { ChangeDetectionStrategy, Component, HostBinding, HostListener, Injector, Input, OnInit } from '@angular/core';
+import { ThemeVariantName } from '../shared/theme';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
+
+/**
+ * A component wrapper for the bootstrap card element.
+ */
+@Component({
+  selector: 'wvr-card-component',
+  templateUrl: './wvr-card.component.html',
+  styleUrls: ['./wvr-card.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
+})
+export class WvrCardComponent extends WvrBaseComponent implements OnInit {
+
+  /** Allows for the override of the default 'wvre' sufix for psudo components. */
+  @Input() selectorPrefix = 'wvre';
+
+  /** Toggles the centering of header and footer texts. */
+  @Input() textCenter = false;
+
+  /** Used to describe the type of card. */
+  @Input() themeVariant: ThemeVariantName;
+
+  /** Used to describe the format of card. */
+  @Input() panelFormat: 'solid' | 'outlined' | 'mixed';
+
+  /** Designate how to expand/collapse. */
+  @Input() collapseMethod: 'click' | 'none';
+
+  /** Designate the initial expanded/collapsed state. */
+  @Input() startCollapsed: boolean;
+
+  /** The collapsed/uncollapsed state. */
+  @HostBinding('attr.collapsed') _collapsed: 'true' | 'false';
+
+  /** Update the element attribute when the boolean changes */
+  @Input() set collapsed(value: 'true' | 'false') {
+    this._collapsed = value;
+  }
+
+  @HostBinding('style.--card-header-color') get cardHeaderColor(): string {
+    return this.panelFormat === 'outlined' ? 'var(--light-default-color)' : `var(--${this.themeVariant}-default-color)`;
+  }
+
+  @HostBinding('style.--card-body-color') get cardBodyColor(): string {
+    return this.panelFormat === 'solid' ? `var(--${this.themeVariant}-default-color)` : 'var(--light-default-color)';
+  }
+
+  /**
+   * The weaver card component constructor
+   */
+  constructor(injector: Injector) {
+    super(injector);
+    this.themeVariant = 'primary';
+    this.collapseMethod = 'none';
+  }
+
+  /**
+   * Initialize properties dependent on @Input.
+   */
+  ngOnInit(): void {
+    super.ngOnInit();
+    this._collapsed = !!this.startCollapsed ? 'true' : 'false';
+  }
+
+  /**
+   * A handler method for when the enter key is down.
+   */
+  @HostListener('keydown.enter', ['$event']) enterKeyDown($event: Event): void {
+    $event.stopPropagation();
+    $event.preventDefault();
+
+    this.toggleCollapsibleClick();
+  }
+
+  /**
+   * A handler method for when the space key is down.
+   */
+  @HostListener('keydown.space', ['$event']) spaceKeyDown($event: Event): void {
+    $event.stopPropagation();
+    $event.preventDefault();
+
+    this.toggleCollapsibleClick();
+  }
+
+  /**
+   * Toggle the collapsible state when clicked, if allowed.
+   */
+  toggleCollapsibleClick(): void {
+    if (this.collapseMethod === 'click') {
+      this._collapsed = this._collapsed === 'true' ? 'false' : 'true';
+    }
+  }
+
+  get additionalCardClasses(): string {
+    let additionalClasses = '';
+    additionalClasses += ((!this.panelFormat || this.panelFormat === 'mixed') || this.panelFormat === 'outlined') ?
+      ` border-${this.themeVariant} ` : '';
+
+    additionalClasses += this.panelFormat === 'solid' ? ` bg-${this.themeVariant}` : '';
+
+    return additionalClasses;
+  }
+
+  get additionalHeaderClasses(): string {
+    let additionalClasses = '';
+    additionalClasses += ((!this.panelFormat || this.panelFormat === 'mixed') || this.panelFormat === 'outlined') ?
+      ` border-${this.themeVariant} ` : '';
+
+    additionalClasses += (this.panelFormat === 'solid' || this.panelFormat === 'mixed') ? ` bg-${this.themeVariant}` : '';
+
+    return additionalClasses;
+  }
+
+}
+</component-source><component-template><div #animationroot="" class="wvr-components wvr-card card {{additionalCardClasses}}" [ngclass]="{ 'text-center': textCenter, 'collapsed': _collapsed === 'true' }">
+  <div class="card-header {{additionalHeaderClasses}}" [wvrcontentprojection]="eRef" template="card-header" (click)="toggleCollapsibleClick()" [attr.tabindex]="collapseMethod === 'click' ? '0' : null"></div>
+  <div class="card-image" [wvrcontentprojection]="eRef" template="card-image"></div>
+  <div [wvrcontentprojection]="eRef" template="card-list-top"></div>
+  <div class="card-body">
+    <h5 class="card-title" [wvrcontentprojection]="eRef" template="card-title"></h5>
+    <h6 class="card-subtitle" [wvrcontentprojection]="eRef" template="card-subtitle"></h6>
+    <p class="card-text" [wvrcontentprojection]="eRef" template="card-text"></p>
+    <div [wvrcontentprojection]="eRef" template="card-content"></div>
+  </div>
+  <div [wvrcontentprojection]="eRef" template="card-list-bottom"></div>
+  <div class="card-body card-links" [wvrcontentprojection]="eRef" template="card-links"></div>
+  <div class="card-body card-buttons" [wvrcontentprojection]="eRef" template="card-buttons"></div>
+  <div class="card-footer" [wvrcontentprojection]="eRef" template="card-footer"></div>
+</div>
+
+<ng-content select="template"></ng-content>
+</component-template><component-scss>@import "../shared/styles/variables";
+
+:host {
+
+  @extend .variables;
+
+  --card-color: var(--wvr-white);
+
+  .wvr-card {
+    width: 18rem;
+  }
+
+  font-family: var(--wvr-font-family-sans-serif);
+
+  .wvr-card.collapsed .card-header {
+    border-bottom: 0px;
+  }
+
+  .wvr-card.collapsed .card-body,
+  .wvr-card.collapsed [template="card-buttons"],
+  .wvr-card.collapsed [template="card-image"],
+  .wvr-card.collapsed [template="card-links"],
+  .wvr-card.collapsed [template="card-list-top"],
+  .wvr-card.collapsed [template="card-list-bottom"],
+  .wvr-card.collapsed [template="card-footer"] {
+    visibility: collapse;
+    overflow: hidden;
+
+    height: 0px;
+    min-height: 0px;
+    max-height: 0px;
+
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
+    outline: 0px;
+  }
+
+  ::ng-deep {
+    .list-group-flush {
+      border-top: 1px solid rgba(0, 0, 0, 0.125);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    }
+
+    .card-header {
+      color: var(--card-header-color)
+    }
+
+    .card-body {
+      color: var(--card-body-color)
+    }
+  }
+
+}
+</component-scss></example>
+
+<example name="Collapsible Weaver Card">
+  <desciption>
+    The <code>wvre-card</code> component with collapse on header clicked enabled that is initially collapsed.
+  </desciption>
+  <snippet>
+    <wvre-card collapse-method="click" start-collapsed="true" collapsed="true">
+      <template card-header="">
+        <wvre-text value="Card Header"></wvre-text>
+      </template>
+      <template card-title="">
+        <wvre-text value="Card Title"></wvre-text>
+      </template>
+      <template card-image="">
+        <img src="assets/lighthouse.svg">
+      </template>
+      <template card-list-top="">
+        <wvre-list list-type="group-flush" context="info">
+          <wvre-list-item>
+            <wvre-text value="Item 1"></wvre-text>
+          </wvre-list-item>
+          <wvre-list-item context="warning">
+            <wvre-text value="Item 2"></wvre-text>
+          </wvre-list-item>
+          <wvre-list-item context="success">
+            <wvre-text value="Item 3"></wvre-text>
+          </wvre-list-item>
+        </wvre-list>
+      </template>
+      <template card-content="">
+        <wvre-text value="This is a basic card body content"></wvre-text>
+      </template>
+      <template card-list-bottom="">
+        <wvre-list list-type="group-flush" context="info">
+          <wvre-list-item>
+            <wvre-text value="Item 1"></wvre-text>
+          </wvre-list-item>
+          <wvre-list-item context="warning">
+            <wvre-text value="Item 2"></wvre-text>
+          </wvre-list-item>
+        </wvre-list>
+      </template>
+      <template card-links="">
+        <a href="http://www.google.com" class="card-link">
+          <wvre-text value="Google"></wvre-text>
+        </a>
+        <a href="http://www.google.com" class="card-link">
+          <wvre-text value="Gmail"></wvre-text>
+        </a>
+      </template>
+      <template card-buttons="">
+        <wvre-button theme-variant="secondary">
+          <wvre-text value="Card Button Text"></wvre-text>
+        </wvre-button>
+      </template>
+      <template card-footer="">
+        <wvre-text class="text-muted" value="Card Footer"></wvre-text>
+      </template>
+    </wvre-card>
+  </snippet>
+<component-source>import { ChangeDetectionStrategy, Component, HostBinding, HostListener, Injector, Input, OnInit } from '@angular/core';
+import { ThemeVariantName } from '../shared/theme';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
+
+/**
+ * A component wrapper for the bootstrap card element.
+ */
+@Component({
+  selector: 'wvr-card-component',
+  templateUrl: './wvr-card.component.html',
+  styleUrls: ['./wvr-card.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
+})
+export class WvrCardComponent extends WvrBaseComponent implements OnInit {
+
+  /** Allows for the override of the default 'wvre' sufix for psudo components. */
+  @Input() selectorPrefix = 'wvre';
+
+  /** Toggles the centering of header and footer texts. */
+  @Input() textCenter = false;
+
+  /** Used to describe the type of card. */
+  @Input() themeVariant: ThemeVariantName;
+
+  /** Used to describe the format of card. */
+  @Input() panelFormat: 'solid' | 'outlined' | 'mixed';
+
+  /** Designate how to expand/collapse. */
+  @Input() collapseMethod: 'click' | 'none';
+
+  /** Designate the initial expanded/collapsed state. */
+  @Input() startCollapsed: boolean;
+
+  /** The collapsed/uncollapsed state. */
+  @HostBinding('attr.collapsed') _collapsed: 'true' | 'false';
+
+  /** Update the element attribute when the boolean changes */
+  @Input() set collapsed(value: 'true' | 'false') {
+    this._collapsed = value;
+  }
+
+  @HostBinding('style.--card-header-color') get cardHeaderColor(): string {
+    return this.panelFormat === 'outlined' ? 'var(--light-default-color)' : `var(--${this.themeVariant}-default-color)`;
+  }
+
+  @HostBinding('style.--card-body-color') get cardBodyColor(): string {
+    return this.panelFormat === 'solid' ? `var(--${this.themeVariant}-default-color)` : 'var(--light-default-color)';
+  }
+
+  /**
+   * The weaver card component constructor
+   */
+  constructor(injector: Injector) {
+    super(injector);
+    this.themeVariant = 'primary';
+    this.collapseMethod = 'none';
+  }
+
+  /**
+   * Initialize properties dependent on @Input.
+   */
+  ngOnInit(): void {
+    super.ngOnInit();
+    this._collapsed = !!this.startCollapsed ? 'true' : 'false';
+  }
+
+  /**
+   * A handler method for when the enter key is down.
+   */
+  @HostListener('keydown.enter', ['$event']) enterKeyDown($event: Event): void {
+    $event.stopPropagation();
+    $event.preventDefault();
+
+    this.toggleCollapsibleClick();
+  }
+
+  /**
+   * A handler method for when the space key is down.
+   */
+  @HostListener('keydown.space', ['$event']) spaceKeyDown($event: Event): void {
+    $event.stopPropagation();
+    $event.preventDefault();
+
+    this.toggleCollapsibleClick();
+  }
+
+  /**
+   * Toggle the collapsible state when clicked, if allowed.
+   */
+  toggleCollapsibleClick(): void {
+    if (this.collapseMethod === 'click') {
+      this._collapsed = this._collapsed === 'true' ? 'false' : 'true';
+    }
+  }
+
+  get additionalCardClasses(): string {
+    let additionalClasses = '';
+    additionalClasses += ((!this.panelFormat || this.panelFormat === 'mixed') || this.panelFormat === 'outlined') ?
+      ` border-${this.themeVariant} ` : '';
+
+    additionalClasses += this.panelFormat === 'solid' ? ` bg-${this.themeVariant}` : '';
+
+    return additionalClasses;
+  }
+
+  get additionalHeaderClasses(): string {
+    let additionalClasses = '';
+    additionalClasses += ((!this.panelFormat || this.panelFormat === 'mixed') || this.panelFormat === 'outlined') ?
+      ` border-${this.themeVariant} ` : '';
+
+    additionalClasses += (this.panelFormat === 'solid' || this.panelFormat === 'mixed') ? ` bg-${this.themeVariant}` : '';
+
+    return additionalClasses;
+  }
+
+}
+</component-source><component-template><div #animationroot="" class="wvr-components wvr-card card {{additionalCardClasses}}" [ngclass]="{ 'text-center': textCenter, 'collapsed': _collapsed === 'true' }">
+  <div class="card-header {{additionalHeaderClasses}}" [wvrcontentprojection]="eRef" template="card-header" (click)="toggleCollapsibleClick()" [attr.tabindex]="collapseMethod === 'click' ? '0' : null"></div>
+  <div class="card-image" [wvrcontentprojection]="eRef" template="card-image"></div>
+  <div [wvrcontentprojection]="eRef" template="card-list-top"></div>
+  <div class="card-body">
+    <h5 class="card-title" [wvrcontentprojection]="eRef" template="card-title"></h5>
+    <h6 class="card-subtitle" [wvrcontentprojection]="eRef" template="card-subtitle"></h6>
+    <p class="card-text" [wvrcontentprojection]="eRef" template="card-text"></p>
+    <div [wvrcontentprojection]="eRef" template="card-content"></div>
+  </div>
+  <div [wvrcontentprojection]="eRef" template="card-list-bottom"></div>
+  <div class="card-body card-links" [wvrcontentprojection]="eRef" template="card-links"></div>
+  <div class="card-body card-buttons" [wvrcontentprojection]="eRef" template="card-buttons"></div>
+  <div class="card-footer" [wvrcontentprojection]="eRef" template="card-footer"></div>
+</div>
+
+<ng-content select="template"></ng-content>
+</component-template><component-scss>@import "../shared/styles/variables";
+
+:host {
+
+  @extend .variables;
+
+  --card-color: var(--wvr-white);
+
+  .wvr-card {
+    width: 18rem;
+  }
+
+  font-family: var(--wvr-font-family-sans-serif);
+
+  .wvr-card.collapsed .card-header {
+    border-bottom: 0px;
+  }
+
+  .wvr-card.collapsed .card-body,
+  .wvr-card.collapsed [template="card-buttons"],
+  .wvr-card.collapsed [template="card-image"],
+  .wvr-card.collapsed [template="card-links"],
+  .wvr-card.collapsed [template="card-list-top"],
+  .wvr-card.collapsed [template="card-list-bottom"],
+  .wvr-card.collapsed [template="card-footer"] {
+    visibility: collapse;
+    overflow: hidden;
+
+    height: 0px;
+    min-height: 0px;
+    max-height: 0px;
+
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
+    outline: 0px;
+  }
+
+  ::ng-deep {
+    .list-group-flush {
+      border-top: 1px solid rgba(0, 0, 0, 0.125);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    }
+
+    .card-header {
+      color: var(--card-header-color)
+    }
+
+    .card-body {
+      color: var(--card-body-color)
+    }
+  }
+
+}
+</component-scss></example>

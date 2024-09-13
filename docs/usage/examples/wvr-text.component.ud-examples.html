@@ -1,0 +1,151 @@
+<about name="Weaver Text">
+  <p>This component represents text.</p>
+
+  <p>Just like an HTML paragraph tag, this displays text.</p>
+
+  <div>
+    <p>The following attributes are available:</p>
+    <ul>
+      <li><code>color</code>: A button color value.</li>
+      <li><code>theme-variant</code>: The name of a theme variant to use for the text.</li>
+      <li><code>value</code>: The text to display.</li>
+    </ul>
+  </div>
+</about>
+
+<example name="Weaver Text Default">
+  <desciption>
+    The default <code>wvre-text</code> component with no customization.
+  </desciption>
+  <snippet>
+    <wvre-text value="Hello World"></wvre-text>
+    <wvre-text value="This text is red." color="red"></wvre-text>
+  </snippet>
+<component-source>/* istanbul ignore file */
+
+/* TODO: Issue #292. */
+import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular/core';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
+import { ThemeVariantName } from '../shared/theme';
+
+/**
+ * The Weaver Text Component allows for a node based textual entry.
+ */
+@Component({
+  selector: 'wvr-text-component',
+  templateUrl: './wvr-text.component.html',
+  styleUrls: ['./wvr-text.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class WvrTextComponent extends WvrBaseComponent {
+
+  /** The text value to be displayed in the text node. */
+  @Input() value: string;
+
+  @Input() themeVariant: ThemeVariantName;
+
+  @Input() color: string;
+
+  /** Allows for the override of font-size property for wvre-text */
+  @HostBinding('style.--wvr-text-font-size') @Input() fontSize;
+
+  /** Allows for the override of font-family property for wvre-text */
+  @HostBinding('style.--wvr-text-font-family') @Input() fontFamily;
+
+  /** Allows for the override of font-style property for wvre-text */
+  @HostBinding('style.--wvr-text-font-style') @Input() fontStyle;
+
+  /** Allows for the override of font-variant property for wvre-text */
+  @HostBinding('style.--wvr-text-font-variant') @Input() fontVariant;
+
+  /** Allows for the override of font-weight property for wvre-text */
+  @HostBinding('style.--wvr-text-font-weight') @Input() fontWeight;
+
+  /** Allows for the override of font-stretch property for wvre-text */
+  @HostBinding('style.--wvr-text-font-stretch') @Input() fontStretch;
+
+  /** Allows for the override of line-height property for wvre-text */
+  @HostBinding('style.--wvr-text-line-height') @Input() lineHeight;
+
+  @HostBinding('style.--wvr-text-color') get textColor(): string {
+    return this.themeVariant ? `var(--${this.themeVariant}-button-color)` : this.color;
+  }
+
+  /** Allows for the override of text-align property for wvre-text */
+  @HostBinding('style.--wvr-text-text-align') @Input() textAlign;
+
+  /** Allows for the override of text-decoration property for wvre-text */
+  @HostBinding('style.--wvr-text-text-decoration') @Input() textDecoration;
+
+  /** Allows for the override of text-transform property for wvre-text */
+  @HostBinding('style.--wvr-text-text-transform') @Input() textTransform;
+
+  /** Allows for the override of text-indent property for wvre-text */
+  @HostBinding('style.--wvr-text-text-indent') @Input() textIndent;
+
+  /** Allows for the override of letter-spacing property for wvre-text */
+  @HostBinding('style.--wvr-text-letter-spacing') @Input() letterSpacing;
+
+  /** Allows for the override of direction property for wvre-text */
+  @HostBinding('style.--wvr-text-direction') @Input() textDirection;
+
+  /** Allows for the override of text-shadow property for wvre-text */
+  @HostBinding('style.--wvr-text-text-shadow') @Input() textShadow;
+
+  /** Allows for the override of word-spacing property for wvre-text */
+  @HostBinding('style.--wvr-text-word-spacing') @Input() wordSpacing;
+
+}
+</component-source><component-template><wvre-text-node>{{value}}</wvre-text-node>
+</component-template><component-scss>@import "../shared/styles/variables";
+
+:host {
+
+  @extend .variables;
+
+  //font rules
+  --wvr-text-font-size: default;
+  --wvr-text-font-family: default;
+  --wvr-text-font-style: default;
+  --wvr-text-font-variant: default;
+  --wvr-text-font-weight: default;
+  --wvr-text-font-stretch: default;
+  --wvr-text-line-height: default;
+
+  //text rules
+  --wvr-text-color: default;
+  --wvr-text-direction:default;
+  --wvr-text-letter-spacing:default;
+  --wvr-text-text-align: default;
+  --wvr-text-text-decoration:default;
+  --wvr-text-text-transform:default;
+  --wvr-text-text-indent:default;
+  --wvr-text-text-shadow: default;
+  --wvr-text-word-spacing:default;
+
+}
+
+wvre-text-node {
+
+  //font rules
+  font-family: var(--wvr-text-font-family);
+  font-size: var(--wvr-text-font-size);
+  font-stretch: var(--wvr-text-font-stretch);
+  font-style: var(--wvr-text-font-style);
+  font-variant: var(--wvr-text-font-variant);
+  font-weight: var(--wvr-text-font-weight);
+  line-height: var(--wvr-text-line-height);
+
+  //text rules
+  color: var(--wvr-text-color);
+  direction: var(--wvr-text-direction);
+  letter-spacing: var(--wvr-text-letter-spacing);
+  text-align: var(--wvr-text-text-align);
+  text-decoration:var(--wvr-text-text-decoration);
+  text-indent: var(--wvr-text-text-indent);
+  text-shadow: var(--wvr-text-text-shadow);
+  text-transform: var(--wvr-text-text-transform);
+  word-spacing: var(--wvr-text-word-spacing);
+
+}
+</component-scss></example>

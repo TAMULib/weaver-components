@@ -1,0 +1,702 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>weaver-components documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">weaver-components documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Injectables</li>
+  <li >MessageManifestEffects</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>projects/wvr-elements/src/lib/core/message-manifest/message-manifest.effects.ts</code>
+        </p>
+
+
+
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#connectManifest" >connectManifest</a>
+                            </li>
+                            <li>
+                                <a href="#connectManifestConnected" >connectManifestConnected</a>
+                            </li>
+                            <li>
+                                <a href="#deleteClient" >deleteClient</a>
+                            </li>
+                            <li>
+                                <a href="#disconnectManifest" >disconnectManifest</a>
+                            </li>
+                            <li>
+                                <a href="#disconnectManifestDisconnected" >disconnectManifestDisconnected</a>
+                            </li>
+                            <li>
+                                <a href="#messageManifestAdded" >messageManifestAdded</a>
+                            </li>
+                            <li>
+                                <a href="#subscribeManifest" >subscribeManifest</a>
+                            </li>
+                            <li>
+                                <a href="#unsubscribeManifest" >unsubscribeManifest</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(actions: Actions, store: Store<RootState>, messageService: <a href="../injectables/MessageService.html" target="_self">MessageService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">projects/wvr-elements/src/lib/core/message-manifest/message-manifest.effects.ts:15</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>actions</td>
+                                                  
+                                                        <td>
+                                                                    <code>Actions</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>store</td>
+                                                  
+                                                        <td>
+                                                                    <code>Store&lt;RootState&gt;</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>messageService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/MessageService.html" target="_self" >MessageService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+            <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="connectManifest"></a>
+                    <span class="name">
+                        <span ><b>connectManifest</b></span>
+                        <a href="#connectManifest"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createEffect(
+    () &#x3D;&gt; this.actions.pipe(
+      ofType(MessageManifestActions.connectManifest),
+      pluck(&#x27;manifest&#x27;),
+      mergeMap(manifest &#x3D;&gt; this.messageService.connect(manifest)
+        .pipe(
+          map(() &#x3D;&gt; MessageManifestActions.connectManifestSuccess({
+            manifest
+          })),
+          catchError(() &#x3D;&gt; of(MessageManifestActions.connectManifestFailure({
+            manifest
+          })))
+      ))
+    )
+  )</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">projects/wvr-elements/src/lib/core/message-manifest/message-manifest.effects.ts:33</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="connectManifestConnected"></a>
+                    <span class="name">
+                        <span ><b>connectManifestConnected</b></span>
+                        <a href="#connectManifestConnected"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createEffect(
+    () &#x3D;&gt; this.actions.pipe(
+      ofType(MessageManifestActions.connectManifestConnected),
+      pluck(&#x27;manifest&#x27;),
+      switchMap(manifest &#x3D;&gt;
+        manifest.entries.map(entry &#x3D;&gt;
+          MessageManifestActions.subscribeManifest({
+            manifest,
+            entry
+          })
+        )
+      )
+    )
+  )</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">projects/wvr-elements/src/lib/core/message-manifest/message-manifest.effects.ts:49</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deleteClient"></a>
+                    <span class="name">
+                        <span ><b>deleteClient</b></span>
+                        <a href="#deleteClient"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createEffect(
+    () &#x3D;&gt; this.actions.pipe(
+      ofType(MessageManifestActions.deleteClient),
+      switchMap(action &#x3D;&gt; this.messageService.deleteClient(action.manifest))
+    ),
+    {
+      dispatch: false
+    }
+  )</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">projects/wvr-elements/src/lib/core/message-manifest/message-manifest.effects.ts:123</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="disconnectManifest"></a>
+                    <span class="name">
+                        <span ><b>disconnectManifest</b></span>
+                        <a href="#disconnectManifest"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createEffect(
+    () &#x3D;&gt; this.actions.pipe(
+      ofType(MessageManifestActions.disconnectManifest),
+      pluck(&#x27;manifest&#x27;),
+      mergeMap(manifest &#x3D;&gt; this.messageService.disconnect(manifest)
+        .pipe(
+          map(() &#x3D;&gt; MessageManifestActions.disconnectManifestSuccess({
+            manifest
+          })),
+          catchError(() &#x3D;&gt; of(MessageManifestActions.disconnectManifestFailure({
+            manifest
+          })))
+      ))
+    )
+  )</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">projects/wvr-elements/src/lib/core/message-manifest/message-manifest.effects.ts:64</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="disconnectManifestDisconnected"></a>
+                    <span class="name">
+                        <span ><b>disconnectManifestDisconnected</b></span>
+                        <a href="#disconnectManifestDisconnected"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createEffect(
+    () &#x3D;&gt; this.actions.pipe(
+      ofType(MessageManifestActions.disconnectManifestDisconnected),
+      switchMap(action &#x3D;&gt; this.messageService.deleteClient(action.manifest))
+    ),
+    {
+      dispatch: false
+    }
+  )</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">projects/wvr-elements/src/lib/core/message-manifest/message-manifest.effects.ts:80</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="messageManifestAdded"></a>
+                    <span class="name">
+                        <span ><b>messageManifestAdded</b></span>
+                        <a href="#messageManifestAdded"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createEffect(
+    () &#x3D;&gt; this.actions.pipe(
+      ofType(MessageManifestActions.addManifest),
+      pluck(&#x27;manifest&#x27;),
+      map(manifest &#x3D;&gt; MessageManifestActions.connectManifest({ manifest }))
+    )
+  )</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">projects/wvr-elements/src/lib/core/message-manifest/message-manifest.effects.ts:25</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="subscribeManifest"></a>
+                    <span class="name">
+                        <span ><b>subscribeManifest</b></span>
+                        <a href="#subscribeManifest"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createEffect(
+    () &#x3D;&gt; this.actions.pipe(
+      ofType(MessageManifestActions.subscribeManifest),
+      mergeMap(action &#x3D;&gt; this.messageService.subscribe(action.manifest, action.entry)
+        .pipe(
+          map(subscription &#x3D;&gt; MessageManifestActions.subscribeManifestSuccess({
+            manifest: action.manifest,
+            entry: action.entry,
+            subscription
+          })),
+          catchError(() &#x3D;&gt; of(MessageManifestActions.subscribeManifestFailure({
+            entry: action.entry
+          })))
+      ))
+    )
+  )</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">projects/wvr-elements/src/lib/core/message-manifest/message-manifest.effects.ts:90</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="unsubscribeManifest"></a>
+                    <span class="name">
+                        <span ><b>unsubscribeManifest</b></span>
+                        <a href="#unsubscribeManifest"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>createEffect(
+    () &#x3D;&gt; this.actions.pipe(
+      ofType(MessageManifestActions.unsubscribeManifest),
+      mergeMap(action &#x3D;&gt; this.messageService.unsubscribe(action.manifest, action.entry.id)
+        .pipe(
+          map(subscription &#x3D;&gt; MessageManifestActions.unsubscribeManifestSuccess({
+            manifest: action.manifest,
+            entry: action.entry
+          })),
+          catchError(() &#x3D;&gt; of(MessageManifestActions.subscribeManifestFailure({
+            entry: action.entry
+          })))
+      ))
+    )
+  )</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">projects/wvr-elements/src/lib/core/message-manifest/message-manifest.effects.ts:107</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+import { Actions, createEffect, ofType } from &#x27;@ngrx/effects&#x27;;
+import { select, Store } from &#x27;@ngrx/store&#x27;;
+import { combineLatest, of } from &#x27;rxjs&#x27;;
+import { catchError, map, mergeMap, pluck, switchMap, take, withLatestFrom } from &#x27;rxjs/operators&#x27;;
+import { RootState } from &#x27;../store&#x27;;
+import { MessageManifest } from &#x27;./message-manifest&#x27;;
+import { MessageManifestEntry } from &#x27;./message-manifest-entry&#x27;;
+import * as MessageManifestActions from &#x27;./message-manifest.actions&#x27;;
+import { MessageService } from &#x27;../message&#x27;;
+
+/* disable test coverage until a strategy for testing effects can be determined. */
+/* istanbul ignore file */
+@Injectable()
+export class MessageManifestEffects {
+
+  constructor(
+    private readonly actions: Actions,
+    private readonly store: Store&lt;RootState&gt;,
+    private readonly messageService: MessageService
+  ) {
+
+  }
+
+  messageManifestAdded &#x3D; createEffect(
+    () &#x3D;&gt; this.actions.pipe(
+      ofType(MessageManifestActions.addManifest),
+      pluck(&#x27;manifest&#x27;),
+      map(manifest &#x3D;&gt; MessageManifestActions.connectManifest({ manifest }))
+    )
+  );
+
+  connectManifest &#x3D; createEffect(
+    () &#x3D;&gt; this.actions.pipe(
+      ofType(MessageManifestActions.connectManifest),
+      pluck(&#x27;manifest&#x27;),
+      mergeMap(manifest &#x3D;&gt; this.messageService.connect(manifest)
+        .pipe(
+          map(() &#x3D;&gt; MessageManifestActions.connectManifestSuccess({
+            manifest
+          })),
+          catchError(() &#x3D;&gt; of(MessageManifestActions.connectManifestFailure({
+            manifest
+          })))
+      ))
+    )
+  );
+
+  connectManifestConnected &#x3D; createEffect(
+    () &#x3D;&gt; this.actions.pipe(
+      ofType(MessageManifestActions.connectManifestConnected),
+      pluck(&#x27;manifest&#x27;),
+      switchMap(manifest &#x3D;&gt;
+        manifest.entries.map(entry &#x3D;&gt;
+          MessageManifestActions.subscribeManifest({
+            manifest,
+            entry
+          })
+        )
+      )
+    )
+  );
+
+  disconnectManifest &#x3D; createEffect(
+    () &#x3D;&gt; this.actions.pipe(
+      ofType(MessageManifestActions.disconnectManifest),
+      pluck(&#x27;manifest&#x27;),
+      mergeMap(manifest &#x3D;&gt; this.messageService.disconnect(manifest)
+        .pipe(
+          map(() &#x3D;&gt; MessageManifestActions.disconnectManifestSuccess({
+            manifest
+          })),
+          catchError(() &#x3D;&gt; of(MessageManifestActions.disconnectManifestFailure({
+            manifest
+          })))
+      ))
+    )
+  );
+
+  disconnectManifestDisconnected &#x3D; createEffect(
+    () &#x3D;&gt; this.actions.pipe(
+      ofType(MessageManifestActions.disconnectManifestDisconnected),
+      switchMap(action &#x3D;&gt; this.messageService.deleteClient(action.manifest))
+    ),
+    {
+      dispatch: false
+    }
+  );
+
+  subscribeManifest &#x3D; createEffect(
+    () &#x3D;&gt; this.actions.pipe(
+      ofType(MessageManifestActions.subscribeManifest),
+      mergeMap(action &#x3D;&gt; this.messageService.subscribe(action.manifest, action.entry)
+        .pipe(
+          map(subscription &#x3D;&gt; MessageManifestActions.subscribeManifestSuccess({
+            manifest: action.manifest,
+            entry: action.entry,
+            subscription
+          })),
+          catchError(() &#x3D;&gt; of(MessageManifestActions.subscribeManifestFailure({
+            entry: action.entry
+          })))
+      ))
+    )
+  );
+
+  unsubscribeManifest &#x3D; createEffect(
+    () &#x3D;&gt; this.actions.pipe(
+      ofType(MessageManifestActions.unsubscribeManifest),
+      mergeMap(action &#x3D;&gt; this.messageService.unsubscribe(action.manifest, action.entry.id)
+        .pipe(
+          map(subscription &#x3D;&gt; MessageManifestActions.unsubscribeManifestSuccess({
+            manifest: action.manifest,
+            entry: action.entry
+          })),
+          catchError(() &#x3D;&gt; of(MessageManifestActions.subscribeManifestFailure({
+            entry: action.entry
+          })))
+      ))
+    )
+  );
+
+  deleteClient &#x3D; createEffect(
+    () &#x3D;&gt; this.actions.pipe(
+      ofType(MessageManifestActions.deleteClient),
+      switchMap(action &#x3D;&gt; this.messageService.deleteClient(action.manifest))
+    ),
+    {
+      dispatch: false
+    }
+  );
+
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'MessageManifestEffects.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

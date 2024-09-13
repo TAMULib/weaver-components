@@ -1,0 +1,109 @@
+<about name="Weaver Navigation List">
+  <p>This component represents a navigation list.</p>
+
+  <p>A navigation list is a special type of list fine-tuned for being used in navigating a page.</p>
+
+  <div>
+    <p>The following may be specified as an attribute on a <code>template</code> element:</p>
+    <ul>
+      <li><code>list-items</code>: The content to display in a section within the list representing all items of the list.</li>
+    </ul>
+  </div>
+
+  <div>
+    <p>The following attributes are available:</p>
+    <ul>
+      <li><code>aligned</code>: One of <code>center</code>, <code>left</code>, <code>right</code>, or any valid CSS alignment value.</li>
+      <li><code>vertical</code>: One of <code>true</code> or <code>false</code>.</li>
+    </ul>
+  </div>
+</about>
+
+<example name="Weaver Nav List Default">
+  <desciption>
+    The <code>wvre-nav-list</code> component has the <code>weaver-nav-li</code> as a sub component.
+  </desciption>
+  <snippet>
+    <wvre-nav-list>
+      <template nav-list-items="">
+        <wvre-nav-li href="#1">
+          <wvre-text value="Link 1"></wvre-text>
+        </wvre-nav-li>
+        <wvre-nav-li href="#2">
+          <wvre-text value="Link 2"></wvre-text>
+        </wvre-nav-li>
+        <wvre-nav-li href="#3">
+          <wvre-text value="Link 3"></wvre-text>
+        </wvre-nav-li>
+      </template>
+    </wvre-nav-list>
+  </snippet>
+<component-source>import { AfterViewInit, ChangeDetectionStrategy, Component, Injector, Input, OnDestroy } from '@angular/core';
+import { Alignment } from '../shared/alignment.enum';
+import { projectContent } from '../shared/utility/projection.utility';
+import { WvrBaseComponent } from '../shared/wvr-base.component';
+
+/**
+ * The WvrNavList Component presents a navigation list.
+ * Elements within this list must be wvre-nav-li elements and can be either links of action elements.
+ */
+@Component({
+  selector: 'wvr-nav-list-component',
+  templateUrl: './wvr-nav-list.component.html',
+  styleUrls: ['./wvr-nav-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default
+})
+export class WvrNavListComponent extends WvrBaseComponent implements AfterViewInit, OnDestroy {
+
+  /** The aligned property describing the positioning of the list elements. */
+  @Input() aligned = Alignment.LEFT;
+
+  /** Toggles the display of the list horizontally or vertically. */
+  @Input() vertical: 'true' | 'false' = 'false';
+
+  private readonly observer = new MutationObserver(() =&gt; {
+    this.project();
+  });
+
+  constructor(injector: Injector) {
+    super(injector);
+  }
+
+  ngAfterViewInit(): void {
+    this.project();
+    const element: Element = this.eRef.nativeElement.querySelector('template[nav-list-items]');
+    if (!!element) {
+      this.observer.observe(element, {
+        attributes: false,
+        childList: true,
+        subtree: false
+      });
+    }
+  }
+
+  ngOnDestroy(): void {
+    super.ngOnDestroy();
+    this.observer.disconnect();
+  }
+
+  private project(): void {
+    projectContent(this.eRef, 'template[nav-list-items]', 'div[nav-list-items]');
+  }
+
+}
+</component-source><component-template><div #animationroot="" class="navbar-nav flex-wrap" [ngclass]="{ 'flex-row': vertical==='false', 'justify-content-end': aligned === 'RIGHT', 'justify-content-center': aligned === 'CENTER' }" role="menu" nav-list-items="">
+  <ng-content select="template[nav-list-items]"></ng-content>
+</div>
+</component-template><component-scss>@import "../shared/styles/variables";
+
+:host {
+  
+  @extend .variables;
+
+  --wvr-nav-list-height: 100%;
+}
+
+.navbar-nav {
+  height: var(--wvr-nav-list-height);
+}
+</component-scss></example>
