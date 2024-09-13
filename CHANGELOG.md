@@ -1,6 +1,14 @@
 # Changelog
 
-## [2.0.5] - 12-02-22
+## [2.0.5-rc.2] - 09-13-24
+### Resolves
+
+- Downgrading Angular dependencies to 12.2.16 to fix npm build.
+- Added `"cheerio": "1.0.0-rc.10"` to fix npm build.
+- Added `"typescript": ">=4.2.3 <4.4"` to fix npm build.
+- Added `"whatwg-mimetype": "^3.0.0"` to fix npm build.
+
+## [2.0.5-rc.1] - 12-02-22
 ### Resolves
 
 - WYSIWYG save is not working. (#516)
