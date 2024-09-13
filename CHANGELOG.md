@@ -4,7 +4,7 @@
 ### Resolves
 
 - Downgrading Angular dependencies to 12.2.16 to fix npm build.
-- Added `"cheerio": "1.0.0-rc.10"` to fix npm build.
+- Added `"cheerio": "1.0.0-rc.10"` to resolve issues with the compodocs command not running correctly.
 - Added `"typescript": ">=4.2.3 <4.4"` to fix npm build.
 - Added `"whatwg-mimetype": "^3.0.0"` to fix npm build.
 
