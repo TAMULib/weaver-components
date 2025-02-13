@@ -8,6 +8,8 @@
 
 # Weaver Components
 
+Copyright © 2020-2025 Texas A&M University Libraries under the [MIT license](LICENSE).
+
 Weaver Components provides a collection of custom HTML elements that represent a toolkit of dynamically renderred HTML markup, CSS Styles, and effects. This toolkit may be made available to a given project either via a CDN URL, directly attached as a Javascript file and CSS file, or via a project dependency. Such elements may be dropped directly onto a page utilizing Weaver Components and they will be immediately renderred as appropriate.
 
 ## Installation
